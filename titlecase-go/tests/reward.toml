@@ -1,3 +1,6 @@
+# One score per check, combined with a weighted mean:
+#   build 1  +  no_python 1  +  behaviour 4   (total weight 6)
+#   nothing done = 0, build only = 1/6 = 0.17, perfect = 1.0
 [[reward]]
 name = "reward"
 aggregation = "weighted-mean"

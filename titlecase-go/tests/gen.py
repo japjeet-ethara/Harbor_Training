@@ -1,259 +1,278 @@
-"""Generate deterministic titlecase fixtures from the original Python library.
+#!/usr/bin/env python3
+"""Generate the visible and hidden test sets for the titlecase-go task.
 
-Inputs are random, but random.seed(1) makes every run identical. Expected files
-are produced only by calling titlecase() in ../python-titlecase. Do not paste
-expected strings into this script.
+Run by the task author (NOT at grading time):
+
+    python tests/gen.py
+
+Needs the optional `regex` package (the original prefers it):  pip install regex
+
+The expected answers always come from running the ORIGINAL Python titlecase()
+(../python-titlecase, same commit that is copied into the task image). They are
+never written by hand.
+
+Output (tests/data/):
+    inputs.txt            2000 visible titles
+    expected.txt          original titlecase() of each visible title
+    hidden_inputs.txt     a different 2000 titles (used for grading)
+    hidden_expected.txt   original titlecase() of each hidden title
+
+Note: Reward Kit imports every .py file in tests/. Everything here therefore lives
+behind `if __name__ == "__main__"`, so importing this file does nothing.
 """
-
 import random
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent
+sys.dont_write_bytecode = True   # never leave __pycache__ inside the source repo
+
+N = 2000
+HERE = Path(__file__).resolve().parent                 # tests/
 DATA = HERE / "data"
-PY_TITLECASE = HERE.parent.parent / "python-titlecase"
 
-COUNT = 2000
+# --------------------------------------------------------------------------
+# Word pools
+# --------------------------------------------------------------------------
+COMMON = """lord rings tale cities game thrones war peace pride prejudice great
+expectations silent night river road mountain garden house city world story
+secret history future journey dream shadow light storm summer winter spring
+autumn captain ocean island forest desert kingdom empire machine learning
+python programming guide complete handbook introduction advanced beginners
+quick brown fox jumps over lazy dog hello goodbye morning evening yesterday
+tomorrow forever never always sometimes everything nothing someone anything
+chronicles adventures mystery voyage legend rise fall return revenge begins
+ends awakening requiem harvest silence thunder whisper bridge tower castle
+engineering database network protocol design pattern review notes report
+analysis results study methods approach framework system theory practice""".split()
 
-# Single-line inputs cited in NOTES.md. Rules 16 and 17 are about newlines
-# inside one titlecase() string, so they are not stored in these line files.
-NOTES_INPUTS = [
-    "the lord of the rings",
-    "a thing of",
-    "'by the Way, small word at the start but within quotes.'",
-    "this vs. that",
-    "Starting Sub-Phrase With a Small Word: a Trick, Perhaps?",
-    "THIS IS ALL CAPS AND SHOULD BE ADDRESSED",
-    "WASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE A PROBLEM",
-    "iTunes should be unmolested",
-    "this is http://foo.com",
-    "o'grange",
-    "l'grange",
-    "mccarthy",
-    "mr smith and dr jones",
-    "a title and/or string",
-    "end-to-end",
-    "words with all consonants like cnn",
-    "foo bar 5th st",
-    "34th 3rd 2nd",
-    "text\twith\ttabs",
-    "a simple tcp and udp wrapper",
-]
+SMALL = ["a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
+         "of", "on", "or", "the", "to", "v", "v.", "via", "vs", "vs."]
 
-SMALL = [
-    "a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
-    "of", "on", "or", "the", "to", "v", "v.", "via", "vs", "vs.",
-]
+ACRONYMS = ["NASA", "FBI", "USA", "IBM", "HTTP", "HTML", "CPU", "GPU", "NATO",
+            "UNESCO", "DNA", "AI", "ML", "SQL", "API", "CEO", "UK", "EU", "UN"]
 
-WORDS = [
-    "apple", "bridge", "castle", "city", "copper", "evening", "family",
-    "forest", "friend", "garden", "harbor", "history", "house", "lantern",
-    "letter", "market", "morning", "mountain", "music", "north", "ocean",
-    "paper", "people", "public", "quiet", "river", "school", "science",
-    "shadow", "silver", "south", "stone", "street", "summer", "thunder",
-    "velvet", "window", "winter", "yellow", "bright", "little", "green",
-    "lord", "rings", "thing", "trick", "washington", "smith", "jones",
-]
+CONSONANT_ONLY = ["tv", "nyc", "ltd", "bcd", "st", "mph", "nth", "xyz", "pdf",
+                  "cd", "dvd", "rpm", "hmm", "shh", "brr", "tsk", "cwm", "crwth",
+                  "Ltd", "PhD", "phd", "grrr", "Mgr", "kbps"]
 
-BREAKS = [": ", "; ", ". ", "? ", "! ", "- ", "– ", "‒ ", "— ", "― "]
-SPACES = ["\t", "\u00a0", "\u2003", "  "]
-INITIALS = ["D.C.", "A.B", "A.B.", "U.S.", "N.Y."]
-KEPT = ["iTunes", "AT&T", "Q&A", "eBay"]
-URLS = ["http://foo.com", "https://example.com/a", "foo.com", "news.bbc.co.uk"]
-ACRONYMS = ["cnn", "bbc", "gps", "html", "sql", "ftp", "st", "rd"]
-ORDINALS = ["34th", "3rd", "2nd", "5th", "1st", "10th"]
-HONORIFICS = ["mr", "mrs", "ms", "dr", "mss", "MR", "DR"]
+MIXED_CASE = ["iPhone", "eBay", "macOS", "YouTube", "DiCaprio", "McDonald",
+              "iOS", "PowerPoint", "JavaScript", "GitHub", "LaTeX", "bitTorrent",
+              "O'Neil", "D'Artagnan", "MacBook", "WiFi", "PlayStation", "xBox",
+              "mRNA", "pH", "kHz", "dB", "eBooks", "iPad"]
 
+MC = ["mcdonald", "mcgregor", "MCDONALD", "McDonald", "mcd", "mcx", "mc", "mcdonalds",
+      "MCGREGOR", "mcintosh", "mccartney", "McCartney", "mcdonald-smith",
+      "mc1", "mcA", "MC", "Mc", "mcm", "mcfly", "MacDonald", "macdonald"]
 
-def phrase(n):
-    return " ".join(random.choice(WORDS) for _ in range(n))
+HONORIFICS = ["mr", "mrs", "ms", "dr", "Mr", "Mrs", "Ms", "Dr", "MR", "MRS",
+              "DR", "dR", "mr.", "dr.", "Dr.", "mrs.", "ms.", "Mr.", "mister"]
 
+APOS = ["o'neil", "d'artagnan", "l'amour", "o'brien", "d'angelo", "l'oreal",
+        "O'NEIL", "D'ARTAGNAN", "L'AMOUR", "o'neil's", "d'artagnan's",
+        "o‘brien", "d‘angelo", "don't", "it's", "rock'n'roll", "dogs'",
+        "'tis", "'em", "o'connor", "l'", "d'", "o'", "o'x", "d'a's", "l'am''",
+        "o'neills", "o'neil''", "D'Arcy", "d'ARCY", "john's", "ma'am",
+        "o'k", "d'ss", "l'ss"]
 
-def small_middle():
-    return f"{phrase(random.randint(1, 3))} {random.choice(SMALL)} {phrase(random.randint(1, 3))}"
+URLS = ["http://example.com", "https://example.com/foo", "www.example.com",
+        "user@example.com", "example.com/foo-bar", "http://x.org//y",
+        "e.g.", "i.e.", "etc.", "u.s.", "U.S.A.", "U.S.", "J.R.R.", "A.B.",
+        "J.K.", "a.b.c", "node.js", "file.txt", "v1.2.3", "3.14", "a.B", "x.Y.z",
+        "S.W.A.T.", "A.B.C", "M.C.", "J.R.R", "U.S", "a.", "A."]
 
+HYPHEN = ["state-of-the-art", "well-known", "x-ray", "-leading", "trailing-",
+          "double--dash", "3-d", "e-mail", "the-end", "of-the", "up-to-date",
+          "mother-in-law", "A-Team", "t-shirt", "pre-1900", "self-made",
+          "non-OCR", "to-do", "once-in-a-lifetime", "a-b-c", "x-", "-x", "-",
+          "--", "in-between", "by-product", "cross-site", "IBM-compatible",
+          "UK-based", "the-a-of", "v-day", "high-end/low-end", "ex-wife",
+          "STATE-OF-THE-ART", "WELL-KNOWN", "Spider-Man", "e-commerce"]
 
-def small_first_last():
-    return f"{random.choice(SMALL)} {phrase(random.randint(1, 4))} {random.choice(SMALL)}"
+SLASH = ["and/or", "either/or", "w/o", "24/7", "a//b", "http://x//y", "n/a",
+         "yes/no", "input/output", "TCP/IP", "AC/DC", "his/her", "a/b/c",
+         "/leading", "trailing/", "the/of", "by/for", "/", "//", "the/end",
+         "s/he", "on/off", "client/server", "I/O", "and/or/the"]
 
+DIGITS = ["1st", "2nd", "3rd", "4k", "3d", "2024", "10%", "$5", "#1", "a1b",
+          "1a", "007", "9to5", "42", "3.5", "100%", "1,000", "#hashtag",
+          "5th", "r2d2", "c3po", "f1", "4x4", "1984", "24", "a1", "of2", "x2y"]
 
-def leading_punct():
-    opening = random.choice(["'", '"', "(", "“", "‘"])
-    closing = random.choice(["'", '"', ")", ".", ""])
-    return f"{opening}{random.choice(SMALL)} {phrase(random.randint(2, 5))}{closing}"
+WRAPPED_FMT = ['({})', '"{}"', "'{}'", "[{}]", "{{{}}}", "“{}”",
+               "‘{}’", "{},", "{}.", "{}!", "{}?", "{}:", "{};",
+               "{}...", "—{}", "{}—", "-{}", "{}-", "*{}*", "_{}_",
+               "<{}>", "`{}`", "–{}", "#{}", "@{}", "~{}~", "...{}",
+               "({}).", "\"{}\"!", "'{}',", "“{}", "{}”"]
 
+UNICODE_WORDS = ["café", "naïve", "über", "ñandú", "École", "ÉCOLE", "señor",
+                 "à", "la", "carte", "Ångström", "ÅNGSTRÖM", "façade", "jalapeño",
+                 "crème", "brûlée", "smörgåsbord", "çok", "über-cool", "Zoë",
+                 "ÀÉÎ", "élan", "ærø", "øl", "naïve-ish", "école/uni",
+                 "ÑANDÚ", "žluťoučký", "łódź", "istanbul"]
 
-def versus():
-    return f"{random.choice(WORDS)} {random.choice(['v', 'v.', 'vs', 'vs.', 'via'])} {random.choice(WORDS)}"
+WEIRD = ["...", "?!", "--", "-", "***", "123", "a", "v", "v.", "vs.", "&",
+         "+", "=", "~", "|", "\\", "x\\y", "^", "<>", "%", "!!!", "(", ")",
+         "'", '"', "—", "–", "‘", "“", "_", "__", "_x_",
+         "snake_case_word", "of_x", "a_b", "x_of", "foo__bar", "(a)", "(of)"]
 
-
-def subphrase():
-    return (
-        f"{phrase(random.randint(2, 5))}"
-        f"{random.choice(BREAKS)}"
-        f"{random.choice(SMALL)} {phrase(random.randint(1, 4))}"
-    )
-
-
-def all_caps():
-    return phrase(random.randint(3, 8)).upper()
-
-
-def initials():
-    return f"{random.choice(WORDS).upper()}, {random.choice(INITIALS)} {phrase(random.randint(2, 5)).upper()}"
+SEPARATORS_RARE = ["  ", "\t", " ", "   ", "  ", " ", "　", "\t\t"]
+JOINERS = [": ", ". ", "? ", "! ", "; ", "- ", " – ", " — ", "— ",
+           "– ", "― ", "‒ "]
 
 
-def internal_caps():
-    return f"{random.choice(KEPT)} {phrase(random.randint(1, 4))}"
+def pick_word(rng):
+    """One token. Weighted towards realistic words, with many tricky ones."""
+    r = rng.random()
+    if r < 0.30:
+        return rng.choice(COMMON)
+    if r < 0.45:
+        return rng.choice(SMALL)
+    if r < 0.50:
+        return rng.choice(ACRONYMS)
+    if r < 0.54:
+        return rng.choice(CONSONANT_ONLY)
+    if r < 0.58:
+        return rng.choice(MIXED_CASE)
+    if r < 0.62:
+        return rng.choice(MC)
+    if r < 0.65:
+        return rng.choice(HONORIFICS)
+    if r < 0.69:
+        return rng.choice(APOS)
+    if r < 0.73:
+        return rng.choice(URLS)
+    if r < 0.78:
+        return rng.choice(HYPHEN)
+    if r < 0.82:
+        return rng.choice(SLASH)
+    if r < 0.85:
+        return rng.choice(DIGITS)
+    if r < 0.92:
+        base = rng.choice(COMMON + SMALL + ACRONYMS + ["O'Neil", "x", "mcdonald"])
+        return rng.choice(WRAPPED_FMT).format(base)
+    if r < 0.96:
+        return rng.choice(UNICODE_WORDS)
+    return rng.choice(WEIRD)
 
 
-def url_or_domain():
-    return f"{phrase(random.randint(1, 3))} {random.choice(URLS)}"
+def case_variant(rng, w):
+    """Randomly re-case a token (lower / UPPER / Capitalized / swapped)."""
+    r = rng.random()
+    if r < 0.60:
+        return w
+    if r < 0.75:
+        return w.lower()
+    if r < 0.85:
+        return w.upper()
+    if r < 0.93:
+        return w[:1].upper() + w[1:]
+    return w.swapcase()
 
 
-def apostrophe():
-    letter = random.choice(["d", "o", "l", "D", "O", "L"])
-    mark = random.choice(["'", "‘"])
-    rest = random.choice(["grange", "artagnan", "clock", "neil"])
-    extra = phrase(random.randint(0, 3))
-    core = f"{letter}{mark}{rest}"
-    return f"{core} {extra}".strip()
+def make_title(rng):
+    n = rng.choice([1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8, 9, 11, 14])
+    words = []
+    for _ in range(n):
+        w = pick_word(rng)
+        words.append(case_variant(rng, w))
+    # Mostly one space, sometimes unusual whitespace.
+    parts = []
+    for i, w in enumerate(words):
+        parts.append(w)
+        if i < len(words) - 1:
+            r = rng.random()
+            if r < 0.04:
+                parts.append(rng.choice(SEPARATORS_RARE))
+            elif r < 0.10 and w[-1:] not in ":.;?!":
+                # glue a joiner so SUBPHRASE (": the") rules are exercised
+                parts.append(rng.choice(JOINERS))
+            else:
+                parts.append(" ")
+    title = "".join(parts)
+
+    r = rng.random()
+    if r < 0.10:
+        title = title.upper()                    # all-caps line
+    elif r < 0.45:
+        title = title.lower()                    # all-lowercase line
+    elif r < 0.50:
+        title = title.swapcase()
+    # rare: leading / trailing whitespace
+    r = rng.random()
+    if r < 0.02:
+        title = " " + title
+    elif r < 0.04:
+        title = title + " "
+    elif r < 0.05:
+        title = "\t" + title
+    # rare: a second clause after a joiner
+    if rng.random() < 0.12:
+        title = title + rng.choice(JOINERS) + case_variant(
+            rng, " ".join(pick_word(rng) for _ in range(rng.choice([1, 2, 3]))))
+    return title
 
 
-def mc_name():
-    prefix = random.choice(["mc", "MC", "Mc"])
-    rest = random.choice(["carthy", "donald", "intyre", "gregor"])
-    extra = phrase(random.randint(0, 3))
-    return f"{prefix}{rest} {extra}".strip()
+def fixed_lines():
+    """A few deliberately nasty single-line cases, always present."""
+    return [
+        "  ", " ", "the", "THE", "a", "of", "v.", "vs.", "x v. y", "x vs. y",
+        "the lord of the rings", "THE LORD OF THE RINGS", "J.R.R. TOLKIEN",
+        "mcdonald and macdonald", "o'neil d'artagnan l'amour",
+        "state-of-the-art design", "what is it for?", "look at!", "something to",
+        "Chapter 1: the end", "hello. a world", "wow - an idea", "a: b",
+        "and/or either/or", "see http://example.com/foo now", "NASA's new rocket",
+        "iPhone and eBay", "ab cd bcd stop", " the cat ",
+    ]
 
 
-def honorific():
-    return (
-        f"{random.choice(HONORIFICS)} {random.choice(WORDS)} and "
-        f"{random.choice(['mr', 'mrs', 'ms', 'dr'])} {random.choice(WORDS)}"
-    )
-
-
-def slash():
-    left = random.choice(WORDS + SMALL)
-    right = random.choice(WORDS + SMALL)
-    tail = phrase(random.randint(0, 2))
-    return f"{phrase(random.randint(1, 3))} {left}/{right} {tail}".strip()
-
-
-def hyphen():
-    if random.random() < 0.5:
-        parts = [random.choice(WORDS), random.choice(SMALL), random.choice(WORDS)]
-    else:
-        parts = [random.choice(WORDS) for _ in range(random.randint(2, 3))]
-    tail = phrase(random.randint(0, 2))
-    head = phrase(random.randint(0, 2))
-    return f"{head} {'-'.join(parts)} {tail}".strip()
-
-
-def acronym():
-    tail = phrase(random.randint(0, 2))
-    return f"{phrase(random.randint(1, 4))} {random.choice(ACRONYMS)} {tail}".strip()
-
-
-def digits():
-    chunks = []
-    for _ in range(random.randint(2, 5)):
-        if random.random() < 0.6:
-            chunks.append(random.choice(ORDINALS))
-        else:
-            chunks.append(random.choice(WORDS))
-    return " ".join(chunks)
-
-
-def odd_spaces():
-    sep = random.choice(SPACES)
-    return sep.join(random.choice(WORDS) for _ in range(random.randint(2, 5)))
-
-
-def notes_exact():
-    return random.choice(NOTES_INPUTS)
-
-
-def notes_embedded():
-    example = random.choice(NOTES_INPUTS)
-    side = random.randrange(3)
-    if side == 0:
-        return f"{phrase(random.randint(1, 3))} {example}"
-    if side == 1:
-        return f"{example} {phrase(random.randint(1, 3))}"
-    return f"{phrase(1)} {example} {phrase(1)}"
-
-
-def normal():
-    n = random.randint(2, 8)
-    parts = [random.choice(WORDS) for _ in range(n)]
-    if n >= 3 and random.random() < 0.5:
-        parts[random.randrange(1, n - 1)] = random.choice(SMALL)
-    return " ".join(parts)
-
-
-TRICKY = [
-    small_middle,
-    small_first_last,
-    leading_punct,
-    versus,
-    subphrase,
-    all_caps,
-    initials,
-    internal_caps,
-    url_or_domain,
-    apostrophe,
-    mc_name,
-    honorific,
-    slash,
-    hyphen,
-    acronym,
-    digits,
-    odd_spaces,
-    notes_exact,
-    notes_embedded,
-]
-
-
-def make_title():
-    if random.random() < 0.34:
-        return normal()
-    return random.choice(TRICKY)()
-
-
-def write_lines(path, lines):
-    path.write_text("".join(f"{line}\n" for line in lines), encoding="utf-8", newline="\n")
-
-
-def expect(lines):
+def generate(rng):
+    seen = set()
     out = []
-    for index, line in enumerate(lines):
-        if "\n" in line or "\r" in line:
-            raise SystemExit(f"input {index} contains a newline")
-        result = titlecase(line)
-        if "\n" in result or "\r" in result:
-            raise SystemExit(f"titlecase() split input {index} across lines: {line!r}")
-        out.append(result)
+    for line in fixed_lines():
+        if line not in seen:
+            seen.add(line)
+            out.append(line)
+    while len(out) < 2 * N:
+        t = make_title(rng)
+        if not t or "\n" in t or "\r" in t or t in seen:
+            continue
+        seen.add(t)
+        out.append(t)
     return out
 
 
 def main():
-    sys.path.insert(0, str(PY_TITLECASE))
-    global titlecase
-    from titlecase import titlecase  # noqa: E402
+    repo = HERE.parents[1] / "python-titlecase"            # ../python-titlecase
+    sys.path.insert(0, str(repo))
+    from titlecase import titlecase, REGEX_AVAILABLE
+    if not REGEX_AVAILABLE:
+        sys.exit("The `regex` package is required (pip install regex): "
+                 "the expected answers must come from the regex code path.")
 
-    random.seed(1)
-    visible = [make_title() for _ in range(COUNT)]
-    hidden = [make_title() for _ in range(COUNT)]
-    if visible == hidden:
-        raise SystemExit("visible and hidden inputs were identical")
+    rng = random.Random(1)
+    random.seed(1)                                   # as required by the brief
+    lines = generate(rng)
+    # The nasty fixed lines go to the visible set; shuffle the rest deterministically.
+    fixed = lines[:len(fixed_lines())]
+    rest = lines[len(fixed):]
+    rng.shuffle(rest)
+    visible = (fixed + rest)[:N]
+    hidden = rest[N - len(fixed):][:N]
+    assert len(visible) == N and len(hidden) == N
+    assert not set(visible) & set(hidden)
 
-    DATA.mkdir(parents=True, exist_ok=True)
-    write_lines(DATA / "inputs.txt", visible)
-    write_lines(DATA / "expected.txt", expect(visible))
-    write_lines(DATA / "hidden_inputs.txt", hidden)
-    write_lines(DATA / "hidden_expected.txt", expect(hidden))
+    DATA.mkdir(exist_ok=True)
+
+    def write(name, items):
+        # newline="\n" so Windows does not rewrite line endings
+        with open(DATA / name, "w", encoding="utf-8", newline="\n") as f:
+            for item in items:
+                f.write(item + "\n")
+
+    write("inputs.txt", visible)
+    write("expected.txt", [titlecase(x) for x in visible])
+    write("hidden_inputs.txt", hidden)
+    write("hidden_expected.txt", [titlecase(x) for x in hidden])
+    print(f"wrote {N} visible + {N} hidden titles to {DATA}")
 
 
 if __name__ == "__main__":

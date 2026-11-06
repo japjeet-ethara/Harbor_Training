@@ -1,27 +1,51 @@
-# Titlecase in Go
+# Port `python-titlecase` to Go
 
-## 1. What the repository is
+## The repository
 
-This directory is a checkout of python-titlecase (https://github.com/ppannuto/python-titlecase) at commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167` (2024-04-05T22:03:59-07:00). The behaviour to preserve is the `titlecase()` function in `titlecase/__init__.py` at version 2.4.1. It rewrites text into title caps, using the New York Times small-word list plus `v`, `v.`, `via`, `vs`, and `vs.`, and the rest of the rules recorded in `NOTES.md`. The project is under the MIT License, copyright (c) 2021 Patrick William Pannuto (`LICENSE.txt`).
+`/workspace/repo` contains the open-source Python project
+[python-titlecase](https://github.com/ppannuto/python-titlecase) (MIT licence, version 2.4.1).
+Its `titlecase()` function in `titlecase/__init__.py` turns a sentence such as
+`the lord of the rings` into a properly capitalised title (`The Lord of the Rings`),
+following a long list of small rules (small words, acronyms, hyphenated and slashed words,
+names such as `McDonald` and `O'Neil`, URLs, initials, and more).
 
-## 2. What to build
+Python 3 and the project's optional `regex` package are installed in the container so that you
+can run the original and compare. The original is the specification.
 
-Build a Go program in `/workspace/repo`. It reads one title per line from standard input and writes the titlecased result to standard output, one result per line. Use the default `titlecase()` arguments: no per-word callback, `small_first_last=True`, `preserve_blank_lines=False`, and `normalise_space_characters=False`. Read the current Python implementation and `NOTES.md` before you remove any Python files.
+## What to build
 
-## 3. Hard rules
+Replace the Python implementation with a Go program at the root of `/workspace/repo`:
 
-- Use only the Go standard library.
-- Leave no `.py` files anywhere in the repository.
-- `go build ./...` must pass when run in `/workspace/repo`.
+- `/workspace/repo/go.mod` is the Go module, and the `main` package lives directly in
+  `/workspace/repo` (so that `go build .` produces the program).
+- The program reads UTF-8 text from standard input, one title per line (lines end with `\n`,
+  and no line contains `\r`), and writes the titlecased result of each line to standard
+  output, one per line, each followed by `\n`.
+- The result for each input line must be exactly what the original
+  `titlecase(line)` returns for that line, with default arguments and with the `regex`
+  package available (the Unicode-aware code path of the original). The output must match
+  byte for byte, for every possible input line, including lines with non-ASCII letters,
+  unusual punctuation, tabs, other whitespace characters, and leading or trailing spaces.
 
-## 4. Behaviour
+## Hard rules
 
-For every input, the titlecased text must match the original Python `titlecase()` result byte for byte.
+- Go standard library only. No third-party modules, no cgo.
+- The program must be self-contained: it must not start other programs (no `os/exec`) and
+  must not need Python at run time.
+- When you finish, no `.py` files may remain anywhere under `/workspace/repo`.
+- `go build ./...` must pass in `/workspace/repo` with the Go toolchain in the container
+  (Go 1.23).
 
-## 5. Not checked
+## Not checked
 
-Speed, memory use, and the wording of error messages are not checked.
+Speed, memory use, error message wording, code style, documentation, and unit tests.
 
-## 6. How it is graded
+## How it is graded
 
-Hidden automatic tests grade the program. A partial score is possible.
+Hidden automatic checks run against what is in `/workspace/repo` after you finish, and the
+score is partial:
+
+1. The Go program builds.
+2. No Python files remain and the rules above are respected, and the program builds.
+3. The program's output on a large set of titles that you have not seen, measured as the
+   share of lines that match the original's output exactly.
