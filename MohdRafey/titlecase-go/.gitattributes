@@ -1,2 +1,0 @@
-# Keep exact bytes. CRLF checkouts break test.sh and the answer files.
-* -text
