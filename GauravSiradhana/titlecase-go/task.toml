@@ -1,0 +1,50 @@
+schema_version = "1.4"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "ethara/titlecase-go"
+version = "1.0.0"
+description = "Port the Python titlecase library to Go with byte-for-byte output."
+keywords = ["porting", "go", "python", "regex"]
+
+[[task.authors]]
+name = "Gaurav Siradhana"
+
+[metadata]
+author_name = "Gaurav Siradhana"
+category = "programming"
+tags = ["porting", "go", "python", "regex"]
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "allowlist"
+allowed_hosts = [
+  "pypi.org",
+  "files.pythonhosted.org",
+  "pypi.python.org",
+  "github.com",
+  "*.githubusercontent.com",
+  "astral.sh",
+  "*.astral.sh",
+]
+
+[verifier.env]
+
+[agent]
+timeout_sec = 3600.0
+network_mode = "allowlist"
+allowed_hosts = []
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 4096
+storage_mb = 10240
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
