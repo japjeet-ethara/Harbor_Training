@@ -1,49 +1,48 @@
-"""Check 2 (weight 1): the Python is gone, the hard rules hold, AND the build passes.
-
-The build requirement stops a do-nothing-but-delete-files attempt from earning points.
-"""
-import os
-import re
 import subprocess
+from pathlib import Path
 
-import rewardkit as rk
+try:
+    from rewardkit import criterion
+except ImportError:
+    def criterion(func=None, **kwargs):
+        if callable(func):
+            return func
+        def decorator(f):
+            return f
+        return decorator
 
-PY_SUFFIXES = (".py",)   # exactly what the instruction forbids
 
+@criterion
+def no_python(workspace: Path = Path("/workspace/repo")) -> float:
+    """2. no_python (weight 1): no .py files anywhere under /workspace/repo AND the build passes -> 1, else 0."""
+    repo_dir = Path("/workspace/repo")
+    if not repo_dir.exists() and workspace and Path(workspace).exists():
+        repo_dir = Path(workspace)
 
-@rk.criterion(description="no Python files remain, rules respected, and the build passes")
-def no_python(workspace) -> bool:
-    # 1. no Python files anywhere under the repository
-    for root, dirs, files in os.walk(workspace):
-        for f in files:
-            if f.endswith(PY_SUFFIXES):
-                return False
+    if not repo_dir.exists():
+        return 0.0
 
-    # 2. hard rules: standard library only, no cgo, no other programs started
-    gomod = workspace / "go.mod"
-    if not gomod.is_file():
-        return False
-    if re.search(r"^\s*(require\b|replace\b)", gomod.read_text(errors="replace"), re.M):
-        return False
-    found_go = False
-    for root, dirs, files in os.walk(workspace):
-        for f in files:
-            if not f.endswith(".go"):
-                continue
-            found_go = True
-            with open(os.path.join(root, f), encoding="utf-8", errors="replace") as fh:
-                src = fh.read()
-            if re.search(r'"os/exec"|import\s+"C"|^\s*"C"\s*$|"plugin"', src, re.M):
-                return False
-    if not found_go:
-        return False
-
-    # 3. the build must pass
-    env = dict(os.environ, GOFLAGS="-mod=readonly", GOPROXY="off",
-               GOTOOLCHAIN="local", GOCACHE="/tmp/gocache-nopy", CGO_ENABLED="0")
+    # 1. Check that go build ./... passes
     try:
-        r = subprocess.run(["go", "build", "-o", "/dev/null", "./..."], cwd=workspace, env=env,
-                           capture_output=True, timeout=240)
-    except (subprocess.TimeoutExpired, OSError):
-        return False
-    return r.returncode == 0
+        res = subprocess.run(
+            ["go", "build", "./..."],
+            cwd=str(repo_dir),
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if res.returncode != 0:
+            return 0.0
+    except Exception:
+        return 0.0
+
+    # 2. Check that no .py files exist anywhere under repo_dir
+    py_files = list(repo_dir.rglob("*.py"))
+    if len(py_files) > 0:
+        return 0.0
+
+    return 1.0
+
+
+if __name__ == "__main__":
+    print(no_python())

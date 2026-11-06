@@ -1,15 +1,26 @@
-FROM golang:1.23
+FROM python:3.12-slim
 
-# The verifier container has Go (to build the agent's program) and Reward Kit
-# (to combine the checks). It deliberately has NO `regex`/titlecase Python
-# package and no copy of the original project.
-# Reward Kit needs Python >= 3.12, so uv provides one in /opt/rk (no network is
-# needed at grading time).
+# Copy Go toolchain from official golang image
+COPY --from=golang:1.23 /usr/local/go /usr/local/go
+ENV PATH="/usr/local/go/bin:${PATH}"
+
+# Install uv package manager
 COPY --from=ghcr.io/astral-sh/uv:0.9.7 /uv /usr/local/bin/uv
-ENV UV_PYTHON_INSTALL_DIR=/opt/uv-python
-RUN uv venv --python 3.12 /opt/rk \
- && uv pip install --python /opt/rk/bin/python harbor-rewardkit==0.2.4
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install test dependencies and RewardKit
+RUN uv pip install --system \
+    pytest==8.4.1 \
+    pytest-json-ctrf==0.3.5 \
+    'harbor-rewardkit==0.2.*'
 
 WORKDIR /app
 
 COPY . /tests/
+
+RUN chmod +x /tests/test.sh
