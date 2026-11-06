@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.png binary
+tests/data/*.txt -text -whitespace
+cheat/solve.sh -whitespace
