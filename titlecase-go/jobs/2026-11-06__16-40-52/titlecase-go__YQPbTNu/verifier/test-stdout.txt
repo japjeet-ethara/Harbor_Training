@@ -1,0 +1,23 @@
+Downloading cpython-3.13.9-linux-x86_64-gnu (download) (32.6MiB)
+ Downloading cpython-3.13.9-linux-x86_64-gnu (download)
+Downloading openai (2.3MiB)
+Downloading hf-xet (4.1MiB)
+Downloading aiohttp (1.8MiB)
+Downloading botocore (15.5MiB)
+Downloading tokenizers (3.2MiB)
+Downloading pydantic-core (2.2MiB)
+Downloading tiktoken (1.1MiB)
+Downloading litellm (34.6MiB)
+ Downloading tiktoken
+ Downloading aiohttp
+ Downloading pydantic-core
+ Downloading openai
+ Downloading tokenizers
+ Downloading hf-xet
+ Downloading botocore
+ Downloading litellm
+Installed 61 packages in 188ms
+behaviour: 0.0
+build: 1.0
+no_python: 1.0
+reward: 0.3333

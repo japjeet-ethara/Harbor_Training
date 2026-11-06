@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "C:\\Users\\ADARSH~1\\AppData\\Local\\Temp\\harbor-check-pcrcbvvy\\check-titlecase-go"
+    },
+    "trial_name": "check-titlecase-go__hstQEqq",
+    "trials_dir": "jobs\\2026-11-06__15-08-36",
+    "agent": {
+        "name": "claude-code",
+        "model_name": "claude-sonnet-4-6"
+    },
+    "job_id": "667af991-3f6c-49b5-a89b-a8124ad2b4c3"
+}
