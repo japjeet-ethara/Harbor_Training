@@ -3,7 +3,7 @@ set -euo pipefail
 dest=/workspace/repo
 mkdir -p "$dest"
 cat > "$dest/go.mod" << 'EOF'
-module titlecase
+module local/titles
 
 go 1.23
 EOF
