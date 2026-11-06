@@ -1,3 +1,0 @@
-# The expected outputs are compared byte for byte, and scripts run on Linux.
-tests/data/*.txt text eol=lf
-*.sh text eol=lf
