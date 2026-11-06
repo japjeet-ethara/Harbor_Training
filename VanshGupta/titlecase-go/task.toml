@@ -1,0 +1,7 @@
+schema_version = "1.4"
+
+artifacts = ["/workspace/repo"]
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 600
