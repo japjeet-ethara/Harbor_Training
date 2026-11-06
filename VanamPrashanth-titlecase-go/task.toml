@@ -1,0 +1,31 @@
+schema_version = "1.4"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "VanamPrashanth/titlecase-go"
+version = "1.0.0"
+description = "A Harbor coding task that challenges an AI agent to port the original MIT-licensed Python titlecase implementation to Go using only the Go standard library, preserving its title-casing behavior with exact byte-for-byte output matching. The task includes deterministic visible tests, a separate hidden test corpus, and reward checks for successful compilation, removal of Python files, and behavioral correctness."
+authors = ["VANAM PRASHANTH <vanam.prashanth@ethara.ai>"]
+keywords = []
+
+[metadata]
+
+[verifier]
+timeout_sec = 600.0
+environment_mode = "separate"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 600.0
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 600.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
