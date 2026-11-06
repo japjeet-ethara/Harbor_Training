@@ -1,0 +1,78 @@
+{
+  "seed": 1,
+  "encoding": "utf-8",
+  "record_separator": "\n",
+  "record_separator_is_not_part_of_title": true,
+  "titlecase_defaults": {
+    "callback": null,
+    "small_first_last": true,
+    "preserve_blank_lines": false,
+    "normalise_space_characters": false
+  },
+  "regex_available": false,
+  "titlecase_version": "2.4.1",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "visible_count": 2000,
+  "hidden_count": 2000,
+  "canonical_single_line_inputs_in_visible": 72,
+  "visible_generated_category_counts": {
+    "simple": 173,
+    "all_caps": 135,
+    "small_edges": 116,
+    "hyphen": 116,
+    "slash": 96,
+    "doubleslash": 58,
+    "apostrophe": 116,
+    "honorific": 77,
+    "initials": 96,
+    "brands": 77,
+    "acronyms": 96,
+    "unicode": 145,
+    "subphrase": 145,
+    "whitespace": 77,
+    "digits": 67,
+    "mc": 77,
+    "quotes": 77,
+    "mixed": 145,
+    "short": 39
+  },
+  "hidden_generated_category_counts": {
+    "simple": 180,
+    "all_caps": 140,
+    "small_edges": 120,
+    "hyphen": 120,
+    "slash": 100,
+    "doubleslash": 60,
+    "apostrophe": 120,
+    "honorific": 80,
+    "initials": 100,
+    "brands": 80,
+    "acronyms": 100,
+    "unicode": 150,
+    "subphrase": 150,
+    "whitespace": 80,
+    "digits": 70,
+    "mc": 80,
+    "quotes": 80,
+    "mixed": 150,
+    "short": 40
+  },
+  "files": {
+    "visible_input.txt": {
+      "bytes": 63999,
+      "sha256": "f0566e9b52fafb66b3eb36efea7685e7c38f97136e58e3bbf780b2a9910f5922"
+    },
+    "visible_expected.txt": {
+      "bytes": 63999,
+      "sha256": "cde5e4be787d9983917898d5cf921e00064fe50cefe992424e549f8dda97ac9c"
+    },
+    "hidden_input.txt": {
+      "bytes": 63878,
+      "sha256": "7a5dcf4b21835c6bd61cec35ea8596935571dcd48d607b40bc459710ec1be75f"
+    },
+    "hidden_expected.txt": {
+      "bytes": 63878,
+      "sha256": "31c56f65a63a742fde6aa71d483d1455e8770ba8ebf2277e22f0532dcb7aed22"
+    }
+  }
+}
