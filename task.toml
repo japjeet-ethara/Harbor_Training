@@ -1,7 +1,8 @@
 version = "1.0"
+artifacts = ["/workspace/repo"]
 
 [task]
-name = "titlecase-go"
+name = "practice/titlecase-go"
 
 [metadata]
 author_name = "Lokesh Deshwal"
