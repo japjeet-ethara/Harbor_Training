@@ -1,0 +1,2000 @@
+{"input": "morning Forest NOTEBOOK GALLERY apple island", "expected": "Morning Forest NOTEBOOK GALLERY Apple Island"}
+{"input": "Ocean Gallery MEADOW OCEAN MRS notebook camera", "expected": "Ocean Gallery MEADOW OCEAN MRS Notebook Camera"}
+{"input": "Velvet LIBRARY lantern Evening quartz", "expected": "Velvet LIBRARY Lantern Evening Quartz"}
+{"input": "Yellow Library window silver BRIDGE CAMERA", "expected": "Yellow Library Window Silver BRIDGE CAMERA"}
+{"input": "bridge PARCEL", "expected": "Bridge PARCEL"}
+{"input": "Timber CAPTAIN Station", "expected": "Timber CAPTAIN Station"}
+{"input": "Umbrella Planet", "expected": "Umbrella Planet"}
+{"input": "evening forest Paper Garden SIGNAL", "expected": "Evening Forest Paper Garden SIGNAL"}
+{"input": "River YELLOW", "expected": "River YELLOW"}
+{"input": "SOLDIER island ROCKET", "expected": "SOLDIER Island ROCKET"}
+{"input": "studio HARVEST", "expected": "Studio HARVEST"}
+{"input": "FOREST marble captain COMPASS VELVET KERNEL", "expected": "FOREST Marble Captain COMPASS VELVET KERNEL"}
+{"input": "QUARTZ Meadow kernel village captain", "expected": "QUARTZ Meadow Kernel Village Captain"}
+{"input": "BRIDGE Zebra kernel", "expected": "BRIDGE Zebra Kernel"}
+{"input": "SILVER garden apple umbrella", "expected": "SILVER Garden Apple Umbrella"}
+{"input": "Mr market MARKET", "expected": "Mr Market MARKET"}
+{"input": "kernel camera Delta morning FOREST", "expected": "Kernel Camera Delta Morning FOREST"}
+{"input": "UMBRELLA Apple window Notebook MOUNTAIN", "expected": "UMBRELLA Apple Window Notebook MOUNTAIN"}
+{"input": "YELLOW Orange Parcel ROCKET", "expected": "YELLOW Orange Parcel ROCKET"}
+{"input": "Copper Compass", "expected": "Copper Compass"}
+{"input": "CRYSTAL notebook", "expected": "CRYSTAL Notebook"}
+{"input": "marble theater Meadow camera APPLE", "expected": "Marble Theater Meadow Camera APPLE"}
+{"input": "harbor Camera paper Garden PLANET", "expected": "Harbor Camera Paper Garden PLANET"}
+{"input": "yellow ORANGE engine apple", "expected": "Yellow ORANGE Engine Apple"}
+{"input": "letter HARBOR harvest marble COMPASS theater", "expected": "Letter HARBOR Harvest Marble COMPASS Theater"}
+{"input": "GALLERY market harvest orange", "expected": "GALLERY Market Harvest Orange"}
+{"input": "Mr VELVET CAPTAIN", "expected": "Mr VELVET CAPTAIN"}
+{"input": "parcel PLANET Umbrella Planet", "expected": "Parcel PLANET Umbrella Planet"}
+{"input": "journal evening yellow ZEBRA camera captain", "expected": "Journal Evening Yellow ZEBRA Camera Captain"}
+{"input": "station meadow River", "expected": "Station Meadow River"}
+{"input": "yellow Island Zebra", "expected": "Yellow Island Zebra"}
+{"input": "Timber JOURNAL lantern timber", "expected": "Timber JOURNAL Lantern Timber"}
+{"input": "Village MRS Rocket Notebook soldier", "expected": "Village MRS Rocket Notebook Soldier"}
+{"input": "COMPASS orange mountain", "expected": "COMPASS Orange Mountain"}
+{"input": "PLANET island FACTORY MOUNTAIN Planet", "expected": "PLANET Island FACTORY MOUNTAIN Planet"}
+{"input": "Harbor River silver", "expected": "Harbor River Silver"}
+{"input": "APPLE Delta GARDEN compass gallery evening", "expected": "APPLE Delta GARDEN Compass Gallery Evening"}
+{"input": "station ocean kernel mountain", "expected": "Station Ocean Kernel Mountain"}
+{"input": "station Captain", "expected": "Station Captain"}
+{"input": "Timber harbor ZEBRA orange EVENING MARKET", "expected": "Timber Harbor ZEBRA Orange EVENING MARKET"}
+{"input": "BRIDGE APPLE marble velvet Timber", "expected": "BRIDGE APPLE Marble Velvet Timber"}
+{"input": "Rocket BRIDGE silver", "expected": "Rocket BRIDGE Silver"}
+{"input": "STUDIO Evening BRIDGE COPPER Umbrella umbrella", "expected": "STUDIO Evening BRIDGE COPPER Umbrella Umbrella"}
+{"input": "Notebook umbrella garden theater", "expected": "Notebook Umbrella Garden Theater"}
+{"input": "Soldier Delta kernel", "expected": "Soldier Delta Kernel"}
+{"input": "VILLAGE Quartz Gallery meadow ZEBRA", "expected": "VILLAGE Quartz Gallery Meadow ZEBRA"}
+{"input": "station lantern UMBRELLA ZEBRA", "expected": "Station Lantern UMBRELLA ZEBRA"}
+{"input": "window harbor zebra parcel library evening", "expected": "Window Harbor Zebra Parcel Library Evening"}
+{"input": "UMBRELLA captain BRIDGE lantern", "expected": "UMBRELLA Captain BRIDGE Lantern"}
+{"input": "Forest parcel Letter Umbrella Mr copper SIGNAL", "expected": "Forest Parcel Letter Umbrella Mr Copper SIGNAL"}
+{"input": "rocket Market CAPTAIN", "expected": "Rocket Market CAPTAIN"}
+{"input": "velvet Evening rocket", "expected": "Velvet Evening Rocket"}
+{"input": "paper village parcel", "expected": "Paper Village Parcel"}
+{"input": "silver notebook meadow MARKET", "expected": "Silver Notebook Meadow MARKET"}
+{"input": "LIBRARY MARBLE copper", "expected": "LIBRARY MARBLE Copper"}
+{"input": "Bridge mountain Crystal studio MRS", "expected": "Bridge Mountain Crystal Studio MRS"}
+{"input": "velvet MOUNTAIN river ZEBRA", "expected": "Velvet MOUNTAIN River ZEBRA"}
+{"input": "letter QUARTZ paper CAPTAIN", "expected": "Letter QUARTZ Paper CAPTAIN"}
+{"input": "planet factory dr station", "expected": "Planet Factory Dr Station"}
+{"input": "Forest parcel CRYSTAL ms village factory", "expected": "Forest Parcel CRYSTAL Ms Village Factory"}
+{"input": "valley Valley", "expected": "Valley Valley"}
+{"input": "paper river SIGNAL lantern WINDOW harbor", "expected": "Paper River SIGNAL Lantern WINDOW Harbor"}
+{"input": "JOURNAL Lantern PARCEL SIGNAL", "expected": "JOURNAL Lantern PARCEL SIGNAL"}
+{"input": "kernel BRIDGE Copper", "expected": "Kernel BRIDGE Copper"}
+{"input": "bridge velvet Garden", "expected": "Bridge Velvet Garden"}
+{"input": "JOURNAL captain TIMBER mountain lantern camera", "expected": "JOURNAL Captain TIMBER Mountain Lantern Camera"}
+{"input": "yellow morning orange Rocket MORNING", "expected": "Yellow Morning Orange Rocket MORNING"}
+{"input": "MARKET copper UMBRELLA kernel Camera studio", "expected": "MARKET Copper UMBRELLA Kernel Camera Studio"}
+{"input": "signal forest Signal orange Notebook", "expected": "Signal Forest Signal Orange Notebook"}
+{"input": "Delta camera Bridge Compass", "expected": "Delta Camera Bridge Compass"}
+{"input": "GALLERY soldier ZEBRA", "expected": "GALLERY Soldier ZEBRA"}
+{"input": "compass MARKET Marble Orange rocket", "expected": "Compass MARKET Marble Orange Rocket"}
+{"input": "Delta Harbor Journal Letter GALLERY apple", "expected": "Delta Harbor Journal Letter GALLERY Apple"}
+{"input": "paper soldier ZEBRA", "expected": "Paper Soldier ZEBRA"}
+{"input": "Apple camera crystal Window Gallery yellow", "expected": "Apple Camera Crystal Window Gallery Yellow"}
+{"input": "ocean crystal journal Rocket MRS", "expected": "Ocean Crystal Journal Rocket MRS"}
+{"input": "Garden evening River ZEBRA Umbrella", "expected": "Garden Evening River ZEBRA Umbrella"}
+{"input": "morning mountain", "expected": "Morning Mountain"}
+{"input": "harbor zebra captain", "expected": "Harbor Zebra Captain"}
+{"input": "ms theater Rocket THEATER Soldier window signal", "expected": "Ms Theater Rocket THEATER Soldier Window Signal"}
+{"input": "planet village", "expected": "Planet Village"}
+{"input": "rocket valley", "expected": "Rocket Valley"}
+{"input": "gallery velvet camera planet", "expected": "Gallery Velvet Camera Planet"}
+{"input": "Evening market", "expected": "Evening Market"}
+{"input": "PLANET Valley Harbor MRS factory meadow captain", "expected": "PLANET Valley Harbor MRS Factory Meadow Captain"}
+{"input": "parcel Studio zebra", "expected": "Parcel Studio Zebra"}
+{"input": "MARBLE signal theater Garden", "expected": "MARBLE Signal Theater Garden"}
+{"input": "harvest Island factory delta", "expected": "Harvest Island Factory Delta"}
+{"input": "journal crystal Factory Zebra", "expected": "Journal Crystal Factory Zebra"}
+{"input": "marble apple NOTEBOOK lantern", "expected": "Marble Apple NOTEBOOK Lantern"}
+{"input": "garden Mountain station camera market", "expected": "Garden Mountain Station Camera Market"}
+{"input": "CAMERA quartz planet planet COMPASS evening", "expected": "CAMERA Quartz Planet Planet COMPASS Evening"}
+{"input": "Garden Studio", "expected": "Garden Studio"}
+{"input": "Village engine island Zebra", "expected": "Village Engine Island Zebra"}
+{"input": "Gallery Copper crystal planet CAPTAIN", "expected": "Gallery Copper Crystal Planet CAPTAIN"}
+{"input": "Timber garden delta delta Garden letter", "expected": "Timber Garden Delta Delta Garden Letter"}
+{"input": "captain LETTER silver captain", "expected": "Captain LETTER Silver Captain"}
+{"input": "Crystal CRYSTAL", "expected": "Crystal CRYSTAL"}
+{"input": "delta engine PARCEL LANTERN", "expected": "Delta Engine PARCEL LANTERN"}
+{"input": "kernel captain copper", "expected": "Kernel Captain Copper"}
+{"input": "soldier OCEAN SOLDIER SIGNAL", "expected": "Soldier OCEAN SOLDIER SIGNAL"}
+{"input": "Delta yellow RIVER harbor", "expected": "Delta Yellow RIVER Harbor"}
+{"input": "crystal APPLE Rocket", "expected": "Crystal APPLE Rocket"}
+{"input": "EVENING orange HARBOR", "expected": "EVENING Orange HARBOR"}
+{"input": "studio meadow delta Paper mrs notebook Evening", "expected": "Studio Meadow Delta Paper Mrs Notebook Evening"}
+{"input": "captain MARKET planet dr orange FOREST", "expected": "Captain MARKET Planet Dr Orange FOREST"}
+{"input": "signal letter crystal Valley", "expected": "Signal Letter Crystal Valley"}
+{"input": "Marble river village signal Letter COPPER", "expected": "Marble River Village Signal Letter COPPER"}
+{"input": "MRS SIGNAL Compass FOREST mountain delta apple", "expected": "MRS SIGNAL Compass FOREST Mountain Delta Apple"}
+{"input": "morning Kernel theater", "expected": "Morning Kernel Theater"}
+{"input": "valley Parcel Zebra apple SILVER", "expected": "Valley Parcel Zebra Apple SILVER"}
+{"input": "Orange Garden Rocket", "expected": "Orange Garden Rocket"}
+{"input": "studio studio SOLDIER window paper zebra", "expected": "Studio Studio SOLDIER Window Paper Zebra"}
+{"input": "HARVEST ENGINE marble Ocean silver island mr", "expected": "HARVEST ENGINE Marble Ocean Silver Island Mr"}
+{"input": "Rocket Captain market garden market", "expected": "Rocket Captain Market Garden Market"}
+{"input": "gallery COPPER Lantern MORNING Compass harvest", "expected": "Gallery COPPER Lantern MORNING Compass Harvest"}
+{"input": "valley Rocket APPLE valley forest", "expected": "Valley Rocket APPLE Valley Forest"}
+{"input": "rocket UMBRELLA PLANET Garden Theater", "expected": "Rocket UMBRELLA PLANET Garden Theater"}
+{"input": "PARCEL Island", "expected": "PARCEL Island"}
+{"input": "theater mountain", "expected": "Theater Mountain"}
+{"input": "rocket Theater river Gallery Silver", "expected": "Rocket Theater River Gallery Silver"}
+{"input": "MEADOW Copper SOLDIER evening kernel", "expected": "MEADOW Copper SOLDIER Evening Kernel"}
+{"input": "kernel station Window", "expected": "Kernel Station Window"}
+{"input": "rocket compass Umbrella zebra MOUNTAIN", "expected": "Rocket Compass Umbrella Zebra MOUNTAIN"}
+{"input": "valley Apple valley", "expected": "Valley Apple Valley"}
+{"input": "orange mr Delta", "expected": "Orange Mr Delta"}
+{"input": "island compass factory", "expected": "Island Compass Factory"}
+{"input": "dr market Timber evening", "expected": "Dr Market Timber Evening"}
+{"input": "mountain village Studio Window harvest Dr Parcel", "expected": "Mountain Village Studio Window Harvest Dr Parcel"}
+{"input": "JOURNAL notebook FOREST Mr PLANET valley", "expected": "JOURNAL Notebook FOREST Mr PLANET Valley"}
+{"input": "dr delta Journal parcel apple Station", "expected": "Dr Delta Journal Parcel Apple Station"}
+{"input": "harvest Bridge ROCKET", "expected": "Harvest Bridge ROCKET"}
+{"input": "Forest Island JOURNAL River", "expected": "Forest Island JOURNAL River"}
+{"input": "OCEAN Window market", "expected": "OCEAN Window Market"}
+{"input": "harbor harbor bridge", "expected": "Harbor Harbor Bridge"}
+{"input": "ms Village JOURNAL crystal Parcel parcel DELTA", "expected": "Ms Village JOURNAL Crystal Parcel Parcel DELTA"}
+{"input": "Planet bridge", "expected": "Planet Bridge"}
+{"input": "Factory Paper Velvet zebra bridge", "expected": "Factory Paper Velvet Zebra Bridge"}
+{"input": "Station Zebra Garden camera factory zebra", "expected": "Station Zebra Garden Camera Factory Zebra"}
+{"input": "Apple orange Dr engine gallery", "expected": "Apple Orange Dr Engine Gallery"}
+{"input": "LANTERN ROCKET MEADOW velvet FOREST Harbor", "expected": "LANTERN ROCKET MEADOW Velvet FOREST Harbor"}
+{"input": "signal Delta PAPER village timber Meadow", "expected": "Signal Delta PAPER Village Timber Meadow"}
+{"input": "CAMERA SIGNAL harvest PLANET MOUNTAIN station", "expected": "CAMERA SIGNAL Harvest PLANET MOUNTAIN Station"}
+{"input": "CAPTAIN copper", "expected": "CAPTAIN Copper"}
+{"input": "Evening CAMERA", "expected": "Evening CAMERA"}
+{"input": "HARBOR notebook APPLE apple", "expected": "HARBOR Notebook APPLE Apple"}
+{"input": "letter UMBRELLA delta umbrella paper", "expected": "Letter UMBRELLA Delta Umbrella Paper"}
+{"input": "Umbrella Island garden orange FACTORY umbrella", "expected": "Umbrella Island Garden Orange FACTORY Umbrella"}
+{"input": "VELVET market TIMBER", "expected": "VELVET Market TIMBER"}
+{"input": "letter copper velvet", "expected": "Letter Copper Velvet"}
+{"input": "captain river", "expected": "Captain River"}
+{"input": "mr parcel notebook", "expected": "Mr Parcel Notebook"}
+{"input": "kernel OCEAN STATION", "expected": "Kernel OCEAN STATION"}
+{"input": "soldier valley forest gallery MRS Copper", "expected": "Soldier Valley Forest Gallery MRS Copper"}
+{"input": "STUDIO factory", "expected": "STUDIO Factory"}
+{"input": "yellow quartz Paper notebook", "expected": "Yellow Quartz Paper Notebook"}
+{"input": "Quartz letter Velvet engine", "expected": "Quartz Letter Velvet Engine"}
+{"input": "Station morning Mr NOTEBOOK Garden camera", "expected": "Station Morning Mr NOTEBOOK Garden Camera"}
+{"input": "dr CRYSTAL notebook", "expected": "Dr CRYSTAL Notebook"}
+{"input": "Soldier Theater MARBLE marble Yellow theater", "expected": "Soldier Theater MARBLE Marble Yellow Theater"}
+{"input": "planet mr MARBLE island HARBOR Planet", "expected": "Planet Mr MARBLE Island HARBOR Planet"}
+{"input": "CAMERA VILLAGE", "expected": "Camera Village"}
+{"input": "Theater marble signal Delta Studio", "expected": "Theater Marble Signal Delta Studio"}
+{"input": "Lantern harbor JOURNAL", "expected": "Lantern Harbor JOURNAL"}
+{"input": "garden LETTER VILLAGE", "expected": "Garden LETTER VILLAGE"}
+{"input": "Valley Harvest parcel UMBRELLA mr Velvet compass", "expected": "Valley Harvest Parcel UMBRELLA Mr Velvet Compass"}
+{"input": "marble UMBRELLA Dr", "expected": "Marble UMBRELLA Dr"}
+{"input": "PAPER orange ENGINE island Village WINDOW", "expected": "PAPER Orange ENGINE Island Village WINDOW"}
+{"input": "ORANGE Velvet factory OCEAN Dr", "expected": "ORANGE Velvet Factory OCEAN Dr"}
+{"input": "STUDIO parcel Marble theater notebook marble", "expected": "STUDIO Parcel Marble Theater Notebook Marble"}
+{"input": "Journal LANTERN Lantern HARBOR", "expected": "Journal LANTERN Lantern HARBOR"}
+{"input": "Engine factory PLANET", "expected": "Engine Factory PLANET"}
+{"input": "SOLDIER orange morning ISLAND JOURNAL evening", "expected": "SOLDIER Orange Morning ISLAND JOURNAL Evening"}
+{"input": "Mountain meadow YELLOW UMBRELLA", "expected": "Mountain Meadow YELLOW UMBRELLA"}
+{"input": "Delta Market APPLE", "expected": "Delta Market APPLE"}
+{"input": "MARKET evening velvet YELLOW", "expected": "MARKET Evening Velvet YELLOW"}
+{"input": "planet ms ZEBRA studio river meadow GALLERY", "expected": "Planet Ms ZEBRA Studio River Meadow GALLERY"}
+{"input": "MARBLE ZEBRA parcel DELTA valley", "expected": "MARBLE ZEBRA Parcel DELTA Valley"}
+{"input": "yellow harvest quartz forest", "expected": "Yellow Harvest Quartz Forest"}
+{"input": "delta Morning delta soldier", "expected": "Delta Morning Delta Soldier"}
+{"input": "Garden Soldier RIVER Copper engine mr", "expected": "Garden Soldier RIVER Copper Engine Mr"}
+{"input": "Station HARBOR", "expected": "Station HARBOR"}
+{"input": "signal STATION LETTER compass", "expected": "Signal STATION LETTER Compass"}
+{"input": "KERNEL parcel village", "expected": "KERNEL Parcel Village"}
+{"input": "QUARTZ planet BRIDGE journal Crystal", "expected": "QUARTZ Planet BRIDGE Journal Crystal"}
+{"input": "Kernel Mr silver compass signal Theater", "expected": "Kernel Mr Silver Compass Signal Theater"}
+{"input": "Notebook station paper factory Dr Yellow captain", "expected": "Notebook Station Paper Factory Dr Yellow Captain"}
+{"input": "EVENING KERNEL STUDIO", "expected": "Evening Kernel Studio"}
+{"input": "letter station timber KERNEL", "expected": "Letter Station Timber KERNEL"}
+{"input": "captain KERNEL VELVET planet Zebra", "expected": "Captain KERNEL VELVET Planet Zebra"}
+{"input": "quartz EVENING mr kernel", "expected": "Quartz EVENING Mr Kernel"}
+{"input": "timber Quartz garden library OCEAN HARBOR", "expected": "Timber Quartz Garden Library OCEAN HARBOR"}
+{"input": "Factory forest apple LETTER CAMERA compass", "expected": "Factory Forest Apple LETTER CAMERA Compass"}
+{"input": "ENGINE theater", "expected": "ENGINE Theater"}
+{"input": "orange Ocean studio Bridge harvest SILVER", "expected": "Orange Ocean Studio Bridge Harvest SILVER"}
+{"input": "copper umbrella compass meadow letter island", "expected": "Copper Umbrella Compass Meadow Letter Island"}
+{"input": "NOTEBOOK crystal QUARTZ zebra ISLAND factory", "expected": "NOTEBOOK Crystal QUARTZ Zebra ISLAND Factory"}
+{"input": "quartz rocket village JOURNAL HARVEST zebra", "expected": "Quartz Rocket Village JOURNAL HARVEST Zebra"}
+{"input": "gallery ISLAND kernel", "expected": "Gallery ISLAND Kernel"}
+{"input": "THEATER bridge yellow forest", "expected": "THEATER Bridge Yellow Forest"}
+{"input": "at library of yellow in studio to ROCKET for Zebra v.", "expected": "At Library of Yellow in Studio to ROCKET for Zebra V."}
+{"input": "and Harbor vs. library via", "expected": "And Harbor vs. Library Via"}
+{"input": "of bridge by MARBLE en parcel to", "expected": "Of Bridge by MARBLE en Parcel To"}
+{"input": "vs. factory vs camera via crystal an SOLDIER en lantern vs", "expected": "Vs. Factory vs Camera via Crystal an SOLDIER en Lantern Vs"}
+{"input": "via TIMBER vs. mountain an silver if", "expected": "Via TIMBER vs. Mountain an Silver If"}
+{"input": "en library or silver as captain of JOURNAL on BRIDGE to", "expected": "En Library or Silver as Captain of JOURNAL on BRIDGE To"}
+{"input": "via KERNEL but mountain of river for silver vs.", "expected": "Via KERNEL but Mountain of River for Silver Vs."}
+{"input": "of Parcel v forest vs. evening vs", "expected": "Of Parcel v Forest vs. Evening Vs"}
+{"input": "to GALLERY but umbrella via Captain v FACTORY and VELVET the", "expected": "To GALLERY but Umbrella via Captain v FACTORY and VELVET The"}
+{"input": "via RIVER v OCEAN v.", "expected": "Via RIVER v OCEAN V."}
+{"input": "as kernel as engine an ORANGE at Forest a EVENING or", "expected": "As Kernel as Engine an ORANGE at Forest a EVENING Or"}
+{"input": "v. lantern of letter an HARVEST for", "expected": "V. Lantern of Letter an HARVEST For"}
+{"input": "or Meadow but harbor as Marble vs Camera for umbrella to", "expected": "Or Meadow but Harbor as Marble vs Camera for Umbrella To"}
+{"input": "as Zebra but VELVET at TIMBER en timber but gallery the", "expected": "As Zebra but VELVET at TIMBER en Timber but Gallery The"}
+{"input": "by GARDEN if STATION the village and", "expected": "By GARDEN if STATION the Village And"}
+{"input": "vs. letter to bridge at OCEAN for Harbor on", "expected": "Vs. Letter to Bridge at OCEAN for Harbor On"}
+{"input": "but market by market on", "expected": "But Market by Market On"}
+{"input": "and Rocket v. camera a", "expected": "And Rocket v. Camera A"}
+{"input": "en delta in camera for market via ISLAND in Ocean in", "expected": "En Delta in Camera for Market via ISLAND in Ocean In"}
+{"input": "as orange on WINDOW or QUARTZ of STUDIO in OCEAN as", "expected": "As Orange on WINDOW or QUARTZ of STUDIO in OCEAN As"}
+{"input": "on market and lantern if ENGINE by", "expected": "On Market and Lantern if ENGINE By"}
+{"input": "and factory the FOREST a", "expected": "And Factory the FOREST A"}
+{"input": "of Theater on MEADOW of bridge an Island an", "expected": "Of Theater on MEADOW of Bridge an Island An"}
+{"input": "and station of zebra on river as village en", "expected": "And Station of Zebra on River as Village En"}
+{"input": "vs Studio and Bridge or", "expected": "Vs Studio and Bridge Or"}
+{"input": "if TIMBER an kernel on ORANGE by EVENING for", "expected": "If TIMBER an Kernel on ORANGE by EVENING For"}
+{"input": "as captain v. Quartz via Notebook to Delta vs.", "expected": "As Captain v. Quartz via Notebook to Delta Vs."}
+{"input": "vs. ENGINE and CRYSTAL or", "expected": "Vs. ENGINE and CRYSTAL Or"}
+{"input": "to Signal an garden vs Studio via", "expected": "To Signal an Garden vs Studio Via"}
+{"input": "at STUDIO but bridge and Market vs", "expected": "At STUDIO but Bridge and Market Vs"}
+{"input": "but forest to SIGNAL if kernel for Compass v", "expected": "But Forest to SIGNAL if Kernel for Compass V"}
+{"input": "vs morning an island for quartz v. Timber but", "expected": "Vs Morning an Island for Quartz v. Timber But"}
+{"input": "for ocean vs ENGINE for Evening on RIVER vs. mountain for", "expected": "For Ocean vs ENGINE for Evening on RIVER vs. Mountain For"}
+{"input": "or village via GALLERY v. NOTEBOOK v QUARTZ v", "expected": "Or Village via GALLERY v. NOTEBOOK v QUARTZ V"}
+{"input": "or EVENING by timber or rocket vs notebook at", "expected": "Or EVENING by Timber or Rocket vs Notebook At"}
+{"input": "the Notebook a APPLE as Timber vs ZEBRA of", "expected": "The Notebook a APPLE as Timber vs ZEBRA Of"}
+{"input": "as market en DELTA v signal en COMPASS en Zebra by", "expected": "As Market en DELTA v Signal en COMPASS en Zebra By"}
+{"input": "en Soldier at morning of", "expected": "En Soldier at Morning Of"}
+{"input": "v. apple of THEATER to", "expected": "V. Apple of THEATER To"}
+{"input": "of window or Orange en COMPASS of VELVET and EVENING in", "expected": "Of Window or Orange en COMPASS of VELVET and EVENING In"}
+{"input": "of VILLAGE for Orange an", "expected": "Of VILLAGE for Orange An"}
+{"input": "and VILLAGE for KERNEL on delta but signal v. CAMERA as", "expected": "And VILLAGE for KERNEL on Delta but Signal v. CAMERA As"}
+{"input": "a Camera if Signal vs. Captain en", "expected": "A Camera if Signal vs. Captain En"}
+{"input": "of zebra vs. Meadow v. morning vs", "expected": "Of Zebra vs. Meadow v. Morning Vs"}
+{"input": "as CAMERA v. MEADOW via STUDIO for camera or", "expected": "As CAMERA v. MEADOW via STUDIO for Camera Or"}
+{"input": "for Crystal an station an timber by", "expected": "For Crystal an Station an Timber By"}
+{"input": "the Market to HARBOR the Umbrella vs.", "expected": "The Market to HARBOR the Umbrella Vs."}
+{"input": "for Velvet en valley on SIGNAL for morning v Valley of", "expected": "For Velvet en Valley on SIGNAL for Morning v Valley Of"}
+{"input": "v window on River by gallery for station at Apple an", "expected": "V Window on River by Gallery for Station at Apple An"}
+{"input": "vs Garden in YELLOW en Yellow as Notebook but", "expected": "Vs Garden in YELLOW en Yellow as Notebook But"}
+{"input": "in meadow the evening for BRIDGE if KERNEL in", "expected": "In Meadow the Evening for BRIDGE if KERNEL In"}
+{"input": "as Yellow on bridge v SOLDIER of FOREST by WINDOW the", "expected": "As Yellow on Bridge v SOLDIER of FOREST by WINDOW The"}
+{"input": "as CAMERA an Crystal on", "expected": "As CAMERA an Crystal On"}
+{"input": "an soldier on Window to VELVET the", "expected": "An Soldier on Window to VELVET The"}
+{"input": "via soldier at MARBLE vs. ENGINE an", "expected": "Via Soldier at MARBLE vs. ENGINE An"}
+{"input": "of river vs. WINDOW en silver a", "expected": "Of River vs. WINDOW en Silver A"}
+{"input": "in APPLE en letter a River v timber v.", "expected": "In APPLE en Letter a River v Timber V."}
+{"input": "to SOLDIER an UMBRELLA an timber an", "expected": "To SOLDIER an UMBRELLA an Timber An"}
+{"input": "by Planet an ocean the", "expected": "By Planet an Ocean The"}
+{"input": "v. velvet on ocean en Marble v", "expected": "V. Velvet on Ocean en Marble V"}
+{"input": "for harbor v. yellow and Kernel v", "expected": "For Harbor v. Yellow and Kernel V"}
+{"input": "via delta and Evening at crystal or signal a umbrella vs.", "expected": "Via Delta and Evening at Crystal or Signal a Umbrella Vs."}
+{"input": "v Evening as velvet en Engine the island at", "expected": "V Evening as Velvet en Engine the Island At"}
+{"input": "vs. ocean but velvet via yellow by harbor but Velvet en", "expected": "Vs. Ocean but Velvet via Yellow by Harbor but Velvet En"}
+{"input": "the Soldier as ZEBRA in meadow or Gallery for", "expected": "The Soldier as ZEBRA in Meadow or Gallery For"}
+{"input": "if harbor of signal but", "expected": "If Harbor of Signal But"}
+{"input": "if Copper v. marble en", "expected": "If Copper v. Marble En"}
+{"input": "and FACTORY vs captain vs. Station for MOUNTAIN the JOURNAL at", "expected": "And FACTORY vs Captain vs. Station for MOUNTAIN the JOURNAL At"}
+{"input": "vs. factory as lantern to Umbrella the", "expected": "Vs. Factory as Lantern to Umbrella The"}
+{"input": "if evening the Harvest but Ocean on captain for", "expected": "If Evening the Harvest but Ocean on Captain For"}
+{"input": "in EVENING at soldier of forest but CRYSTAL or Lantern by", "expected": "In EVENING at Soldier of Forest but CRYSTAL or Lantern By"}
+{"input": "and morning and velvet via", "expected": "And Morning and Velvet Via"}
+{"input": "by harbor v river as", "expected": "By Harbor v River As"}
+{"input": "en Silver vs garden but garden in theater at", "expected": "En Silver vs Garden but Garden in Theater At"}
+{"input": "v bridge by camera a MEADOW on TIMBER v parcel as", "expected": "V Bridge by Camera a MEADOW on TIMBER v Parcel As"}
+{"input": "of FOREST for Factory via parcel in", "expected": "Of FOREST for Factory via Parcel In"}
+{"input": "via Bridge or QUARTZ for Ocean a YELLOW but kernel a", "expected": "Via Bridge or QUARTZ for Ocean a YELLOW but Kernel A"}
+{"input": "by gallery vs. ocean in soldier by", "expected": "By Gallery vs. Ocean in Soldier By"}
+{"input": "an ocean an delta at kernel the window and", "expected": "An Ocean an Delta at Kernel the Window And"}
+{"input": "and village en FACTORY to", "expected": "And Village en FACTORY To"}
+{"input": "for mountain to Soldier if DELTA if", "expected": "For Mountain to Soldier if DELTA If"}
+{"input": "an silver via engine the", "expected": "An Silver via Engine The"}
+{"input": "at LIBRARY v JOURNAL to umbrella the MEADOW vs.", "expected": "At LIBRARY v JOURNAL to Umbrella the MEADOW Vs."}
+{"input": "and STUDIO if copper as", "expected": "And STUDIO if Copper As"}
+{"input": "on soldier vs signal in market of STATION at", "expected": "On Soldier vs Signal in Market of STATION At"}
+{"input": "via Village in ZEBRA or", "expected": "Via Village in ZEBRA Or"}
+{"input": "vs. market vs notebook v. Paper at MORNING to", "expected": "Vs. Market vs Notebook v. Paper at MORNING To"}
+{"input": "at valley by Quartz but", "expected": "At Valley by Quartz But"}
+{"input": "and zebra on station v VILLAGE or", "expected": "And Zebra on Station v VILLAGE Or"}
+{"input": "but compass of timber and velvet in", "expected": "But Compass of Timber and Velvet In"}
+{"input": "an engine vs. camera an silver in", "expected": "An Engine vs. Camera an Silver In"}
+{"input": "to Garden if orange if parcel at", "expected": "To Garden if Orange if Parcel At"}
+{"input": "for soldier an Village by station via Compass by soldier in", "expected": "For Soldier an Village by Station via Compass by Soldier In"}
+{"input": "en Notebook as ocean on Harvest at", "expected": "En Notebook as Ocean on Harvest At"}
+{"input": "to CRYSTAL and VELVET and signal in", "expected": "To CRYSTAL and VELVET and Signal In"}
+{"input": "and HARVEST at Harbor to Apple the yellow and", "expected": "And HARVEST at Harbor to Apple the Yellow And"}
+{"input": "en Engine at Kernel v.", "expected": "En Engine at Kernel V."}
+{"input": "or silver vs. yellow vs. Harvest a", "expected": "Or Silver vs. Yellow vs. Harvest A"}
+{"input": "for evening a velvet for", "expected": "For Evening a Velvet For"}
+{"input": "to lantern vs. Camera for Library en", "expected": "To Lantern vs. Camera for Library En"}
+{"input": "v. River en Velvet en harbor for", "expected": "V. River en Velvet en Harbor For"}
+{"input": "to DELTA to Captain for PARCEL on Lantern to", "expected": "To DELTA to Captain for PARCEL on Lantern To"}
+{"input": "if Signal or KERNEL but", "expected": "If Signal or KERNEL But"}
+{"input": "to CAPTAIN for compass as", "expected": "To CAPTAIN for Compass As"}
+{"input": "but island as Morning as", "expected": "But Island as Morning As"}
+{"input": "v engine for lantern on", "expected": "V Engine for Lantern On"}
+{"input": "as journal vs. factory to", "expected": "As Journal vs. Factory To"}
+{"input": "in harvest vs CRYSTAL v. CAPTAIN vs MEADOW en", "expected": "In Harvest vs CRYSTAL v. CAPTAIN vs MEADOW En"}
+{"input": "an ocean the island of compass at", "expected": "An Ocean the Island of Compass At"}
+{"input": "v window but marble as quartz vs. Library en Theater if", "expected": "V Window but Marble as Quartz vs. Library en Theater If"}
+{"input": "and Silver but notebook or", "expected": "And Silver but Notebook Or"}
+{"input": "v garden if Ocean of JOURNAL on letter and", "expected": "V Garden if Ocean of JOURNAL on Letter And"}
+{"input": "en yellow en Station v. station and", "expected": "En Yellow en Station v. Station And"}
+{"input": "the camera to YELLOW or Island the APPLE v.", "expected": "The Camera to YELLOW or Island the APPLE V."}
+{"input": "as Yellow via village v kernel and", "expected": "As Yellow via Village v Kernel And"}
+{"input": "to compass but Morning of Quartz via", "expected": "To Compass but Morning of Quartz Via"}
+{"input": "but market an ORANGE v. ENGINE an", "expected": "But Market an ORANGE v. ENGINE An"}
+{"input": "in library if Quartz if rocket for", "expected": "In Library if Quartz if Rocket For"}
+{"input": "on paper an soldier but apple vs.", "expected": "On Paper an Soldier but Apple Vs."}
+{"input": "and island v. umbrella vs", "expected": "And Island v. Umbrella Vs"}
+{"input": "but signal vs window at", "expected": "But Signal vs Window At"}
+{"input": "via library of bridge v. zebra en", "expected": "Via Library of Bridge v. Zebra En"}
+{"input": "vs zebra v THEATER for marble via meadow vs", "expected": "Vs Zebra v THEATER for Marble via Meadow Vs"}
+{"input": "on Yellow the quartz at LETTER of", "expected": "On Yellow the Quartz at LETTER Of"}
+{"input": "if River an lantern a", "expected": "If River an Lantern A"}
+{"input": "of rocket v. MEADOW the compass but LANTERN in", "expected": "Of Rocket v. MEADOW the Compass but LANTERN In"}
+{"input": "vs GALLERY vs. morning via", "expected": "Vs GALLERY vs. Morning Via"}
+{"input": "but Marble or Crystal by marble at", "expected": "But Marble or Crystal by Marble At"}
+{"input": "at Bridge for kernel en Camera vs. kernel to Orange of", "expected": "At Bridge for Kernel en Camera vs. Kernel to Orange Of"}
+{"input": "via soldier in meadow in timber via", "expected": "Via Soldier in Meadow in Timber Via"}
+{"input": "via studio vs. station and", "expected": "Via Studio vs. Station And"}
+{"input": "vs. Lantern by notebook for mountain of Meadow in Engine vs.", "expected": "Vs. Lantern by Notebook for Mountain of Meadow in Engine Vs."}
+{"input": "en PARCEL at planet by Silver via COPPER v. meadow en", "expected": "En PARCEL at Planet by Silver via COPPER v. Meadow En"}
+{"input": "by velvet and ZEBRA vs.", "expected": "By Velvet and ZEBRA Vs."}
+{"input": "via ORANGE or notebook or Umbrella an delta en copper the", "expected": "Via ORANGE or Notebook or Umbrella an Delta en Copper The"}
+{"input": "via STATION vs. zebra the apple by VELVET v island a", "expected": "Via STATION vs. Zebra the Apple by VELVET v Island A"}
+{"input": "if Theater as Mountain a", "expected": "If Theater as Mountain A"}
+{"input": "vs yellow an umbrella of", "expected": "Vs Yellow an Umbrella Of"}
+{"input": "but LANTERN for orange by", "expected": "But LANTERN for Orange By"}
+{"input": "vs. village to Village of silver on quartz vs.", "expected": "Vs. Village to Village of Silver on Quartz Vs."}
+{"input": "and signal a copper by", "expected": "And Signal a Copper By"}
+{"input": "or MORNING by valley in", "expected": "Or MORNING by Valley In"}
+{"input": "vs library of ROCKET and Paper or", "expected": "Vs Library of ROCKET and Paper Or"}
+{"input": "a FOREST in ISLAND for captain via engine the Copper vs", "expected": "A FOREST in ISLAND for Captain via Engine the Copper Vs"}
+{"input": "a quartz vs MEADOW v.", "expected": "A Quartz vs MEADOW V."}
+{"input": "via theater as kernel vs ROCKET vs. Mountain v. gallery as", "expected": "Via Theater as Kernel vs ROCKET vs. Mountain v. Gallery As"}
+{"input": "and River vs MOUNTAIN by", "expected": "And River vs MOUNTAIN By"}
+{"input": "v. Parcel for lantern vs harbor a Harvest via", "expected": "V. Parcel for Lantern vs Harbor a Harvest Via"}
+{"input": "at MEADOW on engine and BRIDGE and notebook if", "expected": "At MEADOW on Engine and BRIDGE and Notebook If"}
+{"input": "the Signal or Crystal for orange of ROCKET of BRIDGE of", "expected": "The Signal or Crystal for Orange of ROCKET of BRIDGE Of"}
+{"input": "via bridge v meadow v morning as", "expected": "Via Bridge v Meadow v Morning As"}
+{"input": "or Theater or JOURNAL to Captain via PARCEL the VELVET the", "expected": "Or Theater or JOURNAL to Captain via PARCEL the VELVET The"}
+{"input": "by VELVET v velvet to station a", "expected": "By VELVET v Velvet to Station A"}
+{"input": "the forest by COPPER as factory an journal and", "expected": "The Forest by COPPER as Factory an Journal And"}
+{"input": "via library a Compass to River on orange via", "expected": "Via Library a Compass to River on Orange Via"}
+{"input": "to Crystal if ocean if PAPER or PAPER at", "expected": "To Crystal if Ocean if PAPER or PAPER At"}
+{"input": "of mountain an valley an journal of ocean an", "expected": "Of Mountain an Valley an Journal of Ocean An"}
+{"input": "or LANTERN the morning v LIBRARY in River if MOUNTAIN at", "expected": "Or LANTERN the Morning v LIBRARY in River if MOUNTAIN At"}
+{"input": "en Theater v RIVER v. Captain v marble the signal in", "expected": "En Theater v RIVER v. Captain v Marble the Signal In"}
+{"input": "and letter as valley at", "expected": "And Letter as Valley At"}
+{"input": "by VILLAGE v. Lantern but Market if captain by Camera v", "expected": "By VILLAGE v. Lantern but Market if Captain by Camera V"}
+{"input": "at Forest en notebook but studio on parcel to", "expected": "At Forest en Notebook but Studio on Parcel To"}
+{"input": "en Garden v PLANET a harbor but Valley to Signal at", "expected": "En Garden v PLANET a Harbor but Valley to Signal At"}
+{"input": "if MORNING the yellow on", "expected": "If MORNING the Yellow On"}
+{"input": "the kernel via MEADOW as engine v QUARTZ the quartz by", "expected": "The Kernel via MEADOW as Engine v QUARTZ the Quartz By"}
+{"input": "if village as kernel vs. STUDIO vs. zebra v.", "expected": "If Village as Kernel vs. STUDIO vs. Zebra V."}
+{"input": "as village at window vs", "expected": "As Village at Window Vs"}
+{"input": "an delta v station at Delta v engine vs.", "expected": "An Delta v Station at Delta v Engine Vs."}
+{"input": "at market in river for kernel of Soldier if", "expected": "At Market in River for Kernel of Soldier If"}
+{"input": "vs Marble via COPPER en studio if Rocket for", "expected": "Vs Marble via COPPER en Studio if Rocket For"}
+{"input": "the apple an valley an", "expected": "The Apple an Valley An"}
+{"input": "by Parcel v. morning of HARBOR via window the MARKET at", "expected": "By Parcel v. Morning of HARBOR via Window the MARKET At"}
+{"input": "via valley on signal if", "expected": "Via Valley on Signal If"}
+{"input": "for Copper of Umbrella to", "expected": "For Copper of Umbrella To"}
+{"input": "an valley in ocean or", "expected": "An Valley in Ocean Or"}
+{"input": "an Marble in umbrella if", "expected": "An Marble in Umbrella If"}
+{"input": "in Camera en ROCKET as Timber and", "expected": "In Camera en ROCKET as Timber And"}
+{"input": "via market the bridge as crystal as library as Harvest a", "expected": "Via Market the Bridge as Crystal as Library as Harvest A"}
+{"input": "in Harvest but letter a LETTER by", "expected": "In Harvest but Letter a LETTER By"}
+{"input": "for HARBOR vs. velvet en", "expected": "For HARBOR vs. Velvet En"}
+{"input": "v CRYSTAL to morning on Evening a Apple to", "expected": "V CRYSTAL to Morning on Evening a Apple To"}
+{"input": "the kernel if garden the Parcel to", "expected": "The Kernel if Garden the Parcel To"}
+{"input": "on APPLE v CAPTAIN an", "expected": "On APPLE v CAPTAIN An"}
+{"input": "by parcel the Yellow for Delta on VELVET the", "expected": "By Parcel the Yellow for Delta on VELVET The"}
+{"input": "the GALLERY vs VELVET vs. market a studio in", "expected": "The GALLERY vs VELVET vs. Market a Studio In"}
+{"input": "v. engine but garden for Station at lantern at WINDOW or", "expected": "V. Engine but Garden for Station at Lantern at WINDOW Or"}
+{"input": "via velvet at VELVET at MEADOW but river vs.", "expected": "Via Velvet at VELVET at MEADOW but River Vs."}
+{"input": "as Lantern in signal an", "expected": "As Lantern in Signal An"}
+{"input": "in Parcel a CRYSTAL or theater on Yellow a", "expected": "In Parcel a CRYSTAL or Theater on Yellow A"}
+{"input": "to studio on market if", "expected": "To Studio on Market If"}
+{"input": "vs. soldier but harbor and", "expected": "Vs. Soldier but Harbor And"}
+{"input": "by letter to harvest for Station but", "expected": "By Letter to Harvest for Station But"}
+{"input": "or harvest or theater v Station of Notebook the", "expected": "Or Harvest or Theater v Station of Notebook The"}
+{"input": "but ENGINE a velvet and Zebra for island to", "expected": "But ENGINE a Velvet and Zebra for Island To"}
+{"input": "the rocket in MOUNTAIN en river en", "expected": "The Rocket in MOUNTAIN en River En"}
+{"input": "and market but ISLAND to kernel on", "expected": "And Market but ISLAND to Kernel On"}
+{"input": "an studio for Silver for copper at EVENING if", "expected": "An Studio for Silver for Copper at EVENING If"}
+{"input": "by FOREST via umbrella v. Rocket v ZEBRA as", "expected": "By FOREST via Umbrella v. Rocket v ZEBRA As"}
+{"input": "vs. ENGINE en PARCEL a compass to Apple and", "expected": "Vs. ENGINE en PARCEL a Compass to Apple And"}
+{"input": "for Morning as COPPER in", "expected": "For Morning as COPPER In"}
+{"input": "_harbor” [MARBLE ‘Lantern' - \"gallery'", "expected": "_Harbor” [MARBLE ‘Lantern' - \"Gallery'"}
+{"input": "”captain, ”camera] ”notebook\" — “compass) (letter del.icio.us", "expected": "”captain, ”camera] ”notebook\" — “Compass) (Letter del.icio.us"}
+{"input": "...marble! ...Valley,", "expected": "...Marble! ...Valley,"}
+{"input": "'zebra; ”apple! “orange?", "expected": "'Zebra; ”apple! “Orange?"}
+{"input": "‘CAMERA' _silver\"", "expected": "‘CAMERA' _Silver\""}
+{"input": "...gallery]; ”crystal. example.com", "expected": "...Gallery]; ”crystal. example.com"}
+{"input": "[CRYSTAL) 'Silver! ‘evening\" — En", "expected": "[CRYSTAL) 'Silver! ‘Evening\" — En"}
+{"input": "(STATION? “Journal? (PLANET: ‘theater! — EN Ph.D.", "expected": "(STATION? “Journal? (PLANET: ‘Theater! — EN Ph.D."}
+{"input": "_gallery) - 'Silver. 'umbrella:", "expected": "_Gallery) - 'Silver. 'Umbrella:"}
+{"input": "_Signal) “NOTEBOOK:. “library?", "expected": "_Signal) “NOTEBOOK:. “Library?"}
+{"input": "\"KERNEL) “Garden, ”camera)", "expected": "\"KERNEL) “Garden, ”camera)"}
+{"input": "'station' _bridge:", "expected": "'Station' _Bridge:"}
+{"input": "'apple, (Mountain) http://foo.com", "expected": "'Apple, (Mountain) http://foo.com"}
+{"input": "“STATION;: “Silver, 'LETTER)", "expected": "“STATION;: “Silver, 'LETTER)"}
+{"input": "'Soldier. 'factory: [harbor;. A", "expected": "'Soldier. 'Factory: [Harbor;. A"}
+{"input": "...journal) “parcel”", "expected": "...Journal) “Parcel”"}
+{"input": "_studio] “lantern,? \"velvet. lantern: _captain,", "expected": "_Studio] “Lantern,? \"Velvet. Lantern: _Captain,"}
+{"input": "Signal' (river a.m.", "expected": "Signal' (River a.m."}
+{"input": "_notebook [studio] [ocean [garden] evening\" example.com", "expected": "_Notebook [Studio] [Ocean [Garden] Evening\" example.com"}
+{"input": "[umbrella] [ZEBRA;", "expected": "[Umbrella] [ZEBRA;"}
+{"input": "[Umbrella'; ”STUDIO! [copper ”yellow” 'APPLE]", "expected": "[Umbrella'; ”STUDIO! [Copper ”yellow” 'APPLE]"}
+{"input": "“Factory” ...rocket:. “QUARTZ” \"valley 'Compass” del.icio.us", "expected": "“Factory” ...Rocket:. “QUARTZ” \"Valley 'Compass” del.icio.us"}
+{"input": "Gallery, _library: harbor] - vs.", "expected": "Gallery, _Library: Harbor] - Vs."}
+{"input": "ocean: — (WINDOW' Ph.D.", "expected": "Ocean: — (WINDOW' Ph.D."}
+{"input": "'island) 'garden, “Meadow) “FOREST” ”journal'", "expected": "'Island) 'Garden, “Meadow) “FOREST” ”journal'"}
+{"input": "[lantern 'yellow)! an", "expected": "[Lantern 'Yellow)! An"}
+{"input": "“library, (THEATER) ...NOTEBOOK; - 'delta!", "expected": "“Library, (THEATER) ...NOTEBOOK; - 'Delta!"}
+{"input": "\"Valley; “timber. ...umbrella", "expected": "\"Valley; “Timber. ...Umbrella"}
+{"input": "(EVENING\" ‘SILVER, \"Marble] _Evening? ‘Studio)", "expected": "(EVENING\" ‘SILVER, \"Marble] _Evening? ‘Studio)"}
+{"input": "...Apple: ...Meadow\" “Mountain, del.icio.us", "expected": "...Apple: ...Meadow\" “Mountain, del.icio.us"}
+{"input": "(VELVET” [MOUNTAIN! (MORNING; \"station” “captain\" http://foo.com", "expected": "(VELVET” [MOUNTAIN! (MORNING; \"Station” “Captain\" http://foo.com"}
+{"input": "_silver\" (umbrella: 'EVENING: \"letter'", "expected": "_Silver\" (Umbrella: 'EVENING: \"Letter'"}
+{"input": "...silver. ...quartz! ‘engine\" \"MARBLE;", "expected": "...Silver. ...Quartz! ‘Engine\" \"MARBLE;"}
+{"input": "garden) _window\"? IF", "expected": "Garden) _Window\"? If"}
+{"input": "[morning umbrella) \"Captain: [copper): ‘morning\"", "expected": "[Morning Umbrella) \"Captain: [Copper): ‘Morning\""}
+{"input": "”kernel; _crystal”", "expected": "”kernel; _Crystal”"}
+{"input": "(GARDEN) “YELLOW) ”Valley] [LETTER” \"OCEAN\"", "expected": "(GARDEN) “YELLOW) ”Valley] [LETTER” \"OCEAN\""}
+{"input": "[yellow. \"marble] _letter! “morning; “station)", "expected": "[Yellow. \"Marble] _Letter! “Morning; “Station)"}
+{"input": "‘harbor' BRIDGE, theater”", "expected": "‘Harbor' BRIDGE, Theater”"}
+{"input": "'engine ‘umbrella\" “Crystal? ...soldier;: [soldier", "expected": "'Engine ‘Umbrella\" “Crystal? ...Soldier;: [Soldier"}
+{"input": "‘MOUNTAIN! ”Library” example.com", "expected": "‘MOUNTAIN! ”Library” example.com"}
+{"input": "factory; [Letter. [Velvet: “SILVER:", "expected": "Factory; [Letter. [Velvet: “SILVER:"}
+{"input": "...Velvet. ...library'; (window\" \"Morning' _meadow! http://foo.com", "expected": "...Velvet. ...Library'; (Window\" \"Morning' _Meadow! http://foo.com"}
+{"input": "”valley'. (zebra”", "expected": "”valley'. (Zebra”"}
+{"input": "”Rocket, [kernel) (Market? ...Rocket?; \"apple\"", "expected": "”Rocket, [Kernel) (Market? ...Rocket?; \"Apple\""}
+{"input": "_letter\"? “planet, apple) “MARBLE: _window'", "expected": "_Letter\"? “Planet, Apple) “MARBLE: _Window'"}
+{"input": "(island” ‘THEATER) \"station\"", "expected": "(Island” ‘THEATER) \"Station\""}
+{"input": "ISLAND? [Forest? \"Harvest] [camera; zebra]", "expected": "ISLAND? [Forest? \"Harvest] [Camera; Zebra]"}
+{"input": "ISLAND! \"ENGINE” \"kernel; (Notebook” example.com", "expected": "ISLAND! \"ENGINE” \"Kernel; (Notebook” example.com"}
+{"input": "morning? orange. theater! — ...paper! ...marble'", "expected": "Morning? Orange. Theater! — ...Paper! ...Marble'"}
+{"input": "'Kernel: (camera, \"LETTER\" \"silver,", "expected": "'Kernel: (Camera, \"LETTER\" \"Silver,"}
+{"input": "(GALLERY” [crystal? ‘planet; (ROCKET' STATION;", "expected": "(GALLERY” [Crystal? ‘Planet; (ROCKET' STATION;"}
+{"input": "...Captain? - window", "expected": "...Captain? - Window"}
+{"input": "...MOUNTAIN. (PLANET' ‘silver! 'umbrella' – ‘Engine]", "expected": "...MOUNTAIN. (PLANET' ‘Silver! 'Umbrella' – ‘Engine]"}
+{"input": "\"SIGNAL,! \"island, \"Planet.", "expected": "\"SIGNAL,! \"Island, \"Planet."}
+{"input": "_yellow” “Harvest] ”FACTORY: ‘VALLEY] a.m.", "expected": "_Yellow” “Harvest] ”FACTORY: ‘VALLEY] a.m."}
+{"input": "_Signal' “Quartz: ‘MOUNTAIN)! a del.icio.us", "expected": "_Signal' “Quartz: ‘MOUNTAIN)! A del.icio.us"}
+{"input": "...station' ”FACTORY' - ‘garden", "expected": "...Station' ”FACTORY' - ‘Garden"}
+{"input": "_library\" \"engine] ...engine ...gallery] - [GALLERY:", "expected": "_Library\" \"Engine] ...Engine ...Gallery] - [GALLERY:"}
+{"input": "...forest; ”ocean”", "expected": "...Forest; ”ocean”"}
+{"input": "‘station, 'PAPER) ‘river.", "expected": "‘Station, 'PAPER) ‘River."}
+{"input": "...Engine' ”Timber;", "expected": "...Engine' ”Timber;"}
+{"input": "_compass ‘Garden:? ‘garden!", "expected": "_Compass ‘Garden:? ‘Garden!"}
+{"input": "'camera] — ”bridge! _PARCEL' \"forest;", "expected": "'Camera] — ”bridge! _PARCEL' \"Forest;"}
+{"input": "[umbrella?: MOUNTAIN; (Factory;", "expected": "[Umbrella?: MOUNTAIN; (Factory;"}
+{"input": "[LANTERN; “Engine.: V", "expected": "[LANTERN; “Engine.: V"}
+{"input": "”FACTORY. [ocean\" _gallery! ...umbrella) ‘RIVER:", "expected": "”FACTORY. [Ocean\" _Gallery! ...Umbrella) ‘RIVER:"}
+{"input": "[Meadow\" 'OCEAN. _parcel? (MARKET", "expected": "[Meadow\" 'OCEAN. _Parcel? (MARKET"}
+{"input": "\"Harbor. \"mountain) \"village' “harvest 'Mountain", "expected": "\"Harbor. \"Mountain) \"Village' “Harvest 'Mountain"}
+{"input": "“station? 'village' 'library) - ‘window\" bridge) del.icio.us", "expected": "“Station? 'Village' 'Library) - ‘Window\" Bridge) del.icio.us"}
+{"input": "‘ZEBRA (Velvet?", "expected": "‘ZEBRA (Velvet?"}
+{"input": "\"morning: \"TIMBER?", "expected": "\"Morning: \"TIMBER?"}
+{"input": "STATION, ...silver! \"mountain [COPPER. [Studio! a.m.", "expected": "STATION, ...Silver! \"Mountain [COPPER. [Studio! A.m."}
+{"input": "(Camera, 'kernel;", "expected": "(Camera, 'Kernel;"}
+{"input": "”evening, ”Market ”Rocket: — ‘ORANGE! ”theater]", "expected": "”evening, ”Market ”Rocket: — ‘ORANGE! ”theater]"}
+{"input": "'Harbor) – \"Garden, Ph.D.", "expected": "'Harbor) – \"Garden, Ph.D."}
+{"input": "_valley. — engine) LANTERN, ...QUARTZ!", "expected": "_Valley. — Engine) LANTERN, ...QUARTZ!"}
+{"input": "[zebra? _Island] \"TIMBER? del.icio.us", "expected": "[Zebra? _Island] \"TIMBER? del.icio.us"}
+{"input": "GALLERY: 'factory)", "expected": "GALLERY: 'Factory)"}
+{"input": "_Silver! [Signal.! \"mountain (silver! factory]", "expected": "_Silver! [Signal.! \"Mountain (Silver! Factory]"}
+{"input": "_forest; ”Village\" \"studio\"? ‘bridge,", "expected": "_Forest; ”Village\" \"Studio\"? ‘Bridge,"}
+{"input": "_crystal. ‘soldier] _velvet? \"journal” — an", "expected": "_Crystal. ‘Soldier] _Velvet? \"Journal” — An"}
+{"input": "“morning) ...station\" ”camera) _Market! ”Engine]", "expected": "“Morning) ...Station\" ”camera) _Market! ”Engine]"}
+{"input": "‘Parcel, \"crystal: “window \"FACTORY)", "expected": "‘Parcel, \"Crystal: “Window \"FACTORY)"}
+{"input": "Bridge! (Crystal; marble: del.icio.us", "expected": "Bridge! (Crystal; Marble: del.icio.us"}
+{"input": "...copper. ”quartz;: FOR example.com", "expected": "...Copper. ”quartz;: FOR example.com"}
+{"input": "_CRYSTAL! \"BRIDGE'", "expected": "_Crystal! \"Bridge'"}
+{"input": "timber' — SILVER'", "expected": "Timber' — SILVER'"}
+{"input": "(camera? “Paper' ‘river) \"Harvest” 'rocket'", "expected": "(Camera? “Paper' ‘River) \"Harvest” 'Rocket'"}
+{"input": "\"Copper' ‘garden:", "expected": "\"Copper' ‘Garden:"}
+{"input": "harbor\"; ...theater; paper]", "expected": "Harbor\"; ...Theater; Paper]"}
+{"input": "JOURNAL! NOTEBOOK\" (delta: — ”Harbor! “Rocket)", "expected": "JOURNAL! NOTEBOOK\" (Delta: — ”Harbor! “Rocket)"}
+{"input": "bridge\" ...LANTERN\" ...HARBOR.? [crystal http://foo.com", "expected": "Bridge\" ...LANTERN\" ...HARBOR.? [Crystal http://foo.com"}
+{"input": "harvest “ocean (garden? _SIGNAL,", "expected": "Harvest “Ocean (Garden? _SIGNAL,"}
+{"input": "...PLANET) \"Notebook - en", "expected": "...PLANET) \"Notebook - En"}
+{"input": "[zebra? (HARBOR”", "expected": "[Zebra? (HARBOR”"}
+{"input": "“bridge:! 'Window] _Velvet'", "expected": "“Bridge:! 'Window] _Velvet'"}
+{"input": "_paper]? \"Library! \"factory) ...Island! example.com", "expected": "_Paper]? \"Library! \"Factory) ...Island! example.com"}
+{"input": "...velvet, [CAMERA; _Compass\" ‘rocket\"", "expected": "...Velvet, [CAMERA; _Compass\" ‘Rocket\""}
+{"input": "(PAPER:! 'window _engine\" (harbor] “Factory?", "expected": "(PAPER:! 'Window _Engine\" (Harbor] “Factory?"}
+{"input": "“Bridge,: ‘Yellow' ...orange?", "expected": "“Bridge,: ‘Yellow' ...Orange?"}
+{"input": "'gallery? ”journal? ”quartz: [factory! ”Village” a.m.", "expected": "'Gallery? ”journal? ”quartz: [Factory! ”Village” a.m."}
+{"input": "...Theater) — NOTEBOOK” ”Forest] ...rocket) _Forest,", "expected": "...Theater) — NOTEBOOK” ”Forest] ...Rocket) _Forest,"}
+{"input": "‘QUARTZ” \"Copper! [MOUNTAIN! [Window! — MARKET", "expected": "‘QUARTZ” \"Copper! [MOUNTAIN! [Window! — MARKET"}
+{"input": "“mountain\" [camera\" “umbrella)", "expected": "“Mountain\" [Camera\" “Umbrella)"}
+{"input": "(Velvet. ”Meadow” \"CAMERA) 'CAPTAIN: (marble: example.com", "expected": "(Velvet. ”Meadow” \"CAMERA) 'CAPTAIN: (Marble: example.com"}
+{"input": "‘Signal) _Apple, ”FOREST; — ‘Apple!", "expected": "‘Signal) _Apple, ”FOREST; — ‘Apple!"}
+{"input": "[TIMBER \"Notebook\" “Studio” Station' a.m.", "expected": "[TIMBER \"Notebook\" “Studio” Station' a.m."}
+{"input": "(MOUNTAIN? – valley,", "expected": "(MOUNTAIN? – Valley,"}
+{"input": "...crystal\"? [ocean.", "expected": "...Crystal\"? [Ocean."}
+{"input": "library. ‘bridge.", "expected": "Library. ‘Bridge."}
+{"input": "‘evening? \"rocket)", "expected": "‘Evening? \"Rocket)"}
+{"input": "_market: \"PLANET! ...lantern] a.m.", "expected": "_Market: \"PLANET! ...Lantern] a.m."}
+{"input": "“Quartz; (HARBOR,; “DELTA: ...UMBRELLA) [GALLERY?", "expected": "“Quartz; (HARBOR,; “DELTA: ...UMBRELLA) [GALLERY?"}
+{"input": "(Quartz] “APPLE) _zebra\": IN", "expected": "(Quartz] “APPLE) _Zebra\": In"}
+{"input": "Window] (Island; - 'bridge, (RIVER' _signal:", "expected": "Window] (Island; - 'Bridge, (RIVER' _Signal:"}
+{"input": "\"rocket) \"market. — ...ISLAND] 'Rocket” delta!", "expected": "\"Rocket) \"Market. — ...ISLAND] 'Rocket” Delta!"}
+{"input": "\"Factory; [Signal\"; an", "expected": "\"Factory; [Signal\"; An"}
+{"input": "zebra”: ”kernel) del.icio.us", "expected": "Zebra”: ”kernel) del.icio.us"}
+{"input": "...rocket, [umbrella! (valley\"; ”market]", "expected": "...Rocket, [Umbrella! (Valley\"; ”market]"}
+{"input": "_velvet; ”studio;", "expected": "_Velvet; ”studio;"}
+{"input": "parcel” ...velvet", "expected": "Parcel” ...Velvet"}
+{"input": "...harbor, ...engine ‘yellow!; IN", "expected": "...Harbor, ...Engine ‘Yellow!; In"}
+{"input": "'STATION' ”TIMBER; _PARCEL'", "expected": "'Station' ”timber; _Parcel'"}
+{"input": "(THEATER) “HARVEST “Delta. 'library) — vs.", "expected": "(THEATER) “HARVEST “Delta. 'Library) — Vs."}
+{"input": "zebra “Velvet: – If", "expected": "Zebra “Velvet: – If"}
+{"input": "'Valley, [Yellow:", "expected": "'Valley, [Yellow:"}
+{"input": "...factory' \"APPLE: _Soldier! Ph.D.", "expected": "...Factory' \"APPLE: _Soldier! Ph.D."}
+{"input": "...station: ‘MARBLE, example.com", "expected": "...Station: ‘MARBLE, example.com"}
+{"input": "‘harbor! ...timber]. _apple,", "expected": "‘Harbor! ...Timber]. _Apple,"}
+{"input": "_Umbrella] ”ocean? [Theater!", "expected": "_Umbrella] ”ocean? [Theater!"}
+{"input": "‘VALLEY” - ...notebook) NOTEBOOK” MEADOW.", "expected": "‘VALLEY” - ...Notebook) NOTEBOOK” MEADOW."}
+{"input": "EVENING] (velvet] – ‘SOLDIER; ”Gallery] captain:", "expected": "EVENING] (Velvet] – ‘SOLDIER; ”Gallery] Captain:"}
+{"input": "(rocket? factory] [evening) ‘kernel\" \"GALLERY;", "expected": "(Rocket? Factory] [Evening) ‘Kernel\" \"GALLERY;"}
+{"input": "_parcel. \"yellow [forest! (silver' ”Quartz", "expected": "_Parcel. \"Yellow [Forest! (Silver' ”Quartz"}
+{"input": "'marble' 'Ocean”; (parcel; example.com", "expected": "'Marble' 'Ocean”; (Parcel; example.com"}
+{"input": "soldier” ...zebra\" QUARTZ!", "expected": "Soldier” ...Zebra\" QUARTZ!"}
+{"input": "[Rocket” ...harvest, ...mountain?; Bridge” “crystal?", "expected": "[Rocket” ...Harvest, ...Mountain?; Bridge” “Crystal?"}
+{"input": "[THEATER] ...morning: \"Signal.; “engine: (Planet.", "expected": "[THEATER] ...Morning: \"Signal.; “Engine: (Planet."}
+{"input": "_silver” ‘crystal:: “yellow? ‘compass”", "expected": "_Silver” ‘Crystal:: “Yellow? ‘Compass”"}
+{"input": "(Theater [station; a.m.", "expected": "(Theater [Station; A.m."}
+{"input": "”camera; [journal! [TIMBER” 'meadow; “Notebook' a.m.", "expected": "”camera; [Journal! [TIMBER” 'Meadow; “Notebook' a.m."}
+{"input": "\"TIMBER; Zebra]. “Delta, ”kernel:", "expected": "\"TIMBER; Zebra]. “Delta, ”kernel:"}
+{"input": "[CAPTAIN; “timber: “Notebook) – STATION'", "expected": "[CAPTAIN; “Timber: “Notebook) – STATION'"}
+{"input": "“VALLEY; ‘VILLAGE, (SIGNAL: ...Forest, - 'Soldier\"", "expected": "“VALLEY; ‘VILLAGE, (SIGNAL: ...Forest, - 'Soldier\""}
+{"input": "...Crystal, ‘Island] 'VALLEY\" (SIGNAL”? the", "expected": "...Crystal, ‘Island] 'VALLEY\" (SIGNAL”? The"}
+{"input": "(Zebra]? “LIBRARY", "expected": "(Zebra]? “LIBRARY"}
+{"input": "\"Compass]! ‘Soldier”", "expected": "\"Compass]! ‘Soldier”"}
+{"input": "[Studio, “gallery”! in", "expected": "[Studio, “Gallery”! In"}
+{"input": "_harbor' _village: [forest”", "expected": "_Harbor' _Village: [Forest”"}
+{"input": "”MORNING, HARVEST;", "expected": "”morning, Harvest;"}
+{"input": "“Velvet] - \"River,", "expected": "“Velvet] - \"River,"}
+{"input": "”crystal) _JOURNAL! 'harbor) (Forest; _yellow] example.com", "expected": "”crystal) _JOURNAL! 'Harbor) (Forest; _Yellow] example.com"}
+{"input": "‘planet; Station” ...Delta:", "expected": "‘Planet; Station” ...Delta:"}
+{"input": "...ORANGE\" 'factory\"", "expected": "...ORANGE\" 'Factory\""}
+{"input": "(HARVEST:! [timber, [camera] example.com", "expected": "(HARVEST:! [Timber, [Camera] example.com"}
+{"input": "\"journal] \"river; ”bridge? – (CRYSTAL;", "expected": "\"Journal] \"River; ”bridge? – (CRYSTAL;"}
+{"input": "[delta?. “harbor;", "expected": "[Delta?. “Harbor;"}
+{"input": "'quartz; “Morning' \"STUDIO,", "expected": "'Quartz; “Morning' \"STUDIO,"}
+{"input": "‘velvet! ”Planet, [lantern, \"harbor'", "expected": "‘Velvet! ”Planet, [Lantern, \"Harbor'"}
+{"input": "...morning, ”gallery: 'PARCEL] 'BRIDGE.", "expected": "...Morning, ”gallery: 'PARCEL] 'BRIDGE."}
+{"input": "...ORANGE; \"studio' Ph.D.", "expected": "...ORANGE; \"Studio' Ph.D."}
+{"input": "[mountain: _YELLOW\" [station” ”parcel)", "expected": "[Mountain: _YELLOW\" [Station” ”parcel)"}
+{"input": "_STATION! “yellow, (QUARTZ. — 'morning' ‘harvest", "expected": "_STATION! “Yellow, (QUARTZ. — 'Morning' ‘Harvest"}
+{"input": "”notebook: 'KERNEL! Copper, Lantern: “garden\" Ph.D.", "expected": "”notebook: 'KERNEL! Copper, Lantern: “Garden\" Ph.D."}
+{"input": "'TIMBER” ‘signal:; ”Camera, ”DELTA) 'ORANGE)", "expected": "'TIMBER” ‘Signal:; ”Camera, ”DELTA) 'ORANGE)"}
+{"input": "\"window; ‘COPPER: [kernel]", "expected": "\"Window; ‘COPPER: [Kernel]"}
+{"input": "‘Forest. ”ORANGE) ‘Station” Ph.D.", "expected": "‘Forest. ”ORANGE) ‘Station” Ph.D."}
+{"input": "_Island' – ”Yellow 'Silver? \"journal)", "expected": "_Island' – ”Yellow 'Silver? \"Journal)"}
+{"input": "(captain, [zebra] ”Marble) apple, — at", "expected": "(Captain, [Zebra] ”Marble) Apple, — At"}
+{"input": "'Rocket] (library) ...Harvest! _timber' example.com", "expected": "'Rocket] (Library) ...Harvest! _Timber' example.com"}
+{"input": "‘gallery - “Compass, del.icio.us", "expected": "‘Gallery - “Compass, del.icio.us"}
+{"input": "[ENGINE, “Velvet” ...PARCEL\" _Island;", "expected": "[ENGINE, “Velvet” ...PARCEL\" _Island;"}
+{"input": "”captain' [Station, \"Timber?? IN", "expected": "”captain' [Station, \"Timber?? In"}
+{"input": "”morning? ”Zebra; (gallery” village\" ...soldier]", "expected": "”morning? ”Zebra; (Gallery” Village\" ...Soldier]"}
+{"input": "[forest!! ”yellow) example.com", "expected": "[Forest!! ”yellow) example.com"}
+{"input": "captain\" (notebook] ‘Rocket) ”river. _ISLAND\"", "expected": "Captain\" (Notebook] ‘Rocket) ”river. _ISLAND\""}
+{"input": "...meadow] ”paper? ...Theater' 'Camera", "expected": "...Meadow] ”paper? ...Theater' 'Camera"}
+{"input": "(letter] – (Silver: del.icio.us", "expected": "(Letter] – (Silver: del.icio.us"}
+{"input": "(velvet [Lantern\" – \"Paper:", "expected": "(Velvet [Lantern\" – \"Paper:"}
+{"input": "(Parcel. “YELLOW? ...KERNEL: _planet) _gallery”", "expected": "(Parcel. “YELLOW? ...KERNEL: _Planet) _Gallery”"}
+{"input": "‘bridge! 'camera”", "expected": "‘Bridge! 'Camera”"}
+{"input": "\"Copper\"! 'Camera; umbrella\"", "expected": "\"Copper\"! 'Camera; Umbrella\""}
+{"input": "‘evening, (Mountain] ‘Apple]", "expected": "‘Evening, (Mountain] ‘Apple]"}
+{"input": "‘Velvet Letter”", "expected": "‘Velvet Letter”"}
+{"input": "‘UMBRELLA] [soldier, (ZEBRA] – _Theater, [forest)", "expected": "‘UMBRELLA] [Soldier, (ZEBRA] – _Theater, [Forest)"}
+{"input": "...island) ...forest?", "expected": "...Island) ...Forest?"}
+{"input": "'Evening” ”MARKET! ‘OCEAN? ‘parcel:. VIA example.com", "expected": "'Evening” ”MARKET! ‘OCEAN? ‘Parcel:. VIA example.com"}
+{"input": "...lantern; ...marble”", "expected": "...Lantern; ...Marble”"}
+{"input": "...journal\": ...notebook! \"river: a.m.", "expected": "...Journal\": ...Notebook! \"River: A.m."}
+{"input": "”VILLAGE, “DELTA?. \"parcel] 'ISLAND\" del.icio.us", "expected": "”VILLAGE, “DELTA?. \"Parcel] 'ISLAND\" del.icio.us"}
+{"input": "“WINDOW; ...zebra. 'gallery:", "expected": "“WINDOW; ...Zebra. 'Gallery:"}
+{"input": "[Umbrella” \"notebook; (ocean;", "expected": "[Umbrella” \"Notebook; (Ocean;"}
+{"input": "VALLEY. \"Kernel, [STUDIO?? “soldier!", "expected": "VALLEY. \"Kernel, [STUDIO?? “Soldier!"}
+{"input": "”harbor: (signal: Lantern) ”Engine! Ph.D.", "expected": "”harbor: (Signal: Lantern) ”Engine! Ph.D."}
+{"input": "‘Copper: ”kernel; ‘planet” 'Yellow] \"Market' example.com", "expected": "‘Copper: ”kernel; ‘Planet” 'Yellow] \"Market' example.com"}
+{"input": "‘valley: Notebook: ...soldier! OCEAN' [evening': The http://foo.com", "expected": "‘Valley: Notebook: ...Soldier! OCEAN' [Evening': The http://foo.com"}
+{"input": "[FACTORY' “soldier ...quartz: _Kernel) ‘Yellow]", "expected": "[FACTORY' “Soldier ...Quartz: _Kernel) ‘Yellow]"}
+{"input": "'river: _Factory” _Valley: “valley)", "expected": "'River: _Factory” _Valley: “Valley)"}
+{"input": "(Factory! _MARKET; ...village) ”Station, [MORNING”", "expected": "(Factory! _MARKET; ...Village) ”Station, [MORNING”"}
+{"input": "copper-or-the-camera gallery COMPASS Signal", "expected": "Copper-or-the-Camera Gallery COMPASS Signal"}
+{"input": "Notebook-rocket", "expected": "Notebook-Rocket"}
+{"input": "captain--zebra", "expected": "Captain--Zebra"}
+{"input": "NOTEBOOK Silver/Harvest", "expected": "NOTEBOOK Silver/Harvest"}
+{"input": "LETTER harbor compass-the-to-SILVER quartz", "expected": "LETTER Harbor Compass-the-to-Silver Quartz"}
+{"input": "yellow-to-a-marble", "expected": "Yellow-to-a-Marble"}
+{"input": "harbor COPPER-Village-factory silver", "expected": "Harbor COPPER-Village-factory Silver"}
+{"input": "LIBRARY RIVER-copper ENGINE", "expected": "LIBRARY RIVER-copper ENGINE"}
+{"input": "WINDOW captain-a-a-silver", "expected": "WINDOW Captain-a-a-Silver"}
+{"input": "station Valley station quartz-camera-journal", "expected": "Station Valley Station Quartz-Camera-Journal"}
+{"input": "Garden studio island/LANTERN TIMBER", "expected": "Garden Studio Island/Lantern TIMBER"}
+{"input": "Marble planet engine--captain", "expected": "Marble Planet Engine--Captain"}
+{"input": "parcel/ZEBRA", "expected": "Parcel/Zebra"}
+{"input": "UMBRELLA-LETTER-Orange", "expected": "UMBRELLA-LETTER-Orange"}
+{"input": "Rocket/copper", "expected": "Rocket/Copper"}
+{"input": "FOREST-MORNING", "expected": "Forest-Morning"}
+{"input": "MARKET/MORNING/morning captain letter", "expected": "MARKET/MORNING/morning Captain Letter"}
+{"input": "OCEAN TIMBER-in-in-QUARTZ Delta", "expected": "OCEAN TIMBER-in-in-QUARTZ Delta"}
+{"input": "lantern YELLOW Quartz-BRIDGE", "expected": "Lantern YELLOW Quartz-Bridge"}
+{"input": "planet FACTORY-VELVET", "expected": "Planet FACTORY-VELVET"}
+{"input": "MORNING engine-and-the-Yellow", "expected": "MORNING Engine-and-the-Yellow"}
+{"input": "meadow-and-to-Notebook", "expected": "Meadow-and-to-Notebook"}
+{"input": "orange Crystal-delta-delta yellow", "expected": "Orange Crystal-Delta-Delta Yellow"}
+{"input": "timber-a-of-CRYSTAL crystal", "expected": "Timber-a-of-Crystal Crystal"}
+{"input": "letter/Gallery/JOURNAL island", "expected": "Letter/Gallery/Journal Island"}
+{"input": "River-and-by-letter APPLE KERNEL market", "expected": "River-and-by-Letter APPLE KERNEL Market"}
+{"input": "Valley-quartz Meadow", "expected": "Valley-Quartz Meadow"}
+{"input": "DELTA Harbor Delta-Forest Valley", "expected": "DELTA Harbor Delta-Forest Valley"}
+{"input": "studio/mountain/Umbrella Journal Timber", "expected": "Studio/Mountain/Umbrella Journal Timber"}
+{"input": "ocean copper-of-in-WINDOW silver marble", "expected": "Ocean Copper-of-in-Window Silver Marble"}
+{"input": "Soldier letter-Evening notebook", "expected": "Soldier Letter-Evening Notebook"}
+{"input": "ISLAND Delta TIMBER Forest/COMPASS", "expected": "ISLAND Delta TIMBER Forest/Compass"}
+{"input": "kernel VELVET station-harvest", "expected": "Kernel VELVET Station-Harvest"}
+{"input": "MORNING/Letter", "expected": "MORNING/Letter"}
+{"input": "Lantern ocean window-by-of-studio", "expected": "Lantern Ocean Window-by-of-Studio"}
+{"input": "PLANET-SIGNAL-Orange", "expected": "PLANET-SIGNAL-Orange"}
+{"input": "village timber PLANET-window", "expected": "Village Timber PLANET-window"}
+{"input": "gallery Quartz-VALLEY", "expected": "Gallery Quartz-Valley"}
+{"input": "engine Parcel SOLDIER--DELTA", "expected": "Engine Parcel SOLDIER--DELTA"}
+{"input": "timber-and-to-lantern LIBRARY mountain", "expected": "Timber-and-to-Lantern LIBRARY Mountain"}
+{"input": "theater MORNING--studio quartz", "expected": "Theater MORNING--studio Quartz"}
+{"input": "LIBRARY COMPASS Soldier Copper-Station", "expected": "LIBRARY COMPASS Soldier Copper-Station"}
+{"input": "meadow-valley", "expected": "Meadow-Valley"}
+{"input": "Captain yellow-to-by-compass", "expected": "Captain Yellow-to-by-Compass"}
+{"input": "MEADOW garden valley apple-rocket", "expected": "MEADOW Garden Valley Apple-Rocket"}
+{"input": "crystal/island Market Soldier Market", "expected": "Crystal/Island Market Soldier Market"}
+{"input": "apple/marble", "expected": "Apple/Marble"}
+{"input": "letter--Morning FOREST velvet", "expected": "Letter--Morning FOREST Velvet"}
+{"input": "WINDOW-bridge-lantern LETTER harvest Delta", "expected": "WINDOW-bridge-lantern LETTER Harvest Delta"}
+{"input": "Captain timber-or-to-EVENING", "expected": "Captain Timber-or-to-Evening"}
+{"input": "LIBRARY Camera quartz letter-apple", "expected": "LIBRARY Camera Quartz Letter-Apple"}
+{"input": "UMBRELLA-Rocket marble Studio valley", "expected": "UMBRELLA-Rocket Marble Studio Valley"}
+{"input": "Planet-to-by-PARCEL river", "expected": "Planet-to-by-Parcel River"}
+{"input": "library--forest umbrella GARDEN", "expected": "Library--Forest Umbrella GARDEN"}
+{"input": "copper CAPTAIN/River", "expected": "Copper CAPTAIN/River"}
+{"input": "journal soldier window-by-in-Mountain", "expected": "Journal Soldier Window-by-in-Mountain"}
+{"input": "QUARTZ-of-in-notebook Planet", "expected": "QUARTZ-of-in-notebook Planet"}
+{"input": "evening velvet river/theater/MARBLE", "expected": "Evening Velvet River/Theater/Marble"}
+{"input": "mountain--library KERNEL", "expected": "Mountain--Library KERNEL"}
+{"input": "BRIDGE-yellow-Signal-CRYSTAL evening orange", "expected": "BRIDGE-yellow-Signal-CRYSTAL Evening Orange"}
+{"input": "apple ORANGE/VELVET", "expected": "Apple ORANGE/VELVET"}
+{"input": "captain-river-Captain-library", "expected": "Captain-River-Captain-Library"}
+{"input": "captain Studio library/KERNEL", "expected": "Captain Studio Library/Kernel"}
+{"input": "market--parcel DELTA window", "expected": "Market--Parcel DELTA Window"}
+{"input": "Gallery/letter Rocket", "expected": "Gallery/Letter Rocket"}
+{"input": "Letter STUDIO--KERNEL HARBOR", "expected": "Letter STUDIO--KERNEL HARBOR"}
+{"input": "VILLAGE/mountain/PARCEL", "expected": "VILLAGE/mountain/PARCEL"}
+{"input": "Studio GALLERY-harvest", "expected": "Studio GALLERY-harvest"}
+{"input": "Rocket-notebook", "expected": "Rocket-Notebook"}
+{"input": "Bridge-in-or-VELVET Velvet", "expected": "Bridge-in-or-Velvet Velvet"}
+{"input": "ZEBRA bridge-the-the-ISLAND compass morning", "expected": "ZEBRA Bridge-the-the-Island Compass Morning"}
+{"input": "ZEBRA/CAMERA/MARKET", "expected": "Zebra/Camera/Market"}
+{"input": "Apple zebra Forest-engine gallery", "expected": "Apple Zebra Forest-Engine Gallery"}
+{"input": "delta/timber/umbrella ZEBRA", "expected": "Delta/Timber/Umbrella ZEBRA"}
+{"input": "timber UMBRELLA/theater/Quartz bridge rocket", "expected": "Timber UMBRELLA/theater/Quartz Bridge Rocket"}
+{"input": "letter-silver-engine-THEATER Lantern", "expected": "Letter-Silver-Engine-Theater Lantern"}
+{"input": "Morning VILLAGE-Harbor-Camera", "expected": "Morning VILLAGE-Harbor-Camera"}
+{"input": "copper-meadow", "expected": "Copper-Meadow"}
+{"input": "bridge COPPER/camera", "expected": "Bridge COPPER/camera"}
+{"input": "Umbrella valley HARVEST-a-a-Gallery Quartz", "expected": "Umbrella Valley HARVEST-a-a-Gallery Quartz"}
+{"input": "Orange-to-to-valley STUDIO", "expected": "Orange-to-to-Valley STUDIO"}
+{"input": "CAMERA HARVEST ocean-soldier-Kernel Island", "expected": "CAMERA HARVEST Ocean-Soldier-Kernel Island"}
+{"input": "ZEBRA Window timber Notebook/Library/Ocean", "expected": "ZEBRA Window Timber Notebook/Library/Ocean"}
+{"input": "Bridge-TIMBER-COPPER", "expected": "Bridge-Timber-Copper"}
+{"input": "delta-delta studio", "expected": "Delta-Delta Studio"}
+{"input": "letter Velvet Rocket Studio-Evening", "expected": "Letter Velvet Rocket Studio-Evening"}
+{"input": "VALLEY journal-Crystal Mountain", "expected": "VALLEY Journal-Crystal Mountain"}
+{"input": "RIVER Zebra-compass theater", "expected": "RIVER Zebra-Compass Theater"}
+{"input": "bridge rocket/signal/station Umbrella", "expected": "Bridge Rocket/Signal/Station Umbrella"}
+{"input": "market Delta-planet", "expected": "Market Delta-Planet"}
+{"input": "silver Island/KERNEL/Notebook umbrella Delta", "expected": "Silver Island/Kernel/Notebook Umbrella Delta"}
+{"input": "soldier-and-by-paper", "expected": "Soldier-and-by-Paper"}
+{"input": "YELLOW-and-and-Planet", "expected": "YELLOW-and-and-Planet"}
+{"input": "Evening lantern-of-or-Signal harbor", "expected": "Evening Lantern-of-or-Signal Harbor"}
+{"input": "ocean-morning-signal-planet notebook Kernel", "expected": "Ocean-Morning-Signal-Planet Notebook Kernel"}
+{"input": "Engine market Delta-the-the-PARCEL", "expected": "Engine Market Delta-the-the-Parcel"}
+{"input": "captain planet-planet-FACTORY", "expected": "Captain Planet-Planet-Factory"}
+{"input": "crystal/lantern", "expected": "Crystal/Lantern"}
+{"input": "FOREST forest/MARBLE/village HARVEST Marble", "expected": "FOREST Forest/Marble/Village HARVEST Marble"}
+{"input": "window-meadow", "expected": "Window-Meadow"}
+{"input": "VILLAGE ZEBRA rocket/Bridge forest", "expected": "VILLAGE ZEBRA Rocket/Bridge Forest"}
+{"input": "VELVET parcel silver-by-a-yellow", "expected": "VELVET Parcel Silver-by-a-Yellow"}
+{"input": "mountain-or-or-journal", "expected": "Mountain-or-or-Journal"}
+{"input": "kernel-of-the-forest market", "expected": "Kernel-of-the-Forest Market"}
+{"input": "Captain silver Notebook-Harbor-Copper-Island", "expected": "Captain Silver Notebook-Harbor-Copper-Island"}
+{"input": "HARVEST journal LANTERN/THEATER", "expected": "HARVEST Journal LANTERN/THEATER"}
+{"input": "copper-crystal-Timber-village CRYSTAL Valley", "expected": "Copper-Crystal-Timber-Village CRYSTAL Valley"}
+{"input": "velvet captain meadow village-Compass", "expected": "Velvet Captain Meadow Village-Compass"}
+{"input": "timber/studio/STATION marble window quartz", "expected": "Timber/Studio/Station Marble Window Quartz"}
+{"input": "evening-valley", "expected": "Evening-Valley"}
+{"input": "garden-a-by-gallery BRIDGE", "expected": "Garden-a-by-Gallery BRIDGE"}
+{"input": "valley-the-in-ORANGE quartz", "expected": "Valley-the-in-Orange Quartz"}
+{"input": "MORNING Silver-of-and-meadow", "expected": "MORNING Silver-of-and-Meadow"}
+{"input": "morning camera-THEATER-lantern KERNEL", "expected": "Morning Camera-Theater-Lantern KERNEL"}
+{"input": "CAMERA-Notebook-River GALLERY", "expected": "CAMERA-Notebook-River GALLERY"}
+{"input": "PARCEL factory-Journal-Quartz-STATION", "expected": "PARCEL Factory-Journal-Quartz-Station"}
+{"input": "parcel orange-parcel", "expected": "Parcel Orange-Parcel"}
+{"input": "umbrella-Evening", "expected": "Umbrella-Evening"}
+{"input": "GARDEN yellow YELLOW-Timber-SILVER-lantern island", "expected": "GARDEN Yellow YELLOW-Timber-SILVER-lantern Island"}
+{"input": "compass--garden", "expected": "Compass--Garden"}
+{"input": "soldier/letter/Marble", "expected": "Soldier/Letter/Marble"}
+{"input": "Engine/library delta Morning kernel", "expected": "Engine/Library Delta Morning Kernel"}
+{"input": "quartz-by-the-River mountain theater", "expected": "Quartz-by-the-River Mountain Theater"}
+{"input": "delta Island-of-or-letter", "expected": "Delta Island-of-or-Letter"}
+{"input": "Meadow YELLOW/ocean/Velvet OCEAN", "expected": "Meadow YELLOW/ocean/Velvet OCEAN"}
+{"input": "lantern harvest library MORNING-bridge", "expected": "Lantern Harvest Library MORNING-bridge"}
+{"input": "library/GALLERY", "expected": "Library/Gallery"}
+{"input": "village-meadow planet", "expected": "Village-Meadow Planet"}
+{"input": "harvest Forest-and-the-Harvest Village", "expected": "Harvest Forest-and-the-Harvest Village"}
+{"input": "PLANET factory-signal-library-Kernel morning Market", "expected": "PLANET Factory-Signal-Library-Kernel Morning Market"}
+{"input": "library island-FOREST signal", "expected": "Library Island-Forest Signal"}
+{"input": "timber-Quartz notebook", "expected": "Timber-Quartz Notebook"}
+{"input": "WINDOW meadow-velvet", "expected": "WINDOW Meadow-Velvet"}
+{"input": "PARCEL-STUDIO Signal", "expected": "PARCEL-STUDIO Signal"}
+{"input": "Forest soldier-APPLE Marble marble", "expected": "Forest Soldier-Apple Marble Marble"}
+{"input": "rocket/Compass", "expected": "Rocket/Compass"}
+{"input": "evening/PAPER", "expected": "Evening/Paper"}
+{"input": "Valley/captain/MARKET", "expected": "Valley/Captain/Market"}
+{"input": "marble Signal--Studio camera kernel", "expected": "Marble Signal--Studio Camera Kernel"}
+{"input": "captain-signal-Captain-Planet", "expected": "Captain-Signal-Captain-Planet"}
+{"input": "COMPASS Rocket Journal harvest-and-to-CAPTAIN", "expected": "COMPASS Rocket Journal Harvest-and-to-Captain"}
+{"input": "Lantern NOTEBOOK-library", "expected": "Lantern NOTEBOOK-library"}
+{"input": "Paper River/Studio evening WINDOW", "expected": "Paper River/Studio Evening WINDOW"}
+{"input": "NOTEBOOK-signal-BRIDGE", "expected": "NOTEBOOK-signal-BRIDGE"}
+{"input": "studio GARDEN-MARBLE-Valley-village", "expected": "Studio GARDEN-MARBLE-Valley-village"}
+{"input": "lantern marble-MEADOW", "expected": "Lantern Marble-Meadow"}
+{"input": "Zebra Soldier/yellow", "expected": "Zebra Soldier/Yellow"}
+{"input": "island COMPASS-village-MOUNTAIN-apple meadow COPPER", "expected": "Island COMPASS-village-MOUNTAIN-apple Meadow COPPER"}
+{"input": "factory compass Velvet-of-the-forest", "expected": "Factory Compass Velvet-of-the-Forest"}
+{"input": "ENGINE-Crystal", "expected": "ENGINE-Crystal"}
+{"input": "island Umbrella ORANGE-the-by-Kernel", "expected": "Island Umbrella ORANGE-the-by-Kernel"}
+{"input": "ocean EVENING Harvest/meadow", "expected": "Ocean EVENING Harvest/Meadow"}
+{"input": "SIGNAL EVENING-velvet Quartz captain", "expected": "SIGNAL EVENING-velvet Quartz Captain"}
+{"input": "yellow--compass compass", "expected": "Yellow--Compass Compass"}
+{"input": "theater-gallery-rocket-ocean", "expected": "Theater-Gallery-Rocket-Ocean"}
+{"input": "valley umbrella-and-or-meadow", "expected": "Valley Umbrella-and-or-Meadow"}
+{"input": "SOLDIER MEADOW-velvet", "expected": "SOLDIER MEADOW-velvet"}
+{"input": "marble Velvet window ENGINE-Notebook", "expected": "Marble Velvet Window ENGINE-Notebook"}
+{"input": "Gallery-STATION", "expected": "Gallery-Station"}
+{"input": "planet Engine camera--NOTEBOOK", "expected": "Planet Engine Camera--Notebook"}
+{"input": "Silver-forest-CAPTAIN Ocean", "expected": "Silver-Forest-Captain Ocean"}
+{"input": "FACTORY/letter/Letter", "expected": "FACTORY/letter/Letter"}
+{"input": "paper Market-and-in-crystal UMBRELLA", "expected": "Paper Market-and-in-Crystal UMBRELLA"}
+{"input": "LANTERN-Gallery", "expected": "LANTERN-Gallery"}
+{"input": "Camera-captain", "expected": "Camera-Captain"}
+{"input": "bridge-or-to-Journal VILLAGE umbrella meadow", "expected": "Bridge-or-to-Journal VILLAGE Umbrella Meadow"}
+{"input": "notebook-CAMERA", "expected": "Notebook-Camera"}
+{"input": "library meadow-HARBOR-meadow-quartz Theater", "expected": "Library Meadow-Harbor-Meadow-Quartz Theater"}
+{"input": "OCEAN-LIBRARY letter morning", "expected": "OCEAN-LIBRARY Letter Morning"}
+{"input": "APPLE-to-by-Theater", "expected": "APPLE-to-by-Theater"}
+{"input": "Letter/letter/MEADOW captain", "expected": "Letter/Letter/Meadow Captain"}
+{"input": "Theater/silver", "expected": "Theater/Silver"}
+{"input": "garden-in-the-window", "expected": "Garden-in-the-Window"}
+{"input": "Ocean/ocean/journal ISLAND", "expected": "Ocean/Ocean/Journal ISLAND"}
+{"input": "planet-soldier APPLE", "expected": "Planet-Soldier APPLE"}
+{"input": "ZEBRA-to-in-gallery Island", "expected": "ZEBRA-to-in-gallery Island"}
+{"input": "COPPER-FACTORY rocket", "expected": "COPPER-FACTORY Rocket"}
+{"input": "Window Velvet delta-a-to-SIGNAL CRYSTAL", "expected": "Window Velvet Delta-a-to-Signal CRYSTAL"}
+{"input": "Ocean planet-gallery", "expected": "Ocean Planet-Gallery"}
+{"input": "EVENING-orange mountain kernel", "expected": "EVENING-orange Mountain Kernel"}
+{"input": "Parcel-and-to-HARBOR EVENING village Theater", "expected": "Parcel-and-to-Harbor EVENING Village Theater"}
+{"input": "HARBOR Garden-Timber-Mountain", "expected": "HARBOR Garden-Timber-Mountain"}
+{"input": "STATION station-the-the-MARKET", "expected": "STATION Station-the-the-Market"}
+{"input": "market ZEBRA-of-and-EVENING Engine", "expected": "Market ZEBRA-of-and-EVENING Engine"}
+{"input": "CAPTAIN-YELLOW evening", "expected": "CAPTAIN-YELLOW Evening"}
+{"input": "CAPTAIN velvet zebra-mountain", "expected": "CAPTAIN Velvet Zebra-Mountain"}
+{"input": "Yellow-a-the-Letter Planet Timber captain", "expected": "Yellow-a-the-Letter Planet Timber Captain"}
+{"input": "Garden-quartz-CAPTAIN-notebook", "expected": "Garden-Quartz-Captain-Notebook"}
+{"input": "River-in-by-Yellow window garden", "expected": "River-in-by-Yellow Window Garden"}
+{"input": "harbor-in-of-TIMBER camera DELTA QUARTZ", "expected": "Harbor-in-of-Timber Camera DELTA QUARTZ"}
+{"input": "yellow-zebra orange River copper", "expected": "Yellow-Zebra Orange River Copper"}
+{"input": "Paper quartz-in-in-PARCEL bridge", "expected": "Paper Quartz-in-in-Parcel Bridge"}
+{"input": "evening Yellow-timber PAPER Apple", "expected": "Evening Yellow-Timber PAPER Apple"}
+{"input": "lantern--HARBOR", "expected": "Lantern--Harbor"}
+{"input": "Lantern yellow-or-in-COMPASS", "expected": "Lantern Yellow-or-in-Compass"}
+{"input": "notebook LANTERN rocket-Village-silver-SOLDIER", "expected": "Notebook LANTERN Rocket-Village-Silver-Soldier"}
+{"input": "captain--lantern forest", "expected": "Captain--Lantern Forest"}
+{"input": "STATION-ocean Market", "expected": "STATION-ocean Market"}
+{"input": "captain-CAPTAIN", "expected": "Captain-Captain"}
+{"input": "UMBRELLA/valley lantern", "expected": "UMBRELLA/valley Lantern"}
+{"input": "d‘Neil’s it's", "expected": "D‘Neil’s It's"}
+{"input": "D'CLOCK GARDEN EVENING", "expected": "d'CLOCK Garden Evening"}
+{"input": "D'donnell's Studio COMPASS Yellow", "expected": "d'Donnell's Studio COMPASS Yellow"}
+{"input": "Yellow d‘Connor", "expected": "Yellow d‘Connor"}
+{"input": "D'reilly HARVEST STATION", "expected": "d'Reilly HARVEST STATION"}
+{"input": "Morning Engine o'Grange", "expected": "Morning Engine O'Grange"}
+{"input": "crystal o'CLOCK ISLAND meadow don't", "expected": "Crystal O'CLOCK ISLAND Meadow Don't"}
+{"input": "Morning MARKET o'Reilly", "expected": "Morning MARKET O'Reilly"}
+{"input": "quartz PARCEL d'CONNOR island", "expected": "Quartz PARCEL d'CONNOR Island"}
+{"input": "crystal O'Artagnan Mountain it's", "expected": "Crystal O'Artagnan Mountain It's"}
+{"input": "D'grange", "expected": "d'Grange"}
+{"input": "L‘arcy CAPTAIN Ocean lantern", "expected": "l‘Arcy CAPTAIN Ocean Lantern"}
+{"input": "gallery TIMBER d‘Clock'", "expected": "Gallery TIMBER D‘Clock'"}
+{"input": "O‘Malley's HARBOR velvet", "expected": "O‘Malley's HARBOR Velvet"}
+{"input": "village o'NEIL harvest soldier", "expected": "Village O'NEIL Harvest Soldier"}
+{"input": "mountain VELVET d'Clock' velvet o'clock", "expected": "Mountain VELVET D'Clock' Velvet O'Clock"}
+{"input": "o'Donnell yellow DELTA", "expected": "O'Donnell Yellow DELTA"}
+{"input": "d'DONNELL's bridge Yellow", "expected": "d'DONNELL's Bridge Yellow"}
+{"input": "ocean d'Donnell", "expected": "Ocean d'Donnell"}
+{"input": "Velvet d'clock", "expected": "Velvet d'Clock"}
+{"input": "O‘GRANGE Window", "expected": "O‘GRANGE Window"}
+{"input": "PARCEL o‘ARCY ENGINE can't", "expected": "PARCEL O‘ARCY ENGINE Can't"}
+{"input": "GARDEN journal l‘REILLY harbor can't", "expected": "GARDEN Journal l‘REILLY Harbor Can't"}
+{"input": "d'ANGELO", "expected": "d'ANGELO"}
+{"input": "compass Planet o‘keefe Library", "expected": "Compass Planet O‘Keefe Library"}
+{"input": "Factory o'Reilly", "expected": "Factory O'Reilly"}
+{"input": "gallery window MARKET D'grange", "expected": "Gallery Window MARKET d'Grange"}
+{"input": "l'sullivan", "expected": "l'Sullivan"}
+{"input": "D‘KEEFE's theater Morning journal o'clock", "expected": "d‘KEEFE's Theater Morning Journal O'Clock"}
+{"input": "Soldier ZEBRA L‘sullivan Soldier", "expected": "Soldier ZEBRA l‘Sullivan Soldier"}
+{"input": "APPLE d'ARCY lantern letter can't", "expected": "APPLE d'ARCY Lantern Letter Can't"}
+{"input": "O'clock", "expected": "O'Clock"}
+{"input": "island market rocket O'artagnan", "expected": "Island Market Rocket O'Artagnan"}
+{"input": "engine o'BRIEN morning LETTER can't", "expected": "Engine O'BRIEN Morning LETTER Can't"}
+{"input": "window d'Arcy paper it's", "expected": "Window d'Arcy Paper It's"}
+{"input": "river parcel O‘brien COMPASS", "expected": "River Parcel O‘Brien COMPASS"}
+{"input": "SIGNAL O‘Neil's can't", "expected": "SIGNAL O‘Neil's Can't"}
+{"input": "L'ANGELO", "expected": "l'ANGELO"}
+{"input": "o'connor don't", "expected": "O'Connor Don't"}
+{"input": "o‘REILLY factory don't", "expected": "O‘REILLY Factory Don't"}
+{"input": "D‘brien zebra Letter y'all", "expected": "d‘Brien Zebra Letter Y'all"}
+{"input": "l'Oreal", "expected": "l'Oreal"}
+{"input": "Harvest village o'oreal SOLDIER", "expected": "Harvest Village O'Oreal SOLDIER"}
+{"input": "l‘Malley'", "expected": "L‘Malley'"}
+{"input": "gallery Apple delta o‘reilly", "expected": "Gallery Apple Delta O‘Reilly"}
+{"input": "apple d'Keefe o'clock", "expected": "Apple d'Keefe O'Clock"}
+{"input": "O‘angelo' JOURNAL LIBRARY", "expected": "O‘angelo' JOURNAL LIBRARY"}
+{"input": "O'OREAL Library Valley BRIDGE", "expected": "O'OREAL Library Valley BRIDGE"}
+{"input": "copper Mountain O'Oreal", "expected": "Copper Mountain O'Oreal"}
+{"input": "planet STUDIO parcel d‘brien", "expected": "Planet STUDIO Parcel d‘Brien"}
+{"input": "SILVER D‘arcy", "expected": "SILVER d‘Arcy"}
+{"input": "morning o'ARCY' don't", "expected": "Morning O'ARCY' Don't"}
+{"input": "D‘Malley can't", "expected": "d‘Malley Can't"}
+{"input": "evening l'REILLY's QUARTZ", "expected": "Evening l'REILLY's QUARTZ"}
+{"input": "CRYSTAL D'neil can't", "expected": "CRYSTAL d'Neil Can't"}
+{"input": "Factory letter o‘GRANGE's paper can't", "expected": "Factory Letter O‘GRANGE's Paper Can't"}
+{"input": "l‘ANGELO' camera MORNING can't", "expected": "L‘ANGELO' Camera MORNING Can't"}
+{"input": "market L'OREAL quartz morning", "expected": "Market l'OREAL Quartz Morning"}
+{"input": "Yellow L‘Reilly", "expected": "Yellow l‘Reilly"}
+{"input": "station d'Clock can't", "expected": "Station d'Clock Can't"}
+{"input": "crystal LANTERN L'Angelo'", "expected": "Crystal LANTERN L'Angelo'"}
+{"input": "Delta l‘MALLEY Quartz Planet", "expected": "Delta l‘MALLEY Quartz Planet"}
+{"input": "WINDOW o'REILLY don't", "expected": "WINDOW O'REILLY Don't"}
+{"input": "d‘Connor umbrella", "expected": "d‘Connor Umbrella"}
+{"input": "copper d'Sullivan", "expected": "Copper d'Sullivan"}
+{"input": "D'Donnell", "expected": "d'Donnell"}
+{"input": "MORNING l'Sullivan’s o'clock", "expected": "MORNING L'Sullivan’s O'Clock"}
+{"input": "MEADOW o'brien’s can't", "expected": "MEADOW O'brien’s Can't"}
+{"input": "L‘Donnell", "expected": "l‘Donnell"}
+{"input": "l'sullivan morning SIGNAL crystal", "expected": "l'Sullivan Morning SIGNAL Crystal"}
+{"input": "paper d‘Keefe’s", "expected": "Paper D‘Keefe’s"}
+{"input": "apple Garden D‘brien", "expected": "Apple Garden d‘Brien"}
+{"input": "camera rocket L'arcy", "expected": "Camera Rocket l'Arcy"}
+{"input": "kernel L‘Sullivan don't", "expected": "Kernel l‘Sullivan Don't"}
+{"input": "d‘GRANGE", "expected": "d‘GRANGE"}
+{"input": "MEADOW silver THEATER d'REILLY can't", "expected": "MEADOW Silver THEATER d'REILLY Can't"}
+{"input": "d'arcy can't", "expected": "d'Arcy Can't"}
+{"input": "l‘oreal", "expected": "l‘Oreal"}
+{"input": "L‘grange river", "expected": "l‘Grange River"}
+{"input": "market d‘sullivan Umbrella it's", "expected": "Market d‘Sullivan Umbrella It's"}
+{"input": "marble BRIDGE SOLDIER d‘REILLY", "expected": "Marble BRIDGE SOLDIER d‘REILLY"}
+{"input": "UMBRELLA zebra l'OREAL o'clock", "expected": "UMBRELLA Zebra l'OREAL O'Clock"}
+{"input": "window O'clock Delta", "expected": "Window O'Clock Delta"}
+{"input": "D'Arcy", "expected": "d'Arcy"}
+{"input": "umbrella o‘DONNELL captain", "expected": "Umbrella O‘DONNELL Captain"}
+{"input": "umbrella d'donnell Copper SOLDIER", "expected": "Umbrella d'Donnell Copper SOLDIER"}
+{"input": "ISLAND o‘Brien’s", "expected": "ISLAND O‘Brien’s"}
+{"input": "Bridge village ENGINE L'Angelo don't", "expected": "Bridge Village ENGINE l'Angelo Don't"}
+{"input": "meadow L‘Donnell market meadow", "expected": "Meadow l‘Donnell Market Meadow"}
+{"input": "l‘sullivan evening delta", "expected": "l‘Sullivan Evening Delta"}
+{"input": "D‘Sullivan y'all", "expected": "d‘Sullivan Y'all"}
+{"input": "l‘arcy", "expected": "l‘Arcy"}
+{"input": "L'MALLEY' captain", "expected": "L'MALLEY' Captain"}
+{"input": "o'Neil", "expected": "O'Neil"}
+{"input": "copper ZEBRA parcel d'reilly’s", "expected": "Copper ZEBRA Parcel D'reilly’s"}
+{"input": "o‘Keefe's quartz", "expected": "O‘Keefe's Quartz"}
+{"input": "theater O'Clock's", "expected": "Theater O'Clock's"}
+{"input": "station L'CONNOR can't", "expected": "Station l'CONNOR Can't"}
+{"input": "O'Connor Letter Orange o'clock", "expected": "O'Connor Letter Orange O'Clock"}
+{"input": "soldier D'clock factory quartz", "expected": "Soldier d'Clock Factory Quartz"}
+{"input": "L'grange'", "expected": "L'grange'"}
+{"input": "D'Oreal", "expected": "d'Oreal"}
+{"input": "d‘sullivan' Island meadow", "expected": "D‘sullivan' Island Meadow"}
+{"input": "l‘Malley it's", "expected": "l‘Malley It's"}
+{"input": "d'KEEFE journal", "expected": "d'KEEFE Journal"}
+{"input": "letter Yellow o'CONNOR SOLDIER it's", "expected": "Letter Yellow O'CONNOR SOLDIER It's"}
+{"input": "Mountain Umbrella O'Arcy", "expected": "Mountain Umbrella O'Arcy"}
+{"input": "L'Oreal’s don't", "expected": "L'Oreal’s Don't"}
+{"input": "compass l‘Reilly'", "expected": "Compass L‘Reilly'"}
+{"input": "O'ANGELO’s", "expected": "O'ANGELO’s"}
+{"input": "o‘NEIL' LIBRARY Silver", "expected": "O‘NEIL' LIBRARY Silver"}
+{"input": "D'Donnell Soldier ISLAND copper it's", "expected": "d'Donnell Soldier ISLAND Copper It's"}
+{"input": "theater bridge l‘neil MARBLE don't", "expected": "Theater Bridge l‘Neil MARBLE Don't"}
+{"input": "Market O'ARCY Camera delta", "expected": "Market O'ARCY Camera Delta"}
+{"input": "L'Brien don't", "expected": "l'Brien Don't"}
+{"input": "Forest marble O‘MALLEY's", "expected": "Forest Marble O‘MALLEY's"}
+{"input": "Library studio D'Donnell'", "expected": "Library Studio D'Donnell'"}
+{"input": "o'NEIL silver notebook", "expected": "O'NEIL Silver Notebook"}
+{"input": "Harvest L‘Keefe velvet it's", "expected": "Harvest l‘Keefe Velvet It's"}
+{"input": "Journal O'Donnell Kernel", "expected": "Journal O'Donnell Kernel"}
+{"input": "O'Angelo'", "expected": "O'Angelo'"}
+{"input": "o'Angelo delta it's", "expected": "O'Angelo Delta It's"}
+{"input": "O'reilly PLANET", "expected": "O'Reilly PLANET"}
+{"input": "harvest D‘keefe", "expected": "Harvest d‘Keefe"}
+{"input": "Lantern o‘ARTAGNAN o'clock", "expected": "Lantern O‘ARTAGNAN O'Clock"}
+{"input": "d‘brien can't", "expected": "d‘Brien Can't"}
+{"input": "letter l‘OREAL' Ocean YELLOW", "expected": "Letter L‘OREAL' Ocean YELLOW"}
+{"input": "o‘ARTAGNAN ORANGE Gallery", "expected": "O‘ARTAGNAN ORANGE Gallery"}
+{"input": "Market camera Planet d'Grange", "expected": "Market Camera Planet d'Grange"}
+{"input": "Theater evening D'Keefe it's", "expected": "Theater Evening d'Keefe It's"}
+{"input": "apple l'Brien station can't", "expected": "Apple l'Brien Station Can't"}
+{"input": "L‘OREAL don't", "expected": "l‘OREAL Don't"}
+{"input": "L‘Arcy’s", "expected": "L‘Arcy’s"}
+{"input": "L'Artagnan' Timber GARDEN", "expected": "L'Artagnan' Timber GARDEN"}
+{"input": "o'SULLIVAN Library timber", "expected": "O'SULLIVAN Library Timber"}
+{"input": "zebra l‘Arcy harvest valley", "expected": "Zebra l‘Arcy Harvest Valley"}
+{"input": "planet l'GRANGE VILLAGE it's", "expected": "Planet l'GRANGE VILLAGE It's"}
+{"input": "d'neil VILLAGE Forest it's", "expected": "d'Neil VILLAGE Forest It's"}
+{"input": "l'arcy parcel library y'all", "expected": "l'Arcy Parcel Library Y'all"}
+{"input": "parcel signal market l‘ANGELO’s", "expected": "Parcel Signal Market L‘ANGELO’s"}
+{"input": "l‘ARCY’s", "expected": "L‘ARCY’s"}
+{"input": "O‘MALLEY signal", "expected": "O‘MALLEY Signal"}
+{"input": "D‘clock it's", "expected": "d‘Clock It's"}
+{"input": "o'KEEFE Rocket ocean notebook", "expected": "O'KEEFE Rocket Ocean Notebook"}
+{"input": "o'Keefe VILLAGE letter signal", "expected": "O'Keefe VILLAGE Letter Signal"}
+{"input": "lantern l'Donnell", "expected": "Lantern l'Donnell"}
+{"input": "l‘sullivan y'all", "expected": "l‘Sullivan Y'all"}
+{"input": "o‘donnell'", "expected": "O‘donnell'"}
+{"input": "O‘CONNOR Engine o'clock", "expected": "O‘CONNOR Engine O'Clock"}
+{"input": "D‘SULLIVAN’s CRYSTAL o'clock", "expected": "D‘SULLIVAN’s CRYSTAL O'Clock"}
+{"input": "d‘reilly don't", "expected": "d‘Reilly Don't"}
+{"input": "gallery rocket o'Oreal’s", "expected": "Gallery Rocket O'Oreal’s"}
+{"input": "window VELVET garden l‘CLOCK", "expected": "Window VELVET Garden l‘CLOCK"}
+{"input": "d'arcy’s it's", "expected": "D'arcy’s It's"}
+{"input": "O‘CLOCK's Quartz o'clock", "expected": "O‘CLOCK's Quartz O'Clock"}
+{"input": "D'keefe UMBRELLA SILVER signal", "expected": "d'Keefe UMBRELLA SILVER Signal"}
+{"input": "ZEBRA window meadow o'oreal don't", "expected": "ZEBRA Window Meadow O'Oreal Don't"}
+{"input": "l‘Connor Zebra", "expected": "l‘Connor Zebra"}
+{"input": "O‘Brien Camera planet", "expected": "O‘Brien Camera Planet"}
+{"input": "ocean O'CLOCK's gallery", "expected": "Ocean O'CLOCK's Gallery"}
+{"input": "Lantern kernel D‘Connor", "expected": "Lantern Kernel d‘Connor"}
+{"input": "L‘Sullivan Forest", "expected": "l‘Sullivan Forest"}
+{"input": "O'NEIL’s", "expected": "O'NEIL’s"}
+{"input": "o'KEEFE can't", "expected": "O'KEEFE Can't"}
+{"input": "o'Clock Soldier harvest COPPER", "expected": "O'Clock Soldier Harvest COPPER"}
+{"input": "o'GRANGE UMBRELLA ROCKET", "expected": "O'GRANGE UMBRELLA ROCKET"}
+{"input": "Silver O‘ARCY", "expected": "Silver O‘ARCY"}
+{"input": "Island rocket L'Brien MARKET", "expected": "Island Rocket l'Brien MARKET"}
+{"input": "d‘Brien o'clock", "expected": "d‘Brien O'Clock"}
+{"input": "silver garden D'SULLIVAN", "expected": "Silver Garden d'SULLIVAN"}
+{"input": "l‘DONNELL o'clock", "expected": "l‘DONNELL O'Clock"}
+{"input": "Meadow MARBLE harbor D‘neil don't", "expected": "Meadow MARBLE Harbor d‘Neil Don't"}
+{"input": "parcel o‘clock ISLAND", "expected": "Parcel O‘Clock ISLAND"}
+{"input": "apple MARBLE d‘Malley window", "expected": "Apple MARBLE d‘Malley Window"}
+{"input": "L'artagnan window", "expected": "l'Artagnan Window"}
+{"input": "d'clock", "expected": "d'Clock"}
+{"input": "O‘Oreal HARBOR theater GALLERY", "expected": "O‘Oreal HARBOR Theater GALLERY"}
+{"input": "L‘reilly bridge can't", "expected": "l‘Reilly Bridge Can't"}
+{"input": "D'grange's Compass o'clock", "expected": "d'Grange's Compass O'Clock"}
+{"input": "UMBRELLA d‘connor it's", "expected": "UMBRELLA d‘Connor It's"}
+{"input": "d'Grange rocket", "expected": "d'Grange Rocket"}
+{"input": "D'ANGELO' YELLOW", "expected": "D'angelo' Yellow"}
+{"input": "QUARTZ O‘KEEFE’s harvest", "expected": "QUARTZ O‘KEEFE’s Harvest"}
+{"input": "D‘GRANGE'", "expected": "D‘grange'"}
+{"input": "l'MALLEY Copper", "expected": "l'MALLEY Copper"}
+{"input": "STATION l'GRANGE’s Bridge Factory", "expected": "STATION L'GRANGE’s Bridge Factory"}
+{"input": "VILLAGE MOUNTAIN APPLE d‘Connor can't", "expected": "VILLAGE MOUNTAIN APPLE d‘Connor Can't"}
+{"input": "d‘grange's", "expected": "d‘Grange's"}
+{"input": "velvet zebra o'CLOCK", "expected": "Velvet Zebra O'CLOCK"}
+{"input": "JOURNAL d'NEIL o'clock", "expected": "JOURNAL d'NEIL O'Clock"}
+{"input": "o'ANGELO Harvest Velvet ROCKET", "expected": "O'ANGELO Harvest Velvet ROCKET"}
+{"input": "notebook morning O'Artagnan's LANTERN", "expected": "Notebook Morning O'Artagnan's LANTERN"}
+{"input": "o‘Angelo Quartz mountain can't", "expected": "O‘Angelo Quartz Mountain Can't"}
+{"input": "apple l‘CONNOR' Island don't", "expected": "Apple L‘CONNOR' Island Don't"}
+{"input": "D‘grange", "expected": "d‘Grange"}
+{"input": "O‘Clock’s", "expected": "O‘Clock’s"}
+{"input": "camera crystal d'GRANGE can't", "expected": "Camera Crystal d'GRANGE Can't"}
+{"input": "SIGNAL meadow o'KEEFE GALLERY", "expected": "SIGNAL Meadow O'KEEFE GALLERY"}
+{"input": "Ocean O'Donnell Bridge orange", "expected": "Ocean O'Donnell Bridge Orange"}
+{"input": "Studio O‘Reilly’s parcel forest", "expected": "Studio O‘Reilly’s Parcel Forest"}
+{"input": "parcel TTL GARDEN PAPER", "expected": "Parcel TTL GARDEN PAPER"}
+{"input": "FYI factory Journal window CRYSTAL CSS", "expected": "FYI Factory Journal Window CRYSTAL CSS"}
+{"input": "zebra faq Compass lantern Valley", "expected": "Zebra Faq Compass Lantern Valley"}
+{"input": "bridge gpu mhz Camera PARCEL", "expected": "Bridge Gpu MHZ Camera PARCEL"}
+{"input": "harvest cwm Engine STUDIO Station", "expected": "Harvest CWM Engine STUDIO Station"}
+{"input": "rss TTL www SSL", "expected": "RSS TTL WWW SSL"}
+{"input": "mhz NASA ocean paper API zebra", "expected": "MHZ NASA Ocean Paper API Zebra"}
+{"input": "ssl TTL NASA TTL CNN xml", "expected": "SSL TTL NASA TTL CNN XML"}
+{"input": "studio nasa xml HTML", "expected": "Studio Nasa XML HTML"}
+{"input": "ORANGE morning MHZ ISLAND nasa studio XML", "expected": "ORANGE Morning MHZ ISLAND Nasa Studio XML"}
+{"input": "CAPTAIN faq www", "expected": "CAPTAIN Faq WWW"}
+{"input": "engine UDP RSS", "expected": "Engine UDP RSS"}
+{"input": "journal CNN Captain THEATER Yellow", "expected": "Journal CNN Captain THEATER Yellow"}
+{"input": "CAPTAIN window IBM udp xml Kernel VILLAGE", "expected": "CAPTAIN Window IBM Udp XML Kernel VILLAGE"}
+{"input": "tcp garden WWW", "expected": "TCP Garden WWW"}
+{"input": "API NASA IBM ttl SSL Kernel nasa", "expected": "API NASA IBM TTL SSL Kernel Nasa"}
+{"input": "nasa journal MORNING", "expected": "Nasa Journal MORNING"}
+{"input": "Crystal TTL market GALLERY", "expected": "Crystal TTL Market GALLERY"}
+{"input": "THEATER FYI MHZ lantern ssl phd SQL", "expected": "THEATER FYI MHZ Lantern SSL PHD SQL"}
+{"input": "harvest FYI Velvet ssl GPU letter island", "expected": "Harvest FYI Velvet SSL GPU Letter Island"}
+{"input": "cwm BRIDGE harvest Theater cnn", "expected": "CWM BRIDGE Harvest Theater CNN"}
+{"input": "velvet ROCKET html factory station", "expected": "Velvet ROCKET HTML Factory Station"}
+{"input": "harbor www api lantern HTTP ibm API", "expected": "Harbor WWW Api Lantern HTTP Ibm API"}
+{"input": "silver Mountain umbrella IBM Gallery GPU", "expected": "Silver Mountain Umbrella IBM Gallery GPU"}
+{"input": "rss api GPU phd mountain MHZ", "expected": "RSS Api GPU PHD Mountain MHZ"}
+{"input": "Harbor Yellow TCP", "expected": "Harbor Yellow TCP"}
+{"input": "FYI studio Gallery sql IBM ibm TCP", "expected": "FYI Studio Gallery SQL IBM Ibm TCP"}
+{"input": "compass river camera RSS morning", "expected": "Compass River Camera RSS Morning"}
+{"input": "MHZ cwm ORANGE cnn Valley SOLDIER", "expected": "MHZ CWM ORANGE CNN Valley SOLDIER"}
+{"input": "village bridge MEADOW garden SSL timber", "expected": "Village Bridge MEADOW Garden SSL Timber"}
+{"input": "css KERNEL tcp ttl GARDEN Library", "expected": "CSS KERNEL TCP TTL GARDEN Library"}
+{"input": "PHD CNN kernel island phd", "expected": "PHD CNN Kernel Island PHD"}
+{"input": "camera market MHZ TCP PHD FAQ IBM", "expected": "Camera Market MHZ TCP PHD FAQ IBM"}
+{"input": "MHZ Window cnn cnn CAMERA island HTML", "expected": "MHZ Window CNN CNN CAMERA Island HTML"}
+{"input": "nasa compass cnn WWW FYI xml Harbor", "expected": "Nasa Compass CNN WWW FYI XML Harbor"}
+{"input": "rocket ocean Harvest sql USA Garden cnn", "expected": "Rocket Ocean Harvest SQL USA Garden CNN"}
+{"input": "USA XML Signal", "expected": "USA XML Signal"}
+{"input": "rss QUARTZ velvet MARBLE forest", "expected": "RSS QUARTZ Velvet MARBLE Forest"}
+{"input": "mhz Yellow gpu SQL harbor", "expected": "MHZ Yellow Gpu SQL Harbor"}
+{"input": "Timber FYI XML", "expected": "Timber FYI XML"}
+{"input": "River xml NASA OCEAN umbrella timber VILLAGE", "expected": "River XML NASA OCEAN Umbrella Timber VILLAGE"}
+{"input": "SQL zebra Captain MHZ QUARTZ xml apple", "expected": "SQL Zebra Captain MHZ QUARTZ XML Apple"}
+{"input": "sql Delta KERNEL YELLOW", "expected": "SQL Delta KERNEL YELLOW"}
+{"input": "planet xml USA MARKET Market", "expected": "Planet XML USA MARKET Market"}
+{"input": "ssl NASA captain Zebra village QUARTZ", "expected": "SSL NASA Captain Zebra Village QUARTZ"}
+{"input": "station http UMBRELLA umbrella TCP", "expected": "Station HTTP UMBRELLA Umbrella TCP"}
+{"input": "phd lantern factory Evening ibm", "expected": "PHD Lantern Factory Evening Ibm"}
+{"input": "theater captain nasa planet UDP", "expected": "Theater Captain Nasa Planet UDP"}
+{"input": "Paper xml api signal SSL morning", "expected": "Paper XML Api Signal SSL Morning"}
+{"input": "silver Studio rss quartz harbor cnn", "expected": "Silver Studio RSS Quartz Harbor CNN"}
+{"input": "css tcp Meadow quartz XML", "expected": "CSS TCP Meadow Quartz XML"}
+{"input": "Camera marble ttl", "expected": "Camera Marble TTL"}
+{"input": "MHZ river IBM Parcel Market", "expected": "MHZ River IBM Parcel Market"}
+{"input": "ttl gallery bridge ssl", "expected": "TTL Gallery Bridge SSL"}
+{"input": "RSS IBM mhz", "expected": "RSS IBM MHZ"}
+{"input": "usa MEADOW Valley Rocket HTML", "expected": "Usa MEADOW Valley Rocket HTML"}
+{"input": "ttl copper FYI", "expected": "TTL Copper FYI"}
+{"input": "theater CWM morning mountain UMBRELLA ibm rss", "expected": "Theater CWM Morning Mountain UMBRELLA Ibm RSS"}
+{"input": "garden Meadow NASA BRIDGE ibm UDP village", "expected": "Garden Meadow NASA BRIDGE Ibm UDP Village"}
+{"input": "FACTORY Timber sql FAQ", "expected": "FACTORY Timber SQL FAQ"}
+{"input": "IBM Delta XML quartz compass GARDEN silver", "expected": "IBM Delta XML Quartz Compass GARDEN Silver"}
+{"input": "html umbrella Market HTTP USA", "expected": "HTML Umbrella Market HTTP USA"}
+{"input": "gpu gpu apple mhz WWW", "expected": "Gpu Gpu Apple MHZ WWW"}
+{"input": "cnn cnn Window", "expected": "CNN CNN Window"}
+{"input": "gpu Orange phd kernel morning CAMERA theater", "expected": "Gpu Orange PHD Kernel Morning CAMERA Theater"}
+{"input": "window MHZ MHZ FYI usa MARBLE", "expected": "Window MHZ MHZ FYI Usa MARBLE"}
+{"input": "rocket ibm SQL", "expected": "Rocket Ibm SQL"}
+{"input": "RSS TCP camera Silver USA Harvest rss", "expected": "RSS TCP Camera Silver USA Harvest RSS"}
+{"input": "CWM signal PAPER MOUNTAIN YELLOW http", "expected": "CWM Signal PAPER MOUNTAIN YELLOW HTTP"}
+{"input": "gpu ROCKET NASA Gallery SSL UMBRELLA CWM", "expected": "Gpu ROCKET NASA Gallery SSL UMBRELLA CWM"}
+{"input": "xml gpu CNN VELVET PHD mhz", "expected": "XML Gpu CNN VELVET PHD MHZ"}
+{"input": "Station marble cwm", "expected": "Station Marble CWM"}
+{"input": "ttl MHZ Kernel", "expected": "TTL MHZ Kernel"}
+{"input": "Letter HARVEST Valley CNN ssl TTL", "expected": "Letter HARVEST Valley CNN SSL TTL"}
+{"input": "NASA tcp udp ocean captain ssl ENGINE", "expected": "NASA TCP Udp Ocean Captain SSL ENGINE"}
+{"input": "cwm parcel Studio phd SQL umbrella Silver", "expected": "CWM Parcel Studio PHD SQL Umbrella Silver"}
+{"input": "ssl Island Station Engine Umbrella evening www", "expected": "SSL Island Station Engine Umbrella Evening WWW"}
+{"input": "TTL captain TCP river faq HARVEST", "expected": "TTL Captain TCP River Faq HARVEST"}
+{"input": "PLANET gpu silver LETTER xml CSS notebook", "expected": "PLANET Gpu Silver LETTER XML CSS Notebook"}
+{"input": "sql sql BRIDGE API umbrella css KERNEL", "expected": "SQL SQL BRIDGE API Umbrella CSS KERNEL"}
+{"input": "XML meadow Evening signal", "expected": "XML Meadow Evening Signal"}
+{"input": "village www Mountain harvest Library Letter", "expected": "Village WWW Mountain Harvest Library Letter"}
+{"input": "silver HTML silver", "expected": "Silver HTML Silver"}
+{"input": "forest CSS xml garden parcel cwm css", "expected": "Forest CSS XML Garden Parcel CWM CSS"}
+{"input": "ocean fyi mhz", "expected": "Ocean Fyi MHZ"}
+{"input": "Morning kernel CSS udp udp", "expected": "Morning Kernel CSS Udp Udp"}
+{"input": "html rss OCEAN USA marble", "expected": "HTML RSS OCEAN USA Marble"}
+{"input": "rss kernel nasa Bridge gpu APPLE", "expected": "RSS Kernel Nasa Bridge Gpu APPLE"}
+{"input": "BRIDGE Notebook ibm Morning Engine garden", "expected": "BRIDGE Notebook Ibm Morning Engine Garden"}
+{"input": "phd paper silver FYI CWM", "expected": "PHD Paper Silver FYI CWM"}
+{"input": "html FAQ CAMERA GPU", "expected": "HTML FAQ CAMERA GPU"}
+{"input": "RIVER Marble crystal timber fyi", "expected": "RIVER Marble Crystal Timber Fyi"}
+{"input": "timber www Yellow BRIDGE lantern", "expected": "Timber WWW Yellow BRIDGE Lantern"}
+{"input": "phd CNN delta RSS", "expected": "PHD CNN Delta RSS"}
+{"input": "IBM Soldier cnn", "expected": "IBM Soldier CNN"}
+{"input": "bridge sql FYI quartz Island", "expected": "Bridge SQL FYI Quartz Island"}
+{"input": "VALLEY usa FACTORY camera HTML CNN CNN", "expected": "VALLEY Usa FACTORY Camera HTML CNN CNN"}
+{"input": "garden STUDIO tcp Umbrella ROCKET SQL", "expected": "Garden STUDIO TCP Umbrella ROCKET SQL"}
+{"input": "ibm engine marble evening window", "expected": "Ibm Engine Marble Evening Window"}
+{"input": "Orange api FYI", "expected": "Orange Api FYI"}
+{"input": "rss TTL FOREST NOTEBOOK FAQ fyi", "expected": "RSS TTL FOREST NOTEBOOK FAQ Fyi"}
+{"input": "faq FAQ CSS", "expected": "Faq FAQ CSS"}
+{"input": "MEADOW phd api Orange quartz xml", "expected": "MEADOW PHD Api Orange Quartz XML"}
+{"input": "USA tcp SIGNAL APPLE Market", "expected": "USA TCP SIGNAL APPLE Market"}
+{"input": "CAMERA STUDIO signal cnn CNN ibm", "expected": "CAMERA STUDIO Signal CNN CNN Ibm"}
+{"input": "SQL lantern css SOLDIER captain Soldier HTTP", "expected": "SQL Lantern CSS SOLDIER Captain Soldier HTTP"}
+{"input": "SQL mhz FYI GALLERY YELLOW", "expected": "SQL MHZ FYI GALLERY YELLOW"}
+{"input": "RSS xml Lantern SSL", "expected": "RSS XML Lantern SSL"}
+{"input": "rss river UDP RIVER", "expected": "RSS River UDP RIVER"}
+{"input": "marble ibm Zebra HTTP", "expected": "Marble Ibm Zebra HTTP"}
+{"input": "ssl TTL xml phd Timber window", "expected": "SSL TTL XML PHD Timber Window"}
+{"input": "TTL Village delta mhz phd", "expected": "TTL Village Delta MHZ PHD"}
+{"input": "www valley Letter", "expected": "WWW Valley Letter"}
+{"input": "ibm FYI Parcel www mhz", "expected": "Ibm FYI Parcel WWW MHZ"}
+{"input": "xml river USA kernel", "expected": "XML River USA Kernel"}
+{"input": "IBM UDP HARVEST VILLAGE PLANET", "expected": "Ibm Udp Harvest Village Planet"}
+{"input": "Theater Harvest cwm window parcel Studio", "expected": "Theater Harvest CWM Window Parcel Studio"}
+{"input": "forest TTL WWW ssl river", "expected": "Forest TTL WWW SSL River"}
+{"input": "CNN Ocean EVENING COPPER", "expected": "CNN Ocean EVENING COPPER"}
+{"input": "www TIMBER fyi soldier css GPU Rocket", "expected": "WWW TIMBER Fyi Soldier CSS GPU Rocket"}
+{"input": "ibm FACTORY factory SSL HTTP tcp ttl", "expected": "Ibm FACTORY Factory SSL HTTP TCP TTL"}
+{"input": "MHZ lantern NASA", "expected": "MHZ Lantern NASA"}
+{"input": "compass CWM paper ssl window Bridge THEATER", "expected": "Compass CWM Paper SSL Window Bridge THEATER"}
+{"input": "signal Compass lantern http", "expected": "Signal Compass Lantern HTTP"}
+{"input": "HARBOR Signal cwm Signal", "expected": "HARBOR Signal CWM Signal"}
+{"input": "xml QUARTZ CSS UDP", "expected": "XML QUARTZ CSS UDP"}
+{"input": "mhz Factory Letter", "expected": "MHZ Factory Letter"}
+{"input": "planet rss API SSL LANTERN cwm", "expected": "Planet RSS API SSL LANTERN CWM"}
+{"input": "GPU http nasa cwm window gpu", "expected": "GPU HTTP Nasa CWM Window Gpu"}
+{"input": "cwm factory sql", "expected": "CWM Factory SQL"}
+{"input": "FACTORY yellow Kernel TTL tcp paper", "expected": "FACTORY Yellow Kernel TTL TCP Paper"}
+{"input": "apple NASA SOLDIER CAPTAIN harbor PHD Planet", "expected": "Apple NASA SOLDIER CAPTAIN Harbor PHD Planet"}
+{"input": "Valley PARCEL XML silver rocket gpu HTML", "expected": "Valley PARCEL XML Silver Rocket Gpu HTML"}
+{"input": "mountain lantern soldier xml", "expected": "Mountain Lantern Soldier XML"}
+{"input": "XML ibm UDP css", "expected": "XML Ibm UDP CSS"}
+{"input": "Station MOUNTAIN timber CSS copper", "expected": "Station MOUNTAIN Timber CSS Copper"}
+{"input": "NASA gpu CRYSTAL rocket timber Ocean", "expected": "NASA Gpu CRYSTAL Rocket Timber Ocean"}
+{"input": "soldier fyi GARDEN", "expected": "Soldier Fyi GARDEN"}
+{"input": "SQL FAQ ttl faq", "expected": "SQL FAQ TTL Faq"}
+{"input": "river signal Village gpu", "expected": "River Signal Village Gpu"}
+{"input": "gallery timber Village kernel FYI http", "expected": "Gallery Timber Village Kernel FYI HTTP"}
+{"input": "cnn LANTERN Quartz MOUNTAIN", "expected": "CNN LANTERN Quartz MOUNTAIN"}
+{"input": "ttl COPPER Station xml usa lantern", "expected": "TTL COPPER Station XML Usa Lantern"}
+{"input": "factory WWW CAPTAIN Umbrella Crystal fyi zebra", "expected": "Factory WWW CAPTAIN Umbrella Crystal Fyi Zebra"}
+{"input": "captain studio udp delta", "expected": "Captain Studio Udp Delta"}
+{"input": "API apple API xml delta", "expected": "API Apple API XML Delta"}
+{"input": "ISLAND Harbor ENGINE TTL Planet", "expected": "ISLAND Harbor ENGINE TTL Planet"}
+{"input": "HTTP Market THEATER quartz", "expected": "HTTP Market THEATER Quartz"}
+{"input": "THEATER Camera cnn notebook timber", "expected": "THEATER Camera CNN Notebook Timber"}
+{"input": "rocket crystal NOTEBOOK cwm xml Timber HTML", "expected": "Rocket Crystal NOTEBOOK CWM XML Timber HTML"}
+{"input": "ibm LETTER MHZ UDP cnn OCEAN Bridge", "expected": "Ibm LETTER MHZ UDP CNN OCEAN Bridge"}
+{"input": "SILVER UDP API TTL HTTP gallery apple", "expected": "SILVER UDP API TTL HTTP Gallery Apple"}
+{"input": "xml mhz HARBOR FAQ copper", "expected": "XML MHZ HARBOR FAQ Copper"}
+{"input": "FOREST umbrella BRIDGE nasa QUARTZ SQL lantern", "expected": "FOREST Umbrella BRIDGE Nasa QUARTZ SQL Lantern"}
+{"input": "Apple Paper FAQ html", "expected": "Apple Paper FAQ HTML"}
+{"input": "TTL theater QUARTZ SSL studio", "expected": "TTL Theater QUARTZ SSL Studio"}
+{"input": "BRIDGE API studio Forest cnn Garden", "expected": "BRIDGE API Studio Forest CNN Garden"}
+{"input": "api zebra TCP sql www ttl", "expected": "Api Zebra TCP SQL WWW TTL"}
+{"input": "GARDEN GPU planet timber copper", "expected": "GARDEN GPU Planet Timber Copper"}
+{"input": "compass Morning phd THEATER Notebook ttl camera", "expected": "Compass Morning PHD THEATER Notebook TTL Camera"}
+{"input": "MHZ EVENING MEADOW apple Theater COMPASS ENGINE", "expected": "MHZ EVENING MEADOW Apple Theater COMPASS ENGINE"}
+{"input": "ibm Morning crystal CNN captain", "expected": "Ibm Morning Crystal CNN Captain"}
+{"input": "UMBRELLA mhz HARBOR timber", "expected": "UMBRELLA MHZ HARBOR Timber"}
+{"input": "captain CWM Letter Garden", "expected": "Captain CWM Letter Garden"}
+{"input": "MHZ www Evening APPLE", "expected": "MHZ WWW Evening APPLE"}
+{"input": "TTL River RSS WWW FACTORY", "expected": "TTL River RSS WWW FACTORY"}
+{"input": "xml CWM VALLEY phd IBM css xml", "expected": "XML CWM VALLEY PHD IBM CSS XML"}
+{"input": "Evening gpu TIMBER", "expected": "Evening Gpu TIMBER"}
+{"input": "ttl Letter River", "expected": "TTL Letter River"}
+{"input": "sql rss XML fyi", "expected": "SQL RSS XML Fyi"}
+{"input": "Timber Kernel silver CAMERA http Rocket VILLAGE", "expected": "Timber Kernel Silver CAMERA HTTP Rocket VILLAGE"}
+{"input": "BRIDGE Notebook sql island", "expected": "BRIDGE Notebook SQL Island"}
+{"input": "API river rocket station Notebook cnn", "expected": "API River Rocket Station Notebook CNN"}
+{"input": "library RSS CSS nasa CSS fyi cnn", "expected": "Library RSS CSS Nasa CSS Fyi CNN"}
+{"input": "tcp IBM usa API gpu Marble", "expected": "TCP IBM Usa API Gpu Marble"}
+{"input": "engine phd marble http", "expected": "Engine PHD Marble HTTP"}
+{"input": "library SILVER faq VALLEY html Evening XML", "expected": "Library SILVER Faq VALLEY HTML Evening XML"}
+{"input": "meadow TCP compass paper CNN velvet", "expected": "Meadow TCP Compass Paper CNN Velvet"}
+{"input": "window ocean CSS evening TIMBER market", "expected": "Window Ocean CSS Evening TIMBER Market"}
+{"input": "planet orange xml KERNEL sql", "expected": "Planet Orange XML KERNEL SQL"}
+{"input": "USA Velvet river Gallery", "expected": "USA Velvet River Gallery"}
+{"input": "RSS css umbrella window phd", "expected": "RSS CSS Umbrella Window PHD"}
+{"input": "GPU CNN MEADOW TCP xml Garden", "expected": "GPU CNN MEADOW TCP XML Garden"}
+{"input": "COMPASS Window http RSS", "expected": "COMPASS Window HTTP RSS"}
+{"input": "River TTL xml CAMERA faq TCP", "expected": "River TTL XML CAMERA Faq TCP"}
+{"input": "ttl rocket harbor MOUNTAIN FYI", "expected": "TTL Rocket Harbor MOUNTAIN FYI"}
+{"input": "delta html NASA udp FYI ZEBRA CWM", "expected": "Delta HTML NASA Udp FYI ZEBRA CWM"}
+{"input": "IBM Harbor zebra ibm IBM BRIDGE sql", "expected": "IBM Harbor Zebra Ibm IBM BRIDGE SQL"}
+{"input": "udp phd HTTP", "expected": "Udp PHD HTTP"}
+{"input": "quartz meadow ttl ibm ttl delta fyi", "expected": "Quartz Meadow TTL Ibm TTL Delta Fyi"}
+{"input": "FYI river CWM faq apple usa", "expected": "FYI River CWM Faq Apple Usa"}
+{"input": "RSS www usa GPU ibm", "expected": "RSS WWW Usa GPU Ibm"}
+{"input": "RSS SQL IBM ZEBRA api", "expected": "RSS SQL IBM ZEBRA Api"}
+{"input": "HTTP nasa USA api", "expected": "HTTP Nasa USA Api"}
+{"input": "mountain sql sql quartz", "expected": "Mountain SQL SQL Quartz"}
+{"input": "market XML HTTP JOURNAL HTML HTTP CSS", "expected": "Market XML HTTP JOURNAL HTML HTTP CSS"}
+{"input": "fyi FAQ lantern", "expected": "Fyi FAQ Lantern"}
+{"input": "www html api cnn", "expected": "WWW HTML Api CNN"}
+{"input": "ttl crystal RSS", "expected": "TTL Crystal RSS"}
+{"input": "journal WWW faq paper MHZ", "expected": "Journal WWW Faq Paper MHZ"}
+{"input": "station VILLAGE lantern Q&A Mcdonald", "expected": "Station VILLAGE Lantern Q&A McDonald"}
+{"input": "Signal newYork Mcbar", "expected": "Signal newYork McBar"}
+{"input": "crystal in Q&A", "expected": "Crystal in Q&A"}
+{"input": "IOs v. if harbor in", "expected": "IOs v. If Harbor In"}
+{"input": "soldier YouTube", "expected": "Soldier YouTube"}
+{"input": "AT&T rocket camera via River mcclelland", "expected": "At&T Rocket Camera via River McClelland"}
+{"input": "iPhone Village", "expected": "iPhone Village"}
+{"input": "in XMLHttpRequest GARDEN river", "expected": "In XMLHttpRequest GARDEN River"}
+{"input": "APPLE ROCKET iOS", "expected": "APPLE ROCKET iOS"}
+{"input": "in market by Q&A mountain mcfoo", "expected": "In Market by Q&A Mountain McFoo"}
+{"input": "newYork harvest COMPASS Signal Kernel", "expected": "newYork Harvest COMPASS Signal Kernel"}
+{"input": "McTavish gallery", "expected": "McTavish Gallery"}
+{"input": "as PhD Island MCclelland", "expected": "As PhD Island McClelland"}
+{"input": "McDonald vs.", "expected": "McDonald Vs."}
+{"input": "iTunes timber Village", "expected": "iTunes Timber Village"}
+{"input": "eBay on", "expected": "eBay On"}
+{"input": "IoT as MCdonald", "expected": "IoT as McDonald"}
+{"input": "quartz YouTube mountain", "expected": "Quartz YouTube Mountain"}
+{"input": "XMLHttpRequest MARBLE vs apple RIVER mcdonald", "expected": "XMLHttpRequest MARBLE vs Apple RIVER McDonald"}
+{"input": "Copper eBay", "expected": "Copper eBay"}
+{"input": "PPPoE Market Mcfoo", "expected": "PPPoE Market McFoo"}
+{"input": "via quartz IoT", "expected": "Via Quartz IoT"}
+{"input": "COMPASS apple WINDOW Q&A", "expected": "COMPASS Apple WINDOW Q&A"}
+{"input": "an or IOs", "expected": "An or IOs"}
+{"input": "STATION McDonald an", "expected": "STATION McDonald An"}
+{"input": "garden eBay UMBRELLA for", "expected": "Garden eBay UMBRELLA For"}
+{"input": "Paper morning XMLHttpRequest Copper in", "expected": "Paper Morning XMLHttpRequest Copper In"}
+{"input": "PhD harvest", "expected": "PhD Harvest"}
+{"input": "if Velvet YouTube soldier window", "expected": "If Velvet YouTube Soldier Window"}
+{"input": "planet PhD in", "expected": "Planet PhD In"}
+{"input": "on Camera on iPhone for", "expected": "On Camera on iPhone For"}
+{"input": "meadow harvest Q&A MEADOW", "expected": "Meadow Harvest Q&A MEADOW"}
+{"input": "umbrella iOS MCbar", "expected": "Umbrella iOS McBar"}
+{"input": "McTavish theater window", "expected": "McTavish Theater Window"}
+{"input": "iTunes village WINDOW mcby", "expected": "iTunes Village WINDOW McBy"}
+{"input": "newYork on", "expected": "newYork On"}
+{"input": "copper Station AT&T MCfoo", "expected": "Copper Station AT&T McFoo"}
+{"input": "v. Q&A mctavish", "expected": "V. Q&A McTavish"}
+{"input": "timber DELTA iPhone Gallery Studio Mcfoo", "expected": "Timber DELTA iPhone Gallery Studio McFoo"}
+{"input": "Lantern XMLHttpRequest", "expected": "Lantern XMLHttpRequest"}
+{"input": "compass newYork Zebra soldier journal", "expected": "Compass newYork Zebra Soldier Journal"}
+{"input": "Studio on via PhD", "expected": "Studio on via PhD"}
+{"input": "on en vs if iOS", "expected": "On en vs if iOS"}
+{"input": "for iPhone gallery", "expected": "For iPhone Gallery"}
+{"input": "but Paper MacDonalds umbrella MCdonald", "expected": "But Paper MacDonalds Umbrella McDonald"}
+{"input": "GALLERY AT&T MOUNTAIN v", "expected": "GALLERY AT&T MOUNTAIN V"}
+{"input": "IOs or via the", "expected": "IOs or via The"}
+{"input": "NOTEBOOK evening an PhD", "expected": "NOTEBOOK Evening an PhD"}
+{"input": "garden Lantern IoT", "expected": "Garden Lantern IoT"}
+{"input": "orange AT&T Mctavish", "expected": "Orange AT&T McTavish"}
+{"input": "IoT for to mcdonald", "expected": "IoT for to McDonald"}
+{"input": "library Zebra YouTube", "expected": "Library Zebra YouTube"}
+{"input": "eBay on for Village", "expected": "eBay on for Village"}
+{"input": "vs iOS CAMERA via", "expected": "Vs iOS CAMERA Via"}
+{"input": "v. planet XMLHttpRequest zebra Mcdonald", "expected": "V. Planet XMLHttpRequest Zebra McDonald"}
+{"input": "eBay via", "expected": "eBay Via"}
+{"input": "Garden YouTube velvet mcby", "expected": "Garden YouTube Velvet McBy"}
+{"input": "Kernel iTunes or PAPER", "expected": "Kernel iTunes or PAPER"}
+{"input": "PPPoE to soldier", "expected": "PPPoE to Soldier"}
+{"input": "Q&A by", "expected": "Q&A By"}
+{"input": "Zebra MacDonalds", "expected": "Zebra MacDonalds"}
+{"input": "THEATER IOs on", "expected": "THEATER IOs On"}
+{"input": "McTavish Yellow Forest MCdonald", "expected": "McTavish Yellow Forest McDonald"}
+{"input": "rocket forest PhD MCclelland", "expected": "Rocket Forest PhD McClelland"}
+{"input": "YouTube by morning", "expected": "YouTube by Morning"}
+{"input": "Silver PPPoE UMBRELLA to Mctavish", "expected": "Silver PPPoE UMBRELLA to McTavish"}
+{"input": "McDonald en or MCfoo", "expected": "McDonald en or McFoo"}
+{"input": "via v. McTavish station mcdonald", "expected": "Via v. McTavish Station McDonald"}
+{"input": "McTavish for", "expected": "McTavish For"}
+{"input": "Notebook iPhone and via valley", "expected": "Notebook iPhone and via Valley"}
+{"input": "MARBLE but iPhone", "expected": "MARBLE but iPhone"}
+{"input": "IOs or HARBOR Meadow", "expected": "IOs or HARBOR Meadow"}
+{"input": "Q&A velvet mcfoo", "expected": "Q&A Velvet McFoo"}
+{"input": "COMPASS AT&T camera mcclelland", "expected": "COMPASS AT&T Camera McClelland"}
+{"input": "by Q&A", "expected": "By Q&A"}
+{"input": "PhD vs v for Yellow", "expected": "PhD vs v for Yellow"}
+{"input": "apple IOs", "expected": "Apple IOs"}
+{"input": "v. apple YouTube and Yellow", "expected": "V. Apple YouTube and Yellow"}
+{"input": "XMLHttpRequest MORNING river but Mctavish", "expected": "XMLHttpRequest MORNING River but McTavish"}
+{"input": "for newYork umbrella", "expected": "For newYork Umbrella"}
+{"input": "a AT&T MCdonald", "expected": "A AT&T McDonald"}
+{"input": "crystal Morning AT&T the", "expected": "Crystal Morning AT&T The"}
+{"input": "McTavish the mcby", "expected": "McTavish the McBy"}
+{"input": "newYork by harvest VALLEY and", "expected": "newYork by Harvest VALLEY And"}
+{"input": "Harbor ENGINE THEATER PhD", "expected": "Harbor ENGINE THEATER PhD"}
+{"input": "an vs island if iOS", "expected": "An vs Island if iOS"}
+{"input": "Lantern McTavish by mcdonald", "expected": "Lantern McTavish by McDonald"}
+{"input": "Factory Yellow iOS garden", "expected": "Factory Yellow iOS Garden"}
+{"input": "evening Umbrella market MacDonalds SOLDIER MCdonald", "expected": "Evening Umbrella Market MacDonalds SOLDIER McDonald"}
+{"input": "YouTube Compass on", "expected": "YouTube Compass On"}
+{"input": "MORNING McDonald v JOURNAL MOUNTAIN mcclelland", "expected": "MORNING McDonald v JOURNAL MOUNTAIN McClelland"}
+{"input": "or McTavish MCbar", "expected": "Or McTavish McBar"}
+{"input": "YouTube studio harvest MCdonald", "expected": "YouTube Studio Harvest McDonald"}
+{"input": "McDonald if vs. mcbar", "expected": "McDonald if vs. McBar"}
+{"input": "camera gallery PPPoE on", "expected": "Camera Gallery PPPoE On"}
+{"input": "and McTavish", "expected": "And McTavish"}
+{"input": "PPPoE HARBOR crystal SILVER forest", "expected": "PPPoE HARBOR Crystal SILVER Forest"}
+{"input": "Garden v. IoT theater Meadow", "expected": "Garden v. IoT Theater Meadow"}
+{"input": "UMBRELLA YouTube", "expected": "UMBRELLA YouTube"}
+{"input": "Velvet AT&T en ISLAND MARKET", "expected": "Velvet AT&T en ISLAND MARKET"}
+{"input": "a MacDonalds the Mcby", "expected": "A MacDonalds the McBy"}
+{"input": "journal village valley IoT", "expected": "Journal Village Valley IoT"}
+{"input": "lantern PPPoE station", "expected": "Lantern PPPoE Station"}
+{"input": "parcel ocean XMLHttpRequest at Gallery", "expected": "Parcel Ocean XMLHttpRequest at Gallery"}
+{"input": "MARKET as McDonald mcfoo", "expected": "MARKET as McDonald McFoo"}
+{"input": "McTavish by captain in KERNEL", "expected": "McTavish by Captain in KERNEL"}
+{"input": "Harvest Lantern McDonald", "expected": "Harvest Lantern McDonald"}
+{"input": "McTavish lantern", "expected": "McTavish Lantern"}
+{"input": "forest a Q&A vs. on", "expected": "Forest a Q&A vs. On"}
+{"input": "copper AT&T", "expected": "Copper AT&T"}
+{"input": "on PPPoE to Mcbar", "expected": "On PPPoE to McBar"}
+{"input": "Velvet iTunes zebra engine and mcclelland", "expected": "Velvet iTunes Zebra Engine and McClelland"}
+{"input": "vs. XMLHttpRequest Quartz", "expected": "Vs. XMLHttpRequest Quartz"}
+{"input": "v. at rocket PPPoE MCbar", "expected": "V. At Rocket PPPoE McBar"}
+{"input": "or McDonald planet and", "expected": "Or McDonald Planet And"}
+{"input": "iPhone village forest", "expected": "iPhone Village Forest"}
+{"input": "via planet Rocket AT&T", "expected": "Via Planet Rocket AT&T"}
+{"input": "marble silver Q&A as market Mcbar", "expected": "Marble Silver Q&A as Market McBar"}
+{"input": "a YouTube", "expected": "A YouTube"}
+{"input": "compass McDonald", "expected": "Compass McDonald"}
+{"input": "iOS Letter Journal studio mctavish", "expected": "iOS Letter Journal Studio McTavish"}
+{"input": "ocean gallery apple Q&A Mctavish", "expected": "Ocean Gallery Apple Q&A McTavish"}
+{"input": "vs. an McDonald SOLDIER", "expected": "Vs. An McDonald SOLDIER"}
+{"input": "the AT&T SOLDIER", "expected": "The AT&T SOLDIER"}
+{"input": "Q&A or a compass paper", "expected": "Q&A or a Compass Paper"}
+{"input": "notebook PAPER QUARTZ iOS en", "expected": "Notebook PAPER QUARTZ iOS En"}
+{"input": "PPPoE STATION", "expected": "PPPoE STATION"}
+{"input": "EVENING iOS a v. Signal mcclelland", "expected": "EVENING iOS a v. Signal McClelland"}
+{"input": "AT&T Harbor Window Mcby", "expected": "At&T Harbor Window McBy"}
+{"input": "Journal HARBOR iPhone mctavish", "expected": "Journal HARBOR iPhone McTavish"}
+{"input": "PhD mountain velvet", "expected": "PhD Mountain Velvet"}
+{"input": "iPhone at orange captain", "expected": "iPhone at Orange Captain"}
+{"input": "IoT silver MOUNTAIN", "expected": "IoT Silver MOUNTAIN"}
+{"input": "by VILLAGE eBay", "expected": "By VILLAGE eBay"}
+{"input": "v lantern IoT MCdonald", "expected": "V Lantern IoT McDonald"}
+{"input": "newYork marble mcdonald", "expected": "newYork Marble McDonald"}
+{"input": "an if ROCKET an YouTube", "expected": "An if ROCKET an YouTube"}
+{"input": "evening IOs harbor at", "expected": "Evening IOs Harbor At"}
+{"input": "PhD a en mcbar", "expected": "PhD a en McBar"}
+{"input": "IOs Copper rocket and", "expected": "IOs Copper Rocket And"}
+{"input": "v paper by MEADOW iOS Mcbar", "expected": "V Paper by MEADOW iOS McBar"}
+{"input": "but newYork", "expected": "But newYork"}
+{"input": "iOS as Theater MCclelland", "expected": "iOS as Theater McClelland"}
+{"input": "iOS Letter as LIBRARY lantern", "expected": "iOS Letter as LIBRARY Lantern"}
+{"input": "YouTube delta velvet Journal Mcdonald", "expected": "YouTube Delta Velvet Journal McDonald"}
+{"input": "to via IOs Mcby", "expected": "To via IOs McBy"}
+{"input": "MacDonalds FOREST Apple signal in", "expected": "MacDonalds FOREST Apple Signal In"}
+{"input": "Village newYork parcel mcby", "expected": "Village newYork Parcel McBy"}
+{"input": "marble to YouTube silver window mcclelland", "expected": "Marble to YouTube Silver Window McClelland"}
+{"input": "AT&T in on", "expected": "At&T in On"}
+{"input": "Parcel Camera Station at YouTube Mcclelland", "expected": "Parcel Camera Station at YouTube McClelland"}
+{"input": "for iTunes WINDOW", "expected": "For iTunes WINDOW"}
+{"input": "vs. by iPhone MCfoo", "expected": "Vs. By iPhone McFoo"}
+{"input": "letter PhD MCby", "expected": "Letter PhD McBy"}
+{"input": "Camera eBay", "expected": "Camera eBay"}
+{"input": "harvest PPPoE an", "expected": "Harvest PPPoE An"}
+{"input": "forest Crystal McDonald studio v. Mcdonald", "expected": "Forest Crystal McDonald Studio v. McDonald"}
+{"input": "iOS theater", "expected": "iOS Theater"}
+{"input": "AT&T journal a Forest to mcfoo", "expected": "At&T Journal a Forest to McFoo"}
+{"input": "gallery Q&A for Signal", "expected": "Gallery Q&A for Signal"}
+{"input": "iTunes Zebra Camera zebra theater", "expected": "iTunes Zebra Camera Zebra Theater"}
+{"input": "mountain Umbrella if MacDonalds mcby", "expected": "Mountain Umbrella if MacDonalds McBy"}
+{"input": "but meadow MacDonalds compass", "expected": "But Meadow MacDonalds Compass"}
+{"input": "iTunes garden KERNEL mountain", "expected": "iTunes Garden KERNEL Mountain"}
+{"input": "v river MacDonalds forest to MCfoo", "expected": "V River MacDonalds Forest to McFoo"}
+{"input": "notebook paper studio Q&A Mcbar", "expected": "Notebook Paper Studio Q&A McBar"}
+{"input": "YouTube window of mcbar", "expected": "YouTube Window of McBar"}
+{"input": "or PhD", "expected": "Or PhD"}
+{"input": "Garden McTavish", "expected": "Garden McTavish"}
+{"input": "IOs the Ocean", "expected": "IOs the Ocean"}
+{"input": "PPPoE ocean copper in the mcby", "expected": "PPPoE Ocean Copper in the McBy"}
+{"input": "newYork at LIBRARY MCdonald", "expected": "newYork at LIBRARY McDonald"}
+{"input": "PhD Copper", "expected": "PhD Copper"}
+{"input": "McDonald zebra", "expected": "McDonald Zebra"}
+{"input": "PPPoE Valley", "expected": "PPPoE Valley"}
+{"input": "lantern Velvet eBay station Apple mcdonald", "expected": "Lantern Velvet eBay Station Apple McDonald"}
+{"input": "mountain crystal McDonald MCfoo", "expected": "Mountain Crystal McDonald McFoo"}
+{"input": "iPhone river Library an", "expected": "iPhone River Library An"}
+{"input": "but PPPoE rocket", "expected": "But PPPoE Rocket"}
+{"input": "IoT Orange CAMERA timber village", "expected": "IoT Orange CAMERA Timber Village"}
+{"input": "McTavish PAPER ocean", "expected": "McTavish PAPER Ocean"}
+{"input": "v YouTube", "expected": "V YouTube"}
+{"input": "but iPhone", "expected": "But iPhone"}
+{"input": "HARBOR on iOS Harbor timber mcfoo", "expected": "HARBOR on iOS Harbor Timber McFoo"}
+{"input": "via rocket YouTube en", "expected": "Via Rocket YouTube En"}
+{"input": "iPhone HARVEST orange Yellow", "expected": "iPhone HARVEST Orange Yellow"}
+{"input": "lantern YouTube river at Mcfoo", "expected": "Lantern YouTube River at McFoo"}
+{"input": "Bridge island Q&A", "expected": "Bridge Island Q&A"}
+{"input": "at MacDonalds studio Morning", "expected": "At MacDonalds Studio Morning"}
+{"input": "PPPoE and MCdonald", "expected": "PPPoE and McDonald"}
+{"input": "apple for v Village iTunes", "expected": "Apple for v Village iTunes"}
+{"input": "Planet iPhone and a", "expected": "Planet iPhone and A"}
+{"input": "ENGINE iTunes", "expected": "ENGINE iTunes"}
+{"input": "Meadow VILLAGE XMLHttpRequest Marble PAPER", "expected": "Meadow VILLAGE XMLHttpRequest Marble PAPER"}
+{"input": "v. IOs as PAPER v.", "expected": "V. IOs as PAPER V."}
+{"input": "bridge McDonald and", "expected": "Bridge McDonald And"}
+{"input": "AT&T parcel signal Mcby", "expected": "At&T Parcel Signal McBy"}
+{"input": "eBay lantern", "expected": "eBay Lantern"}
+{"input": "Library LIBRARY to IoT a mctavish", "expected": "Library LIBRARY to IoT a McTavish"}
+{"input": "COPPER eBay timber", "expected": "COPPER eBay Timber"}
+{"input": "planet planet   orange valley parcel", "expected": "Planet Planet   Orange Valley Parcel"}
+{"input": "   copper or village \t village evening   ", "expected": "   Copper or Village \t Village Evening   "}
+{"input": "as　GARDEN   MARKET", "expected": "As　GARDEN   MARKET"}
+{"input": "planet SILVER vs.　Kernel Bridge", "expected": "Planet SILVER vs.　Kernel Bridge"}
+{"input": "station bridge   window\t\tSignal   ", "expected": "Station Bridge   Window\t\tSignal   "}
+{"input": "library   forest \t engine Garden", "expected": "Library   Forest \t Engine Garden"}
+{"input": " paper　VELVET Paper   signal　", "expected": " Paper　VELVET Paper   Signal　"}
+{"input": "market \t Notebook\tZebra\t\tstudio", "expected": "Market \t Notebook\tZebra\t\tStudio"}
+{"input": "\t\tmarble\tMORNING   Gallery　COPPER", "expected": "\t\tMarble\tMORNING   Gallery　COPPER"}
+{"input": "YELLOW evening morning \t captain Island", "expected": "YELLOW Evening Morning \t Captain Island"}
+{"input": "morning  by\tplanet", "expected": "Morning  by\tPlanet"}
+{"input": "in   HARVEST gallery APPLE\t\tmountain ", "expected": "In   HARVEST Gallery APPLE\t\tMountain "}
+{"input": "Quartz  as ENGINE valley\tCompass\t\tLIBRARY", "expected": "Quartz  as ENGINE Valley\tCompass\t\tLIBRARY"}
+{"input": "\t\tSignal factory　Meadow", "expected": "\t\tSignal Factory　Meadow"}
+{"input": "MARKET　evening  umbrella MORNING library", "expected": "MARKET　Evening  Umbrella MORNING Library"}
+{"input": "as\trocket\tFOREST planet   Zebra", "expected": "As\tRocket\tFOREST Planet   Zebra"}
+{"input": " journal CRYSTAL ", "expected": " Journal CRYSTAL "}
+{"input": "copper\tWINDOW HARBOR VALLEY", "expected": "Copper\tWINDOW HARBOR VALLEY"}
+{"input": " \t NOTEBOOK   yellow \t orange \t or Compass \t MARBLE   ", "expected": " \t NOTEBOOK   Yellow \t Orange \t or Compass \t MARBLE   "}
+{"input": "island market", "expected": "Island Market"}
+{"input": "soldier  at   Signal ", "expected": "Soldier  at   Signal "}
+{"input": "　copper copper　library via\t\tValley", "expected": "　Copper Copper　Library via\t\tValley"}
+{"input": "   on\tjournal letter   STATION", "expected": "   on\tJournal Letter   STATION"}
+{"input": "　captain   evening Captain ", "expected": "　Captain   Evening Captain "}
+{"input": "COMPASS studio silver\t\tif  Studio   factory", "expected": "COMPASS Studio Silver\t\tif  Studio   Factory"}
+{"input": " in lantern   Paper", "expected": " in Lantern   Paper"}
+{"input": "   quartz   at apple MORNING \t Studio LIBRARY  ", "expected": "   Quartz   at Apple MORNING \t Studio LIBRARY  "}
+{"input": " river Harbor \t VELVET", "expected": " River Harbor \t VELVET"}
+{"input": " \t signal\t\ton  CAPTAIN harbor  Meadow  soldier", "expected": " \t Signal\t\ton  CAPTAIN Harbor  Meadow  Soldier"}
+{"input": "garden  compass \t delta\t\tand  garden FOREST", "expected": "Garden  Compass \t Delta\t\tand  Garden FOREST"}
+{"input": "silver \t in\t\tZebra lantern\tfactory ", "expected": "Silver \t in\t\tZebra Lantern\tFactory "}
+{"input": "  and studio  station morning", "expected": "  and Studio  Station Morning"}
+{"input": "  studio\t\tif ENGINE notebook", "expected": "  Studio\t\tif ENGINE Notebook"}
+{"input": "Letter Journal \t ", "expected": "Letter Journal \t "}
+{"input": "Theater via YELLOW zebra　soldier　ORANGE", "expected": "Theater via YELLOW Zebra　Soldier　ORANGE"}
+{"input": " or Harvest\tsignal village", "expected": " or Harvest\tSignal Village"}
+{"input": "   market\t\tNOTEBOOK Theater ", "expected": "   Market\t\tNOTEBOOK Theater "}
+{"input": "library   silver mountain  ", "expected": "Library   Silver Mountain  "}
+{"input": "copper market   Journal\tFactory　yellow   ", "expected": "Copper Market   Journal\tFactory　Yellow   "}
+{"input": "garden  Quartz   Mountain \t captain   to\t\tCRYSTAL", "expected": "Garden  Quartz   Mountain \t Captain   to\t\tCRYSTAL"}
+{"input": " river　island \t LANTERN  copper", "expected": " River　Island \t LANTERN  Copper"}
+{"input": "if \t GARDEN　Soldier SIGNAL\tgallery", "expected": "If \t GARDEN　Soldier SIGNAL\tGallery"}
+{"input": " by   Kernel　Notebook\t\tJournal OCEAN", "expected": " by   Kernel　Notebook\t\tJournal OCEAN"}
+{"input": " Orange bridge LETTER ", "expected": " Orange Bridge LETTER "}
+{"input": " velvet  Notebook   letter\t\tquartz", "expected": " Velvet  Notebook   Letter\t\tQuartz"}
+{"input": "PAPER\t\tvs.  Crystal\tumbrella", "expected": "PAPER\t\tvs.  Crystal\tUmbrella"}
+{"input": "\t\ta　market harvest ", "expected": "\t\ta　Market Harvest "}
+{"input": "Journal　mountain silver DELTA　TIMBER", "expected": "Journal　Mountain Silver DELTA　TIMBER"}
+{"input": "Forest  planet\t\tthe WINDOW Bridge parcel", "expected": "Forest  Planet\t\tthe WINDOW Bridge Parcel"}
+{"input": "gallery Harvest \t river　soldier notebook", "expected": "Gallery Harvest \t River　Soldier Notebook"}
+{"input": "island　COPPER   harbor\t\t", "expected": "Island　COPPER   Harbor\t\t"}
+{"input": "　Yellow Yellow umbrella　river ", "expected": "　Yellow Yellow Umbrella　River "}
+{"input": "engine  zebra GALLERY\tCOPPER　", "expected": "Engine  Zebra GALLERY\tCOPPER　"}
+{"input": " window   Gallery\tCRYSTAL \t ", "expected": " Window   Gallery\tCRYSTAL \t "}
+{"input": "\t\tBridge　to  ZEBRA ", "expected": "\t\tBridge　to  ZEBRA "}
+{"input": "EVENING village market　", "expected": "EVENING Village Market　"}
+{"input": " Quartz \t notebook Planet ", "expected": " Quartz \t Notebook Planet "}
+{"input": "ISLAND\t\tgarden\tHarvest evening the　Parcel\t\t", "expected": "ISLAND\t\tGarden\tHarvest Evening the　Parcel\t\t"}
+{"input": " \t CAPTAIN apple \t ", "expected": " \t CAPTAIN Apple \t "}
+{"input": "notebook  Notebook vs  Velvet  ", "expected": "Notebook  Notebook vs  Velvet  "}
+{"input": "　letter\t\tfor CRYSTAL   PAPER\t\tharvest compass", "expected": "　Letter\t\tfor CRYSTAL   PAPER\t\tHarvest Compass"}
+{"input": " a \t parcel Harvest", "expected": " a \t Parcel Harvest"}
+{"input": "letter kernel\tParcel   journal ", "expected": "Letter Kernel\tParcel   Journal "}
+{"input": "  THEATER\tfactory signal\t\tlantern", "expected": "  THEATER\tFactory Signal\t\tLantern"}
+{"input": "camera \t HARBOR", "expected": "Camera \t HARBOR"}
+{"input": "Library copper", "expected": "Library Copper"}
+{"input": "a market　COMPASS MOUNTAIN   Rocket ", "expected": "A Market　COMPASS MOUNTAIN   Rocket "}
+{"input": "Morning  HARBOR　signal   Paper en apple ", "expected": "Morning  HARBOR　Signal   Paper en Apple "}
+{"input": " VALLEY   compass of  morning\t\tengine　", "expected": " VALLEY   Compass of  Morning\t\tEngine　"}
+{"input": " captain　Rocket ", "expected": " Captain　Rocket "}
+{"input": "Soldier\tForest Ocean  island", "expected": "Soldier\tForest Ocean  Island"}
+{"input": "　PAPER Lantern \t or  SIGNAL Zebra copper", "expected": "　PAPER Lantern \t or  SIGNAL Zebra Copper"}
+{"input": "Meadow\t\tcompass Forest yellow ", "expected": "Meadow\t\tCompass Forest Yellow "}
+{"input": "  via rocket PARCEL Bridge", "expected": "  via Rocket PARCEL Bridge"}
+{"input": "Crystal Delta　camera Engine Marble", "expected": "Crystal Delta　Camera Engine Marble"}
+{"input": "\t\tSOLDIER silver ", "expected": "\t\tSOLDIER Silver "}
+{"input": "and station Quartz\t\tcopper ISLAND   Morning", "expected": "And Station Quartz\t\tCopper ISLAND   Morning"}
+{"input": "v VALLEY\t\tcopper ", "expected": "V VALLEY\t\tCopper "}
+{"input": "soldier Village but Kernel  ", "expected": "Soldier Village but Kernel  "}
+{"input": " \t valley　garden TIMBER", "expected": " \t Valley　Garden TIMBER"}
+{"input": "Station MOUNTAIN \t HARVEST\t\tHARBOR　marble", "expected": "Station MOUNTAIN \t HARVEST\t\tHARBOR　Marble"}
+{"input": " Theater\t\tvelvet\tmarble captain   ", "expected": " Theater\t\tVelvet\tMarble Captain   "}
+{"input": "crystal \t DELTA  QUARTZ\t", "expected": "Crystal \t DELTA  QUARTZ\t"}
+{"input": " by  MARBLE  Copper", "expected": " by  MARBLE  Copper"}
+{"input": "planet  ORANGE orange ocean ", "expected": "Planet  ORANGE Orange Ocean "}
+{"input": " or \t QUARTZ  kernel THEATER　", "expected": " or \t QUARTZ  Kernel THEATER　"}
+{"input": "letter  meadow   JOURNAL　for factory \t ", "expected": "Letter  Meadow   JOURNAL　for Factory \t "}
+{"input": "  zebra\tmeadow\t\tOrange Engine bridge", "expected": "  Zebra\tMeadow\t\tOrange Engine Bridge"}
+{"input": "　or   COMPASS\t\tSTATION river\t\tBRIDGE  KERNEL\t\t", "expected": "　or   COMPASS\t\tSTATION River\t\tBRIDGE  KERNEL\t\t"}
+{"input": "library window \t morning\t\tthe silver", "expected": "Library Window \t Morning\t\tthe Silver"}
+{"input": " window \t LIBRARY quartz \t vs. soldier", "expected": " Window \t LIBRARY Quartz \t vs. Soldier"}
+{"input": "　GARDEN \t vs. VILLAGE", "expected": "　GARDEN \t vs. VILLAGE"}
+{"input": " velvet\t\tGallery   an\t\tlantern garden  ", "expected": " Velvet\t\tGallery   an\t\tLantern Garden  "}
+{"input": "COPPER   bridge apple　Market \t or Soldier", "expected": "COPPER   Bridge Apple　Market \t or Soldier"}
+{"input": "captain planet soldier  ", "expected": "Captain Planet Soldier  "}
+{"input": " Mountain CAPTAIN \t Gallery LETTER", "expected": " Mountain CAPTAIN \t Gallery LETTER"}
+{"input": "RIVER   on zebra\tmountain   compass WINDOW", "expected": "RIVER   on Zebra\tMountain   Compass WINDOW"}
+{"input": "paper MEADOW Evening\t\tMEADOW UMBRELLA  ", "expected": "Paper MEADOW Evening\t\tMEADOW UMBRELLA  "}
+{"input": "  Morning\t\tDELTA  gallery\tVALLEY ", "expected": "  Morning\t\tDELTA  Gallery\tVALLEY "}
+{"input": "MARBLE\t\tlibrary", "expected": "MARBLE\t\tLibrary"}
+{"input": " JOURNAL　Morning Compass via FACTORY", "expected": " JOURNAL　Morning Compass via FACTORY"}
+{"input": "Delta\t\tvelvet \t NOTEBOOK village", "expected": "Delta\t\tVelvet \t NOTEBOOK Village"}
+{"input": "RIVER \t a   FACTORY  ", "expected": "RIVER \t a   FACTORY  "}
+{"input": "　window\tSilver NOTEBOOK  Planet a camera", "expected": "　Window\tSilver NOTEBOOK  Planet a Camera"}
+{"input": " umbrella\t\ttimber", "expected": " Umbrella\t\tTimber"}
+{"input": " GALLERY  ISLAND \t compass   Yellow \t ROCKET", "expected": " GALLERY  ISLAND \t Compass   Yellow \t ROCKET"}
+{"input": "   valley mountain", "expected": "   Valley Mountain"}
+{"input": "   in evening\t\tCompass", "expected": "   in Evening\t\tCompass"}
+{"input": "   Morning  GARDEN \t FACTORY \t Library ", "expected": "   Morning  GARDEN \t FACTORY \t Library "}
+{"input": "YELLOW as Delta　Crystal\tBRIDGE meadow   ", "expected": "YELLOW as Delta　Crystal\tBRIDGE Meadow   "}
+{"input": " Bridge\t\tand\tgallery ", "expected": " Bridge\t\tand\tGallery "}
+{"input": "\tJOURNAL   Library  by\t\tplanet\t\tKERNEL  kernel\t\t", "expected": "\tJOURNAL   Library  by\t\tPlanet\t\tKERNEL  Kernel\t\t"}
+{"input": "　in crystal\tsoldier \t harbor  garden", "expected": "　in Crystal\tSoldier \t Harbor  Garden"}
+{"input": " Marble WINDOW  NOTEBOOK\tengine ", "expected": " Marble WINDOW  NOTEBOOK\tEngine "}
+{"input": "\tLetter  orange　", "expected": "\tLetter  Orange　"}
+{"input": "\t\tMarble evening ", "expected": "\t\tMarble Evening "}
+{"input": "soldier\t\tkernel ", "expected": "Soldier\t\tKernel "}
+{"input": "river Timber compass   delta ", "expected": "River Timber Compass   Delta "}
+{"input": "  lantern umbrella\t\tsoldier ", "expected": "  Lantern Umbrella\t\tSoldier "}
+{"input": "\tto\t\tpaper\tcamera velvet River marble ", "expected": "\tto\t\tPaper\tCamera Velvet River Marble "}
+{"input": "ZEBRA \t at umbrella Window ", "expected": "ZEBRA \t at Umbrella Window "}
+{"input": "harvest village", "expected": "Harvest Village"}
+{"input": " MEADOW   Letter en lantern window　", "expected": " MEADOW   Letter en Lantern Window　"}
+{"input": " \t in Crystal lantern Timber  ", "expected": " \t in Crystal Lantern Timber  "}
+{"input": "　GALLERY\tSilver", "expected": "　GALLERY\tSilver"}
+{"input": " on Valley SIGNAL Theater\t\ttimber\t\tmountain", "expected": " on Valley SIGNAL Theater\t\tTimber\t\tMountain"}
+{"input": "   by   GARDEN harbor\t", "expected": "   by   GARDEN Harbor\t"}
+{"input": "planet yellow \t on　valley ", "expected": "Planet Yellow \t on　Valley "}
+{"input": "signal\tcopper", "expected": "Signal\tCopper"}
+{"input": "  in library parcel  paper TIMBER MEADOW", "expected": "  in Library Parcel  Paper TIMBER MEADOW"}
+{"input": " THEATER\tOrange", "expected": " THEATER\tOrange"}
+{"input": "yellow factory　Yellow  ", "expected": "Yellow Factory　Yellow  "}
+{"input": "vs. compass   Umbrella\t\t", "expected": "Vs. Compass   Umbrella\t\t"}
+{"input": " PLANET HARBOR meadow Camera", "expected": " PLANET HARBOR Meadow Camera"}
+{"input": "\t\tcrystal theater\tumbrella kernel", "expected": "\t\tCrystal Theater\tUmbrella Kernel"}
+{"input": " by\tParcel Factory\t", "expected": " by\tParcel Factory\t"}
+{"input": "engine Studio  Zebra \t umbrella  yellow  ", "expected": "Engine Studio  Zebra \t Umbrella  Yellow  "}
+{"input": "on\t\tmeadow Window ", "expected": "On\t\tMeadow Window "}
+{"input": " Parcel timber station　crystal ", "expected": " Parcel Timber Station　Crystal "}
+{"input": "STATION market　camera  Morning　or\tYellow", "expected": "STATION Market　Camera  Morning　or\tYellow"}
+{"input": "STUDIO\tLIBRARY\t\trocket　Yellow ", "expected": "STUDIO\tLIBRARY\t\tRocket　Yellow "}
+{"input": "  LIBRARY notebook   notebook \t MARBLE ", "expected": "  LIBRARY Notebook   Notebook \t MARBLE "}
+{"input": "\tMARBLE　by\tgarden Silver", "expected": "\tMARBLE　by\tGarden Silver"}
+{"input": "Market Bridge  HARBOR　forest harvest \t ", "expected": "Market Bridge  HARBOR　Forest Harvest \t "}
+{"input": "velvet\t\tvia\t\tCAMERA SOLDIER", "expected": "Velvet\t\tvia\t\tCAMERA SOLDIER"}
+{"input": "\t\tstation  letter a\tENGINE letter \t Island ", "expected": "\t\tStation  Letter a\tENGINE Letter \t Island "}
+{"input": "an\tMARKET Planet   kernel notebook velvet  ", "expected": "An\tMARKET Planet   Kernel Notebook Velvet  "}
+{"input": "\t\tif  compass   CRYSTAL  ", "expected": "\t\tif  Compass   CRYSTAL  "}
+{"input": "studio\t\tTHEATER  ", "expected": "Studio\t\tTHEATER  "}
+{"input": " EVENING Apple island timber Quartz ", "expected": " EVENING Apple Island Timber Quartz "}
+{"input": "\tYELLOW vs \t UMBRELLA\t\tCOMPASS  orange", "expected": "\tYELLOW vs \t UMBRELLA\t\tCOMPASS  Orange"}
+{"input": "\tcaptain  Paper MARBLE \t v.\tharvest", "expected": "\tCaptain  Paper MARBLE \t v.\tHarvest"}
+{"input": "Umbrella  bridge  VELVET　factory timber  ", "expected": "Umbrella  Bridge  VELVET　Factory Timber  "}
+{"input": "Camera letter as  village ", "expected": "Camera Letter as  Village "}
+{"input": "bridge\tstudio  station zebra   studio\t\t", "expected": "Bridge\tStudio  Station Zebra   Studio\t\t"}
+{"input": "　MOUNTAIN   umbrella parcel", "expected": "　MOUNTAIN   Umbrella Parcel"}
+{"input": " MEADOW  morning", "expected": " MEADOW  Morning"}
+{"input": "yellow   Crystal", "expected": "Yellow   Crystal"}
+{"input": "if GARDEN\tLETTER MOUNTAIN", "expected": "If GARDEN\tLETTER MOUNTAIN"}
+{"input": "but station　Apple gallery ISLAND ", "expected": "But Station　Apple Gallery ISLAND "}
+{"input": "Bridge　or \t UMBRELLA\t\tstudio\tSignal\tquartz ", "expected": "Bridge　or \t UMBRELLA\t\tStudio\tSignal\tQuartz "}
+{"input": "MORNING  PLANET VALLEY\tfor\tApple \t ", "expected": "MORNING  PLANET VALLEY\tfor\tApple \t "}
+{"input": "silver to\tCompass", "expected": "Silver to\tCompass"}
+{"input": "\t\tLibrary\t\tstation \t kernel\tevening MORNING ", "expected": "\t\tLibrary\t\tStation \t Kernel\tEvening MORNING "}
+{"input": " Marble　Kernel　v　Silver ", "expected": " Marble　Kernel　v　Silver "}
+{"input": "SILVER Captain Notebook silver", "expected": "SILVER Captain Notebook Silver"}
+{"input": "library　but FACTORY　", "expected": "Library　but FACTORY　"}
+{"input": "vs village theater RIVER\tjournal Paper ", "expected": "Vs Village Theater RIVER\tJournal Paper "}
+{"input": "  apple  en   signal STATION", "expected": "  Apple  en   Signal STATION"}
+{"input": "signal Notebook  and\tnotebook ", "expected": "Signal Notebook  and\tNotebook "}
+{"input": " journal\tcopper at harvest ", "expected": " Journal\tCopper at Harvest "}
+{"input": " theater  river Copper ENGINE ", "expected": " Theater  River Copper ENGINE "}
+{"input": "evening village \t island ", "expected": "Evening Village \t Island "}
+{"input": "  ROCKET  harbor MARKET copper FOREST  ", "expected": "  ROCKET  Harbor MARKET Copper FOREST  "}
+{"input": "  gallery umbrella\t\t", "expected": "  Gallery Umbrella\t\t"}
+{"input": "lantern MEADOW on　Journal ", "expected": "Lantern MEADOW on　Journal "}
+{"input": " v.  crystal MEADOW harvest\t\t", "expected": " v.  Crystal MEADOW Harvest\t\t"}
+{"input": "Garden\t\tRIVER　station ", "expected": "Garden\t\tRIVER　Station "}
+{"input": " factory\t\tharvest journal MARKET  the DELTA ", "expected": " Factory\t\tHarvest Journal MARKET  the DELTA "}
+{"input": "Station \t JOURNAL   APPLE Crystal APPLE", "expected": "Station \t JOURNAL   APPLE Crystal APPLE"}
+{"input": "PLANET\t\tv  journal lantern SIGNAL　delta\t\t", "expected": "PLANET\t\tv  Journal Lantern SIGNAL　Delta\t\t"}
+{"input": " STUDIO market", "expected": " STUDIO Market"}
+{"input": "or \t QUARTZ\t\tSTATION garden ", "expected": "Or \t QUARTZ\t\tSTATION Garden "}
+{"input": "MARBLE   Orange　Soldier \t UMBRELLA ", "expected": "MARBLE   Orange　Soldier \t UMBRELLA "}
+{"input": "\tCOMPASS engine", "expected": "\tCOMPASS Engine"}
+{"input": "\t\tan\t\tHarbor theater ", "expected": "\t\tan\t\tHarbor Theater "}
+{"input": "BRIDGE\tMARKET \t by ocean ", "expected": "BRIDGE\tMARKET \t by Ocean "}
+{"input": " studio but\tCaptain", "expected": " Studio but\tCaptain"}
+{"input": "CAPTAIN ZEBRA  APPLE to  CAMERA ", "expected": "CAPTAIN ZEBRA  APPLE to  CAMERA "}
+{"input": "camera MARBLE camera vs. rocket \t evening ", "expected": "Camera MARBLE Camera vs. Rocket \t Evening "}
+{"input": "  river orange river", "expected": "  River Orange River"}
+{"input": " signal \t BRIDGE   soldier   velvet engine", "expected": " Signal \t BRIDGE   Soldier   Velvet Engine"}
+{"input": " forest\t\tcamera", "expected": " Forest\t\tCamera"}
+{"input": "\t\ttheater  Morning \t ", "expected": "\t\tTheater  Morning \t "}
+{"input": " market  Crystal   as VELVET marble　mountain", "expected": " Market  Crystal   as VELVET Marble　Mountain"}
+{"input": "\t\tcopper EVENING factory", "expected": "\t\tCopper EVENING Factory"}
+{"input": "but \t FACTORY\tnotebook  Gallery  ", "expected": "But \t FACTORY\tNotebook  Gallery  "}
+{"input": " Silver crystal", "expected": " Silver Crystal"}
+{"input": "river   FACTORY\tvalley Apple   ", "expected": "River   FACTORY\tValley Apple   "}
+{"input": " \t River\tMEADOW   umbrella", "expected": " \t River\tMEADOW   Umbrella"}
+{"input": "MARBLE STATION VILLAGE FOR IN SIGNAL API", "expected": "Marble Station Village for in Signal Api"}
+{"input": "FOR FACTORY JOURNAL MEADOW OR HARVEST AND FYI", "expected": "For Factory Journal Meadow or Harvest and Fyi"}
+{"input": "VIA\tV. VALLEY VS.", "expected": "Via\tV. Valley Vs."}
+{"input": "MARKET BUT COPPER", "expected": "Market but Copper"}
+{"input": "ENGINE THE VS. VELVET USA", "expected": "Engine the vs. Velvet Usa"}
+{"input": "RIVER  PAPER V. VILLAGE", "expected": "River  Paper V. Village"}
+{"input": "PLANET  VIA TIMBER V.", "expected": "Planet  via Timber V."}
+{"input": "VS. GALLERY VALLEY", "expected": "Vs. Gallery Valley"}
+{"input": "HARBOR  TO KERNEL EVENING VS. V IBM", "expected": "Harbor  to Kernel Evening vs. V Ibm"}
+{"input": "LETTER GALLERY V", "expected": "Letter Gallery V"}
+{"input": "OR\tIF HTML", "expected": "Or\tif HTML"}
+{"input": "SILVER  YELLOW AS IN HARVEST COMPASS ZEBRA", "expected": "Silver  Yellow as in Harvest Compass Zebra"}
+{"input": "BRIDGE\tRIVER HARBOR GARDEN QUARTZ VIA", "expected": "Bridge\tRiver Harbor Garden Quartz Via"}
+{"input": "BUT KERNEL ENGINE GALLERY VILLAGE VS WINDOW", "expected": "But Kernel Engine Gallery Village vs Window"}
+{"input": "GALLERY ON YELLOW THEATER PAPER GARDEN ORANGE SSL", "expected": "Gallery on Yellow Theater Paper Garden Orange SSL"}
+{"input": "BUT THEATER MEADOW", "expected": "But Theater Meadow"}
+{"input": "FOREST UMBRELLA", "expected": "Forest Umbrella"}
+{"input": "LANTERN BUT EN VIA TIMBER VS.", "expected": "Lantern but en via Timber Vs."}
+{"input": "VS. IF ZEBRA NASA", "expected": "Vs. If Zebra Nasa"}
+{"input": "AS VILLAGE BY", "expected": "As Village By"}
+{"input": "SOLDIER ISLAND MARBLE", "expected": "Soldier Island Marble"}
+{"input": "QUARTZ BUT UMBRELLA LANTERN", "expected": "Quartz but Umbrella Lantern"}
+{"input": "BY JOURNAL PAPER AT KERNEL GALLERY VS", "expected": "By Journal Paper at Kernel Gallery Vs"}
+{"input": "GALLERY JOURNAL OR LETTER DELTA IN FOR PHD", "expected": "Gallery Journal or Letter Delta in for PHD"}
+{"input": "AND VS CWM", "expected": "And vs CWM"}
+{"input": "ZEBRA SILVER FACTORY WINDOW GARDEN V BY", "expected": "Zebra Silver Factory Window Garden v By"}
+{"input": "LANTERN  AND IN SIGNAL AN TIMBER", "expected": "Lantern  and in Signal an Timber"}
+{"input": "VILLAGE FOR TO AT ON FOR USA", "expected": "Village for to at on for Usa"}
+{"input": "NOTEBOOK\tLANTERN IF LIBRARY", "expected": "Notebook\tLantern if Library"}
+{"input": "VS OF ISLAND STATION ENGINE ISLAND", "expected": "Vs of Island Station Engine Island"}
+{"input": "LIBRARY VS VALLEY AT VS. MARBLE FOR", "expected": "Library vs Valley at vs. Marble For"}
+{"input": "ROCKET V.", "expected": "Rocket V."}
+{"input": "VS. DELTA AN YELLOW VS HARVEST", "expected": "Vs. Delta an Yellow vs Harvest"}
+{"input": "MEADOW V BUT APPLE NASA", "expected": "Meadow v but Apple Nasa"}
+{"input": "NOTEBOOK\tCOPPER AND COMPASS FACTORY HARBOR WWW", "expected": "Notebook\tCopper and Compass Factory Harbor WWW"}
+{"input": "VILLAGE\tBUT FACTORY VILLAGE", "expected": "Village\tbut Factory Village"}
+{"input": "PARCEL LIBRARY OR EN MHZ", "expected": "Parcel Library or en MHZ"}
+{"input": "TIMBER FACTORY IN ON SOLDIER CAPTAIN A API", "expected": "Timber Factory in on Soldier Captain a Api"}
+{"input": "KERNEL BY ZEBRA HARBOR VELVET WINDOW", "expected": "Kernel by Zebra Harbor Velvet Window"}
+{"input": "OF\tTHEATER BRIDGE LANTERN PLANET SQL", "expected": "Of\tTheater Bridge Lantern Planet SQL"}
+{"input": "KERNEL ON CAPTAIN ZEBRA CRYSTAL", "expected": "Kernel on Captain Zebra Crystal"}
+{"input": "MEADOW ENGINE A", "expected": "Meadow Engine A"}
+{"input": "BUT BRIDGE ENGINE UDP", "expected": "But Bridge Engine Udp"}
+{"input": "SILVER JOURNAL V. VILLAGE QUARTZ RSS", "expected": "Silver Journal V. Village Quartz RSS"}
+{"input": "KERNEL COMPASS VILLAGE TCP", "expected": "Kernel Compass Village TCP"}
+{"input": "ISLAND IF AT OCEAN APPLE MEADOW SILVER NASA", "expected": "Island if at Ocean Apple Meadow Silver Nasa"}
+{"input": "TO VILLAGE ISLAND FACTORY AT SSL", "expected": "To Village Island Factory at SSL"}
+{"input": "ENGINE BY COMPASS THEATER A", "expected": "Engine by Compass Theater A"}
+{"input": "NOTEBOOK COMPASS UMBRELLA PARCEL PARCEL", "expected": "Notebook Compass Umbrella Parcel Parcel"}
+{"input": "CRYSTAL AN MEADOW VS TIMBER LANTERN HTTP", "expected": "Crystal an Meadow vs Timber Lantern HTTP"}
+{"input": "MORNING ON CAPTAIN VS HARVEST", "expected": "Morning on Captain vs Harvest"}
+{"input": "OR MEADOW BRIDGE UMBRELLA PAPER GPU", "expected": "Or Meadow Bridge Umbrella Paper Gpu"}
+{"input": "YELLOW IN IF QUARTZ OCEAN UMBRELLA", "expected": "Yellow in if Quartz Ocean Umbrella"}
+{"input": "SILVER VS. SILVER VIA BY", "expected": "Silver vs. Silver via By"}
+{"input": "CRYSTAL VIA ZEBRA MEADOW CAPTAIN V. QUARTZ FYI", "expected": "Crystal via Zebra Meadow Captain V. Quartz Fyi"}
+{"input": "MARKET VS. ON BUT LIBRARY AT MEADOW WWW", "expected": "Market vs. On but Library at Meadow WWW"}
+{"input": "STUDIO STATION", "expected": "Studio Station"}
+{"input": "CRYSTAL VILLAGE COPPER V A VALLEY", "expected": "Crystal Village Copper v a Valley"}
+{"input": "QUARTZ SOLDIER TIMBER VELVET SILVER ORANGE SILVER GPU", "expected": "Quartz Soldier Timber Velvet Silver Orange Silver Gpu"}
+{"input": "MARBLE GALLERY VELVET FOREST VS LETTER QUARTZ", "expected": "Marble Gallery Velvet Forest vs Letter Quartz"}
+{"input": "JOURNAL THE IF VS RSS", "expected": "Journal the if vs RSS"}
+{"input": "WINDOW THEATER A AND SILVER", "expected": "Window Theater a and Silver"}
+{"input": "PARCEL LIBRARY MORNING MHZ", "expected": "Parcel Library Morning MHZ"}
+{"input": "BRIDGE ISLAND VELVET OR AND OR", "expected": "Bridge Island Velvet or and Or"}
+{"input": "UMBRELLA MEADOW SSL", "expected": "Umbrella Meadow SSL"}
+{"input": "AN  BY BY VELVET STUDIO OCEAN", "expected": "An  by by Velvet Studio Ocean"}
+{"input": "PAPER  AT EVENING STUDIO BY", "expected": "Paper  at Evening Studio By"}
+{"input": "TIMBER TO USA", "expected": "Timber to Usa"}
+{"input": "MARBLE\tTHE", "expected": "Marble\tThe"}
+{"input": "STATION AS THE JOURNAL IBM", "expected": "Station as the Journal Ibm"}
+{"input": "BRIDGE FOREST API", "expected": "Bridge Forest Api"}
+{"input": "YELLOW\tBUT ISLAND ROCKET CSS", "expected": "Yellow\tbut Island Rocket CSS"}
+{"input": "V DELTA COMPASS THEATER AND VS. THEATER", "expected": "V Delta Compass Theater and vs. Theater"}
+{"input": "THE NOTEBOOK VELVET HARBOR A AN GPU", "expected": "The Notebook Velvet Harbor a an Gpu"}
+{"input": "A PARCEL STUDIO GALLERY VS. USA", "expected": "A Parcel Studio Gallery vs. Usa"}
+{"input": "LANTERN  UMBRELLA HARVEST LIBRARY QUARTZ HARVEST", "expected": "Lantern  Umbrella Harvest Library Quartz Harvest"}
+{"input": "HARVEST IF STUDIO PHD", "expected": "Harvest if Studio PHD"}
+{"input": "AN SOLDIER OR", "expected": "An Soldier Or"}
+{"input": "ENGINE  MORNING ON FOR KERNEL IF", "expected": "Engine  Morning on for Kernel If"}
+{"input": "CRYSTAL  MARKET ZEBRA STATION BUT", "expected": "Crystal  Market Zebra Station But"}
+{"input": "BUT WINDOW AND TO", "expected": "But Window and To"}
+{"input": "AT OCEAN BY LANTERN ORANGE ZEBRA", "expected": "At Ocean by Lantern Orange Zebra"}
+{"input": "FOREST GARDEN", "expected": "Forest Garden"}
+{"input": "DELTA  COPPER IF IN UDP", "expected": "Delta  Copper if in Udp"}
+{"input": "PLANET BUT GARDEN UMBRELLA VIA THE TCP", "expected": "Planet but Garden Umbrella via the TCP"}
+{"input": "VELVET AN THE TTL", "expected": "Velvet an the TTL"}
+{"input": "VELVET OCEAN BY APPLE SIGNAL HARBOR OF CSS", "expected": "Velvet Ocean by Apple Signal Harbor of CSS"}
+{"input": "ORANGE LETTER", "expected": "Orange Letter"}
+{"input": "A KERNEL AN TTL", "expected": "A Kernel an TTL"}
+{"input": "BY\tCRYSTAL AND BUT ROCKET", "expected": "By\tCrystal and but Rocket"}
+{"input": "FOR VILLAGE ISLAND VALLEY IN VS", "expected": "For Village Island Valley in Vs"}
+{"input": "FOREST IF MHZ", "expected": "Forest if MHZ"}
+{"input": "STUDIO V. EVENING DELTA NASA", "expected": "Studio V. Evening Delta Nasa"}
+{"input": "AT  OR HTTP", "expected": "At  or HTTP"}
+{"input": "AND KERNEL A CAMERA IF STATION THE PHD", "expected": "And Kernel a Camera if Station the PHD"}
+{"input": "RIVER  FOR", "expected": "River  For"}
+{"input": "FACTORY TIMBER V. OR V.", "expected": "Factory Timber V. Or V."}
+{"input": "SIGNAL BY LANTERN THE AND V. MOUNTAIN", "expected": "Signal by Lantern the and V. Mountain"}
+{"input": "STATION HARVEST LIBRARY ON", "expected": "Station Harvest Library On"}
+{"input": "MARKET IN DELTA MORNING", "expected": "Market in Delta Morning"}
+{"input": "MEADOW COPPER CAPTAIN IN SSL", "expected": "Meadow Copper Captain in SSL"}
+{"input": "VELVET PARCEL MEADOW PAPER VS STATION FACTORY SSL", "expected": "Velvet Parcel Meadow Paper vs Station Factory SSL"}
+{"input": "CAPTAIN APPLE CWM", "expected": "Captain Apple CWM"}
+{"input": "ORANGE  COMPASS LETTER NOTEBOOK FOREST GARDEN GARDEN", "expected": "Orange  Compass Letter Notebook Forest Garden Garden"}
+{"input": "CRYSTAL A QUARTZ V. CAMERA HTTP", "expected": "Crystal a Quartz V. Camera HTTP"}
+{"input": "MARKET AND BRIDGE AS CAPTAIN FOR", "expected": "Market and Bridge as Captain For"}
+{"input": "VILLAGE TO LETTER SOLDIER NASA", "expected": "Village to Letter Soldier Nasa"}
+{"input": "VIA  MORNING IN APPLE PAPER QUARTZ RIVER", "expected": "Via  Morning in Apple Paper Quartz River"}
+{"input": "VELVET  HARVEST FACTORY NASA", "expected": "Velvet  Harvest Factory Nasa"}
+{"input": "PARCEL UMBRELLA COPPER", "expected": "Parcel Umbrella Copper"}
+{"input": "ISLAND VILLAGE QUARTZ AS IN MORNING CWM", "expected": "Island Village Quartz as in Morning CWM"}
+{"input": "VILLAGE PARCEL TIMBER OCEAN FACTORY APPLE BRIDGE", "expected": "Village Parcel Timber Ocean Factory Apple Bridge"}
+{"input": "EVENING BY WINDOW ZEBRA MORNING API", "expected": "Evening by Window Zebra Morning Api"}
+{"input": "FACTORY MOUNTAIN LANTERN HARVEST VIA", "expected": "Factory Mountain Lantern Harvest Via"}
+{"input": "UMBRELLA STATION FOR UMBRELLA VELVET HTML", "expected": "Umbrella Station for Umbrella Velvet HTML"}
+{"input": "OCEAN  IF ENGINE TCP", "expected": "Ocean  if Engine TCP"}
+{"input": "VILLAGE KERNEL MEADOW VILLAGE PARCEL BUT VALLEY", "expected": "Village Kernel Meadow Village Parcel but Valley"}
+{"input": "VS. JOURNAL", "expected": "Vs. Journal"}
+{"input": "DELTA ROCKET NOTEBOOK THEATER LANTERN FACTORY", "expected": "Delta Rocket Notebook Theater Lantern Factory"}
+{"input": "FACTORY  FOREST TO", "expected": "Factory  Forest To"}
+{"input": "STUDIO FACTORY PLANET VELVET ISLAND EN CWM", "expected": "Studio Factory Planet Velvet Island en CWM"}
+{"input": "FOREST AND UMBRELLA WINDOW SQL", "expected": "Forest and Umbrella Window SQL"}
+{"input": "OF THEATER STUDIO FOR ORANGE SILVER CAPTAIN", "expected": "Of Theater Studio for Orange Silver Captain"}
+{"input": "ROCKET ROCKET", "expected": "Rocket Rocket"}
+{"input": "SIGNAL GALLERY VILLAGE VS MARBLE", "expected": "Signal Gallery Village vs Marble"}
+{"input": "BRIDGE  STATION OF", "expected": "Bridge  Station Of"}
+{"input": "OR  ENGINE TO HTML", "expected": "Or  Engine to HTML"}
+{"input": "DELTA OR VS PARCEL COPPER MARBLE", "expected": "Delta or vs Parcel Copper Marble"}
+{"input": "ORANGE LANTERN LIBRARY JOURNAL MOUNTAIN LETTER TIMBER", "expected": "Orange Lantern Library Journal Mountain Letter Timber"}
+{"input": "SOLDIER BUT WINDOW OR ZEBRA OF USA", "expected": "Soldier but Window or Zebra of Usa"}
+{"input": "VELVET\tVALLEY JOURNAL MORNING UDP", "expected": "Velvet\tValley Journal Morning Udp"}
+{"input": "SIGNAL MOUNTAIN EVENING THE DELTA", "expected": "Signal Mountain Evening the Delta"}
+{"input": "CAMERA\tEN TIMBER V. SIGNAL SQL", "expected": "Camera\ten Timber V. Signal SQL"}
+{"input": "BRIDGE OF FAQ", "expected": "Bridge of Faq"}
+{"input": "BRIDGE PLANET COMPASS COPPER OCEAN HARVEST TCP", "expected": "Bridge Planet Compass Copper Ocean Harvest TCP"}
+{"input": "NOTEBOOK ON TTL", "expected": "Notebook on TTL"}
+{"input": "SILVER BRIDGE", "expected": "Silver Bridge"}
+{"input": "ISLAND AN ISLAND STATION LANTERN FACTORY XML", "expected": "Island an Island Station Lantern Factory XML"}
+{"input": "PLANET ENGINE AND AN FAQ", "expected": "Planet Engine and an Faq"}
+{"input": "GALLERY MEADOW HTTP", "expected": "Gallery Meadow HTTP"}
+{"input": "TO GARDEN WINDOW PAPER VALLEY BUT", "expected": "To Garden Window Paper Valley But"}
+{"input": "THE HARVEST EN", "expected": "The Harvest En"}
+{"input": "GARDEN PARCEL FACTORY BY TIMBER WWW", "expected": "Garden Parcel Factory by Timber WWW"}
+{"input": "VALLEY RIVER", "expected": "Valley River"}
+{"input": "HARVEST LIBRARY FOREST TIMBER APPLE ISLAND RSS", "expected": "Harvest Library Forest Timber Apple Island RSS"}
+{"input": "COMPASS OCEAN THEATER COPPER ON OR V.", "expected": "Compass Ocean Theater Copper on or V."}
+{"input": "EVENING NOTEBOOK MARKET V. AS EN CAMERA UDP", "expected": "Evening Notebook Market V. As en Camera Udp"}
+{"input": "OF ROCKET MARBLE", "expected": "Of Rocket Marble"}
+{"input": "AN  LIBRARY AT SIGNAL SQL", "expected": "An  Library at Signal SQL"}
+{"input": "SOLDIER STATION UDP", "expected": "Soldier Station Udp"}
+{"input": "OF V ISLAND THEATER IF MORNING FACTORY", "expected": "Of v Island Theater if Morning Factory"}
+{"input": "RIVER MARKET FOREST TTL", "expected": "River Market Forest TTL"}
+{"input": "PAPER SIGNAL DELTA AS CRYSTAL CAPTAIN", "expected": "Paper Signal Delta as Crystal Captain"}
+{"input": "LETTER SILVER THE OR OR SILVER", "expected": "Letter Silver the or or Silver"}
+{"input": "V MARBLE V THEATER PARCEL HARVEST XML", "expected": "V Marble v Theater Parcel Harvest XML"}
+{"input": "MARKET HARVEST TIMBER THEATER CAMERA IF UMBRELLA SSL", "expected": "Market Harvest Timber Theater Camera if Umbrella SSL"}
+{"input": "YELLOW\tVALLEY AT WWW", "expected": "Yellow\tValley at WWW"}
+{"input": "TO\tBUT MARBLE THE THEATER EVENING HTTP", "expected": "To\tbut Marble the Theater Evening HTTP"}
+{"input": "AN THEATER AN", "expected": "An Theater An"}
+{"input": "SOLDIER IF COMPASS MARBLE MOUNTAIN HARBOR MHZ", "expected": "Soldier if Compass Marble Mountain Harbor MHZ"}
+{"input": "CRYSTAL VELVET COMPASS THE LETTER LIBRARY", "expected": "Crystal Velvet Compass the Letter Library"}
+{"input": "SILVER THE HTTP", "expected": "Silver the HTTP"}
+{"input": "QUARTZ TIMBER OR AND ENGINE TCP", "expected": "Quartz Timber or and Engine TCP"}
+{"input": "UMBRELLA\tCRYSTAL UMBRELLA THEATER IN NASA", "expected": "Umbrella\tCrystal Umbrella Theater in Nasa"}
+{"input": "OF CAPTAIN CSS", "expected": "Of Captain CSS"}
+{"input": "OCEAN\tSTUDIO OR", "expected": "Ocean\tStudio Or"}
+{"input": "WINDOW\tCRYSTAL", "expected": "Window\tCrystal"}
+{"input": "AN GARDEN LETTER LANTERN", "expected": "An Garden Letter Lantern"}
+{"input": "WINDOW AND IN SILVER CRYSTAL CWM", "expected": "Window and in Silver Crystal CWM"}
+{"input": "NOTEBOOK THE VELVET VELVET HARVEST VIA API", "expected": "Notebook the Velvet Velvet Harvest via Api"}
+{"input": "VS\tCAMERA COPPER HARVEST TCP", "expected": "Vs\tCamera Copper Harvest TCP"}
+{"input": "HARVEST PLANET", "expected": "Harvest Planet"}
+{"input": "THEATER  ISLAND HTML", "expected": "Theater  Island HTML"}
+{"input": "ORANGE MOUNTAIN QUARTZ HTML", "expected": "Orange Mountain Quartz HTML"}
+{"input": "GALLERY TO AN SIGNAL", "expected": "Gallery to an Signal"}
+{"input": "TO  FACTORY LIBRARY ISLAND FAQ", "expected": "To  Factory Library Island Faq"}
+{"input": "EVENING\tVIA MARBLE HARVEST LIBRARY ENGINE MEADOW XML", "expected": "Evening\tvia Marble Harvest Library Engine Meadow XML"}
+{"input": "AN ZEBRA", "expected": "An Zebra"}
+{"input": "VIA GALLERY JOURNAL TTL", "expected": "Via Gallery Journal TTL"}
+{"input": "AT VIA QUARTZ", "expected": "At via Quartz"}
+{"input": "THE ISLAND LIBRARY AN MORNING", "expected": "The Island Library an Morning"}
+{"input": "LANTERN MARBLE IF EN UDP", "expected": "Lantern Marble if en Udp"}
+{"input": "AS VS VIA OR BUT VALLEY THEATER API", "expected": "As vs via or but Valley Theater Api"}
+{"input": "MEADOW  MOUNTAIN MARKET ISLAND IN USA", "expected": "Meadow  Mountain Market Island in Usa"}
+{"input": "BY ORANGE JOURNAL THEATER LETTER LANTERN MEADOW UDP", "expected": "By Orange Journal Theater Letter Lantern Meadow Udp"}
+{"input": "OF VIA RSS", "expected": "Of via RSS"}
+{"input": "SILVER IF JOURNAL SSL", "expected": "Silver if Journal SSL"}
+{"input": "BUT  STATION ON FACTORY SIGNAL THE SQL", "expected": "But  Station on Factory Signal the SQL"}
+{"input": "CAMERA\tCAMERA VS ISLAND", "expected": "Camera\tCamera vs Island"}
+{"input": "SILVER  VILLAGE BRIDGE QUARTZ VALLEY TO AS CNN", "expected": "Silver  Village Bridge Quartz Valley to as CNN"}
+{"input": "IN MOUNTAIN IBM", "expected": "In Mountain Ibm"}
+{"input": "NOTEBOOK PLANET MHZ", "expected": "Notebook Planet MHZ"}
+{"input": "ON LANTERN AND CRYSTAL MOUNTAIN NASA", "expected": "On Lantern and Crystal Mountain Nasa"}
+{"input": "COMPASS MARBLE COPPER BUT COMPASS AN AN MHZ", "expected": "Compass Marble Copper but Compass an an MHZ"}
+{"input": "YELLOW ROCKET VALLEY ON MORNING MHZ", "expected": "Yellow Rocket Valley on Morning MHZ"}
+{"input": "LETTER VILLAGE", "expected": "Letter Village"}
+{"input": "NOTEBOOK QUARTZ ROCKET ORANGE CAMERA MOUNTAIN FYI", "expected": "Notebook Quartz Rocket Orange Camera Mountain Fyi"}
+{"input": "ON THE THE OCEAN", "expected": "On the the Ocean"}
+{"input": "EN CAMERA GALLERY VS LANTERN ISLAND TO", "expected": "En Camera Gallery vs Lantern Island To"}
+{"input": "HARVEST AS", "expected": "Harvest As"}
+{"input": "“Ñoño parcel ﬁle Ñoño niño”", "expected": "“Ñoño Parcel FIle Ñoño Niño”"}
+{"input": "market ægir", "expected": "Market Ægir"}
+{"input": "façade ﬁle QUARTZ window studio", "expected": "Façade FIle QUARTZ Window Studio"}
+{"input": "naïve élève naïve café", "expected": "Naïve Élève Naïve Café"}
+{"input": "“øl øl forest’", "expected": "“Øl Øl Forest’"}
+{"input": "βήτα ñandú river año COMPASS", "expected": "Βήτα Ñandú River Año COMPASS"}
+{"input": "ægir año über", "expected": "Ægir Año Über"}
+{"input": "Москва Ñoño", "expected": "Москва Ñoño"}
+{"input": "Ñoño COPPER İstanbul naïve Москва", "expected": "Ñoño COPPER İstanbul Naïve Москва"}
+{"input": "βήτα UMBRELLA HARBOR STUDIO", "expected": "Βήτα UMBRELLA HARBOR STUDIO"}
+{"input": "‘Velvet crème ñandú parcel gallery»", "expected": "‘Velvet Crème Ñandú Parcel Gallery»"}
+{"input": "soldier signal βήτα Theater", "expected": "Soldier Signal Βήτα Theater"}
+{"input": "東京 résumé YELLOW yellow naïve", "expected": "東京 Résumé YELLOW Yellow Naïve"}
+{"input": "¿market Москва Ñoño»", "expected": "¿market Москва Ñoño»"}
+{"input": "‘İstanbul ISLAND brûlée crème SILVER»", "expected": "‘İstanbul ISLAND Brûlée Crème SILVER»"}
+{"input": "señor river ßeta señor", "expected": "Señor River SSeta Señor"}
+{"input": "año MARBLE café", "expected": "Año MARBLE Café"}
+{"input": "año résumé lantern ßeta", "expected": "Año Résumé Lantern SSeta"}
+{"input": "¿東京 TIMBER island quartz Station»", "expected": "¿東京 TIMBER Island Quartz Station»"}
+{"input": "niño øl WINDOW soldier", "expected": "Niño Øl WINDOW Soldier"}
+{"input": "Ñoño señor", "expected": "Ñoño Señor"}
+{"input": "¿élève σοφος PAPER ΣΟΦΟΣ Ñoño»", "expected": "¿élève Σοφος PAPER ΣΟΦΟΣ Ñoño»"}
+{"input": "ORANGE COMPASS ﬁle İstanbul VILLAGE", "expected": "ORANGE COMPASS FIle İstanbul VILLAGE"}
+{"input": "İstanbul valley velvet brûlée niño", "expected": "İstanbul Valley Velvet Brûlée Niño"}
+{"input": "apple ΣΟΦΟΣ über", "expected": "Apple ΣΟΦΟΣ Über"}
+{"input": "FACTORY Ñoño Москва Garden orange", "expected": "FACTORY Ñoño Москва Garden Orange"}
+{"input": "«東京 résumé?", "expected": "«東京 Résumé?"}
+{"input": "東京 VELVET niño", "expected": "東京 VELVET Niño"}
+{"input": "crème Zebra", "expected": "Crème Zebra"}
+{"input": "über planet quartz", "expected": "Über Planet Quartz"}
+{"input": "βήτα Ñoño village", "expected": "Βήτα Ñoño Village"}
+{"input": "Ocean ßeta ßeta crème", "expected": "Ocean SSeta SSeta Crème"}
+{"input": "βήτα crème brûlée bridge zebra", "expected": "Βήτα Crème Brûlée Bridge Zebra"}
+{"input": "ñandú Москва café Harvest niño", "expected": "Ñandú Москва Café Harvest Niño"}
+{"input": "meadow LETTER niño naïve ßeta", "expected": "Meadow LETTER Niño Naïve SSeta"}
+{"input": "captain naïve STATION øl", "expected": "Captain Naïve STATION Øl"}
+{"input": "東京 ægir øl ﬁle résumé", "expected": "東京 Ægir Øl FIle Résumé"}
+{"input": "résumé 東京 Silver İstanbul", "expected": "Résumé 東京 Silver İstanbul"}
+{"input": "“Rocket ægir compass”", "expected": "“Rocket Ægir Compass”"}
+{"input": "naïve βήτα ægir soldier", "expected": "Naïve Βήτα Ægir Soldier"}
+{"input": "東京 engine", "expected": "東京 Engine"}
+{"input": "¿Ñoño ßeta captain 東京 crème”", "expected": "¿Ñoño SSeta Captain 東京 Crème”"}
+{"input": "σοφος İstanbul CAPTAIN MARBLE", "expected": "Σοφος İstanbul CAPTAIN MARBLE"}
+{"input": "Captain élève Planet", "expected": "Captain Élève Planet"}
+{"input": "über øl über Orange SOLDIER", "expected": "Über Øl Über Orange SOLDIER"}
+{"input": "FOREST résumé naïve über MARBLE", "expected": "FOREST Résumé Naïve Über MARBLE"}
+{"input": "«élève umbrella façade?", "expected": "«élève Umbrella Façade?"}
+{"input": "øl Meadow niño", "expected": "Øl Meadow Niño"}
+{"input": "«orange año”", "expected": "«orange Año”"}
+{"input": "Captain café", "expected": "Captain Café"}
+{"input": "øl ñandú Valley", "expected": "Øl Ñandú Valley"}
+{"input": "¿factory ΣΟΦΟΣ ﬁle?", "expected": "¿factory ΣΟΦΟΣ FIle?"}
+{"input": "«Ñoño señor niño crème ßeta’", "expected": "«Ñoño Señor Niño Crème SSeta’"}
+{"input": "Engine ñandú", "expected": "Engine Ñandú"}
+{"input": "año İstanbul ﬁle ΣΟΦΟΣ σοφος", "expected": "Año İstanbul FIle ΣΟΦΟΣ Σοφος"}
+{"input": "niño İstanbul", "expected": "Niño İstanbul"}
+{"input": "ΣΟΦΟΣ über Ñoño", "expected": "ΣΟΦΟΣ Über Ñoño"}
+{"input": "Window σοφος", "expected": "Window Σοφος"}
+{"input": "Yellow Yellow ΣΟΦΟΣ theater BRIDGE", "expected": "Yellow Yellow ΣΟΦΟΣ Theater BRIDGE"}
+{"input": "forest Gallery ΣΟΦΟΣ", "expected": "Forest Gallery ΣΟΦΟΣ"}
+{"input": "«élève engine İstanbul”", "expected": "«élève Engine İstanbul”"}
+{"input": "“crème timber garden ñandú»", "expected": "“Crème Timber Garden Ñandú»"}
+{"input": "Москва Ñoño İstanbul", "expected": "Москва Ñoño İstanbul"}
+{"input": "“brûlée café σοφος?", "expected": "“Brûlée Café Σοφος?"}
+{"input": "ßeta mountain", "expected": "SSeta Mountain"}
+{"input": "σοφος Bridge Ñoño", "expected": "Σοφος Bridge Ñoño"}
+{"input": "¿über ßeta’", "expected": "¿über SSeta’"}
+{"input": "naïve 東京 niño", "expected": "Naïve 東京 Niño"}
+{"input": "‘élève über Москва orange GALLERY”", "expected": "‘Élève Über Москва Orange GALLERY”"}
+{"input": "Crystal Ñoño résumé engine", "expected": "Crystal Ñoño Résumé Engine"}
+{"input": "ægir market Москва", "expected": "Ægir Market Москва"}
+{"input": "‘Island soldier Harbor 東京?", "expected": "‘Island Soldier Harbor 東京?"}
+{"input": "résumé naïve niño Delta", "expected": "Résumé Naïve Niño Delta"}
+{"input": "¿evening journal ßeta ﬁle”", "expected": "¿evening Journal SSeta FIle”"}
+{"input": "¿brûlée crème 東京 Москва Morning?", "expected": "¿brûlée Crème 東京 Москва Morning?"}
+{"input": "paper Москва crème signal σοφος", "expected": "Paper Москва Crème Signal Σοφος"}
+{"input": "señor año FACTORY σοφος mountain", "expected": "Señor Año FACTORY Σοφος Mountain"}
+{"input": "«PARCEL ßeta ﬁle garden valley’", "expected": "«PARCEL SSeta FIle Garden Valley’"}
+{"input": "harvest Planet βήτα", "expected": "Harvest Planet Βήτα"}
+{"input": "naïve river", "expected": "Naïve River"}
+{"input": "“東京 Morning parcel ægir señor»", "expected": "“東京 Morning Parcel Ægir Señor»"}
+{"input": "résumé año Москва MARKET", "expected": "Résumé Año Москва MARKET"}
+{"input": "señor crème", "expected": "Señor Crème"}
+{"input": "‘ægir señor ßeta”", "expected": "‘Ægir Señor SSeta”"}
+{"input": "¿résumé élève’", "expected": "¿résumé Élève’"}
+{"input": "‘über Village βήτα”", "expected": "‘Über Village Βήτα”"}
+{"input": "élève ægir", "expected": "Élève Ægir"}
+{"input": "“delta résumé parcel»", "expected": "“Delta Résumé Parcel»"}
+{"input": "‘Morning brûlée señor silver”", "expected": "‘Morning Brûlée Señor Silver”"}
+{"input": "«Ñoño façade»", "expected": "«Ñoño Façade»"}
+{"input": "«Parcel über»", "expected": "«Parcel Über»"}
+{"input": "brûlée año élève café", "expected": "Brûlée Año Élève Café"}
+{"input": "“engine élève ΣΟΦΟΣ øl’", "expected": "“Engine Élève ΣΟΦΟΣ Øl’"}
+{"input": "Ñoño Ñoño café window élève", "expected": "Ñoño Ñoño Café Window Élève"}
+{"input": "İstanbul βήτα façade", "expected": "İstanbul Βήτα Façade"}
+{"input": "“niño Parcel crème”", "expected": "“Niño Parcel Crème”"}
+{"input": "planet HARVEST über señor", "expected": "Planet HARVEST Über Señor"}
+{"input": "«élève Morning?", "expected": "«élève Morning?"}
+{"input": "¿niño OCEAN”", "expected": "¿niño OCEAN”"}
+{"input": "mountain İstanbul ﬁle", "expected": "Mountain İstanbul FIle"}
+{"input": "«東京 İstanbul naïve?", "expected": "«東京 İstanbul Naïve?"}
+{"input": "¿ßeta naïve forest élève 東京’", "expected": "¿ßeta Naïve Forest Élève 東京’"}
+{"input": "“ñandú ßeta”", "expected": "“Ñandú SSeta”"}
+{"input": "«café 東京 factory’", "expected": "«café 東京 Factory’"}
+{"input": "“ßeta 東京 øl?", "expected": "“SSeta 東京 Øl?"}
+{"input": "‘ßeta βήτα βήτα engine”", "expected": "‘SSeta Βήτα Βήτα Engine”"}
+{"input": "velvet brûlée Paper", "expected": "Velvet Brûlée Paper"}
+{"input": "ﬁle σοφος morning quartz", "expected": "FIle Σοφος Morning Quartz"}
+{"input": "factory ΣΟΦΟΣ señor", "expected": "Factory ΣΟΦΟΣ Señor"}
+{"input": "«façade βήτα crème Москва CAMERA»", "expected": "«façade Βήτα Crème Москва CAMERA»"}
+{"input": "résumé σοφος niño σοφος", "expected": "Résumé Σοφος Niño Σοφος"}
+{"input": "niño café Quartz crystal", "expected": "Niño Café Quartz Crystal"}
+{"input": "‘über ñandú”", "expected": "‘Über Ñandú”"}
+{"input": "YELLOW ROCKET İstanbul ßeta", "expected": "YELLOW ROCKET İstanbul SSeta"}
+{"input": "«Station ﬁle COMPASS Evening”", "expected": "«Station FIle COMPASS Evening”"}
+{"input": "ægir 東京 ñandú 東京 journal", "expected": "Ægir 東京 Ñandú 東京 Journal"}
+{"input": "ßeta año ZEBRA", "expected": "SSeta Año ZEBRA"}
+{"input": "øl élève ægir", "expected": "Øl Élève Ægir"}
+{"input": "‘ROCKET σοφος crystal”", "expected": "‘ROCKET Σοφος Crystal”"}
+{"input": "Ñoño CRYSTAL", "expected": "Ñoño CRYSTAL"}
+{"input": "¿Soldier ﬁle copper ßeta Ñoño?", "expected": "¿Soldier FIle Copper SSeta Ñoño?"}
+{"input": "naïve Lantern Letter ΣΟΦΟΣ", "expected": "Naïve Lantern Letter ΣΟΦΟΣ"}
+{"input": "“captain Yellow ﬁle»", "expected": "“Captain Yellow FIle»"}
+{"input": "«façade window Ñoño Parcel»", "expected": "«façade Window Ñoño Parcel»"}
+{"input": "façade ßeta Morning", "expected": "Façade SSeta Morning"}
+{"input": "¿Москва Delta Station?", "expected": "¿Москва Delta Station?"}
+{"input": "σοφος STATION soldier Москва", "expected": "Σοφος STATION Soldier Москва"}
+{"input": "İstanbul crème", "expected": "İstanbul Crème"}
+{"input": "año ægir brûlée orange silver", "expected": "Año Ægir Brûlée Orange Silver"}
+{"input": "theater niño harbor βήτα Planet", "expected": "Theater Niño Harbor Βήτα Planet"}
+{"input": "marble İstanbul élève notebook", "expected": "Marble İstanbul Élève Notebook"}
+{"input": "élève año gallery", "expected": "Élève Año Gallery"}
+{"input": "‘façade İstanbul año Москва’", "expected": "‘Façade İstanbul Año Москва’"}
+{"input": "marble señor 東京 brûlée café", "expected": "Marble Señor 東京 Brûlée Café"}
+{"input": "naïve MARBLE lantern ΣΟΦΟΣ", "expected": "Naïve MARBLE Lantern ΣΟΦΟΣ"}
+{"input": "ñandú señor Garden niño", "expected": "Ñandú Señor Garden Niño"}
+{"input": "soldier factory MORNING βήτα studio", "expected": "Soldier Factory MORNING Βήτα Studio"}
+{"input": "βήτα σοφος βήτα señor", "expected": "Βήτα Σοφος Βήτα Señor"}
+{"input": "THEATER CAMERA LETTER marble café", "expected": "THEATER CAMERA LETTER Marble Café"}
+{"input": "¿élève station»", "expected": "¿élève Station»"}
+{"input": "¿ΣΟΦΟΣ naïve ﬁle»", "expected": "¿ΣΟΦΟΣ Naïve FIle»"}
+{"input": "“Garden BRIDGE ßeta?", "expected": "“Garden BRIDGE SSeta?"}
+{"input": "über ocean naïve", "expected": "Über Ocean Naïve"}
+{"input": "¿résumé façade Ñoño ΣΟΦΟΣ»", "expected": "¿résumé Façade Ñoño ΣΟΦΟΣ»"}
+{"input": "señor über", "expected": "Señor Über"}
+{"input": "delta ñandú ñandú Paper", "expected": "Delta Ñandú Ñandú Paper"}
+{"input": "über 東京 ﬁle camera", "expected": "Über 東京 FIle Camera"}
+{"input": "βήτα élève año", "expected": "Βήτα Élève Año"}
+{"input": "¿über βήτα station”", "expected": "¿über Βήτα Station”"}
+{"input": "señor señor Compass library", "expected": "Señor Señor Compass Library"}
+{"input": "‘Yellow crème élève meadow»", "expected": "‘Yellow Crème Élève Meadow»"}
+{"input": "über Captain İstanbul MOUNTAIN", "expected": "Über Captain İstanbul MOUNTAIN"}
+{"input": "«ßeta MEADOW niño Gallery?", "expected": "«ßeta MEADOW Niño Gallery?"}
+{"input": "über Ñoño Journal", "expected": "Über Ñoño Journal"}
+{"input": "“quartz café’", "expected": "“Quartz Café’"}
+{"input": "Ñoño øl résumé SIGNAL", "expected": "Ñoño Øl Résumé SIGNAL"}
+{"input": "İstanbul øl", "expected": "İstanbul Øl"}
+{"input": "«umbrella ßeta βήτα”", "expected": "«umbrella SSeta Βήτα”"}
+{"input": "ΣΟΦΟΣ über meadow über", "expected": "ΣΟΦΟΣ Über Meadow Über"}
+{"input": "brûlée øl", "expected": "Brûlée Øl"}
+{"input": "東京 élève Gallery σοφος", "expected": "東京 Élève Gallery Σοφος"}
+{"input": "résumé café βήτα signal ΣΟΦΟΣ", "expected": "Résumé Café Βήτα Signal ΣΟΦΟΣ"}
+{"input": "ßeta señor İstanbul Ñoño morning", "expected": "SSeta Señor İstanbul Ñoño Morning"}
+{"input": "βήτα İstanbul HARBOR", "expected": "Βήτα İstanbul HARBOR"}
+{"input": "øl meadow Garden", "expected": "Øl Meadow Garden"}
+{"input": "“東京 façade soldier”", "expected": "“東京 Façade Soldier”"}
+{"input": "Москва ægir ΣΟΦΟΣ façade ﬁle", "expected": "Москва Ægir ΣΟΦΟΣ Façade FIle"}
+{"input": "über journal ΣΟΦΟΣ brûlée", "expected": "Über Journal ΣΟΦΟΣ Brûlée"}
+{"input": "İstanbul façade", "expected": "İstanbul Façade"}
+{"input": "ΣΟΦΟΣ crystal NOTEBOOK", "expected": "ΣΟΦΟΣ Crystal NOTEBOOK"}
+{"input": "“QUARTZ σοφος Compass’", "expected": "“QUARTZ Σοφος Compass’"}
+{"input": "ISLAND niño", "expected": "ISLAND Niño"}
+{"input": "River naïve", "expected": "River Naïve"}
+{"input": "ﬁle brûlée Ñoño PARCEL copper", "expected": "FIle Brûlée Ñoño PARCEL Copper"}
+{"input": "copper 東京 élève ﬁle", "expected": "Copper 東京 Élève FIle"}
+{"input": "ﬁle island façade marble", "expected": "FIle Island Façade Marble"}
+{"input": "año DELTA 東京 naïve yellow", "expected": "Año DELTA 東京 Naïve Yellow"}
+{"input": "brûlée σοφος σοφος", "expected": "Brûlée Σοφος Σοφος"}
+{"input": "VALLEY ñandú", "expected": "VALLEY Ñandú"}
+{"input": "año résumé lantern", "expected": "Año Résumé Lantern"}
+{"input": "“résumé JOURNAL”", "expected": "“Résumé JOURNAL”"}
+{"input": "Ñoño İstanbul Москва Harbor 東京", "expected": "Ñoño İstanbul Москва Harbor 東京"}
+{"input": "ægir Delta", "expected": "Ægir Delta"}
+{"input": "ñandú ﬁle résumé window studio", "expected": "Ñandú FIle Résumé Window Studio"}
+{"input": "«βήτα signal résumé»", "expected": "«βήτα Signal Résumé»"}
+{"input": "βήτα naïve", "expected": "Βήτα Naïve"}
+{"input": "İstanbul résumé", "expected": "İstanbul Résumé"}
+{"input": "résumé camera", "expected": "Résumé Camera"}
+{"input": "‘señor NOTEBOOK café résumé crystal?", "expected": "‘Señor NOTEBOOK Café Résumé Crystal?"}
+{"input": "crystal über 東京 kernel ægir", "expected": "Crystal Über 東京 Kernel Ægir"}
+{"input": "σοφος ZEBRA ßeta", "expected": "Σοφος ZEBRA SSeta"}
+{"input": "velvet Orange ñandú café σοφος", "expected": "Velvet Orange Ñandú Café Σοφος"}
+{"input": "résumé βήτα", "expected": "Résumé Βήτα"}
+{"input": "señor forest café", "expected": "Señor Forest Café"}
+{"input": "niño ßeta über island", "expected": "Niño SSeta Über Island"}
+{"input": "VALLEY ægir café café", "expected": "VALLEY Ægir Café Café"}
+{"input": "«ENGINE σοφος über?", "expected": "«ENGINE Σοφος Über?"}
+{"input": "‘niño ñandú café Zebra Kernel”", "expected": "‘Niño Ñandú Café Zebra Kernel”"}
+{"input": "élève niño HARVEST", "expected": "Élève Niño HARVEST"}
+{"input": "«Ñoño Москва Ñoño”", "expected": "«Ñoño Москва Ñoño”"}

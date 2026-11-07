@@ -1,0 +1,31 @@
+
+version = "1.0"
+
+
+
+[metadata]
+
+difficulty = "medium"
+
+category = "programming"
+
+tags = ["go", "titlecase"]
+
+
+
+[verifier]
+
+timeout_sec = 600.0
+
+
+
+[agent]
+
+timeout_sec = 600.0
+
+
+
+[environment]
+
+build_timeout_sec = 600.0
+

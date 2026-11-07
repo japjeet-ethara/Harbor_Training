@@ -1,0 +1,21 @@
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1, no_python = 1, behaviour = 4 }
+
+# Each extra reward keeps that check's score. Other inputs are weighted 0
+# because every aggregation includes every check.
+[[reward]]
+name = "build"
+aggregation = "weighted-mean"
+weights = { build = 1, no_python = 0, behaviour = 0 }
+
+[[reward]]
+name = "no_python"
+aggregation = "weighted-mean"
+weights = { build = 0, no_python = 1, behaviour = 0 }
+
+[[reward]]
+name = "behaviour"
+aggregation = "weighted-mean"
+weights = { build = 0, no_python = 0, behaviour = 1 }

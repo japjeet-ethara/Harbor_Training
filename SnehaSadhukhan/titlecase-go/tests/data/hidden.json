@@ -1,0 +1,1189 @@
+{
+  "cases": [
+    {
+      "id": "py-001",
+      "text": "",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": ""
+    },
+    {
+      "id": "py-002",
+      "text": "word/word",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Word/Word"
+    },
+    {
+      "id": "py-003",
+      "text": "a title and/or string",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A Title and/or String"
+    },
+    {
+      "id": "py-004",
+      "text": "dance with me/let\u2019s face the music and dance",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Dance With Me/Let\u2019s Face the Music and Dance"
+    },
+    {
+      "id": "py-005",
+      "text": "a-b end-to-end two-not-three/three-by-four/five-and",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A-B End-to-End Two-Not-Three/Three-by-Four/Five-And"
+    },
+    {
+      "id": "py-006",
+      "text": "34th 3rd 2nd",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "34th 3rd 2nd"
+    },
+    {
+      "id": "py-007",
+      "text": "Q&A with steve jobs: 'that's what happens in technology'",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Q&A With Steve Jobs: 'That's What Happens in Technology'"
+    },
+    {
+      "id": "py-008",
+      "text": "What is AT&T's problem?",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "What Is AT&T's Problem?"
+    },
+    {
+      "id": "py-009",
+      "text": "Apple deal with AT&T falls through",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Apple Deal With AT&T Falls Through"
+    },
+    {
+      "id": "py-010",
+      "text": "Words with all consonants like cnn are acronyms",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Words With All Consonants Like CNN Are Acronyms"
+    },
+    {
+      "id": "py-011",
+      "text": "this v that",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This v That"
+    },
+    {
+      "id": "py-012",
+      "text": "this v. that",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This v. That"
+    },
+    {
+      "id": "py-013",
+      "text": "this vs that",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This vs That"
+    },
+    {
+      "id": "py-014",
+      "text": "this vs. that",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This vs. That"
+    },
+    {
+      "id": "py-015",
+      "text": "The SEC's Apple probe: what you need to know",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "The SEC's Apple Probe: What You Need to Know"
+    },
+    {
+      "id": "py-016",
+      "text": "'by the Way, small word at the start but within quotes.'",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "'By the Way, Small Word at the Start but Within Quotes.'"
+    },
+    {
+      "id": "py-017",
+      "text": "Small word at end is nothing to be afraid of",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Small Word at End Is Nothing to Be Afraid Of"
+    },
+    {
+      "id": "py-018",
+      "text": "Starting Sub-Phrase With a Small Word: a Trick, Perhaps?",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Starting Sub-Phrase With a Small Word: A Trick, Perhaps?"
+    },
+    {
+      "id": "py-019",
+      "text": "Sub-Phrase With a Small Word in Quotes: 'a Trick, Perhaps?'",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Sub-Phrase With a Small Word in Quotes: 'A Trick, Perhaps?'"
+    },
+    {
+      "id": "py-020",
+      "text": "sub-phrase with a small word in quotes: \"a trick, perhaps?\"",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Sub-Phrase With a Small Word in Quotes: \"A Trick, Perhaps?\""
+    },
+    {
+      "id": "py-021",
+      "text": "Starting a Hyphen Delimited Sub-Phrase With a Small Word - a Trick, Perhaps?",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Starting a Hyphen Delimited Sub-Phrase With a Small Word - A Trick, Perhaps?"
+    },
+    {
+      "id": "py-022",
+      "text": "Hyphen Delimited Sub-Phrase With a Small Word in Quotes - 'a Trick, Perhaps?'",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Hyphen Delimited Sub-Phrase With a Small Word in Quotes - 'A Trick, Perhaps?'"
+    },
+    {
+      "id": "py-023",
+      "text": "Hyphen Delimited sub-phrase with a small word in quotes - \"a trick, perhaps?\"",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Hyphen Delimited Sub-Phrase With a Small Word in Quotes - \"A Trick, Perhaps?\""
+    },
+    {
+      "id": "py-024",
+      "text": "Snakes on a Plane - The TV Edit - The Famous Line",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Snakes on a Plane - The TV Edit - The Famous Line"
+    },
+    {
+      "id": "py-025",
+      "text": "Starting an Em Dash Delimited Sub-Phrase With a Small Word \u2014 a Trick, Perhaps?",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Starting an Em Dash Delimited Sub-Phrase With a Small Word \u2014 A Trick, Perhaps?"
+    },
+    {
+      "id": "py-026",
+      "text": "Em Dash Delimited Sub-Phrase With a Small Word in Quotes \u2014 'a Trick, Perhaps?'",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Em Dash Delimited Sub-Phrase With a Small Word in Quotes \u2014 'A Trick, Perhaps?'"
+    },
+    {
+      "id": "py-027",
+      "text": "Em Dash Delimited sub-phrase with a small word in quotes \u2014 \"a trick, perhaps?\"",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Em Dash Delimited Sub-Phrase With a Small Word in Quotes \u2014 \"A Trick, Perhaps?\""
+    },
+    {
+      "id": "py-028",
+      "text": "Snakes on a Plane \u2014 The TV Edit \u2014 The Famous Line",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Snakes on a Plane \u2014 The TV Edit \u2014 The Famous Line"
+    },
+    {
+      "id": "py-029",
+      "text": "EPISODE 7 \u2014 THE FORCE AWAKENS",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Episode 7 \u2014 The Force Awakens"
+    },
+    {
+      "id": "py-030",
+      "text": "episode 7 \u2013 The force awakens",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Episode 7 \u2013 The Force Awakens"
+    },
+    {
+      "id": "py-031",
+      "text": "THE CASE OF X \u2264 7",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "The Case of X \u2264 7"
+    },
+    {
+      "id": "py-032",
+      "text": "the case of X \u2264 7",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "The Case of X \u2264 7"
+    },
+    {
+      "id": "py-033",
+      "text": "\"Nothing to Be Afraid of?\"",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\"Nothing to Be Afraid Of?\""
+    },
+    {
+      "id": "py-034",
+      "text": "\"Nothing to be Afraid Of?\"",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\"Nothing to Be Afraid Of?\""
+    },
+    {
+      "id": "py-035",
+      "text": "a thing",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A Thing"
+    },
+    {
+      "id": "py-036",
+      "text": "2lmc Spool: 'gruber on OmniFocus and vapo(u)rware'",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "2lmc Spool: 'Gruber on OmniFocus and Vapo(u)rware'"
+    },
+    {
+      "id": "py-037",
+      "text": "this is just an example.com",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is Just an example.com"
+    },
+    {
+      "id": "py-038",
+      "text": "this is something listed on del.icio.us",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is Something Listed on del.icio.us"
+    },
+    {
+      "id": "py-039",
+      "text": "iTunes should be unmolested",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "iTunes Should Be Unmolested"
+    },
+    {
+      "id": "py-040",
+      "text": "reading between the lines of steve jobs\u2019s \u2018thoughts on music\u2019",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Reading Between the Lines of Steve Jobs\u2019s \u2018Thoughts on Music\u2019"
+    },
+    {
+      "id": "py-041",
+      "text": "seriously, \u2018repair permissions\u2019 is voodoo",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Seriously, \u2018Repair Permissions\u2019 Is Voodoo"
+    },
+    {
+      "id": "py-042",
+      "text": "generalissimo francisco franco: still dead; kieren McCarthy: still a jackass",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Generalissimo Francisco Franco: Still Dead; Kieren McCarthy: Still a Jackass"
+    },
+    {
+      "id": "py-043",
+      "text": "O'Reilly should be untouched",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "O'Reilly Should Be Untouched"
+    },
+    {
+      "id": "py-044",
+      "text": "my name is o'reilly",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "My Name Is O'Reilly"
+    },
+    {
+      "id": "py-045",
+      "text": "WASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE A PROBLEM",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Washington, D.C. Should Be Fixed but Might Be a Problem"
+    },
+    {
+      "id": "py-046",
+      "text": "THIS IS ALL CAPS AND SHOULD BE ADDRESSED",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is All Caps and Should Be Addressed"
+    },
+    {
+      "id": "py-047",
+      "text": "Mr McTavish went to MacDonalds",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Mr McTavish Went to MacDonalds"
+    },
+    {
+      "id": "py-048",
+      "text": "this shouldn't\nget mangled",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Shouldn't\nGet Mangled"
+    },
+    {
+      "id": "py-049",
+      "text": "this is http://foo.com",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is http://foo.com"
+    },
+    {
+      "id": "py-050",
+      "text": "mac mc MAC MC machine",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Mac Mc MAC MC Machine"
+    },
+    {
+      "id": "py-051",
+      "text": "FOO BAR 5TH ST",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Foo Bar 5th St"
+    },
+    {
+      "id": "py-052",
+      "text": "foo bar 5th st",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Foo Bar 5th St"
+    },
+    {
+      "id": "py-053",
+      "text": "l'grange l'grange l'Grange l'Grange",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "l'Grange l'Grange l'Grange l'Grange"
+    },
+    {
+      "id": "py-054",
+      "text": "L'grange L'grange L'Grange L'Grange",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "l'Grange l'Grange l'Grange l'Grange"
+    },
+    {
+      "id": "py-055",
+      "text": "l'GranGe",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "l'GranGe"
+    },
+    {
+      "id": "py-056",
+      "text": "o'grange O'grange o'Grange O'Grange",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "O'Grange O'Grange O'Grange O'Grange"
+    },
+    {
+      "id": "py-057",
+      "text": "o'grange's O'grange's o'Grange's O'Grange's",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "O'Grange's O'Grange's O'Grange's O'Grange's"
+    },
+    {
+      "id": "py-058",
+      "text": "O'GranGe",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "O'GranGe"
+    },
+    {
+      "id": "py-059",
+      "text": "o'melveny/o'doyle o'Melveny/o'doyle O'melveny/o'doyle o'melveny/o'Doyle o'melveny/O'doyle",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "O'Melveny/O'Doyle O'Melveny/O'Doyle O'Melveny/O'Doyle O'Melveny/O'Doyle O'Melveny/O'Doyle"
+    },
+    {
+      "id": "py-060",
+      "text": "mccay-mcbut-mcdo mcdonalds/mcby",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "McCay-McBut-McDo McDonalds/McBy"
+    },
+    {
+      "id": "py-061",
+      "text": "oblon, spivak, mcclelland, maier & neustadt",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Oblon, Spivak, McClelland, Maier & Neustadt"
+    },
+    {
+      "id": "py-062",
+      "text": "Mcoblon, spivak, mcclelland, mcmaier, & mcneustadt",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "McOblon, Spivak, McClelland, McMaier, & McNeustadt"
+    },
+    {
+      "id": "py-063",
+      "text": "mcfoo-bar, MCFOO-BAR, McFoo-bar, McFoo-Bar, mcfoo-mcbar, foo-mcbar",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "McFoo-Bar, McFoo-Bar, McFoo-Bar, McFoo-Bar, McFoo-McBar, Foo-McBar"
+    },
+    {
+      "id": "py-064",
+      "text": "'QUOTE' A GREAT",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "'Quote' a Great"
+    },
+    {
+      "id": "py-065",
+      "text": "\u2018QUOTE\u2019 A GREAT",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\u2018Quote\u2019 a Great"
+    },
+    {
+      "id": "py-066",
+      "text": "\u201cYOUNG AND RESTLESS\u201d",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\u201cYoung and Restless\u201d"
+    },
+    {
+      "id": "py-067",
+      "text": "EL NI\u00d1O A ARRIV\u00c9 HIER",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "El Ni\u00f1o a Arriv\u00e9 Hier"
+    },
+    {
+      "id": "py-068",
+      "text": "YEA NO",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Yea No"
+    },
+    {
+      "id": "py-069",
+      "text": "\u00dd\u00c6 \u00d1\u00d8",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\u00dd\u00e6 \u00d1\u00f8"
+    },
+    {
+      "id": "py-070",
+      "text": "yea no",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Yea No"
+    },
+    {
+      "id": "py-071",
+      "text": "\u00fd\u00e6 \u00f1\u00f8",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\u00dd\u00e6 \u00d1\u00f8"
+    },
+    {
+      "id": "py-072",
+      "text": "Mr mr Mrs Ms Mss Dr dr , Mr. and Mrs. Person",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Mr Mr Mrs Ms MSS Dr Dr , Mr. And Mrs. Person"
+    },
+    {
+      "id": "py-073",
+      "text": "a mix\u00a0of\tdifferent\u200aspace\u2006characters",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A Mix\u00a0of\tDifferent\u200aSpace\u2006Characters"
+    },
+    {
+      "id": "leading-space",
+      "text": " a thing",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": " a Thing"
+    },
+    {
+      "id": "crlf-collapse",
+      "text": "alpha\r\nbeta",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Alpha\nBeta"
+    },
+    {
+      "id": "crlf-preserve",
+      "text": "alpha\r\nbeta",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": true,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Alpha\n\nBeta"
+    },
+    {
+      "id": "double-space",
+      "text": "a  thing",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A  Thing"
+    },
+    {
+      "id": "double-space-normalise",
+      "text": "a  thing",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": true,
+      "callback": null,
+      "expected": "A  Thing"
+    },
+    {
+      "id": "double-slash",
+      "text": "foo//bar",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Foo//bar"
+    },
+    {
+      "id": "all-caps-at-and-t",
+      "text": "AT&T ROCKS THE WORLD",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "At&t Rocks the World"
+    },
+    {
+      "id": "honorific-tails",
+      "text": "DR AND MRS SMITH",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "DR and MRS Smith"
+    },
+    {
+      "id": "mc-internal-capital",
+      "text": "mCfoo is here",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "mCfoo Is Here"
+    },
+    {
+      "id": "mc-short-lower",
+      "text": "mca today",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Mca Today"
+    },
+    {
+      "id": "colon-before-domain",
+      "text": "see: example.com",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "See: example.com"
+    },
+    {
+      "id": "subphrase-a-dot-b",
+      "text": "see: a.b later",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "See: A.b Later"
+    },
+    {
+      "id": "middle-the-kept",
+      "text": "see THE cat",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "See THE Cat"
+    },
+    {
+      "id": "mc-piece-is-all-caps",
+      "text": "keep MCFOO please",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Keep McFoo Please"
+    },
+    {
+      "id": "unicode-internal-capital",
+      "text": "the ni\u00d1O case",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "The ni\u00d1O Case"
+    },
+    {
+      "id": "digit-after-dot",
+      "text": "see a.1 today",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "See A.1 Today"
+    },
+    {
+      "id": "figure-dash-subphrase",
+      "text": "Word \u2012 a Trick",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Word \u2012 A Trick"
+    },
+    {
+      "id": "horizontal-bar-subphrase",
+      "text": "Word \u2015 a Trick",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Word \u2015 A Trick"
+    },
+    {
+      "id": "of-two-trailing-puncts",
+      "text": "Nothing to be afraid of?!",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Nothing to Be Afraid Of?!"
+    },
+    {
+      "id": "single-vs-dot",
+      "text": "vs.",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Vs."
+    },
+    {
+      "id": "lower-q-and-a",
+      "text": "q&a session",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Q&a Session"
+    },
+    {
+      "id": "wordlist-last-wins",
+      "text": "SENDING PPPOE",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "wordlist",
+        "lines": [
+          "PPPoE",
+          "PpPoE"
+        ]
+      },
+      "expected": "Sending PpPoE"
+    },
+    {
+      "id": "wordlist-missing-file",
+      "text": "SENDING PPPOE",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "wordlist_missing",
+        "path": "/no/such/titlecase-wordlist.txt"
+      },
+      "expected": "Sending Pppoe"
+    },
+    {
+      "id": "callback-empty-is-unhandled",
+      "text": "a thing",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "always_empty"
+      },
+      "expected": "A Thing"
+    },
+    {
+      "id": "callback-keeps-first-small-word",
+      "text": "a thing",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "exact",
+        "match": "a",
+        "value": "a"
+      },
+      "expected": "a Thing"
+    },
+    {
+      "id": "callback-then-subphrase",
+      "text": ": a",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "exact",
+        "match": "a",
+        "value": "a"
+      },
+      "expected": ": A"
+    },
+    {
+      "id": "recursive-all-caps-flag",
+      "text": "keep MCFOO please",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "echo_all_caps"
+      },
+      "expected": "Keep McALL Please"
+    },
+    {
+      "id": "slash-recomputes-all-caps",
+      "text": "see http/FOO now",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "echo_all_caps"
+      },
+      "expected": "See HTTP/ALL Now"
+    },
+    {
+      "id": "hyphen-without-end-caps",
+      "text": "a-b",
+      "use_default": false,
+      "small_first_last": false,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "a-B"
+    },
+    {
+      "id": "apostrophe-d",
+      "text": "d'artagnan rode",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "d'Artagnan Rode"
+    },
+    {
+      "id": "only-newlines",
+      "text": "\n\n",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\n"
+    },
+    {
+      "id": "only-newlines-preserve",
+      "text": "\n\n",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": true,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "\n\n"
+    },
+    {
+      "id": "trailing-spaces",
+      "text": "a  ",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A  "
+    },
+    {
+      "id": "empty-slash-piece",
+      "text": "a/",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A/"
+    },
+    {
+      "id": "em-dash-inside-token",
+      "text": "end\u2014to\u2014end",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "End\u2014to\u2014end"
+    },
+    {
+      "id": "first-word-andromeda",
+      "text": "andromeda rises",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Andromeda Rises"
+    },
+    {
+      "id": "vs-at-end",
+      "text": "battle vs.",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Battle Vs."
+    },
+    {
+      "id": "small-first-last-off",
+      "text": "the end",
+      "use_default": false,
+      "small_first_last": false,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "the End"
+    },
+    {
+      "id": "nbsp-kept",
+      "text": "text\u00a0with\u00a0nonbreaking\u00a0spaces",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Text\u00a0With\u00a0Nonbreaking\u00a0Spaces"
+    },
+    {
+      "id": "nbsp-normalised",
+      "text": "text\u00a0with\u00a0nonbreaking\u00a0spaces",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": true,
+      "callback": null,
+      "expected": "Text With Nonbreaking Spaces"
+    },
+    {
+      "id": "callback-upper-all",
+      "text": "cr\u00e8me br\u00fbl\u00e9e",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "upper_all"
+      },
+      "expected": "CR\u00c8ME BR\u00dbL\u00c9E"
+    },
+    {
+      "id": "form-feed-separator",
+      "text": "text\fwith\ffeed",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Text\fWith\fFeed"
+    },
+    {
+      "id": "line-separator-not-a-break",
+      "text": "text\u2028with",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Text\u2028With"
+    }
+  ]
+}

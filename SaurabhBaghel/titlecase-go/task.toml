@@ -1,0 +1,41 @@
+schema_version = "1.4"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "SaurabhBaghel/titlecase-go"
+version = "1.0.0"
+description = "Port python-titlecase 2.4.1 to Go with byte-for-byte titlecase() compatibility."
+authors = [{ name = "Saurabh Baghel" }]
+keywords = ["go", "porting", "titlecase", "unicode"]
+
+[metadata]
+category = "programming"
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_commit = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[verifier]
+timeout_sec = 600.0
+environment_mode = "separate"
+
+[verifier.env]
+
+[verifier.environment]
+network_mode = "no-network"
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 600.0
+os = "linux"
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+mcp_servers = []
+workdir = "/workspace/repo"
+
+[environment.env]
+
+[solution.env]

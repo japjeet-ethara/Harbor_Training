@@ -1,0 +1,10 @@
+schema_version = "1.4"
+
+artifacts = ["/workspace/repo"]
+
+[verifier]
+timeout_sec = 600.0
+environment_mode = "separate"
+
+[environment]
+build_timeout_sec = 900.0

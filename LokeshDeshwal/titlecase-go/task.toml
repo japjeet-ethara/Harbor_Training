@@ -1,0 +1,27 @@
+version = "1.0"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "practice/titlecase-go"
+
+[metadata]
+author_name = "Lokesh Deshwal"
+category = "programming"
+tags = ["porting", "go", "python", "regex"]
+
+[agent]
+timeout_sec = 1800.0
+network_mode = "allowlist"
+allowed_hosts = []
+
+[verifier]
+timeout_sec = 120.0
+environment_mode = "separate"
+network_mode = "allowlist"
+allowed_hosts = []
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
