@@ -1,0 +1,6 @@
+Building Docker image harbor-prebuilt:harbor-docker-egress-control-sidecar--7b9d008f883e21d9 from C:\Users\AdarshSahani\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\harbor-docker-egress-control-sidecar using C:\Users\AdarshSahani\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\harbor-docker-egress-control-sidecar\Dockerfile at 2026-11-06 12:53:23.753857+00:00
+Skipping image OS validation for hb__88924dec7cee5269661605b43d0fa004: docker inspect returned 1
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+Collecting main service artifacts
+Skipping image OS validation for hb__8ad4682ae726f3d7ff9a109be275c45c: docker inspect returned 1
+Trial AdarshSahani__YQgiF8B failed: No reward file found at jobs\2026-11-06__18-23-08\AdarshSahani__YQgiF8B\verifier\reward.txt or jobs\2026-11-06__18-23-08\AdarshSahani__YQgiF8B\verifier\reward.json
