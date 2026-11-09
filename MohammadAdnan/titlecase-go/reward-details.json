@@ -1,0 +1,60 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 0.8333,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "behaviour",
+        "weight": 4.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "hidden_behavior_matches",
+              "value": 1.0,
+              "raw": 1.0,
+              "weight": 1.0,
+              "description": "hidden_behavior_matches"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "build",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "build_passes",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "build_passes"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "no_python",
+        "weight": 1.0,
+        "detail": {
+          "score": 0.0,
+          "criteria": [
+            {
+              "name": "no_python_files",
+              "value": 0.0,
+              "raw": false,
+              "weight": 1.0,
+              "description": "no_python_files"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}
