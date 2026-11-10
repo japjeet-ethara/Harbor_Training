@@ -21,3 +21,23 @@ node_modules/
 
 # Harbor
 dist.tar.gz
+
+# Evaluation outputs
+/jobs/
+/jobs_backup/
+/cheat/
+
+# Hidden evaluation data
+/tests/data/hidden_expected.txt
+/tests/data/hidden_actual.txt
+
+# Generated binaries and temporary files
+/titlecase
+/titlecase.exe
+/titlecase-go
+/titlecase-go.exe
+/titlecase-check.exe
+/actual.txt
+/task.toml.backup
+/reward-details.json
+/reward.json
