@@ -1,5 +1,5 @@
 {
-  "status": "real_Docker_trials_passed; reflection_and_publication_pending",
+  "status": "real_Docker_trials_passed_and_published; reflection_pending",
   "source_commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167",
   "local_public_matches": 2000,
   "local_hidden_matches": 2000,
@@ -19,11 +19,13 @@
   "curated_evidence": "evidence/submission/RESULTS.md",
   "latest_local_checks": "evidence/terminal-validation/",
   "github_repository_created": false,
+  "github_published": true,
+  "github_submission_url": "https://github.com/japjeet-ethara/Harbor_Training/tree/main/charitra/titlecase-go",
+  "github_initial_commit": "e9e898f29ded861c2d440ec1e8e074b2b8a03ec9",
   "screenshots_present": true,
   "screenshots_directory": "screeshot/",
   "remaining_commands": [],
   "remaining_manual_steps": [
-    "write truthful reflection",
-    "publish task to GitHub"
+    "write truthful reflection"
   ]
 }

@@ -16,7 +16,8 @@ solution plus two negative controls.
   nop **0.0**, and replay cheat **0.1673** (below 0.2), with no exceptions.
   Actual rewards and trial results are saved in `evidence/submission/`.
   All three reward screenshots are saved in `screeshot/`.
-  GitHub publication and the reflection remain pending.
+  Published at [Harbor_Training/charitra/titlecase-go](https://github.com/japjeet-ethara/Harbor_Training/tree/main/charitra/titlecase-go).
+  The two-line reflection remains pending.
 
 See `evidence/submission/RESULTS.md` for the actual Harbor scores and
 `evidence/terminal-validation/harbor-run.txt` for the terminal transcript.
@@ -491,7 +492,7 @@ correct existing remote instead of creating it again.
 - [x] Actual trial artifacts included.
 - [x] Three reward screenshots included in `screeshot/`.
 - [ ] Two-line reflection describes real work.
-- [ ] GitHub repository accessible to the reviewer.
+- [x] GitHub repository accessible to the reviewer.
 
 ## Primary references
 
