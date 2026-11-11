@@ -1,0 +1,119 @@
+Running oracle in Docker; output: /mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/jobs/oracle
+Tip: There are many benchmarks available in Harbor's registry.
+Run `harbor datasets list` to see all available datasets.
+
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:02:36 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     1.000 │ 1.000 │     1.000 │  1.000 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 2m 37s
+Results written to 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs/oracle/result.json
+Inspect results by running `harbor view 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs`
+Share results by running `harbor upload 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs/oracle`
+
+Running nop in Docker; output: /mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/jobs/nop
+Agent 'nop' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:55 0:00:00
+adhoc • nop
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     0.000 │ 0.000 │     0.000 │  0.000 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 56s
+Results written to 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs/nop/result.json
+Inspect results by running `harbor view 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs`
+Share results by running `harbor upload 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs/nop`
+
+Running cheat in Docker; output: /mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/jobs/cheat
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 0.001 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:01:03 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     0.001 │ 1.000 │     0.000 │  0.167 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.001  │     1 │
+│ 1.0    │     1 │
+│ 0.0    │     1 │
+│ 0.1673 │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 1m 4s
+Results written to 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs/cheat/result.json
+Inspect results by running `harbor view 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs`
+Share results by running `harbor upload 
+/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/
+jobs/cheat`
+
+{
+  "oracle": {
+    "behaviour": 1.0,
+    "build": 1.0,
+    "no_python": 1.0,
+    "reward": 1.0
+  },
+  "nop": {
+    "behaviour": 0.0,
+    "build": 0.0,
+    "no_python": 0.0,
+    "reward": 0.0
+  },
+  "cheat": {
+    "behaviour": 0.001,
+    "build": 1.0,
+    "no_python": 0.0,
+    "reward": 0.1673
+  }
+}
+
+Validated Harbor evidence: /mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/evidence-summary.json
+View runs: harbor view "/mnt/c/Users/Charitra/Desktop/titlecase-go/evidence/harbor/terminal-20261111-01/jobs" --port 8080

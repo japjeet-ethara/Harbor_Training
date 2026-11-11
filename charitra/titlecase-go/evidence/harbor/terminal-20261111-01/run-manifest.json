@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "started_at": "2026-11-11T12:00:34.086011+00:00",
+  "task_root": "/mnt/c/Users/Charitra/Desktop/titlecase-go",
+  "versions": {
+    "harbor": "0.25.0",
+    "harbor-rewardkit": "0.2.4",
+    "go": "1.23"
+  },
+  "environment": {
+    "type": "docker",
+    "auto_mounting": false,
+    "network_mode": "no-network",
+    "verifier_environment_mode": "separate"
+  },
+  "task_file_sha256": {
+    "task.toml": "1d3d9f847243074893dafc3173ab5e4aa0873429ecbfd8b8c58d5cd743088d11",
+    "environment/Dockerfile": "99ceff86df2f1626757886d3b4ae00f58c9e438d3b463d59f7be7056ca08e3bd",
+    "tests/Dockerfile": "a148eb5c2c357927f80abb33eb200637d45cd2c361ff2fdc6f88e4cbe3bfe8a3",
+    "tests/grader.py": "779b6ba3fa43ab4d82af61d6b768b742477c3999e5df97eb51d7da8fa6346a18",
+    "tests/reward.toml": "84fdc7b1679ec33310477db4345a0d4638c145d5468519c43b803385bde9e034",
+    "tests/data/manifest.json": "7bc272bafd9172a3c17fd3d798be24c61f465479c74f25280620eae4712d1e7a",
+    "solution/solve.sh": "ac94f3a471f3c87517f94bf0a4015071803bf58686e5aed08c68d8b1419a23c5",
+    "solution/main.go": "db17128eb18bd158d8cb81ca9a51c9c3f8ba20dd6b060cf881eb569458470881",
+    "solution/unicode_tables.go": "8204503b4b919b93e8bda2d7a26c2607d3ebbb058d08d0be41461763a894e9ec",
+    "cheat/solve.sh": "21d2d888a24edec8d6dcca0164f429c724ee0b05ec0571d8ba8a2a9c2e886c49"
+  },
+  "jobs": {
+    "oracle": "jobs/oracle",
+    "nop": "jobs/nop",
+    "cheat": "jobs/cheat"
+  },
+  "cheat": "Replay visible answers while retaining Python files; required reward < 0.2.",
+  "validated_at": "2026-11-11T12:06:01.681059+00:00"
+}

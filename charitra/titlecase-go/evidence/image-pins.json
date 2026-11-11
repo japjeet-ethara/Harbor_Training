@@ -1,0 +1,10 @@
+{
+  "resolved_at_utc": "2026-11-06",
+  "registry": "registry-1.docker.io",
+  "images": {
+    "golang:1.23": "sha256:60deed95d3888cc5e4d9ff8a10c54e5edc008c6ae3fba6187be6fb592e19e8c0",
+    "python:3.12-slim-bookworm": "sha256:935c3c5b12357a7e10caa9c1e6ca5692344d97cf229832ef584be2cec9fc03df"
+  },
+  "type": "official multi-platform OCI image index",
+  "runtime_run_status": "not executed by this metadata check"
+}

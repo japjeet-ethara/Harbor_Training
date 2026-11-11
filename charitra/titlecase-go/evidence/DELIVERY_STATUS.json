@@ -1,0 +1,29 @@
+{
+  "status": "real_Docker_trials_passed; reflection_and_publication_pending",
+  "source_commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167",
+  "local_public_matches": 2000,
+  "local_hidden_matches": 2000,
+  "broader_differential_records_matched": 1265238,
+  "host_safe_grader_tests_passed": 19,
+  "worker_executions_in_host_tests": "mocked",
+  "harbor_lint_findings": [],
+  "actual_harbor_run": true,
+  "actual_harbor_evidence": "evidence/harbor/terminal-20261111-01/evidence-summary.json",
+  "actual_harbor_rewards": {
+    "oracle": 1.0,
+    "nop": 0.0,
+    "cheat": 0.1673
+  },
+  "actual_harbor_infrastructure_exceptions": 0,
+  "actual_harbor_verified_date": "2026-11-11",
+  "curated_evidence": "evidence/submission/RESULTS.md",
+  "latest_local_checks": "evidence/terminal-validation/",
+  "github_repository_created": false,
+  "screenshots_present": true,
+  "screenshots_directory": "screeshot/",
+  "remaining_commands": [],
+  "remaining_manual_steps": [
+    "write truthful reflection",
+    "publish task to GitHub"
+  ]
+}

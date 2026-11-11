@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "check_kind": "authoring_fixture_validation_not_harbor",
+  "records_per_file": 2000,
+  "unique_public_inputs": 2000,
+  "unique_hidden_inputs": 2000,
+  "public_hidden_disjoint": true,
+  "all_expected_answers_recomputed_from_original": true,
+  "two_regenerations_byte_identical": true,
+  "public_max_record_bytes": 90008,
+  "hidden_max_record_bytes": 108007,
+  "visible_answer_replay_matching_hidden_rows": 2,
+  "original_source_sha256": "a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0",
+  "upstream_commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+}

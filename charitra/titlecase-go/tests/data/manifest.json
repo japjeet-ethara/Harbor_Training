@@ -1,0 +1,52 @@
+{
+  "format": "UTF-8; LF-delimited records; one final LF; embedded CR/LF excluded; other characters preserved",
+  "seed": 1,
+  "public_hidden_inputs_disjoint": true,
+  "upstream": {
+    "url": "https://github.com/ppannuto/python-titlecase",
+    "commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167",
+    "version": "2.4.1",
+    "license": "MIT",
+    "source_file": "titlecase/__init__.py",
+    "source_sha256": "a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0"
+  },
+  "reference": {
+    "function": "titlecase.titlecase(text)",
+    "arguments": "defaults; no callback; no small-word-list modification",
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "unicode_version": "15.0.0",
+    "regex_backend": "stdlib re",
+    "optional_regex_package": false
+  },
+  "files": {
+    "inputs.txt": {
+      "records": 2000,
+      "bytes": 255531,
+      "sha256": "b062dce74c0167fd6628c9df040a76156bdad845dc358ec384dda0636a13d038",
+      "max_record_bytes": 90008,
+      "blank_records": 1
+    },
+    "hidden_inputs.txt": {
+      "records": 2000,
+      "bytes": 272185,
+      "sha256": "bc8dcb123cc8854fac168b4772e6230972710e884386ebf8879ba8c91a4ca51f",
+      "max_record_bytes": 108007,
+      "blank_records": 0
+    },
+    "expected.txt": {
+      "records": 2000,
+      "bytes": 255721,
+      "sha256": "b950086428355a3b6f5f42d6bbf5c83bbea682ccd02d8e5f43ebe2cad8b7ec59",
+      "max_record_bytes": 90008,
+      "blank_records": 1
+    },
+    "hidden_expected.txt": {
+      "records": 2000,
+      "bytes": 272398,
+      "sha256": "1f6a7a939681bfa9c7787ea067e43a7dbb59dc01b8ccf16bc35e2d5c51330db6",
+      "max_record_bytes": 108007,
+      "blank_records": 0
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "behaviour_returncode": 0,
+  "behaviour_status": "compared",
+  "build_status": "passed",
+  "dependency_packages": 60,
+  "fixture_sha256": {
+    "expected.txt": "b950086428355a3b6f5f42d6bbf5c83bbea682ccd02d8e5f43ebe2cad8b7ec59",
+    "hidden_expected.txt": "1f6a7a939681bfa9c7787ea067e43a7dbb59dc01b8ccf16bc35e2d5c51330db6",
+    "hidden_inputs.txt": "bc8dcb123cc8854fac168b4772e6230972710e884386ebf8879ba8c91a4ca51f",
+    "inputs.txt": "b062dce74c0167fd6628c9df040a76156bdad845dc358ec384dda0636a13d038",
+    "manifest.json": "7bc272bafd9172a3c17fd3d798be24c61f465479c74f25280620eae4712d1e7a"
+  },
+  "hidden_records": 2000,
+  "isolation": "rewardkit.Worker/fresh-uid",
+  "matched_records": 2000,
+  "output_records": 2000,
+  "python_files_present": false,
+  "schema_version": 1,
+  "scores": {
+    "behaviour": 1.0,
+    "build": 1.0,
+    "no_python": 1.0
+  }
+}

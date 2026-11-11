@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.go text eol=lf
+tests/data/*.txt -text
+environment/visible/*.txt -text
+*.png binary
+*.zip binary

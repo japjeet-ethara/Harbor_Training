@@ -1,0 +1,98 @@
+{
+  "actual_harbor_run": false,
+  "build_passed": true,
+  "copied_runtime_source_has_no_python_files": true,
+  "corpora": {
+    "hidden": {
+      "exact_output_bytes": true,
+      "input_nul_bytes": 2,
+      "input_records": 2000,
+      "local_match_fraction": 1.0,
+      "matched_records": 2000,
+      "output_records": 2000,
+      "output_sha256": "1f6a7a939681bfa9c7787ea067e43a7dbb59dc01b8ccf16bc35e2d5c51330db6",
+      "unterminated_final_record_passed": true
+    },
+    "public": {
+      "exact_output_bytes": true,
+      "input_nul_bytes": 0,
+      "input_records": 2000,
+      "local_match_fraction": 1.0,
+      "matched_records": 2000,
+      "output_records": 2000,
+      "output_sha256": "b950086428355a3b6f5f42d6bbf5c83bbea682ccd02d8e5f43ebe2cad8b7ec59",
+      "unterminated_final_record_passed": true
+    }
+  },
+  "dependency_audit": {
+    "local_module_packages": [
+      "titlecase-go"
+    ],
+    "package_count": 60,
+    "stdlib_only": true,
+    "third_party_module_requirements": 0
+  },
+  "empty_input_stream_passed": true,
+  "finished_at_utc": "2026-11-11T11:56:51.477702+00:00",
+  "fixtures": {
+    "files": {
+      "expected.txt": {
+        "bytes": 255721,
+        "records": 2000,
+        "sha256": "b950086428355a3b6f5f42d6bbf5c83bbea682ccd02d8e5f43ebe2cad8b7ec59"
+      },
+      "hidden_expected.txt": {
+        "bytes": 272398,
+        "records": 2000,
+        "sha256": "1f6a7a939681bfa9c7787ea067e43a7dbb59dc01b8ccf16bc35e2d5c51330db6"
+      },
+      "hidden_inputs.txt": {
+        "bytes": 272185,
+        "records": 2000,
+        "sha256": "bc8dcb123cc8854fac168b4772e6230972710e884386ebf8879ba8c91a4ca51f"
+      },
+      "inputs.txt": {
+        "bytes": 255531,
+        "records": 2000,
+        "sha256": "b062dce74c0167fd6628c9df040a76156bdad845dc358ec384dda0636a13d038"
+      }
+    },
+    "manifest_sha256": "7bc272bafd9172a3c17fd3d798be24c61f465479c74f25280620eae4712d1e7a",
+    "public_hidden_inputs_disjoint": true,
+    "reference": {
+      "arguments": "defaults; no callback; no small-word-list modification",
+      "function": "titlecase.titlecase(text)",
+      "implementation": "CPython",
+      "optional_regex_package": false,
+      "python": "3.12.14",
+      "regex_backend": "stdlib re",
+      "unicode_version": "15.0.0"
+    },
+    "upstream": {
+      "commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167",
+      "license": "MIT",
+      "source_file": "titlecase/__init__.py",
+      "source_sha256": "a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0",
+      "url": "https://github.com/ppannuto/python-titlecase",
+      "version": "2.4.1"
+    }
+  },
+  "go_version": "go version go1.23.12 linux/amd64",
+  "host_python": "3.12.14",
+  "limitations": [
+    "Not a Docker or Harbor trial; no Harbor reward or trajectory is produced.",
+    "Does not exercise the separate verifier container or Worker security boundary.",
+    "Finite fixtures demonstrate tested parity, not equality for every possible input."
+  ],
+  "schema_version": 1,
+  "scope": "Trusted reference solution compiled in a temporary directory; frozen public and hidden fixtures",
+  "solution_files": {
+    "go.mod": "7dfe022d7318ee94091be0a1915c24b5584e5bb0082079f977bc1f12474c18b3",
+    "main.go": "db17128eb18bd158d8cb81ca9a51c9c3f8ba20dd6b060cf881eb569458470881",
+    "unicode_tables.go": "8204503b4b919b93e8bda2d7a26c2607d3ebbb058d08d0be41461763a894e9ec"
+  },
+  "started_at_utc": "2026-11-11T11:56:43.726660+00:00",
+  "status": "passed",
+  "total_frozen_records": 4000,
+  "validation_kind": "local_reference_solution_validation"
+}
