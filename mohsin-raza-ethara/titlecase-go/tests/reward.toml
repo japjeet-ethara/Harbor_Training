@@ -1,0 +1,15 @@
+# The three checks live in checks.py.  Their criterion weights are set where
+# they are registered:
+#     build      weight 1
+#     no_python  weight 1
+#     behaviour  weight 4
+# so each file-level component is already the task's weighted mean.
+[scoring.checks]
+aggregation = "weighted-mean"
+
+# checks.py is the only scoring input, so the task reward is simply the
+# weighted mean of its three criteria.
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { checks = 1.0 }
