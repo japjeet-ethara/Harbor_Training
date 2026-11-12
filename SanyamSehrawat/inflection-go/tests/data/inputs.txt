@@ -1,0 +1,2000 @@
+singularize	ApiChild
+camelize	the-code-html
+camelize	>!#]/`=>^
+underscore	_api_id
+singularize	SCARVES
+humanize	bar e vIEw is
+titleize	}7
+pluralize	DWARF
+pluralize	MatRIX
+singularize	Match
+pluralize	atLas_Puni
+humanize	category belongs's 'the
+underscore	MyAPIKey
+underscore	e_of_past
+camelize	url_tO_Device
+titleize	ScaledNameBelongsCategory
+parameterize_underscore	scorer many QUiCk salary VIEW
+tableize	Http_Api_man
+pluralize	BigIndex
+humanize	world at_id_
+humanize	updated path Response past
+pluralize	Humans
+tableize	lost
+parameterize	VIEW: response: request: has: hELlo: Updated
+camelize	fancy_Path
+dasherize	HTTP_lazy_quick
+underscore	getHTTPResponseCode
+dasherize	already_snake
+parameterize	FIrSt: Last: E: to_ids
+pluralize	hive
+singularize	cayman
+parameterize	name!: code: puni
+parameterize	belongs error hello
+humanize	parser HTML stand'
+underscore	CODe
+parameterize	stANd: a
+parameterize	'over
+tableize	address
+humanize	path Ark_ID
+titleize	of
+underscore	and_raiders_stAND
+ordinalize	-748375901942710844605348327450
+ordinalize	118
+dasherize	-emPloyEe_
+ordinalize	13
+humanize	egg: from: egg_id
+singularize	JsonCayman
+humanize	Ark http #BROWN quick's scorer
+parameterize	_type nAmE
+humanize	Type scorer number At from_id
+parameterize	'Lazy
+camelize	Created
+pluralize	Passerby
+singularize	AT_Error
+parameterize	1strequest - quIcK - men?_id_
+titleize	Last
+pluralize	BigKiss
+camelize_lower	over_Last_url_of
+pluralize	SHoes
+titleize	'base - IS - html - the
+pluralize	BIAS
+pluralize	OcToPi
+parameterize	author: the "iO type error updated_ID
+humanize	the 42Lazy ACCOUNT response rEcoRD
+tableize	category_dog
+humanize	42Raw
+pluralize	perspective
+parameterize_underscore	x: has: at's_id
+titleize	aBCA1B2
+titleize	scaled! stAnd last fancy errOr http
+parameterize	 DEVICE
+dasherize	__url Many NuMbER Fox-
+underscore	last-Belongs-HtmL-
+tableize	admIn
+titleize	ScaledLastResponse
+parameterize	has'-dog-record-Belongs
+tableize	potaTO
+singularize	quick bacterium
+dasherize	4{ERROR_|{}
+titleize	ID
+camelize	account
+parameterize	Zip_ids
+pluralize	scorer fox
+humanize	QUICK: raw: request: hELlo: author's: jumps
+parameterize	lazy,: Is.: 42Xml: (Device
+pluralize	Bonus
+singularize	PHotO_at_safe
+pluralize	ApiBuffalo
+tableize	passerby lice of
+singularize	LittleTheses
+tableize	/~8#
+camelize_lower	BAZ-OVER
+pluralize	ox
+titleize	is: eRrOR': at: salary
+underscore	NameResponseJumpsBelongs
+humanize	account: HAM?
+singularize	SuperCampus
+singularize	BATMAN
+parameterize	knuth_id
+singularize	knuth name
+ordinalize	6238448
+titleize	from_jUMpS
+parameterize	fox of lost URL helper FROM
+singularize	dog_salary_seX
+pluralize	api_Quiz_lazy
+underscore	dog_Last_is
+camelize	DeviceTypeRawScaledScorer
+singularize	CamelMovies
+humanize	and boondocks of puni at Name
+dasherize	type_http
+ordinalize	-125
+singularize	KNIFE
+underscore	salary_many
+singularize	citY_my
+camelize	Past_world_active
+underscore	path_Over
+singularize	cargoes_person_ELVES
+underscore	Bar
+humanize	#last fox parser.
+titleize	get_Helper_view
+camelize_lower	SSLError
+camelize_lower	raiders_url
+parameterize_underscore	salary's Last updated.
+ordinalize	93
+tableize	ErrorPath
+singularize	Humans
+camelize	StandAtBaz
+pluralize	Roof
+tableize	category
+titleize	world.: ADMIN: over: author: egg
+singularize	LittleShoes
+titleize	lazy foo device
+parameterize	my
+pluralize	sheep
+singularize	http_BasEs
+humanize	a't at
+singularize	DataEchoes
+singularize	medium query
+parameterize_underscore	Xml and DEVICE
+camelize	active
+ordinalize	30
+parameterize_underscore	id
+parameterize_underscore	author! - number - egg
+pluralize	BlueZombies
+tableize	http_Boondocks
+singularize	Vetoes
+singularize	nUMBer_match
+dasherize	%8>created_
+ordinalize	000861
+pluralize	buses children selves
+tableize	SSLError
+pluralize	dwarves first
+humanize	2ndType_Last_ssl's_Scaled_x_at
+humanize	a BASE
+singularize	man wife
+humanize	to
+titleize	the_created_response_NUMBER
+tableize	_48
+pluralize	index_parser
+pluralize	DataPost
+titleize	many_lazy_User_id_url
+parameterize	42at, raw base jumps e
+titleize	Knuth_id
+singularize	indices bias day
+underscore	_USER_id
+camelize_lower	code_The_Fox
+camelize_lower	X
+pluralize	lousE
+titleize	world-CODE-at-key
+tableize	";[8
+parameterize	---
+titleize	html: at,: e: key
+pluralize	query
+singularize	kiss
+pluralize	SuperJeans
+pluralize	sexes
+camelize_lower	HasHtml
+underscore	RecordRaw
+singularize	boy_moves_Men
+camelize	error_FOX_and
+parameterize	hello ID' LAZY has_ids
+singularize	scarves
+ordinalize	-665864
+singularize	IRIS
+camelize	EStandManyError
+pluralize	database
+camelize	helper-
+parameterize	number,: Active: to: NAMe
+titleize	__PAsT_-puni_-path_id
+camelize	fox_id
+parameterize	#base the Knuth MY My type
+parameterize	Admin NUMBER active 2ndHttp first
+parameterize	Donald E. Knuth
+dasherize	IDTheManWithoutAPast
+underscore	name
+parameterize	x-zip-error
+tableize	BlackParenthesis
+camelize	Mixed_Case_Words
+tableize	OCTOPI
+pluralize	
+ordinalize	241625415440450838367510967615
+dasherize	EFancyCreatedThe
+dasherize	8#>"_/6 "8
+pluralize	virus_PEOPLE
+pluralize	axes goldfish
+camelize_lower	-To_RECORD_Get_aPi_id
+ordinalize	619041125329890845085310215145
+humanize	Helper: donald x-STand
+parameterize	VIEW: pArser: 'xml
+parameterize	BAr_ids
+singularize	BigHive
+pluralize	testis_Leaf
+titleize	belongs baz
+parameterize_underscore	ACCOUNT path key ScOrer response
+singularize	People
+titleize	__Egg--SCORER_
+underscore	$>#)&\5/`3=
+titleize	View REsPonsE last category url
+singularize	JsonAxes
+tableize	alias
+singularize	box
+parameterize	fox
+pluralize	HttpLives
+parameterize	ham HELPER
+singularize	BlueBuffalo
+tableize	vertex
+camelize	MyAPIKeyABc
+singularize	Boss
+underscore	URLPath
+singularize	perspECtIvE_german
+singularize	SuperOxen
+parameterize_underscore	-REQUEST  1stscaled  zip  user  view_ID
+pluralize	JsonFish
+tableize	id_active_raw_error
+dasherize	zip_CREATED_man
+parameterize	xml user helper to' stand
+underscore	code_e
+ordinalize	123456789012345678901
+parameterize_underscore	name't first From LAZY 1stfoo foo
+ordinalize	126
+tableize	GoldScarf
+tableize	mouse
+parameterize	account user path? to scorer. world
+titleize	SSL-Egg
+singularize	oxen world kiss
+pluralize	http of
+parameterize_underscore	E_base_Path_zip
+ordinalize	75
+titleize	#last-froM-CREATED-VIEW-UPDATED
+singularize	uSEr
+ordinalize	075
+underscore	8)2_8/7(~1{
+camelize_lower	BoondocksBarThe
+underscore	iPhoneJSONData
+parameterize_underscore	punI-x
+parameterize	is-stand-key!-TO
+singularize	UserTestes
+ordinalize	94938
+tableize	E_X_OVER_scorer
+camelize	_KEy-of-RAW
+pluralize	LittleIndices
+pluralize	MegaCow
+dasherize	SCALED_created
+titleize	aB
+parameterize_underscore	belongs_ids
+underscore	?8|>}
+underscore	type_jumps
+parameterize_underscore	_the error:
+tableize	TheManWithoutAPastViewHelper
+pluralize	fancy_puni_Name
+singularize	matrices
+camelize	lazy_created_world
+pluralize	Men_kine
+singularize	BlackBox
+parameterize	from's
+titleize	type
+ordinalize	237114
+humanize	Scorer api parser
+humanize	io Puni Account x-active foo
+singularize	AdminAnalyses
+parameterize	_WITHOUT: mAny: RESPONSE: scorer: Jumps: #cAteGorY
+ordinalize	31
+titleize	Donald-salary-1stbaz_id_
+camelize	scaled
+tableize	census_dish
+camelize_lower	tyPe
+parameterize	THE
+camelize_lower	account__path_
+pluralize	statuses
+dasherize	NAME_bar_HTML_my
+singularize	archive
+camelize_lower	.[2~]
+titleize	account and
+pluralize	DOnaLd_created
+singularize	Person
+camelize	my
+pluralize	VIRI
+humanize	a_loST_has_world_First
+parameterize	BAR Admin the code're A 42helper
+humanize	many to aNd parser
+singularize	at woman half
+pluralize	FieldHumans
+singularize	gLaSS_buses
+titleize	REQUEST Author_id_
+humanize	device Raw scaled quick http
+titleize	Device_donald_Device_man
+dasherize	past_CODE
+singularize	CamelDatabases
+titleize	__belongs_Parser_and_
+camelize	ViewHelperTheManWithoutAPast
+singularize	selves
+singularize	BigOx
+pluralize	humans
+humanize	user-Api-fOX!-device'
+pluralize	rice series
+parameterize	MEN - the_id_
+parameterize	Base
+humanize	over-Active-LaSt-ham-parser:-NUmbEr't
+humanize	'BRoWn  catEgory  to
+camelize_lower	__belongs_parser-
+singularize	ApiPerson
+camelize	ABc
+titleize	(x (request a coDE're boondocks key
+humanize	2ndhtML
+parameterize	x-raiders_man_last_x-VIew
+titleize	XMLHttpRequestURLPath
+ordinalize	-36
+pluralize	the oxen analysis
+camelize_lower	baz_fox
+singularize	MATCH
+humanize	knuth quick MANY parser
+pluralize	SuperCanvas
+pluralize	focus
+camelize_lower	stand-number
+titleize	'http_BAr're_egg_brown
+tableize	fancy-Has-MY
+camelize_lower	already_snakeDeviceType
+parameterize_underscore	DONALD
+singularize	SHELF
+underscore	iDCamelCase_with_snake
+pluralize	ELF
+tableize	SSL_from_SCAleD_Fancy
+pluralize	AdminCow
+parameterize	category_id_
+humanize	man-at
+ordinalize	00444
+singularize	CHIEF
+camelize_lower	TypeEBar
+singularize	CamelMedia
+parameterize_underscore	first  VIEW  last
+pluralize	calf
+singularize	statuses belongs
+underscore	NUMBER
+tableize	salary-TO
+tableize	}8_{Lostbelongs[8_%1
+ordinalize	000854
+ordinalize	79
+ordinalize	879514
+humanize	Get author baz: active RAIDERS MANY_id_
+ordinalize	85219
+singularize	information
+underscore	knuth-gET
+titleize	 brown Is DONALD's_id
+ordinalize	53
+dasherize	is_foo_LAST
+camelize	key
+dasherize	.\
+titleize	MAN
+camelize	HttpLastTo
+camelize_lower	RECORD man of ArK_id
+titleize	'key dog: MAN #Puni updated're without_ids
+tableize	LOAF
+camelize	9
+pluralize	potato
+titleize	bar helper stand creAteD
+singularize	sexes
+ordinalize	2438108
+pluralize	LittleCrisis
+ordinalize	190233327396215856835355085678
+ordinalize	18296803933132109702821047620
+underscore	a-account-record
+parameterize	men  code  (quick
+parameterize	to
+parameterize	AND - my - zip - bar
+parameterize	User!
+parameterize_underscore	path' bar ADMIN SSl
+titleize	ark - aCtIvE're - id - Egg - has
+dasherize	base_JUMPS
+titleize	accOUnt  Egg,  donald  "egg  salary  vIew
+singularize	SYNopsis
+singularize	FieldLeaves
+parameterize_underscore	xml-httP-scaled-tO_ids
+pluralize	CamelThief
+humanize	KNUTH scaled froM men BOONDOCKS parser
+ordinalize	6891504
+ordinalize	-7609
+titleize	belongs_Ham
+camelize	(^_/( %$#%_/
+camelize	from-HTTP-men
+singularize	ApiPotatoes
+titleize	#error ARK
+humanize	created_ID
+humanize	of-at-my
+parameterize_underscore	updated - hello - Key
+camelize	%/6+And_@)/
+humanize	base BAz has Get A 42Fox're
+camelize	-})0
+singularize	people_story_is
+camelize	zIp_url
+singularize	pOsT
+ordinalize	-000386
+ordinalize	12249998
+ordinalize	-31809
+pluralize	QUIZZES
+parameterize_underscore	path Updated Donald ARK 2nddonald
+parameterize_underscore	puni fancy html hello,
+parameterize_underscore	ark-Raw
+singularize	HTTP_quizzes
+singularize	men donald
+pluralize	PEOPLE
+pluralize	women
+parameterize_underscore	Io  world
+tableize	statuses
+dasherize	Created
+pluralize	knives
+tableize	ANALYSES
+underscore	html_path
+pluralize	SalesBonus
+titleize	Hello pATh code
+tableize	Author
+humanize	(name_id_
+tableize	PeRspEctiVe
+humanize	view Base AT!_ids
+parameterize	(men_1stark_name_HTTP_category_x
+humanize	raw't_scaled_error_last_ID
+singularize	Virus
+dasherize	LazyTheOfView
+parameterize	_ZIP lazy
+tableize	Scorer_admin
+camelize_lower	1
+camelize	TO
+underscore	&=.[brown
+pluralize	medIa
+humanize	name belongs
+parameterize_underscore	rEqUeST Belongs puni Number coDe
+underscore	DeviceType
+singularize	HUMAN
+camelize_lower	ABc
+camelize	name_Ark
+underscore	ssl_Brown
+camelize	%1
+camelize_lower	'
+tableize	ottoman
+parameterize	code helper of
+camelize	HTTPServerActiveRecord
+humanize	EGG - UPDATED - path - MANY - Bar
+titleize	ark-puni_ID
+singularize	Ox
+camelize_lower	To
+titleize	VIEw E
+parameterize	_employee_to
+singularize	half account
+singularize	rice
+tableize	7-={47}5@(,
+pluralize	shoe
+ordinalize	552213207945540519151850481285
+camelize	!
+parameterize	1stERROR mAN
+camelize	[?'#
+titleize	6_>?
+singularize	woman
+titleize	RawLast
+camelize	&_,<]~= 5
+parameterize	e scaled bar lazy 'hello
+ordinalize	-16
+singularize	shaman
+humanize	Bar't  over  code  error  man  jumps
+camelize	a-number-Category
+humanize	_id
+camelize	 |2']?.#|.}=
+camelize_lower	__http--first--url_id
+singularize	prOceSs
+titleize	ViewIs
+tableize	-scAlEd lost_id
+titleize	_ACTIVE dEviCe lazy
+singularize	scarves_post
+camelize_lower	RawScaledScorerfancyCategory
+camelize	get__BOondOcKS__has_id
+parameterize_underscore	USER'  created  Last
+tableize	?[ `[?+$=&+%
+titleize	stand-is
+underscore	aB
+camelize_lower	A
+titleize	__GEt_-JUMPs_-scaled-
+titleize	raw-baz
+singularize	LOUSE
+camelize_lower	key_ssl
+tableize	number_-at_-key_
+tableize	last-ssl-iD
+pluralize	child lens
+camelize	SomeXMLData
+singularize	MegaCalf
+pluralize	half_VIEW_database
+singularize	spy account
+underscore	to_created_SCALED
+pluralize	quizzes
+tableize	shamaN
+pluralize	FieldEquipment
+parameterize_underscore	1stknuth
+pluralize	PERSPECTIVE
+humanize	device're is's
+singularize	piano scorer chief
+parameterize	fox-sCorer
+tableize	/`'6
+ordinalize	00937
+parameterize	number  Type  html.
+titleize	eMployeE NuMBeR 42ACTIVE quick
+pluralize	buSH_diSH
+tableize	LoaF
+camelize_lower	IOErrorMyAPIKey
+underscore	XMLHttpRequest
+parameterize	bar
+ordinalize	752038489
+singularize	CRISIS
+pluralize	Fox
+dasherize	aB
+singularize	BigOttoman
+parameterize	ACTIVE #parser api stand account baz
+pluralize	cargoes
+camelize	Base64Encoder
+camelize	of-error
+camelize_lower	#.1- _&has&$
+camelize_lower	the_men_number_number
+titleize	-x request_
+tableize	CRISES
+singularize	roof
+parameterize	 view't: category: RESPONSE: x
+pluralize	INFORMATION_synopsis_donald
+humanize	Stand baz egg error x-HEllO raw
+tableize	media_day_over
+tableize	lice wife
+camelize	&|1
+titleize	BAR-man
+titleize	dog? EGG
+humanize	ssl from,
+humanize	-bar - belongs - category - A
+tableize	Focus_ARCHIVE
+tableize	bar
+titleize	the to e active PUNI THE_id_
+parameterize	Path http from xml
+singularize	atlas
+singularize	talisman
+pluralize	DAtaBAse
+singularize	sex
+camelize_lower	ViewHelper
+parameterize_underscore	active IO Egg
+parameterize	NAME - TYPE - stand_id_
+parameterize_underscore	world - name - record
+parameterize_underscore	belongs many acCount Egg
+parameterize	puni - a - EgG? - useR - LAST
+singularize	LittleWish
+parameterize_underscore	-Scorer: 2nddonald: record: hello: raiders
+titleize	ERROR at Raw And
+underscore	response
+singularize	scALED_Mouse_boondocks
+camelize_lower	fox_updated
+titleize	men
+tableize	Indices
+singularize	Box
+parameterize_underscore	salary UPDATED API first number
+singularize	ELF_focus
+parameterize_underscore	my_ZIP,_E_Many
+pluralize	bush lost has
+humanize	EGG
+pluralize	BOY
+titleize	ham ssl 'last ANd http
+singularize	LittleComment
+camelize	PARSER-BOONDOCKS
+singularize	BlueBus
+singularize	number men
+underscore	*~
+camelize	WithoutRaidersBazMan
+singularize	viri fox code
+ordinalize	-113
+parameterize_underscore	name_ID
+ordinalize	81
+underscore	)#from^`
+camelize	Scorer
+humanize	is? Brown! (the ArK LOst
+parameterize	name Admin Dog "zip PaRSEr raW
+singularize	SalesPasserby
+camelize_lower	already_snake
+pluralize	Person
+pluralize	LittleThief
+parameterize_underscore	egg stand BROWN RECORD
+singularize	baCteriUM
+camelize_lower	e_GET_lazy
+pluralize	id user
+singularize	shAMAn
+camelize	at
+ordinalize	-110
+camelize_lower	8`:-:$%]$
+parameterize	helper  (of  without  io  first  Api
+ordinalize	152519537645308271566353045097
+singularize	UserBoss
+pluralize	BAsiS
+parameterize	to - The - http
+pluralize	Kine
+parameterize_underscore	stand recOrD xml Is
+pluralize	active_XML_Person
+parameterize	a--b__c
+titleize	utf8String
+parameterize	KNUTH Get
+parameterize_underscore	x-donald KEY IS: Ham e belongs
+dasherize	15-$`0
+pluralize	Response_CRISES_species
+parameterize	FiRst BASE helper. Is url code
+underscore	record_egg
+singularize	heroes data roman
+parameterize_underscore	io  belongs  error
+titleize	donald_id
+singularize	day lice post
+camelize_lower	__api
+camelize	SalaryCodeHelper
+tableize	piano
+singularize	media
+parameterize	a
+tableize	getHTTPResponseCodeDeviceType
+titleize	lazy't  Get  LAST's  PATH
+camelize_lower	$$2\%doNAlD)='=
+pluralize	HuMAN
+camelize_lower	OfTypeAccount
+ordinalize	659302497007817462974132436275
+pluralize	Archive
+singularize	oXeN
+humanize	Type parser last (past raw
+dasherize	aBCA1B2
+humanize	lazy-qUiCk'-user.
+dasherize	_user-Key_id
+tableize	JsonIndices
+parameterize	http lazy, A
+parameterize	Has KNUTH
+singularize	man code
+tableize	admin
+pluralize	quiz
+pluralize	tomato_response_donalD
+singularize	url_FIRST
+parameterize	x-sSL: last
+singularize	Glass
+parameterize_underscore	LOST - AUTHOr - puni - number
+titleize	DOG_scorer_parser
+ordinalize	-53
+camelize	>(!03&$
+humanize	to - Error - xml - account - x-bar - beLONgS
+tableize	!_!
+parameterize	user't
+singularize	Echoes
+underscore	JSONData
+camelize_lower	quick
+singularize	ADDRESS
+titleize	http helper_ID
+singularize	RedDwarf
+pluralize	goldfish
+parameterize_underscore	_without: the: e: At: quick_ID
+singularize	peoPle
+titleize	Parser is key 42the LAZY User,
+humanize	E?_ID
+pluralize	Account_Process
+parameterize	world - RAIDERS - from
+tableize	man-has-parser
+humanize	WORLD_stand'_egg
+pluralize	Scarf
+tableize	people_ADmIn
+titleize	already_snakeViewHelper
+parameterize_underscore	THE_to_raw_Bar:
+underscore	Mixed_Case_Words
+singularize	axis
+camelize_lower	CreatedFirstAQuick
+pluralize	lice roman toy
+titleize	helper_name_Belongs_Html
+pluralize	salesman
+underscore	X_man_stand
+parameterize	BAR ark quick device
+titleize	MEN_parser_is_NUMBER
+underscore	utf8StringIOError
+pluralize	fly raiders
+pluralize	lens vetoes query
+titleize	hello - UPDATED - ark - Active - VIEW - last
+pluralize	lice
+camelize	"brown(0!+
+underscore	my_Error
+pluralize	SalesWives
+parameterize	fox_From_BAR_Many_FANCY're_knUTh
+singularize	Zombie
+singularize	child
+humanize	id_key_Scaled
+camelize_lower	_Last_foo_Ham_puni_
+pluralize	SCARF
+camelize_lower	_@\(75
+tableize	series
+ordinalize	0
+ordinalize	210305627609109659349837180012
+humanize	past? mAnY
+singularize	HIVE
+ordinalize	73
+singularize	statuses
+underscore	dog_At_device
+pluralize	BlueMedia
+titleize	AtActive
+camelize_lower	get-Admin-view
+camelize	MAN-x
+dasherize	knuth_fox_api
+ordinalize	8
+camelize_lower	 \1.(&path<=?!4
+humanize	Number aPi: helper updated
+tableize	boondocks_hello_admin_author
+humanize	raw - raw - foo - key
+singularize	id_PAST_Vetoes
+camelize	``.'\#[8
+humanize	men
+ordinalize	239711853335640647920599615206
+camelize_lower	!0.\}~
+tableize	utf8StringViewHelper
+parameterize	jumps
+parameterize	the Url ZIp. path
+singularize	FieldPlus
+singularize	indices
+singularize	BigZombie
+dasherize	_|scorer>98
+singularize	VERTEX_thief
+underscore	BarHelperBoondocks
+humanize	world Of ham updated
+singularize	safe_query
+parameterize_underscore	baz're_the_RESPONSE
+camelize_lower	{!".
+pluralize	statuses base scaled
+parameterize_underscore	author Man stand xml
+parameterize_underscore	LaSt  category  Is  juMPS
+camelize_lower	e-last
+singularize	SuperMatrix
+parameterize	pAST_donald
+singularize	baz chief
+parameterize	jumps, brown error DOnALD knuth lazy
+singularize	bacterium
+singularize	
+dasherize	#5:
+parameterize_underscore	of - API - device
+titleize	HTML
+titleize	http  KNUTH  boondocks'
+underscore	CategoryKnuthE
+singularize	BlackBonus
+humanize	DONALD - BAR - LAST - view
+camelize	NameOf
+camelize	RECORD-helper-puni
+pluralize	BOx
+parameterize_underscore	html': x-loST: User: BeLoNgs: account:: STAND
+parameterize	_base_get_author,_hello_aNd
+humanize	scaled type
+singularize	and_category_dwarves
+dasherize	_;=(;~'<=8
+titleize	ID: world: api: Created: type
+camelize	At-boondocks
+underscore	SALARY_ACcounT
+camelize	URLPathABc
+pluralize	vIRUs
+pluralize	JsonEquipment
+singularize	money
+titleize	Helper: io't: http
+humanize	error from BROWN
+camelize	already_snakeIOError
+singularize	buffalo
+camelize_lower	zip_belongs_bOoNdoCks-
+camelize	deviCE_has
+singularize	LICE
+titleize	raiders-at-account-xml
+tableize	Atlas
+humanize	hello_ActIVe_Raw_x-admin_User_ids
+parameterize	http type
+parameterize_underscore	HTTp-x-bar-jumPS're
+pluralize	JsonBasis
+pluralize	MegaData
+parameterize	error. STAND RESPONSE response e
+pluralize	and_knuth
+parameterize_underscore	-zip bar egg, many
+ordinalize	00990
+camelize_lower	%
+singularize	world_zombies_Cow
+parameterize_underscore	Foo to're x Many url_id
+pluralize	SuperWoman
+singularize	Cookie
+singularize	DataPiano
+humanize	Key  deVice  GET  code
+humanize	x-url'  Last
+humanize	'is! FrOM 42code_id
+dasherize	baz_record
+titleize	JSONDatautf8String
+titleize	user_http
+singularize	World_category
+singularize	thief_scaled_selves
+pluralize	woman people human
+singularize	MoVe
+camelize_lower	jumps-Many-egg
+camelize	ArkResponseTypeKnuth
+humanize	created past many url, acTivE
+parameterize_underscore	is-ssl-donald-salary-id-number
+humanize	egg salary Salary
+humanize	Http_HtmL_x-CategOrY_RAW_ids
+ordinalize	117
+camelize	JSONData
+titleize	hello  a  of.  WoRLd  pATh  name
+titleize	9@%"}7<\1
+singularize	cRIsiS
+pluralize	RedQuery
+pluralize	leaves moves photo
+camelize	raiders-foo
+singularize	thesis_verTex_name
+pluralize	post chief
+humanize	Url fancy The 2nddonald_ID
+pluralize	Lives_prognosis
+pluralize	BigSeries
+titleize	"SCalED, Donald't without
+underscore	First_Scaled_egg_View
+ordinalize	108
+tableize	datum_Media
+underscore	to_of_my
+pluralize	without tomato
+humanize	boondocks, - BAZ - x, - xml
+camelize_lower	Fox_my
+singularize	Basis
+camelize_lower	Base64EncoderMixed_Case_Words
+ordinalize	6755927
+tableize	X
+pluralize	raiders_elf_e
+titleize	NAME request key base
+camelize_lower	is_last_foo_salary
+dasherize	Employee_baz_Baz_urL
+singularize	JsonChild
+dasherize	SSLErrorX
+singularize	database_MICE
+parameterize	The: world't: raiders're: puni: 42record
+parameterize	SSl employee thE Bar fox
+ordinalize	46
+humanize	name zip employee account user HTTP
+ordinalize	-6
+singularize	FieldSalesman
+pluralize	atlas
+titleize	LAZY's: raw
+humanize	a  ARk  id
+titleize	_name-raw
+parameterize	is  Parser  the
+singularize	perspective human
+camelize	8&'"2'8+
+ordinalize	44103
+underscore	]23*<7^
+titleize	42Base's account fancy zip
+titleize	WORLD: request: FOO: xml: ACCOUNT
+humanize	the - belongs - CATEGORY - scaled - code_ID
+camelize	aBCfancyCategory
+dasherize	BelongsJumpsBar
+parameterize_underscore	my-brown'-from's-'raw,-is
+titleize	ERRoR #Over stand
+singularize	Jeans
+singularize	RedSalesman
+camelize	RawScaledScorer
+pluralize	Cow
+parameterize	without_#Url_io_number_ids
+tableize	4brown8
+parameterize_underscore	 account-Brown-fancy_id
+pluralize	FieldCategory
+dasherize	hello_egg
+titleize	EMPLOYEE scaled namE at ham
+ordinalize	49
+singularize	world_Testis
+titleize	donald_MaN_io
+underscore	IoErrorHttp
+singularize	cargoes base
+camelize	BrownTypeRequestMan
+parameterize	xml_from_url_brOwn_Stand_the
+tableize	MegaLeaves
+titleize	-updated THe? raiders has 1straw
+tableize	BoOndoCks_admin_world_
+titleize	'KNuTh_and_error_#scaled_parser
+ordinalize	-146260086
+camelize_lower	mAn
+tableize	JsonBuses
+parameterize	THE_at
+singularize	crisis
+humanize	Get quick io xml code code
+pluralize	leaves_First_InFoRmation
+tableize	of
+camelize_lower	record_htTp
+camelize_lower	lazy-CoDE
+pluralize	testes sexes
+tableize	boy
+singularize	roman
+ordinalize	7
+singularize	SuperAxes
+humanize	foo: (ErrOR: view: BelonGS
+camelize_lower	man-raiders-raiders-raiders
+humanize	view - boondocks - belongs - knuth're - HAS - zip:
+singularize	wivEs
+camelize_lower	My
+pluralize	Plus
+camelize	trailing_
+parameterize	Has raiders
+singularize	caRgOes
+singularize	user
+titleize	_NUMBER my updated-
+humanize	#HTMl code
+singularize	BlackLoaf
+underscore	HTTPServer
+singularize	woman author
+underscore	\6/%1.)=_NAME
+humanize	IS: IS: HELPER: x: Bar'
+parameterize	fancy_ID
+camelize_lower	-boOnDOCkS_Baz_SCALED_id
+tableize	HTML-dog
+singularize	io_code_past
+camelize_lower	HElLo_ERRor_knuth
+titleize	iPhoneXMLHttpRequest
+pluralize	party
+ordinalize	-71399
+pluralize	plus_Active
+titleize	Number
+pluralize	huMAN
+humanize	#SALARY_CODE
+singularize	basEs_the_children
+parameterize	BAZ
+titleize	eBay
+parameterize	a't: Egg': http: is: #Brown: id
+pluralize	viri
+pluralize	passerby_name_STAND
+parameterize	1stERror get.
+ordinalize	80
+parameterize_underscore	Parser
+titleize	cODE-and
+humanize	first updated foo at ACCOUNT SSL_id
+pluralize	xml spy
+titleize	Is
+tableize	to
+titleize	'quoted' word
+ordinalize	454795
+pluralize	Canvas
+camelize_lower	Device_type
+parameterize	NUMBER at at at account
+titleize	over_at_name_number
+singularize	elves ottoman bus
+titleize	past html
+parameterize_underscore	iO the! the PATH PUNI the
+camelize_lower	past__updated
+singularize	leaf
+singularize	Safe
+titleize	;\>_]8]2
+singularize	calf thief theses
+titleize	-LAST At: code! man Xml egg
+pluralize	safe
+underscore	Xml
+parameterize	the Jumps: record path egg Html_id
+singularize	fox
+humanize	1stRaiders't  get  past  'MEN  Parser
+singularize	HttpPotatoes
+tableize	KINE
+parameterize_underscore	has_html_Type_the're_id_
+pluralize	FLY_get
+parameterize	_HelPer' helper boondocks ERror e
+parameterize	id  Request  IO
+singularize	sTATUseS
+camelize_lower	A1B2DeviceType
+singularize	day
+underscore	01*.%-|*#
+pluralize	boondocks_human_account
+parameterize_underscore	HellO
+pluralize	talisman
+humanize	belongs's: type: scorer: API
+singularize	series iris
+singularize	quiz
+parameterize_underscore	-2ndget,  Scorer  lazy?
+ordinalize	-000743
+singularize	Tomatoes
+parameterize_underscore	Record Last: employee
+pluralize	Virus
+camelize	request_-the_-viEW
+ordinalize	27
+tableize	scarf information foo
+camelize	FancyRawApi
+titleize	XEmployeeXml
+parameterize	past' parser And_ID
+underscore	over_io_Type_created
+parameterize	At brown the "bar fox xmL
+tableize	has_Updated_the_ssl
+titleize	-author-
+tableize	CAtEGOry
+tableize	hello_first
+parameterize	x-Raiders Error
+tableize	bOSs
+camelize	FROm
+parameterize_underscore	COde_donald
+pluralize	LittleStatus
+tableize	aliases
+singularize	species
+pluralize	STORY
+pluralize	UserLoaf
+titleize	from http's io request type error_id_
+titleize	key're
+parameterize_underscore	ZIP_boondocks_e_last_men_LOsT
+singularize	Potatoes_vetoes_at
+humanize	HTTP Lazy, ssl
+parameterize	rAw - #Zip - boondocks - Code - Error - pArSeR
+humanize	id NUMBER USER xml
+parameterize	e
+dasherize	past-puni-user
+camelize	BrOwN-record-CATEGORY
+humanize	hello aCCount x-PUni
+parameterize	type_Belongs_IS_name
+titleize	_to__of_
+pluralize	axes
+underscore	Ham
+camelize_lower	MEN-ark-BOONDOCKS-Response
+tableize	KEY_helper_Dwarves
+pluralize	SalesHero
+pluralize	BasIs
+parameterize_underscore	x-name
+underscore	fox_url_scorer_EmPloyee
+humanize	foo: my: Brown: employee: many_ID
+camelize_lower	device_empLOYEe_name
+humanize	author: the_id
+ordinalize	119
+pluralize	DataVertex
+dasherize	-request-baz-man-type_
+dasherize	COde-number
+underscore	Id
+underscore	the
+titleize	iPhone
+underscore	__fancy__stand__MaNy__UPDATED_
+underscore	aBCIOError
+tableize	ANALYSIS_category_shoes
+titleize	dog account
+pluralize	fireman
+singularize	SalesOx
+parameterize	"JUMPS MAN MAN HELlO hello punI
+pluralize	SELVES
+pluralize	CamelOctopus
+underscore	BAr_updated
+singularize	gas_passerby
+camelize	url
+tableize	roman
+parameterize_underscore	api - get - Ark' - THE
+pluralize	Lazy_Half
+singularize	thief
+underscore	__MY_knuth_BASE_belongs-
+titleize	aBC
+singularize	Dish
+pluralize	DATABASE
+pluralize	loaf_hive
+underscore	_user__is
+tableize	-,.@$5_
+singularize	BigHalf
+camelize_lower	;:"and1$|//
+pluralize	CamelTomatoes
+singularize	vertex
+titleize	4%+74_Belongs
+singularize	elf_without
+ordinalize	-12
+singularize	CANVAS
+humanize	boondocks record ErrOR
+parameterize_underscore	Error world (dog THe Over
+singularize	boy without
+singularize	from_At
+underscore	97&=.33\xMl]$
+singularize	Synopsis
+underscore	TheManWithoutAPast
+ordinalize	000716
+ordinalize	57
+camelize_lower	7?1
+parameterize_underscore	1stDonalD
+parameterize_underscore	 foo-Device-code
+parameterize_underscore	code - ZIP - jUMpS
+tableize	octopus
+camelize	author
+camelize_lower	lost_dog_http_SALARY
+pluralize	information jumps
+pluralize	RedFireman
+ordinalize	55
+camelize	[7`_{;)`{=
+singularize	category
+underscore	Request-is-Lazy
+pluralize	SuperSpy
+tableize	TheSis
+singularize	sheep
+camelize	=^9+ 8)<(8_
+ordinalize	1013
+tableize	E_code_type
+dasherize	AccountZipAX
+pluralize	LEAVES
+titleize	without
+humanize	the: manY: Number._ids
+dasherize	author_HAM_FIRST
+parameterize	JUMPS-jumps-scaled-NUMBER-key
+camelize_lower	html_over_BASE_fancy
+pluralize	zombies
+titleize	raw #BASE' frOm
+singularize	Bias
+ordinalize	000364
+titleize	LAST_response
+parameterize	x-stand  error  is,  api
+titleize	SSLErrorgetHTTPResponseCode
+titleize	fancyCategory
+titleize	_parser_ham_belongs
+pluralize	MEDIA
+parameterize_underscore	-has.  and  the  X  category  response
+underscore	LazyQuickWorld
+pluralize	PERsPEcTive
+singularize	SuperMovies
+dasherize	A1B2
+parameterize	last
+dasherize	_99-0|
+parameterize	AT:
+pluralize	datum
+titleize	base fancy HAS "get BROWN
+underscore	Error_pUnI_donald
+titleize	egg many Number! employee at puni:
+tableize	men boss category
+camelize	BROWN-at-past-NAME
+singularize	census
+tableize	hello_BELONGS
+ordinalize	000810
+pluralize	MegaGlass
+tableize	eRrOR_puni_employee
+pluralize	data
+parameterize_underscore	AUTHOR_ids
+underscore	already_snakeId
+tableize	(^~+'%=7
+parameterize_underscore	MANY xml' ARK FOO e Http
+camelize_lower	Record
+pluralize	plus
+camelize_lower	#_!~/
+singularize	fireman
+underscore	4#8 9
+parameterize	BROWN: code: E: salary: device: Get
+camelize	aBC
+pluralize	Census
+tableize	lost_Testes
+camelize_lower	code-NAME-DOG
+humanize	lazy salary boondocks caTegORY jumps
+humanize	aND - AUTHOR - updated
+singularize	gas wolf type
+camelize_lower	jumps_aPi_salary
+underscore	EMPLOYEE
+titleize	number baz ark bar Puni Fancy
+parameterize	Last xml
+humanize	brown jumps quick response scaled Scaled
+pluralize	many_hEroeS
+camelize_lower	error
+parameterize	#fancy_id_
+tableize	SomeXMLDataaB
+pluralize	WOMAN
+parameterize	Hello - 2ndat
+parameterize_underscore	_'many THE at world 42quick
+singularize	comment_bonus_scaled
+parameterize_underscore	a-b c
+pluralize	Mouse
+underscore	WithoutBelongsHtmlOver
+camelize	ActiveRecord
+singularize	roof scarf code
+pluralize	theses
+pluralize	wolf jeans
+singularize	hUMaN
+parameterize_underscore	author't - Is - Salary - Men - request - boondocks
+camelize	ARK_HTML_View_lazy
+camelize	XMLHttpRequestSSLError
+camelize	&>.get|;_
+tableize	OfLazyRaw
+parameterize_underscore	LAZY BOONDOCKS error AccoUnT FROM' Jumps
+tableize	GoldSeries
+humanize	AUTHOR
+parameterize_underscore	Jumps_at_the_category_view
+pluralize	Diagnosis
+pluralize	status
+pluralize	LEAf
+parameterize	-"e Url view View scaled're
+camelize	_salary_base_http
+humanize	name:
+pluralize	german_Calf
+camelize	ScaledDevice
+singularize	OCTOPUS
+camelize	-KEY_-active_-and
+titleize	'the World at number iS
+tableize	ACTIVE_Type_response
+ordinalize	26
+parameterize_underscore	api boondocks THE x many "LAZY
+camelize_lower	-stand--zip--many--first
+camelize	Raw_men_NAME
+pluralize	BACTERIUM
+singularize	RedGoldfish
+humanize	'Record_last_Error_First
+parameterize_underscore	response - 1stRecord. - of - PAST
+ordinalize	103
+humanize	X: aNd
+pluralize	baz world
+pluralize	GoldKey
+parameterize	e key, admin Error Scorer bElonGS
+singularize	UserBus
+tableize	OfAdmin
+ordinalize	331934
+titleize	BAR DeviCE api mY Raw
+camelize_lower	stand-over-LAZY-MAN
+camelize	-CreaTeD--raiders-
+camelize	[,9`#
+parameterize	x-name of is scaled get_id_
+humanize	lazy - x-without - Puni - of - "Men
+singularize	MegaBacterium
+titleize	past number
+titleize	OverAt
+pluralize	vetoes
+titleize	JSONData
+tableize	MANY
+parameterize_underscore	API_my_OvER
+parameterize	NAME brown The_ids
+tableize	SuperSynopsis
+singularize	BOY
+humanize	From brown HAS e http last
+parameterize_underscore	last dog
+parameterize	wITHout http
+underscore	AndIsActiveDonald
+underscore	ResponseToViewFancy
+camelize	Mixed_Case_WordsXMLHttpRequest
+camelize	MyAPIKeyActiveRecord
+humanize	EGG_id
+underscore	is
+singularize	POTAToeS
+humanize	KNUTH many
+underscore	A1B2
+singularize	Half
+ordinalize	1195397
+singularize	AdminQuery
+camelize_lower	MY-active-Over-many
+underscore	donald_code_fancy
+parameterize	e BAR_ids
+humanize	lOst response User
+parameterize	WITHOUT my man men. "scorer request
+parameterize	'get're
+tableize	Child
+humanize	first  UPDATED  quick?  Id  error
+parameterize_underscore	UPdatEd: updated: Belongs?: MEN: STaNd: puni
+camelize	a_code_DEVICE_User
+humanize	author  last  2nddevice
+ordinalize	9022
+tableize	elf
+parameterize_underscore	AND: uRL
+titleize	';(;64?/
+humanize	Http: quick: (path: Knuth: BOONDOCKS: BAR
+camelize_lower	response_ssl_lost
+camelize_lower	many^\>.$(-.
+ordinalize	1011
+titleize	hello_category_HTml_ZIP
+underscore	Account
+tableize	elves
+titleize	fancyCategoryCamelCase_with_snake
+underscore	jumps-OF-get-man
+singularize	post_code_SCorer
+ordinalize	963903120372723948150898715054
+ordinalize	-487710065889498345248488599519
+camelize	RecordFooScaledPath
+dasherize	userID
+singularize	prognosis past
+camelize	XMLHttpRequestuserID
+singularize	SuperLeaf
+tableize	__FOX_active_knuth_HELLO
+pluralize	RedMoney
+singularize	BigChildren
+singularize	CoMmenT
+camelize	Http_view_lost
+singularize	Man_shoe
+ordinalize	000829
+singularize	TALISMAN
+underscore	X
+humanize	device_AT_And_PaSt_e
+titleize	iD
+singularize	Database
+tableize	record_E_io_knuth
+humanize	employee  path  1straideRs  last  of
+humanize	zip-2ndName-A-raw-the_ID
+titleize	user category
+dasherize	__
+humanize	Scaled api the THE're puni
+tableize	STORY
+ordinalize	36
+pluralize	AcTIve_Matrix
+parameterize_underscore	category active record
+titleize	account
+humanize	ADMIN're
+tableize	:%
+titleize	'DEVICE Path?
+pluralize	BlackUser
+pluralize	selves donald child
+camelize_lower	world-lost-ham
+underscore	\-%|
+tableize	)
+ordinalize	45
+camelize	URLPath
+pluralize	SuperSexes
+singularize	Ottoman
+titleize	id
+tableize	/$\=sAlarY
+pluralize	gas
+singularize	person news
+parameterize	ham: donald
+singularize	CamelElves
+titleize	eBayalready_snake
+pluralize	german raiders
+humanize	raw account and #the ark man
+pluralize	Buses
+pluralize	BlackScarf
+camelize	Record
+parameterize	42over, author're_id_
+pluralize	is salary
+titleize	code
+parameterize	ham-upDatEd
+underscore	_first-
+parameterize	-HtTp - x - employee - at - foo - GET
+ordinalize	113
+parameterize	A TYPE raw parser code scaled
+parameterize_underscore	url's - THE
+pluralize	DataElves
+singularize	LittleLeaves
+titleize	LAZY get ERROr Helper
+tableize	EggMen
+camelize_lower	E_x
+pluralize	http selves zip
+parameterize	knuth name error active of Base
+dasherize	baz_ovER
+humanize	'Zip from User Men
+singularize	datum
+parameterize_underscore	without 'has Has helper! Over code
+camelize	39**'
+titleize	xml-scaled-my-
+singularize	KINE
+parameterize	io Fancy to x-HELPER boondocks a
+titleize	laST:_belongs_requEST_request_TYPE_http's_ID
+camelize_lower	A1B2
+parameterize_underscore	Of Raw men
+pluralize	MegaSelves
+humanize	ACTIVE zip IO egg number
+tableize	ID
+singularize	passersby_octopi
+tableize	ViewHelperABc
+pluralize	roman
+humanize	my EMPLOYEE Http x-view_ids
+tableize	FoxEmployeeRaidersScorer
+humanize	ssl category "DOG name employee "name
+tableize	BelongsWithoutIsJumps
+ordinalize	90
+ordinalize	2
+pluralize	Io_echoes_sheep
+ordinalize	78
+singularize	campus
+parameterize	stand!: HAS?: Raw: My't: And
+underscore	CamelCase_with_snakeuserID
+parameterize	request_Past_at_scAlEd
+ordinalize	-94
+pluralize	DAY
+pluralize	ScARves_dwarf
+camelize	io_MEN_has
+titleize	ABcXMLHttpRequest
+camelize_lower	DeviceType
+tableize	Io_pATh
+underscore	RawScaledScorerJSONData
+pluralize	FieldDatum
+titleize	ActiveRecordaBC
+humanize	of-Of-past-x-HELLO-SCALED-EGG's
+parameterize_underscore	io_bAse_raw't_puni_account_path
+singularize	dwarves
+dasherize	last
+parameterize_underscore	html PAST 1stLost fox? a._ids
+ordinalize	21
+tableize	egg-created-Http
+tableize	leaves
+pluralize	AtlaS_kIne
+singularize	GoldFox
+pluralize	OXEN_Man
+parameterize_underscore	raw Path base view raideRs
+titleize	salary' key Jumps tHe created id
+camelize_lower	[}.%8,_
+singularize	potatoes_louse_quiz
+singularize	prognosis
+tableize	boondocks_parser_updated_code
+tableize	47
+titleize	world_account_without_created
+pluralize	request_canvas
+singularize	heroes piano
+parameterize_underscore	TYpE-hello
+parameterize_underscore	Name - Without - has - Xml - 1stcreated
+parameterize	Baz Foo baz
+titleize	ssl number
+singularize	woMan
+parameterize	code of api boondocks't
+singularize	Tomato
+parameterize_underscore	path. quick QUICK code? Employee
+pluralize	jumps buses
+pluralize	BlueLens
+singularize	chief
+parameterize_underscore	past
+dasherize	Base64Encoder
+camelize	puni
+tableize	cayman
+humanize	key: foo: is
+underscore	tyPe stand error bar_
+pluralize	selves
+singularize	UserSheep
+underscore	response--at--ssl--api_
+tableize	\-FIRST[3FIRST#
+titleize	http_id_
+camelize	Scorer_BOONDOCKS_a_BAz
+underscore	over-man
+humanize	_error  Fancy't  KnUTh
+ordinalize	587
+camelize_lower	fancy_api_Parser
+pluralize	people_USER
+ordinalize	61
+singularize	AdminLouse
+underscore	foo
+pluralize	ox_testes
+underscore	ham_code_html
+tableize	And-My-api
+tableize	axis equipment
+titleize	iDABCDefGHI
+parameterize_underscore	FOX
+camelize_lower	CamelCase_with_snakeABCDefGHI
+camelize	lazy
+humanize	id api first naME, my_id_
+pluralize	MICE
+pluralize	FIREMAN
+pluralize	dwarf
+pluralize	UserZombies
+titleize	#baz zip' request
+underscore	url_hello_man_device
+parameterize	at world 1stnAME error #bar
+singularize	cArGOes
+parameterize	scaled
+pluralize	movies
+humanize	x-base
+titleize	Hello parser io http't
+camelize_lower	Path
+ordinalize	125
+dasherize	PARSER
+humanize	record: the: fancy
+camelize_lower	Bar
+camelize_lower	"[(&=*`
+pluralize	SHAMAN_QuIZzeS
+camelize_lower	Egg_x
+parameterize_underscore	paSt NAME PUNI actIve'
+titleize	Url_helper_pUnI_quick
+dasherize	aBCgetHTTPResponseCode
+pluralize	Buffalo
+camelize_lower	0'~
+pluralize	sHOe
+parameterize_underscore	lost_ids
+camelize	user_Baz_http_Brown
+camelize_lower	Device
+singularize	HttpAliases
+parameterize_underscore	raiders created key
+titleize	;=>-
+titleize	URLPath
+singularize	PiAnO
+underscore	__haS
+titleize	account  last  updated  JUMPS!  RAIDERS
+parameterize_underscore	stand "employee staND_id_
+tableize	-zip_
+parameterize_underscore	xml ark
+parameterize	many
+ordinalize	23
+humanize	active? error laZY
+parameterize_underscore	dog ark (a
+pluralize	BigChild
+camelize_lower	foo_Salary_past
+titleize	raiders
+dasherize	belongs-User-account-at
+humanize	AND_raw_error_Salary
+titleize	xml - last - Url - Last - UPDateD - man
+pluralize	match_mice_KNIFE
+ordinalize	65
+pluralize	children
+titleize	@!{!9;\?081
+singularize	lost database humans
+titleize	'request: path: code
+camelize_lower	url_IS_Fox
+titleize	LAZY-RECORD
+pluralize	DataWish
+pluralize	Vertex
+pluralize	tomatoes tomato testis
+humanize	QUICK's A fancy The x-at 42view
+camelize	_Quick--error--PARSER--Stand_id
+parameterize	id-sCAled-puni
+singularize	past wife shelf
+ordinalize	14
+parameterize_underscore	The, man last.
+camelize	MenAtNumberMy
+pluralize	Atlas
+parameterize_underscore	type
+ordinalize	122
+singularize	tomato
+camelize	_leading
+titleize	dog_Base_Hello_name
+titleize	without_QUICK_to
+parameterize	eMpLoyEe
+tableize	-salary__zip_
+parameterize	SCALED
+dasherize	Helper-sSl-EGG
+pluralize	HUMAN
+camelize	Http_RAIDERS_at_account
+humanize	ark lazy men 2ndPATH a jumps
+tableize	HTML5Parser
+parameterize	_number
+camelize	__my_-request-
+camelize_lower	&=)#(8({#2+
+underscore	OverTheHamUpdated
+titleize	http_ids
+singularize	tomAtOes
+pluralize	cEnsUS
+pluralize	wives
+dasherize	MyAPIKey
+tableize	the_parser
+parameterize_underscore	 NAME't BasE Code device 2ndhtml code_id
+camelize_lower	bar_the_device
+camelize	type_baz
+parameterize	DEVICE "iO't fox bar Egg
+ordinalize	996686406494725143297408788467
+singularize	qUizzes
+parameterize	active
+underscore	)
+humanize	and to #URL're
+pluralize	AdminUser
+humanize	Http, - bar
+ordinalize	-00808
+tableize	vertices
+parameterize	puni_ids
+camelize_lower	raiders
+parameterize	over  hello  e  code_id
+pluralize	VETOES
+singularize	story
+parameterize_underscore	URL fancy
+camelize	parser-raiders-Men-the
+parameterize	knUtH hello employee over Request
+singularize	vetoes
+tableize	BlueGlass
+parameterize	without stand man, dog raiders
+ordinalize	11
+ordinalize	98
+singularize	loaf tive
+parameterize	category hello base quick user
+tableize	url_salary
+parameterize	Name  base_ID
+camelize_lower	eMPlOyEe_account_Last_Fox
+camelize_lower	&
+camelize_lower	path
+parameterize	has,_a_user_lazy_WITHOUT_Name_ids
+tableize	HttpAtLostResponse
+titleize	erROr key Author device
+humanize	number Egg x-http TO't active
+humanize	io  helper  code  parsER  knuth
+humanize	First  BELONGS
+titleize	Is_xml
+tableize	NameRequest
+pluralize	ChIldren
+camelize_lower	-dog_QUICK_category_ADMIN-
+underscore	get
+humanize	path
+tableize	Get
+humanize	-API - My - 'at - cODe - number - foo
+parameterize_underscore	-AT - e
+titleize	ABCDefGHI
+parameterize	path name parseR're foo's_id
+pluralize	BigPotato
+titleize	xml cODE
+singularize	vertices dog code
+underscore	Brown_EGG_PATh
+singularize	party
+parameterize	is html Employee Over fancY
+parameterize_underscore	AT aND bar request of fox
+humanize	"html
+pluralize	human
+humanize	belongs? - donald
+pluralize	HttpCensus
+singularize	JsonEquipment
+pluralize	glass
+singularize	boX
+humanize	quick oF. number view egg
+parameterize	'get - scaled - employee
+camelize_lower	ActiveRecord
+pluralize	mouse
+tableize	active
+ordinalize	71
+singularize	parenthesis
+dasherize	aBC
+singularize	Iris
+dasherize	XA1B2
+titleize	quick man_id_
+camelize_lower	|:*;belongs!"1/:4*
+ordinalize	128
+camelize_lower	-ARK-and-EGG_id
+camelize	Id
+dasherize	"'
+titleize	-CODE-AUTHOR-over-
+titleize	fancyCategoryMixed_Case_Words
+underscore	number
+titleize	+'
+titleize	id (foo Name My world admin
+ordinalize	104
+pluralize	JsonGoldfish
+underscore	LastRaiders
+parameterize	http: The. e're
+titleize	HTTP
+humanize	http_raw_quick
+pluralize	JsonSalesman
+underscore	boondocks
+parameterize	Raw_id
+parameterize_underscore	dOG  number  "stand  ID  (raw  stand
+pluralize	mice
+parameterize	Active record
+underscore	-lost--ham--without--AcTiVE
+titleize	_SCORER_id
+camelize	hello_My_xml
+tableize	Man
+underscore	NameDeviceSsl
+titleize	past-from-2ndjumps
+singularize	CHILD_fox_movies
+pluralize	cow human has
+singularize	MAN
+parameterize	at': and_id
+camelize_lower	knuth
+titleize	getHTTPResponseCode
+titleize	Path
+humanize	Employee foo Name ark_id
+pluralize	woman potatoes
+camelize	baz_MY_coDe_device
+titleize	belongs_Ark_htmL_account_id
+dasherize	e_world
+titleize	has
+singularize	testis knuth
+underscore	Io
+camelize	!89&^||4*7
+camelize	already_snake
+titleize	-belongs__Url_
+ordinalize	7085
+tableize	plus_tO
+singularize	BlueHuman
+pluralize	http movie category
+pluralize	fox women
+singularize	series
+camelize_lower	NUmber_author_ham_io
+tableize	updated money
+ordinalize	116
+singularize	CamelMice
+singularize	key glass of
+singularize	Testes
+pluralize	spy
+titleize	knuth--active
+pluralize	BigGas
+parameterize	GET
+parameterize_underscore	BOONDOCKS
+titleize	name-lazy-KEY-http-http-bar
+camelize_lower	scorer_past
+camelize_lower	EmployeeViewScorerParser
+pluralize	dog_faNcY
+underscore	Has_fOo_baz_error
+singularize	Aliases
+underscore	Employee
+pluralize	kiss elf mouse
+singularize	oxen process
+underscore	-MAN--CODE--NUMBER--paRSeR_id
+camelize	3[\
+titleize	get_egg_KEY_from
+pluralize	HttpInformation
+ordinalize	0978
+tableize	UserTive
+singularize	UserCow
+pluralize	church
+ordinalize	168103048468443171272336886331
+singularize	FieldMice
+titleize	Is  e
+underscore	]>6^Get-
+pluralize	knife
+camelize	RESPONSE
+humanize	at': Of
+parameterize_underscore	without zip many_id
+dasherize	Number_error_account
+parameterize	scorer_x_2ndbrown_record_puni
+humanize	KnuTH' Category A
+pluralize	crisis lives prognosis
+singularize	Kine
+titleize	helper-PAST-fox
+singularize	code matrix
+camelize_lower	Xml
+tableize	A1B2
+camelize_lower	utf8String
+pluralize	dish
+titleize	iPhoneuserID
+pluralize	CAYMAN
+camelize	URLPathHTML5Parser
+pluralize	Potatoes
+singularize	gas
+pluralize	DataPassersby
+titleize	salary Salary
+titleize	(DONALD  x's  (AND  thE  Has
+singularize	axes
+titleize	namE, many
+titleize	,
+pluralize	jeans
+underscore	record-name-STAND-knuth
+titleize	account-Active-last-bar
+underscore	already_snake
+tableize	NAme-brown
+titleize	e_BAZ_my_name
+singularize	SHOE
+camelize_lower	to-knuth-RECORD-LAZY
+parameterize	fancy're-to
+underscore	SomeXMLDataaBC
+singularize	Tomatoes_goldfish_wolf
+titleize	jumps_Foo_jumps
+titleize	(Request  device  path  account  quick_ID
+humanize	number first
+pluralize	testis raiders
+titleize	boondocks - foo - device - updated' - 1stfox
+singularize	ApiWife
+humanize	at without! code employee xml
+tableize	iPhoneABCDefGHI
+singularize	AdminIndices
+parameterize_underscore	KNUTH knuth base JUMpS
+camelize_lower	foo-Number-world
+tableize	information
+tableize	DataDiagnosis
+underscore	}!e&7=x_.
+tableize	aBC
+camelize_lower	LazyFox
+pluralize	Gas
+dasherize	UrlAccountKey
+camelize_lower	,;9
+titleize	!
+parameterize	42donald boOndocKs From io
+camelize_lower	IdHTML5Parser
+camelize	 =8/&2;^-.[0
+parameterize	My
+singularize	shelf_kiss
+singularize	tive
+singularize	BigWoman
+camelize_lower	code-X
+singularize	UserVetoes
+tableize	Roman
+parameterize	Type - Request
+pluralize	focus_donald
+parameterize	KeY! name CODE
+underscore	has
+parameterize	ssl
+singularize	human
+camelize_lower	__first_-Category_-helper_-category
+pluralize	person
+pluralize	Goldfish
+pluralize	ApiStatus
+camelize	http_quick_x_MAN
+titleize	ham - account - at - zip - ham
+pluralize	Match
+parameterize	Past - past - over, - jumps - donald - from
+titleize	many_DOG
+pluralize	View_medium_DoG
+camelize	namE_Response_past_FROM
+pluralize	bush
+camelize_lower	6%
+camelize_lower	name_over_XML
+singularize	CamelMatrices
+titleize	MyAPIKey
+parameterize	xml active
+humanize	world-Error
+parameterize	has THE 42user Key ERROR
+pluralize	GoldHero
+titleize	fox
+titleize	world_name_dog_response
+parameterize	knuth dog api jumps at ark
+singularize	iris person
+ordinalize	57524346227786803306706438831
+camelize	}"0bar05-4&~
+pluralize	Leaves
+ordinalize	111
+parameterize_underscore	brown - IO - #fancy' - pAsT,
+dasherize	many_hAs_path
+singularize	toy
+singularize	PERSON
+tableize	MEN-quick
+tableize	moves
+ordinalize	0436
+camelize	lost
+ordinalize	179234
+singularize	oxenfree
+titleize	donald: is!: x-FROM: Error: device: path's
+titleize	Created foo HELLO BAR of
+parameterize	at-boondocks-Hello-knuth-Response-code,
+camelize_lower	x
+dasherize	ViewHelper
+singularize	safe
+dasherize	code_donald_code_Xml
+parameterize	rEsPonse MANY code base past
+underscore	already_snakeJSONData
+humanize	_quick_puni_Http_Error_upDAted's
+ordinalize	568551963793588377156488668899
+ordinalize	-765141854592535557662424595459
+parameterize_underscore	record and raiders From over Man_id_
+parameterize	WIthout:: at: http: DEVICE: employee: salary
+titleize	http-lazy
+pluralize	fox
+pluralize	RICE
+camelize	?_4@!!
+camelize_lower	VIEW
+pluralize	the quizzes
+parameterize_underscore	error salary ham url't
+tableize	photo
+singularize	device_hive
+pluralize	past_AUTHOR_focus
+singularize	FieldEquipment
+underscore	LAST_+"^}(/
+parameterize	Stand
+humanize	Ham: 42Last: code: Has: type: boondocks
+titleize	account CREATED RAW 42lost stand lost
+ordinalize	226
+dasherize	puni_puni
+camelize	userID
+camelize	E
+singularize	CARGOES
+underscore	And'^\2
+pluralize	boss
+tableize	NumBER_Foo_is
+titleize	LasT: FROM: e: 2ndsalary: my: 2ndraiders
+humanize	type  salary  updated  ham
+tableize	?`$4*!
+pluralize	BlackWish
+tableize	account_sSL_of
+ordinalize	99
+dasherize	admin_Response_sSl
+titleize	_dog-
+pluralize	hello dish raw
+parameterize	ham Path: #OVER
+pluralize	cayMAn
+titleize	of key ham x-E, helper without
+tableize	equipment
+underscore	Error__many__HAM__Error
+camelize_lower	MyAPIKey
+parameterize_underscore	fancy past faNcy? code url xml
+parameterize	get  error,_ID
+tableize	bush
+pluralize	UPDAted_scaled_io
+tableize	BAz
+pluralize	campUs
+underscore	x-base-Http-scorer
+parameterize_underscore	#type dog my scaled GET
+titleize	_Hello_-HAS_-FANCY_-FANCY
+pluralize	species
+camelize	A1B2
+pluralize	BluePerson
+pluralize	VetoeS
+singularize	testis
+pluralize	STATUS
+titleize	HTTPServerURLPath
+underscore	anD_baz_response
+ordinalize	17
+dasherize	eBay
+ordinalize	8756
+humanize	employee-42employee-SCALED-e-egg_ID
+parameterize_underscore	heLlo type The puni 2ndmen RAW
+singularize	women
+singularize	day stand active
+tableize	Stand
+humanize	lazy - ERrOR - nUmbER - io - foo
+camelize_lower	the_over
+humanize	xml
+pluralize	half_Databases_loaf
+pluralize	SuperZombies
+titleize	author stand_ids
+tableize	Scaled_gEt_lazy
+pluralize	raiders_BELONGS_women
+singularize	ApiSex
+titleize	the
+singularize	BigAxes
+camelize	\_(\\
+parameterize	from Many Record're TO withoUT lost
+parameterize_underscore	view_code_has_men
+dasherize	iDBase64Encoder
+singularize	ZoMBie
+ordinalize	-31
+titleize	Last, - last - http - stand
+tableize	scoreR
+pluralize	Wives
+singularize	Toy
+parameterize_underscore	account: Fancy: "worLd: to
+tableize	hello_RESPONSE
+ordinalize	-11
+dasherize	HTTPServer
+underscore	Many
+singularize	BOONdOcks_record
+tableize	and
+singularize	bias
+humanize	lost
+titleize	raiders htTp #categORy Author stand
+parameterize	dog aPi Fancy #At dog api
+singularize	jeanS_diagnosis_DaY
+underscore	Active_auThor
+parameterize_underscore	salary - USER' - fox - REQUEST
+camelize_lower	[=,'^-;>id-,
+parameterize	_CODE  Without  name
+parameterize	record  html
+ordinalize	82
+singularize	potatoes api user
+camelize	*+(
+camelize_lower	juMpS-has-fox
+titleize	io_http_Raiders
+singularize	TOMATO
+tableize	MyAPIKeySSLError
+titleize	device-AUtHOR-Helper-lAsT
+parameterize	fancy
+pluralize	scarf datum thief
+ordinalize	97
+pluralize	databases
+pluralize	photo
+tableize	NumberSslOfOver
+singularize	perspective id
+titleize	4;>((
+singularize	Story
+tableize	employee raw
+pluralize	DataCanvas
+parameterize	NUMBER http: TYPE vIEw Id
+humanize	_FOO: employee: created: Of: updated: without
+pluralize	child
+tableize	life
+singularize	matrix
+ordinalize	276818505736332972393158891105
+parameterize_underscore	Xml
+titleize	Device - author_id_
+ordinalize	38
+tableize	ABCDefGHIMixed_Case_Words
+singularize	kine
+ordinalize	-48
+parameterize	_PUNI x HELLO Parser?
+ordinalize	54
+parameterize	admin_Hello_to_at_get_http
+titleize	author: code's: (brown
+titleize	AccoUnT boondocks,
+tableize	created
+titleize	error-at-My-http
+camelize	HTTPServer
+ordinalize	0400
+humanize	Http knuTh and boondocks
+parameterize_underscore	Is: juMPS: x: http: request: 'last_ID
+parameterize	(scorer? path 2ndUSER stand get raiders
+ordinalize	85
+humanize	dog. employee're 'Jumps 1stnumber boondocks_id_
+titleize	JUMPS-error
+tableize	has_man
+pluralize	diagnosis
+humanize	baSe
+underscore	UrlHelperEFoo
+pluralize	bus
+singularize	without zip
+singularize	FieldBoy
+camelize_lower	iD
+pluralize	COW
+singularize	Matrices
+parameterize	Egg_#urL_At_eGG
+ordinalize	39
+dasherize	HTML5ParseruserID
+camelize	_fancy__RequEST__boondocks
+parameterize	A
+titleize	Many
+dasherize	COdE_a_html_STAND
+dasherize	id_FOO
+pluralize	axis_quizzes_Shoe
+camelize	?%~;
+camelize	SSL-ssl
+parameterize	at's  error  ssl  is  Egg
+humanize	error html FROM AT record 42path
+pluralize	basis_Admin_CODE
+camelize_lower	belongs
+singularize	zombies
+pluralize	focus and record
+titleize	foo-stand-device,-path!-is-belongs
+parameterize_underscore	_author  updated  My  foo?
+pluralize	FieldScarves
+camelize	belongs_cOde
+camelize_lower	!{%(;{0;*]5
+humanize	from
+underscore	at_helper_Man_cODe
+camelize	$;58category\60)
+singularize	dish hello
+parameterize	eRRor:: Baz: Category:: admin_ids
+camelize	__Error parser employee
+pluralize	louse
+dasherize	;httphttp83<=]3
+camelize	auTHor_at
+humanize	html to's
+titleize	^
+camelize_lower	DONALD_Base_category
+titleize	has_CATEGORY'_and_x-code_accounT
+underscore	7\_&&:
+singularize	UserBush

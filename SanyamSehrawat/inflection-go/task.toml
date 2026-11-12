@@ -1,0 +1,48 @@
+schema_version = "1.4"
+# The agent's final repository is copied out and handed to the separate verifier
+# container at the same path.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "practice/inflection-go"
+version = "1.0.0"
+description = "Port the Python inflection library to Go with byte-identical output"
+keywords = ["go", "python", "porting", "regex", "inflector"]
+
+[[task.authors]]
+name = "sanyamsehrawat"
+email = "sanyamsehrawat@users.noreply.github.com"
+
+[metadata]
+category = "programming"
+source_repo = "https://github.com/jpvanhal/inflection"
+source_commit = "88eefaacf7d0caaa701af7c8ab2d0ab3f17086f1"
+source_license = "MIT"
+
+[verifier]
+timeout_sec = 600.0
+# The tests run in their own container (tests/Dockerfile), so the agent never
+# sees tests/ or the answer sheets.
+environment_mode = "separate"
+# Grading needs no network: Reward Kit is already inside the verifier image.
+network_mode = "no-network"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 3600.0
+# Non-root user created in environment/Dockerfile.
+user = "agent"
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
