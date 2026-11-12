@@ -1,0 +1,45 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "-c", "import time; time.sleep(10**9)"]
+    environment:
+      RUNNER_AUTH_TOKEN: "17bb017c7f4d280dbb05c45d1215cd75f4f1aadbf966f2f841bfdbcaae66ce4c"
+    volumes:
+      - titlecase_workspace:/workspace/repo
+    networks:
+      - verifier
+
+  runner:
+    build:
+      context: ./runner
+      dockerfile: Dockerfile
+    environment:
+      RUNNER_AUTH_TOKEN: "17bb017c7f4d280dbb05c45d1215cd75f4f1aadbf966f2f841bfdbcaae66ce4c"
+    init: true
+    read_only: true
+    cap_drop:
+      - ALL
+    cap_add:
+      - KILL
+      - SETGID
+      - SETUID
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 1g
+    cpus: 1.0
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=16m,mode=1777
+    volumes:
+      - titlecase_workspace:/workspace/repo:ro
+    networks:
+      - verifier
+
+volumes:
+  titlecase_workspace:
+
+networks:
+  verifier:
+    internal: true
