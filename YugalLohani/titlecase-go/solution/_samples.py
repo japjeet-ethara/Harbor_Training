@@ -1,0 +1,57 @@
+import sys
+
+sys.path.insert(0, r"C:\HarborPractice\python-titlecase")
+from titlecase import titlecase
+
+samples = [
+    ": very",
+    "Start: via the vs end",
+    "Word: vs that",
+    "Hello: v. test",
+    "a",
+    "A",
+    "THE",
+    "the",
+    "v.",
+    "vs.",
+    "vs",
+    "via",
+    "'QUOTE' A GREAT",
+    "EL NI\u00d1O A ARRIV\u00c9 HIER",
+    "\u00dd\u00c6 \u00d1\u00d8",
+    "\u00fd\u00e6 \u00f1\u00f8",
+    "Mr mr Mrs Ms Mss Dr dr , Mr. and Mrs. Person",
+    "mac mc MAC MC machine",
+    "mcfoo-bar, MCFOO-BAR, McFoo-bar, McFoo-Bar, mcfoo-mcbar, foo-mcbar",
+    "o'melveny/o'doyle",
+    "l'GranGe",
+    "O'GranGe",
+    "this is http://foo.com",
+    "WASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE A PROBLEM",
+    "34th 3rd 2nd",
+    "Q&A with steve jobs: 'that's what happens in technology'",
+    "What is AT&T's problem?",
+    "reading between the lines of steve jobs\u2019s \u2018thoughts on music\u2019",
+    "a mix\u00a0of\tdifferent\u200aspace\u2006characters",
+    "Snakes on a Plane \u2014 The TV Edit \u2014 The Famous Line",
+    "EPISODE 7 \u2014 THE FORCE AWAKENS",
+    "FOO BAR 5TH ST",
+    "foo bar 5th st",
+    "2lmc Spool: 'gruber on OmniFocus and vapo(u)rware'",
+    '"Nothing to Be Afraid of?"',
+    "YEA NO",
+    "oblon, spivak, mcclelland, maier & neustadt",
+    "",
+    "   ",
+    "a--b",
+    "end-to-end",
+    "Mc",
+    "MC",
+    "mc",
+    "Mcx",
+    "McX",
+    "McXy",
+]
+for s in samples:
+    print(repr(s))
+    print(" ", repr(titlecase(s)))
