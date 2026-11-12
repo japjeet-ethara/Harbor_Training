@@ -1,0 +1,5 @@
+jobs/
+**/__pycache__/
+*.pyc
+solution/src/titlecase-bin
+.DS_Store
