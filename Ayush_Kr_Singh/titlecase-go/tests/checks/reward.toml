@@ -1,0 +1,14 @@
+[scoring.build]
+aggregation = "all-pass"
+
+[scoring.no_python]
+aggregation = "all-pass"
+
+[scoring.behaviour]
+aggregation = "all-pass"
+
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
+
