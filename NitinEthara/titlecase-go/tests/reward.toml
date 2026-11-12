@@ -1,0 +1,6 @@
+# Each folder (build/, no_python/, behaviour/) is one dimension and becomes one key in reward.json.
+# The main reward is their weighted mean: build 1 + no_python 1 + behaviour 4.
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
