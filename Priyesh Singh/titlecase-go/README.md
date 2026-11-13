@@ -6,7 +6,7 @@
 | :--- | :---: |
 | **Oracle** | `1.0` |
 | **Nop** | `0.0` |
-| **Cheat** | `0.167` |
+| **Cheat** | `0.168` |
 
 The **Oracle** achieved the highest possible reward of `1.0`, while **Nop** scored `0.0` and **Cheat** achieved `0.167`.
 
