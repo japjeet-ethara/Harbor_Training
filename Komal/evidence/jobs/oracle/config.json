@@ -1,0 +1,13 @@
+{
+    "job_name": "oracle",
+    "jobs_dir": "/workspace/harbor-work/komal-baselines/jobs",
+    "n_concurrent_trials": 1,
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "tasks": [
+        {
+            "path": "/workspace/harbor-submissions/komal-titlecase-go"
+        }
+    ]
+}

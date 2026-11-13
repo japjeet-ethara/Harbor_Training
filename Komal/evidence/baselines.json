@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "runs": {
+    "oracle": {
+      "reward": 1.0,
+      "build": 1.0,
+      "no_python": 1.0,
+      "behaviour": 1.0
+    },
+    "nop": {
+      "reward": 0.0,
+      "build": 0.0,
+      "no_python": 0.0,
+      "behaviour": 0.0
+    },
+    "cheat": {
+      "reward": 0.1667,
+      "build": 1.0,
+      "no_python": 0.0,
+      "behaviour": 0.0
+    }
+  }
+}

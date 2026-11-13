@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/workspace/harbor-submissions/komal-titlecase-go"
+    },
+    "trial_name": "komal-titlecase-go__JmZYizz",
+    "trials_dir": "/workspace/harbor-work/komal-baselines/jobs/oracle",
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "603911b6-3493-4d05-b310-29597a22f013"
+}
