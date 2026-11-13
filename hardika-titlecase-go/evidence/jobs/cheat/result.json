@@ -1,0 +1,57 @@
+{
+    "id": "48bfdcce-12c1-4248-afe1-3878b61419b2",
+    "started_at": "2026-11-10T18:30:50.454051",
+    "updated_at": "2026-11-10T18:31:29.700671",
+    "finished_at": "2026-11-10T18:31:29.700671",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "oracle__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "behaviour": 0.0,
+                        "build": 1.0,
+                        "no_python": 0.0,
+                        "reward": 0.1667
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "0.1667": [
+                            "hardika-titlecase-go__kvqM6BV"
+                        ]
+                    },
+                    "build": {
+                        "1.0": [
+                            "hardika-titlecase-go__kvqM6BV"
+                        ]
+                    },
+                    "no_python": {
+                        "0.0": [
+                            "hardika-titlecase-go__kvqM6BV"
+                        ]
+                    },
+                    "behaviour": {
+                        "0.0": [
+                            "hardika-titlecase-go__kvqM6BV"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+    }
+}

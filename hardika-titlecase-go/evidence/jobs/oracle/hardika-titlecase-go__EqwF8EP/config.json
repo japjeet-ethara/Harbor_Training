@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/workspace/harbor-submissions/hardika-titlecase-go"
+    },
+    "trial_name": "hardika-titlecase-go__EqwF8EP",
+    "trials_dir": "/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs/oracle",
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "11abc2ff-ad24-4db8-8d82-3bea4253ecd3"
+}

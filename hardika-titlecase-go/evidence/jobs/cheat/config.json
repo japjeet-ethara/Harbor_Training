@@ -1,0 +1,13 @@
+{
+    "job_name": "cheat",
+    "jobs_dir": "/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs",
+    "n_concurrent_trials": 1,
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "tasks": [
+        {
+            "path": "/tmp/hardika-titlecase-go-cheat-0ullpfi4/hardika-titlecase-go"
+        }
+    ]
+}

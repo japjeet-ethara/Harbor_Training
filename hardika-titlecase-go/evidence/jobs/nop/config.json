@@ -1,0 +1,18 @@
+{
+    "job_name": "nop",
+    "jobs_dir": "/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs",
+    "n_concurrent_trials": 1,
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/workspace/harbor-submissions/hardika-titlecase-go"
+        }
+    ]
+}

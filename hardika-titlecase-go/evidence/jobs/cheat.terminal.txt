@@ -1,0 +1,28 @@
+  1/1 Behaviour: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:39 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     0.000 │ 1.000 │     0.000 │  0.167 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.1667 │     1 │
+│ 1.0    │     1 │
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 39s
+Results written to 
+/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs/cheat/result.js
+on
+Inspect results by running `harbor view 
+/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs`
+Share results by running `harbor upload 
+/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs/cheat`
+
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.

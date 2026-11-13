@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/tmp/hardika-titlecase-go-cheat-0ullpfi4/hardika-titlecase-go"
+    },
+    "trial_name": "hardika-titlecase-go__kvqM6BV",
+    "trials_dir": "/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs/cheat",
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "48bfdcce-12c1-4248-afe1-3878b61419b2"
+}

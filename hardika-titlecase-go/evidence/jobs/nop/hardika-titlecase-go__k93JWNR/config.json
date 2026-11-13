@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/workspace/harbor-submissions/hardika-titlecase-go"
+    },
+    "trial_name": "hardika-titlecase-go__k93JWNR",
+    "trials_dir": "/workspace/harbor-submissions/hardika-titlecase-go/evidence/jobs/nop",
+    "agent": {
+        "name": "nop"
+    },
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "1f621712-2a5b-4e14-a72f-7357a05004d6"
+}
