@@ -65,7 +65,6 @@ The task was evaluated using Harbor with local Docker execution across Oracle, N
 
 The grading is automated using `harbor-rewardkit` (`tests/checks/reward.toml`) with a weighted-mean aggregation across three criteria:
 
-$$\text{Reward} = \frac{1.0 \times \text{build} + 1.0 \times \text{no\_python} + 4.0 \times \text{behaviour}}{6.0}$$
 
 | Criterion | Weight | Requirement | Description |
 |---|:---:|---|---|
