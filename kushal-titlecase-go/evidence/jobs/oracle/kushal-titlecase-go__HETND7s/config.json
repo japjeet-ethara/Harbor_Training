@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/workspace/harbor-submissions/kushal-titlecase-go"
+    },
+    "trial_name": "kushal-titlecase-go__HETND7s",
+    "trials_dir": "/workspace/harbor-submissions/kushal-titlecase-go/evidence/jobs/oracle",
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "d7b6d9b8-cf36-4498-9c68-a2594be5227d"
+}

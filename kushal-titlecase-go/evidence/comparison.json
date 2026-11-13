@@ -1,0 +1,1605 @@
+{
+  "AbhishekNain": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.153,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 11468,
+    "score": 0.88532,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "AdarshSahani": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.919,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 10365,
+    "score": 0.89635,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "AkshatTomar": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 8.019,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 13892,
+    "score": 0.86108,
+    "examples": [
+      {
+        "input": "aΣ",
+        "expected": "aΣ",
+        "actual": "AΣ"
+      },
+      {
+        "input": "bΣ",
+        "expected": "bΣ",
+        "actual": "BΣ"
+      },
+      {
+        "input": "cΣ",
+        "expected": "cΣ",
+        "actual": "CΣ"
+      },
+      {
+        "input": "dΣ",
+        "expected": "dΣ",
+        "actual": "DΣ"
+      }
+    ]
+  },
+  "AkulMalviya": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.361,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 23208,
+    "score": 0.76792,
+    "examples": [
+      {
+        "input": "x. v. a b",
+        "expected": "X. V. a B",
+        "actual": "X. V. A B"
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      }
+    ]
+  },
+  "AlokKumarJaiswal": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.324,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 50257,
+    "score": 0.49743,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Aman-tiwari-titlecase-go": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.506,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 15891,
+    "score": 0.84109,
+    "examples": [
+      {
+        "input": "aΣ",
+        "expected": "aΣ",
+        "actual": "AΣ"
+      },
+      {
+        "input": "bΣ",
+        "expected": "bΣ",
+        "actual": "BΣ"
+      },
+      {
+        "input": "cΣ",
+        "expected": "cΣ",
+        "actual": "CΣ"
+      },
+      {
+        "input": "dΣ",
+        "expected": "dΣ",
+        "actual": "DΣ"
+      }
+    ]
+  },
+  "AnnuKumari": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.557,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 18582,
+    "score": 0.81418,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "ArunBisht": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.657,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 17947,
+    "score": 0.82053,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Ashishreliable": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.885,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 21422,
+    "score": 0.78578,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "AyushMishra": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.538,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 24297,
+    "score": 0.75703,
+    "examples": [
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "The Cat Of "
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      }
+    ]
+  },
+  "AyushParasher": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.19,
+    "exit_code": 0,
+    "output_lines": 2001,
+    "mismatches": 100000,
+    "score": 0.0,
+    "examples": [
+      {
+        "input": "",
+        "expected": "",
+        "actual": "Mr Hanoi and Mrs Outline Met Dr Survey and MSS 945"
+      },
+      {
+        "input": " ",
+        "expected": " ",
+        "actual": "Via Lantern 1562 Lantern"
+      },
+      {
+        "input": "\t",
+        "expected": "\t",
+        "actual": "Accra 1116 — On Record"
+      },
+      {
+        "input": " the cat",
+        "expected": " the Cat",
+        "actual": "'To Update' Says \"Journal\" 1885"
+      }
+    ]
+  },
+  "AyushRanjan-titlecase-go": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.848,
+    "exit_code": 2,
+    "output_lines": 278,
+    "mismatches": 99757,
+    "score": 0.00243,
+    "examples": [
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "The Cat Of "
+      },
+      {
+        "input": "mcthe",
+        "expected": "McThe",
+        "actual": "Mcthe"
+      },
+      {
+        "input": "mcby",
+        "expected": "McBy",
+        "actual": "Mcby"
+      },
+      {
+        "input": "a-b the-the",
+        "expected": "A-B the-The",
+        "actual": "a-B the-The"
+      }
+    ]
+  },
+  "BhaveshParihar": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.84,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 10333,
+    "score": 0.89667,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "DevanshSharma": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.857,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 13855,
+    "score": 0.86145,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "GauravSiradhana": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.618,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 20085,
+    "score": 0.79915,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Gunjit": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 6.385,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 4762,
+    "score": 0.95238,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "HarshitKumar": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.421,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 10366,
+    "score": 0.89634,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Isha-Jakhad": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.074,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 17223,
+    "score": 0.82777,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "KanishkaSharma": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.876,
+    "exit_code": 2,
+    "output_lines": 17601,
+    "mismatches": 85788,
+    "score": 0.14212,
+    "examples": [
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "The Cat Of "
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      }
+    ]
+  },
+  "KumailMujtaba": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.363,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 0,
+    "score": 1.0,
+    "examples": []
+  },
+  "Paniv_Kapoor": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.537,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 5452,
+    "score": 0.94548,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "VanamPrashanth-titlecase-go": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.741,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 14503,
+    "score": 0.85497,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "satvik-tandon": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.309,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 71543,
+    "score": 0.28457,
+    "examples": [
+      {
+        "input": "mcthe",
+        "expected": "McThe",
+        "actual": "Mcthe"
+      },
+      {
+        "input": "mcby",
+        "expected": "McBy",
+        "actual": "Mcby"
+      },
+      {
+        "input": "o's'",
+        "expected": "O's'",
+        "actual": "O'S'"
+      },
+      {
+        "input": "a-b the-the",
+        "expected": "A-B the-The",
+        "actual": "a-B the-the"
+      }
+    ]
+  },
+  "AshutoshSharma": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.452,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 10333,
+    "score": 0.89667,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "KushalSoni": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.078,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 22903,
+    "score": 0.77097,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Lavesh": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.44,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 22904,
+    "score": 0.77096,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "LokeshDeshwal": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.835,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 90783,
+    "score": 0.09217,
+    "examples": [
+      {
+        "input": " the cat",
+        "expected": " the Cat",
+        "actual": " the cat"
+      },
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "the cat of "
+      },
+      {
+        "input": "x. v. a b",
+        "expected": "X. V. a B",
+        "actual": "x. v. a b"
+      },
+      {
+        "input": "vs. a b: vs. a",
+        "expected": "Vs. A B: Vs. A",
+        "actual": "vs. a b: vs. a"
+      }
+    ]
+  },
+  "MadhurJain": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.342,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 12453,
+    "score": 0.87547,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "MohammadAdnan": {
+    "solution_exit": 1,
+    "status": "build-failed",
+    "build_seconds": 0.173,
+    "error": "Error response from daemon: Could not find the file /workspace/compare-filter in container titlecase-compare-25\n"
+  },
+  "MohdRafey": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.9,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 13890,
+    "score": 0.8611,
+    "examples": [
+      {
+        "input": "aΣ",
+        "expected": "aΣ",
+        "actual": "AΣ"
+      },
+      {
+        "input": "bΣ",
+        "expected": "bΣ",
+        "actual": "BΣ"
+      },
+      {
+        "input": "cΣ",
+        "expected": "cΣ",
+        "actual": "CΣ"
+      },
+      {
+        "input": "dΣ",
+        "expected": "dΣ",
+        "actual": "DΣ"
+      }
+    ]
+  },
+  "NikhilChoudhary": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 6.071,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 18949,
+    "score": 0.81051,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "OmarGhyas": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.305,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 3763,
+    "score": 0.96237,
+    "examples": [
+      {
+        "input": "aſ.b",
+        "expected": "Aſ.b",
+        "actual": "aſ.b"
+      },
+      {
+        "input": "ΐ",
+        "expected": "Ϊ́",
+        "actual": "ΐ"
+      },
+      {
+        "input": "ΐΣ",
+        "expected": "ΐΣ",
+        "actual": "ΐς"
+      },
+      {
+        "input": "o'ΐ",
+        "expected": "O'Ϊ́",
+        "actual": "O'ΐ"
+      }
+    ]
+  },
+  "PiyushKhattar": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.712,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 4185,
+    "score": 0.95815,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "PragatiSharma": {
+    "solution_exit": 1,
+    "status": "evaluated",
+    "build_seconds": 5.171,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 20058,
+    "score": 0.79942,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "PriyanshuSingh": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.579,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 13890,
+    "score": 0.8611,
+    "examples": [
+      {
+        "input": "aΣ",
+        "expected": "aΣ",
+        "actual": "AΣ"
+      },
+      {
+        "input": "bΣ",
+        "expected": "bΣ",
+        "actual": "BΣ"
+      },
+      {
+        "input": "cΣ",
+        "expected": "cΣ",
+        "actual": "CΣ"
+      },
+      {
+        "input": "dΣ",
+        "expected": "dΣ",
+        "actual": "DΣ"
+      }
+    ]
+  },
+  "RudranshPandey": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.749,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 51841,
+    "score": 0.48159,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Sakshi Singh": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.446,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 24461,
+    "score": 0.75539,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "SatyamPandey": {
+    "solution_exit": 1,
+    "status": "evaluated",
+    "build_seconds": 4.974,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 10365,
+    "score": 0.89635,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "SaurabhBaghel": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.947,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 11932,
+    "score": 0.88068,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "ShivamTiwari": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.247,
+    "exit_code": 0,
+    "output_lines": 190108,
+    "mismatches": 84366,
+    "score": 0.08223746501988344,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "ShubhShukla": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.021,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 18583,
+    "score": 0.81417,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "ShubhamTumane": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.25,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 63510,
+    "score": 0.3649,
+    "examples": [
+      {
+        "input": " the cat",
+        "expected": " the Cat",
+        "actual": " The Cat"
+      },
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "The Cat Of "
+      },
+      {
+        "input": "x. v. a b",
+        "expected": "X. V. a B",
+        "actual": "X. V. A B"
+      },
+      {
+        "input": "o's'",
+        "expected": "O's'",
+        "actual": "O'S'"
+      }
+    ]
+  },
+  "SiddharthSingh": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.551,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 51704,
+    "score": 0.48296,
+    "examples": [
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "The Cat Of "
+      },
+      {
+        "input": "x. v. a b",
+        "expected": "X. V. a B",
+        "actual": "X. V. A B"
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      }
+    ]
+  },
+  "SnehaSadhukhan": {
+    "solution_exit": 0,
+    "status": "build-failed",
+    "build_seconds": 0.135,
+    "error": "Error response from daemon: Could not find the file /workspace/compare-filter in container titlecase-compare-41\n"
+  },
+  "SonuKumar": {
+    "solution_exit": 1,
+    "status": "evaluated",
+    "build_seconds": 4.942,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 17971,
+    "score": 0.82029,
+    "examples": [
+      {
+        "input": "x. v. a b",
+        "expected": "X. V. a B",
+        "actual": "X. V. A B"
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      }
+    ]
+  },
+  "TannuKumari": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.458,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 18583,
+    "score": 0.81417,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "Uday-Bhatnagar": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.09,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 17224,
+    "score": 0.82776,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "VanshGupta": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.074,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 51382,
+    "score": 0.48618,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "VishuPorwal": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 4.096,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 20058,
+    "score": 0.79942,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "YashSingla": {
+    "solution_exit": 1,
+    "status": "evaluated",
+    "build_seconds": 5.122,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 15010,
+    "score": 0.8499,
+    "examples": [
+      {
+        "input": "x. v. a b",
+        "expected": "X. V. a B",
+        "actual": "X. V. A B"
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      }
+    ]
+  },
+  "Yuvraj-Singh-eGRP2211": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.335,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 24891,
+    "score": 0.75109,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  },
+  "ayushkhurana": {
+    "solution_exit": 1,
+    "status": "evaluated",
+    "build_seconds": 4.121,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 15885,
+    "score": 0.84115,
+    "examples": [
+      {
+        "input": "aΣ",
+        "expected": "aΣ",
+        "actual": "AΣ"
+      },
+      {
+        "input": "bΣ",
+        "expected": "bΣ",
+        "actual": "BΣ"
+      },
+      {
+        "input": "cΣ",
+        "expected": "cΣ",
+        "actual": "CΣ"
+      },
+      {
+        "input": "dΣ",
+        "expected": "dΣ",
+        "actual": "DΣ"
+      }
+    ]
+  },
+  "prashant1324task": {
+    "solution_exit": 0,
+    "status": "evaluated",
+    "build_seconds": 5.237,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 50666,
+    "score": 0.49334,
+    "examples": [
+      {
+        "input": "the cat of ",
+        "expected": "The Cat of ",
+        "actual": "The Cat Of "
+      },
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      }
+    ]
+  },
+  "priya": {
+    "solution_exit": 1,
+    "status": "evaluated",
+    "build_seconds": 4.137,
+    "exit_code": 0,
+    "output_lines": 100000,
+    "mismatches": 15661,
+    "score": 0.84339,
+    "examples": [
+      {
+        "input": "AΣ",
+        "expected": "Aς",
+        "actual": "Aσ"
+      },
+      {
+        "input": "BΣ",
+        "expected": "Bς",
+        "actual": "Bσ"
+      },
+      {
+        "input": "CΣ",
+        "expected": "Cς",
+        "actual": "Cσ"
+      },
+      {
+        "input": "DΣ",
+        "expected": "Dς",
+        "actual": "Dσ"
+      }
+    ]
+  }
+}

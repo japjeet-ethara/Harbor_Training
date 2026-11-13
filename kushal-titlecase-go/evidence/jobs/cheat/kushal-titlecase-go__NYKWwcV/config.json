@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/tmp/kushal-titlecase-go-cheat-vdhxbn56/kushal-titlecase-go"
+    },
+    "trial_name": "kushal-titlecase-go__NYKWwcV",
+    "trials_dir": "/workspace/harbor-submissions/kushal-titlecase-go/evidence/jobs/cheat",
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "03decede-9262-4ef8-93c8-44e384cbea9e"
+}

@@ -1,0 +1,13 @@
+{
+    "job_name": "cheat",
+    "jobs_dir": "/workspace/harbor-submissions/kushal-titlecase-go/evidence/jobs",
+    "n_concurrent_trials": 1,
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "tasks": [
+        {
+            "path": "/tmp/kushal-titlecase-go-cheat-vdhxbn56/kushal-titlecase-go"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/workspace/harbor-submissions/kushal-titlecase-go"
+    },
+    "trial_name": "kushal-titlecase-go__eVyBukS",
+    "trials_dir": "/workspace/harbor-submissions/kushal-titlecase-go/evidence/jobs/nop",
+    "agent": {
+        "name": "nop"
+    },
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "009fa4e2-de6d-4721-a989-b8c8a2e29694"
+}

@@ -1,0 +1,62 @@
+{
+  "author": "Kushal",
+  "seed": 1,
+  "reference_commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167",
+  "python": "3.12.14",
+  "regex": "2026.11.9",
+  "reference_sha256": "a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0",
+  "visible": {
+    "count": 2000,
+    "categories": {
+      "combining": 111,
+      "consonants": 89,
+      "digit-prefix": 99,
+      "dotted": 100,
+      "hyphen": 102,
+      "initials": 110,
+      "leading-space": 109,
+      "mixed-case": 99,
+      "names": 97,
+      "plain": 96,
+      "punctuation": 102,
+      "recursive": 103,
+      "slash": 90,
+      "small-end": 106,
+      "small-middle": 94,
+      "small-start": 103,
+      "subphrase": 100,
+      "trailing-space": 91,
+      "unicode-case": 85,
+      "unicode-space": 114
+    },
+    "inputs_sha256": "db44bcf8724c36ced61d6a53e3cedaea38a2fe344864a017be71dc500e0c73be",
+    "expected_sha256": "a15044e39af9f44f94c75b644dc0d1464dd53225d976098e95f33dbaaaa8ca8c"
+  },
+  "hidden": {
+    "count": 2000,
+    "categories": {
+      "combining": 89,
+      "consonants": 111,
+      "digit-prefix": 101,
+      "dotted": 100,
+      "hyphen": 98,
+      "initials": 90,
+      "leading-space": 91,
+      "mixed-case": 101,
+      "names": 103,
+      "plain": 104,
+      "punctuation": 98,
+      "recursive": 97,
+      "slash": 110,
+      "small-end": 94,
+      "small-middle": 106,
+      "small-start": 97,
+      "subphrase": 100,
+      "trailing-space": 109,
+      "unicode-case": 115,
+      "unicode-space": 86
+    },
+    "inputs_sha256": "cca66c7b036d997bdc763b5b3a742e7bfb39768aee39420f1e233e24768b55fc",
+    "expected_sha256": "5a92454a022ab468e395a8fbdd13226561bb57a1f24d79b1f1095693097444ff"
+  }
+}
