@@ -1,0 +1,57 @@
+{
+    "id": "67d77ed2-fb13-4f4f-adec-bb5d94821935",
+    "started_at": "2026-11-16T16:05:17.634377",
+    "updated_at": "2026-11-16T16:05:48.232990",
+    "finished_at": "2026-11-16T16:05:48.232990",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "oracle__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "behaviour": 1.0,
+                        "build": 1.0,
+                        "no_python": 1.0,
+                        "reward": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1": [
+                            "figlet-go__CtEASrc"
+                        ]
+                    },
+                    "build": {
+                        "1": [
+                            "figlet-go__CtEASrc"
+                        ]
+                    },
+                    "no_python": {
+                        "1": [
+                            "figlet-go__CtEASrc"
+                        ]
+                    },
+                    "behaviour": {
+                        "1": [
+                            "figlet-go__CtEASrc"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+    }
+}
