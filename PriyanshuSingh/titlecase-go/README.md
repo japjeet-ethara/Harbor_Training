@@ -39,11 +39,11 @@ The weights give 2/6 for building and removing the Python, whatever the program 
 
 ## Run it
 
-From the folder that contains `PriyanshuSingh`:
+From the `PriyanshuSingh` folder:
 
 ```bash
-harbor run -p ./PriyanshuSingh -a oracle
-harbor run -p ./PriyanshuSingh -a nop
+harbor run -p ./titlecase-go -a oracle
+harbor run -p ./titlecase-go -a nop
 ```
 
 To run the cheat, back up `solution/solve.sh`, copy `cheat/solve.sh` over it, run the oracle command, then restore the backup.
