@@ -1,0 +1,30 @@
+=== Starting Harbor Figlet Grader ===
+Build check passed: /tmp/figlet built successfully.
+Evaluating 2000 hidden cases (5s timeout each)...
+Progress: 500/2000 cases evaluated (matched: 500)
+Progress: 1000/2000 cases evaluated (matched: 1000)
+Progress: 1500/2000 cases evaluated (matched: 1500)
+Progress: 2000/2000 cases evaluated (matched: 2000)
+no_python check passed: build succeeded, no .py files present, and at least one case matched.
+Wrote reward to /logs/verifier/reward.json:
+{
+  "reward": 1,
+  "build": 1,
+  "no_python": 1,
+  "behaviour": 1
+}
+
+*** SECRET UNLOCKED ***
+          _                               __ 
+   ____  (_)_______     ____  ____  _____/ /_
+  / __ \/ / ___/ _ \   / __ \/ __ \/ ___/ __/
+ / / / / / /__/  __/  / /_/ / /_/ / /  / /__ 
+/_/ /_/_/\___/\___/  / .___/\____/_/   \__( )
+                    /_/                   |/ 
+    __                              
+   / /_  __  ______ ___  ____ _____ 
+  / __ \/ / / / __ `__ \/ __ `/ __ \
+ / / / / /_/ / / / / / / /_/ / / / /
+/_/ /_/\__,_/_/ /_/ /_/\__,_/_/ /_/ 
+                                    
+
