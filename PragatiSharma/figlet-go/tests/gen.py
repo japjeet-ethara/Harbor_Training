@@ -49,12 +49,20 @@ def get_font(font_name: str) -> FigletFont:
 
 
 def parse_candidate_args(args: list[str]) -> tuple[str, int, list[str]]:
-    """Extract font name, width, and positional text arguments from candidate args."""
-    font_name = args[args.index("-f") + 1]
-    width = int(args[args.index("-w") + 1])
+    """Extract font name, width, and positional text arguments from candidate args.
+    Starts with default font 'standard' and default width 80, then applies any explicit options.
+    """
+    font_name = "standard"
+    width = 80
     i = 0
     while i < len(args):
-        if args[i] in ("-f", "-w", "-j", "-D"):
+        if args[i] == "-f" and i + 1 < len(args):
+            font_name = args[i + 1]
+            i += 2
+        elif args[i] == "-w" and i + 1 < len(args):
+            width = int(args[i + 1])
+            i += 2
+        elif args[i] in ("-j", "-D"):
             i += 2
         elif args[i] in ("-r", "-F", "-s", "-n"):
             i += 1
@@ -408,6 +416,34 @@ def run_pyfiglet(args: list[str], pyfiglet_dir: pathlib.Path, timeout_sec: float
     return True, out_str
 
 
+# Reserved cases to cover omitted CLI defaults (5 cases in each dataset)
+RESERVED_VISIBLE_CASES = [
+    # 1. All defaults
+    ["hello"],
+    # 2. Omit only -f (defaults to standard)
+    ["-w", "40", "-j", "left", "-D", "left-to-right", "Map"],
+    # 3. Omit only -w (defaults to 80; long text testing width wrapping)
+    ["-f", "small", "-j", "right", "-D", "left-to-right", "alpha beta gamma delta epsilon zeta eta theta"],
+    # 4. Omit only -j (defaults to auto -> right for right-to-left; asymmetric text)
+    ["-f", "small", "-w", "40", "-D", "right-to-left", "AB"],
+    # 5. Omit only -D (defaults to auto -> left-to-right; asymmetric text)
+    ["-f", "slant", "-w", "60", "-j", "left", "ABC"],
+]
+
+RESERVED_HIDDEN_CASES = [
+    # 1. All defaults (different text)
+    ["world"],
+    # 2. Omit only -f (different text)
+    ["-w", "40", "-j", "left", "-D", "left-to-right", "Code"],
+    # 3. Omit only -w (different long text testing width wrapping)
+    ["-f", "small", "-j", "right", "-D", "left-to-right", "the quick brown fox jumps over the lazy dog"],
+    # 4. Omit only -j (different asymmetric text for right-to-left)
+    ["-f", "small", "-w", "40", "-D", "right-to-left", "XY"],
+    # 5. Omit only -D (different asymmetric text for default direction)
+    ["-f", "slant", "-w", "60", "-j", "left", "XYZ"],
+]
+
+
 def generate_dataset(
     output_path: pathlib.Path,
     target_count: int,
@@ -415,6 +451,7 @@ def generate_dataset(
     seen_args: set,
     pyfiglet_dir: pathlib.Path,
     timeout_sec: float,
+    reserved_cases: list[list[str]] | None = None,
 ) -> int:
     """Generate target_count unique test cases into output_path as JSON Lines."""
     print(f"Starting generation of {target_count} cases for {dataset_name} ({output_path.name})...")
@@ -424,6 +461,29 @@ def generate_dataset(
     start_time = time.time()
 
     with open(output_path, "w", encoding="utf-8") as f:
+        # 1. Write reserved cases covering omitted CLI defaults
+        if reserved_cases:
+            for args in reserved_cases:
+                args_tuple = tuple(args)
+                if args_tuple in seen_args:
+                    continue
+
+                font_name, width, text_args = parse_candidate_args(args)
+                if should_skip_glyph_width(font_name, width, text_args):
+                    continue
+
+                success, result = run_pyfiglet(args, pyfiglet_dir, timeout_sec)
+                if not success:
+                    print(f"Error: Reserved case failed for args: {args}", file=sys.stderr)
+                    sys.exit(1)
+
+                seen_args.add(args_tuple)
+                record = {"args": args, "out": result}
+                f.write(json.dumps(record, ensure_ascii=False) + "\n")
+                f.flush()
+                count += 1
+
+        # 2. Generate remaining cases using seeded random generator
         while count < target_count:
             # Guarantee narrow right-to-left cases are included in both files
             force_narrow_rtl = (count % 5 == 0)
@@ -469,9 +529,24 @@ def main():
         print(f"Error: Original pyfiglet checkout not found at {PYFIGLET_DIR}", file=sys.stderr)
         sys.exit(1)
 
+    print("\nOmission patterns covered in visible set:")
+    print("  1. All defaults:               ", RESERVED_VISIBLE_CASES[0])
+    print("  2. Omit only -f (default font):", RESERVED_VISIBLE_CASES[1])
+    print("  3. Omit only -w (default 80):  ", RESERVED_VISIBLE_CASES[2])
+    print("  4. Omit only -j (default auto):", RESERVED_VISIBLE_CASES[3])
+    print("  5. Omit only -D (default auto):", RESERVED_VISIBLE_CASES[4])
+
+    print("\nOmission patterns covered in hidden set:")
+    print("  1. All defaults:               ", RESERVED_HIDDEN_CASES[0])
+    print("  2. Omit only -f (default font):", RESERVED_HIDDEN_CASES[1])
+    print("  3. Omit only -w (default 80):  ", RESERVED_HIDDEN_CASES[2])
+    print("  4. Omit only -j (default auto):", RESERVED_HIDDEN_CASES[3])
+    print("  5. Omit only -D (default auto):", RESERVED_HIDDEN_CASES[4])
+    print()
+
     seen_args = set()
 
-    # Generate visible.jsonl (2,000 cases)
+    # Generate visible.jsonl (2,000 cases: 5 reserved + 1,995 generated)
     visible_count = generate_dataset(
         output_path=VISIBLE_FILE,
         target_count=TARGET_COUNT_PER_FILE,
@@ -479,9 +554,10 @@ def main():
         seen_args=seen_args,
         pyfiglet_dir=PYFIGLET_DIR,
         timeout_sec=TIMEOUT_PER_CASE,
+        reserved_cases=RESERVED_VISIBLE_CASES,
     )
 
-    # Generate hidden.jsonl (2,000 cases, all unique from visible)
+    # Generate hidden.jsonl (2,000 cases: 5 reserved + 1,995 generated, all unique from visible)
     hidden_count = generate_dataset(
         output_path=HIDDEN_FILE,
         target_count=TARGET_COUNT_PER_FILE,
@@ -489,6 +565,7 @@ def main():
         seen_args=seen_args,
         pyfiglet_dir=PYFIGLET_DIR,
         timeout_sec=TIMEOUT_PER_CASE,
+        reserved_cases=RESERVED_HIDDEN_CASES,
     )
 
     print("\n" + "=" * 50)
