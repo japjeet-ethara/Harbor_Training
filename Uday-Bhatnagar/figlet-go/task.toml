@@ -1,0 +1,21 @@
+version = "1.0"
+
+[metadata]
+author_name = "Harbor Practice"
+category = "programming"
+tags = ["go", "porting", "figlet"]
+difficulty = "hard"
+
+[agent]
+user = "player"
+timeout_sec = 3600.0
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 10240
+
+[verifier]
+timeout_sec = 900.0

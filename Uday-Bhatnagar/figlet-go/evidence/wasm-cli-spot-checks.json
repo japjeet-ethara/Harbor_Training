@@ -1,0 +1,9 @@
+{
+  "unmodified_cli_indices": [
+    0,
+    777,
+    1999
+  ],
+  "all_exact": true,
+  "secrets_rendered_with": "unmodified Go CLI compiled to WebAssembly"
+}
