@@ -1,0 +1,7 @@
+# Each sub-folder (build/, no_python/, behaviour/) is one check and appears as
+# its own score in /logs/verifier/reward.json. "reward" combines them:
+#   reward = (1*build + 1*no_python + 4*behaviour) / 6
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
