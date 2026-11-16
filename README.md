@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Harbor Training – Go Titlecase Task
 
 ## Overview
@@ -79,3 +80,6 @@ The No-op and cheat evaluations should also be run and documented separately.
 ## Repository
 
 [Harbor Training – GitHub](https://github.com/japjeet-ethara/Harbor_Training)
+=======
+# Ramandeep-singh04/titlecase-go
+>>>>>>> a415b91 (Complete Harbor titlecase Go task)
