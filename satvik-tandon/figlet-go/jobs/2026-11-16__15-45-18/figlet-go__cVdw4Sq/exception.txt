@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 606, in run
+    await self._prepare()
+  File "C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 645, in _prepare
+    await self._setup_agent_environment()
+  File "C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1849, in _setup_agent_environment
+    await self._start_agent_environment()
+  File "C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1855, in _start_agent_environment
+    await asyncio.wait_for(
+    ...<4 lines>...
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 1065, in start
+    await self._run_docker_compose_command(["build"])
+  File "C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 765, in _run_docker_compose_command
+    raise RuntimeError(
+    ...<5 lines>...
+    )
+RuntimeError: Docker compose command failed for environment figlet-go. Command: docker compose --project-name figlet-go__cvdw4sq__env --project-directory C:\Users\SatvikT-GRP1643\Documents\Codex\2026-11-16\hi-x20\outputs\figlet-go\environment -f C:\Users\SatvikT-GRP1643\AppData\Local\Temp\tmpnkcrk9tm\figlet-go__cVdw4Sq__env-docker-compose-resources.json -f C:\Users\SatvikT-GRP1643\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker-compose-build.yaml -f C:\Users\SatvikT-GRP1643\AppData\Local\Temp\tmpqzi0mjdm\docker-compose-environment.json -f C:\Users\SatvikT-GRP1643\AppData\Local\Temp\tmp1f68mi2m\docker-compose-mounts.json build. Return code: 1. Stdout:  Image figlet-go__cvdw4sq__env-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 671B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 609B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/alpine/git:2.47.2
+#3 ...
+
+#4 [internal] load metadata for docker.io/library/golang@sha256:383395b794dffa5b53012a212365d40c8e37109a626ca30d6151c8348d380b5f
+#4 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/alpine/git:2.47.2
+#3 ERROR: failed to do request: Head "https://registry-1.docker.io/v2/alpine/git/manifests/2.47.2": http: server gave HTTP response to HTTPS client
+------
+ > [internal] load metadata for docker.io/alpine/git:2.47.2:
+------
+Dockerfile:1
+
+--------------------
+
+   1 | >>> FROM alpine/git:2.47.2 AS source
+
+   2 |     WORKDIR /src
+
+   3 |     RUN git clone https://github.com/pwaller/pyfiglet . \
+
+--------------------
+
+failed to solve: alpine/git:2.47.2: failed to resolve source metadata for docker.io/alpine/git:2.47.2: failed to do request: Head "https://registry-1.docker.io/v2/alpine/git/manifests/2.47.2": http: server gave HTTP response to HTTPS client
+
+. Stderr: None. 
