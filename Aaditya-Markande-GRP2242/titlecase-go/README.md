@@ -1,0 +1,2 @@
+Most-missed issue: the first Go port compiled to a module named "titlecase", which collided with the leftover empty titlecase/ folder after the .py files were deleted (fixed by renaming the module and removing empty folders); on the 4000 generated lines no titlecase rule differed from Python.
+Harder version: add non-ASCII input (e.g. é, ß, İ), because Python's \w and str.upper()/capitalize() are Unicode-aware while Go's regexp \w is ASCII-only, and add digit/underscore cases around the Mc/Mac rule.
