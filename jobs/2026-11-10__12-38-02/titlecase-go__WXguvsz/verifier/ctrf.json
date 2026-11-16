@@ -1,0 +1,50 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 2,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794294516.0718937,
+            "stop": 1794294523.0507357
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "passed",
+                "duration": 6.775246554000205,
+                "start": 1794294516.0959308,
+                "stop": 1794294522.8714578,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.0004634950000763638,
+                "start": 1794294522.871738,
+                "stop": 1794294522.872352,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.16621036699962133,
+                "start": 1794294522.8725195,
+                "stop": 1794294523.050403,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"go build -o {bin_path} .\", cwd=REPO_DIR)\n        assert build_ok and os.path.exists(bin_path), f\"Failed to build binary:\\n{stderr}\"\n    \n        hidden_in = os.path.join(TESTS_DIR, \"data\", \"hidden_inputs.txt\")\n        hidden_exp = os.path.join(TESTS_DIR, \"data\", \"hidden_expected.txt\")\n    \n        assert os.path.exists(hidden_in), f\"Missing {hidden_in}\"\n        assert os.path.exists(hidden_exp), f\"Missing {hidden_exp}\"\n    \n        with open(hidden_in, \"r\", encoding=\"utf-8\") as f_in:\n            in_lines = [line.rstrip(\"\\r\\n\") for line in f_in.readlines()]\n    \n        with open(hidden_in, \"r\", encoding=\"utf-8\") as f_in:\n            res = subprocess.run(\n                [bin_path],\n                stdin=f_in,\n                stdout=subprocess.PIPE,\n                stderr=subprocess.PIPE,\n                text=True,\n            )\n    \n        assert res.returncode == 0, f\"Binary crashed with stderr: {res.stderr}\"\n    \n        actual_lines = [line.rstrip(\"\\r\\n\") for line in res.stdout.splitlines()]\n        with open(hidden_exp, \"r\", encoding=\"utf-8\") as f_exp:\n            exp_lines = [line.rstrip(\"\\r\\n\") for line in f_exp.readlines()]\n    \n        assert len(actual_lines) == len(exp_lines), (\n            f\"Output line count mismatch: got {len(actual_lines)}, expected {len(exp_lines)}\"\n        )\n    \n        matches = sum(1 for a, b in zip(actual_lines, exp_lines) if a == b)\n        accuracy = matches / len(exp_lines)\n    \n        diffs = []\n        for idx, (inp, act, exp) in enumerate(zip(in_lines, actual_lines, exp_lines)):\n            if act != exp:\n                diffs.append(\n                    f\"\\n[Line {idx+1}]\\n  Input:    {inp}\\n  Actual:   {act}\\n  Expected: {exp}\"\n                )\n                if len(diffs) >= 5:\n                    break\n        diff_msg = \"\".join(diffs)\n    \n>       assert accuracy == 1.0, f\"Behavior mismatch: only {matches}/{len(exp_lines)} matched.\\nDifferences:{diff_msg}\"\nE       AssertionError: Behavior mismatch: only 1815/2000 matched.\nE         Differences:\nE         [Line 3]\nE           Input:    up-to-date FBI https://github.com http://example.com/test FBI 'quoted' lemon http://example.com/test\nE           Actual:   Up-to-Date FBI https://github.com http://example.com/test FBI 'Quoted' Lemon Http://example.com/test\nE           Expected: Up-to-Date FBI https://github.com http://example.com/test FBI 'Quoted' Lemon http://example.com/test\nE         [Line 16]\nE           Input:    and of lemon or by http://example.com/test\nE           Actual:   And of Lemon or by Http://example.com/test\nE           Expected: And of Lemon or by http://example.com/test\nE         [Line 17]\nE           Input:    https://github.com but CLI HTML\nE           Actual:   Https://github.com but CLI HTML\nE           Expected: https://github.com but CLI HTML\nE         [Line 19]\nE           Input:    https://github.com apple in question? answer but HTML and\nE           Actual:   Https://github.com Apple in Question? Answer but HTML And\nE           Expected: https://github.com Apple in Question? Answer but HTML And\nE         [Line 32]\nE           Input:    http://example.com/test of in don't JSON can't john's\nE           Actual:   Http://example.com/test of in Don't JSON Can't John's\nE           Expected: http://example.com/test of in Don't JSON Can't John's\nE       assert 0.9075 == 1.0\n\n/tests/test_outputs.py:87: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

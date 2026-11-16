@@ -1,0 +1,53 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794291925.3789816,
+            "stop": 1794291925.4121218
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00376139399963904,
+                "start": 1794291925.3916047,
+                "stop": 1794291925.403915,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_build():\n        \"\"\"Build must succeed inside the workspace containing go.mod.\"\"\"\n        target_dir = find_workspace_root()\n        success, stdout, stderr = run_cmd(f\"{GO_BIN} build ./...\", cwd=target_dir)\n>       assert success, f\"Go build failed in {target_dir} (Files present: {os.listdir(target_dir) if os.path.exists(target_dir) else 'N/A'}):\\nStdout: {stdout}\\nStderr: {stderr}\"\nE       AssertionError: Go build failed in /workspace (Files present: N/A):\nE         Stdout: \nE         Stderr: [Errno 2] No such file or directory: '/workspace'\nE       assert False\n\n/tests/test_outputs.py:62: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.002268339000238484,
+                "start": 1794291925.4040868,
+                "stop": 1794291925.4064739,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.003121067000165567,
+                "start": 1794291925.406608,
+                "stop": 1794291925.4119933,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        target_dir = find_workspace_root()\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"{GO_BIN} build -o {bin_path} .\", cwd=target_dir)\n>       assert build_ok and os.path.exists(bin_path), f\"Failed to build binary in {target_dir}:\\n{stderr}\"\nE       AssertionError: Failed to build binary in /workspace:\nE         [Errno 2] No such file or directory: '/workspace'\nE       assert (False)\n\n/tests/test_outputs.py:84: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

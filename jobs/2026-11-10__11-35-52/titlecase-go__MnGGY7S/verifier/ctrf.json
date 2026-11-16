@@ -1,0 +1,53 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794290788.6373012,
+            "stop": 1794290788.6648726
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0018510560000777332,
+                "start": 1794290788.650669,
+                "stop": 1794290788.6611788,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_build():\n        \"\"\"Build must succeed inside the workspace.\"\"\"\n        success, stdout, stderr = run_cmd(\"go build ./...\")\n>       assert success, f\"Go build failed:\\nStdout: {stdout}\\nStderr: {stderr}\"\nE       AssertionError: Go build failed:\nE         Stdout: \nE         Stderr: /bin/sh: 1: go: not found\nE         \nE       assert False\n\n/tests/test_outputs.py:34: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.00033802800021476287,
+                "start": 1794290788.6613448,
+                "stop": 1794290788.6617932,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0010904800001299009,
+                "start": 1794290788.6619139,
+                "stop": 1794290788.6647627,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"go build -o {bin_path} .\", cwd=REPO_DIR)\n>       assert build_ok and os.path.exists(bin_path), f\"Failed to build binary:\\n{stderr}\"\nE       AssertionError: Failed to build binary:\nE         /bin/sh: 1: go: not found\nE         \nE       assert (False)\n\n/tests/test_outputs.py:51: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "path": "titlecase-go"
+    }
+  ],
+  "agents": [
+    {
+      "name": "oracle"
+    }
+  ]
+}

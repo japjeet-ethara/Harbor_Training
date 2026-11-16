@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+../../tests/test_outputs.py ...                                          [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../tests/test_outputs.py::test_build
+PASSED ../../tests/test_outputs.py::test_no_python
+PASSED ../../tests/test_outputs.py::test_behaviour
+============================== 3 passed in 7.71s ===============================
