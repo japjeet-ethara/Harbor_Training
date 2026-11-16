@@ -1,0 +1,5 @@
+# Everything is compared or run byte for byte inside Linux containers: keep LF everywhere
+# and never touch the answer sheets.
+* text=auto eol=lf
+tests/data/** -text
+*.png binary

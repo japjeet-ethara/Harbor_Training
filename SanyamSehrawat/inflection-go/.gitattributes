@@ -1,3 +1,0 @@
-# Store every file exactly as it is. The shell scripts must keep Unix line endings
-# and the answer sheets must stay byte-identical on every machine.
-* -text
