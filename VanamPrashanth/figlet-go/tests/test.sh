@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
-cd /tests && go run grade.go
+cd /tests
+go run grade.go
