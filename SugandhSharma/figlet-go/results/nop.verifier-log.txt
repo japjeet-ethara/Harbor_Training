@@ -1,0 +1,3 @@
+there is no go.mod in /workspace/repo
+build 0, no_python 0, behaviour 0 of 2000 cases right, reward 0
+No secret for you. Yet.

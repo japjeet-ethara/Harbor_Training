@@ -1,0 +1,85 @@
+Broken variants of the reference solution, one small change each (dev/mutants.py, dev/run_mutants.sh).
+Columns: cases the variant gets wrong among the 2000 hidden cases, and among 3000 random cases over all 67 standard fonts.
+
+77 variants: 66 caught by the hidden cases, 0 missed by them, 11 with no effect on any case.
+
+variant                                        hidden random
+reverse_map_without_curly                           1      0
+flip_map_without_small_m                            2      5
+reverse_map_without_square                          2      1
+amount_not_capped_by_letter_width                   3      1
+flip_map_without_capital_P                          3      4
+flip_map_without_capital_W                          3      1
+flip_map_without_caret                              3      1
+flip_map_without_small_v                            3      9
+flip_map_without_capital_R                          4      1
+flip_map_without_capital_A                          5      3
+flip_map_without_small_w                            5      2
+flip_map_without_capital_M                          6      0
+flip_map_without_small_b                            6      2
+too_wide_letter_one_column_early                    8      9
+hex_coded_letters_not_loaded                       13      6
+rule3_hierarchy_one_class_missing                  16      2
+hardblank_smushes_like_a_letter                    30     12
+line_break_in_text_ignored                         30     38
+empty_last_line_printed                            49      7
+universal_hardblank_wins                           66     25
+german_letters_not_loaded                          70     87
+rule4_pair_off                                     70     52
+rule4_pair_one_order_only                          70     52
+flip_map_without_capital_V                         78     45
+auto_direction_ignores_font_header                 89     20
+rule3_hierarchy_slash_class_wrong                  93     38
+n_wins_over_s                                     132    211
+reverse_map_without_angle                         143     67
+default_width_79                                  164    232
+center_in_80_columns                              198    343
+strip_keeps_leading_rows                          202    660
+center_rounds_up                                  217    304
+wrap_one_column_late                              232    359
+strip_drops_inner_empty_rows                      267    545
+auto_justify_ignores_direction                    274    325
+default_font_slant                                276    440
+kerning_fonts_smush                               306    169
+reverse_map_without_round                         334    164
+wrap_ignores_the_smush                            347    220
+flip_map_without_backslash                        364    205
+text_arguments_joined_without_space               372    553
+flip_map_without_slash                            373    213
+blank_marker_after_the_blank                      383    765
+right_in_80_columns                               393    604
+flip_map_without_underscore                       400    236
+reverse_map_without_slash                         410    200
+flip_without_swapping_characters                  411    253
+normalize_without_first_newline                   414    542
+reverse_without_swapping_characters               419    208
+flip_keeps_row_order                              435    719
+never_wraps_at_a_blank                            445    829
+amount_ignores_direction                          485    246
+smush_row_ignores_direction                       491    628
+reverse_without_mirroring_rows                    492    707
+rule2_lowline_off                                 545    310
+right_without_the_spare_column                    581    828
+strip_only_trailing_newlines                      793   1188
+lowline_keeps_the_underscore                      823    464
+strip_keeps_trailing_whitespace                   911   1266
+rule3_hierarchy_off                               969    515
+rule1_equal_off                                   982    619
+hardblanks_left_in                               1320   2504
+amount_smushable_edge_not_counted                1473    809
+no_kerning_at_all                                1828   1001
+only_one_end_mark_cut                            1867   2970
+no_final_newline                                 2000   3000
+
+No effect on any case (these parts of the original decide nothing with the standard fonts):
+amount_blank_edge_not_counted                       0      0
+empty_letters_kept                                  0      0
+narrow_letters_may_smush                            0      0
+narrow_rule_current_only                            0      0
+narrow_rule_previous_only                           0      0
+old_layout_not_masked                               0      0
+previous_width_forgotten_after_wrap                 0      0
+rule5_bigx_off                                      0      0
+rule6_hardblank_off                                 0      0
+universal_ignores_direction                         0      0
+width_is_first_row_only                             0      0
