@@ -13,6 +13,7 @@ keywords = ["go", "titlecase", "porting"]
 [verifier]
 timeout_sec = 180.0
 environment_mode = "shared"
+network_mode = "public"
 collect = []
 
 [verifier.env]

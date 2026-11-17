@@ -321,6 +321,6 @@ PYEOF
 # 3. Clean python files
 find . -name "*.py" -type f -delete
 find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
-rm -rf tox.ini pyproject.toml setup.cfg setup.py
+rm -rf titlecase tox.ini pyproject.toml setup.cfg setup.py
 
 echo "Oracle solve completed successfully."

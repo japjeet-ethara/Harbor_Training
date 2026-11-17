@@ -1,0 +1,6 @@
+Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
+Skipping image OS validation for hb__b9788a2a1af38372cf62bebb4eb6c277: docker inspect returned 1
+Collecting main service artifacts
+Trial titlecase-go__BgGu7Vp failed: No reward file found at jobs\2026-11-17__13-01-36\titlecase-go__BgGu7Vp\verifier\reward.txt or jobs\2026-11-17__13-01-36\titlecase-go__BgGu7Vp\verifier\reward.json
+Exception RewardFileNotFoundError is in exclude_exceptions, not retrying
+Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached

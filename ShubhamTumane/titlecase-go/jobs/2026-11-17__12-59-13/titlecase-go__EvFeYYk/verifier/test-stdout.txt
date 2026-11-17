@@ -1,0 +1,42 @@
+Downloading cpython-3.13.18-linux-x86_64-gnu (download) (33.9MiB)
+ Downloaded cpython-3.13.18-linux-x86_64-gnu (download)
+Downloading botocore (15.7MiB)
+Downloading litellm (39.2MiB)
+Downloading aiohttp (1.8MiB)
+Downloading openai (2.3MiB)
+Downloading tokenizers (3.2MiB)
+Downloading hf-xet (4.1MiB)
+Downloading tiktoken (1.1MiB)
+Downloading pydantic-core (2.2MiB)
+ Downloaded tiktoken
+ Downloaded aiohttp
+ Downloaded pydantic-core
+ Downloaded openai
+ Downloaded tokenizers
+ Downloaded hf-xet
+ Downloaded botocore
+ Downloaded litellm
+Installed 61 packages in 292ms
+Traceback (most recent call last):
+  File "/root/.cache/uv/archive-v0/KapY_4jWn2zdPOml/bin/rewardkit", line 12, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/root/.cache/uv/archive-v0/KapY_4jWn2zdPOml/lib/python3.13/site-packages/rewardkit/__main__.py", line 114, in main
+    result = run(
+        args.tests_dirs[0],
+    ...<2 lines>...
+        **run_kwargs,
+    )
+  File "/root/.cache/uv/archive-v0/KapY_4jWn2zdPOml/lib/python3.13/site-packages/rewardkit/runner.py", line 721, in run
+    layout = _discover_layout(tests_dir, workspace=workspace)
+  File "/root/.cache/uv/archive-v0/KapY_4jWn2zdPOml/lib/python3.13/site-packages/rewardkit/runner.py", line 495, in _discover_layout
+    root_config, root_judges = _load_directory_tomls(tests_path)
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/root/.cache/uv/archive-v0/KapY_4jWn2zdPOml/lib/python3.13/site-packages/rewardkit/runner.py", line 264, in _load_directory_tomls
+    raw = _load_toml(toml_path)
+  File "/root/.cache/uv/archive-v0/KapY_4jWn2zdPOml/lib/python3.13/site-packages/rewardkit/runner.py", line 51, in _load_toml
+    return tomllib.loads(path.read_text())
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/root/.local/share/uv/python/cpython-3.13.18-linux-x86_64-gnu/lib/python3.13/tomllib/_parser.py", line 124, in loads
+    raise suffixed_err(src, pos, "Invalid statement")
+tomllib.TOMLDecodeError: Invalid statement (at line 1, column 1)
