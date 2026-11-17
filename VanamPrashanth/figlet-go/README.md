@@ -7,7 +7,7 @@ Harbor task porting `pyfiglet` (Python) to a pure Go implementation in `/workspa
 - **Nop (`harbor run -p ./figlet-go -a nop`)**: `0.0` (Build: 0.0, No_Python: 0.0, Behaviour: 0.0).
 - **Cheat (`harbor run -p ./figlet-go -a oracle` with `cheat/solve.sh`)**: `0.1667` (< 0.20; Build: 1.0, No_Python: 0.0, Behaviour: 0.0; no secret).
 
-## Two Honest Lines
+## Honest Lines i hit
 - **Smushing Rule Challenge**: Right-to-left (`-D right-to-left`) formatting combined with `-j right` justification and universal overlapping (`smushMode & 63 == 0`), where the dominant foreground character in stream sequence must take precedence over spatial column index.
 - **Docker Trap**: `golang:1.23-bookworm` includes Python 3 by default (violating D2), whereas `golang:1.23-alpine` lacks `bash` out-of-the-box (breaking Harbor orchestration), necessitating a pinned Alpine stage with `apk add --no-cache bash`.
 
