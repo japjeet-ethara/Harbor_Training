@@ -1,0 +1,4 @@
+C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Scripts\harbor.exe run -p C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\kushal-titlecase-go -a oracle --jobs-dir C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-docker-b243aeeeb5e946878a8fdd67754f6a90\jobs --job-name oracle
+Docker daemon is not running. Please start Docker and try again.
+
+Exit status 1

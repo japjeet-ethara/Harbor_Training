@@ -1,0 +1,4 @@
+docker build --progress plain -t titlecase-s18-verifier-check C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\kushal-titlecase-go\tests
+ERROR: open C:\Users\KushalGirdhar\.docker\buildx\.lock: Access is denied.
+
+Exit status 1

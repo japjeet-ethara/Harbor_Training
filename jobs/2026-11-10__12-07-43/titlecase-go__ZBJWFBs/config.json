@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "titlecase-go"
+    },
+    "trial_name": "titlecase-go__ZBJWFBs",
+    "trials_dir": "jobs\\2026-11-10__12-07-43",
+    "environment": {
+        "type": "docker",
+        "force_build": true
+    },
+    "job_id": "59a3ef48-a5e8-4758-98de-b8d0b469ee4c"
+}

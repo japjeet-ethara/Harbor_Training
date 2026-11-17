@@ -1,0 +1,14 @@
+{
+  "visible": {
+    "count": 2000,
+    "sha256": "bd670bbb020c28ddc136c4694c8884571ab5300e54c4480cb189ce571d08f4bc",
+    "rtl_narrow": 211,
+    "attempts": 2049
+  },
+  "hidden": {
+    "count": 2000,
+    "sha256": "32335c1904177c2cf42a9facc817bb15f8e0ae475ffcfcefb9b576e143e78c0d",
+    "rtl_narrow": 211,
+    "attempts": 2062
+  }
+}

@@ -1,0 +1,31 @@
+schema_version = "1.4"
+artifacts = []
+
+[task]
+name = "ethara.ai/task-2"
+version = "1.0.0"
+description = "Port pyfiglet to pure Go: build /tmp/figlet that reproduces pyfiglet output byte-for-byte"
+authors = []
+keywords = ["go", "figlet", "port", "ascii-art"]
+
+[metadata]
+
+[verifier]
+timeout_sec = 900.0
+collect = []
+
+[verifier.env]
+
+[agent]
+user = "player"
+timeout_sec = 3600.0
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

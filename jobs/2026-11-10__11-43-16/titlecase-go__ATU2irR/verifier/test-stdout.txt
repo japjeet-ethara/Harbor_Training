@@ -1,0 +1,2 @@
+/tests/test.sh: line 9: pip: command not found
+/tests/test.sh: line 9: pip: command not found

@@ -1,0 +1,14 @@
+{
+    "task": {
+        "path": "/workspace/harbor-submissions/komal-titlecase-go"
+    },
+    "trial_name": "komal-titlecase-go__4JncFUk",
+    "trials_dir": "/workspace/harbor-work/komal-baselines/jobs/nop",
+    "agent": {
+        "name": "nop"
+    },
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "299f2967-0a61-440f-b5a0-d25331637911"
+}

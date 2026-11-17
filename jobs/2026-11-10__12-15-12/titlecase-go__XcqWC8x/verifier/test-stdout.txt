@@ -1,0 +1,51 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+../../tests/test_outputs.py ..F                                          [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_behaviour ________________________________
+
+    def test_behaviour():
+        """Check line-by-line output against hidden expected dataset."""
+        bin_path = "/tmp/titlecase_bin"
+        build_ok, stdout, stderr = run_cmd(f"go build -o {bin_path} .", cwd=REPO_DIR)
+        assert build_ok and os.path.exists(bin_path), f"Failed to build binary:\n{stderr}"
+    
+        hidden_in = os.path.join(TESTS_DIR, "data", "hidden_inputs.txt")
+        hidden_exp = os.path.join(TESTS_DIR, "data", "hidden_expected.txt")
+    
+        assert os.path.exists(hidden_in), f"Missing {hidden_in}"
+        assert os.path.exists(hidden_exp), f"Missing {hidden_exp}"
+    
+        with open(hidden_in, "r", encoding="utf-8") as f_in:
+            res = subprocess.run(
+                [bin_path],
+                stdin=f_in,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+    
+>       assert res.returncode == 0, f"Binary crashed with stderr: {res.stderr}"
+E       AssertionError: Binary crashed with stderr: panic: regexp: Compile(`([:.;?!\-\u2013\u2014\u2015]\s+)(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)\b`): error parsing regexp: invalid escape sequence: `\u`
+E         
+E         goroutine 1 [running]:
+E         regexp.MustCompile({0x4d8219, 0x65})
+E         	/usr/local/go/src/regexp/regexp.go:317 +0xb4
+E         main.init()
+E         	/workspace/repo/main.go:18 +0x105
+E         
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/tmp/titlecase_bin'], returncode=2, stdout='', stderr='panic: regexp: Compile(`([:.;?!\\-\\u20...{0x4d8219, 0x65})\n\t/usr/local/go/src/regexp/regexp.go:317 +0xb4\nmain.init()\n\t/workspace/repo/main.go:18 +0x105\n').returncode
+
+/tests/test_outputs.py:61: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../tests/test_outputs.py::test_build
+PASSED ../../tests/test_outputs.py::test_no_python
+FAILED ../../tests/test_outputs.py::test_behaviour - AssertionError: Binary c...
+========================= 1 failed, 2 passed in 7.12s ==========================

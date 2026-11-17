@@ -1,0 +1,33 @@
+schema_version = "1.4"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "komal/titlecase-go"
+version = "1.0.0"
+description = "Reproduce pinned python-titlecase behavior in a Go standard-library line filter."
+authors = [{ name = "Komal" }]
+keywords = ["go", "porting", "unicode", "titlecase"]
+
+[metadata]
+category = "programming"
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_commit = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[verifier]
+user = "root"
+timeout_sec = 600.0
+environment_mode = "separate"
+network_mode = "no-network"
+collect = []
+
+[agent]
+timeout_sec = 1800.0
+user = 1000
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 900.0
+cpus = 2
+memory_mb = 4096
+os = "linux"
