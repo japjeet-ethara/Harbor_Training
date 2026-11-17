@@ -50,37 +50,6 @@ The Go program in `/workspace/repo` must produce a command-line program (`/tmp/f
    *Alpine base image (`golang:1.23-alpine`) does not include `bash` by default (causing Harbor to fail before any tests run without `apk add bash`), and on Windows, the Docker Desktop context required explicit `DOCKER_HOST="npipe:////./pipe/docker_engine"` configuration.*
 
 ---
-
-## Task Structure
-
-```
-figlet-go/
-├── environment/
-│   └── Dockerfile              # 2-stage Docker room (Alpine, user player, NO_PYTHON)
-├── solution/
-│   ├── solve.sh                # Complete Go twin oracle solution
-│   └── solve.sh.real           # Backup of the oracle solution
-├── cheat/
-│   └── solve.sh                # Cheat implementation for verification
-├── tests/
-│   ├── data/
-│   │   ├── visible.jsonl       # 2,000 frozen visible test cases
-│   │   └── hidden.jsonl        # 2,000 frozen hidden test cases
-│   ├── gen.py                  # Seeded test generator (seed=7)
-│   ├── grade.go                # Grader written in Go standard library
-│   ├── test.sh                 # Verifier runner script
-│   └── secret.b64              # Base64 encoded secret banner ("nice port, human")
-├── screenshot/                 # Terminal run captures for evaluation
-│   ├── oracle.png
-│   ├── nop.png
-│   ├── cheat.png
-│   └── output.png
-├── NOTES.md                    # Research notes, license, font setup, smushing rules
-├── instruction.md              # Specification presented to the agent
-├── task.toml                   # Harbor task configuration
-└── README.md                   # Complete documentation
-```
-
 ---
 
 ## Self-Check Checklist
