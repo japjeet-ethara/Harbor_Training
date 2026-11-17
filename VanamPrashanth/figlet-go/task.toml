@@ -4,11 +4,12 @@ artifacts = []
 [task]
 name = "FigletForge/figlet-go"
 version = "1.0.0"
-description = ""
-authors = [
-    { name = "Vanam Prashanth", email = "vanam.prashanth@ethara.ai" }
-]
+description = "Port pyfiglet to Go with byte-identical output"
 keywords = ["figlet", "go", "golang", "ascii-art", "pyfiglet", "text-rendering", "docker", "harbor"]
+
+[[task.authors]]
+name = "Vanam Prashanth"
+email = "vanam.prashanth@ethara.ai"
 
 [metadata]
 
