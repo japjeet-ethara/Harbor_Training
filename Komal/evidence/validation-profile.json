@@ -1,0 +1,11 @@
+{
+  "framework": "Harbor 0.25.0",
+  "rewardkit": "0.2.4",
+  "go": "1.23.12",
+  "python": "3.12.14",
+  "regex": "2026.11.9",
+  "network": "Docker network_mode=none",
+  "execution": "Separate agent and verifier containers; non-root agent UID 1000; candidate UID 10001 inside an empty chroot",
+  "cloud_profile": "Small Docker root filesystems with read-only pinned SDK and RewardKit mounts, plus memory-backed compiler caches. This avoided the managed host VFS storage limit. These rewards are from this profile, not an unmodified default-image run.",
+  "standalone": "The included Dockerfiles define the ordinary standalone build. tools/offline_docker.py supplies immutable Docker network isolation without requiring the Harbor egress sidecar."
+}

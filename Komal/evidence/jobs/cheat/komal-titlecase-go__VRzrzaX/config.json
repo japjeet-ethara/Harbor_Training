@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/tmp/komal-titlecase-go-cheat-cwn91n5_/komal-titlecase-go"
+    },
+    "trial_name": "komal-titlecase-go__VRzrzaX",
+    "trials_dir": "/workspace/harbor-work/komal-baselines/jobs/cheat",
+    "environment": {
+        "import_path": "cached_runtime:CachedDocker"
+    },
+    "job_id": "0514b66e-dca2-40c4-b1d6-5d62821e5c9c"
+}

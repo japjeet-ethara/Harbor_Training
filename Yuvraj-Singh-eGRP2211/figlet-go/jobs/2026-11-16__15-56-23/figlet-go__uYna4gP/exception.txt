@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 609, in run
+    await self._run()
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\single_step.py", line 51, in _run
+    await self._run_verifier()
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\single_step.py", line 98, in _run_verifier
+    self.result.verifier_result = await self._run_separate_verifier(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1081, in _run_separate_verifier
+    return await self._verify_with_timeout(verifier, timeout_sec)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 974, in _verify_with_timeout
+    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\verifier\verifier.py", line 207, in verify
+    await self._remove_reward_files()
+  File "C:\Users\YuvrajSingh\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\verifier\verifier.py", line 186, in _remove_reward_files
+    raise RuntimeError(
+RuntimeError: Failed to remove verifier reward files (exit code 127): OCI runtime exec failed: exec failed: unable to start container process: chdir to cwd ("/workspace/repo") set in config.json failed: no such file or directory
+

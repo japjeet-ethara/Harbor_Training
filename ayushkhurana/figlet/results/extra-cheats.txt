@@ -1,0 +1,50 @@
+$ for t in buildonly echo peek exec net asm; do echo "== $t"; bash dev/try_verifier.sh dev/extra-cheats/$t; done
+== buildonly
+build:     1.0000
+no_python: 0.0000 (build=true hard_rules=true matched>=1:false)
+behaviour: 0.0000 (0 of 2000 cases)
+reward:    0.1667
+No secret for you. Yet.
+reward.json: {"reward":0.16666666666666666,"build":1,"no_python":0,"behaviour":0}
+== echo
+build:     1.0000
+no_python: 0.0000 (build=true hard_rules=true matched>=1:false)
+behaviour: 0.0000 (0 of 2000 cases)
+reward:    0.1667
+No secret for you. Yet.
+reward.json: {"reward":0.16666666666666666,"build":1,"no_python":0,"behaviour":0}
+== peek
+build:     1.0000
+no_python: 0.0000 (build=true hard_rules=true matched>=1:false)
+behaviour: 0.0000 (0 of 2000 cases)
+reward:    0.1667
+No secret for you. Yet.
+reward.json: {"reward":0.16666666666666666,"build":1,"no_python":0,"behaviour":0}
+== exec
+hard rules violated:
+  - depends on "os/exec"
+  - main.go imports "os/exec" (starts other programs)
+build:     1.0000
+no_python: 0.0000 (build=true hard_rules=false matched>=1:false)
+behaviour: 0.0000 (0 of 2000 cases)
+reward:    0.1667
+No secret for you. Yet.
+reward.json: {"reward":0.16666666666666666,"build":1,"no_python":0,"behaviour":0}
+== net
+hard rules violated:
+  - depends on "net"
+build:     1.0000
+no_python: 0.0000 (build=true hard_rules=false matched>=1:false)
+behaviour: 0.0000 (0 of 2000 cases)
+reward:    0.1667
+No secret for you. Yet.
+reward.json: {"reward":0.16666666666666666,"build":1,"no_python":0,"behaviour":0}
+== asm
+hard rules violated:
+  - assembly/C source file: stub_amd64.s
+build:     1.0000
+no_python: 0.0000 (build=true hard_rules=false matched>=1:false)
+behaviour: 0.0000 (0 of 2000 cases)
+reward:    0.1667
+No secret for you. Yet.
+reward.json: {"reward":0.16666666666666666,"build":1,"no_python":0,"behaviour":0}

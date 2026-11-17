@@ -1,0 +1,53 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794293826.2054281,
+            "stop": 1794293832.6726456
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6.397741356000324,
+                "start": 1794293826.2218263,
+                "stop": 1794293832.6291316,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_build():\n        \"\"\"Build must succeed inside the repository.\"\"\"\n        success, stdout, stderr = run_cmd(\"go build ./...\")\n>       assert success, f\"Go build failed:\\nStdout: {stdout}\\nStderr: {stderr}\"\nE       AssertionError: Go build failed:\nE         Stdout: \nE         Stderr: # titlecase\nE         ./main.go:24:45: invalid character U+005C '\\'\nE         ./main.go:24:47: syntax error: unexpected [, expected name or (\nE         ./main.go:25:39: invalid character U+003F '?'\nE         ./main.go:25:46: invalid character U+005C '\\'\nE         ./main.go:25:63: invalid character U+0024 '$'\nE         ./main.go:236:14: invalid UTF-8 encoding\nE         ./main.go:237:2: invalid UTF-8 encoding\nE         ./main.go:238:2: invalid UTF-8 encoding\nE         ./main.go:239:1: invalid UTF-8 encoding\nE         ./main.go:240:1: invalid UTF-8 encoding\nE         ./main.go:240:1: too many errors\nE         \nE       assert False\n\n/tests/test_outputs.py:27: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.0003583250002066052,
+                "start": 1794293832.629343,
+                "stop": 1794293832.6298456,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.04003623400035394,
+                "start": 1794293832.6299984,
+                "stop": 1794293832.6724715,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"go build -o {bin_path} .\", cwd=REPO_DIR)\n>       assert build_ok and os.path.exists(bin_path), f\"Failed to build binary:\\n{stderr}\"\nE       AssertionError: Failed to build binary:\nE         # titlecase\nE         ./main.go:24:45: invalid character U+005C '\\'\nE         ./main.go:24:47: syntax error: unexpected [, expected name or (\nE         ./main.go:25:39: invalid character U+003F '?'\nE         ./main.go:25:46: invalid character U+005C '\\'\nE         ./main.go:25:63: invalid character U+0024 '$'\nE         ./main.go:236:14: invalid UTF-8 encoding\nE         ./main.go:237:2: invalid UTF-8 encoding\nE         ./main.go:238:2: invalid UTF-8 encoding\nE         ./main.go:239:1: invalid UTF-8 encoding\nE         ./main.go:240:1: invalid UTF-8 encoding\nE         ./main.go:240:1: too many errors\nE         \nE       assert (False)\n\n/tests/test_outputs.py:44: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

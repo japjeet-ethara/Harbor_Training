@@ -1,0 +1,31 @@
+schema_version = "1.4"
+artifacts = []
+
+[task]
+name = "Sonu/figlet-go"
+version = "1.0.0"
+description = ""
+authors = []
+keywords = []
+
+[metadata]
+
+[verifier]
+timeout_sec = 900
+collect = []
+
+[verifier.env]
+
+[agent]
+user = "player"
+timeout_sec = 3600
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

@@ -1,0 +1,90 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+../../tests/test_outputs.py ..F                                          [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_behaviour ________________________________
+
+    def test_behaviour():
+        """Check line-by-line output against hidden expected dataset."""
+        bin_path = "/tmp/titlecase_bin"
+        build_ok, stdout, stderr = run_cmd(f"go build -o {bin_path} .", cwd=REPO_DIR)
+        assert build_ok and os.path.exists(bin_path), f"Failed to build binary:\n{stderr}"
+    
+        hidden_in = os.path.join(TESTS_DIR, "data", "hidden_inputs.txt")
+        hidden_exp = os.path.join(TESTS_DIR, "data", "hidden_expected.txt")
+    
+        assert os.path.exists(hidden_in), f"Missing {hidden_in}"
+        assert os.path.exists(hidden_exp), f"Missing {hidden_exp}"
+    
+        with open(hidden_in, "r", encoding="utf-8") as f_in:
+            in_lines = [line.rstrip("\r\n") for line in f_in.readlines()]
+    
+        with open(hidden_in, "r", encoding="utf-8") as f_in:
+            res = subprocess.run(
+                [bin_path],
+                stdin=f_in,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+    
+        assert res.returncode == 0, f"Binary crashed with stderr: {res.stderr}"
+    
+        actual_lines = [line.rstrip("\r\n") for line in res.stdout.splitlines()]
+        with open(hidden_exp, "r", encoding="utf-8") as f_exp:
+            exp_lines = [line.rstrip("\r\n") for line in f_exp.readlines()]
+    
+        assert len(actual_lines) == len(exp_lines), (
+            f"Output line count mismatch: got {len(actual_lines)}, expected {len(exp_lines)}"
+        )
+    
+        matches = sum(1 for a, b in zip(actual_lines, exp_lines) if a == b)
+        accuracy = matches / len(exp_lines)
+    
+        diffs = []
+        for idx, (inp, act, exp) in enumerate(zip(in_lines, actual_lines, exp_lines)):
+            if act != exp:
+                diffs.append(
+                    f"\n[Line {idx+1}]\n  Input:    {inp}\n  Actual:   {act}\n  Expected: {exp}"
+                )
+                if len(diffs) >= 5:
+                    break
+        diff_msg = "".join(diffs)
+    
+>       assert accuracy == 1.0, f"Behavior mismatch: only {matches}/{len(exp_lines)} matched.\nDifferences:{diff_msg}"
+E       AssertionError: Behavior mismatch: only 1815/2000 matched.
+E         Differences:
+E         [Line 3]
+E           Input:    up-to-date FBI https://github.com http://example.com/test FBI 'quoted' lemon http://example.com/test
+E           Actual:   Up-to-Date FBI https://github.com http://example.com/test FBI 'Quoted' Lemon Http://example.com/test
+E           Expected: Up-to-Date FBI https://github.com http://example.com/test FBI 'Quoted' Lemon http://example.com/test
+E         [Line 16]
+E           Input:    and of lemon or by http://example.com/test
+E           Actual:   And of Lemon or by Http://example.com/test
+E           Expected: And of Lemon or by http://example.com/test
+E         [Line 17]
+E           Input:    https://github.com but CLI HTML
+E           Actual:   Https://github.com but CLI HTML
+E           Expected: https://github.com but CLI HTML
+E         [Line 19]
+E           Input:    https://github.com apple in question? answer but HTML and
+E           Actual:   Https://github.com Apple in Question? Answer but HTML And
+E           Expected: https://github.com Apple in Question? Answer but HTML And
+E         [Line 32]
+E           Input:    http://example.com/test of in don't JSON can't john's
+E           Actual:   Http://example.com/test of in Don't JSON Can't John's
+E           Expected: http://example.com/test of in Don't JSON Can't John's
+E       assert 0.9075 == 1.0
+
+/tests/test_outputs.py:87: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../tests/test_outputs.py::test_build
+PASSED ../../tests/test_outputs.py::test_no_python
+FAILED ../../tests/test_outputs.py::test_behaviour - AssertionError: Behavior...
+========================= 1 failed, 2 passed in 6.97s ==========================

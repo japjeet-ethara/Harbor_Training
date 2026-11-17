@@ -1,0 +1,32 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "1.0.0",
+    "reportId": "e82e85aa-7fe9-4c97-b8f7-c8e7988d16aa",
+    "timestamp": "2026-11-10T06:35:28.787593+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "7.2.1"
+        },
+        "summary": {
+            "tests": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "flaky": 0,
+            "suites": 0,
+            "start": 1794292528774,
+            "stop": 1794292528787,
+            "duration": 13
+        },
+        "environment": {
+            "osPlatform": "linux",
+            "osRelease": "6.18.33.2-microsoft-standard-WSL2",
+            "osVersion": "#1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026"
+        },
+        "tests": []
+    }
+}

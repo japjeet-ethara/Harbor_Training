@@ -1,0 +1,4 @@
+harbor==0.25.0
+harbor-rewardkit==0.2.4
+regex==2026.11.9
+pytest==9.2.0

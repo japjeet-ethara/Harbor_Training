@@ -1,0 +1,53 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794291790.361968,
+            "stop": 1794291790.4009337
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.006638509000140402,
+                "start": 1794291790.3752794,
+                "stop": 1794291790.3918421,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_build():\n        \"\"\"Build must succeed inside the workspace containing go.mod.\"\"\"\n        target_dir = find_workspace_root()\n        success, stdout, stderr = run_cmd(f\"{GO_BIN} build ./...\", cwd=target_dir)\n>       assert success, f\"Go build failed in {target_dir}:\\nStdout: {stdout}\\nStderr: {stderr}\"\nE       AssertionError: Go build failed in /app:\nE         Stdout: \nE         Stderr: pattern ./...: directory prefix . does not contain main module or its selected dependencies\nE         \nE       assert False\n\n/tests/test_outputs.py:49: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.00035193500002606015,
+                "start": 1794291790.392031,
+                "stop": 1794291790.392499,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.005634024000073623,
+                "start": 1794291790.3926325,
+                "stop": 1794291790.4007814,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        target_dir = find_workspace_root()\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"{GO_BIN} build -o {bin_path} .\", cwd=target_dir)\n>       assert build_ok and os.path.exists(bin_path), f\"Failed to build binary in {target_dir}:\\n{stderr}\"\nE       AssertionError: Failed to build binary in /app:\nE         go: go.mod file not found in current directory or any parent directory; see 'go help modules'\nE         \nE       assert (False)\n\n/tests/test_outputs.py:70: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "deterministic_runs": 2,
+  "splits": {
+    "visible": {
+      "records": 2000,
+      "reference_agreement": 2000,
+      "unique_inputs": 2000,
+      "unique_outputs": 2000
+    },
+    "hidden_": {
+      "records": 2000,
+      "reference_agreement": 2000,
+      "unique_inputs": 2000,
+      "unique_outputs": 2000
+    }
+  },
+  "input_overlap": 0,
+  "output_overlap": 0
+}

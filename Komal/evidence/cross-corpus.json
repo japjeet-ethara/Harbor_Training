@@ -1,0 +1,38 @@
+[
+  {
+    "author": "kushal",
+    "split": "visible",
+    "records": 2000,
+    "exact_match": true
+  },
+  {
+    "author": "kushal",
+    "split": "hidden_",
+    "records": 2000,
+    "exact_match": true
+  },
+  {
+    "author": "hardika",
+    "split": "visible",
+    "records": 2000,
+    "exact_match": true
+  },
+  {
+    "author": "hardika",
+    "split": "hidden_",
+    "records": 2000,
+    "exact_match": true
+  },
+  {
+    "author": "komal",
+    "split": "visible",
+    "records": 2000,
+    "exact_match": true
+  },
+  {
+    "author": "komal",
+    "split": "hidden_",
+    "records": 2000,
+    "exact_match": true
+  }
+]

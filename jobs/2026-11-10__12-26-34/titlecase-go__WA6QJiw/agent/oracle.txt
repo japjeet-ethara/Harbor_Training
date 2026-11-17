@@ -1,0 +1,2 @@
+/solution/solve.sh: line 130: warning: here-document at line 14 delimited by end-of-file (wanted `EOF')
+base64: invalid input
