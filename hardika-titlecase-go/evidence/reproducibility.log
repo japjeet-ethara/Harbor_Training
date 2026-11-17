@@ -1,0 +1,8 @@
+Python 3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]
+regex 2026.11.15; regex.V0; Unicode 15.0.0
+go version go1.23.12 windows/amd64
+inputs.txt both generations be446d942df932eb18376043f816ab078c6c3c45b89f6743df05411141f7b838
+expected.txt both generations d5b7ff533e3d429d79e1343a45ad8a26b45a640cf7255920b30e2a60f7c15d14
+hidden_inputs.txt both generations fc5ba81ad5ad9d97599b7f758ca8dadaa22ad45bcbbe8efc1f948f1eee1246d7
+hidden_expected.txt both generations 62871eab9c801955b0ef16a114d3f406ae22b62fa684bf6d31758f63d4e3cf52
+Generated Go Unicode tables matched: 763b6ac45baf624f0ca5ff88ef929e47cac75fe094ae571dcfbaaf4e8075fdd0

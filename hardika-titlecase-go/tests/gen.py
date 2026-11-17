@@ -1,100 +1,151 @@
+import argparse
 import hashlib
-import json
 import random
 import sys
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.dont_write_bytecode = True
-sys.path.insert(0, str(ROOT / 'environment/reference'))
-import regex
-import titlecase
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+from reference import ROOT, record_bytes, titlecase
 
-NOUNS = 'atlas notebook horizon passage eclipse harbor chapter pebble autumn orbit trail cloud willow quartz letter reed song field vessel violet lantern summit ocean'.split()
-SMALL = 'a an and as at but by en for if in of on or the to v v. via vs vs.'.split()
-TOKENS = {
-    'names': ["d'artagnan", "l'GranGe", "o‘neil", "o's'", "D'ANGELO", 'mcfoo-bar', 'mcthe', 'Mc_x', 'MCBY', 'mr', 'DR', 'Mss', 'macarthur'],
-    'brands': ['iTunes', 'LaTeX', 'GitHub', 'AT&T', 'eBay', 'éBay', 'Σigma', 'ǅWord', 'PPPoE'],
-    'domains': ['http://localhost', 'https://foo.com', 'example.org/a-b', 'a.b', '3.x', 'v1.2', 'in.a', 'A.BC.', 'É.À.'],
-    'acronyms': ['bbc', 'npr', 'sql', 'st', 'tv', 'rhythm', 'y', 'ſql', 'KKK', 'NASA'],
-    'unicode': ['ß', 'ΟΣ', 'ΑΣ', 'İ', 'ǰ', 'ﬁ', 'ﬃ', 'ᾇ', 'niño', '𐐨', '𞤢', 'ᏸ', 'a\u0301', 'o\u0027a\u0301', 'mc\u0301a', '\u2060word'],
+GENRES = (
+    "bibliography", "exhibition", "catalogue", "songbook", "program", "recital",
+    "collected correspondence", "folio notes", "manuscript inventory", "wall labels",
+    "selections", "field recordings", "travel diaries", "reading list", "index",
+    "chamber works", "curator's notes", "annotated facsimiles", "press proofs",
+)
+SUBJECTS = (
+    "the glass harmonica", "woodcut portraits", "unfinished minuets", "coastal maps",
+    "hand-dyed linen", "pattern books", "the mariner's almanac", "early photography",
+    "embroidered panels", "harpsichord suites", "vernacular lettering", "artists' proofs",
+    "folding screens", "painted ceilings", "cabinet miniatures", "maritime ballads",
+    "metal type", "private libraries", "counterpoint", "stained glass", "studio pottery",
+)
+NAMES = (
+    "dr mccracken", "mrs d‘arcy", "d'oisy", "ms mclaren-von arnim", "O'KEEFFE",
+    "o'brien's", "l'alouette", "J.A. mcbride", "mR de la cruz", "mr l'estrange",
+    "d'ßelle", "mc-toledo", "mcand", "mcof-via/at", "mcdonald and mckee",
+    "Ν.Κ. καβάφης", "mc𐐨va", "ǳordana", "DeVries", "mCiNTOSH", "d‘oštić",
+    "o'ǆikić", "Mcand/or", "l'ﬃore", "łucja kowalska", "İpek", "ıpek",
+)
+PLACES = (
+    "brno", "tallinn", "córdoba", "the hague", "aix-en-provence", "kyōto", "oslo",
+    "trieste", "vilnius", "palermo", "porto", "tromsø", "istanbul", "tbilisi",
+    "thessaloníki", "l’viv", "new orleans", "santa fe", "angers", "lübeck",
+    "’s-hertogenbosch", "škofja loka", "český krumlov", "são paulo",
+)
+SMALL = ("a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in", "of",
+         "on", "or", "the", "to", "v.", "via", "vs.", "ın", "İn", "aſ")
+COMPOUNDS = (
+    "in-and/of", "by/of-to", "up-to-date", "in-between", "of-the-sea",
+    "en-plein-air", "verso/recto", "in/of-and-to", "folio//proof",
+    "mcname-and/or", "work-in-progress", "print-on-demand", "voice-and/for-piano",
+    "sea/land-and-sky", "notes///revisions", "at-/of", "to/at--in", "and_in",
+    "the\u0301-index", "v./vs./via", "the/--/and", "and‒or",
+)
+WRITING = (
+    "ﬃ ligatures", "ß in letterpress", "ŉederlandse teksten", "ǳ and ǅ in annotations",
+    "ΑΘΗΝΑΣ", "ΛΟΓΟΣ·", "ΛΟΓΟΣ\u0301", "Σ\u0345", "ΩΣ’Α", "ΟΔΥΣΣΕΎΣ",
+    "αρχεία-λόγος", "𐐨𐐻 inscriptions", "ᲐᲜᲑᲐᲜᲘ", "épreuves", "İşaret", "a\u0301.the",
+    "日本語目録", "K vs. kelvin", "İn.of", "ſtencil", "é.à", "𞤢𞤤",
+    "\u0301letters", "λέξεις.of", "in\u200d", "and‿folio", "₂.a", "Ⱥ.Β",
+)
+MARKS = (":", ";", ".", "?", "!", "-", "–", "‒", "—", "―")
+GAPS = (" ", " ", " ", "  ", "\t", "\v", "\f", "\u00a0", "\u2002", "\u2003",
+        "\u202f", "\u205f", "\u3000", "\u2028", "\u0085", "\u200b", "\x1c")
+FRAMES = (("“", '"'), ("[", "]"), ("(", ")"), ("‘", "'"), ("__", "_"),
+          ("«", "»"), ("!", "?"), ("", ""), ("\x60", "~"))
+TEMPLATES = {
+    "bibliographic": (
+        "{open}{small}{close} {genre} of {subject} by {name}",
+        "{name}{mark} {small} {genre} on {subject}",
+        "{genre} for {place}{mark} {small} index of {subject}",
+    ),
+    "museum": (
+        "{open}{small}{close} {subject} {mark} {small} {genre} at {place}",
+        "{subject} {compound}{mark} {small} {genre}",
+        "{place} {genre} on {writing} and {subject}",
+    ),
+    "publication": (
+        "{compound} {genre} of {subject}{mark} {small} {place}",
+        "{genre} of {subject}{mark} {writing} / {compound}",
+        "{name} on {compound}{mark} {small} {genre} for {place}",
+    ),
+    "music": (
+        "{name}{mark} {small} {genre} for {subject} at {place}",
+        "{open}{small}{close} {subject} with {name} {compound}",
+        "{genre} of {writing} and {subject} {mark} for {place}",
+    ),
+    "historical": (
+        "{writing} {mark} {small} {subject} of {place}",
+        "{name} in {place} {mark} a {genre} against {writing}",
+        "{small} {name} and {writing}{mark} {compound} {last}{close}",
+    ),
 }
-JOINS = [' ', ' ', '\t', '  ', '\u00a0', '\u2007', '\u200a', '\u202f', '\u3000', '\x0c', '\u0085', '\u2029']
-BREAKS = [': ', '. ', '; ', '? ', '! ', '- ', '– ', '‒ ', '— ', '― ']
-FAMILIES = ['names', 'brands', 'domains', 'acronyms', 'unicode', 'compounds', 'subphrases', 'edges']
-
-
-def phrase():
-    return [random.choice(NOUNS), random.choice(SMALL), random.choice(NOUNS)]
+COUNT = 2000
 
 
 def compose(family):
-    pieces = phrase()
-    if family in TOKENS:
-        pieces.insert(random.randrange(len(pieces) + 1), random.choice(TOKENS[family]))
-    elif family == 'compounds':
-        middle = random.choice(SMALL)
-        nested = random.choice([f'mc{middle}', random.choice(TOKENS['names']), random.choice(TOKENS['unicode'])])
-        pieces[1] = random.choice([f'{nested}-{middle}/{pieces[2]}', f'{pieces[0]}/{middle}-{nested}', f'-{middle}-{nested}-', f'{nested}//{middle}'])
-    elif family == 'subphrases':
-        pieces[1] = random.choice([f'x. v. {random.choice(SMALL)}', 'vs. a b: vs. a', f'{random.choice(SMALL)}. {random.choice(SMALL)}'])
-        pieces[0] += random.choice(BREAKS)
-    else:
-        pieces = [random.choice(SMALL), *pieces, random.choice(SMALL)]
-    separator = random.choice(JOINS)
-    text = separator.join(pieces)
-    decoration = random.randrange(6)
-    if decoration == 0:
-        text = random.choice(["'", '“', '[', '_', '¿', '«', '’']) + text
-    elif decoration == 1:
-        text += random.choice(['?', '!', "'", '?!', '...', '”'])
-    elif decoration == 2:
-        text = random.choice(JOINS) + text
-    elif decoration == 3:
-        text += random.choice(JOINS)
-    style = random.randrange(5)
-    if style == 0:
-        text = text.upper()
-    elif style == 1:
-        text = text.lower()
-    elif style == 2:
-        text = ''.join(char.upper() if random.random() < .2 else char for char in text)
-    return text, f'{family}/{["upper", "lower", "mixed", "original", "original"][style]}'
+    opening, closing = random.choice(FRAMES)
+    candidate = random.choice(TEMPLATES[family]).format(
+        genre=random.choice(GENRES), subject=random.choice(SUBJECTS),
+        name=random.choice(NAMES), place=random.choice(PLACES),
+        small=random.choice(SMALL), last=random.choice(SMALL),
+        compound=random.choice(COMPOUNDS), writing=random.choice(WRITING),
+        mark=random.choice(MARKS), open=opening, close=closing,
+    )
+    casing = random.randrange(8)
+    if casing < 2:
+        candidate = candidate.upper()
+    elif casing == 2:
+        candidate = candidate.lower()
+    elif casing == 3:
+        first, _, tail = candidate.partition(" ")
+        candidate = first.upper() + " " + tail
+
+    if random.randrange(3) == 0:
+        words = candidate.split(" ")
+        gap = random.choice(GAPS)
+        index = random.randrange(len(words) - 1)
+        candidate = " ".join(words[:index + 1]) + gap + " ".join(words[index + 1:])
+    if random.randrange(13) == 0:
+        candidate = random.choice(GAPS[:13]) + candidate
+    if random.randrange(13) == 0:
+        candidate += random.choice(GAPS[:13])
+    return candidate
 
 
-def save(prefix, records):
-    data = ROOT / 'tests/data'
-    payloads = {'inputs': ''.join(record[0] + '\n' for record in records).encode(), 'expected': ''.join(record[1] + '\n' for record in records).encode()}
-    report = {'count': len(records), 'categories': dict(sorted(Counter(record[2] for record in records).items()))}
-    for name, payload in payloads.items():
-        (data / f'{prefix}{name}.txt').write_bytes(payload)
-        report[f'{name}_sha256'] = hashlib.sha256(payload).hexdigest()
-    return report
-
-
-def main():
-    digest = hashlib.sha256(Path(titlecase.__file__).read_bytes()).hexdigest()
-    if digest != 'a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0':
-        raise RuntimeError('The reference source is not the pinned snapshot')
-    if sys.version_info[:3] != (3, 12, 14) or regex.__version__ != '2026.11.9' or not titlecase.REGEX_AVAILABLE:
-        raise RuntimeError('Use CPython 3.12.14 with regex==2026.11.9')
+def generate(destination):
     random.seed(1)
-    records, inputs, outputs = [], set(), set()
-    while len(records) < 4000:
-        family = FAMILIES[len(records) % len(FAMILIES)]
-        text, label = compose(family)
-        answer = titlecase.titlecase(text)
-        if text in inputs or answer in outputs or '\r' in text or '\n' in text or '\r' in answer or '\n' in answer:
-            continue
-        inputs.add(text)
-        outputs.add(answer)
-        records.append((text, answer, label))
-    random.shuffle(records)
-    report = {'author': 'Hardika', 'seed': 1, 'reference_commit': '42f43e2de55bf003b286c6f8e8d8b2d26676a167', 'python': '3.12.14', 'regex': regex.__version__, 'reference_sha256': hashlib.sha256(Path(titlecase.__file__).read_bytes()).hexdigest(), 'visible': save('', records[:2000]), 'hidden': save('hidden_', records[2000:])}
-    (ROOT / 'tests/data/manifest.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
-    print(json.dumps(report, indent=2))
+    destination.mkdir(parents=True, exist_ok=True)
+    families = tuple(TEMPLATES)
+    seen_inputs, seen_outputs = set(), set()
+    for prefix in ("", "hidden_"):
+        inputs, outputs = [], []
+        coverage = Counter()
+        while len(inputs) < COUNT:
+            family = families[len(inputs) % len(families)]
+            item = compose(family)
+            expected = titlecase(item)
+            if item in seen_inputs or expected in seen_outputs:
+                continue
+            if any(ch in item or ch in expected for ch in "\r\n"):
+                raise ValueError("A record contains a line terminator")
+            seen_inputs.add(item)
+            seen_outputs.add(expected)
+            inputs.append(item)
+            outputs.append(expected)
+            coverage[family] += 1
+
+        for file, records in (("inputs.txt", inputs), ("expected.txt", outputs)):
+            data = record_bytes(records)
+            (destination / (prefix + file)).write_bytes(data)
+            print(f"{prefix + file} count={len(records)} sha256={hashlib.sha256(data).hexdigest()}")
+        print(f"{prefix or 'visible'} families={dict(coverage)}")
+    print(f"distinct inputs={len(seen_inputs)} distinct outputs={len(seen_outputs)}")
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=ROOT / "tests/data")
+    generate(parser.parse_args().output)

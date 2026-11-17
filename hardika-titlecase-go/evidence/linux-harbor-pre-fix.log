@@ -1,0 +1,51 @@
++ python tools/replay_task.py /root/section18-runs/titlecase-harbor.XXKmEDGn/replay-task
++ harbor run -p /root/section18 --env docker -a oracle --jobs-dir /root/section18-runs/titlecase-harbor.XXKmEDGn/jobs --job-name oracle
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:07:31 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 7m 33s
+Results written to 
+/root/section18-runs/titlecase-harbor.XXKmEDGn/jobs/oracle/result.json
+Inspect results by running `harbor view 
+/root/section18-runs/titlecase-harbor.XXKmEDGn/jobs`
+Share results by running `harbor upload 
+/root/section18-runs/titlecase-harbor.XXKmEDGn/jobs/oracle`
+
++ harbor run -p /root/section18 --env docker -a nop --jobs-dir /root/section18-runs/titlecase-harbor.XXKmEDGn/jobs --job-name nop
+Agent 'nop' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:07:51 0:00:00
+adhoc • nop
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      1 │          0 │ 0.000 │
+└────────┴────────────┴───────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 7m 53s
+Results written to 
+/root/section18-runs/titlecase-harbor.XXKmEDGn/jobs/nop/result.json
+Inspect results by running `harbor view 
+/root/section18-runs/titlecase-harbor.XXKmEDGn/jobs`
+Share results by running `harbor upload 
+/root/section18-runs/titlecase-harbor.XXKmEDGn/jobs/nop`
+
