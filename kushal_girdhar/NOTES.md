@@ -1,71 +1,27 @@
-# Kushal: source and validation notes
+# Reference notes
 
-Source: https://github.com/ppannuto/python-titlecase
+The upstream source is python-titlecase 2.4.1 at [commit 42f43e2de55bf003b286c6f8e8d8b2d26676a167](https://github.com/ppannuto/python-titlecase/commit/42f43e2de55bf003b286c6f8e8d8b2d26676a167).
+Git reports the commit date as `2024-04-05T22:03:59-07:00`. The upstream [MIT license](environment/repo/LICENSE.txt) credits Patrick William Pannuto. See its [contributors list](environment/repo/AUTHORS.rst).
 
-Commit: `42f43e2de55bf003b286c6f8e8d8b2d26676a167`
+These examples were run through the unmodified function with default options in CPython 3.12.14, Unicode 15.0.0, and standard-library `re`. Python repr escapes make separator bytes and Unicode code points visible.
 
-Commit date: `2024-04-05T22:03:59-07:00`. License: MIT.
+| # | Rule | Input | Output |
+| --- | --- | --- | --- |
+| 1 | Line boundaries and whitespace | `' the  daemon\tand\xa0the cache '` | `' the  Daemon\tand\xa0the Cache '` |
+| 2 | All-caps initials | `'A.B. AND THE DISPATCH'` | `'A.B. And the Dispatch'` |
+| 3 | Apostrophe names | `"d'angelo and o'neill"` | `"d'Angelo and O'Neill"` |
+| 4 | Mc recursion with edge capitalization | `'mcand and mcdonald'` | `'McAnd and McDonald'` |
+| 5 | Honorific first character | `'dR and mRs on call'` | `'DR and MRs on Call'` |
+| 6 | Inline period protection | `'sdk.api and 3.12 release'` | `'sdk.api and 3.12 Release'` |
+| 7 | Internal ASCII uppercase protection | `'the openAPI and _iSCSI path'` | `'The openAPI and _iSCSI Path'` |
+| 8 | Whole-token small words | `'install via the release gate'` | `'Install via the Release Gate'` |
+| 9 | Slash recursion and double-slash protection | `'read/in/write and read//write'` | `'Read/in/Write and Read//write'` |
+| 10 | Hyphen recursion | `'end-to-end and read-only/in-band notes'` | `'End-to-End and Read-Only/in-Band Notes'` |
+| 11 | Consonant acronyms and minimum length | `'dns and bgp on rt'` | `'DNS and BGP on Rt'` |
+| 12 | All-caps normalization | `'CACHE FOR THE WORKER'` | `'Cache for the Worker'` |
+| 13 | First word character and Unicode expansions | `'\u201c\xdfeta and \ufb03le uploads'` | `'\u201cSSeta and FFIle Uploads'` |
+| 14 | First and last small-word passes | `'[the alert goes on]'` | `'[The Alert Goes On]'` |
+| 15 | Subphrase capitalization after exactly one space | `'ready: the relay?  in the loop'` | `'Ready: The Relay?  in the Loop'` |
+| 16 | Contextual Greek final sigma | `'\u039f\u03a3 AND \u0391\u03a3\u02b0'` | `'\u039f\u03c2 and \u0391\u03c2\u02b0'` |
 
-Reference: CPython 3.12.14, regex 2026.11.9, `REGEX_AVAILABLE=True`.
-
-## Rules
-
-1. Process each record independently; split the function's text on CR/LF runs.
-2. Preserve individual whitespace separators, including empty edge fields.
-3. Keep uppercase dotted initials on all-caps lines.
-4. Recase d/l/o apostrophe names before ordinary capitalization.
-5. Recurse on Mc/mc/MC names with edge handling enabled. Mac is not special.
-6. Capitalize only the first character of matched honorifics.
-7. Preserve tokens containing a letter-period-letter sequence.
-8. Preserve internal capitals on lines that are not entirely uppercase.
-9. Lowercase the fixed small-word list.
-10. Recurse on single slash compounds, excluding double slashes.
-11. Recurse on hyphen compounds with edge handling disabled.
-12. Lowercase remaining tokens when their whole line is uppercase.
-13. Uppercase consonant-only words longer than two characters; y is a vowel.
-14. Capitalize the first letter after permitted leading punctuation.
-15. Apply first/last small-word rules to split fields, including empty fields.
-16. Apply the case-sensitive, non-overlapping subphrase scan after reassembly.
-17. Use Python casing expansions and contextual Greek final sigma.
-
-## Examples checked against the original
-
-- `'the lord of the rings'` → `'The Lord of the Rings'`
-- `' the cat'` → `' the Cat'`
-- `'the cat of '` → `'The Cat of '`
-- `'x. v. a b'` → `'X. V. a B'`
-- `'vs. a b: vs. a'` → `'Vs. A B: Vs. A'`
-- `'MR SMITH GOES TO NASA'` → `'MR Smith Goes to Nasa'`
-- `"d'artagnan"` → `"d'Artagnan"`
-- `"l'grange"` → `"l'Grange"`
-- `"o'reilly"` → `"O'Reilly"`
-- `'mcthe'` → `'McThe'`
-- `'macdonald'` → `'Macdonald'`
-- `'a-b the-the'` → `'A-B the-The'`
-- `'v1.2'` → `'V1.2'`
-- `'iTunes and eBay'` → `'iTunes and eBay'`
-- `'\u039f\u03a3 \xdf \u0130 \ufb01'` → `'\u039f\u03a3 SS \u0130 FI'`
-- `'a\tthing'` → `'A\tThing'`
-- `'34th 3rd 2nd'` → `'34th 3rd 2nd'`
-
-## Development observations
-
-The first differential check of the completed Go implementations had zero
-mismatches across both 4,000-record corpora. A separate 100,000-record audit
-also agreed exactly. No claim of repeated titlecase failures is made.
-
-Harness validation caught and corrected RewardKit filename grouping, explicit
-weights for individual score exports, and executable-jail placement on hosts
-whose temporary filesystem is mounted noexec. These were harness defects,
-not titlecase rule failures.
-
-## Scoring limits
-
-The prescribed weights are unchanged: `(build + no_python + 4*behaviour)/6`.
-A buildable empty program with Python removed can therefore earn 1/3; this is
-a consequence of section 18's partial-credit scheme. The required replay
-baseline intentionally leaves Python files and should earn 1/6.
-
-A finite corpus does not prove equivalence for every possible string. The
-extra audit and contract tests strengthen evidence without changing grading.
-A fresh, independent model attempt has not been claimed.
+In the first pass, initials are conditional on all-caps detection. Apostrophe names, Mc names, honorifics, and inline-dot or mixed-case protection precede small words and compounds. All-caps lowering, consonant acronyms, and ordinary capitalization are the fallbacks. The edge and subphrase passes occur after token-level conversion.

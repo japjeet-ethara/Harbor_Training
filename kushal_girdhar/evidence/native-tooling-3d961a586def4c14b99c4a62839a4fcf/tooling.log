@@ -1,0 +1,13 @@
+Evidence directory C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work/native-tooling-3d961a586def4c14b99c4a62839a4fcf
+go version go1.23.12 windows/amd64
+Python 3.12.14
+go vet ./...
+GOOS=linux GOARCH=amd64 go build -o <evidence>/titlecase-linux .
+
+Algorithm : SHA256
+Hash      : 57EC27F93B9718D699D76742D39D9163B0D901C22D3F4343985D8EB13B33F511
+
+generate_unicode.py <evidence>/python_tables.go
+Unicode table matches SHA-256 B55F67392923F3F1C4B377AEE817157C970C0A9488DEB3D46E221D6A0D563F82
+Checking shell file syntax with Git Bash
+      0 [main] bash (19108) C:\Program Files\Git\bin\..\usr\bin\bash.exe: *** fatal error - NtCreateDirectoryObject(\BaseNamedObjects\msys-2.0S5-1888ae32e00d56aa): 0xC0000022

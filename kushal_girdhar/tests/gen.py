@@ -1,106 +1,154 @@
+import argparse
+from collections import Counter
 import hashlib
 import json
+from pathlib import Path
 import random
 import sys
-from collections import Counter
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.dont_write_bytecode = True
-sys.path.insert(0, str(ROOT / 'environment/reference'))
-import regex
-import titlecase
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+from reference import describe, framed, load
 
-WORDS = 'harbor lantern meadow compass archive ember orchard journey signal tide river window cedar velvet amber valley copper garden winter paper ocean quiet silver forest morning canyon museum planet bright island market shadow'.split()
-SMALL = 'a an and as at but by en for if in of on or the to v v. via vs vs.'.split()
-NAMES = ["d'angelo", "l'grange", "o'reilly", "o'grange's", "l‘granGe", "o's'", "d’angelo", 'mcthe', 'mcby', 'MCFOO-BAR', 'mc1', 'mc_x', 'macdonald', 'mr', 'MRS', 'mss']
-SPECIAL = ['ß', 'İ', 'ΟΣ', 'ΟΔΥΣΣΕΎΣ', 'ᾀ', 'ﬁ', 'ǅ', 'ſ', 'K', 'éBay', 'İTunes', 'café', 'niño', '𐐀𐐨', 'a\u0301', '\u0301word', 'ⱥ', '𞤀𞤢', 'Ꭰꭰ']
-SPACES = [' ', '  ', '\t', '\u00a0', '\u2003', '\u2009', '\u202f', '\u3000', '\u000b', '\u0085', '\u2028']
-MARKS = [':', '.', ';', '?', '!', '-', '–', '‒', '—', '―']
-TYPES = ['plain', 'small-middle', 'small-start', 'small-end', 'subphrase', 'names', 'mixed-case', 'dotted', 'initials', 'consonants', 'slash', 'hyphen', 'leading-space', 'trailing-space', 'unicode-space', 'unicode-case', 'combining', 'punctuation', 'digit-prefix', 'recursive']
+ROOT = Path(__file__).resolve().parent
+
+DOMAINS = {
+    "release": (
+        ("schema rollout", "artifact registry", "hotfix train", "release gate", "package index",
+         "worker upgrade", "migration job", "feature flag", "image mirror", "dependency cache"),
+        ("canary lane", "manifest signing", "installer bundle", "migration lock", "release branch",
+         "rollout budget", "build stamp", "rollback marker", "package promotion", "freeze window"),
+        ("compatibility", "verification", "promotion", "sign-off", "rollback", "packaging"),
+    ),
+    "incident": (
+        ("queue backlog", "disk saturation", "payment retry", "token outage", "worker restart",
+         "capacity alert", "audit delay", "dead letter queue", "pager rotation", "cache eviction"),
+        ("clock drift", "quota exhaustion", "replica lag", "write stall", "batch starvation",
+         "alert storm", "key rollover", "index corruption", "snapshot gap", "deadlock recovery"),
+        ("triage", "follow-up", "containment", "on-call handoff", "mitigation", "root cause"),
+    ),
+    "network": (
+        ("route leak", "packet filter", "tunnel failover", "peer session", "edge proxy",
+         "service mesh", "port scan", "resolver cache", "transit link", "traffic shaping"),
+        ("address lease", "fiber cut", "interconnect flap", "mesh gateway", "relay pool",
+         "certificate chain", "link aggregation", "prefix filter", "split horizon", "socket drain"),
+        ("packet capture", "path selection", "reconvergence", "telemetry", "probe setup", "fallback"),
+    ),
+    "documentation": (
+        ("operator runbook", "storage guide", "deployment checklist", "query examples", "schema notes",
+         "client tutorial", "cluster handbook", "support matrix", "command reference", "setup guide"),
+        ("recovery manual", "configuration map", "maintainer guide", "integration notes", "admin handbook",
+         "driver reference", "migration primer", "diagnostics guide", "onboarding steps", "workflow appendix"),
+        ("examples", "prerequisites", "architecture", "quick start", "reference", "troubleshooting"),
+    ),
+}
+
+FEATURES = {
+    "small": ("and", "an", "at", "but", "by", "for", "in", "of", "on", "the", "via", "v.", "vs."),
+    "edges": ("[the", "‘in", "—on", "“of", "_the", "((an", "[for", "the"),
+    "endings": ("for?", "on", "of.", "via]", "and—", "v.", "vs.", "in!!", "for}", "on”"),
+    "initials": ("A.B.", "Q.P", "R.S.T.U.", "W.", "É.Q", "A.BC.D.", "J.KL.MN."),
+    "honorifics": ("mR", "mRS", "MS", "dR", "Dr", "ms", "mrs"),
+    "apostrophe": ("o'neill", "l‘hôpital", "d'angelo", "O'BRIEN", "d'os'", "o'ßara's", "d’angelo", "o'7ops"),
+    "mc": ("mcdonald", "MCBRIDE", "mccarthy", "Mcélo", "McMcGregor", "mc3lane", "mca", "mCkay", "mcthe"),
+    "inline": ("api.example", "svc.a", "1.23", "K.é", "a._", "x.٢", "k.eystone", "λ.٣"),
+    "mixed": ("gRPC", "GitHub", "IPv6", "_apiGW", "iSCSI", "aSync", "éXchange", "xKey"),
+    "consonants": ("tcp", "bgp", "dns", "rt", "sctp", "ſsh", "Kvm", "nginx", "vrrp"),
+    "slash": ("read/in/write", "in/out", "drop/and/forward", "cache//origin", "https://edge/path", "on//off-link"),
+    "hyphen": ("end-to-end", "two--phase", "store-and-forward", "-to-standby", "preflight-", "fleet–wide"),
+    "expansion": ("ßtunnel", "ﬃle", "ǰob", "ևroute", "ŉode", "ΐris", "İn", "ıf", "ſync"),
+    "sigma": ("ΟΣ", "ΑΣ’", "Σ", "ΟΣ᾽Α", "ΟΣ́", "ΟΣʰ!", "ΟΣʰΑ", "Α-Σ"),
+    "boundary": ("[ſo", "_edge", "²probe", "\u0301alpha", "👩‍💻logs", "a\u0301.the", "K.node", "𐐷ops"),
+    "separators": ("\t", "\u00a0", "\u2007", "\u202f", "\u3000", "\x1c", "  ", "\v", "\u2028"),
+    "subphrase": (":", ".", "!", "?", "-", "–", "‒", "—", "―", ";", "…"),
+    "nested": ("read-only/in-band", "rollback-and/retry", "a//b-on-c/d", "and/or-not", "McIn/Out-of-band",
+               "d'ops/read-and-write", "a--b/c-d", "/by/route-of/"),
+}
+
+CELLS = (
+    "small", "edges", "initials", "honorifics", "apostrophe", "mc", "inline", "mixed",
+    "consonants", "compounds", "expansion", "sigma", "boundary", "separators", "subphrase", "nested",
+)
 
 
-def word():
-    return random.choice(WORDS)
+def feature(name):
+    return random.choice(FEATURES[name])
 
 
-def make(kind):
-    left, right, small = word(), word(), random.choice(SMALL)
-    if kind == 'plain':
-        return ' '.join(word() for _ in range(random.randint(3, 8)))
-    if kind == 'small-middle':
-        return f'{left} {small} {right}'
-    if kind == 'small-start':
-        return random.choice(['', "'", '“', '(', '_']) + f'{small} {left} {right}'
-    if kind == 'small-end':
-        return f'{left} {right} {small}' + random.choice(['', '.', '?', "'", '”', '?!'])
-    if kind == 'subphrase':
-        return f'{left}{random.choice(MARKS)} {small} {right}'
-    if kind == 'names':
-        return f'{random.choice(NAMES)} {left} {right}'
-    if kind == 'mixed-case':
-        return f'{left} {random.choice(["iPhone", "eBay", "OmniFocus", "AT&T", "Q&A", "éBay"])} {small} {right}'
-    if kind == 'dotted':
-        return f'{left} {random.choice(["example.com", "v1.2", "3.x", "in.a", "a.b", "http://localhost", "https://foo.com/a-b"])} {right}'
-    if kind == 'initials':
-        return f'{left} {random.choice(["A.B", "D.C.", "É.À", "A.B.C", "U.S.A.", "ABCD"])} {small} {right}'.upper()
-    if kind == 'consonants':
-        return f'{left} {random.choice(["cnn", "st", "nth", "rhythm", "tv", "fbi", "ſql", "KKK"])} {right}'
-    if kind == 'slash':
-        return f'{left} {small}/{right} {random.choice(["and/or", "tcp/ip", "/the", "the/", "x//y"])}'
-    if kind == 'hyphen':
-        return f'{left} {right}-{small}-{word()} {random.choice(["a-b", "the-the", "to-do", "end-to-end", "-the-"])}'
-    if kind == 'leading-space':
-        return random.choice(SPACES) + f'{small} {left} {right}'
-    if kind == 'trailing-space':
-        return f'{left} {right} {small}' + random.choice(SPACES)
-    if kind == 'unicode-space':
-        return random.choice(SPACES).join([small, left, random.choice(NAMES), right, random.choice(SMALL)])
-    if kind == 'unicode-case':
-        text = f'{random.choice(SPECIAL)} {left} {small} {random.choice(SPECIAL)} {right}'
-        return text.upper() if random.random() < .5 else text
-    if kind == 'combining':
-        return f'{left} {random.choice(["o\u0027a\u0301", "a\u0301.b", "_a\u0301", "mc_foo", "\u200cword", "word\u0301"])} {right}'
-    if kind == 'punctuation':
-        return f'{random.choice(["«", "“", "’", "_", "[", "¿", "<"])}{left} {small} {right}{random.choice(["’", ")", "...", "?!", ":"])}'
-    if kind == 'digit-prefix':
-        return f'{random.randint(0, 999)}{left} {small} {right} {random.choice(["34th", "5TH", "2lmc", "1.2"])}'
-    return f'{left} mc{small}-{right}/{word()} {random.choice(["x. v. a b", "vs. a b: vs. a", "mcmcthe", "mcfoo-bar"])}'
+def make_record(cell, domain, split):
+    visible, hidden, actions = DOMAINS[domain]
+    subject = random.choice((visible, hidden)[split])
+    action = random.choice(actions)
+    small = feature("small")
+    if cell == "small":
+        return f"{action} {small} {subject}" if random.randrange(2) else f"{subject} {small} {action}"
+    if cell == "edges":
+        return f"{feature('edges')} {subject} {action} {feature('endings')}"
+    if cell == "initials":
+        return f"{subject} {action} by {feature('initials')}".upper()
+    if cell in ("honorifics", "apostrophe", "mc"):
+        record = f"{action} by {feature(cell)} on {subject}"
+        return record.upper() if random.randrange(4) == 0 else record
+    if cell in ("inline", "mixed", "consonants", "expansion", "boundary"):
+        return f"{subject} {action} via {feature(cell)}"
+    if cell == "compounds":
+        return f"{action} for {feature(random.choice(('slash', 'hyphen')))} {subject}"
+    if cell == "sigma":
+        return f"{subject} {action} via {feature('sigma')}".upper()
+    if cell == "separators":
+        gap = feature("separators")
+        return random.choice(("", gap)) + gap.join((subject, small, action)) + random.choice(("", gap))
+    if cell == "subphrase":
+        return f"{subject}{feature('subphrase')}{random.choice((' ', '  ', chr(9)))}{small} {action}"
+    if cell == "nested":
+        return f"{subject} {action} {feature('subphrase')}{random.choice((' ', '  '))}{feature('nested')}"
+    raise ValueError(cell)
 
 
-def write_set(prefix, records):
-    data = ROOT / 'tests/data'
-    inputs = ''.join(text + '\n' for text, _, _ in records).encode()
-    answers = ''.join(answer + '\n' for _, answer, _ in records).encode()
-    (data / f'{prefix}inputs.txt').write_bytes(inputs)
-    (data / f'{prefix}expected.txt').write_bytes(answers)
-    return {'count': len(records), 'categories': dict(sorted(Counter(kind for _, _, kind in records).items())), 'inputs_sha256': hashlib.sha256(inputs).hexdigest(), 'expected_sha256': hashlib.sha256(answers).hexdigest()}
+def generate(reference):
+    random.seed(1)
+    seen_inputs, seen_outputs = set(), set()
+    for split in range(2):
+        pairs, counts = [], Counter()
+        for index, cell in enumerate(CELLS):
+            for row in range(125):
+                domain = tuple(DOMAINS)[(row + index) % len(DOMAINS)]
+                for _ in range(10_000):
+                    record = make_record(cell, domain, split)
+                    expected = reference(record)
+                    if record not in seen_inputs and expected not in seen_outputs:
+                        break
+                else:
+                    raise RuntimeError(f"coverage cell exhausted: {cell}/{domain}")
+                seen_inputs.add(record)
+                seen_outputs.add(expected)
+                counts[cell, domain] += 1
+                pairs.append((record, expected))
+        random.shuffle(pairs)
+        yield pairs, counts
 
 
 def main():
-    digest = hashlib.sha256(Path(titlecase.__file__).read_bytes()).hexdigest()
-    if digest != 'a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0':
-        raise RuntimeError('The reference source is not the pinned snapshot')
-    if sys.version_info[:3] != (3, 12, 14) or regex.__version__ != '2026.11.9' or not titlecase.REGEX_AVAILABLE:
-        raise RuntimeError('Use CPython 3.12.14 with regex==2026.11.9')
-    random.seed(1)
-    records, seen_inputs, seen_outputs = [], set(), set()
-    counts = Counter()
-    while len(records) < 4000:
-        kind = TYPES[len(records) % len(TYPES)]
-        text = make(kind)
-        answer = titlecase.titlecase(text)
-        if text in seen_inputs or answer in seen_outputs or '\r' in text or '\n' in text or '\r' in answer or '\n' in answer:
-            continue
-        records.append((text, answer, kind))
-        seen_inputs.add(text)
-        seen_outputs.add(answer)
-        counts[kind] += 1
-    random.shuffle(records)
-    manifest = {'author': 'Kushal', 'seed': 1, 'reference_commit': '42f43e2de55bf003b286c6f8e8d8b2d26676a167', 'python': '3.12.14', 'regex': regex.__version__, 'reference_sha256': hashlib.sha256(Path(titlecase.__file__).read_bytes()).hexdigest(), 'visible': write_set('', records[:2000]), 'hidden': write_set('hidden_', records[2000:])}
-    (ROOT / 'tests/data/manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
-    print(json.dumps(manifest, indent=2))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=ROOT / "data")
+    args = parser.parse_args()
+    args.output.mkdir(parents=True, exist_ok=True)
+    report = {"reference": describe(), "seed": 1, "splits": {}}
+    for split, (pairs, counts) in zip(("visible", "hidden"), generate(load()), strict=True):
+        rows, answers = zip(*pairs, strict=True)
+        prefix = "hidden_" if split == "hidden" else ""
+        files = {}
+        for label, records in (("inputs", rows), ("expected", answers)):
+            payload = framed(records)
+            assert b"\r" not in payload and payload.count(b"\n") == len(pairs) == 2000
+            name = prefix + label + ".txt"
+            (args.output / name).write_bytes(payload)
+            files[name] = hashlib.sha256(payload).hexdigest()
+        report["splits"][split] = {
+            "files": files,
+            "coverage": {cell: {domain: counts[cell, domain] for domain in DOMAINS} for cell in CELLS},
+        }
+    print(json.dumps(report, indent=2, sort_keys=True))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

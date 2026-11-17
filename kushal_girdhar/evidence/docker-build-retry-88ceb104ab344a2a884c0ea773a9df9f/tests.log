@@ -1,0 +1,3 @@
+docker build --progress plain -t titlecase-s18-tests work/kushal-titlecase-go/tests
+ERROR: permission denied while trying to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine
+Exit status 1

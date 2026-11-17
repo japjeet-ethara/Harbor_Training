@@ -1,20 +1,32 @@
 #!/bin/bash
 set -euo pipefail
-root="$(cd "$(dirname "$0")" && pwd)"
+fixture="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/visible-answers.txt"
 cd /workspace/repo
-cp "$root/answers.txt" .
+cp -- "$fixture" visible-answers.txt
 cat > go.mod <<'EOF'
-module replay
-go 1.23
+module titlecase.local/replay
+
+go 1.23.0
 EOF
 cat > main.go <<'EOF'
 package main
+
 import (
-    _ "embed"
-    "os"
+	"io"
+	"os"
 )
-//go:embed answers.txt
-var answers []byte
-func main() { _, _ = os.Stdout.Write(answers) }
+
+func main() {
+	if _, err := io.Copy(io.Discard, os.Stdin); err != nil {
+		os.Exit(1)
+	}
+	fixture, err := os.Open("visible-answers.txt")
+	if err != nil {
+		os.Exit(1)
+	}
+	defer fixture.Close()
+	if _, err := io.Copy(os.Stdout, fixture); err != nil {
+		os.Exit(1)
+	}
+}
 EOF
-go build ./...

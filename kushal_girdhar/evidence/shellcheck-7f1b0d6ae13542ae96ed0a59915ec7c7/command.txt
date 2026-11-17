@@ -1,0 +1,1 @@
+shellcheck -S warning solution/solve.sh cheat/solve.sh tests/test.sh tools/run_harbor.sh (exit 0)

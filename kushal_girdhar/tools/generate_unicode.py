@@ -1,79 +1,56 @@
-import ctypes
-import hashlib
+import argparse
 import json
-import sys
+import os
 from pathlib import Path
+import subprocess
+import sys
+import unicodedata
 
-import regex
+
+def flags(ch):
+    ignorable = ("AΣ" + ch + "!").lower()[1] == "ς" and (
+        "AΣ" + ch + "A"
+    ).lower()[1] == "σ"
+    cased = ("AΣ" + ch + "!").lower()[1] == "σ"
+    return (
+        (ch == "_" or ch.isalnum())
+        | (ch.isspace() << 1)
+        | (ignorable << 2)
+        | (cased << 3)
+    )
 
 
-def ranges(values):
-    result = []
-    start = previous = None
-    for value in values:
-        if start is None:
-            start = previous = value
-        elif value == previous + 1:
-            previous = value
-        else:
-            result.extend((start, previous))
-            start = previous = value
-    if start is not None:
-        result.extend((start, previous))
-    return result
+def ranges():
+    first, previous = 0, 0
+    for point in range(sys.maxunicode + 2):
+        current = flags(chr(point)) if point <= sys.maxunicode else 0
+        if current != previous:
+            if previous:
+                yield first, point - 1, previous
+            first, previous = point, current
 
 
 def main():
-    predicates = {
-        "letters": regex.compile(r"\p{Letter}\Z").fullmatch,
-        "foldedLetters": regex.compile(r"\p{Letter}\Z", regex.I).fullmatch,
-        "upperLetters": regex.compile(r"\p{Lu}\Z").fullmatch,
-        "wordChars": regex.compile(r"\w\Z").fullmatch,
-        "spaceChars": regex.compile(r"\s\Z").fullmatch,
-    }
-    for name, symbol in (("casedChars", "_PyUnicode_IsCased"), ("ignorableChars", "_PyUnicode_IsCaseIgnorable")):
-        function = getattr(ctypes.pythonapi, symbol)
-        function.argtypes = [ctypes.c_uint32]
-        function.restype = ctypes.c_int
-        predicates[name] = lambda value, function=function: function(ord(value))
-    properties = {name: [] for name in predicates}
-    casing = {"upperMap": {}, "lowerMap": {}, "titleMap": {}}
-    folds = {}
-    ascii_match = regex.compile(r"[a-z]\Z", regex.I)
-    matchers = {letter: regex.compile(letter + r"\Z", regex.I) for letter in "abcdefghijklmnopqrstuvwxyz"}
-    for code in range(0x110000):
-        if 0xD800 <= code <= 0xDFFF:
-            continue
-        char = chr(code)
-        for name, predicate in predicates.items():
-            if predicate(char):
-                properties[name].append(code)
-        for name, mapped in (("upperMap", char.upper()), ("lowerMap", char.lower()), ("titleMap", char.title())):
-            if mapped != char:
-                casing[name][code] = mapped
-        if ascii_match.fullmatch(char):
-            matches = [letter for letter, matcher in matchers.items() if matcher.fullmatch(char)]
-            if len(matches) != 1:
-                raise ValueError((code, matches))
-            if char != matches[0]:
-                folds[code] = matches[0]
-    parts = ['package main\n']
-    for name, values in properties.items():
-        rows = ranges(values)
-        parts.append(f"var {name} = []rune{{\n")
-        for index in range(0, len(rows), 12):
-            parts.append("\t" + ", ".join(hex(value) for value in rows[index:index + 12]) + ",\n")
-        parts.append("}\n")
-    for name, table in {**casing, "foldMap": folds}.items():
-        parts.append(f"var {name} = map[rune]string{{\n")
-        for code, value in table.items():
-            parts.append(f"\t{hex(code)}: {json.dumps(value, ensure_ascii=False)},\n")
-        parts.append("}\n")
-    content = "\n".join(parts)
-    output = Path(sys.argv[1])
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(content, encoding="utf-8")
-    print(json.dumps({"path": str(output), "bytes": output.stat().st_size, "sha256": hashlib.sha256(content.encode()).hexdigest(), "regex": regex.__version__}))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("output", type=Path)
+    args = parser.parse_args()
+    if sys.version_info[:3] != (3, 12, 14) or unicodedata.unidata_version != "15.0.0":
+        parser.error("use CPython 3.12.14 with UCD 15.0.0")
+    source = ["package main", "var pythonProperties = [...]propertyRange{"]
+    source.extend(f"{{{a:#x}, {b:#x}, {mask}}}," for a, b, mask in ranges())
+    source.append("}")
+    for name in ("upper", "lower", "title"):
+        source.append(f"var python{name.title()} = map[rune]string{{")
+        operation = getattr(str, name)
+        for point in range(sys.maxunicode + 1):
+            ch = chr(point)
+            mapped = operation(ch)
+            if mapped != ch:
+                literal = json.dumps(mapped, ensure_ascii=False)
+                source.append(f"{point:#x}: {literal},")
+        source.append("}")
+    args.output.write_bytes(("\n".join(source) + "\n").encode())
+    subprocess.run([os.environ.get("GOFMT", "gofmt"), "-w", args.output], check=True)
 
 
 if __name__ == "__main__":
