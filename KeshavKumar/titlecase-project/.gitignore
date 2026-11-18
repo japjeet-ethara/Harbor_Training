@@ -1,0 +1,9 @@
+# Not stored in this repo:
+# - python-titlecase/: the original repo; clone it next to titlecase-go/ to regenerate test data (see README.md)
+# - tools/: local helper scripts
+python-titlecase/
+tools/
+
+# The repo-root .gitignore ignores every folder named "build";
+# re-include the verifier build check, which is part of the task.
+!titlecase-go/tests/build/
