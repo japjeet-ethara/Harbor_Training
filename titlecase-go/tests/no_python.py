@@ -1,25 +1,17 @@
-"""Check 2 - no_python (weight 1).
-
-Pays only if the repository still BUILDS *and* contains no `.py` file anywhere.
-Requiring the build is deliberate: otherwise an agent that does nothing but
-delete files would collect this point for free.
-"""
-import subprocess
-import tempfile
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from rewardkit import criterion
 
+from go_run import go
 
-@criterion(description="repository builds and no .py file remains anywhere under it")
-def no_python(workspace: Path) -> bool:
-    try:
-        with tempfile.TemporaryDirectory() as out:  # see build.py for why -o dir/
-            built = subprocess.run(["go", "build", "-o", out + "/", "./..."], cwd=workspace,
-                                   capture_output=True, timeout=300).returncode == 0
-    except (subprocess.TimeoutExpired, OSError):
-        return False
-    if not built:
-        return False
-    # rglob also walks hidden directories; compare the suffix case-insensitively.
-    return not any(p.suffix.lower() == ".py" for p in workspace.rglob("*") if p.is_file() or p.is_symlink())
+
+@criterion
+def no_python(workspace: Path) -> float:
+    has_python = any(path.suffix == ".py" for path in workspace.rglob("*") if path.is_file())
+    if has_python:
+        return 0.0
+    result = go(workspace, "go build ./...")
+    return 1.0 if result is not None and result.returncode == 0 else 0.0

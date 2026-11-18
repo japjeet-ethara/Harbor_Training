@@ -1,14 +1,14 @@
-"""Check 1 - build (weight 1): `go build ./...` passes in the agent's repo.
+import sys
+from pathlib import Path
 
-The binaries are written into a throw-away directory (`-o dir/`). Without that,
-a module that happens to be called like a leftover directory (e.g. module
-`titlecase` next to the old `titlecase/` package folder) makes `go build` fail
-on a file-name clash even though the code is fine.
-"""
-import rewardkit as rk
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-rk.command_succeeds(
-    'd="$(mktemp -d)"; go build -o "$d/" ./...; rc=$?; rm -rf "$d"; exit $rc',
-    timeout=300,
-    name="go_build",
-)
+from rewardkit import criterion
+
+from go_run import go
+
+
+@criterion
+def build(workspace: Path) -> float:
+    result = go(workspace, "go build ./...")
+    return 1.0 if result is not None and result.returncode == 0 else 0.0

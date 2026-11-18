@@ -1,38 +1,15 @@
 schema_version = "1.4"
 
-# The verifier runs in its own container, so the agent's work has to be handed
-# over explicitly: /workspace/repo is re-created at the same path over there.
 artifacts = ["/workspace/repo"]
 
-[task]
-name = "trainee/titlecase-go"
-version = "1.0.0"
-description = "Port the python-titlecase library to Go (stdlib only), byte-for-byte identical, then remove all Python."
-authors = []
-keywords = ["porting", "python", "go", "regex", "titlecase"]
-
 [metadata]
-author_name = "Your Name"
-category = "programming"
-tags = ["porting", "python-to-go", "regex", "unicode"]
-source_repo = "https://github.com/ppannuto/python-titlecase"
-source_commit = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
-source_license = "MIT"
 
 [verifier]
-timeout_sec = 600.0
+timeout_sec = 900.0
 environment_mode = "separate"
-# Everything the verifier needs is baked into tests/Dockerfile; no judge API.
-network_mode = "no-network"
 
 [agent]
-timeout_sec = 3600.0
-# Nothing to download: stdlib-only Go. Harbor adds the model endpoint itself.
-network_mode = "allowlist"
-allowed_hosts = []
+timeout_sec = 900.0
 
 [environment]
-build_timeout_sec = 900.0
-cpus = 2
-memory_mb = 4096
-storage_mb = 10240
+build_timeout_sec = 600.0

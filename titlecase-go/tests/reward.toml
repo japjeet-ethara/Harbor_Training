@@ -1,9 +1,4 @@
-# Three checks -> one score. build and no_python are 1 point each; behaviour
-# (the thing the task is really about) is worth 4.
-#   nothing done            = 0
-#   builds, nothing else    = (1*1 + 0*1 + 0*4) / 6  ~= 0.17
-#   perfect                 = (1*1 + 1*1 + 1*4) / 6   = 1.0
 [[reward]]
 name = "reward"
 aggregation = "weighted-mean"
-weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
+weights = { build = 1.0, no_python = 1.0, behaviour = 10.0 }
