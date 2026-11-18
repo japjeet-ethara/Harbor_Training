@@ -1,5 +1,0 @@
-* text=auto eol=lf
-*.sh text eol=lf
-*.jsonl -text
-*.flf -text
-
