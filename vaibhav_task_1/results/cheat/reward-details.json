@@ -1,0 +1,26 @@
+{
+  "behaviour": [
+    {
+      "name": "behaviour",
+      "description": "share of hidden titles whose output matches the reference byte for byte",
+      "score": 0.0,
+      "weight": 1.0
+    }
+  ],
+  "build": [
+    {
+      "name": "build",
+      "description": "go build ./... passes in the workspace",
+      "score": 1.0,
+      "weight": 1.0
+    }
+  ],
+  "no_python": [
+    {
+      "name": "no_python",
+      "description": "no .py files left under the workspace, and the build passes",
+      "score": 0.0,
+      "weight": 1.0
+    }
+  ]
+}

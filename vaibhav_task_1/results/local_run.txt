@@ -1,0 +1,28 @@
+Using the offline Reward Kit shim (verify/rewardkit_shim)
+
+== Step 4 checks: answer sheets come from the original code and are deterministic ==
+two regenerations identical: yes
+committed data == regenerated data: yes
+line counts: {'expected.txt': 2000, 'hidden_expected.txt': 2000, 'hidden_inputs.txt': 2000, 'inputs.txt': 2000}
+visible/hidden overlap: 0
+  spot-check line 1: 'apple how' -> 'Apple How'  ok
+  spot-check line 8: 'ftp://files.example.net/a-b/c/ ocean The_  for/über/and/résumé  Vs "and At\xa0Would   vs.' -> 'ftp://files.example.net/a-b/c/ Ocean The_  for/Über/and/Résumé  vs "And at\xa0Would   Vs.'  ok
+  spot-check line 124: 'WHO  HYMN + EN AT' -> 'Who  Hymn + en At'  ok
+  spot-check line 1000: "in ‒ engine stone `pdf ...en' at; VIA" -> "In ‒ Engine Stone `Pdf ...En' At; Via"  ok
+  spot-check line 2000: 'u.s.a.\xa0RYE   is on> fire' -> 'u.s.a.\xa0RYE   Is On> Fire'  ok
+
+== Harbor-style validation runs ==
+oracle       reward=1.0000   build=1  no_python=1  behaviour=1.0000
+nop          reward=0.0000   build=0  no_python=0  behaviour=0.0000
+cheat        reward=0.1667   build=1  no_python=0  behaviour=0.0000
+
+== Extra baselines (information only) ==
+build_only   reward=0.1667   build=1  no_python=0  behaviour=0.0000
+cheat_rm_py  reward=0.3333   build=1  no_python=1  behaviour=0.0000
+identity     reward=0.3617   build=1  no_python=1  behaviour=0.0425
+read_hidden  reward=0.3333   build=1  no_python=1  behaviour=0.0000
+
+oracle = 1.0000  (must be 1.0)
+nop    = 0.0000  (must be 0.0)
+cheat  = 0.1667  (must be < 0.2)
+RESULT: PASS

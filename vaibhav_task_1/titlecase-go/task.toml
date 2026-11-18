@@ -1,0 +1,41 @@
+version = "1.0"
+
+[task]
+name = "practice/titlecase-go"
+
+[metadata]
+author_name = "Your Name"
+category = "programming"
+tags = ["porting", "go", "python", "regex", "text-processing"]
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_sha = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[agent]
+timeout_sec = 3600.0
+# The agent needs no internet: Go standard library only. Harbor adds the model
+# endpoint to the allowlist automatically.
+network_mode = "allowlist"
+allowed_hosts = []
+
+[verifier]
+timeout_sec = 600.0
+# Tests run in their own container, so the agent never sees tests/.
+environment_mode = "separate"
+# test.sh fetches uv + Reward Kit, so the verifier needs these hosts only.
+network_mode = "allowlist"
+allowed_hosts = [
+  "astral.sh",
+  "releases.astral.sh",
+  "github.com",
+  "objects.githubusercontent.com",
+  "release-assets.githubusercontent.com",
+  "pypi.org",
+  "files.pythonhosted.org",
+]
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240

@@ -1,0 +1,6 @@
+# One score per file (build, no_python, behaviour), combined by weighted mean:
+#   reward = (1*build + 1*no_python + 4*behaviour) / 6
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
