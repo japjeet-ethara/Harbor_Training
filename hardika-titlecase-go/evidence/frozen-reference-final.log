@@ -1,0 +1,23 @@
+visible: 2000/2000 frozen answers match; sha256=d5b7ff533e3d429d79e1343a45ad8a26b45a640cf7255920b30e2a60f7c15d14
+hidden: 2000/2000 frozen answers match; sha256=62871eab9c801955b0ef16a114d3f406ae22b62fa684bf6d31758f63d4e3cf52
+cross-split input overlap=0; expected-output overlap=0
+{"rule": "small words and title edges", "input": "the chronicle of the coast and", "output": "The Chronicle of the Coast And"}
+{"rule": "punctuated title edges", "input": "\"of tides and time to?", "output": "\"Of Tides and Time To?"}
+{"rule": "uppercase initials", "input": "J.A. AND \u039d.\u039a.", "output": "J.A. And \u039d.\u039a."}
+{"rule": "apostrophe and uppercase expansion", "input": "mrs d'\u00dfelle and o'brien's", "output": "Mrs d'SSelle and O'Brien's"}
+{"rule": "nested Mc and compounds", "input": "mcand/of-to and mcand", "output": "McAnd/of-To and McAnd"}
+{"rule": "honorifics", "input": "DR MR MRS MS", "output": "DR MR MRS MS"}
+{"rule": "inline periods and internal caps", "input": "\u00e9.\u00e0 and DeVries and a.b", "output": "\u00e9.\u00e0 and DeVries and a.b"}
+{"rule": "slash precedence and repeated slashes", "input": "at/and-of folio//proof in--between", "output": "At/and-of Folio//proof in--Between"}
+{"rule": "consonants and normal capitalization", "input": "brr and cwm with echo", "output": "BRR and CWM With Echo"}
+{"rule": "all-caps contextual lowercase", "input": "\u039b\u039f\u0393\u039f\u03a3\u00b7 \u039f\u0394\u03a5\u03a3\u03a3\u0395\u038e\u03a3 \u039b\u039f\u0393\u039f\u03a3\u0301", "output": "\u039b\u03bf\u03b3\u03bf\u03c2\u00b7 \u039f\u03b4\u03c5\u03c3\u03c3\u03b5\u03cd\u03c2 \u039b\u03bf\u03b3\u03bf\u03c2\u0301"}
+{"rule": "subphrase even inside a word", "input": "manuscripts: inland and all", "output": "Manuscripts: Inland and All"}
+{"rule": "whitespace retained", "input": "  the\tfolio\u00a0and\u2028the  ", "output": "  the\tFolio\u00a0and\u2028the  "}
+{"rule": "full Unicode uppercase mappings", "input": "\ufb03 ligatures, \u00df letters and \u01f3", "output": "FFI Ligatures, SS Letters and \u01f1"}
+{"rule": "regex Unicode word boundary", "input": "in\u200d and of\u0301", "output": "In\u200d and Of\u0301"}
+{"rule": "compatibility letters follow regex simple folding", "input": "atlas \u0131n and \u0130N v.", "output": "Atlas In and \u0130N V."}
+{"visible_row": 1, "input": "\fCATALOGUE FOR L\u2019VIV? THE INDEX OF EMBROIDERED PANELS", "output": "\fCatalogue for L\u2019viv? The Index of Embroidered Panels"}
+{"visible_row": 400, "input": "\u0142ucja kowalska in \u010desk\u00fd krumlov : a chamber works\u3000against \u023a.\u0392", "output": "\u0141ucja Kowalska in \u010cesk\u00fd Krumlov : A Chamber Works\u3000Against \u023a.\u0392"}
+{"visible_row": 800, "input": "for d'oisy and \u00e9.\u00e0: in-between and\"", "output": "For d'Oisy and \u00e9.\u00e0: In-Between And\""}
+{"visible_row": 1200, "input": "v. mc\ud801\udc28va and \u03c3\u0345\u2012 in/of-and-to the?", "output": "V. Mc\ud801\udc00va and \u03a3\u0345\u2012 In/of-and-to The?"}
+{"visible_row": 2000, "input": "\u01f1 AND \u01c4 IN ANNOTATIONS \u2014 IN COUNTERPOINT OF L\u00dcBECK", "output": "\u01f1 and \u01c4 in Annotations \u2014 In Counterpoint of L\u00fcbeck"}

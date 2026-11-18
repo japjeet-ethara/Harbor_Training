@@ -1,0 +1,31 @@
+schema_version = "1.4"
+artifacts = [
+  { source = "/workspace/repo", exclude = [".git", "**/.git"] },
+]
+
+[task]
+name = "local/port-titlecase-to-go"
+description = "Port the Python titlecase library to a Go stdin/stdout program."
+
+[metadata]
+difficulty = "medium"
+category = "programming"
+tags = ["go", "port", "titlecase", "rewardkit"]
+
+[verifier]
+environment_mode = "separate"
+timeout_sec = 600.0
+
+[verifier.environment]
+network_mode = "no-network"
+cpus = 2
+memory_mb = 2048
+storage_mb = 4096
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+cpus = 2
+memory_mb = 2048
+storage_mb = 4096

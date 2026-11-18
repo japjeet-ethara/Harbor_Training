@@ -1,0 +1,104 @@
+{
+    "id": "2ab8834a-2ecc-4c67-ae9f-68fbdc81c232",
+    "task_name": "AkshatTomarEtharaPractice/titlecase-go",
+    "trial_name": "titlecase-go__G3TjoCg",
+    "trial_uri": "file:///C:/Users/AkshatTomar/titlecase-go/jobs/2026-11-06__13-49-44/titlecase-go__G3TjoCg",
+    "task_id": {
+        "path": "."
+    },
+    "source": null,
+    "task_checksum": "ce741bc5cc30a76ac04f152a7b1d08392208ad276bbe0210c0787d80dad4ce1f",
+    "config": {
+        "task": {
+            "path": ".",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "titlecase-go__G3TjoCg",
+        "trials_dir": "jobs\\2026-11-06__13-49-44",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "97db9f23-8099-4709-b5a4-6b31b3744975",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": null,
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": {
+        "exception_type": "RuntimeError",
+        "exception_message": "Docker compose command failed for environment titlecase-go. Command: docker compose --project-name titlecase-go__g3tjocg__env --project-directory C:\\Users\\AkshatTomar\\titlecase-go\\environment -f C:\\Users\\AkshatTomar\\AppData\\Local\\Temp\\tmpzl4ag4ze\\titlecase-go__G3TjoCg__env-docker-compose-resources.json -f C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\environments\\docker\\docker-compose-build.yaml -f C:\\Users\\AkshatTomar\\AppData\\Local\\Temp\\tmp3zhpmwfb\\docker-compose-environment.json -f C:\\Users\\AkshatTomar\\AppData\\Local\\Temp\\tmpx3yszve5\\docker-compose-mounts.json build. Return code: 1. Stdout:  Image titlecase-go__g3tjocg__env-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 581B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 302B done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/golang:1.23\n#3 DONE 0.0s\n\n#4 [internal] load metadata for docker.io/library/python-titlecase:latest\n#4 ...\n\n#5 [auth] library/python-titlecase:pull token for registry-1.docker.io\n#5 DONE 0.0s\n\n#4 [internal] load metadata for docker.io/library/python-titlecase:latest\n#4 ERROR: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\n------\n > [internal] load metadata for docker.io/library/python-titlecase:latest:\n------\nDockerfile:5\n\n--------------------\n\n   3 |     # python-titlecase is outside this directory's build context. Pass it as a\n\n   4 |     # named context (see the docker build --build-context flag). --exclude drops .git.\n\n   5 | >>> COPY --from=python-titlecase --exclude=.git . /workspace/repo\n\n   6 |     \n\n   7 |     WORKDIR /workspace/repo\n\n--------------------\n\nfailed to solve: python-titlecase: failed to resolve source metadata for docker.io/library/python-titlecase:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\n\n. Stderr: None. ",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 606, in run\n    await self._prepare()\n  File \"C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 645, in _prepare\n    await self._setup_agent_environment()\n  File \"C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 1849, in _setup_agent_environment\n    await self._start_agent_environment()\n  File \"C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\trial\\trial.py\", line 1855, in _start_agent_environment\n    await asyncio.wait_for(\n    ...<4 lines>...\n    )\n  File \"C:\\Python314\\Lib\\asyncio\\tasks.py\", line 486, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\environments\\docker\\docker.py\", line 1065, in start\n    await self._run_docker_compose_command([\"build\"])\n  File \"C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\environments\\docker\\docker.py\", line 765, in _run_docker_compose_command\n    raise RuntimeError(\n    ...<5 lines>...\n    )\nRuntimeError: Docker compose command failed for environment titlecase-go. Command: docker compose --project-name titlecase-go__g3tjocg__env --project-directory C:\\Users\\AkshatTomar\\titlecase-go\\environment -f C:\\Users\\AkshatTomar\\AppData\\Local\\Temp\\tmpzl4ag4ze\\titlecase-go__G3TjoCg__env-docker-compose-resources.json -f C:\\Users\\AkshatTomar\\AppData\\Roaming\\uv\\tools\\harbor\\Lib\\site-packages\\harbor\\environments\\docker\\docker-compose-build.yaml -f C:\\Users\\AkshatTomar\\AppData\\Local\\Temp\\tmp3zhpmwfb\\docker-compose-environment.json -f C:\\Users\\AkshatTomar\\AppData\\Local\\Temp\\tmpx3yszve5\\docker-compose-mounts.json build. Return code: 1. Stdout:  Image titlecase-go__g3tjocg__env-main Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 581B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 302B done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/golang:1.23\n#3 DONE 0.0s\n\n#4 [internal] load metadata for docker.io/library/python-titlecase:latest\n#4 ...\n\n#5 [auth] library/python-titlecase:pull token for registry-1.docker.io\n#5 DONE 0.0s\n\n#4 [internal] load metadata for docker.io/library/python-titlecase:latest\n#4 ERROR: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\n------\n > [internal] load metadata for docker.io/library/python-titlecase:latest:\n------\nDockerfile:5\n\n--------------------\n\n   3 |     # python-titlecase is outside this directory's build context. Pass it as a\n\n   4 |     # named context (see the docker build --build-context flag). --exclude drops .git.\n\n   5 | >>> COPY --from=python-titlecase --exclude=.git . /workspace/repo\n\n   6 |     \n\n   7 |     WORKDIR /workspace/repo\n\n--------------------\n\nfailed to solve: python-titlecase: failed to resolve source metadata for docker.io/library/python-titlecase:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed\n\n. Stderr: None. \n",
+        "occurred_at": "2026-11-06T08:19:50.720953Z"
+    },
+    "started_at": "2026-11-06T08:19:46.320196Z",
+    "finished_at": "2026-11-06T08:19:54.443018Z",
+    "environment_setup": {
+        "started_at": "2026-11-06T08:19:46.485731Z",
+        "finished_at": "2026-11-06T08:19:50.717248Z"
+    },
+    "agent_setup": null,
+    "agent_execution": null,
+    "verifier": null,
+    "step_results": null
+}

@@ -1,0 +1,46 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 554B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/golang:1.23@sha256:60deed95d3888cc5e4d9ff8a10c54e5edc008c6ae3fba6187be6fb592e19e8c0
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [python 1/1] FROM docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#5 DONE 0.0s
+
+#6 [stage-1 1/5] FROM docker.io/library/golang:1.23@sha256:60deed95d3888cc5e4d9ff8a10c54e5edc008c6ae3fba6187be6fb592e19e8c0
+#6 DONE 0.0s
+
+#7 [stage-1 2/5] COPY --from=python /usr/local /usr/local
+#7 CACHED
+
+#8 [internal] load build context
+#8 transferring context: 16.08kB done
+#8 DONE 0.1s
+
+#9 [stage-1 3/5] RUN useradd -m -u 1000 candidate && mkdir -p /workspace/repo /logs/artifacts && chown -R candidate:candidate /workspace /logs/artifacts
+#9 DONE 0.3s
+
+#10 [stage-1 4/5] COPY --chown=candidate:candidate repo/ /workspace/repo/
+#10 DONE 0.1s
+
+#11 [stage-1 5/5] WORKDIR /workspace/repo
+#11 DONE 0.1s
+
+#12 exporting to image
+#12 exporting layers 0.1s done
+#12 writing image sha256:12eb886f1348717e9c99b719a461466191ae0d3cfac10765682458e822e5377b done
+#12 naming to docker.io/library/komal-titlecase-agent done
+#12 DONE 0.1s

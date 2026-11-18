@@ -1,0 +1,41 @@
+{
+  "behaviour": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "behaviour",
+        "value": 0.0,
+        "raw": 0.0,
+        "weight": 1.0,
+        "description": "behaviour"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "build": {
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "build",
+        "value": 1.0,
+        "raw": true,
+        "weight": 1.0,
+        "description": "build"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "no_python": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "no_python",
+        "value": 0.0,
+        "raw": false,
+        "weight": 1.0,
+        "description": "no_python"
+      }
+    ],
+    "kind": "programmatic"
+  }
+}

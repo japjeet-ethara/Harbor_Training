@@ -1,0 +1,35 @@
++ harbor --version
+0.26.0
++ docker version
+Client:
+ Version:           29.9.3
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        5457199
+ Built:             Tue Nov  3 21:42:08 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Desktop 4.99.0 (245822)
+ Engine:
+  Version:          29.9.3
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       70efc0e
+  Built:            Tue Nov  3 21:41:42 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
++ docker compose version
+Docker Compose version v5.7.0
++ harbor lint /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/titlecase-go --select ALL --json
++ harbor run -p /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/titlecase-go -a oracle -o /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060928Z/jobs --job-name oracle --n-concurrent 1 --no-secrets
+Error: --no-secrets requires --launch.

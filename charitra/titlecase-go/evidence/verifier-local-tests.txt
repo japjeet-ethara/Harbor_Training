@@ -1,0 +1,25 @@
+test_broken_metadata_is_an_infrastructure_error (__main__.AuditTests.test_broken_metadata_is_an_infrastructure_error) ... ok
+test_external_dependency_even_if_vendored_fails (__main__.AuditTests.test_external_dependency_even_if_vendored_fails) ... ok
+test_real_fixtures_validate (__main__.AuditTests.test_real_fixtures_validate) ... ok
+test_root_library_fails (__main__.AuditTests.test_root_library_fails) ... ok
+test_root_main_with_stdlib_and_own_module_passes (__main__.AuditTests.test_root_main_with_stdlib_and_own_module_passes) ... ok
+test_unused_external_require_also_fails (__main__.AuditTests.test_unused_external_require_also_fails) ... ok
+test_boundary_failure_propagates_without_reward (__main__.MockedEvaluationTests.test_boundary_failure_propagates_without_reward) ... ok
+test_failed_build_gates_no_python_and_behaviour (__main__.MockedEvaluationTests.test_failed_build_gates_no_python_and_behaviour) ... ok
+test_failed_execution_preserves_build_points (__main__.MockedEvaluationTests.test_failed_execution_preserves_build_points) ... ok
+test_one_build_and_one_execution_are_cached_for_all_scores (__main__.MockedEvaluationTests.test_one_build_and_one_execution_are_cached_for_all_scores) ... ok
+test_python_retention_gates_only_no_python (__main__.MockedEvaluationTests.test_python_retention_gates_only_no_python) ... ok
+test_report_does_not_include_candidate_or_hidden_text (__main__.MockedEvaluationTests.test_report_does_not_include_candidate_or_hidden_text) ... ok
+test_submission_timeout_is_a_score_failure (__main__.MockedEvaluationTests.test_submission_timeout_is_a_score_failure) ... ok
+test_empty_records_and_whitespace_are_preserved (__main__.RecordTests.test_empty_records_and_whitespace_are_preserved) ... ok
+test_fraction_is_byte_exact (__main__.RecordTests.test_fraction_is_byte_exact) ... ok
+test_missing_and_extra_records_receive_zero (__main__.RecordTests.test_missing_and_extra_records_receive_zero) ... ok
+test_unicode_line_separator_is_not_an_lf (__main__.RecordTests.test_unicode_line_separator_is_not_an_lf) ... ok
+test_utf8_equivalence_is_not_normalized (__main__.RecordTests.test_utf8_equivalence_is_not_normalized) ... ok
+test_discovery_keys_and_weighted_mean_without_workers (__main__.RewardKitIntegrationTests.test_discovery_keys_and_weighted_mean_without_workers) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.021s
+
+OK
+

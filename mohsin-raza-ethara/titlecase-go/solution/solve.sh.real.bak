@@ -1,0 +1,469 @@
+#!/bin/bash
+set -euo pipefail
+
+cd /workspace/repo
+
+cat > go.mod <<'GO_MOD'
+module titlecase-go
+
+go 1.23
+GO_MOD
+
+cat > main.go <<'GO_MAIN'
+package main
+
+import (
+	"io"
+	"os"
+	"strings"
+	"unicode"
+)
+
+// smallWords is the SMALL alternation from python-titlecase, expanded in the
+// same order so that prefix matching behaves like the original regex.
+// The original alternatives are `v\.?` and `vs\.?`: the optional dot is
+// greedy, so "v." is tried before "v" (and likewise for "vs.").  The order
+// matters where a match consumes the dot and changes how scanning resumes.
+var smallWords = []string{
+	"a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
+	"of", "on", "or", "the", "to", "v.", "v", "via", "vs.", "vs",
+}
+
+// isPunct reports whether r belongs to the PUNCT character class:
+// ! " " # $ % & ' ' ( ) * + , \ - – ‒ — ― . / : ; ? @ [ \ ] _ ` { | } ~
+func isPunct(r rune) bool {
+	switch r {
+	case '!', '"', '“', '#', '$', '%', '&', '\'', '‘', '(', ')', '*', '+',
+		',', '-', '–', '‒', '—', '―', '.', '/', ':', ';', '?', '@', '[',
+		'\\', ']', '_', '`', '{', '|', '}', '~':
+		return true
+	}
+	return false
+}
+
+// isWordRune approximates the Unicode \w used by Python's regex module.
+func isWordRune(r rune) bool {
+	return r == '_' || unicode.IsLetter(r) || unicode.IsNumber(r)
+}
+
+func isBoundary(r []rune, pos int) bool {
+	before := pos > 0 && isWordRune(r[pos-1])
+	after := pos < len(r) && isWordRune(r[pos])
+	return before != after
+}
+
+func runesEqualFold(a, b []rune) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	return strings.EqualFold(string(a), string(b))
+}
+
+// runesEqual reports whether two rune slices are exactly equal (case-sensitive).
+func runesEqual(a, b []rune) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+// capitalize mirrors Python's str.capitalize(): the first character is
+// upper-cased and every remaining character is lower-cased.
+func capitalize(r []rune) string {
+	if len(r) == 0 {
+		return ""
+	}
+	out := make([]rune, len(r))
+	out[0] = unicode.ToUpper(r[0])
+	for i := 1; i < len(r); i++ {
+		out[i] = unicode.ToLower(r[i])
+	}
+	return string(out)
+}
+
+func isSmallWord(word string) bool {
+	for _, small := range smallWords {
+		if strings.EqualFold(word, small) {
+			return true
+		}
+	}
+	return false
+}
+
+// splitLines mirrors regex.split(r'[\r\n]+', text).
+func splitLines(text string) []string {
+	lines := make([]string, 0, strings.Count(text, "\n")+1)
+	var current []rune
+	inSeparator := false
+	for _, r := range text {
+		if r == '\r' || r == '\n' {
+			if !inSeparator {
+				lines = append(lines, string(current))
+				current = current[:0]
+				inSeparator = true
+			}
+			continue
+		}
+		inSeparator = false
+		current = append(current, r)
+	}
+	lines = append(lines, string(current))
+	return lines
+}
+
+func isSpace(r rune) bool {
+	if r >= 0x1c && r <= 0x1f {
+		return true
+	}
+	return unicode.IsSpace(r)
+}
+
+// splitWords mirrors regex.split(r'(\s)', line): every whitespace rune is its
+// own captured space and words may be empty at the edges.
+func splitWords(line string) ([]string, []string) {
+	words := make([]string, 0, 4)
+	spaces := make([]string, 0, 4)
+	var current []rune
+	for _, r := range line {
+		if isSpace(r) {
+			words = append(words, string(current))
+			current = current[:0]
+			spaces = append(spaces, string(r))
+			continue
+		}
+		current = append(current, r)
+	}
+	words = append(words, string(current))
+	return words, spaces
+}
+
+func hasInlinePeriod(word string) bool {
+	r := []rune(word)
+	for i := 1; i+1 < len(r); i++ {
+		if r[i] == '.' && unicode.IsLetter(r[i-1]) && unicode.IsLetter(r[i+1]) {
+			return true
+		}
+	}
+	return false
+}
+
+// hasUpperCaseElsewhere mirrors UC_ELSEWHERE:
+// [PUNCT]*?[\p{Letter}]+[\p{Uppercase_Letter}]+?
+func hasUpperCaseElsewhere(word string) bool {
+	r := []rune(word)
+	i := 0
+	for i < len(r) && isPunct(r[i]) {
+		i++
+	}
+	letters := 0
+	for j := i; j < len(r) && unicode.IsLetter(r[j]); j++ {
+		letters++
+		if letters > 1 && unicode.IsUpper(r[j]) {
+			return true
+		}
+	}
+	return false
+}
+
+// isUCInitials mirrors UC_INITIALS: (?:Upper\.|Upper\.Upper)+ anchored at both
+// ends.  Equivalently: one or more "X." groups followed by an optional final
+// capital letter.
+func isUCInitials(word string) bool {
+	r := []rune(word)
+	i := 0
+	groups := 0
+	for i+1 < len(r) && unicode.IsUpper(r[i]) && r[i+1] == '.' {
+		i += 2
+		groups++
+	}
+	if groups == 0 {
+		return false
+	}
+	if i == len(r) {
+		return true
+	}
+	return i == len(r)-1 && unicode.IsUpper(r[i])
+}
+
+// aposSecond mirrors ^[dol]['‘][\p{Letter}]+(?:['s]{2})?$ with IGNORECASE and
+// applies the replacement done by titlecase().
+func aposSecond(word string) (string, bool) {
+	r := []rune(word)
+	if len(r) < 3 {
+		return word, false
+	}
+	first := unicode.ToLower(r[0])
+	if first != 'd' && first != 'o' && first != 'l' {
+		return word, false
+	}
+	if r[1] != '\'' && r[1] != '‘' {
+		return word, false
+	}
+
+	allLetters := true
+	for i := 2; i < len(r); i++ {
+		if !unicode.IsLetter(r[i]) {
+			allLetters = false
+			break
+		}
+	}
+
+	matched := allLetters
+	if !matched && len(r) >= 5 {
+		// The greedy letter run may backtrack so the final two characters
+		// can form the optional ['s]{2} suffix.
+		valid := true
+		for i := 2; i < len(r)-2; i++ {
+			if !unicode.IsLetter(r[i]) {
+				valid = false
+				break
+			}
+		}
+		if valid {
+			for i := len(r) - 2; i < len(r); i++ {
+				if r[i] != '\'' && unicode.ToLower(r[i]) != 's' {
+					valid = false
+					break
+				}
+			}
+		}
+		matched = valid
+	}
+	if !matched {
+		return word, false
+	}
+
+	out := make([]rune, len(r))
+	copy(out, r)
+	switch first {
+	case 'a', 'e', 'i', 'o', 'u':
+		out[0] = unicode.ToUpper(r[0])
+	default:
+		out[0] = unicode.ToLower(r[0])
+	}
+	out[2] = unicode.ToUpper(r[2])
+	return string(out), true
+}
+
+// splitMacMc mirrors ^([Mm]c|MC)(\w.+).
+func splitMacMc(word string) (string, bool) {
+	r := []rune(word)
+	if len(r) < 2 {
+		return "", false
+	}
+	matched := false
+	if (r[0] == 'M' || r[0] == 'm') && r[1] == 'c' {
+		matched = true
+	} else if r[0] == 'M' && r[1] == 'C' {
+		matched = true
+	}
+	if !matched {
+		return "", false
+	}
+	if len(r)-2 < 2 || !isWordRune(r[2]) {
+		return "", false
+	}
+	return string(r[2:]), true
+}
+
+func isMrMrsMsDr(word string) bool {
+	switch strings.ToLower(word) {
+	case "mr", "mrs", "ms", "dr":
+		return true
+	}
+	return false
+}
+
+// smallFirst mirrors ^([PUNCT]*)(SMALL)\b with IGNORECASE.
+func smallFirst(word string) string {
+	r := []rune(word)
+	punct := 0
+	for punct < len(r) && isPunct(r[punct]) {
+		punct++
+	}
+	for i := punct; i >= 0; i-- {
+		for _, small := range smallWords {
+			alt := []rune(small)
+			end := i + len(alt)
+			if end <= len(r) && runesEqualFold(r[i:end], alt) && isBoundary(r, end) {
+				return string(r[:i]) + capitalize(r[i:end]) + string(r[end:])
+			}
+		}
+	}
+	return word
+}
+
+// smallLast mirrors \b(SMALL)[PUNCT]?$ with IGNORECASE.
+func smallLast(word string) string {
+	r := []rune(word)
+	for start := 0; start < len(r); start++ {
+		if !isBoundary(r, start) {
+			continue
+		}
+		for _, small := range smallWords {
+			alt := []rune(small)
+			end := start + len(alt)
+			if end > len(r) || !runesEqualFold(r[start:end], alt) {
+				continue
+			}
+			if end == len(r) || (end+1 == len(r) && isPunct(r[end])) {
+				return string(r[:start]) + capitalize(r[start:])
+			}
+		}
+	}
+	return word
+}
+
+// subphrase mirrors ([:.;?!\-–‒—―][ ])(SMALL) WITHOUT IGNORECASE (i.e. it is
+// case-sensitive: only a lower-case small word is capitalised) and applies
+// the capitalize replacement done by titlecase().  The small-word alternation
+// is tried in declaration order, replicating regex ordered alternation; the
+// "v." entry is listed before "v" so the greedy v\.? (which prefers the dot)
+// is reproduced.
+func subphrase(text string) string {
+	const separators = ":.;?!-–‒—―"
+	r := []rune(text)
+	var b strings.Builder
+	b.Grow(len(text))
+	for i := 0; i < len(r); {
+		if strings.ContainsRune(separators, r[i]) && i+2 < len(r) && r[i+1] == ' ' {
+			matched := false
+			for _, small := range smallWords {
+				alt := []rune(small)
+				end := i + 2 + len(alt)
+				if end <= len(r) && runesEqual(r[i+2:end], alt) {
+					b.WriteRune(r[i])
+					b.WriteRune(r[i+1])
+					b.WriteString(capitalize(r[i+2 : end]))
+					i = end
+					matched = true
+					break
+				}
+			}
+			if matched {
+				continue
+			}
+		}
+		b.WriteRune(r[i])
+		i++
+	}
+	return b.String()
+}
+
+func isAllConsonants(word string) bool {
+	if word == "" {
+		return false
+	}
+	const consonants = "bcdfghjklmnpqrstvwxz"
+	for _, r := range word {
+		if !strings.ContainsRune(consonants, unicode.ToLower(r)) {
+			return false
+		}
+	}
+	return true
+}
+
+// capFirst mirrors CAPFIRST.sub(lambda m: m.group(0).upper(), word).
+func capFirst(word string) string {
+	r := []rune(word)
+	i := 0
+	for i < len(r) && isPunct(r[i]) {
+		i++
+	}
+	if i >= len(r) || !unicode.IsLetter(r[i]) {
+		return word
+	}
+	r[i] = unicode.ToUpper(r[i])
+	return string(r)
+}
+
+func processWord(word string, allCaps bool) string {
+	if allCaps && isUCInitials(word) {
+		return word
+	}
+	if out, ok := aposSecond(word); ok {
+		return out
+	}
+	if rest, ok := splitMacMc(word); ok {
+		return "Mc" + titlecase(rest, true)
+	}
+	if isMrMrsMsDr(word) {
+		r := []rune(word)
+		r[0] = unicode.ToUpper(r[0])
+		return string(r)
+	}
+	if hasInlinePeriod(word) || (!allCaps && hasUpperCaseElsewhere(word)) {
+		return word
+	}
+	if isSmallWord(word) {
+		return strings.ToLower(word)
+	}
+	if strings.Contains(word, "/") && !strings.Contains(word, "//") {
+		parts := strings.Split(word, "/")
+		for i, part := range parts {
+			parts[i] = titlecase(part, false)
+		}
+		return strings.Join(parts, "/")
+	}
+	if strings.Contains(word, "-") {
+		parts := strings.Split(word, "-")
+		for i, part := range parts {
+			parts[i] = titlecase(part, false)
+		}
+		return strings.Join(parts, "-")
+	}
+	if allCaps {
+		word = strings.ToLower(word)
+	}
+	if isAllConsonants(word) && len([]rune(word)) > 2 {
+		return strings.ToUpper(word)
+	}
+	return capFirst(word)
+}
+
+func titlecase(text string, smallFirstLast bool) string {
+	lines := splitLines(text)
+	processed := make([]string, 0, len(lines))
+	for _, line := range lines {
+		allCaps := strings.ToUpper(line) == line
+		words, spaces := splitWords(line)
+		tcLine := make([]string, len(words))
+		for i, word := range words {
+			tcLine[i] = processWord(word, allCaps)
+		}
+		if smallFirstLast && len(tcLine) > 0 {
+			tcLine[0] = smallFirst(tcLine[0])
+			tcLine[len(tcLine)-1] = smallLast(tcLine[len(tcLine)-1])
+		}
+		var b strings.Builder
+		for i := range tcLine {
+			b.WriteString(tcLine[i])
+			if i < len(spaces) {
+				b.WriteString(spaces[i])
+			}
+		}
+		processed = append(processed, subphrase(b.String()))
+	}
+	return strings.Join(processed, "\n")
+}
+
+func main() {
+	input, err := io.ReadAll(os.Stdin)
+	if err != nil {
+		os.Stderr.WriteString(err.Error() + "\n")
+		os.Exit(1)
+	}
+	os.Stdout.WriteString(titlecase(string(input), true))
+}
+GO_MAIN
+
+# The task requires the Python implementation to be gone: remove every Python
+# source and cache file, then drop the now-empty package directory.
+find /workspace/repo -type f \( -name '*.py' -o -name '*.pyc' -o -name '*.pyo' \) -delete
+find /workspace/repo -depth -type d -name '__pycache__' -exec rm -rf {} +
+rmdir /workspace/repo/titlecase 2>/dev/null || true

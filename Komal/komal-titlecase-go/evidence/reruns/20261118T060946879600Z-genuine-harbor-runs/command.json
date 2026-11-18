@@ -1,0 +1,14 @@
+{
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu",
+    "--",
+    "bash",
+    "/mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/tools/harbor_runs.sh"
+  ],
+  "cwd": "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-18\\i-had-a-x20",
+  "utc": "20261118T060946879600Z",
+  "exit_code": 1,
+  "seconds": 164.66323220000004
+}

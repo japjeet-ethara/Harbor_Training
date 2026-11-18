@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "."
+    },
+    "trial_name": "figlet-go__52fhrWM",
+    "trials_dir": "jobs\\2026-11-16__16-06-30",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "631722c8-eac4-475e-a9fa-b930b73a1d48"
+}

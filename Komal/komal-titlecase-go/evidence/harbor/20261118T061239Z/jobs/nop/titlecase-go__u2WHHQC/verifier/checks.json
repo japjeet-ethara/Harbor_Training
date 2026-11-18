@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "build": 0.0,
+    "no_python": 0.0,
+    "behaviour": 0.0
+  },
+  "weights": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 4
+  },
+  "python_files": [
+    "titlecase/__init__.py"
+  ],
+  "build_result": {
+    "command": [
+      "go",
+      "build",
+      "./..."
+    ],
+    "returncode": 1,
+    "timed_out": false
+  },
+  "weighted_mean": 0.0
+}

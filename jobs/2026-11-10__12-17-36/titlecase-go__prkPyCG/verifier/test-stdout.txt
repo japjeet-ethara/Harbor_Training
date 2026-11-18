@@ -1,0 +1,43 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+../../tests/test_outputs.py F.F                                          [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_build __________________________________
+
+    def test_build():
+        """Build must succeed inside the repository."""
+        success, stdout, stderr = run_cmd("go build ./...")
+>       assert success, f"Go build failed:\nStdout: {stdout}\nStderr: {stderr}"
+E       AssertionError: Go build failed:
+E         Stdout: 
+E         Stderr: # titlecase
+E         ./main.go:174:1: syntax error: unexpected EOF, expected expression
+E         
+E       assert False
+
+/tests/test_outputs.py:27: AssertionError
+________________________________ test_behaviour ________________________________
+
+    def test_behaviour():
+        """Check line-by-line output against hidden expected dataset."""
+        bin_path = "/tmp/titlecase_bin"
+        build_ok, stdout, stderr = run_cmd(f"go build -o {bin_path} .", cwd=REPO_DIR)
+>       assert build_ok and os.path.exists(bin_path), f"Failed to build binary:\n{stderr}"
+E       AssertionError: Failed to build binary:
+E         # titlecase
+E         ./main.go:174:1: syntax error: unexpected EOF, expected expression
+E         
+E       assert (False)
+
+/tests/test_outputs.py:44: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../../tests/test_outputs.py::test_no_python
+FAILED ../../tests/test_outputs.py::test_build - AssertionError: Go build fai...
+FAILED ../../tests/test_outputs.py::test_behaviour - AssertionError: Failed t...
+========================= 2 failed, 1 passed in 6.37s ==========================

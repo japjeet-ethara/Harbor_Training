@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "work/submission/tools/summarize_harbor.py",
+    "work/submission/evidence/harbor/20261118T061906Z"
+  ],
+  "cwd": "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-18\\i-had-a-x20",
+  "utc": "20261118T062303636492Z",
+  "exit_code": 0,
+  "seconds": 0.052156100000047445
+}

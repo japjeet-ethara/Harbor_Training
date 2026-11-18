@@ -1,0 +1,84 @@
+CPython 3.12.8; Unicode 15.0.0; regex installed: False
+$ go version
+go version go1.23.12 linux/amd64
+$ python /project/titlecase-go/tests/gen.py --out /tmp/tmpx9bym9wz/regen-a
+$ python /project/titlecase-go/tests/gen.py --out /tmp/tmpx9bym9wz/regen-b
+Dataset regeneration twice: all six files byte identical to frozen files
+visible_all 2000 frozen answers re-executed against original: exact
+hidden_all 2000 frozen answers re-executed against original: exact
+$ python /project/tools/gen_unicode.py /tmp/tmpx9bym9wz/tables.json
+{
+  "python": "3.12.8",
+  "unicode": "15.0.0",
+  "regex_installed": false,
+  "sha256": "f204de0275892f9c3af515a6fa3506ae539a19112316c0e8e3a1085365c82ea7",
+  "ranges": {
+    "word": 748,
+    "space": 10,
+    "cased": 157,
+    "ignorable": 437
+  },
+  "mappings": {
+    "upper": 1525,
+    "lower": 1433,
+    "title": 1452,
+    "fold": 56
+  }
+}
+Fresh Unicode regeneration: byte identical
+$ go test ./... -v
+?   	komal/titlecase	[no test files]
+?   	komal/titlecase/internal/pyunicode	[no test files]
+=== RUN   TestPatternsAgainstPython
+    patterns_test.go:44: 61416 direct Python fixtures passed
+--- PASS: TestPatternsAgainstPython (0.29s)
+=== RUN   TestRulePrecedence
+    titlecase_test.go:17: 36 checked reference examples
+--- PASS: TestRulePrecedence (0.01s)
+PASS
+ok  	komal/titlecase/internal/format	0.309s
+=== RUN   TestInterpreter
+=== RUN   TestInterpreter/ordered
+=== RUN   TestInterpreter/backtrack
+=== RUN   TestInterpreter/greedy
+=== RUN   TestInterpreter/lazy
+=== RUN   TestInterpreter/greedy_suffix
+=== RUN   TestInterpreter/unicode_span
+=== RUN   TestInterpreter/dollar
+=== RUN   TestInterpreter/fold
+--- PASS: TestInterpreter (0.00s)
+    --- PASS: TestInterpreter/ordered (0.00s)
+    --- PASS: TestInterpreter/backtrack (0.00s)
+    --- PASS: TestInterpreter/greedy (0.00s)
+    --- PASS: TestInterpreter/lazy (0.00s)
+    --- PASS: TestInterpreter/greedy_suffix (0.00s)
+    --- PASS: TestInterpreter/unicode_span (0.00s)
+    --- PASS: TestInterpreter/dollar (0.00s)
+    --- PASS: TestInterpreter/fold (0.00s)
+=== RUN   TestCaptureRestorationAndReplacement
+--- PASS: TestCaptureRestorationAndReplacement (0.00s)
+=== RUN   TestRejectNullableLoop
+--- PASS: TestRejectNullableLoop (0.00s)
+PASS
+ok  	komal/titlecase/internal/pattern	0.012s
+=== RUN   TestProtocol
+--- PASS: TestProtocol (0.00s)
+PASS
+ok  	komal/titlecase/internal/records	0.007s
+$ go vet ./...
+$ go build ./...
+$ go build -o /tmp/tmpx9bym9wz/titlecase .
+$ /tmp/tmpx9bym9wz/titlecase
+visible_2000/2000 Go records: exact bytes and LF framing
+$ /tmp/tmpx9bym9wz/titlecase
+hidden_2000/2000 Go records: exact bytes and LF framing
+$ /tmp/tmpx9bym9wz/titlecase
+{
+  "stress_cases": 110000,
+  "unique": 110000,
+  "mismatches": 0,
+  "seed": 871231,
+  "input_sha256": "b32d203f1d87176a6cff052a786742c1c39ec27b77cf3e8b9c7a4c618df354ef",
+  "expected_sha256": "16b434888374fce16d49757634b0aa44f442095998dead380899a89a13fceeef",
+  "elapsed_seconds": 20.235431063000078
+}

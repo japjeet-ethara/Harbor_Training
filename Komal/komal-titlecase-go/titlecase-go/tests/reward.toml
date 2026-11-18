@@ -1,0 +1,7 @@
+[scoring.checks]
+aggregation = "weighted-mean"
+
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { checks = 1.0 }

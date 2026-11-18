@@ -1,0 +1,6 @@
+empty stream: passed (0 input bytes, 0 output bytes)
+blank records: passed (3 input bytes, 3 output bytes)
+CRLF including a blank record: passed (31 input bytes, 28 output bytes)
+missing final LF: passed (16 input bytes, 17 output bytes)
+whitespace and embedded CR: passed (16 input bytes, 16 output bytes)
+long record: passed (560001 input bytes, 560001 output bytes)

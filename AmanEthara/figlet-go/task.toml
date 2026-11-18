@@ -1,0 +1,30 @@
+schema_version = "1.4"
+
+[task]
+name = "AmanEthara/figlet-go"
+version = "1.0.0"
+description = "Implement a byte-for-byte compatible Go port of pyfiglet."
+authors = [{ name = "AmanEthara", email = "aman.1311@ethara.ai" }]
+keywords = ["go", "figlet", "cli", "porting"]
+
+[metadata]
+
+[agent]
+user = "player"
+timeout_sec = 3600.0
+
+[verifier]
+timeout_sec = 900.0
+collect = []
+
+[verifier.env]
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 606, in run
+    await self._prepare()
+  File "C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 645, in _prepare
+    await self._setup_agent_environment()
+  File "C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1849, in _setup_agent_environment
+    await self._start_agent_environment()
+  File "C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\trial\trial.py", line 1855, in _start_agent_environment
+    await asyncio.wait_for(
+    ...<4 lines>...
+    )
+  File "C:\Python314\Lib\asyncio\tasks.py", line 486, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 1065, in start
+    await self._run_docker_compose_command(["build"])
+  File "C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker.py", line 765, in _run_docker_compose_command
+    raise RuntimeError(
+    ...<5 lines>...
+    )
+RuntimeError: Docker compose command failed for environment titlecase-go. Command: docker compose --project-name titlecase-go__g3tjocg__env --project-directory C:\Users\AkshatTomar\titlecase-go\environment -f C:\Users\AkshatTomar\AppData\Local\Temp\tmpzl4ag4ze\titlecase-go__G3TjoCg__env-docker-compose-resources.json -f C:\Users\AkshatTomar\AppData\Roaming\uv\tools\harbor\Lib\site-packages\harbor\environments\docker\docker-compose-build.yaml -f C:\Users\AkshatTomar\AppData\Local\Temp\tmp3zhpmwfb\docker-compose-environment.json -f C:\Users\AkshatTomar\AppData\Local\Temp\tmpx3yszve5\docker-compose-mounts.json build. Return code: 1. Stdout:  Image titlecase-go__g3tjocg__env-main Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 581B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 302B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/golang:1.23
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/python-titlecase:latest
+#4 ...
+
+#5 [auth] library/python-titlecase:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/python-titlecase:latest
+#4 ERROR: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+------
+ > [internal] load metadata for docker.io/library/python-titlecase:latest:
+------
+Dockerfile:5
+
+--------------------
+
+   3 |     # python-titlecase is outside this directory's build context. Pass it as a
+
+   4 |     # named context (see the docker build --build-context flag). --exclude drops .git.
+
+   5 | >>> COPY --from=python-titlecase --exclude=.git . /workspace/repo
+
+   6 |     
+
+   7 |     WORKDIR /workspace/repo
+
+--------------------
+
+failed to solve: python-titlecase: failed to resolve source metadata for docker.io/library/python-titlecase:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+
+. Stderr: None. 

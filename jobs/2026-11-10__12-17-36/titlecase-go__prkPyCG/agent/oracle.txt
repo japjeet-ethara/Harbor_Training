@@ -1,0 +1,1 @@
+/solution/solve.sh: line 187: warning: here-document at line 14 delimited by end-of-file (wanted `EOF')

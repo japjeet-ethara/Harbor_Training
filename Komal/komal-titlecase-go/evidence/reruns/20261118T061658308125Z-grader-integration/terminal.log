@@ -1,0 +1,240 @@
+{
+  "checks": {
+    "build": 0.0,
+    "no_python": 0.0,
+    "behaviour": 0.0
+  },
+  "weights": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 4
+  },
+  "python_files": [],
+  "build_result": {
+    "command": [
+      "go",
+      "build",
+      "./..."
+    ],
+    "returncode": 1,
+    "timed_out": false
+  },
+  "weighted_mean": 0.0
+}
+{
+  "checks": {
+    "build": 1.0,
+    "no_python": 0.0,
+    "behaviour": 0.0
+  },
+  "weights": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 4
+  },
+  "python_files": [
+    "left.py"
+  ],
+  "build_result": {
+    "command": [
+      "go",
+      "build",
+      "./..."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "main_build_result": {
+    "command": [
+      "go",
+      "build",
+      "-o",
+      "/tmp/titlecase-grader-1zavrd0r/bin/titlecase",
+      "."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "behaviour_result": {
+    "returncode": 0,
+    "timed_out": false,
+    "correct": 0,
+    "expected_records": 2000,
+    "actual_records": 0,
+    "terminated_by_lf": false
+  },
+  "mismatches": [
+    {
+      "index": 0,
+      "input": "b'NORTH/SOUTH-EAST/WEST\\x1cV.\\x1cTHE\\x1cTHE\\x1cOLD\\x1cSTATION\\x1cTEAM\\x1cWITH\\x1cST'",
+      "expected": "b'North/South-East/West\\x1cV.\\x1cthe\\x1cthe\\x1cOld\\x1cStation\\x1cTeam\\x1cWith\\x1cSt'",
+      "actual": "b''"
+    },
+    {
+      "index": 1,
+      "input": "b'a draw for the_guide and an\\xcd\\x85nex; BBC announces the venue'",
+      "expected": "b'A Draw for The_guide and An\\xcd\\x85nex; BBC Announces the Venue'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 2,
+      "input": "b'THE\\xe2\\x80\\xafCRAFT\\xe2\\x80\\xafEXCHANGE\\xe2\\x80\\xafBY\\xe2\\x80\\xafMCGREGOR:\\xe2\\x80\\xafNORTH/SOUTH-EAST/WEST'",
+      "expected": "b'The\\xe2\\x80\\xafCraft\\xe2\\x80\\xafExchange\\xe2\\x80\\xafby\\xe2\\x80\\xafMcGregor:\\xe2\\x80\\xafNorth/South-East/West'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 3,
+      "input": "b'road repairs on the route to willow market: https://civic.example/help-desk'",
+      "expected": "b'Road Repairs on the Route to Willow Market: https://civic.example/help-desk'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 4,
+      "input": "b'the\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fold\\xe2\\x81\\x9fstation\\xe2\\x81\\x9fcup:\\xe2\\x81\\x9f\\xcc\\x81elm\\xe2\\x81\\x9fand\\xe2\\x81\\x9fe\\xcc\\x81arth\\xe2\\x81\\x9fand\\xe2\\x81\\x9fthe\\xe2\\x81\\x9ffinal'",
+      "expected": "b'The\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fOld\\xe2\\x81\\x9fStation\\xe2\\x81\\x9fCup:\\xe2\\x81\\x9f\\xcc\\x81elm\\xe2\\x81\\x9fand\\xe2\\x81\\x9fE\\xcc\\x81arth\\xe2\\x81\\x9fand\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fFinal'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 5,
+      "input": "b'a\\x0bneighbourhood\\x0bwalk\\x0bfrom\\x0bstone\\x0bquay\\x0bwith\\x0bA\\xce\\xa3'",
+      "expected": "b'A\\x0bNeighbourhood\\x0bWalk\\x0bFrom\\x0bStone\\x0bQuay\\x0bWith\\x0bA\\xce\\xa3'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 6,
+      "input": "b'the\\xe2\\x80\\xafunion\\xe2\\x80\\xafgardens\\xe2\\x80\\xafkitchen\\xe2\\x80\\xafwelcomes\\xe2\\x80\\xaf\\xce\\x9f\\xce\\xa3\\xe2\\x80\\xafand\\xe2\\x80\\xafA\\xce\\xa3\\xcc\\x81\\xe2\\x80\\xafafter\\xe2\\x80\\xaflunch'",
+      "expected": "b'The\\xe2\\x80\\xafUnion\\xe2\\x80\\xafGardens\\xe2\\x80\\xafKitchen\\xe2\\x80\\xafWelcomes\\xe2\\x80\\xaf\\xce\\x9f\\xce\\xa3\\xe2\\x80\\xafand\\xe2\\x80\\xafA\\xce\\xa3\\xcc\\x81\\xe2\\x80\\xafAfter\\xe2\\x80\\xafLunch'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 7,
+      "input": "b'!road repairs on the route to oak library: \\xc4\\xb0STANBUL and \\xc7\\xb3UNGLE? arts/crafts!'",
+      "expected": "b'!Road Repairs on the Route to Oak Library: \\xc4\\xb0STANBUL and \\xc7\\xb1UNGLE? Arts/Crafts!'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 8,
+      "input": "b'a neighbourhood walk from hill pavilion with MS! https://civic.example/help-desk'",
+      "expected": "b'A Neighbourhood Walk From Hill Pavilion With MS! https://civic.example/help-desk'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 9,
+      "input": "b'[A.B\\xe2\\x80\\xa9SHARES\\xe2\\x80\\xa9THE\\xe2\\x80\\xa9EHEALTH\\xe2\\x80\\xa9UPDATES\\xe2\\x80\\xa9TIMETABLE\\xe2\\x80\\xa9FOR\\xe2\\x80\\xa9THE\\xe2\\x80\\xa9OLD\\xe2\\x80\\xa9STATION\\xe2\\x80\\xa9-\\xe2\\x80\\xa9NORTH/SOUTH-EAST/WEST)'",
+      "expected": "b'[A.B\\xe2\\x80\\xa9Shares\\xe2\\x80\\xa9the\\xe2\\x80\\xa9Ehealth\\xe2\\x80\\xa9Updates\\xe2\\x80\\xa9Timetable\\xe2\\x80\\xa9for\\xe2\\x80\\xa9the\\xe2\\x80\\xa9Old\\xe2\\x80\\xa9Station\\xe2\\x80\\xa9-\\xe2\\x80\\xa9North/South-East/West)'",
+      "actual": "b'<missing>'"
+    }
+  ],
+  "weighted_mean": 0.16666666666666666
+}
+{
+  "checks": {
+    "build": 1.0,
+    "no_python": 1.0,
+    "behaviour": 0.0
+  },
+  "weights": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 4
+  },
+  "python_files": [],
+  "build_result": {
+    "command": [
+      "go",
+      "build",
+      "./..."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "main_build_result": {
+    "command": [
+      "go",
+      "build",
+      "-o",
+      "/tmp/titlecase-grader-tnkbg6s7/bin/titlecase",
+      "."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "behaviour_result": {
+    "returncode": 0,
+    "timed_out": false,
+    "correct": 0,
+    "expected_records": 2000,
+    "actual_records": 0,
+    "terminated_by_lf": false
+  },
+  "mismatches": [
+    {
+      "index": 0,
+      "input": "b'NORTH/SOUTH-EAST/WEST\\x1cV.\\x1cTHE\\x1cTHE\\x1cOLD\\x1cSTATION\\x1cTEAM\\x1cWITH\\x1cST'",
+      "expected": "b'North/South-East/West\\x1cV.\\x1cthe\\x1cthe\\x1cOld\\x1cStation\\x1cTeam\\x1cWith\\x1cSt'",
+      "actual": "b''"
+    },
+    {
+      "index": 1,
+      "input": "b'a draw for the_guide and an\\xcd\\x85nex; BBC announces the venue'",
+      "expected": "b'A Draw for The_guide and An\\xcd\\x85nex; BBC Announces the Venue'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 2,
+      "input": "b'THE\\xe2\\x80\\xafCRAFT\\xe2\\x80\\xafEXCHANGE\\xe2\\x80\\xafBY\\xe2\\x80\\xafMCGREGOR:\\xe2\\x80\\xafNORTH/SOUTH-EAST/WEST'",
+      "expected": "b'The\\xe2\\x80\\xafCraft\\xe2\\x80\\xafExchange\\xe2\\x80\\xafby\\xe2\\x80\\xafMcGregor:\\xe2\\x80\\xafNorth/South-East/West'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 3,
+      "input": "b'road repairs on the route to willow market: https://civic.example/help-desk'",
+      "expected": "b'Road Repairs on the Route to Willow Market: https://civic.example/help-desk'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 4,
+      "input": "b'the\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fold\\xe2\\x81\\x9fstation\\xe2\\x81\\x9fcup:\\xe2\\x81\\x9f\\xcc\\x81elm\\xe2\\x81\\x9fand\\xe2\\x81\\x9fe\\xcc\\x81arth\\xe2\\x81\\x9fand\\xe2\\x81\\x9fthe\\xe2\\x81\\x9ffinal'",
+      "expected": "b'The\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fOld\\xe2\\x81\\x9fStation\\xe2\\x81\\x9fCup:\\xe2\\x81\\x9f\\xcc\\x81elm\\xe2\\x81\\x9fand\\xe2\\x81\\x9fE\\xcc\\x81arth\\xe2\\x81\\x9fand\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fFinal'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 5,
+      "input": "b'a\\x0bneighbourhood\\x0bwalk\\x0bfrom\\x0bstone\\x0bquay\\x0bwith\\x0bA\\xce\\xa3'",
+      "expected": "b'A\\x0bNeighbourhood\\x0bWalk\\x0bFrom\\x0bStone\\x0bQuay\\x0bWith\\x0bA\\xce\\xa3'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 6,
+      "input": "b'the\\xe2\\x80\\xafunion\\xe2\\x80\\xafgardens\\xe2\\x80\\xafkitchen\\xe2\\x80\\xafwelcomes\\xe2\\x80\\xaf\\xce\\x9f\\xce\\xa3\\xe2\\x80\\xafand\\xe2\\x80\\xafA\\xce\\xa3\\xcc\\x81\\xe2\\x80\\xafafter\\xe2\\x80\\xaflunch'",
+      "expected": "b'The\\xe2\\x80\\xafUnion\\xe2\\x80\\xafGardens\\xe2\\x80\\xafKitchen\\xe2\\x80\\xafWelcomes\\xe2\\x80\\xaf\\xce\\x9f\\xce\\xa3\\xe2\\x80\\xafand\\xe2\\x80\\xafA\\xce\\xa3\\xcc\\x81\\xe2\\x80\\xafAfter\\xe2\\x80\\xafLunch'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 7,
+      "input": "b'!road repairs on the route to oak library: \\xc4\\xb0STANBUL and \\xc7\\xb3UNGLE? arts/crafts!'",
+      "expected": "b'!Road Repairs on the Route to Oak Library: \\xc4\\xb0STANBUL and \\xc7\\xb1UNGLE? Arts/Crafts!'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 8,
+      "input": "b'a neighbourhood walk from hill pavilion with MS! https://civic.example/help-desk'",
+      "expected": "b'A Neighbourhood Walk From Hill Pavilion With MS! https://civic.example/help-desk'",
+      "actual": "b'<missing>'"
+    },
+    {
+      "index": 9,
+      "input": "b'[A.B\\xe2\\x80\\xa9SHARES\\xe2\\x80\\xa9THE\\xe2\\x80\\xa9EHEALTH\\xe2\\x80\\xa9UPDATES\\xe2\\x80\\xa9TIMETABLE\\xe2\\x80\\xa9FOR\\xe2\\x80\\xa9THE\\xe2\\x80\\xa9OLD\\xe2\\x80\\xa9STATION\\xe2\\x80\\xa9-\\xe2\\x80\\xa9NORTH/SOUTH-EAST/WEST)'",
+      "expected": "b'[A.B\\xe2\\x80\\xa9Shares\\xe2\\x80\\xa9the\\xe2\\x80\\xa9Ehealth\\xe2\\x80\\xa9Updates\\xe2\\x80\\xa9Timetable\\xe2\\x80\\xa9for\\xe2\\x80\\xa9the\\xe2\\x80\\xa9Old\\xe2\\x80\\xa9Station\\xe2\\x80\\xa9-\\xe2\\x80\\xa9North/South-East/West)'",
+      "actual": "b'<missing>'"
+    }
+  ],
+  "weighted_mean": 0.3333333333333333
+}
+{
+  "runner_cannot_read_answers_or_reward": true,
+  "timeout_kills_process_group": true,
+  "deletion_only_gets_zero": true,
+  "build_only_with_python_gets_one_sixth": true,
+  "build_and_no_python_get_one_third": true
+}

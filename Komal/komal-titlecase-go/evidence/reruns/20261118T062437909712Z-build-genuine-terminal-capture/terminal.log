@@ -1,0 +1,59 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.terminal
+#1 transferring dockerfile: 464B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/3] FROM docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 929B done
+#5 DONE 0.1s
+
+#6 [2/3] RUN apt-get update && apt-get install -y --no-install-recommends ttyd && rm -rf /var/lib/apt/lists/*
+#6 0.580 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#6 0.771 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#6 0.819 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#6 0.857 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+#6 1.736 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+#6 1.736 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [376 kB]
+#6 2.408 Fetched 9415 kB in 2s (4383 kB/s)
+#6 2.408 Reading package lists...
+#6 2.837 Reading package lists...
+#6 3.250 Building dependency tree...
+#6 3.365 Reading state information...
+#6 3.370 Package ttyd is not available, but is referred to by another package.
+#6 3.370 This may mean that the package is missing, has been obsoleted, or
+#6 3.370 is only available from another source
+#6 3.370 
+#6 3.373 E: Package 'ttyd' has no installation candidate
+#6 ERROR: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends ttyd && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+------
+ > [2/3] RUN apt-get update && apt-get install -y --no-install-recommends ttyd && rm -rf /var/lib/apt/lists/*:
+1.736 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+1.736 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [376 kB]
+
+
+
+3.370 Package ttyd is not available, but is referred to by another package.
+3.370 This may mean that the package is missing, has been obsoleted, or
+3.370 is only available from another source
+3.370 
+3.373 E: Package 'ttyd' has no installation candidate
+------
+Dockerfile.terminal:2
+--------------------
+   1 |     FROM python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+   2 | >>> RUN apt-get update && apt-get install -y --no-install-recommends ttyd && rm -rf /var/lib/apt/lists/*
+   3 |     COPY show_terminal.py /opt/show_terminal.py
+   4 |     ENV PYTHONDONTWRITEBYTECODE=1
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c apt-get update && apt-get install -y --no-install-recommends ttyd && rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100

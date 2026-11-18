@@ -1,0 +1,21 @@
+[2026/11/18 06:25:29:4698] N: ttyd 1.7.7-40e79c7 (libwebsockets 4.3.3-unknown)
+[2026/11/18 06:25:29:4699] N: tty configuration:
+[2026/11/18 06:25:29:4699] N:   start command: python /opt/show_terminal.py oracle
+[2026/11/18 06:25:29:4699] N:   close signal: SIGHUP (1)
+[2026/11/18 06:25:29:4699] N:   terminal type: xterm-256color
+[2026/11/18 06:25:29:4700] N: The --writable option is not set, will start in readonly mode
+[2026/11/18 06:25:29:4700] N: lws_create_context: LWS: 4.3.3-unknown, MbedTLS-2.28.5 NET SRV H1 H2 WS ConMon IPV6-off
+[2026/11/18 06:25:29:4768] N: elops_init_pt_uv:  Using foreign event loop...
+[2026/11/18 06:25:29:4769] N: __lws_lc_tag:  ++ [wsi|0|pipe] (1)
+[2026/11/18 06:25:29:4769] N: __lws_lc_tag:  ++ [vh|0|netlink] (1)
+[2026/11/18 06:25:29:4770] N: __lws_lc_tag:  ++ [vh|1|default|0.0.0.0|0.0.0.0|7681] (2)
+[2026/11/18 06:25:29:4771] N: [vh|1|default|0.0.0.0|0.0.0.0|7681]: lws_socket_bind: source ads 0.0.0.0
+[2026/11/18 06:25:29:4771] N: __lws_lc_tag:  ++ [wsi|1|listen|default|0.0.0.0|7681] (2)
+[2026/11/18 06:25:29:4772] N:  Listening on port: 7681
+[2026/11/18 06:25:36:0668] N: __lws_lc_tag:  ++ [wsisrv|0|adopted] (1)
+[2026/11/18 06:25:36:0671] N: HTTP / - 172.17.0.1
+[2026/11/18 06:25:36:2100] N: HTTP /token - 172.17.0.1
+[2026/11/18 06:25:36:2476] N: __lws_lc_tag:  ++ [wsisrv|1|adopted] (2)
+[2026/11/18 06:25:36:2483] N: WS   /ws - 172.17.0.1, clients: 1
+[2026/11/18 06:25:36:2559] N: started process, pid: 7
+[2026/11/18 06:25:41:2148] N: __lws_lc_untag:  -- [wsisrv|0|adopted] (1) 5.148s

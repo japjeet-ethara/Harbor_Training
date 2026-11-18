@@ -1,0 +1,20 @@
+{
+  "validation_kind": "host_safe_verifier_validation",
+  "actual_harbor_run": false,
+  "command": "python3 scripts/test_verifier.py",
+  "result": "passed",
+  "test_count": 19,
+  "exit_code": 0,
+  "worker_execution": "mocked; no actual privilege boundary or Docker run",
+  "harbor_version": "0.25.0",
+  "rewardkit_version": "0.2.4",
+  "harbor_lint_findings": [],
+  "pending": [
+    "Docker image builds",
+    "real oracle reward",
+    "real nop reward",
+    "real replay-cheat reward",
+    "reward screenshots",
+    "GitHub publication"
+  ]
+}

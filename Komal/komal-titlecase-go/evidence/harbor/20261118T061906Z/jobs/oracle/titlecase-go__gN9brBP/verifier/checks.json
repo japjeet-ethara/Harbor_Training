@@ -1,0 +1,43 @@
+{
+  "checks": {
+    "build": 1.0,
+    "no_python": 1.0,
+    "behaviour": 1.0
+  },
+  "weights": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 4
+  },
+  "python_files": [],
+  "build_result": {
+    "command": [
+      "go",
+      "build",
+      "./..."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "main_build_result": {
+    "command": [
+      "go",
+      "build",
+      "-o",
+      "/tmp/titlecase-grader-wtzwveq3/bin/titlecase",
+      "."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "behaviour_result": {
+    "returncode": 0,
+    "timed_out": false,
+    "correct": 2000,
+    "expected_records": 2000,
+    "actual_records": 2000,
+    "terminated_by_lf": true
+  },
+  "mismatches": [],
+  "weighted_mean": 1.0
+}

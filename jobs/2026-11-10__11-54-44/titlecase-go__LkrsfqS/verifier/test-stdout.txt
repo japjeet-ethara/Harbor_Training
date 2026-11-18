@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.16, pytest-8.4.1, pluggy-1.7.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 3 items
+
+../tests/test_outputs.py F.F                                             [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_build __________________________________
+
+    def test_build():
+        """Build must succeed inside the workspace containing go.mod."""
+        target_dir = find_workspace_root()
+        success, stdout, stderr = run_cmd(f"{GO_BIN} build ./...", cwd=target_dir)
+>       assert success, f"Go build failed in {target_dir} (Files present: {os.listdir(target_dir) if os.path.exists(target_dir) else 'N/A'}):\nStdout: {stdout}\nStderr: {stderr}"
+E       AssertionError: Go build failed in /workspace (Files present: N/A):
+E         Stdout: 
+E         Stderr: [Errno 2] No such file or directory: '/workspace'
+E       assert False
+
+/tests/test_outputs.py:62: AssertionError
+________________________________ test_behaviour ________________________________
+
+    def test_behaviour():
+        """Check line-by-line output against hidden expected dataset."""
+        target_dir = find_workspace_root()
+        bin_path = "/tmp/titlecase_bin"
+        build_ok, stdout, stderr = run_cmd(f"{GO_BIN} build -o {bin_path} .", cwd=target_dir)
+>       assert build_ok and os.path.exists(bin_path), f"Failed to build binary in {target_dir}:\n{stderr}"
+E       AssertionError: Failed to build binary in /workspace:
+E         [Errno 2] No such file or directory: '/workspace'
+E       assert (False)
+
+/tests/test_outputs.py:84: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ../tests/test_outputs.py::test_no_python
+FAILED ../tests/test_outputs.py::test_build - AssertionError: Go build failed...
+FAILED ../tests/test_outputs.py::test_behaviour - AssertionError: Failed to b...
+========================= 2 failed, 1 passed in 0.03s ==========================

@@ -1,0 +1,39 @@
+Windows compatibility shim: import placeholders for unused POSIX worker primitives
+grader framing: 8 cases passed
+Profile: native subprocesses, no Docker or Linux UID isolation; go version go1.23.12 windows/amd64
+Traceback (most recent call last):
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\native-rewardkit-shim-ad67ca8c4a3c434ba66cbd0939f9c871.py", line 16, in <module>
+    runpy.run_path(str(script), run_name="__main__")
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\kushal-titlecase-go\tools\check_grader.py", line 140, in <module>
+    main()
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\kushal-titlecase-go\tools\check_grader.py", line 129, in main
+    scores = run(checks, workspace=workspace, output=output / "reward.json",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 721, in run
+    layout = _discover_layout(tests_dir, workspace=workspace)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 504, in _discover_layout
+    children = _collect_child_inputs(tests_path, workspace_path, ())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 395, in _collect_child_inputs
+    child = _discover_group(child_dir, workspace_path, (*path, child_dir.name))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 437, in _discover_group
+    programmatic = _build_programmatic_rewards(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 323, in _build_programmatic_rewards
+    reward = _build_programmatic_reward(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 287, in _build_programmatic_reward
+    _import_py_file(py_file)
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\runner.py", line 74, in _import_py_file
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\KushalGirdhar\AppData\Local\Packages\openai.codex_2p2nqsd0c76g0\AC\#!sandbox.{fd4be613-6d50-43fb-92fe-f4478bdb9b23}\Temp\titlecase-native-axxqfftl\tests\behaviour\criterion.py", line 12, in <module>
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\session.py", line 24, in __call__
+    raise TypeError(
+TypeError: Call criteria through the rewardkit module: rk.behaviour(...) instead of behaviour(...)

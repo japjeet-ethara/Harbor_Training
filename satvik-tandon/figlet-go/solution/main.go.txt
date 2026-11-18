@@ -1,0 +1,70 @@
+package main
+
+import (
+ "embed"
+ "flag"
+ "fmt"
+ "os"
+ "strconv"
+ "strings"
+ "unicode"
+ "unicode/utf8"
+)
+
+//go:embed fonts/*.flf
+var fonts embed.FS
+
+type Font struct { height int; hard rune; dir int; mode int; chars map[rune][]string; widths map[rune]int }
+const ( equal=1; lowline=2; hierarchy=4; pair=8; bigx=16; hardblank=32; kern=64; smush=128 )
+func sw(s string) int { return utf8.RuneCountInString(s) }
+func trimSpace(s string) string { return strings.TrimRightFunc(s, unicode.IsSpace) }
+func load(name string) (*Font,error) {
+ b,e:=fonts.ReadFile("fonts/"+name+".flf"); if e!=nil { return nil,e }
+ ls:=strings.Split(strings.ReplaceAll(string(b),"\r\n","\n"),"\n"); h:=strings.Fields(ls[0]); if len(h)<6 { return nil,fmt.Errorf("bad font") }
+ height,_:=strconv.Atoi(h[1]); old,_:=strconv.Atoi(h[4]); comments,_:=strconv.Atoi(h[5]); dir:=-1; mode:=-1
+ if len(h)>6 { dir,_=strconv.Atoi(h[6]) }; if len(h)>7 { mode,_=strconv.Atoi(h[7]) }
+ if mode<0 { if old==0 {mode=64} else if old<0 {mode=0} else {mode=(old&31)|128} }
+ // The first token is `flf2a<hardblank>` (or `tlf2a<hardblank>`).
+ f:=&Font{height:height,hard:[]rune(h[0])[5],dir:dir,mode:mode,chars:map[rune][]string{},widths:map[rune]int{}}
+ p:=1+comments
+ read:=func() ([]string,int,bool) { if p+height>len(ls) {return nil,0,false}; out:=make([]string,height); end:=rune(0); w:=0
+  for i:=0;i<height;i++ { line:=ls[p];p++; if i==0 { x:=[]rune(trimSpace(line)); if len(x)==0{return nil,0,false}; end=x[len(x)-1] }; x:=[]rune(trimSpace(line)); n:=0; for len(x)>0&&x[len(x)-1]==end&&n<2 {x=x[:len(x)-1];n++}; out[i]=string(x); if sw(out[i])>w{w=sw(out[i])} }
+  return out,w,true }
+ for c:=rune(32);c<127;c++ { g,w,ok:=read(); if !ok {return nil,fmt.Errorf("truncated font")}; if c==32||strings.Join(g,"")!=""{f.chars[c]=g;f.widths[c]=w} }
+ for _,c:=range []rune("ÄÖÜäöüß") { if p>=len(ls)-1 {break}; g,w,ok:=read();if ok&&strings.Join(g,"")!=""{f.chars[c]=g;f.widths[c]=w} }
+ for p<len(ls)-1 { key:=strings.TrimSpace(ls[p]);p++; if key==""{continue}; if !strings.HasPrefix(strings.ToLower(key),"0x"){continue}; n,x:=strconv.ParseInt(strings.Fields(key)[0][2:],16,32);if x!=nil{continue};g,w,ok:=read();if ok&&strings.Join(g,"")!=""{f.chars[rune(n)]=g;f.widths[rune(n)]=w} }
+ return f,nil
+}
+type Builder struct { text []rune; f *Font; direction string; width int; justify string; it,cur,prev,max int; buffer []string; queue [][]string; blanks []marker }
+type marker struct { b []string; i int }
+func clone(a []string)[]string{return append([]string(nil),a...)}
+func (b *Builder) glyph(i int) []string {if i<0||i>=len(b.text){return nil};return b.f.chars[b.text[i]]}
+func (b *Builder) glyphWidth(i int) int{return b.f.widths[b.text[i]]}
+func (b *Builder) smushChars(l,r rune)(rune,bool) {
+ if l==' ' {return r,true};if r==' ' {return l,true};if b.prev<2||b.cur<2{return 0,false};if b.f.mode&smush==0{return 0,false}
+ if b.f.mode&63==0 {if l==b.f.hard{return r,true};if r==b.f.hard{return l,true};if b.direction=="right-to-left"{return l,true};return r,true}
+ if b.f.mode&hardblank!=0&&l==b.f.hard&&r==b.f.hard{return l,true}; if l==b.f.hard||r==b.f.hard{return 0,false}
+ if b.f.mode&equal!=0&&l==r{return l,true}
+ if b.f.mode&lowline!=0 {if l=='_'&&strings.ContainsRune("|/\\[]{}()<>",r){return r,true};if r=='_'&&strings.ContainsRune("|/\\[]{}()<>",l){return l,true}}
+ if b.f.mode&hierarchy!=0 {sets:=[][2]string{{"|","/\\[]{}()<>"},{"\\/","[]{}()<>"},{"[]","{}()<>"},{"{}","()< >"},{"()","<>"}};for _,x:=range sets{ x[1]=strings.ReplaceAll(x[1]," ","");if strings.ContainsRune(x[0],l)&&strings.ContainsRune(x[1],r){return r,true};if strings.ContainsRune(x[0],r)&&strings.ContainsRune(x[1],l){return l,true}}}
+ if b.f.mode&pair!=0 {v:=string([]rune{l,r});w:=string([]rune{r,l});if v=="[]"||v=="{}"||v=="()"||w=="[]"||w=="{}"||w=="()"{return '|',true}}
+ if b.f.mode&bigx!=0 {if l=='/'&&r=='\\'{return '|',true};if r=='/'&&l=='\\'{return 'Y',true};if l=='>'&&r=='<'{return 'X',true}}
+ return 0,false
+}
+func trimRightASCII(s string)string{for strings.HasSuffix(s," "){s=s[:len(s)-1]};return s}
+func trimLeftASCII(s string)string{for strings.HasPrefix(s," "){s=s[1:]};return s}
+func runeAt(s string,i int)rune{x:=[]rune(s);if i<0||i>=len(x){return 0};return x[i]}
+func (b *Builder) amount(g []string)int {if b.f.mode&(smush|kern)==0{return 0};m:=b.cur
+ for row:=0;row<b.f.height;row++ {l,r:=b.buffer[row],g[row];if b.direction=="right-to-left"{l,r=r,l};lr:=[]rune(trimRightASCII(l)); bd:=len(lr)-1;if bd<0{bd=0};ch1:=rune(0);if len(lr)>0{ch1=lr[bd]}; rr:=[]rune(r);cb:=0;for cb<len(rr)&&rr[cb]==' '{cb++};ch2:=rune(0);if cb<len(rr){ch2=rr[cb]};amt:=cb+sw(l)-1-bd;if ch1==0||ch1==' '{amt++}else if ch2!=0 {if _,ok:=b.smushChars(ch1,ch2);ok{amt++}};if amt<m{m=amt} }
+ return m
+}
+func replaceAt(s string,i int,c rune)string{x:=[]rune(s);if i<0||i>=len(x){return s};x[i]=c;return string(x)}
+func (b *Builder) addRow(g []string,row int){l,r:=b.buffer[row],g[row];if b.direction=="right-to-left"{l,r=r,l};for i:=0;i<b.max;i++{idx:=sw(l)-b.max+i;left:=runeAt(l,idx);right:=runeAt(r,i);if v,ok:=b.smushChars(left,right);ok{l=replaceAt(l,idx,v)}};b.buffer[row]=l+string([]rune(r)[b.max:])}
+func (b *Builder) cut(){b.buffer=make([]string,b.f.height);b.blanks=nil;b.prev=0;g:=b.glyph(b.it);if g!=nil{b.max=b.amount(g)}}
+func (b *Builder) handle(){if len(b.blanks)>0{x:=b.blanks[len(b.blanks)-1];b.blanks=b.blanks[:len(b.blanks)-1];b.queue=append(b.queue,x.b);b.it=x.i;b.cut()}else{b.queue=append(b.queue,clone(b.buffer));b.it--;b.cut()}}
+func (b *Builder) render()string{for b.it<len(b.text){if b.text[b.it]=='\n'{b.blanks=append(b.blanks,marker{clone(b.buffer),b.it});b.handle();b.it++;continue};g:=b.glyph(b.it);if g==nil{b.it++;continue};b.cur=b.glyphWidth(b.it);if b.width<b.cur{b.it++;continue};b.max=b.amount(g);total:=sw(b.buffer[0])+b.cur-b.max;if b.text[b.it]==' '{b.blanks=append(b.blanks,marker{clone(b.buffer),b.it})};if total>=b.width{b.handle()}else{for r:=0;r<b.f.height;r++{b.addRow(g,r)}};b.prev=b.cur;b.it++};if b.buffer[0]!=""{b.queue=append(b.queue,b.buffer)};var out strings.Builder;for _,q:=range b.queue{for i:=range q{if b.justify=="right"{q[i]=strings.Repeat(" ",b.width-sw(q[i])-1)+q[i]}else if b.justify=="center"{q[i]=strings.Repeat(" ",(b.width-sw(q[i]))/2)+q[i]};q[i]=strings.ReplaceAll(q[i],string(b.f.hard)," ")};out.WriteString(strings.Join(q,"\n"));out.WriteByte('\n')};return out.String()}
+func mirrorLine(s string)string{m:=map[rune]rune{'(':')',')':'(','/':'\\','\\':'/','<':'>','>':'<','[':']',']':'[','{':'}','}':'{'};x:=[]rune(s);for i,j:=0,len(x)-1;i<=j;i,j=i+1,j-1{a,b:=x[i],x[j];if z,ok:=m[a];ok{a=z};if z,ok:=m[b];ok{b=z};x[i],x[j]=b,a};return string(x)}
+func reverse(s string)string{a:=strings.Split(strings.TrimSuffix(s,"\n"),"\n");for i:=range a{a[i]=mirrorLine(a[i])};return strings.Join(a,"\n")+"\n"}
+func flip(s string)string{table:=" !\"#$%&'()*+,-.\\0123456789:;<=>?@VBCDEFGHIJKLWNO"+"bQbSTUAMXYZ[/]v-"+"`aPcdefghijklwno"+"pqrstu^mxyz{|}~\x7f";a:=strings.Split(strings.TrimSuffix(s,"\n"),"\n");for i,j:=0,len(a)-1;i<j;i,j=i+1,j-1{a[i],a[j]=a[j],a[i]};for i:=range a{x:=[]rune(a[i]);for j,c:=range x{if c>=32&&c<=127{x[j]=[]rune(table)[c-32]}};a[i]=string(x)};return strings.Join(a,"\n")+"\n"}
+func strip(s string)string{a:=strings.Split(strings.TrimSuffix(s,"\n"),"\n");start:=0;for start<len(a)&&strings.TrimSpace(a[start])==""{start++};return strings.TrimRight(strings.Join(a[start:],"\n")," \t\r\n")}
+func main(){font:=flag.String("f","standard","");w:=flag.Int("w",80,"");j:=flag.String("j","auto","");d:=flag.String("D","auto","");rev:=flag.Bool("r",false,"");fl:=flag.Bool("F",false,"");st:=flag.Bool("s",false,"");norm:=flag.Bool("n",false,"");flag.Parse();f,e:=load(*font);if e!=nil{fmt.Fprintln(os.Stderr,e);return};dir:=*d;if dir=="auto"{dir="left-to-right";if f.dir==1{dir="right-to-left"}};just:=*j;if just=="auto"{just="left";if dir=="right-to-left"{just="right"}};b:=Builder{text:[]rune(strings.Join(flag.Args()," ")),f:f,direction:dir,width:*w,justify:just,buffer:make([]string,f.height)};out:=b.render();if *rev{out=reverse(out)};if *fl{out=flip(out)};if *st{out=strip(out)}else if *norm{out="\n"+strip(out)+"\n"};fmt.Println(out)}

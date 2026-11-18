@@ -1,0 +1,23 @@
+# One score per check file (build.py, no_python.py, behaviour.py), plus the combined reward.
+#   reward = (1*build + 1*no_python + 4*behaviour) / 6      (weighted-mean)
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
+
+# The three individual scores are also written to reward.json so each check can be read on its own.
+# (Inputs missing from a weights table default to weight 1, so the other two are zeroed explicitly.)
+[[reward]]
+name = "build"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 0.0, behaviour = 0.0 }
+
+[[reward]]
+name = "no_python"
+aggregation = "weighted-mean"
+weights = { build = 0.0, no_python = 1.0, behaviour = 0.0 }
+
+[[reward]]
+name = "behaviour"
+aggregation = "weighted-mean"
+weights = { build = 0.0, no_python = 0.0, behaviour = 1.0 }

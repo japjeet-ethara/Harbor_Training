@@ -1,0 +1,7 @@
+.venv/
+.venv_regex/
+jobs/
+python-titlecase/
+__pycache__/
+*.pyc
+solution_backup/

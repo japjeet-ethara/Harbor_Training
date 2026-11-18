@@ -1,0 +1,10 @@
+.venv/
+.github-upload/
+__pycache__/
+*.py[cod]
+.DS_Store
+/jobs/
+/evidence/harbor/*/jobs/
+/evidence/harbor/*/task-copies/
+/solution/titlecase-go
+/titlecase-go

@@ -1,0 +1,2 @@
+go: build output "titlecase" already exists and is a directory
+reward: 0.0

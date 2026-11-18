@@ -1,0 +1,53 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 1,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794293287.3846548,
+            "stop": 1794293293.7654135
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6.305869034999887,
+                "start": 1794293287.4046347,
+                "stop": 1794293293.7203946,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_build():\n        \"\"\"Build must succeed inside the repository.\"\"\"\n        success, stdout, stderr = run_cmd(\"go build ./...\")\n>       assert success, f\"Go build failed:\\nStdout: {stdout}\\nStderr: {stderr}\"\nE       AssertionError: Go build failed:\nE         Stdout: \nE         Stderr: # titlecase\nE         ./main.go:174:1: syntax error: unexpected EOF, expected expression\nE         \nE       assert False\n\n/tests/test_outputs.py:27: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.0003558410001005541,
+                "start": 1794293293.7206032,
+                "stop": 1794293293.7211013,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.04132328499997584,
+                "start": 1794293293.7212944,
+                "stop": 1794293293.76523,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"go build -o {bin_path} .\", cwd=REPO_DIR)\n>       assert build_ok and os.path.exists(bin_path), f\"Failed to build binary:\\n{stderr}\"\nE       AssertionError: Failed to build binary:\nE         # titlecase\nE         ./main.go:174:1: syntax error: unexpected EOF, expected expression\nE         \nE       assert (False)\n\n/tests/test_outputs.py:44: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

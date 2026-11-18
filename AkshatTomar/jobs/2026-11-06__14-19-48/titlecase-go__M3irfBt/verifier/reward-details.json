@@ -1,0 +1,40 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 1.0,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "checks",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "build",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "build"
+            },
+            {
+              "name": "no_python",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "no_python"
+            },
+            {
+              "name": "behaviour",
+              "value": 1.0,
+              "raw": 1.0,
+              "weight": 4.0,
+              "description": "behaviour"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}

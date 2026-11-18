@@ -1,0 +1,50 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 2,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794293141.4743419,
+            "stop": 1794293148.597898
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "passed",
+                "duration": 6.9361994589999085,
+                "start": 1794293141.4967377,
+                "stop": 1794293148.433259,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.0004753870000513416,
+                "start": 1794293148.43355,
+                "stop": 1794293148.4342082,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.14747541499991712,
+                "start": 1794293148.4344575,
+                "stop": 1794293148.5976524,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"go build -o {bin_path} .\", cwd=REPO_DIR)\n        assert build_ok and os.path.exists(bin_path), f\"Failed to build binary:\\n{stderr}\"\n    \n        hidden_in = os.path.join(TESTS_DIR, \"data\", \"hidden_inputs.txt\")\n        hidden_exp = os.path.join(TESTS_DIR, \"data\", \"hidden_expected.txt\")\n    \n        assert os.path.exists(hidden_in), f\"Missing {hidden_in}\"\n        assert os.path.exists(hidden_exp), f\"Missing {hidden_exp}\"\n    \n        with open(hidden_in, \"r\", encoding=\"utf-8\") as f_in:\n            res = subprocess.run(\n                [bin_path],\n                stdin=f_in,\n                stdout=subprocess.PIPE,\n                stderr=subprocess.PIPE,\n                text=True,\n            )\n    \n>       assert res.returncode == 0, f\"Binary crashed with stderr: {res.stderr}\"\nE       AssertionError: Binary crashed with stderr: panic: regexp: Compile(`([:.;?!\\-\\u2013\\u2014\\u2015]\\s+)(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\\.?|via|vs\\.?)\\b`): error parsing regexp: invalid escape sequence: `\\u`\nE         \nE         goroutine 1 [running]:\nE         regexp.MustCompile({0x4d8219, 0x65})\nE         \t/usr/local/go/src/regexp/regexp.go:317 +0xb4\nE         main.init()\nE         \t/workspace/repo/main.go:18 +0x105\nE         \nE       assert 2 == 0\nE        +  where 2 = CompletedProcess(args=['/tmp/titlecase_bin'], returncode=2, stdout='', stderr='panic: regexp: Compile(`([:.;?!\\\\-\\\\u20...{0x4d8219, 0x65})\\n\\t/usr/local/go/src/regexp/regexp.go:317 +0xb4\\nmain.init()\\n\\t/workspace/repo/main.go:18 +0x105\\n').returncode\n\n/tests/test_outputs.py:61: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

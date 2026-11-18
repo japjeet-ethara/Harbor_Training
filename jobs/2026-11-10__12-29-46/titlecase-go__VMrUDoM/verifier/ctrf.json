@@ -1,0 +1,50 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.2.0"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 2,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1794294014.7211974,
+            "stop": 1794294021.2560623
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_build",
+                "status": "passed",
+                "duration": 6.337269447000153,
+                "start": 1794294014.737325,
+                "stop": 1794294021.0748692,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_no_python",
+                "status": "passed",
+                "duration": 0.00036765999993804144,
+                "start": 1794294021.0751143,
+                "stop": 1794294021.0756245,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_behaviour",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.17044552900006238,
+                "start": 1794294021.0758471,
+                "stop": 1794294021.2558599,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def test_behaviour():\n        \"\"\"Check line-by-line output against hidden expected dataset.\"\"\"\n        bin_path = \"/tmp/titlecase_bin\"\n        build_ok, stdout, stderr = run_cmd(f\"go build -o {bin_path} .\", cwd=REPO_DIR)\n        assert build_ok and os.path.exists(bin_path), f\"Failed to build binary:\\n{stderr}\"\n    \n        hidden_in = os.path.join(TESTS_DIR, \"data\", \"hidden_inputs.txt\")\n        hidden_exp = os.path.join(TESTS_DIR, \"data\", \"hidden_expected.txt\")\n    \n        assert os.path.exists(hidden_in), f\"Missing {hidden_in}\"\n        assert os.path.exists(hidden_exp), f\"Missing {hidden_exp}\"\n    \n        with open(hidden_in, \"r\", encoding=\"utf-8\") as f_in:\n            res = subprocess.run(\n                [bin_path],\n                stdin=f_in,\n                stdout=subprocess.PIPE,\n                stderr=subprocess.PIPE,\n                text=True,\n            )\n    \n        assert res.returncode == 0, f\"Binary crashed with stderr: {res.stderr}\"\n    \n        actual_lines = [line.rstrip(\"\\r\\n\") for line in res.stdout.splitlines()]\n        with open(hidden_exp, \"r\", encoding=\"utf-8\") as f_exp:\n            exp_lines = [line.rstrip(\"\\r\\n\") for line in f_exp.readlines()]\n    \n        assert len(actual_lines) == len(exp_lines), (\n            f\"Output line count mismatch: got {len(actual_lines)}, expected {len(exp_lines)}\"\n        )\n    \n        matches = sum(1 for a, b in zip(actual_lines, exp_lines) if a == b)\n        accuracy = matches / len(exp_lines)\n>       assert accuracy == 1.0, f\"Behavior mismatch: only {matches}/{len(exp_lines)} matched.\"\nE       AssertionError: Behavior mismatch: only 1815/2000 matched.\nE       assert 0.9075 == 1.0\n\n/tests/test_outputs.py:73: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

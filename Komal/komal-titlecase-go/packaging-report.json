@@ -1,0 +1,457 @@
+{
+  "crc_integrity": "verified by ZipFile.testzip during packaging",
+  "created_utc": "2026-11-18T06:27:54.822034+00:00",
+  "credentials_scan": "no configured credential signatures found",
+  "excluded": [
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/nop/titlecase-go__NBGT8Le/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/nop/titlecase-go__NBGT8Le/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/nop/titlecase-go__NBGT8Le/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/nop/titlecase-go__NBGT8Le/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/go.mod",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/format/patterns.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/format/patterns_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/format/testdata/examples.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/format/testdata/patterns.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/format/titlecase.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/format/titlecase_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/pattern/pattern.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/pattern/pattern_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/pyunicode/tables.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/pyunicode/unicode.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/records/records.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/internal/records/records_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/main.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/nop/titlecase-go__u2WHHQC/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/nop/titlecase-go__u2WHHQC/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/nop/titlecase-go__u2WHHQC/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/nop/titlecase-go__u2WHHQC/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/go.mod",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/format/patterns.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/format/patterns_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/format/testdata/examples.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/format/testdata/patterns.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/format/titlecase.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/format/titlecase_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/pattern/pattern.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/pattern/pattern_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/pyunicode/tables.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/pyunicode/unicode.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/records/records.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/internal/records/records_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/main.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/NOTICE",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/oracle/titlecase-go__2Svqu35/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/replay-cheat/replay-task__CGhBTcB/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/replay-cheat/replay-task__CGhBTcB/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/replay-cheat/replay-task__CGhBTcB/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061239Z/jobs/replay-cheat/replay-task__CGhBTcB/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/nop/titlecase-go__eQaWYMV/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/nop/titlecase-go__eQaWYMV/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/nop/titlecase-go__eQaWYMV/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/nop/titlecase-go__eQaWYMV/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/go.mod",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/format/patterns.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/format/patterns_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/format/testdata/examples.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/format/testdata/patterns.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/format/titlecase.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/format/titlecase_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/pattern/pattern.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/pattern/pattern_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/pyunicode/tables.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/pyunicode/unicode.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/records/records.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/internal/records/records_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/main.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/NOTICE",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/oracle/titlecase-go__iXEHetA/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/replay-cheat/replay-task__cSeS8TK/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/replay-cheat/replay-task__cSeS8TK/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/replay-cheat/replay-task__cSeS8TK/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061535Z/jobs/replay-cheat/replay-task__cSeS8TK/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/nop/titlecase-go__8HuzWaT/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/nop/titlecase-go__8HuzWaT/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/nop/titlecase-go__8HuzWaT/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/nop/titlecase-go__8HuzWaT/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/go.mod",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/format/patterns.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/format/patterns_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/format/testdata/examples.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/format/testdata/patterns.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/format/titlecase.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/format/titlecase_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/pattern/pattern.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/pattern/pattern_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/pyunicode/LICENSE-CPython.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/pyunicode/LICENSE-Unicode.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/pyunicode/tables.json",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/pyunicode/unicode.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/records/records.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/internal/records/records_test.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/main.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/NOTICE",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/oracle/titlecase-go__gN9brBP/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/AUTHORS.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/go.mod",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/LICENSE.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/main.go",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/README.rst",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/replay",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/titlecase/__init__.py",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "evidence/harbor/20261118T061906Z/jobs/replay-cheat/replay-task__cDqBPUp/artifacts/workspace/repo/visible-output.txt",
+      "reason": "redundant Harbor-collected candidate artifact"
+    },
+    {
+      "path": "tools/__pycache__/reference.cpython-315.pyc",
+      "reason": "cache or environment"
+    }
+  ],
+  "extracted_bytes": "verified against every payload SHA-256 during packaging",
+  "non_scripts_mode": "0644",
+  "notes": "Collected candidate trees omitted; raw Harbor logs, rewards, configs and manifests retained. No binaries redistributed.",
+  "payload_files": 351,
+  "scripts": {
+    "titlecase-go/cheat/solve.sh": "0755",
+    "titlecase-go/solution/solve.sh": "0755",
+    "titlecase-go/tests/test.sh": "0755",
+    "tools/harbor_runs.sh": "0755"
+  }
+}

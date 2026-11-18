@@ -1,0 +1,37 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.terminal
+#1 transferring dockerfile: 512B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/tsl0922/ttyd:1.7.7@sha256:9a058c087bca6df456cb728514eafe778ea384369a622b3604c8b5256b67237d
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/3] FROM docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 948B done
+#6 DONE 0.1s
+
+#7 [ttyd 1/1] FROM docker.io/tsl0922/ttyd:1.7.7@sha256:9a058c087bca6df456cb728514eafe778ea384369a622b3604c8b5256b67237d
+#7 DONE 0.1s
+
+#8 [stage-1 2/3] COPY --from=ttyd /usr/bin/ttyd /usr/local/bin/ttyd
+#8 DONE 0.1s
+
+#9 [stage-1 3/3] COPY show_terminal.py /opt/show_terminal.py
+#9 DONE 0.1s
+
+#10 exporting to image
+#10 exporting layers 0.1s done
+#10 writing image sha256:f17867b169efeae5a76a60dbc313e3a6fa3e32a4ae052c36ef91fab96ca34821 done
+#10 naming to docker.io/library/komal-titlecase-terminal done
+#10 DONE 0.1s

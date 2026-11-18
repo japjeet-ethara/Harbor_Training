@@ -1,0 +1,467 @@
++ harbor --version
+0.26.0
++ docker version
+Client:
+ Version:           29.5.2
+ API version:       1.54
+ Go version:        go1.25.10
+ Git commit:        79eb04c7d8e1d73247cb7fe011eecc645063e0f0
+ Built:             Sun May 31 13:53:18 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server:
+ Engine:
+  Version:          29.5.2
+  API version:      1.54 (minimum version 1.40)
+  Go version:       go1.25.10
+  Git commit:       568f755ebeb1ac9c6a8febbda6cd371ea0a9630b
+  Built:            Sun May 31 13:53:18 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.2.0
+  GitCommit:        1c4457e00facac03ce1d75f7b6777a7a851e5c41
+ runc:
+  Version:          1.4.4
+  GitCommit:        6d1032fdfb7d3432125806826b50b37ac42b6b23
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        
++ docker compose version
+Docker Compose version v2.40.3
++ harbor lint --select ALL /root/section18
++ docker build --tag titlecase-go-agent:section18 /root/section18/environment
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 981B 1.2s done
+#1 DONE 1.9s
+
+#2 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#3 DONE 13.2s
+
+#2 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 DONE 13.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 72B 0.7s done
+#4 DONE 1.1s
+
+#5 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#5 resolve docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db 0.9s done
+#5 DONE 1.2s
+
+#6 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#6 resolve docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e 1.0s done
+#6 DONE 1.2s
+
+#7 [stage-0 2/7] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#7 CACHED
+
+#8 [internal] load build context
+#8 transferring context: 706B 0.2s done
+#8 DONE 0.3s
+
+#9 [stage-0 6/7] WORKDIR /workspace/repo
+#9 CACHED
+
+#10 [stage-0 3/7] COPY requirements.lock /tmp/reference-requirements.lock
+#10 CACHED
+
+#11 [stage-0 4/7] RUN /usr/local/bin/python -m pip install --no-cache-dir --only-binary=:all: --require-hashes -r /tmp/reference-requirements.lock     && /usr/local/bin/python -c 'import regex, ssl, sys, unicodedata; assert sys.version_info[:3] == (3,12,14); assert unicodedata.unidata_version == "15.0.0"; assert regex.DEFAULT_VERSION == regex.VERSION0'     && rm /tmp/reference-requirements.lock
+#11 CACHED
+
+#12 [stage-0 5/7] RUN useradd --create-home --uid 10001 agent && install -d -o agent -g agent /workspace/repo
+#12 CACHED
+
+#13 [stage-0 7/7] COPY --chown=agent:agent upstream/ /workspace/repo/
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.4s done
+#14 exporting manifest sha256:0aa4ed45a4699120ba70ea3897db90234fa5df1c2f3f0b6c1e2c0e6a65914414 0.1s done
+#14 exporting config sha256:47125f7e0a56fde0da2eae18219527e1d31f2c1ec7738bdde18884b3ff4d6aeb
+#14 exporting config sha256:47125f7e0a56fde0da2eae18219527e1d31f2c1ec7738bdde18884b3ff4d6aeb 0.0s done
+#14 exporting attestation manifest sha256:c8e989e447686faeffbea2e3fb04b2ae7a018851fc5f4f5cd6b398dbf35af235
+#14 exporting attestation manifest sha256:c8e989e447686faeffbea2e3fb04b2ae7a018851fc5f4f5cd6b398dbf35af235 0.3s done
+#14 exporting manifest list sha256:faff48b0416339627ffddb664c850f69355d7fd140db3df53cc8cbe422edb632 0.1s done
+#14 naming to docker.io/library/titlecase-go-agent:section18
+#14 naming to docker.io/library/titlecase-go-agent:section18 0.1s done
+#14 unpacking to docker.io/library/titlecase-go-agent:section18
+#14 unpacking to docker.io/library/titlecase-go-agent:section18 0.3s done
+#14 DONE 3.2s
++ docker run --rm --network none titlecase-go-agent:section18 bash -ec 'test "$PWD" = /workspace/repo; test -f titlecase/__init__.py; test ! -e /tests; go version; python -c "import regex, titlecase; assert titlecase.REGEX_AVAILABLE; print(regex.__version__)"'
+go version go1.23.12 linux/amd64
+2026.11.15
++ docker build --tag titlecase-go-verifier:section18 /root/section18/tests
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 30B 0.0s
+#1 transferring dockerfile: 819B 0.1s done
+#1 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#3 DONE 0.6s
+
+#2 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 203B 0.2s done
+#4 DONE 0.3s
+
+#5 [internal] load build context
+#5 transferring context: 329B 0.1s done
+#5 DONE 0.1s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 resolve docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 resolve docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db 0.3s done
+#6 DONE 0.4s
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 resolve docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e 0.4s done
+#7 DONE 0.4s
+
+#8 [stage-0 2/7] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#8 CACHED
+
+#9 [stage-0 3/7] COPY requirements.lock /tmp/verifier-requirements.lock
+#9 CACHED
+
+#10 [stage-0 4/7] RUN /usr/local/bin/python -m pip install --no-cache-dir --require-hashes --only-binary=:all: -r /tmp/verifier-requirements.lock     && /usr/local/bin/rewardkit --help >/dev/null     && rm /tmp/verifier-requirements.lock     && mkdir -p /workspace/repo /tests/data     && chmod 700 /tests
+#10 CACHED
+
+#11 [stage-0 5/7] COPY grade.py build.py no_python.py behaviour.py reward.toml test.sh /tests/
+#11 CACHED
+
+#12 [stage-0 6/7] COPY data/hidden_inputs.txt data/hidden_expected.txt /tests/data/
+#12 CACHED
+
+#13 exporting to image
+#13 exporting layers 0.2s done
+#13 exporting manifest sha256:ab53f4a852e58a62f9c2ac4b09eab1116634ba2a1265eafa73567b53be0bf9fd 0.0s done
+#13 exporting config sha256:d44107473ebfe563f96660fc4117cd864c382f78ae2d5cced49aa884f1418271 0.0s done
+#13 exporting attestation manifest sha256:f9bb1c03ebf67ab66685f29da4c777554679913ad684e090f180c708fb91ae5b
+#13 exporting attestation manifest sha256:f9bb1c03ebf67ab66685f29da4c777554679913ad684e090f180c708fb91ae5b 0.2s done
+#13 exporting manifest list sha256:f8d420904186ef475a94bf9aed9f225fd4272dc579d201f905b38fff9a03705a 0.1s done
+#13 naming to docker.io/library/titlecase-go-verifier:section18 0.0s done
+#13 unpacking to docker.io/library/titlecase-go-verifier:section18
+#13 unpacking to docker.io/library/titlecase-go-verifier:section18 0.2s done
+#13 DONE 1.6s
++ docker run --rm --network none -e LITELLM_LOCAL_MODEL_COST_MAP=True titlecase-go-verifier:section18 bash -ec 'test -s /tests/data/hidden_expected.txt; rewardkit --help >/dev/null'
++ python /root/section18/tools/replay_task.py /root/section18-runs/titlecase-harbor.XXdnfhdj/replay-task
++ harbor run -p /root/section18 --env docker -a oracle --jobs-dir /root/section18-runs/titlecase-harbor.XXdnfhdj/jobs --job-name oracle
+Tip: There are many benchmarks available in Harbor's registry.
+Run `harbor datasets list` to see all available datasets.
+
+⠋ 0/1 Running trials...                                          0:00:37 -:--:--╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/cli/jobs.py:20 │
+│ 83 in start                                                                  │
+│                                                                              │
+│   2080 │   options.apply_defaults()                                          │
+│   2081 │   try:                                                              │
+│   2082 │   │   config = build_job_config(**options.arguments)                │
+│ ❱ 2083 │   │   return _execute_job(                                          │
+│   2084 │   │   │   config,                                                   │
+│   2085 │   │   │   diff_sources=options.arguments["diff_sources"],           │
+│   2086 │   │   │   print_config=options.arguments["print_config"],           │
+│                                                                              │
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/cli/jobs.py:24 │
+│ 37 in _execute_job                                                           │
+│                                                                              │
+│   2434 │   # (when --upload is set) so everything stays on one event loop.   │
+│        See                                                                   │
+│   2435 │   # the long comment in `HarborHubUploadPlugin.on_job_end` for why  │
+│        this matters.                                                         │
+│   2436 │   try:                                                              │
+│ ❱ 2437 │   │   job, job_result = run_async(_run_job())                       │
+│   2438 │   except DATASET_RESOLUTION_ERRORS as exc:                          │
+│   2439 │   │   abort_dataset_resolution(console, exc, "No job was started.") │
+│   2440                                                                       │
+│                                                                              │
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/cli/utils.py:1 │
+│ 26 in run_async                                                              │
+│                                                                              │
+│   123 │   │   return asyncio.run(                                            │
+│   124 │   │   │   with_async_cleanup(coro),                                  │
+│       loop_factory=asyncio.ProactorEventLoop                                 │
+│   125 │   │   )                                                              │
+│ ❱ 126 │   return asyncio.run(with_async_cleanup(coro))                       │
+│   127                                                                        │
+│   128                                                                        │
+│   129 def parse_kwargs(kwargs_list: list[str] | None) -> dict[str, Any]:     │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/runners.py:195 in run                            │
+│                                                                              │
+│   192 │   │   │   "asyncio.run() cannot be called from a running event       │
+│       loop")                                                                 │
+│   193 │                                                                      │
+│   194 │   with Runner(debug=debug, loop_factory=loop_factory) as runner:     │
+│ ❱ 195 │   │   return runner.run(main)                                        │
+│   196                                                                        │
+│   197                                                                        │
+│   198 def _cancel_all_tasks(loop):                                           │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/runners.py:118 in run                            │
+│                                                                              │
+│   115 │   │                                                                  │
+│   116 │   │   self._interrupt_count = 0                                      │
+│   117 │   │   try:                                                           │
+│ ❱ 118 │   │   │   return self._loop.run_until_complete(task)                 │
+│   119 │   │   except exceptions.CancelledError:                              │
+│   120 │   │   │   if self._interrupt_count > 0:                              │
+│   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/base_events.py:691 in run_until_complete         │
+│                                                                              │
+│    688 │   │   if not future.done():                                         │
+│    689 │   │   │   raise RuntimeError('Event loop stopped before Future      │
+│        completed.')                                                          │
+│    690 │   │                                                                 │
+│ ❱  691 │   │   return future.result()                                        │
+│    692 │                                                                     │
+│    693 │   def stop(self):                                                   │
+│    694 │   │   """Stop running the event loop.                               │
+│                                                                              │
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/utils/async_cl │
+│ eanup.py:20 in with_async_cleanup                                            │
+│                                                                              │
+│   17 │   async with AsyncExitStack() as stack:                               │
+│   18 │   │   token = _exit_stack.set(stack)                                  │
+│   19 │   │   try:                                                            │
+│ ❱ 20 │   │   │   return await coro                                           │
+│   21 │   │   finally:                                                        │
+│   22 │   │   │   _exit_stack.reset(token)                                    │
+│   23                                                                         │
+│                                                                              │
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/cli/jobs.py:23 │
+│ 94 in _run_job                                                               │
+│                                                                              │
+│   2391 │   │   │   )                                                         │
+│   2392 │   │   │   await hub_plugin.on_job_start(job)                        │
+│   2393 │   │                                                                 │
+│ ❱ 2394 │   │   job_result = await job.run()                                  │
+│   2395 │   │                                                                 │
+│   2396 │   │   # Print the run summary BEFORE plugin and Harbor Hub finalize │
+│        so users                                                              │
+│   2397 │   │   # see results even if downstream operations fail.             │
+│                                                                              │
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/job.py:1172 in │
+│ run                                                                          │
+│                                                                              │
+│   1169 │   │   │   │   │   │   completed=n_existing,                         │
+│   1170 │   │   │   │   │   )                                                 │
+│   1171 │   │   │   │   │                                                     │
+│ ❱ 1172 │   │   │   │   │   trial_results = await                             │
+│        self._run_trials_with_queue(                                          │
+│   1173 │   │   │   │   │   │   loading_progress, progress_task,              │
+│        running_progress                                                      │
+│   1174 │   │   │   │   │   )                                                 │
+│   1175                                                                       │
+│                                                                              │
+│ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/job.py:1323 in │
+│ _run_trials_with_queue                                                       │
+│                                                                              │
+│   1320 │   │                                                                 │
+│   1321 │   │   coros =                                                       │
+│        self._trial_queue.submit_batch(self._remaining_trial_configs)         │
+│   1322 │   │                                                                 │
+│ ❱ 1323 │   │   async with asyncio.TaskGroup() as tg:                         │
+│   1324 │   │   │   tasks = [tg.create_task(coro) for coro in coros]          │
+│   1325 │   │                                                                 │
+│   1326 │   │   return [t.result() for t in tasks]                            │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/taskgroups.py:71 in __aexit__                    │
+│                                                                              │
+│    68 │   async def __aexit__(self, et, exc, tb):                            │
+│    69 │   │   tb = None                                                      │
+│    70 │   │   try:                                                           │
+│ ❱  71 │   │   │   return await self._aexit(et, exc)                          │
+│    72 │   │   finally:                                                       │
+│    73 │   │   │   # Exceptions are heavy objects that can have object        │
+│    74 │   │   │   # cycles (bad for GC); let's not keep a reference to       │
+│                                                                              │
+│ /usr/lib/python3.12/asyncio/taskgroups.py:164 in _aexit                      │
+│                                                                              │
+│   161 │   │                                                                  │
+│   162 │   │   if self._errors:                                               │
+│   163 │   │   │   try:                                                       │
+│ ❱ 164 │   │   │   │   raise BaseExceptionGroup(                              │
+│   165 │   │   │   │   │   'unhandled errors in a TaskGroup',                 │
+│   166 │   │   │   │   │   self._errors,                                      │
+│   167 │   │   │   │   ) from None                                            │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+
+╭────────────────────────────── Sub-exception #1 ──────────────────────────────╮
+│ ╭─────────────────── Traceback (most recent call last) ────────────────────╮ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/trial/queu │ │
+│ │ e.py:223 in _run_trial                                                   │ │
+│ │                                                                          │ │
+│ │   220 │   async def _run_trial(self, trial_config: TrialConfig) ->       │ │
+│ │       TrialResult:                                                       │ │
+│ │   221 │   │   """Execute a single trial, acquiring the semaphore for     │ │
+│ │       concurrency control."""                                            │ │
+│ │   222 │   │   async with self._semaphore:                                │ │
+│ │ ❱ 223 │   │   │   return await                                           │ │
+│ │       self._execute_trial_with_retries(trial_config)                     │ │
+│ │   224 │                                                                  │ │
+│ │   225 │   def submit(self, trial_config: TrialConfig) -> Coroutine[Any,  │ │
+│ │       Any, TrialResult]:                                                 │ │
+│ │   226 │   │   """                                                        │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/trial/queu │ │
+│ │ e.py:179 in _execute_trial_with_retries                                  │ │
+│ │                                                                          │ │
+│ │   176 │   │   from harbor.trial.trial import Trial                       │ │
+│ │   177 │   │                                                              │ │
+│ │   178 │   │   for attempt in range(self._retry_config.max_retries + 1):  │ │
+│ │ ❱ 179 │   │   │   trial = await Trial.create(trial_config)               │ │
+│ │   180 │   │   │   self._setup_hooks(trial)                               │ │
+│ │   181 │   │   │   result = await trial.run()                             │ │
+│ │   182                                                                    │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/trial/tria │ │
+│ │ l.py:524 in create                                                       │ │
+│ │                                                                          │ │
+│ │    521 │   │   else:                                                     │ │
+│ │    522 │   │   │   from harbor.trial.single_step import SingleStepTrial  │ │
+│ │    523 │   │   │                                                         │ │
+│ │ ❱  524 │   │   │   trial = SingleStepTrial(                              │ │
+│ │    525 │   │   │   │   config,                                           │ │
+│ │    526 │   │   │   │   _task=task,                                       │ │
+│ │    527 │   │   │   │   _task_download_result=task_download_result,       │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/trial/sing │ │
+│ │ le_step.py:29 in __init__                                                │ │
+│ │                                                                          │ │
+│ │    26 │   ):                                                             │ │
+│ │    27 │   │   if _task is not None and _task.has_steps:                  │ │
+│ │    28 │   │   │   raise ValueError("SingleStepTrial requires a task      │ │
+│ │       without [[steps]].")                                               │ │
+│ │ ❱  29 │   │   super().__init__(                                          │ │
+│ │    30 │   │   │   config,                                                │ │
+│ │    31 │   │   │   _task=_task,                                           │ │
+│ │    32 │   │   │   _task_download_result=_task_download_result,           │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/trial/tria │ │
+│ │ l.py:213 in __init__                                                     │ │
+│ │                                                                          │ │
+│ │    210 │   │   │   self._init_timeouts()                                 │ │
+│ │    211 │   │   │   self._init_agent()                                    │ │
+│ │    212 │   │   │   self._init_user_agent()                               │ │
+│ │ ❱  213 │   │   │   self._init_agent_environment()                        │ │
+│ │    214 │   │   │   self._init_artifact_handler()                         │ │
+│ │    215 │   │   │   self._validate_network_policy_modes()                 │ │
+│ │    216 │   │   except BaseException:                                     │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/trial/tria │ │
+│ │ l.py:1490 in _init_agent_environment                                     │ │
+│ │                                                                          │ │
+│ │   1487 │   │   │   for step in steps                                     │ │
+│ │   1488 │   │   │   if not self.config.is_regrade                         │ │
+│ │   1489 │   │   ]                                                         │ │
+│ │ ❱ 1490 │   │   self.agent_environment =                                  │ │
+│ │        EnvironmentFactory.create_environment_from_config(                │ │
+│ │   1491 │   │   │   config=self.config.environment,                       │ │
+│ │   1492 │   │   │   environment_dir=self.task.paths.environment_dir,      │ │
+│ │   1493 │   │   │   environment_name=self.task.short_name,                │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/factory.py:477 in create_environment_from_config                      │ │
+│ │                                                                          │ │
+│ │   474 │   │   │   │   **env_constructor_kwargs,                          │ │
+│ │   475 │   │   │   )                                                      │ │
+│ │   476 │   │   elif config.type is not None:                              │ │
+│ │ ❱ 477 │   │   │   return cls.create_environment(                         │ │
+│ │   478 │   │   │   │   type=config.type,                                  │ │
+│ │   479 │   │   │   │   environment_dir=environment_dir,                   │ │
+│ │   480 │   │   │   │   environment_name=environment_name,                 │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/factory.py:303 in create_environment                                  │ │
+│ │                                                                          │ │
+│ │   300 │   ) -> BaseEnvironment:                                          │ │
+│ │   301 │   │   environment_class = _load_environment_class(type)          │ │
+│ │   302 │   │                                                              │ │
+│ │ ❱ 303 │   │   return environment_class(                                  │ │
+│ │   304 │   │   │   environment_dir=environment_dir,                       │ │
+│ │   305 │   │   │   environment_name=environment_name,                     │ │
+│ │   306 │   │   │   session_id=session_id,                                 │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/docker/docker.py:248 in __init__                                      │ │
+│ │                                                                          │ │
+│ │    245 │   │   │   )                                                     │ │
+│ │    246 │   │   │   and self._egress_control_kernel_support()             │ │
+│ │    247 │   │   )                                                         │ │
+│ │ ❱  248 │   │   super().__init__(                                         │ │
+│ │    249 │   │   │   environment_dir=environment_dir,                      │ │
+│ │    250 │   │   │   environment_name=environment_name,                    │ │
+│ │    251 │   │   │   session_id=session_id,                                │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/base.py:400 in __init__                                               │ │
+│ │                                                                          │ │
+│ │    397 │   │   self._validate_resource_mode_support()                    │ │
+│ │    398 │   │   self._validate_gpu_support()                              │ │
+│ │    399 │   │   self._validate_tpu_support()                              │ │
+│ │ ❱  400 │   │   self._validate_network_policy_support()                   │ │
+│ │    401 │   │   self._validate_windows_support()                          │ │
+│ │    402 │                                                                 │ │
+│ │    403 │   @cached_property                                              │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/base.py:1106 in _validate_network_policy_support                      │ │
+│ │                                                                          │ │
+│ │   1103 │                                                                 │ │
+│ │   1104 │   def _validate_network_policy_support(self):                   │ │
+│ │   1105 │   │   """Validate that this provider can enforce the requested  │ │
+│ │        network policy."""                                                │ │
+│ │ ❱ 1106 │   │   self.validate_network_policy_support()                    │ │
+│ │   1107 │   │   for network_policy in self._phase_network_policies:       │ │
+│ │   1108 │   │   │   self.validate_network_policy_support(network_policy)  │ │
+│ │   1109                                                                   │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/docker/docker.py:719 in validate_network_policy_support               │ │
+│ │                                                                          │ │
+│ │    716 │   │   │   │   "by docker environment "                          │ │
+│ │    717 │   │   │   │   "for Windows containers."                         │ │
+│ │    718 │   │   │   )                                                     │ │
+│ │ ❱  719 │   │   super().validate_network_policy_support(network_policy)   │ │
+│ │    720 │                                                                 │ │
+│ │    721 │   def _compose_env_vars(self, include_os_env: bool = True) ->   │ │
+│ │        dict[str, str]:                                                   │ │
+│ │    722 │   │   user_env: dict[str, str] = {}                             │ │
+│ │                                                                          │ │
+│ │ /root/harbor-vm-tools/env/lib/python3.12/site-packages/harbor/environmen │ │
+│ │ ts/base.py:1049 in validate_network_policy_support                       │ │
+│ │                                                                          │ │
+│ │   1046 │   │   │   network_policy.network_mode == NetworkMode.NO_NETWORK │ │
+│ │   1047 │   │   │   and not self.capabilities.disable_internet            │ │
+│ │   1048 │   │   ):                                                        │ │
+│ │ ❱ 1049 │   │   │   raise ValueError(                                     │ │
+│ │   1050 │   │   │   │   f"network_mode='no-network' is not supported by   │ │
+│ │        {self.type()} "                                                   │ │
+│ │   1051 │   │   │   │   "environment. Environment providers must enforce  │ │
+│ │        the requested "                                                   │ │
+│ │   1052 │   │   │   │   "network policy or reject the task."              │ │
+│ ╰──────────────────────────────────────────────────────────────────────────╯ │
+│ ValueError: network_mode='no-network' is not supported by                    │
+│ EnvironmentType.DOCKER environment. Environment providers must enforce the   │
+│ requested network policy or reject the task.                                 │
+╰──────────────────────────────────────────────────────────────────────────────╯

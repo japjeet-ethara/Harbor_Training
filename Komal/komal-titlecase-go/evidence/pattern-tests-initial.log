@@ -1,0 +1,30 @@
+go version go1.23.12 linux/amd64
+=== RUN   TestInterpreter
+=== RUN   TestInterpreter/ordered
+=== RUN   TestInterpreter/backtrack
+=== RUN   TestInterpreter/greedy
+=== RUN   TestInterpreter/lazy
+=== RUN   TestInterpreter/greedy_suffix
+=== RUN   TestInterpreter/unicode_span
+=== RUN   TestInterpreter/dollar
+=== RUN   TestInterpreter/fold
+--- PASS: TestInterpreter (0.00s)
+    --- PASS: TestInterpreter/ordered (0.00s)
+    --- PASS: TestInterpreter/backtrack (0.00s)
+    --- PASS: TestInterpreter/greedy (0.00s)
+    --- PASS: TestInterpreter/lazy (0.00s)
+    --- PASS: TestInterpreter/greedy_suffix (0.00s)
+    --- PASS: TestInterpreter/unicode_span (0.00s)
+    --- PASS: TestInterpreter/dollar (0.00s)
+    --- PASS: TestInterpreter/fold (0.00s)
+=== RUN   TestCaptureRestorationAndReplacement
+--- PASS: TestCaptureRestorationAndReplacement (0.00s)
+=== RUN   TestRejectNullableLoop
+--- PASS: TestRejectNullableLoop (0.00s)
+PASS
+ok  	komal/titlecase/internal/pattern	0.011s
+=== RUN   TestPatternsAgainstPython
+    patterns_test.go:44: 61416 direct Python fixtures passed
+--- PASS: TestPatternsAgainstPython (0.21s)
+PASS
+ok  	komal/titlecase/internal/format	0.216s

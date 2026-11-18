@@ -1,0 +1,41 @@
+{
+  "behaviour": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "behaviour",
+        "value": 0.0,
+        "raw": 0.0,
+        "weight": 1.0,
+        "description": "share of hidden titles whose output equals the original Python titlecase()"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "build": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "build",
+        "value": 0.0,
+        "raw": false,
+        "weight": 1.0,
+        "description": "go build ./... passes in the repository"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "no_python": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "no_python",
+        "value": 0.0,
+        "raw": false,
+        "weight": 1.0,
+        "description": "no .py file is left in the repository and the Go build passes"
+      }
+    ],
+    "kind": "programmatic"
+  }
+}
