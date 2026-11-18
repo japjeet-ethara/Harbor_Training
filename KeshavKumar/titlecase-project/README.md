@@ -12,23 +12,30 @@ The Go program must reproduce the original `titlecase()` output byte for byte.
 | nop (agent does nothing) | 0.000 | 0.000 | 0.000 | **0.000** | 0.0 |
 | cheat (`cheat/solve.sh`) | 0.000 | 1.000 | 0.000 | **0.167** | < 0.2 |
 
-Screenshots are in [`screenshots/`](screenshots/) (Harbor viewer) and `screenshots/terminal/`.
+Screenshots of the three runs are in [`titlecase-go/screenshots/`](titlecase-go/screenshots/).
 
 ## Layout
 
 ```
 titlecase-project/
-├── python-titlecase/        original repo (separate git clone) + NOTES.md (rules + tricky cases)
+├── NOTES.md                 Step 1: licence, SHA, the 17 rules with checked examples, tricky cases
 ├── titlecase-go/            the Harbor task
 │   ├── instruction.md       what the agent is told
 │   ├── task.toml            separate verifier; agent repo passed as artifact /workspace/repo
 │   ├── environment/         Dockerfile (golang:1.23) + repo/ (copy of python-titlecase, no .git/NOTES.md)
 │   ├── solution/solve.sh    oracle: Go port (standard library only), deletes all .py files
 │   ├── cheat/solve.sh       cheat: prints the visible answers, ports nothing
-│   └── tests/               verifier: Dockerfile, test.sh, Reward Kit checks, gen.py, data/
-├── tools/compare_visible.py runs solve.sh in the task image, prints the first lines that differ
-├── screenshots/
-└── jobs/                    Harbor run results
+│   ├── tests/               verifier: Dockerfile, test.sh, Reward Kit checks, gen.py, data/
+│   └── screenshots/         oracle / nop / cheat rewards
+└── tools/compare_visible.py runs solve.sh in the task image, prints the first lines that differ
+```
+
+The original `python-titlecase/` repo is **not** stored here (it is in `.gitignore`). It is only
+needed to regenerate the test data. Clone it next to `titlecase-go/`:
+
+```powershell
+git clone https://github.com/ppannuto/python-titlecase
+git -C python-titlecase checkout 42f43e2
 ```
 
 ## Grading (Reward Kit, weighted mean)
@@ -62,8 +69,8 @@ harbor view jobs                       # browse results
 To run the cheat, back up `solution/solve.sh`, copy `cheat/solve.sh` over it, run the oracle
 command, then **restore the real file**.
 
-Regenerate the test data (deterministic, `random.seed(1)`; needs `python-titlecase/` next to
-`titlecase-go/`):
+Regenerate the test data (deterministic, `random.seed(1)`; needs the `python-titlecase/` clone
+from above):
 
 ```powershell
 python titlecase-go/tests/gen.py
@@ -80,8 +87,8 @@ python titlecase-go/tests/gen.py
   has no look-around, and its `\w \s \b` are ASCII-only). It uses tables generated from Python
   3.13 vs Go 1.23 for full Unicode case mapping. Verified on 2000 visible, 2000 hidden and 20,000
   random fuzz lines.
-- Keep PNGs and other binary files **out of** `titlecase-go/`: `harbor lint` reads every file
-  as text.
+- On Windows, always set `$env:PYTHONUTF8 = "1"` before `harbor` commands. Without it,
+  `harbor lint` crashes with `UnicodeDecodeError` on the UTF-8 and PNG files in the task.
 
 ## What makes the task hard
 
