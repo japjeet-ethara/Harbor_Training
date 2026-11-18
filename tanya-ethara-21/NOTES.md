@@ -109,6 +109,8 @@ top-level `tests/*.py` as a criteria file.
 
 ## Task Reflection
 
-- Rules the agent got wrong most often: [Mention the actual rules observed during evaluation.]
-- To make the task harder: [Mention an additional challenge or edge case.]
+## Task Reflection
+
+- **Rules the agent got wrong most often:** The evaluation results provided do not identify the specific rules the agent failed most often. This requires reviewing the agent's behaviour evaluation output.
+- **To make the task harder:** Add more adversarial test cases combining Unicode characters, punctuation, unusual whitespace, and multiple interacting titlecase rules.
 
