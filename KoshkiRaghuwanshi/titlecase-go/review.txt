@@ -1,0 +1,2 @@
+The oracle matched every titlecase rule; the nop agent applied none, and the cheat missed the hidden set by printing the public answer file.
+Leave the Python source out of the image, and add hidden titles for callbacks, preserved blank lines, and mixed Unicode spaces.
