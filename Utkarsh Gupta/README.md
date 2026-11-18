@@ -1,4 +1,4 @@
-# titlecase-go: Harbor Task (Siddharth Singh)
+# titlecase-go: Harbor Task (Utkarsh Gupta)
 
 Port the Python `titlecase()` function of [python-titlecase](https://github.com/ppannuto/python-titlecase) (commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`) to Go with byte-identical output across thousands of varied titles.
 
@@ -28,7 +28,7 @@ Reward formula: `(build * 1 + no_python * 1 + behaviour * 4) / 6.0`
 ## Directory Structure
 
 ```
-SiddharthSingh/
+UtkarshGupta/
 ├── README.md
 ├── NOTES.md
 └── titlecase-go/
