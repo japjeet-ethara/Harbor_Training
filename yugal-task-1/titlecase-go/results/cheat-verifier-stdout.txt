@@ -1,0 +1,19 @@
+[no_python] .py files left: 0
+[behaviour] mismatch on hidden line 1
+[behaviour] mismatch on hidden line 2
+[behaviour] mismatch on hidden line 3
+[behaviour] mismatch on hidden line 4
+[behaviour] mismatch on hidden line 5
+[behaviour] 0/2000 hidden lines match
+[build] ok
+[build] ok
+behaviour: 0.0
+build: 1.0
+no_python: 0.0
+reward: 0.1667
+{
+  "behaviour": 0.0,
+  "build": 1.0,
+  "no_python": 0.0,
+  "reward": 0.1667
+}
