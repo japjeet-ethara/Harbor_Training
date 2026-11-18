@@ -14,7 +14,7 @@
 
 ## 2. Rules Applied by the `titlecase` Function
 
-Below is the complete ordered list of rules applied by the `titlecase` function in [titlecase/__init__.py](file:///c:/Users/utkarshgupta/Harbor_Training/python-titlecase/titlecase/__init__.py):
+Below is the complete ordered list of rules applied by the `titlecase` function in [titlecase/__init__.py](file:///c:/Users/siddharthsingh/Harbor_Training/python-titlecase/titlecase/__init__.py):
 
 1. **Line Splitting & Preservation**:
    Splits input text into lines based on newline characters (`\r\n`, `\r`, or `\n`), preserving empty lines if `preserve_blank_lines=True` or collapsing consecutive newlines if `preserve_blank_lines=False`.
