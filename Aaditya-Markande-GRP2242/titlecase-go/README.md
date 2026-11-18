@@ -13,7 +13,7 @@ The objective is to reproduce the original Python implementation's output exactl
 
 ## Project Structure
 ```
-Aaditya-Markande-<ID>/
+Aaditya-Markande-GRP2242/
 └── titlecase-go/
     ├── cheat/
     ├── environment/
