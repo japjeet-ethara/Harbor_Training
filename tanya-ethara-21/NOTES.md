@@ -107,7 +107,7 @@ top-level `tests/*.py` as a criteria file.
 | cheat (replays visible answers, keeps .py) | 1 | 0 | 0.0 | **0.1667** |
 
 
-## Task Reflection
+
 
 ## Task Reflection
 
