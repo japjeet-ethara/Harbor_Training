@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/__main__.py", line 143, in <module>
+    main()
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/__main__.py", line 114, in main
+    result = run(
+             ^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 721, in run
+    layout = _discover_layout(tests_dir, workspace=workspace)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 497, in _discover_layout
+    programmatic = _build_programmatic_rewards(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 323, in _build_programmatic_rewards
+    reward = _build_programmatic_reward(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 287, in _build_programmatic_reward
+    _import_py_file(py_file)
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 74, in _import_py_file
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/tests/behaviour.py", line 5, in <module>
+    from go_run import go
+ModuleNotFoundError: No module named 'go_run'

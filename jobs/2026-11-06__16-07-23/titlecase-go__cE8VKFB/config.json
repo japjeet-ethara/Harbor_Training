@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "titlecase-go"
+    },
+    "trial_name": "titlecase-go__cE8VKFB",
+    "trials_dir": "jobs\\2026-11-06__16-07-23",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "80ad99f8-c856-4c58-a58a-537e64897d05"
+}
