@@ -7,7 +7,7 @@ mkdir -p /logs/verifier
 if command -v rewardkit >/dev/null 2>&1; then
     rewardkit /tests --workspace /workspace/repo || true
 elif command -v uvx >/dev/null 2>&1; then
-    uvx --python '>=3.12,<3.14' --from 'harbor-rewardkit==0.2.*' rewardkit /tests --workspace /workspace/repo || true
+    uvx --python '>=3.12,<3.14' --from 'harbor-rewardkit==0.2.4' rewardkit /tests --workspace /workspace/repo || true
 fi
 
 # Fallback in case rewardkit CLI did not generate /logs/verifier/reward.json

@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN uv pip install --system \
     pytest==8.4.1 \
     pytest-json-ctrf==0.3.5 \
-    'harbor-rewardkit==0.2.*'
+    harbor-rewardkit==0.2.4
 
 WORKDIR /app
 
