@@ -105,3 +105,10 @@ top-level `tests/*.py` as a criteria file.
 | oracle | 1 | 1 | 1.0 | **1.0** |
 | nop | 0 | 0 | 0 | **0.0** |
 | cheat (replays visible answers, keeps .py) | 1 | 0 | 0.0 | **0.1667** |
+
+
+## Task Reflection
+
+- Rules the agent got wrong most often: [Mention the actual rules observed during evaluation.]
+- To make the task harder: [Mention an additional challenge or edge case.]
+
