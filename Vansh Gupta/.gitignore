@@ -1,8 +1,0 @@
-attack/target/
-attack/scratch/
-attack/jobs/
-jobs/
-*.log
-dist.tar.gz
-__pycache__/
-*.pyc
