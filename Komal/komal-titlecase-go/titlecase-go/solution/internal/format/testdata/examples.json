@@ -1,0 +1,146 @@
+[
+  {
+    "input": "the library of the town",
+    "expected": "The Library of the Town"
+  },
+  {
+    "input": "THE LIBRARY OF THE TOWN",
+    "expected": "The Library of the Town"
+  },
+  {
+    "input": "the BBC and the RSPB",
+    "expected": "The BBC and the RSPB"
+  },
+  {
+    "input": "A.B.C AND THE FINAL",
+    "expected": "A.B.C and the Final"
+  },
+  {
+    "input": "d'arcy and o'neill",
+    "expected": "d'Arcy and O'Neill"
+  },
+  {
+    "input": "O'NEILL AND L'ART'S",
+    "expected": "O'NEILL and l'ART'S"
+  },
+  {
+    "input": "MCLEOD and mcdonald",
+    "expected": "McLeod and McDonald"
+  },
+  {
+    "input": "McA and Mcab",
+    "expected": "McA and McAb"
+  },
+  {
+    "input": "mr mRS ms DR at the hall",
+    "expected": "Mr MRS Ms DR at the Hall"
+  },
+  {
+    "input": "iPhone and eBay",
+    "expected": "iPhone and eBay"
+  },
+  {
+    "input": "a.b AND THE HALL",
+    "expected": "A.b AND THE HALL"
+  },
+  {
+    "input": "bcd and rhythm and st",
+    "expected": "BCD and Rhythm and St"
+  },
+  {
+    "input": "the arts/crafts and mother-in-law",
+    "expected": "The Arts/Crafts and Mother-in-Law"
+  },
+  {
+    "input": "the a/b-c/d-e final",
+    "expected": "The a/B-C/D-E Final"
+  },
+  {
+    "input": "https://civic.example/a-b",
+    "expected": "https://civic.example/a-b"
+  },
+  {
+    "input": "the hall: andante via viaduct",
+    "expected": "The Hall: Andante via Viaduct"
+  },
+  {
+    "input": "the hall: vs. the return",
+    "expected": "The Hall: Vs. The Return"
+  },
+  {
+    "input": "the hall - an event",
+    "expected": "The Hall - An Event"
+  },
+  {
+    "input": "\u00dfeta and \ufb03lm",
+    "expected": "SSeta and FFIlm"
+  },
+  {
+    "input": "\u01f3UNGLE",
+    "expected": "\u01f1UNGLE"
+  },
+  {
+    "input": "\u039f\u03a3 AND A\u03a3\u0301",
+    "expected": "\u039f\u03c2 and A\u03c2\u0301"
+  },
+  {
+    "input": "\u0345\u03a3 and A\u0345\u03a3",
+    "expected": "\u0345\u03a3 and A\u0345\u03a3"
+  },
+  {
+    "input": "\u0130STANBUL and \u017f\u017f\u017f",
+    "expected": "\u0130STANBUL and SSS"
+  },
+  {
+    "input": "\u0301elm e\u0301va",
+    "expected": "\u0301elm E\u0301va"
+  },
+  {
+    "input": "\u2160.test and \u216b",
+    "expected": "\u2160.test and \u216b"
+  },
+  {
+    "input": "\u201cthe hall\u201d",
+    "expected": "\u201cThe Hall\u201d"
+  },
+  {
+    "input": "the!!",
+    "expected": "The!!"
+  },
+  {
+    "input": "the_",
+    "expected": "The_"
+  },
+  {
+    "input": "a\u0345 and and\u200c",
+    "expected": "A\u0345 and And\u200c"
+  },
+  {
+    "input": "\tthe hall\t",
+    "expected": "\tthe Hall\t"
+  },
+  {
+    "input": "the\u00a0hall\u2028and\u2029the\u001cteam",
+    "expected": "The\u00a0Hall\u2028and\u2029the\u001cTeam"
+  },
+  {
+    "input": "",
+    "expected": ""
+  },
+  {
+    "input": " ",
+    "expected": " "
+  },
+  {
+    "input": "a\n\nb\r\nc\r",
+    "expected": "A\nB\nC\n"
+  },
+  {
+    "input": "\n\n",
+    "expected": "\n"
+  },
+  {
+    "input": "THE\n\nthe",
+    "expected": "The\nThe"
+  }
+]

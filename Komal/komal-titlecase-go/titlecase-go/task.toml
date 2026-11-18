@@ -1,0 +1,35 @@
+schema_version = "1.4"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "komal/titlecase-go"
+description = "Port pinned Python titlecase default behaviour to a Go line program."
+authors = [{ name = "Komal" }]
+keywords = ["go", "unicode", "porting", "titlecase", "rewardkit"]
+
+[metadata]
+author_name = "Komal"
+category = "programming"
+difficulty = "hard"
+
+[agent]
+timeout_sec = 1800.0
+user = "candidate"
+
+[verifier]
+timeout_sec = 180.0
+environment_mode = "separate"
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 10240
+network_mode = "no-network"
+
+[verifier.environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 10240
+network_mode = "no-network"

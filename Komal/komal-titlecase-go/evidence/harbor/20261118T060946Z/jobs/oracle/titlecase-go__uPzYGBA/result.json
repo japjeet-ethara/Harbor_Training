@@ -1,0 +1,130 @@
+{
+    "schema_version": 1,
+    "id": "d4dc0d2a-c0dc-4a2c-b0e6-8b3c86306675",
+    "task_name": "komal/titlecase-go",
+    "trial_name": "titlecase-go__uPzYGBA",
+    "trial_uri": "file:///mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA",
+    "task_id": {
+        "path": "/mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/titlecase-go"
+    },
+    "source": null,
+    "task_checksum": "ecea414392556bf254c220e3127726511296ca6aa2eb8913230ce66e4d93c7ea",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": "/mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/titlecase-go",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "titlecase-go__uPzYGBA",
+        "trials_dir": "/mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/oracle",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "9a3fb392-e848-44a1-9def-b6735735a360",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": {
+        "exception_type": "RewardFileNotFoundError",
+        "exception_message": "No reward file found at /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/verifier/reward.txt or /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/verifier/reward.json",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 616, in run\n    await self._run()\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 52, in _run\n    await self._run_verifier()\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 102, in _run_verifier\n    self.result.verifier_result = await self._run_separate_verifier(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1097, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 990, in _verify_with_timeout\n    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 304, in verify\n    raise RewardFileNotFoundError(\nharbor.verifier.verifier.RewardFileNotFoundError: No reward file found at /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/verifier/reward.txt or /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/oracle/titlecase-go__uPzYGBA/verifier/reward.json\n",
+        "occurred_at": "2026-11-18T06:11:19.382957Z",
+        "policy": {
+            "should_retry": false,
+            "should_grade": true,
+            "has_valid_reward": false
+        }
+    },
+    "started_at": "2026-11-18T06:10:00.087249Z",
+    "finished_at": "2026-11-18T06:11:19.389547Z",
+    "environment_setup": {
+        "started_at": "2026-11-18T06:10:00.609454Z",
+        "finished_at": "2026-11-18T06:10:07.397443Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-18T06:10:07.397504Z",
+        "finished_at": "2026-11-18T06:10:07.397567Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-18T06:10:07.397649Z",
+        "finished_at": "2026-11-18T06:10:19.131817Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-18T06:10:24.036472Z",
+        "finished_at": "2026-11-18T06:11:19.376727Z"
+    },
+    "step_results": null,
+    "reward_valid": false
+}

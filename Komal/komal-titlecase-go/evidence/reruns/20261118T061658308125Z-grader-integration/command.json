@@ -1,0 +1,18 @@
+{
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "-v",
+    "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-18\\i-had-a-x20/work/submission:/project:ro",
+    "komal-titlecase-verifier",
+    "python",
+    "/project/tools/grader_integration.py"
+  ],
+  "cwd": "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-18\\i-had-a-x20",
+  "utc": "20261118T061658308125Z",
+  "exit_code": 0,
+  "seconds": 14.392607300000236
+}

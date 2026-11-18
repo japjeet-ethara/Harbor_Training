@@ -1,0 +1,253 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 694B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/golang:1.23@sha256:60deed95d3888cc5e4d9ff8a10c54e5edc008c6ae3fba6187be6fb592e19e8c0
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/8] FROM docker.io/library/golang:1.23@sha256:60deed95d3888cc5e4d9ff8a10c54e5edc008c6ae3fba6187be6fb592e19e8c0
+#5 DONE 0.0s
+
+#6 [python 1/1] FROM docker.io/library/python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 10.14kB 0.0s done
+#7 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=python /usr/local /usr/local
+#8 CACHED
+
+#9 [stage-1 3/8] COPY requirements.lock /opt/requirements.lock
+#9 DONE 0.0s
+
+#10 [stage-1 4/8] RUN pip install --no-cache-dir -r /opt/requirements.lock && pip freeze > /opt/grader-dependencies.txt
+#10 1.683 Collecting aiohappyeyeballs==2.7.1 (from -r /opt/requirements.lock (line 1))
+#10 1.781   Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl.metadata (5.9 kB)
+#10 2.458 Collecting aiohttp==3.14.5 (from -r /opt/requirements.lock (line 2))
+#10 2.480   Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+#10 2.497 Collecting aiosignal==1.4.0 (from -r /opt/requirements.lock (line 3))
+#10 2.510   Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+#10 2.536 Collecting annotated-types==0.8.0 (from -r /opt/requirements.lock (line 4))
+#10 2.566   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#10 2.653 Collecting anyio==4.16.0 (from -r /opt/requirements.lock (line 5))
+#10 2.700   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+#10 2.723 Collecting attrs==26.1.0 (from -r /opt/requirements.lock (line 6))
+#10 2.737   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#10 3.249 Collecting boto3==1.44.5 (from -r /opt/requirements.lock (line 7))
+#10 3.265   Downloading boto3-1.44.5-py3-none-any.whl.metadata (6.6 kB)
+#10 3.764 Collecting botocore==1.44.5 (from -r /opt/requirements.lock (line 8))
+#10 3.778   Downloading botocore-1.44.5-py3-none-any.whl.metadata (5.6 kB)
+#10 3.815 Collecting certifi==2026.10.23 (from -r /opt/requirements.lock (line 9))
+#10 3.828   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+#10 4.020 Collecting charset-normalizer==3.5.2 (from -r /opt/requirements.lock (line 10))
+#10 4.045   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#10 4.191 Collecting click==8.5.1 (from -r /opt/requirements.lock (line 11))
+#10 4.493   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+#10 4.564 Collecting fastuuid==0.14.0 (from -r /opt/requirements.lock (line 12))
+#10 4.579   Downloading fastuuid-0.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.1 kB)
+#10 4.628 Collecting filelock==4.2.12 (from -r /opt/requirements.lock (line 13))
+#10 4.644   Downloading filelock-4.2.12-py3-none-any.whl.metadata (2.3 kB)
+#10 4.730 Collecting frozenlist==1.8.0 (from -r /opt/requirements.lock (line 14))
+#10 4.767   Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (20 kB)
+#10 5.119 Collecting fsspec==2026.9.0 (from -r /opt/requirements.lock (line 15))
+#10 5.168   Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+#10 5.265 Collecting h11==0.16.0 (from -r /opt/requirements.lock (line 16))
+#10 5.295   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#10 5.349 Collecting h2==4.4.1 (from -r /opt/requirements.lock (line 17))
+#10 5.412   Downloading h2-4.4.1-py3-none-any.whl.metadata (3.8 kB)
+#10 5.466 Collecting harbor-rewardkit==0.2.4 (from -r /opt/requirements.lock (line 18))
+#10 5.584   Downloading harbor_rewardkit-0.2.4-py3-none-any.whl.metadata (4.2 kB)
+#10 5.760 Collecting hf-xet==1.8.0 (from -r /opt/requirements.lock (line 19))
+#10 5.781   Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+#10 5.821 Collecting hpack==4.2.0 (from -r /opt/requirements.lock (line 20))
+#10 5.882   Downloading hpack-4.2.0-py3-none-any.whl.metadata (3.3 kB)
+#10 5.916 Collecting httpcore==1.0.9 (from -r /opt/requirements.lock (line 21))
+#10 5.929   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#10 6.017 Collecting httpcore2==2.16.2 (from -r /opt/requirements.lock (line 22))
+#10 6.056   Downloading httpcore2-2.16.2-py3-none-any.whl.metadata (28 kB)
+#10 6.090 Collecting httpx==0.28.1 (from -r /opt/requirements.lock (line 23))
+#10 6.106   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#10 6.134 Collecting httpx2==2.16.2 (from -r /opt/requirements.lock (line 24))
+#10 6.357   Downloading httpx2-2.16.2-py3-none-any.whl.metadata (10.0 kB)
+#10 6.503 Collecting huggingface_hub==2.4.0 (from -r /opt/requirements.lock (line 25))
+#10 6.546   Downloading huggingface_hub-2.4.0-py3-none-any.whl.metadata (16 kB)
+#10 6.601 Collecting hyperframe==6.1.0 (from -r /opt/requirements.lock (line 26))
+#10 6.616   Downloading hyperframe-6.1.0-py3-none-any.whl.metadata (4.3 kB)
+#10 6.654 Collecting idna==3.20 (from -r /opt/requirements.lock (line 27))
+#10 6.668   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#10 6.722 Collecting importlib_metadata==8.9.0 (from -r /opt/requirements.lock (line 28))
+#10 6.757   Downloading importlib_metadata-8.9.0-py3-none-any.whl.metadata (4.5 kB)
+#10 6.800 Collecting Jinja2==3.1.6 (from -r /opt/requirements.lock (line 29))
+#10 6.819   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#10 6.944 Collecting jiter==0.19.0 (from -r /opt/requirements.lock (line 30))
+#10 6.962   Downloading jiter-0.19.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)
+#10 6.981 Collecting jmespath==1.1.0 (from -r /opt/requirements.lock (line 31))
+#10 6.994   Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+#10 7.030 Collecting jsonschema==4.26.0 (from -r /opt/requirements.lock (line 32))
+#10 7.056   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#10 7.083 Collecting jsonschema-specifications==2025.9.1 (from -r /opt/requirements.lock (line 33))
+#10 7.098   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#10 7.515 Collecting litellm==1.110.0 (from -r /opt/requirements.lock (line 34))
+#10 7.528   Downloading litellm-1.110.0-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (49 kB)
+#10 7.642 Collecting MarkupSafe==3.0.4 (from -r /opt/requirements.lock (line 35))
+#10 7.661   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#10 7.991 Collecting multidict==7.2.1 (from -r /opt/requirements.lock (line 36))
+#10 8.002   Downloading multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+#10 8.116 Collecting openai==3.55.0 (from -r /opt/requirements.lock (line 37))
+#10 8.146   Downloading openai-3.55.0-py3-none-any.whl.metadata (45 kB)
+#10 8.194 Collecting packaging==26.3 (from -r /opt/requirements.lock (line 38))
+#10 8.210   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#10 8.318 Collecting propcache==0.5.4 (from -r /opt/requirements.lock (line 39))
+#10 8.332   Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (25 kB)
+#10 8.555 Collecting pydantic==2.14.3 (from -r /opt/requirements.lock (line 40))
+#10 8.571   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+#10 8.631 Collecting pydantic-settings==2.16.3 (from -r /opt/requirements.lock (line 41))
+#10 8.648   Downloading pydantic_settings-2.16.3-py3-none-any.whl.metadata (4.0 kB)
+#10 9.528 Collecting pydantic_core==2.50.4 (from -r /opt/requirements.lock (line 42))
+#10 9.542   Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+#10 9.566 Collecting python-dateutil==2.9.0.post0 (from -r /opt/requirements.lock (line 43))
+#10 9.581   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#10 9.605 Collecting python-dotenv==1.2.4 (from -r /opt/requirements.lock (line 44))
+#10 9.620   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#10 9.667 Collecting PyYAML==6.0.3 (from -r /opt/requirements.lock (line 45))
+#10 9.679   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#10 9.716 Collecting referencing==0.37.0 (from -r /opt/requirements.lock (line 46))
+#10 9.732   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#10 10.23 Collecting regex==2026.11.18 (from -r /opt/requirements.lock (line 47))
+#10 10.26   Downloading regex-2026.11.18-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+#10 10.36 Collecting requests==2.34.2 (from -r /opt/requirements.lock (line 48))
+#10 10.42   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#10 10.86 Collecting rpds-py==2026.9.1 (from -r /opt/requirements.lock (line 49))
+#10 10.88   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#10 10.91 Collecting s3transfer==0.19.3 (from -r /opt/requirements.lock (line 50))
+#10 10.94   Downloading s3transfer-0.19.3-py3-none-any.whl.metadata (1.7 kB)
+#10 10.96 Collecting six==1.17.0 (from -r /opt/requirements.lock (line 51))
+#10 10.98   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#10 10.99 Collecting sniffio==1.3.1 (from -r /opt/requirements.lock (line 52))
+#10 11.01   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#10 11.07 Collecting tiktoken==0.14.0 (from -r /opt/requirements.lock (line 53))
+#10 11.09   Downloading tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.7 kB)
+#10 11.25 Collecting tokenizers==0.23.3 (from -r /opt/requirements.lock (line 54))
+#10 11.26   Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.8 kB)
+#10 11.32 Collecting tqdm==4.70.1 (from -r /opt/requirements.lock (line 55))
+#10 11.33   Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+#10 11.36 Collecting truststore==0.10.5 (from -r /opt/requirements.lock (line 56))
+#10 11.38   Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+#10 11.39 Collecting typing-inspection==0.4.5 (from -r /opt/requirements.lock (line 57))
+#10 11.41   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+#10 11.45 Collecting typing_extensions==4.16.0 (from -r /opt/requirements.lock (line 58))
+#10 11.47   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#10 11.54 Collecting urllib3==2.8.0 (from -r /opt/requirements.lock (line 59))
+#10 11.57   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#10 11.88 Collecting yarl==1.25.1 (from -r /opt/requirements.lock (line 60))
+#10 11.90   Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (111 kB)
+#10 11.95 Collecting zipp==4.1.2 (from -r /opt/requirements.lock (line 61))
+#10 11.99   Downloading zipp-4.1.2-py3-none-any.whl.metadata (3.6 kB)
+#10 12.74 Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+#10 12.76 Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.9 MB)
+#10 12.93    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 11.9 MB/s eta 0:00:00
+#10 12.95 Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+#10 12.96 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#10 12.99 Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+#10 13.04 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#10 13.06 Downloading boto3-1.44.5-py3-none-any.whl (140 kB)
+#10 13.09 Downloading botocore-1.44.5-py3-none-any.whl (16.6 MB)
+#10 16.65    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 4.6 MB/s eta 0:00:00
+#10 16.69 Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#10 16.74 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#10 16.79 Downloading click-8.5.1-py3-none-any.whl (126 kB)
+#10 16.83 Downloading fastuuid-0.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (278 kB)
+#10 16.88 Downloading filelock-4.2.12-py3-none-any.whl (222 kB)
+#10 16.93 Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+#10 16.99 Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+#10 17.02 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#10 17.04 Downloading h2-4.4.1-py3-none-any.whl (62 kB)
+#10 17.09 Downloading harbor_rewardkit-0.2.4-py3-none-any.whl (78 kB)
+#10 17.13 Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+#10 17.77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 6.7 MB/s eta 0:00:00
+#10 17.79 Downloading hpack-4.2.0-py3-none-any.whl (34 kB)
+#10 17.84 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#10 17.88 Downloading httpcore2-2.16.2-py3-none-any.whl (85 kB)
+#10 17.92 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#10 17.96 Downloading httpx2-2.16.2-py3-none-any.whl (97 kB)
+#10 17.99 Downloading huggingface_hub-2.4.0-py3-none-any.whl (857 kB)
+#10 18.09    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 857.0/857.0 kB 11.6 MB/s eta 0:00:00
+#10 18.11 Downloading hyperframe-6.1.0-py3-none-any.whl (13 kB)
+#10 18.15 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#10 18.16 Downloading importlib_metadata-8.9.0-py3-none-any.whl (27 kB)
+#10 18.18 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#10 18.21 Downloading jiter-0.19.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (338 kB)
+#10 18.27 Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+#10 18.29 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#10 18.34 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#10 18.37 Downloading litellm-1.110.0-cp310-abi3-manylinux_2_28_x86_64.whl (43.8 MB)
+#10 34.34    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.8/43.8 MB 2.7 MB/s eta 0:00:00
+#10 34.39 Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#10 34.42 Downloading multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (516 kB)
+#10 34.66 Downloading openai-3.55.0-py3-none-any.whl (2.5 MB)
+#10 36.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.5/2.5 MB 1.4 MB/s eta 0:00:00
+#10 36.94 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 37.02 Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (250 kB)
+#10 37.19 Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+#10 38.94 Downloading pydantic_settings-2.16.3-py3-none-any.whl (82 kB)
+#10 39.05 Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+#10 44.24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 438.9 kB/s eta 0:00:00
+#10 44.29 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#10 44.33 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#10 44.39 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#10 44.62    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 2.9 MB/s eta 0:00:00
+#10 44.64 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#10 44.67 Downloading regex-2026.11.18-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (809 kB)
+#10 44.81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 809.8/809.8 kB 5.1 MB/s eta 0:00:00
+#10 44.85 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#10 44.89 Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#10 44.97 Downloading s3transfer-0.19.3-py3-none-any.whl (90 kB)
+#10 45.03 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#10 45.13 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#10 45.15 Downloading tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl (1.2 MB)
+#10 45.44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 5.3 MB/s eta 0:00:00
+#10 45.49 Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+#10 46.73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 2.6 MB/s eta 0:00:00
+#10 46.80 Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+#10 46.83 Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+#10 46.88 Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+#10 46.94 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 47.05 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#10 47.18 Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (117 kB)
+#10 47.28 Downloading zipp-4.1.2-py3-none-any.whl (10 kB)
+#10 47.55 Installing collected packages: zipp, urllib3, typing_extensions, truststore, tqdm, sniffio, six, rpds-py, regex, PyYAML, python-dotenv, propcache, packaging, multidict, MarkupSafe, jmespath, jiter, idna, hyperframe, hpack, hf-xet, h11, fsspec, frozenlist, filelock, fastuuid, click, charset-normalizer, certifi, attrs, annotated-types, aiohappyeyeballs, yarl, typing-inspection, requests, referencing, python-dateutil, pydantic_core, Jinja2, importlib_metadata, httpcore2, httpcore, h2, anyio, aiosignal, tiktoken, pydantic, jsonschema-specifications, httpx2, httpx, botocore, aiohttp, s3transfer, pydantic-settings, openai, jsonschema, huggingface_hub, tokenizers, boto3, litellm, harbor-rewardkit
+#10 61.43 Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 PyYAML-6.0.3 aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 boto3-1.44.5 botocore-1.44.5 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 fastuuid-0.14.0 filelock-4.2.12 frozenlist-1.8.0 fsspec-2026.9.0 h11-0.16.0 h2-4.4.1 harbor-rewardkit-0.2.4 hf-xet-1.8.0 hpack-4.2.0 httpcore-1.0.9 httpcore2-2.16.2 httpx-0.28.1 httpx2-2.16.2 huggingface_hub-2.4.0 hyperframe-6.1.0 idna-3.20 importlib_metadata-8.9.0 jiter-0.19.0 jmespath-1.1.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 litellm-1.110.0 multidict-7.2.1 openai-3.55.0 packaging-26.3 propcache-0.5.4 pydantic-2.14.3 pydantic-settings-2.16.3 pydantic_core-2.50.4 python-dateutil-2.9.0.post0 python-dotenv-1.2.4 referencing-0.37.0 regex-2026.11.18 requests-2.34.2 rpds-py-2026.9.1 s3transfer-0.19.3 six-1.17.0 sniffio-1.3.1 tiktoken-0.14.0 tokenizers-0.23.3 tqdm-4.70.1 truststore-0.10.5 typing-inspection-0.4.5 typing_extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1 zipp-4.1.2
+#10 61.43 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 61.57 
+#10 61.57 [notice] A new release of pip is available: 24.3.1 -> 26.3
+#10 61.57 [notice] To update, run: pip install --upgrade pip
+#10 DONE 63.5s
+
+#11 [stage-1 5/8] RUN useradd -m -u 1001 runner && mkdir -p /workspace/repo /logs/verifier && chmod 700 /logs/verifier
+#11 DONE 0.3s
+
+#12 [stage-1 6/8] COPY . /tests/
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] RUN chmod 700 /tests && chmod 755 /tests/test.sh
+#13 DONE 0.2s
+
+#14 [stage-1 8/8] WORKDIR /workspace/repo
+#14 DONE 0.1s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 2.6s done
+#15 writing image sha256:cbca53dea2b04eca6c3bbc523d53f7966266e39fb70180d18a559c0316911361 done
+#15 naming to docker.io/library/komal-titlecase-verifier done
+#15 DONE 2.7s

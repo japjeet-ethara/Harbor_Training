@@ -1,0 +1,24 @@
+{
+  "captured_by": "mcp__cua_repl native browser screenshot API",
+  "terminal": "ttyd 1.7.7, real read-only Linux PTY",
+  "evidence_run": "evidence/harbor/20261118T061906Z",
+  "post_run_view": true,
+  "synthesized": false,
+  "files": {
+    "nop.jpg": {
+      "sha256": "2b70c27a1ac1c6b33e091494b88827df5137bf9419c4c22fa6f573c1a94e3482",
+      "bytes": 36346,
+      "modified_utc": "2026-11-18T06:26:11.440824+00:00"
+    },
+    "oracle.jpg": {
+      "sha256": "71e01136c57a3d2748e8ae56e235067abf734c7afcc678aedcbcef3468c9c2e9",
+      "bytes": 47489,
+      "modified_utc": "2026-11-18T06:25:56.947471+00:00"
+    },
+    "replay-cheat.jpg": {
+      "sha256": "7d78fe16e5f56d34c48639be596e28da5e53b5d392cc460c4c12e9d6d8677999",
+      "bytes": 48570,
+      "modified_utc": "2026-11-18T06:26:11.496499+00:00"
+    }
+  }
+}

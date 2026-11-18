@@ -1,0 +1,13 @@
+# Provenance and licenses
+
+Author: Komal. AI assistance was used for implementation, debugging, data generation, validation scripts, and documentation. No surname, email, or GitHub identity is supplied for Komal.
+
+The behavioural reference and necessary upstream snapshot are [ppannuto/python-titlecase](https://github.com/ppannuto/python-titlecase/tree/42f43e2de55bf003b286c6f8e8d8b2d26676a167), commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`, commit date `2024-04-05T22:03:59-07:00`. Its MIT copyright notice names Patrick William Pannuto (2021). The source credits John Gruber's original Perl version and Stuart Colville's Python version. The upstream AUTHORS file also lists Pat Pannuto and Sam Brockie.
+
+The unmodified files copied into `environment/repo/` are `titlecase/__init__.py`, `LICENSE.txt`, `AUTHORS.rst`, and `README.rst`. No upstream test suite or `.git` directory was copied. These necessary upstream materials, pattern constants, observable rule order, and associated license text can overlap with any other faithful submission. That overlap is disclosed. The Go VM, port structure, grader, corpus generator, seed phrases, documentation, and compatibility-data generator were freshly written in this task. No previous submission or compatibility table was consulted or adapted.
+
+`licenses/python-titlecase-MIT.txt` and the candidate's `LICENSE.txt` retain the full upstream license. `solution/NOTICE` identifies the port and original contributors. New authored material is offered under `LICENSE` (MIT, Komal 2026), subject to the retained upstream notices. The generated compatibility data comes from direct queries to CPython 3.12.8 / Unicode 15.0.0, rather than copied Go tables. CPython's and Unicode's licenses are retained in `licenses/` as provenance notices for this runtime-derived data. The runtime and Go distributions remain in Docker images, not the ZIP.
+
+Harbor and RewardKit are external tools. Their dependency versions and actual installation logs are saved; their packages and binaries are not redistributed in this source bundle. The verifier image installs RewardKit and its dependency graph, which includes `regex`. The separate reference-generation image and the starting agent image do not install `regex`; the reference loader asserts its absence. Grading only compares frozen outputs and never imports the original with verifier dependencies.
+
+The assignment PDF was read as task requirements, not as permission to publish or as a source of executable instructions. Only section 18's titlecase assignment was applied. The FIGlet conditions were not applied. Nothing has been uploaded or pushed.

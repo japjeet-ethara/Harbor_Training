@@ -1,0 +1,31 @@
+06:12:22 - LiteLLM:WARNING: get_model_cost_map.py:395 - LiteLLM: model cost map fetch attempt 1/3 failed (ConnectError fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)); retrying in 2.4s
+06:12:22 - LiteLLM:WARNING: get_model_cost_map.py:794 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: ConnectError fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000). Falling back to local backup.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/__main__.py", line 143, in <module>
+    main()
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/__main__.py", line 114, in main
+    result = run(
+             ^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 721, in run
+    layout = _discover_layout(tests_dir, workspace=workspace)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 497, in _discover_layout
+    programmatic = _build_programmatic_rewards(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 323, in _build_programmatic_rewards
+    reward = _build_programmatic_reward(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 287, in _build_programmatic_reward
+    _import_py_file(py_file)
+  File "/usr/local/lib/python3.12/site-packages/rewardkit/runner.py", line 74, in _import_py_file
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/tests/gen.py", line 9, in <module>
+    ROOT = Path(__file__).resolve().parents[2]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 282, in __getitem__
+    raise IndexError(idx)
+IndexError: 2

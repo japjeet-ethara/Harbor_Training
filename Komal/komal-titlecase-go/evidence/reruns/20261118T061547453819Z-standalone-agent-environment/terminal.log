@@ -1,0 +1,11 @@
+/workspace/repo
+total 28
+drwxr-xr-x 1 candidate candidate 4096 Nov 18 06:00 .
+drwxr-xr-x 1 candidate candidate 4096 Nov 18 06:07 ..
+-rwxr-xr-x 1 candidate candidate  108 Nov 18 05:54 AUTHORS.rst
+-rwxr-xr-x 1 candidate candidate 1111 Nov 18 05:54 LICENSE.txt
+-rwxr-xr-x 1 candidate candidate 3678 Nov 18 05:54 README.rst
+drwxr-xr-x 2 candidate candidate 4096 Nov 18 06:00 titlecase
+Python 3.12.8
+go version go1.23.12 linux/amd64
+None

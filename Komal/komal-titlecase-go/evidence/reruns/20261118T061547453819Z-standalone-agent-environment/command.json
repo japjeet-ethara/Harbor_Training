@@ -1,0 +1,15 @@
+{
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "komal-titlecase-agent",
+    "sh",
+    "-c",
+    "pwd; ls -la; python --version; go version; python -c \"import importlib.util; print(importlib.util.find_spec(\\\"regex\\\"))\""
+  ],
+  "cwd": "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-18\\i-had-a-x20",
+  "utc": "20261118T061547453819Z",
+  "exit_code": 0,
+  "seconds": 0.6109639999999672
+}

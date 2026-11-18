@@ -1,0 +1,6 @@
+FROM tsl0922/ttyd:1.7.7@sha256:9a058c087bca6df456cb728514eafe778ea384369a622b3604c8b5256b67237d AS ttyd
+FROM python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+COPY --from=ttyd /usr/bin/ttyd /usr/local/bin/ttyd
+COPY show_terminal.py /opt/show_terminal.py
+ENV PYTHONDONTWRITEBYTECODE=1
+ENTRYPOINT ["ttyd", "-i", "0.0.0.0", "-p", "7681", "-t", "fontSize=20", "-t", "disableLeaveAlert=true", "python", "/opt/show_terminal.py"]

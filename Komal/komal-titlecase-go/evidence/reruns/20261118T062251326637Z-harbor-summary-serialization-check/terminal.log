@@ -1,0 +1,29 @@
+{
+  "oracle": {
+    "reward": 1.0,
+    "checks": {
+      "build": 1.0,
+      "no_python": 1.0,
+      "behaviour": 1.0
+    },
+    "reward_file": "jobs\\oracle\\titlecase-go__gN9brBP\\verifier\\reward.json"
+  },
+  "nop": {
+    "reward": 0.0,
+    "checks": {
+      "build": 0.0,
+      "no_python": 0.0,
+      "behaviour": 0.0
+    },
+    "reward_file": "jobs\\nop\\titlecase-go__8HuzWaT\\verifier\\reward.json"
+  },
+  "replay-cheat": {
+    "reward": 0.1667,
+    "checks": {
+      "build": 1.0,
+      "no_python": 0.0,
+      "behaviour": 0.0
+    },
+    "reward_file": "jobs\\replay-cheat\\replay-task__cDqBPUp\\verifier\\reward.json"
+  }
+}

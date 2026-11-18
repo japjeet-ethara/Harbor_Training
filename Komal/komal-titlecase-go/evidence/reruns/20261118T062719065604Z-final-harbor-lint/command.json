@@ -1,0 +1,15 @@
+{
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu",
+    "--",
+    "bash",
+    "-lc",
+    "harbor lint /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/titlecase-go --select ALL --json"
+  ],
+  "cwd": "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-18\\i-had-a-x20",
+  "utc": "20261118T062719065604Z",
+  "exit_code": 0,
+  "seconds": 4.449204800000189
+}

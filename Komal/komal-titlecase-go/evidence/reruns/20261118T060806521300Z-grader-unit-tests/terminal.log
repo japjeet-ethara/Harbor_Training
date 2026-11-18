@@ -1,0 +1,8 @@
+test_exact_bytes (__main__.ScoringTests.test_exact_bytes) ... ok
+test_failure_and_baseline_math (__main__.ScoringTests.test_failure_and_baseline_math) ... ok
+test_framing (__main__.ScoringTests.test_framing) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

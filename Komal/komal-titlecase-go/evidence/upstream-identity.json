@@ -1,0 +1,26 @@
+[
+  {
+    "path": "titlecase/__init__.py",
+    "git_blob": "fd24431b530df240632542e75370e6864ea4db85",
+    "sha256": "a3d0b99857c7672b9a13ec9df54aa187082be7d39b202dc0511e67e6f7873ef0",
+    "identical": true
+  },
+  {
+    "path": "LICENSE.txt",
+    "git_blob": "f6e71173f80fe63f762192dcfaa17f364b271e8c",
+    "sha256": "7e31e4b97035a307b2cef4523674dc1b502c5de57387d713e918a9885a6f33f8",
+    "identical": true
+  },
+  {
+    "path": "AUTHORS.rst",
+    "git_blob": "876f603653575dbc2cd326f643001b25ee2d0811",
+    "sha256": "663a8975b87eb5900097c166ae1e7679f385d1f7b248431796cedd75d2056e58",
+    "identical": true
+  },
+  {
+    "path": "README.rst",
+    "git_blob": "75ad4d045433d2f52d8cf7ec941d692b10252875",
+    "sha256": "08b4083515b545d3fa92fe6293fec96383f9e6d78739bf4d33e2c7bc73d8be21",
+    "identical": true
+  }
+]

@@ -1,0 +1,130 @@
+{
+    "schema_version": 1,
+    "id": "16fbfb83-e6b2-450f-b6eb-d7b3f1731d0c",
+    "task_name": "komal/titlecase-go",
+    "trial_name": "replay-task__W6HEQxp",
+    "trial_uri": "file:///mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp",
+    "task_id": {
+        "path": "/tmp/tmp.T5gsZiktex/replay-task"
+    },
+    "source": null,
+    "task_checksum": "8b41b9330467cd85a542fb87088e93a3702d150a0d52b1678ed1e6e8e619f5b1",
+    "config": {
+        "schema_version": 1,
+        "task": {
+            "path": "/tmp/tmp.T5gsZiktex/replay-task",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "replay-task__W6HEQxp",
+        "trials_dir": "/mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/replay-cheat",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "override_error_policy": {},
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "78184d61-f15f-455a-93a0-03fce05a21ca",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "separate",
+    "exception_info": {
+        "exception_type": "RewardFileNotFoundError",
+        "exception_message": "No reward file found at /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/verifier/reward.txt or /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/verifier/reward.json",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 616, in run\n    await self._run()\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 52, in _run\n    await self._run_verifier()\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 102, in _run_verifier\n    self.result.verifier_result = await self._run_separate_verifier(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 1097, in _run_separate_verifier\n    return await self._verify_with_timeout(verifier, timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/trial/trial.py\", line 990, in _verify_with_timeout\n    return await asyncio.wait_for(verifier.verify(), timeout=timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/home/kushalgirdhar/.local/share/uv/tools/harbor/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 304, in verify\n    raise RewardFileNotFoundError(\nharbor.verifier.verifier.RewardFileNotFoundError: No reward file found at /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/verifier/reward.txt or /mnt/c/Users/KushalGirdhar/Documents/Codex/2026-11-18/i-had-a-x20/work/submission/evidence/harbor/20261118T060946Z/jobs/replay-cheat/replay-task__W6HEQxp/verifier/reward.json\n",
+        "occurred_at": "2026-11-18T06:12:28.218076Z",
+        "policy": {
+            "should_retry": false,
+            "should_grade": true,
+            "has_valid_reward": false
+        }
+    },
+    "started_at": "2026-11-18T06:12:04.774936Z",
+    "finished_at": "2026-11-18T06:12:28.222001Z",
+    "environment_setup": {
+        "started_at": "2026-11-18T06:12:04.828922Z",
+        "finished_at": "2026-11-18T06:12:10.062560Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-18T06:12:10.062675Z",
+        "finished_at": "2026-11-18T06:12:10.062738Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-18T06:12:10.062817Z",
+        "finished_at": "2026-11-18T06:12:10.476267Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-18T06:12:14.766198Z",
+        "finished_at": "2026-11-18T06:12:28.214988Z"
+    },
+    "step_results": null,
+    "reward_valid": false
+}

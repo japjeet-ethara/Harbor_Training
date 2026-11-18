@@ -1,0 +1,40 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 0.0,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "checks",
+        "weight": 1.0,
+        "detail": {
+          "score": 0.0,
+          "criteria": [
+            {
+              "name": "build",
+              "value": 0.0,
+              "raw": 0.0,
+              "weight": 1.0,
+              "description": "go build ./... succeeds"
+            },
+            {
+              "name": "no_python",
+              "value": 0.0,
+              "raw": 0.0,
+              "weight": 1.0,
+              "description": "build succeeds and no .py files remain"
+            },
+            {
+              "name": "behaviour",
+              "value": 0.0,
+              "raw": 0.0,
+              "weight": 4.0,
+              "description": "exact byte agreement on hidden records"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}

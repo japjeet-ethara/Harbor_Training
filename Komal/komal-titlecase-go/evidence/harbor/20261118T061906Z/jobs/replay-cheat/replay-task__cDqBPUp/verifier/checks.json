@@ -1,0 +1,106 @@
+{
+  "checks": {
+    "build": 1.0,
+    "no_python": 0.0,
+    "behaviour": 0.0
+  },
+  "weights": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 4
+  },
+  "python_files": [
+    "titlecase/__init__.py"
+  ],
+  "build_result": {
+    "command": [
+      "go",
+      "build",
+      "./..."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "main_build_result": {
+    "command": [
+      "go",
+      "build",
+      "-o",
+      "/tmp/titlecase-grader-ch6j7noc/bin/titlecase",
+      "."
+    ],
+    "returncode": 0,
+    "timed_out": false
+  },
+  "behaviour_result": {
+    "returncode": 0,
+    "timed_out": false,
+    "correct": 0,
+    "expected_records": 2000,
+    "actual_records": 2000,
+    "terminated_by_lf": true
+  },
+  "mismatches": [
+    {
+      "index": 0,
+      "input": "b'NORTH/SOUTH-EAST/WEST\\x1cV.\\x1cTHE\\x1cTHE\\x1cOLD\\x1cSTATION\\x1cTEAM\\x1cWITH\\x1cST'",
+      "expected": "b'North/South-East/West\\x1cV.\\x1cthe\\x1cthe\\x1cOld\\x1cStation\\x1cTeam\\x1cWith\\x1cSt'",
+      "actual": "b'A.B.C'"
+    },
+    {
+      "index": 1,
+      "input": "b'a draw for the_guide and an\\xcd\\x85nex; BBC announces the venue'",
+      "expected": "b'A Draw for The_guide and An\\xcd\\x85nex; BBC Announces the Venue'",
+      "actual": "b'\\xe2\\x80\\x9cLibrary Returns and North/South-East/West With Ssara)'"
+    },
+    {
+      "index": 2,
+      "input": "b'THE\\xe2\\x80\\xafCRAFT\\xe2\\x80\\xafEXCHANGE\\xe2\\x80\\xafBY\\xe2\\x80\\xafMCGREGOR:\\xe2\\x80\\xafNORTH/SOUTH-EAST/WEST'",
+      "expected": "b'The\\xe2\\x80\\xafCraft\\xe2\\x80\\xafExchange\\xe2\\x80\\xafby\\xe2\\x80\\xafMcGregor:\\xe2\\x80\\xafNorth/South-East/West'",
+      "actual": "b'A Parcel for SSara at Elm Square: BCD Fixtures: J.P. And A.B.C'"
+    },
+    {
+      "index": 3,
+      "input": "b'road repairs on the route to willow market: https://civic.example/help-desk'",
+      "expected": "b'Road Repairs on the Route to Willow Market: https://civic.example/help-desk'",
+      "actual": "b'SSara\\xe2\\x80\\x83Shares\\xe2\\x80\\x83the\\xe2\\x80\\x83BCD\\xe2\\x80\\x83Fixtures\\xe2\\x80\\x83Timetable\\xe2\\x80\\x83for\\xe2\\x80\\x83Oak\\xe2\\x80\\x83Library'"
+    },
+    {
+      "index": 4,
+      "input": "b'the\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fold\\xe2\\x81\\x9fstation\\xe2\\x81\\x9fcup:\\xe2\\x81\\x9f\\xcc\\x81elm\\xe2\\x81\\x9fand\\xe2\\x81\\x9fe\\xcc\\x81arth\\xe2\\x81\\x9fand\\xe2\\x81\\x9fthe\\xe2\\x81\\x9ffinal'",
+      "expected": "b'The\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fOld\\xe2\\x81\\x9fStation\\xe2\\x81\\x9fCup:\\xe2\\x81\\x9f\\xcc\\x81elm\\xe2\\x81\\x9fand\\xe2\\x81\\x9fE\\xcc\\x81arth\\xe2\\x81\\x9fand\\xe2\\x81\\x9fthe\\xe2\\x81\\x9fFinal'",
+      "actual": "b'\\xe2\\x80\\x9cEbay\\xe2\\x80\\x83Introduces\\xe2\\x80\\x83North/South-East/West\\xe2\\x80\\x83to\\xe2\\x80\\x83the\\xe2\\x80\\x83North\\xe2\\x80\\x83Harbour\\xe2\\x80\\x83Choir!!'"
+    },
+    {
+      "index": 5,
+      "input": "b'a\\x0bneighbourhood\\x0bwalk\\x0bfrom\\x0bstone\\x0bquay\\x0bwith\\x0bA\\xce\\xa3'",
+      "expected": "b'A\\x0bNeighbourhood\\x0bWalk\\x0bFrom\\x0bStone\\x0bQuay\\x0bWith\\x0bA\\xce\\xa3'",
+      "actual": "b'Road\\x0bRepairs\\x0bon\\x0bthe\\x0bRoute\\x0bto\\x0bMaple\\x0bSchool:\\x0ba.b\\x0bTimetable'"
+    },
+    {
+      "index": 6,
+      "input": "b'the\\xe2\\x80\\xafunion\\xe2\\x80\\xafgardens\\xe2\\x80\\xafkitchen\\xe2\\x80\\xafwelcomes\\xe2\\x80\\xaf\\xce\\x9f\\xce\\xa3\\xe2\\x80\\xafand\\xe2\\x80\\xafA\\xce\\xa3\\xcc\\x81\\xe2\\x80\\xafafter\\xe2\\x80\\xaflunch'",
+      "expected": "b'The\\xe2\\x80\\xafUnion\\xe2\\x80\\xafGardens\\xe2\\x80\\xafKitchen\\xe2\\x80\\xafWelcomes\\xe2\\x80\\xaf\\xce\\x9f\\xce\\xa3\\xe2\\x80\\xafand\\xe2\\x80\\xafA\\xce\\xa3\\xcc\\x81\\xe2\\x80\\xafAfter\\xe2\\x80\\xafLunch'",
+      "actual": "b'The Hill Pavilion Kitchen Welcomes \\xc4\\xb0STANBUL and \\xc7\\xb1UNGLE After Lunch'"
+    },
+    {
+      "index": 7,
+      "input": "b'!road repairs on the route to oak library: \\xc4\\xb0STANBUL and \\xc7\\xb3UNGLE? arts/crafts!'",
+      "expected": "b'!Road Repairs on the Route to Oak Library: \\xc4\\xb0STANBUL and \\xc7\\xb1UNGLE? Arts/Crafts!'",
+      "actual": "b\"\\xc2\\xa0!D'arcy\\xe2\\x80\\xafIntroduces\\xe2\\x80\\xafNorth/South-East/West\\xe2\\x80\\xafto\\xe2\\x80\\xafthe\\xe2\\x80\\xafSouth\\xe2\\x80\\xafClinic\\xe2\\x80\\xafChoir)\\xe2\\x80\\x83\""
+    },
+    {
+      "index": 8,
+      "input": "b'a neighbourhood walk from hill pavilion with MS! https://civic.example/help-desk'",
+      "expected": "b'A Neighbourhood Walk From Hill Pavilion With MS! https://civic.example/help-desk'",
+      "actual": "b'\\xe2\\x80\\x9cAn Invitation From MRS for DR and Mrs!'"
+    },
+    {
+      "index": 9,
+      "input": "b'[A.B\\xe2\\x80\\xa9SHARES\\xe2\\x80\\xa9THE\\xe2\\x80\\xa9EHEALTH\\xe2\\x80\\xa9UPDATES\\xe2\\x80\\xa9TIMETABLE\\xe2\\x80\\xa9FOR\\xe2\\x80\\xa9THE\\xe2\\x80\\xa9OLD\\xe2\\x80\\xa9STATION\\xe2\\x80\\xa9-\\xe2\\x80\\xa9NORTH/SOUTH-EAST/WEST)'",
+      "expected": "b'[A.B\\xe2\\x80\\xa9Shares\\xe2\\x80\\xa9the\\xe2\\x80\\xa9Ehealth\\xe2\\x80\\xa9Updates\\xe2\\x80\\xa9Timetable\\xe2\\x80\\xa9for\\xe2\\x80\\xa9the\\xe2\\x80\\xa9Old\\xe2\\x80\\xa9Station\\xe2\\x80\\xa9-\\xe2\\x80\\xa9North/South-East/West)'",
+      "actual": "b'Arts/Crafts and the Morning Briefing by FFIona'"
+    }
+  ],
+  "weighted_mean": 0.16666666666666666
+}
