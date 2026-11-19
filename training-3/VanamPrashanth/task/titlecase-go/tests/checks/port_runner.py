@@ -19,6 +19,15 @@ Hardening round 2 (self-attack, cheat N1 "download the exam"):
   answered by the original Python titlecase() (tests/data/original_titlecase.txt,
   WITHOUT the regex package). Nobody can know these answers in advance.
 - The score uses the LOWER of the stored-exam and fresh-exam accuracies.
+
+Day 5 step 5.3 (bigger, weirder exam) and move to tests/checks/:
+- Stored exam = tests/data/inputs.txt + answers.txt (100,000 titles from
+  kit/make_pool.py seed 1, answers frozen twice by kit/answers.py WITHOUT regex)
+  PLUS the old 2,000-title hidden exam (hidden_inputs.txt / hidden_expected.txt).
+- Fresh exam = 1,000 titles from tests/gen.py families + 1,000 from the kit's
+  weirder families (tests/fresh_pool.py, a copy of kit/make_pool.py), random seed.
+- The score is the LOWEST of: 100K accuracy, old-2K accuracy, fresh accuracy.
+- Files are split on "\\n" only (not str.splitlines), so every line is compared exactly.
 """
 
 import importlib.machinery
@@ -34,11 +43,12 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-DATA_DIR = Path(__file__).resolve().parent / "data"
+CHECKS_DIR = Path(__file__).resolve().parent  # tests/checks/
+TESTS_DIR = CHECKS_DIR.parent                  # tests/  (gen.py, fresh_pool.py)
+DATA_DIR = TESTS_DIR / "data"                  # tests/data/
 NOBODY = "65534:65534"
 PASS_MARK = 0.80
 FRESH_COUNT = 2000
-TESTS_DIR = Path(__file__).resolve().parent
 LOG_DIR = Path("/logs/verifier")
 _IMPORT_LOCK = threading.Lock()
 # characters str.splitlines() treats as line ends; such titles cannot be one line
@@ -123,23 +133,45 @@ def _original_titlecase():
     return mod.titlecase
 
 
-def stored_exam():
-    inputs = (DATA_DIR / "hidden_inputs.txt").read_text(encoding="utf-8").splitlines()
-    expected = (DATA_DIR / "hidden_expected.txt").read_text(encoding="utf-8").splitlines()
-    return inputs, expected
+def read_lines(path: Path):
+    """One title per line, split on "\\n" only (no newline translation)."""
+    text = path.read_bytes().decode("utf-8")
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return lines
+
+
+def stored_exams():
+    """[(name, inputs, expected)] for the stored exams."""
+    exams = []
+    for name, i_file, a_file in [("100k", "inputs.txt", "answers.txt"),
+                                 ("old2k", "hidden_inputs.txt", "hidden_expected.txt")]:
+        inputs, expected = read_lines(DATA_DIR / i_file), read_lines(DATA_DIR / a_file)
+        if not inputs or len(inputs) != len(expected):
+            raise ValueError(f"bad exam files {i_file} / {a_file}")
+        exams.append((name, inputs, expected))
+    return exams
 
 
 def fresh_exam(seed: int, count: int = FRESH_COUNT):
-    """New titles nobody has seen: tests/gen.py families, random seed, answers from the original."""
+    """New titles nobody has seen, answered by the original Python titlecase().
+
+    Half from tests/gen.py families, half from the kit's weirder families
+    (tests/fresh_pool.py). Never a title from the visible file or a stored exam.
+    """
+    rng = random.Random(seed)  # private RNG, safe with concurrent criteria
     gen = _load_module(f"titlecase_gen_{seed}", TESTS_DIR / "gen.py")
-    gen.random = random.Random(seed)  # private RNG, safe with concurrent criteria
+    gen.random = rng
+    pool = _load_module(f"titlecase_pool_{seed}", TESTS_DIR / "fresh_pool.py")
     titlecase = _original_titlecase()
-    known = set((DATA_DIR / "inputs.txt").read_text(encoding="utf-8").splitlines())
-    known |= set((DATA_DIR / "hidden_inputs.txt").read_text(encoding="utf-8").splitlines())
+    known = set()
+    for f in ("visible_inputs.txt", "inputs.txt", "hidden_inputs.txt"):
+        known |= set(read_lines(DATA_DIR / f))
     inputs, expected = [], []
     while len(inputs) < count:
-        title = gen.make_title()
-        if title in known or any(c in title for c in LINE_BREAKS):
+        title = gen.make_title() if len(inputs) % 2 == 0 else pool.line(rng)
+        if title in known or title in inputs or any(c in title for c in LINE_BREAKS):
             continue
         answer = titlecase(title)
         if any(c in answer for c in LINE_BREAKS):
@@ -176,7 +208,10 @@ def run_jailed(repo: Path, input_bytes: bytes):
         return None
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
-    return proc.stdout.decode("utf-8", errors="replace").splitlines()
+    out = proc.stdout.decode("utf-8", errors="replace").split("\n")
+    if out and out[-1] == "":
+        out.pop()
+    return out
 
 
 def _share(got, expected, offset: int) -> float:
@@ -187,24 +222,30 @@ def _share(got, expected, offset: int) -> float:
 
 
 def hidden_accuracy(repo: Path, label: str = "check") -> float:
-    """min(stored-exam accuracy, fresh-exam accuracy) of the jailed binary; 0.0 on any failure."""
+    """Lowest accuracy of the jailed binary over: 100K exam, old 2K exam, fresh exam.
+
+    0.0 on any failure.
+    """
     try:
-        s_in, s_exp = stored_exam()
+        exams = stored_exams()
         seed = int(os.environ.get("TITLECASE_FRESH_SEED") or secrets.randbits(63))
         f_in, f_exp = fresh_exam(seed)
+        exams.append(("fresh", f_in, f_exp))
     except Exception as exc:  # never pay out if the exam cannot be built
         print(f"[{label}] exam build failed: {exc!r}", file=sys.stderr)
         return 0.0
-    # Exam is now only in the grader's memory; the binary sees one stdin stream.
-    payload = "".join(line + "\n" for line in s_in + f_in).encode("utf-8")
+    # Exams are now only in the grader's memory; the binary sees one stdin stream.
+    all_inputs = [t for _, inputs, _ in exams for t in inputs]
+    payload = "".join(line + "\n" for line in all_inputs).encode("utf-8")
     got = run_jailed(repo, payload)
-    if got is None:
-        stored = fresh = 0.0
-    else:
-        stored = _share(got, s_exp, 0)
-        fresh = _share(got, f_exp, len(s_in))
-    result = min(stored, fresh)
-    note = f"[{label}] fresh seed={seed} stored={stored:.4f} fresh={fresh:.4f} used={result:.4f}"
+    scores, offset = {}, 0
+    for name, inputs, expected in exams:
+        scores[name] = 0.0 if got is None else _share(got, expected, offset)
+        offset += len(inputs)
+    result = min(scores.values())
+    sizes = " ".join(f"{name}={len(inputs)}" for name, inputs, _ in exams)
+    note = (f"[{label}] fresh seed={seed} lines: {sizes} | "
+            + " ".join(f"{k}={v:.4f}" for k, v in scores.items()) + f" | used={result:.4f}")
     print(note, file=sys.stderr)
     try:
         LOG_DIR.mkdir(parents=True, exist_ok=True)

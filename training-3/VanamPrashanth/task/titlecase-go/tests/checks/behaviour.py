@@ -23,8 +23,11 @@ def _runner():
 @criterion
 def behaviour(workspace: Path = Path("/workspace/repo")) -> float:
     """3. behaviour (weight 4): build the Go program, run it alone in an empty chroot
-    jail as user nobody, feed it tests/data/hidden_inputs.txt and compare with
-    tests/data/hidden_expected.txt (held only in the grader's memory).
+    jail as user nobody, and feed it three exams (held only in the grader's memory):
+      - tests/data/inputs.txt -> answers.txt          (100,000 titles, kit pool seed 1)
+      - tests/data/hidden_inputs.txt -> hidden_expected.txt (old 2,000-title exam)
+      - 2,000 fresh titles made with a random seed at grading time
+    The lowest of the three accuracies counts.
     Score 0 below 80% exact lines, then linear up to 1.0 at 100%.
     """
     runner = _runner()

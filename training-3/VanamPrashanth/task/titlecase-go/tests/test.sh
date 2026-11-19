@@ -4,14 +4,16 @@ set -euo pipefail
 mkdir -p /logs/verifier
 
 # Keep the exam root-only even if /tests was mounted at run time.
-# The agent's binary is run as nobody inside an empty chroot jail (tests/port_runner.py).
+# The agent's binary is run as nobody inside an empty chroot jail (tests/checks/port_runner.py).
 chmod -R go-rwx /tests 2>/dev/null || true
 
-# Run RewardKit against /tests
+# Run RewardKit against the check folder only: /tests/checks holds build.py,
+# no_python.py, behaviour.py, reward.toml and the port_runner.py helper.
+# (gen.py, fresh_pool.py and data/ stay in /tests and are not scanned as checks.)
 if command -v rewardkit >/dev/null 2>&1; then
-    rewardkit /tests --workspace /workspace/repo || true
+    rewardkit /tests/checks --workspace /workspace/repo || true
 elif command -v uvx >/dev/null 2>&1; then
-    uvx --python '>=3.12,<3.14' --from 'harbor-rewardkit==0.2.4' rewardkit /tests --workspace /workspace/repo || true
+    uvx --python '>=3.12,<3.14' --from 'harbor-rewardkit==0.2.4' rewardkit /tests/checks --workspace /workspace/repo || true
 fi
 
 # Fallback in case rewardkit CLI did not generate /logs/verifier/reward.json
@@ -21,8 +23,7 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, "/tests")
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, "/tests/checks")
 
 try:
     from build import build
