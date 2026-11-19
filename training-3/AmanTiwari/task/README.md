@@ -4,56 +4,64 @@ A Harbor task: port **python-titlecase** (v2.4.1, MIT,
 commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`) to Go with byte-identical
 output, then remove the Python code.
 
-## Results (Harbor 0.25.0, local Docker)
+Mode: the reference answers come from titlecase **without the `regex` package**
+(plain Python `re`, `REGEX_AVAILABLE = False`). Stated in `instruction.md`.
 
-| Run | Command | build (w1) | no_python (w1) | behaviour (w4) | **reward** |
+## Results (Harbor, local Docker)
+
+Reward = **behaviour only**. build, no_python and no_exec are gates (weight 0):
+behaviour is 0 unless all three pass. Hidden exam = **100,000** titles.
+
+| Run | behaviour | build | no_python | no_exec | **reward** |
 |---|---|---|---|---|---|
-| Oracle | `harbor run -p ./titlecase-go -a oracle` | 1.0 | 1.0 | 1.0 | **1.0** |
-| Nop | `harbor run -p ./titlecase-go -a nop` | 0.0 | 0.0 | 0.0 | **0.0** |
-| Cheat (`cheat/solve.sh` swapped in) | `harbor run -p ./titlecase-go -a oracle` | 1.0 | 0.0 | 0.0 | **0.167** |
+| Oracle | 1.0 | 1.0 | 1.0 | 1.0 | **1.0** |
+| Nop | 0.0 | 0.0 | 0.0 | 0.0 | **0.0** |
 
-## Hand-in notes
+Attacker (Ayush Singh) cheats, after hardening — were 0.333 / 0.438 / 1.0:
 
-**Rules that were hardest to get right:** the oracle port matched 2000/2000
-visible lines on the first build, so there was no single rule it kept getting
-wrong. The rules that needed the most care were the ones Go's regexp can't copy
-directly: Unicode `\b`/`\w` word boundaries (SMALL_FIRST / SMALL_LAST), the
-case-sensitive SUBPHRASE rule with no `\b` (which also capitalises a prefix like
-`by` in `byte.com`), the `_`-is-both-punctuation-and-a-word-char trap in
-CAPFIRST, all-caps-line detection with Python's full `upper()` (`ß` → `SS`),
-and the recursive calls for Mc-names, hyphens and slashes.
+| Cheat | what it did | before | **after** |
+|---|---|---|---|
+| 1 build trick (empty program) | 0.333 | **0.0** |
+| 2 half port | 0.438 | **0.14** |
+| 3 Python inside (os/exec) | 1.0 | **0.0** |
 
-**To make it harder:** right now 2 of 6 points (build + no_python) go to any Go
-program that builds once the `.py` files are gone, even one that does no
-titlecasing (measured: 0.33). Tie those points to behaviour (for example, only
-pay them when behaviour ≥ 0.5), and add more hidden lines on the rare paths
-(`_`-prefixed words, `v.` before a separator, Greek final sigma, `ſ`/Kelvin-sign
-case folding, `\x1c`–`\x1f` whitespace).
+## What changed on Day 5 (hardening)
+
+See `../HARDEN.md`. In short:
+- **Hard rules are gates, not points** (`tests/reward.toml`): reward = behaviour,
+  and behaviour is 0 unless build + no_python + no_exec pass. Kills the build
+  trick and caps the half port at its real match share.
+- **New `no_exec` check** (`tests/no_exec/`): the program may not import
+  `os/exec`, `syscall`, `unsafe`, `plugin` or `runtime/cgo`, may not contain a
+  second `go.mod`, and may not use `StartProcess`/`go:linkname`. Kills "embed the
+  Python source and run it with python3", including when `os/exec` is hidden in a
+  replaced sub-module (checked with the author's own `go list ./...` imports).
+- **Bigger, weirder exam**: 100,000 titles from `kit/make_pool.py` (seed 1),
+  frozen twice by `kit/answers.py` (0 dropped), replacing the old 2,000.
 
 ## Layout
 
 ```
-instruction.md          what the agent sees
-task.toml               1 CPU / 2 GB, agent: user "agent", no internet;
-                        verifier: separate container, PyPI only
+instruction.md          what the agent sees (now states the no-exec rule + mode)
+task.toml               verifier: separate container, root-only /tests
 environment/Dockerfile  golang:1.23 + the original repo at /workspace/repo
 solution/solve.sh       oracle: writes go.mod + main.go, deletes all Python
-cheat/solve.sh          prints the VISIBLE answers; used only to test the tests
+cheat/solve.sh          legacy practice cheat (not used in the Day 6 proof)
 tests/Dockerfile        verifier image: python 3.12 + golang 1.23, /tests root-only
 tests/test.sh           uvx harbor-rewardkit -> /logs/verifier/reward.json
-tests/reward.toml       weighted-mean: build 1, no_python 1, behaviour 4
-tests/{build,no_python,behaviour}/  one check per folder = one score each
-tests/gen.py            random.seed(1); 2000 visible + 2000 hidden titles (no overlap);
-                        mixes normal words, every NOTES.md example, Unicode,
-                        AT&T/Q&A, ordinals, tab / no-break / em-space whitespace;
-                        answers produced by the ORIGINAL Python titlecase()
-tests/data/             inputs/expected (visible) + hidden_inputs/hidden_expected
+tests/reward.toml       reward = behaviour; build/no_python/no_exec are weight-0 gates
+tests/_shared.py        build, no_python, no_exec and the gate helper
+tests/{build,no_python,no_exec,behaviour}/  one check per folder
+tests/data/             hidden_inputs/hidden_expected (100k, graded)
+                        inputs/expected (first 2000, a human-readable sample)
 ```
 
 ## Anti-cheating
 
 - Tests run in a **separate container**; the agent never sees `tests/` or `solution/`.
-- Agent has **no internet** (allowlist, empty) and runs as a **non-root user**.
-- Behaviour is graded on the **hidden** set only.
-- The agent's program runs as user `runner`, who **cannot read `/tests`**: a
-  program that tries to open the hidden answers gets behaviour 0 (tested).
+- Behaviour is graded on the **hidden** 100k set only; `tests/` is root-only and
+  the program runs as unprivileged `runner`.
+- **Gates, not points**: a program that builds but does nothing, or deletes the
+  Python and nothing else, scores 0.
+- **no_exec**: the program cannot shell out (e.g. to the image's python3) to let
+  the original Python do the work.

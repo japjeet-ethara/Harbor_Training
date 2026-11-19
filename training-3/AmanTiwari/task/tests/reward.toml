@@ -1,8 +1,9 @@
-# Final score = weighted mean of the three checks.
-#   build      (w=1): `go build ./...` passes
-#   no_python  (w=1): no .py files left AND the build passes
-#   behaviour  (w=4): share of hidden lines that match the original exactly
+# Final score = behaviour only. The hard rules are GATES, not points: behaviour is
+# already 0 unless build, no_python and no_exec all pass (see behaviour.py), so giving
+# them weight makes a do-nothing or shell-out solution score 0, not 0.17-0.33.
+#   behaviour (w=1): share of hidden lines that match the original exactly, else 0
+#   build / no_python / no_exec (w=0): reported for visibility, pay nothing
 [[reward]]
 name = "reward"
 aggregation = "weighted-mean"
-weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
+weights = { behaviour = 1.0, build = 0.0, no_python = 0.0, no_exec = 0.0 }

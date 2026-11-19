@@ -1,7 +1,11 @@
-"""Check 3 — behaviour (weight 4): share of HIDDEN lines that match exactly.
+"""behaviour (the only paid check): share of HIDDEN lines that match exactly.
 
-Builds the Go program, feeds it data/hidden_inputs.txt on stdin, and compares
-each output line byte for byte with data/hidden_expected.txt.
+Gated: returns 0 unless every hard rule passes (build, no_python, no_exec). So a
+program that builds but does no real titlecasing, or one that tries to shell out to
+Python, scores 0 here and therefore 0 overall (reward = behaviour, see reward.toml).
+
+Builds the Go program, feeds it data/hidden_inputs.txt on stdin as the unprivileged
+user `runner`, and compares each output line byte for byte with hidden_expected.txt.
 """
 
 import os
@@ -11,7 +15,7 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _shared import DATA_DIR, build_binary, run_as_runner  # noqa: E402
+from _shared import DATA_DIR, build_binary, gates_pass, run_as_runner  # noqa: E402
 
 import rewardkit as rk  # noqa: E402
 from rewardkit import criterion  # noqa: E402
@@ -24,8 +28,11 @@ def _lines(data: bytes) -> list[bytes]:
     return parts
 
 
-@criterion(description="share of hidden titles whose output matches the original byte for byte")
+@criterion(description="share of hidden titles whose output matches the original byte for byte (0 if any hard rule fails)")
 def hidden_lines_match(workspace: Path) -> float:
+    if not gates_pass(workspace):
+        return 0.0
+
     inputs = (DATA_DIR / "hidden_inputs.txt").read_bytes()
     expected = _lines((DATA_DIR / "hidden_expected.txt").read_bytes())
 

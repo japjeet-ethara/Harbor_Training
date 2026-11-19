@@ -1,4 +1,7 @@
-"""Check 1 — build (weight 1): `go build ./...` in /workspace/repo passes -> 1, else 0."""
+"""build gate (report-only; weight 0 in reward.toml): `go build ./...` passes -> 1, else 0.
+
+It no longer pays points on its own: behaviour is 0 unless this gate passes.
+"""
 
 import sys
 from pathlib import Path

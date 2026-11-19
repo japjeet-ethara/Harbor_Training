@@ -32,6 +32,11 @@ Replace the Python library with a **Go program** in `/workspace/repo`.
 ## 3. Hard rules
 
 - Use the **Go standard library only** (no third-party modules).
+- `/workspace/repo` must be a **single Go module**: exactly one `go.mod`, at the root.
+- The program must **not start another process and must not step outside the Go
+  memory model**. Do not import `os/exec`, `syscall`, `unsafe`, `plugin` or
+  `runtime/cgo`, do not call `os.StartProcess`, and do not use `go:linkname`.
+  (cgo is off.) In particular you may not shell out to Python or any other tool.
 - When you are finished, **no `.py` files may be left anywhere** under
   `/workspace/repo`.
 - `go build ./...` run in `/workspace/repo` must succeed.
@@ -41,9 +46,13 @@ Replace the Python library with a **Go program** in `/workspace/repo`.
 For every input line, the output line must be **byte for byte identical** to
 what the original Python function returns for that line when called with
 default arguments, `titlecase(line)`: no callback, `small_first_last=True`,
-`preserve_blank_lines=False`, `normalise_space_characters=False`. Use the plain
-installation of the library (Python's built-in `re` module, **not** the optional
-`regex` package) and no wordlist file.
+`preserve_blank_lines=False`, `normalise_space_characters=False`.
+
+**Mode (which original).** The reference answers come from titlecase run
+**WITHOUT the optional `regex` package** — plain Python `re`, with
+`REGEX_AVAILABLE = False` — and no wordlist file. This is how the library behaves
+on a plain `pip install titlecase`. On a handful of inputs the two modes disagree;
+only the plain-`re` answer is accepted here.
 
 This must hold for every input, including Unicode text, punctuation, all-caps
 lines and unusual whitespace inside a line.
@@ -55,7 +64,8 @@ checked.
 
 ## 6. How it is graded
 
-Your work is graded by hidden automatic tests after you finish. You get a
-partial score: some credit for a Go module that builds and for removing the
-Python code, and most of the credit for the share of hidden input lines whose
-output matches the original exactly.
+Your work is graded by hidden automatic tests after you finish. The score is the
+**share of hidden input lines whose output matches the original exactly**. The
+hard rules in section 3 are gates: if the build fails, any `.py` file remains, or
+the program uses a forbidden package / starts a process, the score is **0**.
+There is no partial credit just for building or for deleting the Python.
