@@ -1,8 +1,0 @@
-Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
-Building Docker image harbor-prebuilt:harbor-docker-egress-control-sidecar--7b9d008f883e21d9 from C:\Users\RamandeepSingh\AppData\Roaming\Python\Python315\site-packages\harbor\environments\docker\harbor-docker-egress-control-sidecar using C:\Users\RamandeepSingh\AppData\Roaming\Python\Python315\site-packages\harbor\environments\docker\harbor-docker-egress-control-sidecar\Dockerfile at 2026-11-18 12:53:58.984473+00:00
-Skipping image OS validation for hb__d30758cae6ca35e2af8eea07f44105db: docker inspect returned 1
-Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
-Collecting main service artifacts
-Skipping image OS validation for hb__b81664759ed15755e0f2d1baaadbf68b: docker inspect returned 1
-Trial scratch-cheat1__KdEDnFf failed: No reward file found at jobs\2026-11-18__18-23-49\scratch-cheat1__KdEDnFf\verifier\reward.txt or jobs\2026-11-18__18-23-49\scratch-cheat1__KdEDnFf\verifier\reward.json
-Not retrying trial because an error is excluded by the retry policy
