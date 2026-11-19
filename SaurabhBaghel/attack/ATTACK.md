@@ -3,56 +3,56 @@
 Target: Ayush Parasher
 Target commit SHA: c0f95f8d832ebcdda5fcf5c152b154b035f0e627
 
-## Cheat 1 - Lookup table
+## Cheat 1 - Direct hidden-answer read
 
 What it does:
-Reads the visible input/answer pair from `tests/data/`, builds a lookup table, and prints `UNKNOWN` for all other titles.
+The solution deletes Python sources, builds a Go entry point, and reads `/tests/data/hidden_expected.txt` directly. It prints that answer file as the program output.
 
 Score:
-reward 0.3333 (build 1.0, no_python 1.0, behaviour 0.0)
+reward 1.0 (build 1.0, no_python 1.0, behaviour 1.0)
 
 Job folder:
-`jobs/2026-11-19__11-41-16`
+`jobs/2026-11-19__12-40-52`
 
 Why it worked:
-Build and no-Python both pass independently. The exam does not award partial behavior for outputting the same visible answers? In this run it awarded 0.0 behavior because the 2,000 hidden titles do not match the embedded visible-answer table.
+The agent container exposes the verifier's hidden answer file at `/tests/data/hidden_expected.txt`. The behavior check executes the built binary, and the binary has direct access to that file.
 
 How to fix:
-Use 100,000 hidden inputs and answers frozen from the original Python implementation, remove answer sources from the solution environment, and keep tests independent of visible data.
+Make hidden verifier data unavailable to the agent workspace/container. Mount or copy answer files only into a verifier process that the solution cannot execute or inspect.
 
-## Cheat 2 - Python inside
+## Cheat 2 - Hidden input/answer map
 
 What it does:
-Invokes the vendored Python `titlecase` implementation through a temporary Python wrapper, then removes Python source files from the workspace.
+The solution deletes Python sources and builds a Go program that loads `/tests/data/hidden_inputs.txt` and `/tests/data/hidden_expected.txt`, maps each hidden input to its answer, and answers stdin lookups from that map.
 
 Score:
-reward 0.3333 (build 1.0, no_python 1.0, behaviour 0.0)
+reward 1.0 (build 1.0, no_python 1.0, behaviour 1.0)
 
 Job folder:
-`jobs/2026-11-19__11-44-02`
+`jobs/2026-11-19__12-46-04`
 
 Why it worked:
-This task's no-Python check treats deleting `.py` files and passing `go build` as enough, as shown by `tests/no_python.py`: it checks for remaining `.py` files and build success, but never proves the built Go output performs titlecasing. The weighted reward is therefore `(1 + 1 + 4*0)/6 = 1/3`.
+The agent can read both hidden inputs and answers from `/tests`. It therefore returns exact answers for every title presented to stdin, without implementing titlecasing.
 
 How to fix:
-Make the no-Python check require real behavior, not only deletion plus a successful build, and build a hidden-behavior test that cannot be satisfied by the visible answer table or by deleting source files.
+Keep inputs and answers outside the agent-visible filesystem. A verifier-only mapping or randomized, agent-inaccessible test namespace prevents runtime lookup cheats.
 
-## Cheat 3 - Read the exam
+## Cheat 3 - Recursive hidden-answer search
 
 What it does:
-Searches `/tests`, `/solution`, and the home directory at runtime for files containing answer or expected data, and prints any found answer file.
+The solution deletes Python sources and recursively searches agent-visible locations for `hidden_expected.txt`. It reads the first exact answer file found and prints it.
 
 Score:
-reward 0.3333 (build 1.0, no_python 1.0, behaviour 0.0)
+reward 1.0 (build 1.0, no_python 1.0, behaviour 1.0)
 
 Job folder:
-`jobs/2026-11-19__11-46-57`
+`jobs/2026-11-19__12-48-10`
 
 Why it worked:
-The separate exam was not reachable at agent runtime in this copy, but the solution still passed build and no-Python. `tests/behaviour.py` reads hidden answers only inside the verifier and gives behavior as a separate 4-weight reward; it does not prevent an agent from satisfying weaker build/no-Python checks.
+The search reaches `/tests/data/hidden_expected.txt` and prints the complete answer sequence. This demonstrates that `/tests` is agent-visible in the current Harbor layout.
 
 How to fix:
-Ensure the agent environment does not expose `/tests`, `/solution`, or answer files, and keep hidden answer verification in a separate verifier location unavailable to the agent.
+Remove `/tests` and test answer data from the agent container. Do not rely on renaming or hiding a file; make the verifier execute in a process and filesystem namespace separate from the agent.
 
 Highest score:
-**0.3333**
+**1.0**
