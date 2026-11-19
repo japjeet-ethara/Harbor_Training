@@ -4,11 +4,13 @@
 
 `/workspace/repo` contains a snapshot of `ppannuto/python-titlecase` (commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`, MIT License), a Python implementation of John Gruber's title-casing filter (`titlecase/__init__.py`). It converts input text to title case while preserving small words (such as `a`, `an`, `and`, `at`, `by`, `for`, `in`, `of`, `on`, `or`, `the`, `to`, `via`, `vs.`), acronyms, dotted initials, camelCase/internal uppercase words, URLs/inline-period domains, apostrophe prefixes (`d'`, `l'`, `O'`), `Mc`/`MC` prefixes, honorifics, hyphenated and slashed compounds, and subphrase capitalization after punctuation.
 
+> **Mode**: Answers come from titlecase **WITHOUT regex** (standard Python built-in `re` module, where `REGEX_AVAILABLE` is `False`, no optional `regex` package installed).
+
 ## 2. What to Build
 
 Build a Go program in `/workspace/repo` (with a valid `go.mod` in `/workspace/repo` and a `main` package at the module root `/workspace/repo` so `go run .` or `go build -o <bin> .` builds the executable) that:
 - Reads titles from standard input (`stdin`), one title per line (`\n`-delimited, stripping the trailing `\n` or `\r\n` before processing each line).
-- Applies the exact `titlecase(line)` transformation from `titlecase/__init__.py` (with default options: `callback=None`, `small_first_last=True`, `preserve_blank_lines=False`, `normalise_space_characters=False`, and standard Python `re` behavior where `REGEX_AVAILABLE` is `False`) to each input line independently.
+- Applies the exact `titlecase(line)` transformation from `titlecase/__init__.py` (with default options: `callback=None`, `small_first_last=True`, `preserve_blank_lines=False`, `normalise_space_characters=False`, and standard Python `re` behavior WITHOUT the `regex` package) to each input line independently.
 - Prints each resulting titlecased line to standard output (`stdout`) followed by `\n`, preserving a 1-to-1 correspondence with the input lines (including empty lines).
 
 ## 3. Hard Rules
@@ -19,7 +21,7 @@ Build a Go program in `/workspace/repo` (with a valid `go.mod` in `/workspace/re
 
 ## 4. Behaviour
 
-For every input line, the printed output line must match the original Python `titlecase(line)` output byte for byte.
+For every input line across a 100,000-title hidden exam, the printed output line must match the original Python `titlecase(line)` output byte for byte.
 
 ## 5. Not Checked
 
@@ -29,8 +31,8 @@ For every input line, the printed output line must match the original Python `ti
 
 ## 6. How It Is Graded
 
-Your submission is graded automatically after you finish by hidden verification checks with partial scoring across three weighted components:
-- `build` (weight 1): `go build ./...` succeeds in `/workspace/repo`.
-- `no_python` (weight 1): no `.py` files exist anywhere under `/workspace/repo` and `go build ./...` succeeds.
-- `behaviour` (weight 4): the built Go binary is run against hidden test inputs on `stdin`, scored by the fraction of output lines that match the hidden reference outputs byte for byte.
-
+Your submission is graded automatically after you finish by hidden verification checks across three weighted components:
+- `build` (weight 1): `go build ./...` succeeds in `/workspace/repo` and produces valid titlecase output.
+- `no_python` (weight 1): no `.py` files exist anywhere under `/workspace/repo`, no embedded Python code or interpreter calls exist, and the build succeeds.
+- `behaviour` (weight 4): the built Go binary is run against 100,000 hidden test inputs on `stdin`, scored by the fraction of output lines matching reference outputs byte for byte.
+- All checks require genuine execution and matching answers; empty or dummy programs receive 0.0.

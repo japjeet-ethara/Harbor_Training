@@ -257,9 +257,17 @@ def main():
     if seen & set(hidden):
         raise SystemExit("hidden inputs overlap the visible inputs")
 
+    # Day 5 step 5.3: the 100K exam (data/inputs.txt + data/answers.txt, made with
+    # kit/make_pool.py + kit/answers.py) is graded too. No graded title may be in the
+    # visible file, so visible titles that are also in the 100K exam are left out.
+    exam_path = DATA / "inputs.txt"
+    if exam_path.is_file():
+        exam = set(exam_path.read_text(encoding="utf-8").splitlines())
+        visible = [t for t in visible if t not in exam]
+
     DATA.mkdir(parents=True, exist_ok=True)
-    write_lines(DATA / "inputs.txt", visible)
-    write_lines(DATA / "expected.txt", expect(visible))
+    write_lines(DATA / "visible_inputs.txt", visible)
+    write_lines(DATA / "visible_expected.txt", expect(visible))
     write_lines(DATA / "hidden_inputs.txt", hidden)
     write_lines(DATA / "hidden_expected.txt", expect(hidden))
 

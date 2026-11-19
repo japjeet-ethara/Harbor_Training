@@ -1,0 +1,17 @@
+wrong answers      50594 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input "d'arcy\u2003TO input/output"
+  want  "d'Arcy\u2003TO Input/Output"
+  got   "D'arcy\u2003TO Input/Output"
+  input 'out-of-date https://x.org  vs.\u2009🎵music island ocean\u2002Https://x.org'
+  want  'Out-of-Date https://x.org  vs.\u2009🎵music Island Ocean\u2002Https://x.org'
+  got   'Out-of-Date https://x.org  Vs.\u2009🎵music Island ocean\u2002Https://x.org'
+  input "|DREAM ΟΔΟΣ\u3000D'Angelo McAfee game lord McAfee"
+  want  "|DREAM ΟΔΟΣ\u3000d'Angelo McAfee Game Lord McAfee"
+  got   "|DREAM ΟΔΟΣ\u3000D'Angelo McAfee Game Lord McAfee"
+  input '!And vs www.site.org light ß'
+  want  '!And vs www.site.org Light SS'
+  got   '!And vs www.site.org Light ß'
+  input 'war  dream\u3000if — by\u2002TCP/IP~ on by as\tMcx+'
+  want  'War  Dream\u3000if — By\u2002TCP/IP~ on by as\tMcX+'
+  got   'War  Dream\u3000if — By\u2002TCP/Ip~ on by as\tMcX+'
