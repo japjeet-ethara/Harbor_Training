@@ -1,0 +1,7 @@
+run	agent	build	no_python	behaviour	reward	seconds	job	trial
+oracle	oracle	1.0	1.0	1.0	1.0	78	jobs/2026-11-19__22-14-21	task__2mtGETX
+nop	nop	0.0	0.0	0.0	0.0	54	jobs/2026-11-19__22-15-40	task__mNwBt78
+c1	oracle	1.0	1.0	0.0205	0.0205	68	jobs/2026-11-19__22-16-34	task__XKWKKnx
+c2	oracle	1.0	1.0	0.0	0.0	68	jobs/2026-11-19__22-17-43	task__DBWyueB
+c3	oracle	1.0	1.0	0.0204	0.0204	68	jobs/2026-11-19__22-18-51	task__7myX3sN
+tcheat	oracle	1.0	0.0	0.0	0.0	68	jobs/2026-11-19__22-19-59	task__iBeBV5C

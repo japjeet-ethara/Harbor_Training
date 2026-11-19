@@ -17,8 +17,9 @@ WORKDIR /tests
 COPY . /tests/
 
 # The grader runs as root. The submitted program runs as UID 40000
-# (grade/support.py). Make the hidden answers and the Python interpreter
-# root-only, then prove UID 40000 can use neither. The image build fails if not.
+# (grade/support.py). Make /tests (including the graded answers,
+# data/answers.txt) and the Python interpreter root-only, then prove UID 40000
+# can use neither. The image build fails if not.
 RUN chmod -R go-rwx /tests \
     && chmod 0700 /usr/local/bin/python3.12 \
                   /usr/local/lib/libpython3.12.so.1.0 \
@@ -30,7 +31,8 @@ RUN chmod -R go-rwx /tests \
            echo "UID 40000 can still run $p" >&2; exit 1; \
          fi; \
        done \
-    && if setpriv --reuid=40000 --regid=40000 --clear-groups -- cat /tests/data/hidden_expected.txt >/dev/null 2>&1; then \
-         echo "UID 40000 can still read the hidden answers" >&2; exit 1; \
+    && test -s /tests/data/answers.txt \
+    && if setpriv --reuid=40000 --regid=40000 --clear-groups -- cat /tests/data/answers.txt >/dev/null 2>&1; then \
+         echo "UID 40000 can still read the graded answers" >&2; exit 1; \
        fi \
     && python -c "import rewardkit"

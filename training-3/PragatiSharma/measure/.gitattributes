@@ -1,0 +1,3 @@
+# Keep every measurement file byte for byte: shell scripts and data files are
+# LF-only, and checkout must not convert them.
+* -text -whitespace

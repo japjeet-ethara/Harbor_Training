@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from rewardkit import criterion
 
 from support import (
-    HIDDEN_RECORD_COUNT,
+    EXAM_RECORD_COUNT,
     RUN_TIMEOUT_SEC,
     go_build_all,
     log,
@@ -17,12 +17,14 @@ from support import (
     run_submission,
 )
 
-HIDDEN_INPUTS = Path("/tests/data/hidden_inputs.txt")
-HIDDEN_EXPECTED = Path("/tests/data/hidden_expected.txt")
+# The graded exam. practice_inputs.txt and practice_expected.txt are the
+# visible practice set and are not graded.
+EXAM_INPUTS = Path("/tests/data/inputs.txt")
+EXAM_ANSWERS = Path("/tests/data/answers.txt")
 
 
 def _fraction(matches: int) -> float:
-    return matches / HIDDEN_RECORD_COUNT
+    return matches / EXAM_RECORD_COUNT
 
 
 @criterion
@@ -46,15 +48,21 @@ def behaviour(workspace: Path) -> dict[str, object]:
         return {"score": 0.0, "reasoning": reason}
 
     try:
-        expected = records(HIDDEN_EXPECTED.read_bytes())
-        program_input = HIDDEN_INPUTS.read_bytes()
+        expected = records(EXAM_ANSWERS.read_bytes())
+        program_input = EXAM_INPUTS.read_bytes()
     except OSError as exc:
-        reason = f"could not read hidden grading files: {exc}"
+        reason = f"could not read exam files: {exc}"
         log(f"behaviour: {reason}")
         return {"score": 0.0, "reasoning": reason}
 
-    if len(expected) != HIDDEN_RECORD_COUNT:
-        reason = f"hidden expected file has {len(expected)} records, not {HIDDEN_RECORD_COUNT}"
+    # Inputs and answers are paired by line number, so both must hold exactly
+    # EXAM_RECORD_COUNT records.
+    input_count = len(records(program_input))
+    if input_count != EXAM_RECORD_COUNT or len(expected) != EXAM_RECORD_COUNT:
+        reason = (
+            f"exam files have {input_count} inputs and {len(expected)} answers, "
+            f"expected {EXAM_RECORD_COUNT} of each"
+        )
         log(f"behaviour: {reason}")
         return {"score": 0.0, "reasoning": reason}
 
@@ -84,16 +92,16 @@ def behaviour(workspace: Path) -> dict[str, object]:
     actual = records(stdout)
     matches = sum(
         1
-        for index in range(HIDDEN_RECORD_COUNT)
+        for index in range(EXAM_RECORD_COUNT)
         if index < len(actual) and actual[index] == expected[index]
     )
     score = _fraction(matches)
-    contract_ok = code == 0 and not timed_out and len(actual) == HIDDEN_RECORD_COUNT
+    contract_ok = code == 0 and not timed_out and len(actual) == EXAM_RECORD_COUNT
     if score == 1.0 and not contract_ok:
-        score = _fraction(HIDDEN_RECORD_COUNT - 1)
+        score = _fraction(EXAM_RECORD_COUNT - 1)
 
     reason = (
-        f"matches={matches}/{HIDDEN_RECORD_COUNT} "
+        f"matches={matches}/{EXAM_RECORD_COUNT} "
         f"actual_records={len(actual)} exit={code} timed_out={timed_out}"
     )
     if stderr:

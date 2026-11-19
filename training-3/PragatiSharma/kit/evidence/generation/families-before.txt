@@ -1,0 +1,31 @@
+family                                        old-practice        old-hidden       trainer-kit
+(titles)                                             2,000             2,000           100,000
+small word                                           1,072             1,067            70,370
+sub-phrase break + small word                          165               176            12,331
+all-caps line                                          371               364            10,569
+initials (A.B.)                                        178               175            15,262
+d'/l'/o' apostrophe                                    167               168            13,881
+Mc prefix                                              182               191            13,650
+honorific (exact)                                       39                47            11,817
+inline period (domain, v1.2)                           335               329            33,888
+ASCII internal caps                                    204               220            43,618
+slash split                                            127               127            19,206
+double slash (URL)                                     134               124            11,553
+hyphen split                                           255               228            28,992
+consonant acronym                                      179               167            16,588
+ordinal (21st)                                          36                38                 0
+tab or NBSP                                            143               140            28,943
+honorific + punctuation                                  0                 0             2,597
+other letter+digit word (mp3, 4k)                        7                14             3,041
+decimal number                                           0                 0             3,041
+no-letter title                                          0                 0                 0
+non-ASCII letters                                        0                 0            16,211
+case-expanding char (ß, ﬁ, İ)                            0                 0             1,908
+non-ASCII internal caps                                  0                 0               177
+typographic apostrophe ’                                 0                 0                 0
+contraction/possessive                                   0                 0             2,968
+punctuation/symbol outside PUNCT                        16                10                 0
+emoji / non-BMP                                          0                 0                 0
+other Unicode space                                      0                 0                 0
+zero-width char                                          0                 0                 0
+URL/path with hyphen, no period                          0                 0                28

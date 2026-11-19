@@ -6,7 +6,9 @@ from pathlib import Path
 
 BUILD_TIMEOUT_SEC = 60
 RUN_TIMEOUT_SEC = 60
-HIDDEN_RECORD_COUNT = 2000
+# Records in the graded exam, tests/data/inputs.txt and tests/data/answers.txt
+# (frozen with kit/answers.py; kit/report.txt: 100000 kept, 0 dropped).
+EXAM_RECORD_COUNT = 100000
 
 # The submitted program runs as this unprivileged user, never as root.
 # tests/Dockerfile makes /tests and the Python interpreter root-only and checks
