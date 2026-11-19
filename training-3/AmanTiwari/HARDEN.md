@@ -3,19 +3,28 @@
 Task: `training-3/AmanTiwari/task` (my practice-1 titlecase-go, hardened).
 Attacker: **Ayush Singh** — report at `training-3/AyushSingh/attack/ATTACK.md`.
 
-All numbers below are from running the real checks (Reward Kit) in the task's own
-verifier image on local Docker. The attacker's "before" numbers are his Harbor
-job folders; I reproduced them on my task before changing anything.
+Every "after" number below is from a real Harbor run on the hardened task
+(local Docker, 2026-11-19); the job folder is given and the `reward.json` is in
+`../AmanTiwari/proof/`. The "before" numbers are Ayush Singh's own Harbor runs on
+the old task (`../AyushSingh/attack/results/`).
+
+Proof runs on the hardened task:
+
+| Run | reward | job folder |
+|---|---|---|
+| oracle | **1.000** | jobs/2026-11-19__18-31-01 |
+| nop | **0.000** | jobs/2026-11-19__18-35-59 |
 
 ## Holes closed
 
-Ayush Singh's three cheats all scored above 0.2 on the old task:
+Ayush Singh's three cheats all scored above 0.2 on the old task; each is now
+below 0.2, re-run on the hardened task:
 
-| Cheat | How it beat the old exam | before | after | fix |
-|---|---|---|---|---|
-| 1 — build trick (empty Go program) | build + no_python paid 2/6 points for a program that printed nothing | **0.333** | **0.000** | gates, not points |
-| 2 — half port (cap words + small-word list) | proportional behaviour paid for the few lines a naive port gets right, on top of the free 2/6 | **0.438** | **0.140** | gates + bigger/weirder exam |
-| 3 — Python inside (os/exec to run the original) | no check looked at imports; the verifier image has python3 | **1.000** | **0.000** | new `no_exec` gate |
+| Cheat | How it beat the old exam | before | after | job folder | fix |
+|---|---|---|---|---|---|
+| 1 — build trick (empty Go program) | build + no_python paid 2/6 points for a program that printed nothing | **0.333** | **0.000** | jobs/2026-11-19__18-38-16 | gates, not points |
+| 2 — half port (cap words + small-word list) | proportional behaviour paid for the few lines a naive port gets right, on top of the free 2/6 | **0.438** | **0.140** | jobs/2026-11-19__18-40-41 | gates + bigger/weirder exam |
+| 3 — Python inside (os/exec to run the original) | no check looked at imports; the verifier image has python3 | **1.000** | **0.000** | jobs/2026-11-19__18-44-02 | new `no_exec` gate (no_exec=0) |
 
 ### Fix 1 — hard rules are gates, not points (`tests/reward.toml`, `tests/behaviour/behaviour.py`)
 `reward = behaviour` only (build, no_python, no_exec have weight 0), and
