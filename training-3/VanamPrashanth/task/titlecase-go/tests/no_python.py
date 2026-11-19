@@ -34,7 +34,7 @@ def no_python(workspace: Path = Path("/workspace/repo")) -> float:
         return 0.0
     if runner.python_left_in_repo(repo):
         return 0.0
-    if runner.hidden_accuracy(repo) < runner.PASS_MARK:
+    if runner.hidden_accuracy(repo, "no_python") < runner.PASS_MARK:
         return 0.0
     return 1.0
 

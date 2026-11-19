@@ -25,4 +25,4 @@ Speed, memory use, and the wording of error messages are not checked.
 
 ## 6. How it is graded
 
-Hidden automatic tests grade the program on inputs you do not see. A partial score is possible, but a program that gets fewer than 80% of the hidden titles exactly right scores 0 on behaviour.
+Hidden automatic tests grade the program on inputs you do not see, including new titles generated at random each time it is graded. A partial score is possible, but a program that gets fewer than 80% of the hidden titles exactly right scores 0 on behaviour.

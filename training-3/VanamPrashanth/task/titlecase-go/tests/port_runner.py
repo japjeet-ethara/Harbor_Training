@@ -11,10 +11,24 @@ Hardening (Day 5, closes MohammadAdnan's cheats 1-3):
   (cheat 1) nor hand the work to Python (cheat 2).
 - Accuracy below PASS_MARK earns 0 behaviour and 0 no_python, so a half port
   or a lookup table gets no partial credit (cheat 3).
+
+Hardening round 2 (self-attack, cheat N1 "download the exam"):
+- The task lives in a public GitHub repo, so the stored hidden answers can be
+  downloaded or copied into solve.sh. Every grading run therefore also makes a
+  FRESH exam: FRESH_COUNT new titles from tests/gen.py with a random seed,
+  answered by the original Python titlecase() (tests/data/original_titlecase.txt,
+  WITHOUT the regex package). Nobody can know these answers in advance.
+- The score uses the LOWER of the stored-exam and fresh-exam accuracies.
 """
 
+import importlib.machinery
+import importlib.util
 import os
+import random
 import re
+import secrets
+import sys
+import threading
 import shutil
 import subprocess
 import tempfile
@@ -23,6 +37,12 @@ from pathlib import Path
 DATA_DIR = Path(__file__).resolve().parent / "data"
 NOBODY = "65534:65534"
 PASS_MARK = 0.80
+FRESH_COUNT = 2000
+TESTS_DIR = Path(__file__).resolve().parent
+LOG_DIR = Path("/logs/verifier")
+_IMPORT_LOCK = threading.Lock()
+# characters str.splitlines() treats as line ends; such titles cannot be one line
+LINE_BREAKS = "\r\n\x0b\x0c\x1c\x1d\x1e\x85\u2028\u2029"
 BUILD_ENV = dict(os.environ, CGO_ENABLED="0")  # static binary, runs in an empty jail
 
 PY_SOURCE_MARKERS = (
@@ -79,23 +99,61 @@ def build_binary(repo: Path, out: Path) -> bool:
         return False
 
 
-def hidden_accuracy(repo: Path) -> float:
-    """Share of hidden lines the jailed binary gets exactly right (0.0 on any failure)."""
-    inputs_path = DATA_DIR / "hidden_inputs.txt"
-    expected_path = DATA_DIR / "hidden_expected.txt"
-    if not inputs_path.is_file() or not expected_path.is_file():
-        return 0.0
+def _load_module(name: str, path: Path, loader=None):
+    loader = loader or importlib.machinery.SourceFileLoader(name, str(path))
+    spec = importlib.util.spec_from_loader(name, loader)
+    module = importlib.util.module_from_spec(spec)
+    loader.exec_module(module)
+    return module
 
-    # Read the exam into memory first; the binary never sees these files.
-    input_bytes = inputs_path.read_bytes()
-    expected = expected_path.read_text(encoding="utf-8").splitlines()
-    if not expected:
-        return 0.0
 
+def _original_titlecase():
+    """The original Python titlecase(), loaded with the optional regex package blocked."""
+    with _IMPORT_LOCK:
+        saved = sys.modules.get("regex", None)
+        had = "regex" in sys.modules
+        sys.modules["regex"] = None  # import regex -> ImportError -> falls back to re
+        try:
+            mod = _load_module("titlecase_original", DATA_DIR / "original_titlecase.txt")
+        finally:
+            if had:
+                sys.modules["regex"] = saved
+            else:
+                sys.modules.pop("regex", None)
+    return mod.titlecase
+
+
+def stored_exam():
+    inputs = (DATA_DIR / "hidden_inputs.txt").read_text(encoding="utf-8").splitlines()
+    expected = (DATA_DIR / "hidden_expected.txt").read_text(encoding="utf-8").splitlines()
+    return inputs, expected
+
+
+def fresh_exam(seed: int, count: int = FRESH_COUNT):
+    """New titles nobody has seen: tests/gen.py families, random seed, answers from the original."""
+    gen = _load_module(f"titlecase_gen_{seed}", TESTS_DIR / "gen.py")
+    gen.random = random.Random(seed)  # private RNG, safe with concurrent criteria
+    titlecase = _original_titlecase()
+    known = set((DATA_DIR / "inputs.txt").read_text(encoding="utf-8").splitlines())
+    known |= set((DATA_DIR / "hidden_inputs.txt").read_text(encoding="utf-8").splitlines())
+    inputs, expected = [], []
+    while len(inputs) < count:
+        title = gen.make_title()
+        if title in known or any(c in title for c in LINE_BREAKS):
+            continue
+        answer = titlecase(title)
+        if any(c in answer for c in LINE_BREAKS):
+            continue
+        inputs.append(title)
+        expected.append(answer)
+    return inputs, expected
+
+
+def run_jailed(repo: Path, input_bytes: bytes):
+    """Build the port and run it alone in an empty chroot jail as nobody. Returns stdout lines or None."""
     chroot = shutil.which("chroot")
     if chroot is None or not repo.exists():
-        return 0.0
-
+        return None
     tmp = Path(tempfile.mkdtemp(prefix="titlecase-jail-"))
     try:
         jail = tmp / "jail"
@@ -104,7 +162,7 @@ def hidden_accuracy(repo: Path) -> float:
         os.chmod(jail, 0o755)
         binary = jail / "port"
         if not build_binary(repo, binary):
-            return 0.0
+            return None
         os.chmod(binary, 0o755)
         proc = subprocess.run(
             [chroot, f"--userspec={NOBODY}", str(jail), "/port"],
@@ -115,13 +173,45 @@ def hidden_accuracy(repo: Path) -> float:
             timeout=180,
         )
     except Exception:
-        return 0.0
+        return None
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+    return proc.stdout.decode("utf-8", errors="replace").splitlines()
 
-    got = proc.stdout.decode("utf-8", errors="replace").splitlines()
-    matches = sum(1 for i, exp in enumerate(expected) if i < len(got) and got[i] == exp)
-    return matches / len(expected)
+
+def _share(got, expected, offset: int) -> float:
+    if not expected:
+        return 0.0
+    ok = sum(1 for i, exp in enumerate(expected) if offset + i < len(got) and got[offset + i] == exp)
+    return ok / len(expected)
+
+
+def hidden_accuracy(repo: Path, label: str = "check") -> float:
+    """min(stored-exam accuracy, fresh-exam accuracy) of the jailed binary; 0.0 on any failure."""
+    try:
+        s_in, s_exp = stored_exam()
+        seed = int(os.environ.get("TITLECASE_FRESH_SEED") or secrets.randbits(63))
+        f_in, f_exp = fresh_exam(seed)
+    except Exception as exc:  # never pay out if the exam cannot be built
+        print(f"[{label}] exam build failed: {exc!r}", file=sys.stderr)
+        return 0.0
+    # Exam is now only in the grader's memory; the binary sees one stdin stream.
+    payload = "".join(line + "\n" for line in s_in + f_in).encode("utf-8")
+    got = run_jailed(repo, payload)
+    if got is None:
+        stored = fresh = 0.0
+    else:
+        stored = _share(got, s_exp, 0)
+        fresh = _share(got, f_exp, len(s_in))
+    result = min(stored, fresh)
+    note = f"[{label}] fresh seed={seed} stored={stored:.4f} fresh={fresh:.4f} used={result:.4f}"
+    print(note, file=sys.stderr)
+    try:
+        LOG_DIR.mkdir(parents=True, exist_ok=True)
+        (LOG_DIR / f"fresh-exam-{label}.txt").write_text(note + "\n", encoding="utf-8")
+    except OSError:
+        pass
+    return result
 
 
 def graded(accuracy: float) -> float:

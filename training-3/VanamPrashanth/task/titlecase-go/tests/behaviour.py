@@ -28,7 +28,7 @@ def behaviour(workspace: Path = Path("/workspace/repo")) -> float:
     Score 0 below 80% exact lines, then linear up to 1.0 at 100%.
     """
     runner = _runner()
-    return float(runner.graded(runner.hidden_accuracy(runner.repo_dir(workspace))))
+    return float(runner.graded(runner.hidden_accuracy(runner.repo_dir(workspace), "behaviour")))
 
 
 if __name__ == "__main__":
