@@ -1,4 +1,3 @@
-
 Target: Ayush Singh
-Commit SHA ID: <2b63c5e8563b3ae8b9f8029aa05028863c5ec277>
-Commit Name: [Remove reward calculation formula from README]
+Commit SHA ID: 2b63c5e8563b3ae8b9f8029aa05028863c5ec277
+Commit Name: Remove reward calculation formula from README
