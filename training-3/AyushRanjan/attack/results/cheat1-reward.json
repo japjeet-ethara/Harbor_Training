@@ -1,0 +1,120 @@
+{
+    "id": "99650c3b-51ff-4c6a-a2ee-3b36f47494c0",
+    "task_name": "target",
+    "trial_name": "target__dpiN9rx",
+    "trial_uri": "file:///C:/Users/AyushRanjan/Desktop/task3/Harbor_Training/jobs/ayush-day4-cheat1-harbor/target__dpiN9rx",
+    "task_id": {
+        "path": "C:\\Users\\AyushRanjan\\Desktop\\task3\\Harbor_Training\\training-3\\AyushRanjan\\attack\\scratch1\\target"
+    },
+    "source": "scratch1",
+    "task_checksum": "f73271638fc284400a2085e756d9308f1b41623ba97fcf6a48447bc0ac6aba67",
+    "config": {
+        "task": {
+            "path": "C:\\Users\\AyushRanjan\\Desktop\\task3\\Harbor_Training\\training-3\\AyushRanjan\\attack\\scratch1\\target",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "scratch1"
+        },
+        "trial_name": "target__dpiN9rx",
+        "trials_dir": "jobs\\ayush-day4-cheat1-harbor",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "628fad41-ddc3-4e63-bd58-9c37acbc771f",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-19T09:54:11.660460Z",
+    "finished_at": "2026-11-19T09:54:32.733481Z",
+    "environment_setup": {
+        "started_at": "2026-11-19T09:54:11.766343Z",
+        "finished_at": "2026-11-19T09:54:19.657421Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-19T09:54:19.657468Z",
+        "finished_at": "2026-11-19T09:54:19.657526Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-19T09:54:19.657617Z",
+        "finished_at": "2026-11-19T09:54:22.100463Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-19T09:54:24.366071Z",
+        "finished_at": "2026-11-19T09:54:28.847020Z"
+    },
+    "step_results": null
+}
