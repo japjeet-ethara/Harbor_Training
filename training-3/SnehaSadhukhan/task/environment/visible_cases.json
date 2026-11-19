@@ -1,0 +1,256 @@
+{
+  "cases": [
+    {
+      "id": "empty",
+      "text": "",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": ""
+    },
+    {
+      "id": "a-thing",
+      "text": "a thing",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A Thing"
+    },
+    {
+      "id": "readme-lower",
+      "text": "this is a test",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is a Test"
+    },
+    {
+      "id": "readme-upper",
+      "text": "THIS IS A TEST",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is a Test"
+    },
+    {
+      "id": "readme-internal-caps",
+      "text": "this is a TEST",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is a TEST"
+    },
+    {
+      "id": "small-v-and-vs",
+      "text": "this v that vs. the rest",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This v That vs. The Rest"
+    },
+    {
+      "id": "small-word-at-end",
+      "text": "Small word at end is nothing to be afraid of",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Small Word at End Is Nothing to Be Afraid Of"
+    },
+    {
+      "id": "slash-and-or",
+      "text": "a title and/or string",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A Title and/or String"
+    },
+    {
+      "id": "hyphen-and-slash",
+      "text": "a-b end-to-end two-not-three/three-by-four/five-and",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A-B End-to-End Two-Not-Three/Three-by-Four/Five-And"
+    },
+    {
+      "id": "em-dash-all-caps",
+      "text": "EPISODE 7 \u2014 THE FORCE AWAKENS",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Episode 7 \u2014 The Force Awakens"
+    },
+    {
+      "id": "initials",
+      "text": "WASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE A PROBLEM",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Washington, D.C. Should Be Fixed but Might Be a Problem"
+    },
+    {
+      "id": "oreilly",
+      "text": "my name is o'reilly",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "My Name Is O'Reilly"
+    },
+    {
+      "id": "mc-name",
+      "text": "Mr McTavish went to MacDonalds",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Mr McTavish Went to MacDonalds"
+    },
+    {
+      "id": "consonant-acronym",
+      "text": "Words with all consonants like cnn are acronyms",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Words With All Consonants Like CNN Are Acronyms"
+    },
+    {
+      "id": "domains",
+      "text": "this is just an example.com and this is http://foo.com",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "This Is Just an example.com and This Is http://foo.com"
+    },
+    {
+      "id": "blank-lines-default",
+      "text": "Line number one\n\nand Line three\n",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Line Number One\nAnd Line Three\n"
+    },
+    {
+      "id": "blank-lines-preserve",
+      "text": "Line number one\n\nand Line three\n",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": true,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Line Number One\n\nAnd Line Three\n"
+    },
+    {
+      "id": "tabs-kept",
+      "text": "text\twith\ttabs",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Text\tWith\tTabs"
+    },
+    {
+      "id": "tabs-normalised",
+      "text": "text\twith\ttabs",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": true,
+      "callback": null,
+      "expected": "Text With Tabs"
+    },
+    {
+      "id": "unicode-nino",
+      "text": "EL NI\u00d1O A ARRIV\u00c9 HIER",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "El Ni\u00f1o a Arriv\u00e9 Hier"
+    },
+    {
+      "id": "subphrase-colon",
+      "text": "Starting Sub-Phrase With a Small Word: a Trick, Perhaps?",
+      "use_default": true,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "Starting Sub-Phrase With a Small Word: A Trick, Perhaps?"
+    },
+    {
+      "id": "callback-abbreviations",
+      "text": "a simple tcp and udp wrapper",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "upper_if",
+        "words": [
+          "TCP",
+          "UDP"
+        ]
+      },
+      "expected": "A Simple TCP and UDP Wrapper"
+    },
+    {
+      "id": "wordlist-all-caps",
+      "text": "SENDING UDP PACKETS OVER PPPOE WORKS GREAT",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": {
+        "kind": "wordlist",
+        "lines": [
+          "UDP",
+          "PPPoE"
+        ]
+      },
+      "expected": "Sending UDP Packets Over PPPoE Works Great"
+    },
+    {
+      "id": "explicit-defaults",
+      "text": "a thing",
+      "use_default": false,
+      "small_first_last": true,
+      "preserve_blank_lines": false,
+      "normalise_space_characters": false,
+      "callback": null,
+      "expected": "A Thing"
+    }
+  ]
+}
