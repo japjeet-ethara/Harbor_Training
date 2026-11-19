@@ -1,1 +1,0 @@
-# ethara/titlecase-go
