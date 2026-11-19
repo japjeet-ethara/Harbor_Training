@@ -6,7 +6,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from rewardkit import criterion
 
-from support import HIDDEN_RECORD_COUNT, RUN_TIMEOUT_SEC, log, records, run_command
+from support import (
+    HIDDEN_RECORD_COUNT,
+    RUN_TIMEOUT_SEC,
+    go_build_all,
+    log,
+    python_files,
+    records,
+    run_command,
+    run_submission,
+)
 
 HIDDEN_INPUTS = Path("/tests/data/hidden_inputs.txt")
 HIDDEN_EXPECTED = Path("/tests/data/hidden_expected.txt")
@@ -20,6 +29,19 @@ def _fraction(matches: int) -> float:
 def behaviour(workspace: Path) -> dict[str, object]:
     if not workspace.is_dir():
         reason = f"workspace is not a directory: {workspace}"
+        log(f"behaviour: {reason}")
+        return {"score": 0.0, "reasoning": reason}
+
+    # Required conditions: behaviour, and so the reward, is 0 unless the
+    # build and no_python conditions both pass.
+    ok, detail = go_build_all(workspace)
+    if not ok:
+        reason = f"required condition failed: build: {detail}"
+        log(f"behaviour: {reason}")
+        return {"score": 0.0, "reasoning": reason}
+    leftovers = python_files(workspace)
+    if leftovers:
+        reason = f"required condition failed: no_python: {len(leftovers)} .py file(s) remain"
         log(f"behaviour: {reason}")
         return {"score": 0.0, "reasoning": reason}
 
@@ -37,9 +59,9 @@ def behaviour(workspace: Path) -> dict[str, object]:
         return {"score": 0.0, "reasoning": reason}
 
     with tempfile.TemporaryDirectory(prefix="titlecase-grade-") as temp_dir:
-        binary = str(Path(temp_dir) / "titlecase")
+        binary = Path(temp_dir) / "titlecase"
         code, _stdout, stderr, timed_out = run_command(
-            ["go", "build", "-o", binary, "."],
+            ["go", "build", "-o", str(binary), "."],
             workspace,
             RUN_TIMEOUT_SEC,
         )
@@ -53,11 +75,10 @@ def behaviour(workspace: Path) -> dict[str, object]:
             log(f"behaviour: {reason}")
             return {"score": 0.0, "reasoning": reason}
 
-        code, stdout, stderr, timed_out = run_command(
-            [binary],
-            workspace,
-            RUN_TIMEOUT_SEC,
-            stdin=program_input,
+        # Unprivileged, bare environment, outside the workspace: the program
+        # cannot read /tests or start Python (see support.py, tests/Dockerfile).
+        code, stdout, stderr, timed_out = run_submission(
+            binary, program_input, RUN_TIMEOUT_SEC
         )
 
     actual = records(stdout)
