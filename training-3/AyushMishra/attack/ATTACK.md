@@ -1,28 +1,67 @@
-## Cheat 1 — Lookup table
+# Attack Report
 
-What it does: Loads input-output pairs from inputs.txt and expected.txt.\
-Prints the stored answer on a match and Unknown otherwise.\
-Score: reward 0.1667 (build 1, no_python 0, behaviour 0) [Saved reward](results/cheat1-reward.json)\
-Job folder: jobs/2026-11-19__16-59-54\
-Why it worked: The verifier build earned the entire reward. The exported workspace contained neither lookup fixture, and the behaviour score was zero. `target/tests/build.py:31` · `target/tests/reward.toml:4`\
-How to fix: Keep answer fixtures isolated and require some correct output before awarding build credit.
+## Cheat 1: Delete Python Files
 
-## Cheat 2 — Partial port
+**What it does:**  
+Deletes Python files from the solution workspace without implementing titlecase logic or modifying the tests, task configuration, or environment.
 
-What it does: Capitalizes the first letter of words and lowercases recognized interior small words.\
-Omits special handling for acronyms, hyphens, and names.\
-Score: reward 0.2777 (build 1, no_python 0, behaviour 0.1665) [Saved reward](results/cheat2-reward.json)\
-Job folder: jobs/2026-11-19__17-15-24\
-Why it worked: The grader awards behaviour credit per matching line. The partial port matched 333 of 2,000 hidden lines. `target/tests/behaviour.py:40`\
-How to fix: Score coverage by rule so success on basic capitalization gives limited credit when special rules are missing.
+**Score:**  
+Reward: 0.000 (Build: 0.0, No_Python: 0.0, Behaviour: 0.0)  
+Reward file: `results/cheat1-reward.json`  
+Job folder: `jobs/2026-11-19__17-55-50`
 
-## Cheat 3 — Empty Go program
+**Why it failed:**  
+The deletion-only strategy did not produce a valid build or correct behaviour. All recorded reward components were zero.
 
-What it does: Writes an empty Go main function and runs go build ./... [cheat3/solve.sh:9–15](cheat3/solve.sh#L9-L15).\
-The launcher exited with status 1 when the default binary name collided with the bundled titlecase directory. The exported program has no stdin or stdout logic.\
-Score: reward 0.1667 (build 1, no_python 0, behaviour 0) [Saved reward](results/cheat3-reward.json)\
-Job folder: jobs/2026-11-19__17-25-24\
-Why it worked: The verifier compiled the exported source using an explicit output path. The build criterion alone earned 0.1667. `target/tests/build.py:31` · `target/tests/reward.toml:4`\
-How to fix: Require a nonzero behaviour score before awarding any overall credit.
+**How to fix:**  
+A solution must preserve the required executable and provide valid input/output behaviour. Removing Python files alone is insufficient to satisfy the task requirements.
 
-**Highest score any cheat got: 0.2777 (Cheat 2).**
+---
+
+## Cheat 2: Partial Port
+
+**What it does:**  
+Implements simplified titlecase logic in Go. Capitalizes the first letter of words and lowercases recognized interior small words. Omits special handling for acronyms, hyphens, and names.
+
+**Score:**  
+Reward: 0.2777 (Build: 1.0, No_Python: 0.0, Behaviour: 0.1665)  
+Reward file: `results/cheat2-reward.json`  
+Job folder: `jobs/2026-11-19__17-15-24`
+
+**Why it worked:**  
+The partial implementation matched 333 of 2,000 hidden test lines. The grader awards behaviour credit for matching outputs. `target/tests/behaviour.py:40`
+
+**How to fix:**  
+Improve coverage of special capitalization rules and avoid awarding excessive credit for basic transformations when important cases are unsupported.
+
+---
+
+## Cheat 3: Runtime Answer File Discovery
+
+**What it does:**  
+Searches the container filesystem at runtime for potential answer files, including `hidden_inputs.txt`, `hidden_expected.txt`, `inputs.txt`, and `expected.txt`.
+
+It searches locations such as `/tests`, `/solution`, home directories, and other filesystem paths. It then attempts to load matching input-output pairs into a Go lookup table. Python files are also deleted as part of the solution.
+
+**Score:**  
+Reward: 0.3333 (Build: 1.0, No_Python: 1.0, Behaviour: 0.0)  
+Reward file: `results/cheat3-reward.json`  
+Job folder: `jobs/2026-11-19__18-14-41`
+
+**Why it worked:**  
+The Go program compiled successfully, earning build credit. Deleting Python files satisfied the No_Python check. However, the filesystem search did not produce a usable lookup table for the evaluated inputs, resulting in zero behaviour credit.
+
+**How to fix:**  
+Keep hidden answer fixtures inaccessible to the solution runtime. Ensure behaviour tests require correct transformations on inputs that cannot be solved through exposed lookup data. Build and No_Python success should not compensate excessively for zero behavioural correctness.
+
+---
+
+## Summary
+
+| Cheat | Strategy | Reward |
+|---|---|---:|
+| Cheat 1 | Delete Python Files | 0.0000 |
+| Cheat 2 | Partial Port | 0.2777 |
+| Cheat 3 | Runtime Answer File Discovery | 0.3333 |
+
+**Highest reward: 0.3333 (Cheat 3).**
