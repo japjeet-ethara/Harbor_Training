@@ -127,7 +127,7 @@ func upperFirst(s string) string {
 func capFirst(s string) string {
 	rs := []rune(s)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	for i < len(rs) && isPunct(rs[i]) && !isWord(rs[i]) {
 		i++
 	}
 	if i >= len(rs) || !isWord(rs[i]) {
