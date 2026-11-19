@@ -151,7 +151,11 @@ def main():
     seen = set()
 
     def take(title, into):
-        if title and set(title) <= ALLOWED and title not in seen:
+        # Drop titles the original leaves unchanged (fixed points of titlecase). The graded set then holds
+        # only titles that need real work, so a program that just echoes its input scores 0 and cannot ride
+        # the free build point over the 0.2 cheat bar.
+        if (title and set(title) <= ALLOWED and title not in seen
+                and original.titlecase(title) != title):
             seen.add(title)
             into.append(title)
 
