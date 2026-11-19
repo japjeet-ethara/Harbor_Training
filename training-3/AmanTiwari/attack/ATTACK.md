@@ -2,7 +2,9 @@
 
 Target: `ayushkhurana/titlecase-go` in `japjeet-ethara/Harbor_Training`, commit
 `3d26d51533b80ed2caf086fe4024246b8fa718f7` (see `TARGET.txt`).
-All file:line references are to that commit.
+All file:line references are to that commit. The copy Ayush later pushed to
+`training-3/AyushKhurana/task/` (commit `9234582`) has the same 49 files byte for byte, plus one
+new `.gitattributes` (line endings only), so every result below applies to it too.
 
 ## Reading the exam
 
