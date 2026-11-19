@@ -1,4 +1,4 @@
-import subprocess
+import importlib.util
 from pathlib import Path
 
 try:
@@ -12,35 +12,30 @@ except ImportError:
         return decorator
 
 
+def _runner():
+    path = Path(__file__).resolve().parent / "port_runner.py"
+    spec = importlib.util.spec_from_file_location("titlecase_port_runner", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 @criterion
 def no_python(workspace: Path = Path("/workspace/repo")) -> float:
-    """2. no_python (weight 1): no .py files anywhere under /workspace/repo AND the build passes -> 1, else 0."""
-    repo_dir = Path("/workspace/repo")
-    if not repo_dir.exists() and workspace and Path(workspace).exists():
-        repo_dir = Path(workspace)
-
-    if not repo_dir.exists():
+    """2. no_python (weight 1): 1 only if ALL hold:
+    - `go build ./...` passes,
+    - no .py file, no Python source under another name, no Go file importing os/exec,
+    - the Go port really works: the jailed binary gets at least 80% of the hidden
+      lines exactly right (deleting the Python files alone earns nothing).
+    """
+    runner = _runner()
+    repo = runner.repo_dir(workspace)
+    if not repo.exists() or not runner.go_build_all(repo):
         return 0.0
-
-    # 1. Check that go build ./... passes
-    try:
-        res = subprocess.run(
-            ["go", "build", "./..."],
-            cwd=str(repo_dir),
-            capture_output=True,
-            text=True,
-            timeout=120,
-        )
-        if res.returncode != 0:
-            return 0.0
-    except Exception:
+    if runner.python_left_in_repo(repo):
         return 0.0
-
-    # 2. Check that no .py files exist anywhere under repo_dir
-    py_files = list(repo_dir.rglob("*.py"))
-    if len(py_files) > 0:
+    if runner.hidden_accuracy(repo) < runner.PASS_MARK:
         return 0.0
-
     return 1.0
 
 

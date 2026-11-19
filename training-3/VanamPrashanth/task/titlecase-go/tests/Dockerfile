@@ -23,4 +23,5 @@ WORKDIR /app
 
 COPY . /tests/
 
-RUN chmod +x /tests/test.sh
+# Only root (the grader) may read the exam; the agent's binary runs as nobody.
+RUN chmod +x /tests/test.sh && chmod -R go-rwx /tests

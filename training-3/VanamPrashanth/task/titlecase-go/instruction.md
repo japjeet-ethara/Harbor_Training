@@ -13,10 +13,11 @@ Build a Go program in `/workspace/repo`. It reads one title per line from standa
 - Use only the Go standard library.
 - Leave no `.py` files anywhere in the repository.
 - `go build ./...` must pass when run in `/workspace/repo`.
+- The program must be self-contained. When graded it runs alone in an empty sandbox: no other programs (no Python, no shell), no files, no network. It must not start other programs (`os/exec`).
 
 ## 4. Behaviour
 
-For every input, the titlecased text must match the original Python `titlecase()` result byte for byte.
+For every input, the titlecased text must match the original Python `titlecase()` result byte for byte. The expected answers come from the original titlecase WITHOUT the optional `regex` package installed.
 
 ## 5. Not checked
 
@@ -24,4 +25,4 @@ Speed, memory use, and the wording of error messages are not checked.
 
 ## 6. How it is graded
 
-Hidden automatic tests grade the program. A partial score is possible.
+Hidden automatic tests grade the program on inputs you do not see. A partial score is possible, but a program that gets fewer than 80% of the hidden titles exactly right scores 0 on behaviour.

@@ -3,6 +3,10 @@ set -euo pipefail
 
 mkdir -p /logs/verifier
 
+# Keep the exam root-only even if /tests was mounted at run time.
+# The agent's binary is run as nobody inside an empty chroot jail (tests/port_runner.py).
+chmod -R go-rwx /tests 2>/dev/null || true
+
 # Run RewardKit against /tests
 if command -v rewardkit >/dev/null 2>&1; then
     rewardkit /tests --workspace /workspace/repo || true

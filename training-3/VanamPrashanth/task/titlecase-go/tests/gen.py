@@ -1,7 +1,8 @@
 """Generate deterministic titlecase fixtures from the original Python library.
 
 Inputs are random, but random.seed(1) makes every run identical. Expected files
-are produced only by calling titlecase() in ../python-titlecase. Do not paste
+are produced only by calling titlecase() in ../environment/python-titlecase,
+WITHOUT the optional regex package (run: uv run --no-project --python 3.12 python -I tests/gen.py). Do not paste
 expected strings into this script.
 """
 
@@ -11,7 +12,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
-PY_TITLECASE = HERE.parent.parent / "python-titlecase"
+PY_TITLECASE = HERE.parent / "environment" / "python-titlecase"
 
 COUNT = 2000
 
@@ -245,9 +246,16 @@ def main():
 
     random.seed(1)
     visible = [make_title() for _ in range(COUNT)]
-    hidden = [make_title() for _ in range(COUNT)]
-    if visible == hidden:
-        raise SystemExit("visible and hidden inputs were identical")
+    # Hidden inputs must never appear in the visible file, so a lookup table
+    # copied from inputs.txt/expected.txt earns nothing (MohammadAdnan cheat 3).
+    seen = set(visible)
+    hidden = []
+    while len(hidden) < COUNT:
+        title = make_title()
+        if title not in seen:
+            hidden.append(title)
+    if seen & set(hidden):
+        raise SystemExit("hidden inputs overlap the visible inputs")
 
     DATA.mkdir(parents=True, exist_ok=True)
     write_lines(DATA / "inputs.txt", visible)
