@@ -99,7 +99,7 @@ func processLine(line string, smallFirstLast bool) string {
 			continue
 		}
 		if isExactSmall(word) {
-			tc = append(tc, strings.ToLower(word))
+			tc = append(tc, pyLower(word))
 			continue
 		}
 		if strings.Contains(word, "/") && !strings.Contains(word, "//") {
@@ -119,7 +119,7 @@ func processLine(line string, smallFirstLast bool) string {
 			continue
 		}
 		if allCaps {
-			word = strings.ToLower(word)
+			word = pyLower(word)
 		}
 		if isAllConsonants(word) && len([]rune(word)) > 2 {
 			tc = append(tc, strings.ToUpper(word))
@@ -148,7 +148,7 @@ func processLine(line string, smallFirstLast bool) string {
 // isAllCaps replaces `line.upper() == line`.
 func isAllCaps(s string) bool {
 	for _, r := range s {
-		if unicode.ToUpper(r) != r {
+		if r == 'ß' || unicode.ToUpper(r) != r {
 			return false
 		}
 	}
@@ -175,21 +175,21 @@ func splitKeepSpace(line string) (words, spaces []string) {
 	return words, spaces
 }
 
-// isSpace replaces Python re `\s` for this input alphabet: the ASCII
-// whitespace class. The punctuation ‘ ’ “ ” – — is not whitespace.
+// isSpace replaces Python re `\s`: includes ASCII whitespace, U+00A0, and U+2009.
+// The punctuation ‘ ’ “ ” – — is not whitespace.
 func isSpace(r rune) bool {
 	switch r {
-	case ' ', '\t', '\n', '\r', '\f', '\v':
+	case ' ', '\t', '\n', '\r', '\f', '\v', '\u00a0', '\u2009':
 		return true
 	default:
 		return false
 	}
 }
 
-// isWord replaces Python re `\w` for this input alphabet: ASCII letters,
-// digits, and underscore. ‘ ’ “ ” – — are not word characters.
+// isWord replaces Python re `\w`: recognizes Unicode letters, numbers,
+// and underscore. ‘ ’ “ ” – — are not word characters.
 func isWord(r rune) bool {
-	return (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') || r == '_'
+	return unicode.IsLetter(r) || unicode.IsNumber(r) || r == '_'
 }
 
 // isLetter replaces the fallback class [a-zA-Z] (Python re, not \p{Letter}).
@@ -266,6 +266,14 @@ func ucInitials(word string) bool {
 	return rec(0)
 }
 
+// pyUpperRune replaces single-character str.upper(), expanding ß to SS.
+func pyUpperRune(r rune) string {
+	if r == 'ß' {
+		return "SS"
+	}
+	return string(unicode.ToUpper(r))
+}
+
 // aposSecond replaces APOS_SECOND
 // ^[dol]['‘][\w]+(?:['s]{2})?$  with IGNORECASE.
 // Rules for o' versus d'/l' are the two branches below.
@@ -285,16 +293,15 @@ func aposSecond(word string) (string, bool) {
 	if !aposRest(r[2:]) {
 		return word, false
 	}
-	out := append([]rune(nil), r...)
 	// len(word[0]) == 1 is always true for str. Vowels keep an initial capital;
 	// d and l are lowercased. The character after the apostrophe is uppercased.
-	if !isAposVowel(out[0]) {
-		out[0] = unicode.ToLower(out[0])
+	var first rune
+	if !isAposVowel(r[0]) {
+		first = unicode.ToLower(r[0])
 	} else {
-		out[0] = unicode.ToUpper(out[0])
+		first = unicode.ToUpper(r[0])
 	}
-	out[2] = unicode.ToUpper(out[2])
-	return string(out), true
+	return string(first) + string(r[1]) + pyUpperRune(r[2]) + string(r[3:]), true
 }
 
 // aposRest is the [\w]+(?:['s]{2})?$ part of APOS_SECOND.
@@ -424,9 +431,24 @@ func ucElsewhere(word string) bool {
 	return false
 }
 
+func foldSmallRune(r rune) rune {
+	if r == '\u0130' || r == '\u0131' {
+		return 'i'
+	}
+	return unicode.ToLower(r)
+}
+
+func foldSmall(s string) string {
+	var b strings.Builder
+	for _, r := range s {
+		b.WriteRune(foldSmallRune(r))
+	}
+	return b.String()
+}
+
 // isExactSmall replaces SMALL_WORDS ^(?:a|an|...|v\.?|via|vs\.?)$ IGNORECASE.
 func isExactSmall(word string) bool {
-	switch strings.ToLower(word) {
+	switch foldSmall(word) {
 	case "a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
 		"of", "on", "or", "the", "to", "v", "v.", "via", "vs", "vs.":
 		return true
@@ -461,8 +483,7 @@ func capFirst(word string) string {
 	r := []rune(word)
 	for i, c := range r {
 		if isWord(c) {
-			r[i] = unicode.ToUpper(c)
-			return string(r)
+			return string(r[:i]) + pyUpperRune(c) + string(r[i+1:])
 		}
 		if !isPunct(c) {
 			return word
@@ -630,7 +651,7 @@ func hasPrefixFold(r []rune, i int, lit string) bool {
 		return false
 	}
 	for k, c := range l {
-		if unicode.ToLower(r[i+k]) != c {
+		if foldSmallRune(r[i+k]) != c {
 			return false
 		}
 	}
@@ -648,6 +669,19 @@ func hasPrefixExact(r []rune, i int, lit string) bool {
 		}
 	}
 	return true
+}
+
+// pyLower replaces str.lower, preserving Python's U+0130 -> i + U+0307 mapping.
+func pyLower(s string) string {
+	var b strings.Builder
+	for _, r := range s {
+		if r == '\u0130' {
+			b.WriteString("i\u0307")
+		} else {
+			b.WriteRune(unicode.ToLower(r))
+		}
+	}
+	return b.String()
 }
 
 // pyCapitalize replaces str.capitalize: first character upper, the rest lower.

@@ -1,0 +1,20 @@
+Target: our measured oracle
+Commit: a9e4b2c
+Our measured oracle is identified as commit a9e4b2c.
+Both published classmate ports come from snapshot 01d11b155117f1e8bd9e842c4a943789ca3bed0d.
+Both exams use re. Sanyam’s task used regex, and the cause of his differences was not isolated.
+The trainer comparator agreed with all three official wrong counts and displayed both tiny classmate probabilities as 0% after rounding.
+
+Original 2K exam:
+number of titles: 2000
+number wrong: 0
+sample size: 2000
+probability: 1.0
+note: zero errors in population: every sample misses all wrong answers
+
+Official 100K exam:
+number of titles: 100000
+number wrong: 0
+sample size: 2000
+probability: 1.0
+note: 1.0 (zero errors to find)
