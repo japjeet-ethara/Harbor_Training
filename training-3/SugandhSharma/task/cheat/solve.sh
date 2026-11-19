@@ -1,9 +1,9 @@
 #!/bin/bash
 # CHEAT, for calibration only. It ports nothing: it writes a Go program that copies its input straight to
 # its output, and it DELETES the Python so the repository looks "replaced". This is the worst case for the
-# grader's free points: it builds and leaves no .py, so before the hardening it collected
-# build(1) + no_python(1) and scored (1 + 1 + 4*0.045) / 6 = 0.36, above the 0.2 bar.
-# After the hardening (no_python needs a real port) it scores (1 + 0 + 4*0.045) / 6 = 0.197, below 0.2.
+# grader's free points: it builds and leaves no .py. Before the hardening it collected build(1) + no_python(1)
+# and scored about (1 + 1 + 0) / 6 = 0.33, above the 0.2 bar. After the hardening (no_python needs a real port,
+# and the hidden set has no titles that echoing already gets right) it scores (1 + 0 + 0) / 6 = 0.1667.
 set -euo pipefail
 cd /workspace/repo
 cat > go.mod <<'MOD'
