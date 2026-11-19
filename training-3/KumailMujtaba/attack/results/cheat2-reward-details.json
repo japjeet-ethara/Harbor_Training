@@ -1,0 +1,60 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 1.0,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "behavior",
+        "weight": 4.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "exact_titlecase_output",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "exact_titlecase_output"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "build",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "module_builds",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "module_builds"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "no_python",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "no_python_sources",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "no_python_sources"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}
