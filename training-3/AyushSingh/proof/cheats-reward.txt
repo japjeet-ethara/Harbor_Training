@@ -1,0 +1,17 @@
+# Attacker Cheats Evaluation on Hardened Task
+Attacker: Vanam Prashanth (training-3/VanamPrashanth/attack)
+
+Cheat 1 (Read the exam):
+  Score: 0.0000 (build 0.0, no_python 0.0, behaviour 0.0)
+  Job folder: jobs/2026-11-19__16-35-02
+  Result: BELOW 0.2 (PASS)
+
+Cheat 2 (Python inside):
+  Score: 0.1667 (build 1.0, no_python 0.0, behaviour 0.0)
+  Job folder: jobs/2026-11-19__16-37-52
+  Result: BELOW 0.2 (PASS)
+
+Cheat 3 (Build trick / empty program):
+  Score: 0.0000 (build 0.0, no_python 0.0, behaviour 0.0)
+  Job folder: jobs/2026-11-19__16-40-24
+  Result: BELOW 0.2 (PASS)

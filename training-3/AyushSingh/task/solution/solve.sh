@@ -183,7 +183,7 @@ func isAllConsonants(word string) bool {
 func capFirst(word string) string {
 	runes := []rune(word)
 	i := 0
-	for i < len(runes) && isPunct(runes[i]) {
+	for i < len(runes) && isPunct(runes[i]) && runes[i] != '_' {
 		i++
 	}
 	if i < len(runes) && isPyWord(runes[i]) {
