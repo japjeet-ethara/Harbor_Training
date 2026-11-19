@@ -34,8 +34,9 @@ list.
 
 **What would I add to make the task harder?** Titles with letters outside ASCII (Python and Go disagree on what
 a letter and an upper-case form are), no network for the agent so it cannot run the original next to its port,
-and `no_python` paid only when behaviour is above a mark, because a program that only copies its input already
-scores 0.36.
+and `no_python` paying only when the port actually works. That last idea is now **done** in this hardened
+version: a program that only copies its input used to score 0.36, above the 0.2 cheat bar; gating `no_python`
+on a real port drops it to 0.197. See `../HARDEN.md` for the weakness, the fix and the before/after proof.
 
 ## How it is graded
 
@@ -44,7 +45,7 @@ Reward Kit, weighted mean of three checks. Each check is one folder under `tests
 | Check | Weight | Score |
 |---|---|---|
 | `build` | 1 | 1 if `go build ./...` passes in `/workspace/repo` (offline, Go 1.23), else 0 |
-| `no_python` | 1 | 1 if no `.py` file is left under `/workspace/repo` and the build passes, else 0 |
+| `no_python` | 1 | 1 if no `.py` file is left, the build passes, AND the port is right on at least 25% of the hidden titles (a real port, not a build-only cheat), else 0 |
 | `behaviour` | 4 | share of the 2000 hidden titles whose output equals the frozen answer exactly |
 
 reward = (build + no_python + 4 x behaviour) / 6.
