@@ -1,7 +1,9 @@
 """Makes the visible and the hidden title lists and freezes the answers of the ORIGINAL Python titlecase().
 
 Run from the task folder:   python tests/gen.py
-It needs the original project in the folder next to the task folder:   ../python-titlecase
+It reads the bundled original project (titlecase 2.4.1) at   task/environment/python-titlecase .
+Freeze mode: the optional "regex" package is switched off, so the answers are frozen on the original's
+standard-library code path (REGEX_AVAILABLE is False). The graded exam is the HIDDEN set (100,000 titles).
 
 Rules this script keeps:
 - Every answer comes from running the original code. Nobody types an answer.
@@ -17,9 +19,12 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ORIGINAL = HERE.parent.parent / "python-titlecase"
+# The answer oracle: the bundled original project (titlecase 2.4.1) shipped in the task image, i.e. the exact
+# code the container grades against. Self-contained, so `python tests/gen.py` needs nothing beside it.
+ORIGINAL = HERE.parent / "environment" / "python-titlecase"
 DATA = HERE / "data"
-N = 2000
+VISIBLE_N = 2000        # visible sample shown to the solver (NOT graded)
+HIDDEN_N = 100000       # the graded exam: both checks (behaviour x4, no_python) score against the hidden set
 
 # Characters a title may contain: printable ASCII, tab, four curly quotes and four dashes.
 ALLOWED = set(map(chr, range(32, 127))) | set("\t\u2018\u2019\u201c\u201d\u2012\u2013\u2014\u2015")
@@ -146,39 +151,49 @@ def main():
     assert {c for c in ALLOWED if in_punct.fullmatch(c)} == set(PUNCT), "PUNCT here is not complete"
     assert set(PUNCT + NOT_PUNCT) <= ALLOWED
 
-    random.seed(1)
-    rng = random.Random(1)
-    seen = set()
+    sizes = (("inputs", VISIBLE_N), ("hidden_inputs", HIDDEN_N))
 
-    def take(title, into):
-        # Drop titles the original leaves unchanged (fixed points of titlecase). The graded set then holds
-        # only titles that need real work, so a program that just echoes its input scores 0 and cannot ride
-        # the free build point over the 0.2 cheat bar.
-        if (title and set(title) <= ALLOWED and title not in seen
-                and original.titlecase(title) != title):
-            seen.add(title)
-            into.append(title)
+    def build():
+        """One full deterministic pass: the two title lists and the original's frozen answers for each."""
+        rng = random.Random(1)
+        seen = set()
 
-    lists = []
-    for _ in range(2):                            # first the visible list, then the hidden list
-        titles = []
-        for title in coverage_titles(rng):
-            take(title, titles)
-        while len(titles) < N:
-            take(one_title(rng), titles)
-        rng.shuffle(titles)
-        lists.append(titles)
-    visible, hidden = lists
-    assert len(visible) == N and len(hidden) == N
-    assert not set(visible) & set(hidden), "the two lists must not share a title"
+        def take(title, into):
+            # Drop titles the original leaves unchanged (fixed points of titlecase). The graded set then
+            # holds only titles that need real work, so a program that just echoes its input scores 0 on it
+            # and cannot ride the free build point over the 0.2 cheat bar.
+            if (title and set(title) <= ALLOWED and title not in seen
+                    and original.titlecase(title) != title):
+                seen.add(title)
+                into.append(title)
+
+        inputs = {}
+        for name, size in sizes:                  # visible first, then hidden; one shared `seen` keeps them disjoint
+            titles = []
+            for title in coverage_titles(rng):
+                take(title, titles)
+            while len(titles) < size:
+                take(one_title(rng), titles)
+            rng.shuffle(titles)
+            inputs[name] = titles
+        assert not set(inputs["inputs"]) & set(inputs["hidden_inputs"]), "the two lists must not share a title"
+        answers = {n: [original.titlecase(t) for t in titles] for n, titles in inputs.items()}
+        for a in answers.values():
+            assert all("\n" not in x and "\r" not in x for x in a), "an answer contains a line break"
+        return inputs, answers
+
+    # Freeze twice: two independent passes must be byte-for-byte identical, or the exam is not reproducible.
+    inputs, answers = build()
+    inputs2, answers2 = build()
+    assert inputs == inputs2 and answers == answers2, "generation is not deterministic"
+    assert len(inputs["inputs"]) == VISIBLE_N and len(inputs["hidden_inputs"]) == HIDDEN_N
 
     DATA.mkdir(exist_ok=True)
-    for name, lines in (("inputs", visible), ("hidden_inputs", hidden)):
-        answers = [original.titlecase(line) for line in lines]
-        assert all("\n" not in a and "\r" not in a for a in answers), "an answer contains a line break"
-        write_lines(DATA / f"{name}.txt", lines)
-        write_lines(DATA / f"{name.replace('inputs', 'expected')}.txt", answers)
-    print("wrote", 2 * N, "titles and their answers to", DATA)
+    for name in ("inputs", "hidden_inputs"):
+        write_lines(DATA / f"{name}.txt", inputs[name])
+        write_lines(DATA / f"{name.replace('inputs', 'expected')}.txt", answers[name])
+    print(f"froze visible={VISIBLE_N} hidden={HIDDEN_N} titles (regex-off/stdlib mode), "
+          f"identical on two passes, to {DATA}")
 
 
 if __name__ == "__main__":

@@ -32,14 +32,16 @@ actually works").
 
 2. **The hidden exam now contains only titles that need real work.** File `task/tests/gen.py`: the `take()`
    filter drops every title the original leaves unchanged (a fixed point of `titlecase`), so a program that
-   just echoes its input is right on **0%** of the hidden titles instead of 4.5%. Both the visible and hidden
-   sets were regenerated; `python tests/gen.py` still reproduces them deterministically.
+   just echoes its input is right on **0%** of the hidden titles instead of 4.5%. The hidden exam was then
+   grown to **100,000 titles** (the graded set; the visible sample stays 2,000), its answers frozen on the
+   original's regex-off / stdlib code path and verified identical on two independent passes. `python
+   tests/gen.py` reproduces all four files deterministically.
 
 Together, a program that builds, deletes the Python and echoes its input now fails the 25% gate (no_python 0)
 and earns no behaviour, so it scores **(1 + 0 + 0) / 6 = 0.1667** — the floor a compiling program can reach,
 below the 0.2 bar. The worst-case calibration cheat `task/cheat/solve.sh` is this exact program.
 
-## Proof (Harbor 0.25.0, reward files in `proof/`)
+## Proof (100,000-title exam, reward files in `proof/`)
 
 | Run | Before (original task) | After (hardened) |
 |---|---|---|
@@ -52,11 +54,18 @@ below the 0.2 bar. The worst-case calibration cheat `task/cheat/solve.sh` is thi
 - `proof/cheat-before-reward.json` → `{"behaviour":0.045,"build":1.0,"no_python":1.0,"reward":0.3633}` (original task)
 - `proof/cheat-after-reward.json` → `{"behaviour":0.0,"build":1.0,"no_python":0.0,"reward":0.1667}` (hardened)
 
+The After numbers were re-verified on the 100,000-title exam (the oracle is right on all 100,000 hidden titles,
+the echo cheat on 0). Harbor's own `run` could not pull its image on this machine, so the three checks were
+reproduced with identical logic in the `golang:1.23` container; `measure/` and `DEFENCE.md` carry the detail.
+
 ## Robustness is preserved
 
-Regenerating the hidden set did not weaken the exam. The mutation test (`dev/mutants.py`, 115 one-change broken
-ports) still catches **114 of 115** on the new hidden set; the one it does not change any output at all (an
-equivalent mutant). See `dev/mutation_report.txt`.
+Growing the hidden set did not weaken the exam. The mutation test (`dev/mutants.py`, 115 one-change broken
+ports) catches **114 of 115**; the one it never catches changes no output at all (an equivalent mutant). The
+`measure/` step re-ran all 115 on both the old 2,000-title and the new 100,000-title exam and found the same
+**114 of 115 with no regressions**, while the common-rule signals grew by roughly 50x (the small-word rule:
+338 -> 21,189 wrong lines). See `measure/README.md` and `measure/runs.tsv`; the single-exam report is
+`dev/mutation_report.txt`.
 
 ## Note on the floor
 
