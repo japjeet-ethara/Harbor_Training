@@ -7,3 +7,9 @@ attack/target/
 .venv/
 __pycache__/
 .env
+
+# Day 5 temporary experiments
+/day5-kit/
+
+# Harbor-generated job results
+/jobs/

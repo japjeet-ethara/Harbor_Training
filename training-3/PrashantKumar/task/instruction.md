@@ -31,3 +31,11 @@ Port the existing Python `titlecase` library in this repository to Go. The Go im
 ## Completion criteria
 
 The task is complete when the Go implementation builds successfully, uses no Python files, and reproduces the original Python library's titlecasing behaviour.
+
+## Reference implementation mode
+
+The expected answers come from Python titlecase WITHOUT regex
+(the optional third-party `regex` package is not installed).
+
+The hardened exam contains 100,000 reproducible inputs generated
+with seed 1. All 100,000 cases were stable across reference runs.

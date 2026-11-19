@@ -22,9 +22,9 @@ var punctuation = `!"“#$%&'‘()*+,-–‒—―./:;?@[\]_` + "`" + `{|}~`
 
 var (
 	initialsRE  = regexp.MustCompile(`^(?:[A-Z]\.|[A-Z]\.[A-Z])+$`)
-	inlineRE    = regexp.MustCompile(`[A-Za-z][.][A-Za-z]`)
-	mixedRE     = regexp.MustCompile(`^[!"“#$%&'‘()*+,\-–‒—―./:;?@\[\\\]_` + "`" + `{|}~]*?[\p{L}]+[\p{Lu}]`)
-	aposRE      = regexp.MustCompile(`(?i)^[dol]['‘][\p{L}]+(?:['s]{2})?$`)
+	inlineRE    = regexp.MustCompile(`\w[.]\w`)
+	mixedRE     = regexp.MustCompile(`^[!"“#$%&'‘()*+,\-–‒—―./:;?@\[\\\]_` + "`" + `{|}~]*?[a-zA-Z]+[A-Z]`)
+	aposRE      = regexp.MustCompile(`(?i)^[dol]['‘][\p{L}\p{N}_]+(?:['s]{2})?$`)
 	macRE       = regexp.MustCompile(`^([Mm]c|MC)(\w.+)$`)
 	titleRE     = regexp.MustCompile(`(?i)^(mr|mrs|ms|dr)$`)
 	subphraseRE = regexp.MustCompile(`([:.;?!\-–‒—―] )(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)`)
@@ -33,7 +33,7 @@ var (
 func upperFirst(s string) string {
 	r := []rune(s)
 	for i, ch := range r {
-		if unicode.IsLetter(ch) {
+		if unicode.IsLetter(ch) || unicode.IsDigit(ch) || ch == '_' {
 			r[i] = unicode.ToUpper(ch)
 			break
 		}
@@ -97,7 +97,8 @@ func capitalizeSmallFirst(s string) string {
 	}
 
 	word := string(r[start:i])
-	if isSmall(word) {
+	if isSmall(word) && (i == len(r) ||
+            !(unicode.IsLetter(r[i]) || unicode.IsDigit(r[i]) || r[i] == '_')) {
 		wordRunes := []rune(word)
 		wordRunes[0] = unicode.ToUpper(wordRunes[0])
 
@@ -112,30 +113,34 @@ func capitalizeSmallFirst(s string) string {
 }
 
 func capitalizeSmallLast(s string) string {
-	r := []rune(s)
-	end := len(r)
+    r := []rune(s)
 
-	if end > 0 && isPunctuation(r[end-1]) {
-		end--
-	}
+    for start := 0; start < len(r); start++ {
+        // Python's word boundary: the preceding character
+        // must not be a letter, digit, or underscore.
+        if start > 0 {
+            prev := r[start-1]
+            if unicode.IsLetter(prev) || unicode.IsDigit(prev) || prev == '_' {
+                continue
+            }
+        }
 
-	start := end
-	for start > 0 && unicode.IsLetter(r[start-1]) {
-		start--
-	}
+        suffix := string(r[start:])
 
-	if start == end {
-		return s
-	}
+        valid := isSmall(suffix)
 
-	word := string(r[start:end])
-	if isSmall(word) {
-		word = strings.ToUpper(string([]rune(word)[0])) +
-			strings.ToLower(string([]rune(word)[1:]))
-		copy(r[start:end], []rune(word))
-	}
+        if !valid && len(r)-start > 1 && isPunctuation(r[len(r)-1]) {
+            valid = isSmall(string(r[start : len(r)-1]))
+        }
 
-	return string(r)
+        if valid {
+            return string(r[:start]) +
+                strings.ToUpper(string(r[start])) +
+                strings.ToLower(string(r[start+1:]))
+        }
+    }
+
+    return s
 }
 
 func splitWhitespace(s string) ([]string, []string) {

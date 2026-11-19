@@ -13,3 +13,4 @@ RUN mkdir -p /workspace && ln -s /workspace/repo /app
 WORKDIR /app
 
 COPY . /tests/
+RUN chmod 700 /tests/data

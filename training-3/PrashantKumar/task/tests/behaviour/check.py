@@ -3,13 +3,17 @@ import subprocess
 
 from rewardkit import criterion
 
-INPUTS = Path("/tests/data/hidden_inputs.txt")
-EXPECTED = Path("/tests/data/hidden_expected.txt")
+INPUTS = Path("/tests/data/exam_inputs.txt")
+EXPECTED = Path("/tests/data/exam_answers.txt")
 BINARY = Path("/tmp/titlecase-go")
 
 
 @criterion
 def hidden_behaviour_matches(workspace: Path) -> float:
+    # Read protected test data while running as the verifier.
+    input_data = INPUTS.read_bytes()
+    expected = EXPECTED.read_bytes().splitlines()
+
     build = subprocess.run(
         ["go", "build", "-o", str(BINARY), "."],
         cwd=workspace,
@@ -22,16 +26,17 @@ def hidden_behaviour_matches(workspace: Path) -> float:
 
     result = subprocess.run(
         [str(BINARY)],
-        input=INPUTS.read_bytes(),
+        input=input_data,
         capture_output=True,
         timeout=120,
+        user=65534,
+        group=65534,
     )
 
     if result.returncode != 0:
         return 0.0
 
     actual = result.stdout.splitlines()
-    expected = EXPECTED.read_bytes().splitlines()
 
     if not expected or len(actual) != len(expected):
         return 0.0
@@ -40,4 +45,4 @@ def hidden_behaviour_matches(workspace: Path) -> float:
         a == e for a, e in zip(actual, expected)
     )
 
-    return matches / len(expected)
+    return float(matches == len(expected))
