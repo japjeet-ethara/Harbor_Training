@@ -1,12 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# Cheat 1 - Build trick / delete trick.
+# Compiles a trivial Go echo program and deletes the Python files. No titlecase logic.
 set -euo pipefail
 cd /workspace/repo
-cat > go.mod <<'EOF'
-module titlecase-cheat
 
-go 1.23
-EOF
-cat > main.go <<'EOF'
+find /workspace/repo -type f -name '*.py' -delete
+find /workspace/repo -type d -name '__pycache__' -prune -exec rm -rf {} + 2>/dev/null || true
+
+printf 'module cheat1\n\ngo 1.23\n' > go.mod
+cat > main.go <<'GOSRC'
 package main
 
 import (
@@ -18,11 +20,12 @@ import (
 func main() {
 	sc := bufio.NewScanner(os.Stdin)
 	sc.Buffer(make([]byte, 1024*1024), 16*1024*1024)
+	w := bufio.NewWriter(os.Stdout)
+	defer w.Flush()
 	for sc.Scan() {
-		_ = sc.Text()
-		fmt.Println()
+		fmt.Fprintln(w, sc.Text())
 	}
 }
-EOF
-find . -name '*.py' -delete
+GOSRC
+
 go build ./...
