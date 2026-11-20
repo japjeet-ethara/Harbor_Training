@@ -23,7 +23,7 @@ import (
 // punct is the Python PUNCT set from titlecase, checked by hand because the
 // character class is only used next to word-boundary tests Go's regexp cannot
 // express the same way as Python's Unicode \b.
-const punct = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]_`{|}~"
+const punct = "!\"\u201c#$%&'\u2018()*+,-\u2013\u2012\u2014\u2015./:;?@[\\]_`{|}~"
 
 // smallAlts follows the Python alternation order. Forms inside one group are
 // tried longest-first, which is how v\.? and vs\.? backtrack.
@@ -412,7 +412,7 @@ func allConsonants(s string) bool {
 func capFirst(s string) string {
 	r := []rune(s)
 	i := 0
-	for i < len(r) && isPunct(r[i]) {
+	for i < len(r) && isPunct(r[i]) && r[i] != '_' {
 		i++
 	}
 	if i < len(r) && isWord(r[i]) {
@@ -507,7 +507,7 @@ func applySubphrase(s string) string {
 
 func isSubPunct(r rune) bool {
 	switch r {
-	case ':', '.', ';', '?', '!', '-', '–', '‒', '—', '―':
+	case ':', '.', ';', '?', '!', '-', '\u2013', '\u2012', '\u2014', '\u2015':
 		return true
 	default:
 		return false
