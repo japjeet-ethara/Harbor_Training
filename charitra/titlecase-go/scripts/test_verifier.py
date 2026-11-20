@@ -67,6 +67,15 @@ class AuditTests(unittest.TestCase):
     def test_unused_external_require_also_fails(self):
         self.assertFalse(grader.audit_go_metadata(go_metadata(require=True))[0])
 
+    def test_process_execution_dependencies_fail(self):
+        metadata = go_metadata()
+        root = json.loads(metadata["root.json"])
+        root.setdefault("Imports", []).append("os/exec")
+        metadata["root.json"] = json.dumps(root).encode()
+        ok, reason, _ = grader.audit_go_metadata(metadata)
+        self.assertFalse(ok)
+        self.assertEqual(reason, "external_process_execution_dependency")
+
     def test_root_library_fails(self):
         self.assertFalse(grader.audit_go_metadata(go_metadata(main=False))[0])
 
@@ -76,9 +85,9 @@ class AuditTests(unittest.TestCase):
 
     def test_real_fixtures_validate(self):
         payload, answers, hashes = grader.load_fixtures(TASK / "tests")
-        self.assertEqual(len(grader.lf_records(payload)), 2000)
-        self.assertEqual(len(answers), 2000)
-        self.assertEqual(len(hashes), 5)
+        self.assertEqual(len(grader.lf_records(payload)), grader.CASE_COUNT)
+        self.assertEqual(len(answers), grader.CASE_COUNT)
+        self.assertEqual(len(hashes), 3)
 
 
 class MockedEvaluationTests(unittest.TestCase):
@@ -166,7 +175,7 @@ class RewardKitIntegrationTests(unittest.TestCase):
             with patch.object(grader, "evaluate", return_value={"build": 1.0, "no_python": 0.0, "behaviour": 0.0}):
                 result = rewardkit.run(TASK / "tests", workspace=TASK / "environment/repo", output=output,
                                        max_concurrent_programmatic=1)
-            self.assertEqual(result, {"build": 1.0, "no_python": 0.0, "behaviour": 0.0, "reward": 0.1667})
+            self.assertEqual(result, {"build": 1.0, "no_python": 0.0, "behaviour": 0.0, "reward": 0.0167})
 
 
 if __name__ == "__main__":

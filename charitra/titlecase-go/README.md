@@ -1,28 +1,26 @@
-# Titlecase Go — Harbor Day 3
+# Titlecase Go — Harbor Day 3, hardened on Days 5–6
 
-This repository implements the practice assignment in **Day 3 — Harbor: Tasks,
-Trajectories & Hardening**: port the original Python titlecase function to Go,
-freeze reference answers, grade in an isolated verifier, and test a genuine
-solution plus two negative controls.
+This repository contains the original Day 3 Harbor task and its Day 5/6 hardening.
+The current task statement is `instruction.md`; attack findings and fixes are in
+`HARDEN.md`, and Harbor proof plus the five-minute defence are in `DEFENCE.md`.
 
 ## Current status
 
-- Complete task files, original source snapshot, Go oracle, replay cheat,
-  deterministic fixtures, and validation scripts are included.
-- All 2,000 public and 2,000 hidden records matched the Go solution locally.
-- A broader differential suite matched 1,265,238 records against the original.
-- Fixture regeneration and reference-answer checks passed.
-- **Real Harbor/Docker trials passed on 2026-11-11:** oracle **1.0**,
-  nop **0.0**, and replay cheat **0.1673** (below 0.2), with no exceptions.
-  Actual rewards and trial results are saved in `evidence/submission/`.
-  All three reward screenshots are saved in `screeshot/`.
-  Published at [Harbor_Training/charitra/titlecase-go](https://github.com/japjeet-ethara/Harbor_Training/tree/main/charitra/titlecase-go).
-  The two-line reflection remains pending.
+- The new deterministic exam contains 100,000 frozen stdlib-`re` records; inputs and
+  answers are hash-pinned in `tests/data/manifest.json`.
+- Day 5 comparison on the original 2,000-record and new 100,000-record exams is
+  recorded in `measure/RESULTS.md`.
+- **Day 6 Harbor/Docker proof:** oracle **1.000**, nop **0.000**, and Yugal's three
+  cheats **0.0486**, **0.1646**, and **0.000**. Reward and grader details are in
+  `proof/`; the five-minute talk outline is in `DEFENCE.md`.
+- The original Day 3 Harbor results and screenshots remain in `evidence/` and
+  `screeshot/` as historical evidence.
+- The practice-1 copy remains on `main`; this hardened Day 5/6 version is at
+  [Harbor_Training/charitra/titlecase-go on `training-3`](https://github.com/japjeet-ethara/Harbor_Training/tree/training-3/charitra/titlecase-go).
 
-See `evidence/submission/RESULTS.md` for the actual Harbor scores and
-`evidence/terminal-validation/harbor-run.txt` for the terminal transcript.
-The latest local checks are in `evidence/terminal-validation/`;
-`solution/PARITY.txt` records the earlier broader comparison.
+The sections below preserve the Day 3 setup workflow. Their original 2,000-case
+fixtures and reward formula are historical; the 100,000-case exam, updated weights,
+and current scores are documented in `HARDEN.md` and `DEFENCE.md`.
 
 ## What completion means
 
@@ -31,12 +29,13 @@ The latest local checks are in `evidence/terminal-validation/`;
 | `NOTES.md` | Source URL, commit/date, MIT license, at least eight verified rules |
 | `environment/Dockerfile` | Original Python source at `/workspace/repo`; Go 1.23 |
 | `instruction.md` | Exact behavior, stdlib-only Go, build and no-Python requirements |
-| Four fixture files | 2,000 public and 2,000 disjoint hidden input/answer pairs |
+| Hidden exam | 100,000 frozen inputs and answers; manifest hashes valid |
 | Separate verifier | RewardKit component scores and weighted aggregate |
 | Real oracle trial | All component scores and aggregate equal 1 |
 | Real nop trial | All component scores and aggregate equal 0 |
-| Real replay-cheat trial | Aggregate below 0.2 |
-| Hand-in | GitHub URL, three real reward screenshots, two-line reflection |
+| Three attacker cheats | Each hardened Harbor reward below 0.2 |
+| Day 6 proof | Oracle 1.0, nop 0.0, and cheat reward files in `proof/` |
+| Hand-in | Day 5/6 content in the `training-3` branch under `charitra/titlecase-go` |
 
 The PDF asks you to direct Cursor one stage at a time. `CURSOR_PROMPTS.md`
 contains that workflow. The included implementation was generated and checked
