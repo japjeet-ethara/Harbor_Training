@@ -37,3 +37,24 @@ Visible and hidden titles are built from the same list of about 50 words (tests/
 lookup learned from the visible files would get most hidden titles right. Fix: a bigger and weirder pool of inputs.
 
 **Highest score any cheat got: 1.0 (cheat 2 and cheat 3).**
+
+## Day 6 re-attack (Satvik's hardened task, commit 5b700823ffb4a3bfad3fea2849c9cf83d1b3e3d3)
+His fixes: the program is built static and run as user nobody in an empty chroot; build and no_python are now prerequisites, and reward = behaviour (tests/verify.py:63-85). The exam is now 100,000 titles.
+
+Cheat 1 (Delete trick / echo): reward 0.01371   job folder: jobs/satvik-recheat1/satvik-re1__gtxRQU7
+                Closed: build and no_python no longer pay on their own; an echo only matches the 1,371 titles that need no change.
+Cheat 2 (Python inside): reward 0.0   job folder: jobs/satvik-recheat2/satvik-re2__BCNQXpG
+                Closed: python3 cannot be reached inside the chroot, so the program fails and earns nothing.
+Cheat 3 (Read the exam): reward 0.01371   job folder: jobs/satvik-recheat3/satvik-re3__CUaaazG
+                Closed: the answer files stay outside the chroot, so the program can only echo.
+
+## New cheat (Day 6): Cheat 4 - Rule-of-thumb casing (half port)
+What it does:   No port. A short Go program that capitalises the first letter of every word, lowercases 21 small words
+                (a, an, the, of, ...) unless they are first or last, and keeps ALL-CAPS words as they are.
+Score:          reward 0.21175  (build 1, no_python 1, behaviour 0.21175)
+Job folder:     jobs/satvik-recheat4/satvik-re4__yMCsZgg
+Why it worked:  tests/verify.py:84-85 sets the reward to the plain share of titles right, with no floor. A crude rule that
+                ports none of titlecase's logic still gets 21% of the 100,000 titles right.
+How to fix:     Pay behaviour only above a high floor, for example nothing below 90% right, then linear to 1.0 at 100%.
+
+**Highest score after his fixes: 0.21175 (cheat 4).**
