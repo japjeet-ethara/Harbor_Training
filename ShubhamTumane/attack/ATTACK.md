@@ -34,3 +34,11 @@
 ---
 
 **Highest score achieved:** `1.000` (Cheat 1 — `jobs/2026-11-19__20-47-56`)
+---
+
+## Day 6 Re-Attack (Target: KanishkaSharma Hardened Task, Commit `21115aa`)
+- **Target Path:** `training-3/KanishkaSharma/task` (commit `21115aa`)
+- **Re-Attack Results:**
+  - **Cheat 1 (`attack/cheat1/solve.sh`):** Score **`0.0`** (`RewardFileNotFoundError` — `/tests/test.sh: cannot execute: required file not found` due to CRLF line endings in `tests/test.sh`).
+  - **Cheat 2 (`attack/cheat2/solve.sh`):** Score **`0.0`** (`RewardFileNotFoundError`).
+  - **Cheat 3 (`attack/cheat3/solve.sh`):** Score **`0.0`** (`RewardFileNotFoundError`).
