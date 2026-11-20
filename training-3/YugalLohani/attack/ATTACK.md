@@ -137,3 +137,44 @@ floor (0.351 and 0.3717). The one real vulnerability is that the grader's run sa
 contains a Python interpreter, which lets a Go wrapper run the original code and score 1.0.
 The disjoint hidden set (cheat 1), the adversarial hidden inputs (cheat 2) and the
 non-root fresh-UID `Worker` isolation (the read-the-exam vector) all held.
+
+---
+
+## Day 6 re-attack — Charitra's hardened task
+
+**Target now:** `training-3/Charitra/task` at commit
+`be2c020e946186669c9810d1517f46b3895691f8` (Charitra's Day 5 hardened version).
+Re-ran the same three cheats. Harbor 0.26.0, 2026-11-20.
+
+| Cheat | Day 4 (original task) | Day 6 (hardened task) | Job folder |
+|---|---|---|---|
+| cheat1 lookup | 0.351 | **errored, no reward** | `attack/jobs/2026-11-20__13-53-15` |
+| cheat2 half-port | 0.3717 | **errored, no reward** | `attack/jobs/2026-11-20__13-54-19` |
+| cheat3 python-inside | 1.000 | **errored, no reward** | `attack/jobs/2026-11-20__13-55-07` |
+
+**What happened:** none of the three cheats could be scored, because the
+hardened task no longer runs. Its verifier fails at config load, before any
+candidate is built, with:
+
+```
+ValueError: /tests/reward.toml: unknown [[reward]].weights inputs: 'build'.
+            Available inputs: 'behaviour', 'no_python'.
+```
+
+Charitra's hardening changed `tests/reward.toml` to
+`weights = { build = 0.1, no_python = 0.1, behaviour = 5.8 }` but removed the
+`tests/build/` check directory (only `tests/behaviour/check.py` and
+`tests/no_python/check.py` remain). Reward Kit validates the reward weights
+against the available check names and raises, so the grader writes no
+`reward.json`; Harbor reports each trial as a `RewardFileNotFoundError` rather
+than a score.
+
+**Effect:** the hardening is a regression. The python-inside hole I found on
+Day 4 (which scored 1.0) is moot only because the whole task is now ungradeable
+— the oracle cannot score 1.0 either. This should be reported to Charitra: the
+fix is to restore a `tests/build/` check (or drop `build` from the reward
+weights) so the task runs again, and then re-close the python-inside hole
+(remove the interpreter from the verifier run environment and isolate the
+candidate, as noted in Finding / cheat 3 above).
+
+**Highest re-attack score: none (all trials errored).**
