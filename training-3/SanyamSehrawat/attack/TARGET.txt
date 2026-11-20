@@ -1,0 +1,6 @@
+Attacker: Sanyam Sehrawat
+Target: Alok Kumar Jaiswal
+Assignment: Day 4 — Break a Classmate's Task
+Target task original path: training-3/AlokKumarJaiswal/task
+Local attack copy: training-3/SanyamSehrawat/attack/target/
+Target commit SHA: c48ed262886d763cfb8127880f0a2938fcc60ca4
