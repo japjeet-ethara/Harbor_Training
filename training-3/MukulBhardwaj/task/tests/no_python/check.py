@@ -27,7 +27,7 @@ def no_python_and_build_passes(workspace: Path) -> bool:
         return False
 
     inputs_path = Path("/tests/data/inputs.txt")
-    expected_path = Path("/tests/data/expected.txt")
+    expected_path = Path("/tests/data/answers.txt")
     if not inputs_path.is_file() or not expected_path.is_file():
         return False
 

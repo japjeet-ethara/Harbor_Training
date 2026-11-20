@@ -153,13 +153,12 @@ func smallMatchCandidates() []string {
 func capitalizeFirst(s string) string {
 	runes := []rune(s)
 	for i, r := range runes {
-		if isPunctuation(r) {
-			continue
-		}
 		if isWordRune(r) {
 			return string(runes[:i]) + upperRune(r) + string(runes[i+1:])
 		}
-		return s
+		if !isPunctuation(r) {
+			return s
+		}
 	}
 	return s
 }
