@@ -1,0 +1,7 @@
+mode: re
+seed: 1
+total: 100000
+unique: 100000
+kept: 100000
+dropped: 0
+public_example_overlap: 0
