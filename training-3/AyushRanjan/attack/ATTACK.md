@@ -57,7 +57,7 @@ The current Harbor numbers are the real results from the committed target copy, 
 
 ## Day 6 — Rerun against Akul's hardened task
 
-The three original Day 4 cheats were rerun against the latest hardened Akul task available in the fetched `training-3` branch. Akul's message referred to revision `f5929f6`, but that commit was not present locally or fetchable from `origin`; the latest available hardened task revision is commit `2fbaa108203388562841f9d52faf7b45a39d8827` (`harden: isolate verifier and add 100k re exam (re mode)`). These results are for `2fbaa10`, so they should not be represented as results for `f5929f6` unless Akul confirms the revisions are identical.
+The three original Day 4 cheats were rerun against the exact task linked in Akul's Slack message: `training-3/AkulMalviya/task` at commit `2fbaa108203388562841f9d52faf7b45a39d8827` (`harden: isolate verifier and add 100k re exam (re mode)`). Akul's message also labels the attachment `f5929f6`; that label does not match the linked Git commit, so the linked commit is recorded as the tested target.
 
 | Cheat | Strategy | Reward | Harbor job ID | Trial ID | Saved reward file |
 |---|---|---:|---|---|---|
