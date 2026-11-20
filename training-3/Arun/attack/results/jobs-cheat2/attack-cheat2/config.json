@@ -1,9 +1,0 @@
-{
-    "job_name": "attack-cheat2",
-    "jobs_dir": "attack\\results\\jobs-cheat2",
-    "tasks": [
-        {
-            "path": "attack\\scratch-cheat2"
-        }
-    ]
-}

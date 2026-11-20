@@ -1,9 +1,0 @@
-{
-    "job_name": "attack-cheat3-repaired-20261118-2124",
-    "jobs_dir": "attack\\results\\jobs-cheat3",
-    "tasks": [
-        {
-            "path": "attack\\scratch-cheat3"
-        }
-    ]
-}
