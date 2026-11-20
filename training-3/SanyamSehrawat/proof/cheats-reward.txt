@@ -1,0 +1,3 @@
+Sonu cheat1 (delete trick): reward 0.1667; job task-cheat1-scratch__GPjzWfL / sonu-cheat1-final
+Sonu cheat2 (half port): reward 0.1667; job task-cheat2-scratch__y8MmWFB / sonu-cheat2-final
+Sonu cheat3 (Python inside): reward 0.0; job task-cheat3-scratch__DV55mzd / sonu-cheat3-final

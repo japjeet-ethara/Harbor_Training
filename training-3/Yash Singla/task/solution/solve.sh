@@ -21,7 +21,7 @@ import (
 	"unicode/utf8"
 )
 
-const punctuation = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]_`{|}~"
+const punctuation = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]`{|}~"
 
 var smallWords = map[string]bool{
 	"a": true, "an": true, "and": true, "as": true, "at": true,
@@ -121,7 +121,7 @@ func initials(s string) bool {
 func letterPeriodLetter(s string) bool {
 	runes := []rune(s)
 	for i := 1; i+1 < len(runes); i++ {
-		if unicode.IsLetter(runes[i-1]) && runes[i] == '.' && unicode.IsLetter(runes[i+1]) {
+		if isWordRune(runes[i-1]) && runes[i] == '.' && isWordRune(runes[i+1]) {
 			return true
 		}
 	}
@@ -133,12 +133,12 @@ func letterPeriodLetter(s string) bool {
 func hasInternalUpper(s string) bool {
 	runes := []rune(s)
 	i := 0
-	for i < len(runes) && isPunctuation(runes[i]) {
+	for i < len(runes) && (isPunctuation(runes[i]) || runes[i] == '_') {
 		i++
 	}
 	letters := 0
-	for ; i < len(runes) && unicode.IsLetter(runes[i]); i++ {
-		if letters > 0 && unicode.IsUpper(runes[i]) {
+	for ; i < len(runes) && ((runes[i] >= 'a' && runes[i] <= 'z') || (runes[i] >= 'A' && runes[i] <= 'Z')); i++ {
+		if letters > 0 && runes[i] >= 'A' && runes[i] <= 'Z' {
 			return true
 		}
 		letters++
@@ -159,14 +159,14 @@ func apostropheSecond(s string) (int, []rune, bool) {
 		return 0, nil, false
 	}
 	for _, c := range r[2:end] {
-		if !unicode.IsLetter(c) {
+		if !isWordRune(c) {
 			return 0, nil, false
 		}
 	}
 	return end, r, true
 }
 
-func isApostropheSuffix(r rune) bool { return r == '\'' || r == 's' }
+func isApostropheSuffix(r rune) bool { return r == '\'' || unicode.ToLower(r) == 's' }
 
 func isMcPrefix(s string) (string, string, bool) {
 	r := []rune(s)
@@ -302,14 +302,16 @@ func allConsonants(s string) bool {
 func capitalizeFirstAfterPunctuation(s string) string {
 	r := []rune(s)
 	for i, c := range r {
-		if unicode.IsLetter(c) {
+		if isWordRune(c) {
 			for _, before := range r[:i] {
-				if !isPunctuation(before) {
+				if !isSmallPunctuation(before) {
 					return s
 				}
 			}
-			r[i] = unicode.ToUpper(c)
-			return string(r)
+			return string(r[:i]) + upperRune(c) + string(r[i+1:])
+		}
+		if !isSmallPunctuation(c) {
+			return s
 		}
 	}
 	return s
@@ -318,7 +320,7 @@ func capitalizeFirstAfterPunctuation(s string) string {
 func capSmallAtStart(s string) string {
 	r := []rune(s)
 	i := 0
-	for i < len(r) && isPunctuation(r[i]) {
+	for i < len(r) && (isPunctuation(r[i]) || r[i] == '_') {
 		i++
 	}
 	j := i
@@ -333,38 +335,83 @@ func capSmallAtStart(s string) string {
 
 func capSmallAtEnd(s string) string {
 	r := []rune(s)
-	end := len(r)
-	if end > 0 && isPunctuation(r[end-1]) {
-		end--
+	for small := range smallWords {
+		candidate := []rune(small)
+		for punctuationLength := 0; punctuationLength <= 1; punctuationLength++ {
+			end := len(r) - punctuationLength
+			if end < len(candidate) {
+				continue
+			}
+			if punctuationLength == 1 && !isSmallPunctuation(r[end]) {
+				continue
+			}
+			start := end - len(candidate)
+			if start > 0 && isWordRune(r[start-1]) {
+				continue
+			}
+			matched := true
+			for i, c := range candidate {
+				if unicode.ToLower(r[start+i]) != c {
+					matched = false
+					break
+				}
+			}
+			if matched {
+				return string(r[:start]) + capitalize(string(r[start:end])) + string(r[end:])
+			}
+		}
 	}
-	start := end
-	for start > 0 && isWordRune(r[start-1]) {
-		start--
+	return s
+}
+
+func subphraseSmallPrefixLength(r []rune) int {
+	// Match the pinned Python fallback's case-sensitive SMALL alternation in
+	// order. SUBPHRASE has no trailing word boundary, so it can match just the
+	// leading "v" in a token such as "v1.2".
+	for _, small := range []string{
+		"a", "an", "and", "as", "at", "but", "by", "en", "for", "if",
+		"in", "of", "on", "or", "the", "to", "v", "via", "vs",
+	} {
+		candidate := []rune(small)
+		if len(r) < len(candidate) {
+			continue
+		}
+		matched := true
+		for i, c := range candidate {
+			if r[i] != c {
+				matched = false
+				break
+			}
+		}
+		if matched {
+			length := len(candidate)
+			if small == "v" && length < len(r) && r[length] == '.' {
+				length++
+			}
+			return length
+		}
 	}
-	if start == end || !isSmall(string(r[start:end])) {
-		return s
-	}
-	return string(r[:start]) + capitalize(string(r[start:end])) + string(r[end:])
+	return 0
 }
 
 func capitalizeAfterSubphrase(s string) string {
 	r := []rune(s)
 	for i := 0; i+1 < len(r); i++ {
-		if !strings.ContainsRune(":;.!?–‒—―", r[i]) || r[i+1] != ' ' {
+		if !strings.ContainsRune(":;.!?-–‒—―", r[i]) || r[i+1] != ' ' {
 			continue
 		}
 		start := i + 2
-		end := start
-		for end < len(r) && isWordRune(r[end]) {
-			end++
-		}
-		if end > start && isSmall(string(r[start:end])) {
-			cap := []rune(capitalize(string(r[start:end])))
-			copy(r[start:end], cap)
+		matchedLength := subphraseSmallPrefixLength(r[start:])
+		if matchedLength > 0 {
+			cap := []rune(capitalize(string(r[start : start+matchedLength])))
+			copy(r[start:start+matchedLength], cap)
+			i = start + matchedLength - 1
 		}
 	}
 	return string(r)
 }
+
+func isSmallPunctuation(r rune) bool { return isPunctuation(r) || r == '_' }
 
 func processLine(line string) string {
 	return titlecase(line, true)
@@ -393,4 +440,4 @@ func main() {
 EOF
 
 find /workspace/repo -type f -name '*.py' -delete
-rmdir /workspace/repo/titlecase
+rm -rf /workspace/repo/titlecase

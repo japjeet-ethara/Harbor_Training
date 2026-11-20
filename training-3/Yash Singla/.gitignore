@@ -1,9 +1,12 @@
 jobs/
-pool.txt
-got.txt
-key/
+/kit/pool.txt
+/measure/*-got.txt
+/kit/key/
 ports/
 attack/target/
 .venv/
 __pycache__/
 .env
+task/.oracle-debug/
+task/.cheat-eval/
+task/.harbor-runs/
