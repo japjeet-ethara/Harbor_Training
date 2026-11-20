@@ -24,10 +24,10 @@ Do not modify the Go toolchain or system executables to alter compilation or gra
 
 ## Grading
 
-Hidden automatic checks award partial credit using a weighted mean:
+Hidden automatic checks compare each input against the original, pinned Python implementation. The exam contains 100,000 deterministic titles, with reference answers frozen twice in Python's standard-library `re` mode. Hidden automatic checks award partial credit using a weighted mean:
 
 - **Build, weight 1:** the Go packages compile and use only the permitted dependencies.
 - **No Python, weight 1:** the build criterion passes and no `.py` files remain in the repository.
 - **Behavior, weight 4:** the share of input records whose complete output bytes match the reference, subject to successful build and execution and the required line protocol.
 
-The total score is `(build + no_python + 4 * behavior) / 6`. A complete solution earns 1.0. A program that does not compile earns 0.0. Speed, memory use, code style, and error-message wording are not separately scored; executions must still finish within the task's operational time limits.
+The total score is `(0.1 * build + 0.1 * no_python + 5.8 * behavior) / 6`. A complete solution earns 1.0. A program that does not compile earns 0.0. Speed, memory use, code style, and error-message wording are not separately scored; executions must still finish within the task's operational time limits. Candidate build and execution run with Go only on `PATH`, without a Python interpreter. Go code that imports process-launch packages such as `os/exec` or `syscall` fails the build criterion. The 100,000 frozen answers come from the original titlecase implementation in Python's stdlib `re` mode (the optional `regex` module is absent).
