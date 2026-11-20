@@ -6,7 +6,7 @@ go_bin="/home/charitra/.local/opt/go1.23.12/bin/go"
 old_suite="$root/measure/old-exam"
 out="$root/measure"
 
-GOTOOLCHAIN=local GOPROXY=off "$go_bin" -C "$root/solution" build -o "$out/charitra-port" .
+GOTOOLCHAIN=local GOPROXY=off "$go_bin" -C "$root/task/solution" build -o "$out/charitra-port" .
 GOTOOLCHAIN=local GOPROXY=off "$go_bin" -C "$root/measure/ports/MadhurJain" build -o "$out/madhur-port" .
 GO111MODULE=off GOTOOLCHAIN=local GOPROXY=off "$go_bin" -C "$root/measure/ports/LokeshDeshwal" build -o "$out/lokesh-port" .
 
@@ -17,3 +17,4 @@ GO111MODULE=off GOTOOLCHAIN=local GOPROXY=off "$go_bin" -C "$root/measure/ports/
 python3 "$root/kit/compare.py" "$old_suite" "$out/charitra-old-output.txt"
 python3 "$root/kit/compare.py" "$old_suite" "$out/madhur-old-output.txt"
 python3 "$root/kit/compare.py" "$old_suite" "$out/lokesh-old-output.txt"
+

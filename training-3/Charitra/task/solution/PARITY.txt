@@ -1,0 +1,26 @@
+GO PORT VALIDATION SUMMARY
+
+Reference: ppannuto/python-titlecase commit 42f43e2de55bf003b286c6f8e8d8b2d26676a167
+Reference runtime: CPython 3.12.14, Unicode 15.0.0, standard-library re backend
+Go compiler tested: go1.23.12 linux/amd64
+Runtime dependencies: Go standard library only (go list -deps verified)
+
+Differential checks performed against the original function:
+- 72 upstream default-function cases within the line protocol
+- 20 whitespace, framing, Unicode and long-line regressions
+- 2 records testing an unterminated final input line
+- Empty input stream
+- 20,000 deterministic combinations of interacting rules
+- 100,000 deterministic random character strings
+- 33,082 interactions involving case-changing and numeric Unicode characters
+- 1,112,062 individual Unicode scalar values, excluding CR and LF
+
+Total: 1,265,238 differential input records. All exact output bytes matched.
+This is evidence from finite testing, not a proof for every possible string.
+
+Reproduce after building the solution binary:
+python3 -S solution/tools/check_parity.py --source environment/repo --binary /tmp/titlecase-candidate --full-unicode
+
+unicode_tables.go contains Unicode character properties and case mappings,
+not benchmark inputs or expected answer lines. The authoring generator is
+solution/tools/generate_unicode.py. It is not installed into /workspace/repo.

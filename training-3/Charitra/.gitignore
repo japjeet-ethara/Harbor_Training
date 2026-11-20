@@ -1,0 +1,7 @@
+**/__pycache__/
+**/*.py[cod]
+**/.venv/
+/jobs/
+/task/jobs/
+/measure/*-port
+/measure/*-output.txt

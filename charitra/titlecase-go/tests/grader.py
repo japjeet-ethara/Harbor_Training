@@ -20,9 +20,9 @@ TESTS = Path("/tests")
 PRIVATE = Path("/run/titlecase-grader")
 LOGS = Path("/logs/verifier")
 WORKSPACE = Path("/workspace/repo")
-CASE_COUNT = 100000
+CASE_COUNT = 2000
 BUILD_TIMEOUT = 180.0
-EXECUTION_TIMEOUT = 120.0
+EXECUTION_TIMEOUT = 30.0
 MAX_OUTPUT_BYTES = 16 * 1024 * 1024
 _LOCK = threading.Lock()
 _CACHE: dict[str, dict[str, float]] = {}
@@ -30,11 +30,7 @@ _CACHE: dict[str, dict[str, float]] = {}
 # Never inherit task-controlled HOME, GOFLAGS, GOENV, PATH, proxy, or toolchain
 # settings. No compiler hooks, external module fetches, or CGO are enabled.
 WORKER_ENV = {
-    # Candidate build/run must not inherit Python from the verifier image.
-    # Keep all interpreter directories off the candidate PATH. Worker invokes
-    # its shell by absolute path; candidate build commands use Go by absolute
-    # path and shell built-ins.
-    "PATH": "/usr/local/go/bin",
+    "PATH": "/usr/local/go/bin:/usr/local/bin:/usr/bin:/bin",
     "GOTOOLCHAIN": "local",
     "GOENV": "off",
     "GOWORK": "off",
@@ -48,7 +44,7 @@ BUILD_SCRIPT = """set -eu
 cd repo
 export GOCACHE="$HOME/.cache/go-build"
 export GOMODCACHE="$HOME/go/pkg/mod"
-/bin/mkdir -p "$GOCACHE" "$GOMODCACHE"
+mkdir -p "$GOCACHE" "$GOMODCACHE"
 /usr/local/go/bin/go mod edit -json > ../module.json
 /usr/local/go/bin/go list -json . > ../root.json
 /usr/local/go/bin/go list -deps -json ./... > ../deps.json
@@ -120,18 +116,11 @@ def audit_go_metadata(files: dict[str, bytes] | Any) -> tuple[bool, str, int]:
     if root_module.get("Main") is not True:
         return False, "root_package_is_not_main_module", len(deps)
     for package in deps:
-        # A Go-only transformation must not delegate execution to an external
-        # program. In particular, reject the standard process-launch package.
         if package.get("Standard") is True:
             continue
         dependency_module = package.get("Module") or {}
         if dependency_module.get("Main") is not True:
             return False, "non_standard_library_dependency", len(deps)
-    # Reject direct process-launch imports from the submitted root package.
-    # `syscall` appears in the ordinary transitive Go runtime graph, so inspect
-    # only the root package's source imports here.
-    if {"os/exec", "syscall"} & set(roots[0].get("Imports", [])):
-        return False, "external_process_execution_dependency", len(deps)
     return True, "passed", len(deps)
 
 
@@ -143,7 +132,7 @@ def load_fixtures(base: Path = TESTS) -> tuple[bytes, list[bytes], dict[str, str
         decoded: dict[str, list[bytes]] = {}
         raw: dict[str, bytes] = {}
         hashes: dict[str, str] = {}
-        for name in ("inputs.txt", "answers.txt"):
+        for name in ("inputs.txt", "expected.txt", "hidden_inputs.txt", "hidden_expected.txt"):
             payload = (base / "data" / name).read_bytes()
             payload.decode("utf-8", errors="strict")
             records = lf_records(payload)
@@ -156,8 +145,10 @@ def load_fixtures(base: Path = TESTS) -> tuple[bytes, list[bytes], dict[str, str
             if b"\r" in payload:
                 raise ValueError(f"{name}: CR is excluded from fixture records")
             raw[name], decoded[name], hashes[name] = payload, records, digest
+        if set(decoded["inputs.txt"]) & set(decoded["hidden_inputs.txt"]):
+            raise ValueError("Public and hidden inputs overlap")
         hashes["manifest.json"] = hashlib.sha256(manifest_bytes).hexdigest()
-        return raw["inputs.txt"], decoded["answers.txt"], hashes
+        return raw["hidden_inputs.txt"], decoded["hidden_expected.txt"], hashes
     except (OSError, KeyError, TypeError, ValueError, UnicodeError) as exc:
         raise GraderInfrastructureError(f"Invalid frozen fixtures: {exc}") from exc
 

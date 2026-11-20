@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "mode": "stdlib-re",
+  "files": {
+    "inputs.txt": {
+      "records": 100000,
+      "bytes": 3403527,
+      "sha256": "ccaac90fe1b55b13b2c9a9e52de15e0b9b3ae904c911118dd9277b40e7b9cb01"
+    },
+    "answers.txt": {
+      "records": 100000,
+      "bytes": 3401332,
+      "sha256": "5f8599e1b8a0ed6b7daca4d34f1f3cf39f75311e7a538df8c1b075c220210571"
+    }
+  }
+}

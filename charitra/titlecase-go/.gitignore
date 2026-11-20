@@ -4,8 +4,6 @@ __pycache__/
 *.py[cod]
 .DS_Store
 /jobs/
-/measure/*-port
-/measure/*-output.txt
 /evidence/harbor/*/jobs/
 /evidence/harbor/*/task-copies/
 /solution/titlecase-go
