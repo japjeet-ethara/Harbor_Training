@@ -1,0 +1,22 @@
+{
+  "behaviour_returncode": 0,
+  "behaviour_status": "compared",
+  "build_status": "passed",
+  "dependency_packages": 60,
+  "fixture_sha256": {
+    "answers.txt": "5f8599e1b8a0ed6b7daca4d34f1f3cf39f75311e7a538df8c1b075c220210571",
+    "inputs.txt": "ccaac90fe1b55b13b2c9a9e52de15e0b9b3ae904c911118dd9277b40e7b9cb01",
+    "manifest.json": "5a1495dfed900ac37a3ce0d629aed88f7eebb5b2c7c72e1930964265c6e79f91"
+  },
+  "hidden_records": 100000,
+  "isolation": "rewardkit.Worker/fresh-uid",
+  "matched_records": 100000,
+  "output_records": 100000,
+  "python_files_present": false,
+  "schema_version": 1,
+  "scores": {
+    "behaviour": 1.0,
+    "build": 1.0,
+    "no_python": 1.0
+  }
+}
