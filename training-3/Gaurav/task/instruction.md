@@ -18,6 +18,8 @@ A Go module whose main package is the root of `/workspace/repo`. It reads one ti
 
 For every input line, the matching output line must be the same bytes the original Python `titlecase()` function returns for that line, using its default arguments (no callback, small words capitalized at the ends, blank lines not preserved, spaces not normalised).
 
+The frozen answers used for grading come from titlecase **WITHOUT regex**.
+
 ## Not checked
 
 Speed, memory usage, and the wording of error messages.

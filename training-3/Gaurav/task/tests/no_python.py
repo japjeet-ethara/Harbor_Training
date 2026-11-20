@@ -8,6 +8,7 @@ from pathlib import Path
 from rewardkit import criterion
 
 REPO = Path("/workspace/repo")
+PY_LOCATIONS = (REPO, Path("/tmp"), Path("/workspace"))
 
 
 def go_env() -> dict[str, str]:
@@ -74,4 +75,20 @@ def no_python(workspace: Path) -> bool:
     del workspace
     if not build_ok():
         return False
-    return not any(REPO.rglob("*.py"))
+    for location in PY_LOCATIONS:
+        if location.exists() and any(location.rglob("*.py")):
+            return False
+    suspicious = (
+        "python",
+        "exec.command",
+        "os/exec",
+        "encoding/base64",
+        "encoding/json",
+        "filepath.walkdir",
+        "os.readfile",
+    )
+    for go_file in REPO.rglob("*.go"):
+        text = go_file.read_text(encoding="utf-8", errors="ignore").lower()
+        if any(marker in text for marker in suspicious):
+            return False
+    return True

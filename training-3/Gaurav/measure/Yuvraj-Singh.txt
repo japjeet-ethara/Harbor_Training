@@ -1,0 +1,17 @@
+wrong answers      4027 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input '_dream? ;an ftp://host/file'
+  want  '_dream? ;An Ftp://host/file'
+  got   '_Dream? ;An Ftp://host/file'
+  input 'v to �cole ~dream or l�oiseau\xa0_dream'
+  want  'V to �cole ~Dream or l�Oiseau\xa0_dream'
+  got   'V to �cole ~Dream or l�Oiseau\xa0_Dream'
+  input 'at vs dream. e.g.\xa0machine\\ _dream machine'
+  want  'At vs Dream. e.g.\xa0Machine\\ _dream Machine'
+  got   'At vs Dream. e.g.\xa0Machine\\ _Dream Machine'
+  input "To _dream o'reilly's v. L'AMOUR\xa0�lan but book}"
+  want  "To _dream O'Reilly's v. l'AMOUR\xa0�lan but Book}"
+  got   "To _Dream O'Reilly's v. l'AMOUR\xa0�lan but Book}"
+  input '_dream  $v v? for river Mcx- macintosh'
+  want  '_dream  $V V? For River McX- Macintosh'
+  got   '_Dream  $V V? For River McX- Macintosh'

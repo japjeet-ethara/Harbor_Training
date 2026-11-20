@@ -6,6 +6,9 @@ RUN apt-get update \
 
 COPY --from=ghcr.io/astral-sh/uv:0.9.7 /uv /uvx /bin/
 
+# Prevent an unprivileged solution from invoking a system Python.
+RUN chmod 700 /usr/bin/python* /usr/local/bin/python* 2>/dev/null || true
+
 RUN mkdir -p /workspace /app /logs/verifier
 
 WORKDIR /app
