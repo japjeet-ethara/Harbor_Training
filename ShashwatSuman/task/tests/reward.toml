@@ -1,0 +1,11 @@
+# Combine the three checks (one per .py file, named after the file) into the
+# main reward with a weighted mean:
+#   reward = (1*build + 1*no_python + 4*behaviour) / 6
+#
+#   nothing done        -> 0
+#   build only          -> (1 + 0 + 0) / 6 ~= 0.17   (.py files still there)
+#   perfect solution    -> 1
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
