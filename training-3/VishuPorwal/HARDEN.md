@@ -36,6 +36,23 @@
   - All inherited file descriptors except standard I/O are closed (`close_fds=True`).
   - If jail setup fails or the binary exits with a non-zero code, zero behavioral credit (`0.0`) is awarded.
 
+### Byte-Level Output Comparator & Record Count Enforcement
+- **Record Parsing & Delimitation:** Replaced string-decoded line splitting (`run.stdout.decode("utf-8").splitlines()`) with byte-level parsing using LF (`\n`) as the record delimiter (`_split_records`). Blank records (`b""`) and trailing spaces within records are strictly preserved.
+- **Fixture Validation:** Validates that `hidden_inputs.txt` and `hidden_expected.txt` contain the exact same nonzero number of records; any mismatch or empty fixture awards zero behavioral credit (`0.0`).
+- **Record Count Enforcement:** Missing or extra output records earn strictly zero behavioral credit (`0.0`).
+- **Byte-for-Byte Comparison:** When the record count matches expected, partial credit is awarded by comparing corresponding records byte for byte (`matches / total_records`). Outputs using CRLF (`\r\n`) in place of LF retain the trailing `\r` byte and fail byte-for-byte comparison against expected LF records.
+- **Synthetic Test Verification:** All ten synthetic test cases passed cleanly inside the production verifier container:
+  - Exact output scores `1.0`.
+  - One wrong record out of two scores `0.5`.
+  - Extra records score `0.0`.
+  - Missing records score `0.0`.
+  - CRLF in place of LF scores `0.0`.
+  - Nonzero process exit scores `0.0`.
+  - Blank records and trailing spaces preserved scores `1.0`.
+  - Fixture record length mismatch scores `0.0`.
+  - Empty input fixture scores `0.0`.
+  - Empty expected fixture scores `0.0`.
+
 ---
 
 ## 3. Hardened Exam Dataset
@@ -60,11 +77,16 @@ Detailed comparative measurements and original verifier reward files are recorde
 - **Old Exam (2,000 titles):**
   - **Oracle:** `1.0` (Harbor Job ID: `063bc1c5-c2af-43fa-9150-d310612a5805`)
   - **Nop:** `0.0` (Harbor Job ID: `652ee0c3-8011-4a5a-8219-1b0f0911a5cf`)
-- **New Exam (100,000 titles):**
+- **Initial 100,000-Title Controls (Predating Comparator Fix):**
   - **Oracle:** `1.0` (Harbor Job ID: `8cd0739c-c9d9-4e6d-8aef-9fb7e60d71fa`)
   - **Nop:** `0.0` (Harbor Job ID: `1d16f76f-6111-4f49-998f-eadf615330e9`, completed one trial with zero exceptions on the same snapshot as oracle job `8cd0739c-c9d9-4e6d-8aef-9fb7e60d71fa`)
+- **Final 100,000-Title Controls (Post-Comparator Fix):**
+  - **Oracle:** `1.0` (Harbor Job ID: `003429de-506e-42c0-b09c-bf47bd278d5d`)
+  - **Nop:** `0.0` (Harbor Job ID: `c0b520d0-5732-4466-bc6d-28f656f79182`)
 
-### Reference Port Measurements on New 100k Exam
+### Reference Port Measurements on 100k Exam (Predating Comparator Fix)
+*Note: The following measurements were recorded prior to the byte-level comparator fix.*
+- **Vishu Porwal Reference Solution (`512aba1`):** `1.0` reward (Harbor Job ID: `8cd0739c-c9d9-4e6d-8aef-9fb7e60d71fa`).
 - **Nikhil Choudhary Reference Port (`a1173ff`):** `0.9602` reward (96,017 / 100,000 matches, Job ID: `df426668-ac1c-46ac-9dd9-0bfbc523db23`).
 - **Omar Ghyas Reference Port (`1aea2bf`):** `0.9697` reward (96,971 / 100,000 matches, Job ID: `f1ce426f-97b9-4173-9146-785e991c60cd`).
 

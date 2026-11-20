@@ -65,6 +65,14 @@ def _run_in_jail(jail: Path, binary_name: str, input_bytes: bytes) -> subprocess
         return None
 
 
+def _split_records(data: bytes) -> list[bytes]:
+    if not data:
+        return []
+    if data.endswith(b"\n"):
+        data = data[:-1]
+    return data.split(b"\n")
+
+
 @criterion
 def behaviour(workspace: Path) -> float:
     del workspace
@@ -74,13 +82,16 @@ def behaviour(workspace: Path) -> float:
         return 0.0
 
     try:
-        expected = HIDDEN_EXPECTED.read_text(encoding="utf-8").splitlines()
         input_bytes = HIDDEN_INPUTS.read_bytes()
+        expected_bytes = HIDDEN_EXPECTED.read_bytes()
     except OSError as exc:
         print(f"Failed to read exam fixtures: {exc}")
         return 0.0
 
-    if not expected:
+    input_records = _split_records(input_bytes)
+    expected_records = _split_records(expected_bytes)
+
+    if not input_records or len(input_records) != len(expected_records):
         return 0.0
 
     jail_parent = Path(tempfile.mkdtemp(prefix="titlecase-jail-"))
@@ -110,13 +121,12 @@ def behaviour(workspace: Path) -> float:
         if run is None or run.returncode != 0:
             return 0.0
 
-        try:
-            got = run.stdout.decode("utf-8").splitlines()
-        except UnicodeDecodeError:
+        got_records = _split_records(run.stdout)
+        if len(got_records) != len(expected_records):
             return 0.0
 
-        matches = sum(1 for i, line in enumerate(expected) if i < len(got) and got[i] == line)
-        return matches / len(expected)
+        matches = sum(1 for got, exp in zip(got_records, expected_records) if got == exp)
+        return matches / len(expected_records)
     except (OSError, subprocess.TimeoutExpired) as exc:
         print(f"Verifier execution error: {exc}")
         return 0.0
