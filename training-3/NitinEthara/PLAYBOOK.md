@@ -18,6 +18,7 @@
 - Branch: `training-3`
 - Original task: `NitinEthara/titlecase-go/` (leave unchanged)
 - Day 5 working copy: `training-3/NitinEthara/task/`
+- Ayush Day 4 attack: `training-3/NitinEthara/attack/`
 - Attacker report: `training-3/AdarshSahani/attack/ATTACK.md` (read-only)
 - Official assignment: `C:\Users\Nitin\Downloads\06-break-and-harden.md`
 
@@ -49,3 +50,11 @@ committing or pushing.
 - Keep Harbor logs and generated files under ignored `jobs/` or `scratch/` directories.
 - Run the Nitin oracle and no-op checks as additional validation; the expected rewards are
   1.0 and 0.0 respectively.
+
+## Day 6 status
+
+- `proof/` contains the oracle, no-op, and four cheat reward JSONs from Harbor runs against
+  the hardened task. Cheats 1–3 are below 0.2; the complete Cheat 4 port is 1.0.
+- `DEFENCE.md` summarizes the proof scores and old/new exam comparisons.
+- Adarsh's independent re-attack entry still needs to be added by Adarsh to his own
+  `attack/ATTACK.md`; do not edit another trainee's folder.
