@@ -1,8 +1,9 @@
-"""no_python (weight 1): no .py file left, the build passes, and the program
-gets at least one hidden line right that it had to change.
+"""no_python (weight 1): no .py file left, the build passes, and the Go port
+actually works (at least NO_PYTHON_MIN_BEHAVIOUR of hidden lines correct).
 
-The last condition stops a program that does nothing (or echoes its input, or
-prints a memorised answer file) from earning this point by deleting files.
+Tying the point to real, near-complete behaviour stops a program that does
+nothing, echoes its input, prints a memorised answer file, or only ports the
+easy rules from earning it by deleting the .py files.
 """
 
 import sys
@@ -24,8 +25,10 @@ def python_removed(workspace: Path) -> bool:
             grading.log(f"  {p}")
         if left or not grading.build_ok(ws):
             return False
-        _matched, _total, changed = grading.hidden_results(ws)
-        return changed > 0
+        matched, total, _changed = grading.hidden_results(ws)
+        # Pay only for a Python-free port that actually works, not for deleting
+        # files or a trivial/partial program.
+        return total > 0 and matched / total >= grading.NO_PYTHON_MIN_BEHAVIOUR
     except Exception as exc:
         grading.log(f"[no_python] grader error: {exc!r}")
         return False

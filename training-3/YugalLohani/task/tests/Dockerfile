@@ -16,7 +16,20 @@ ENV GOTOOLCHAIN=local \
     PATH=/opt/uv/bin:$PATH
 
 RUN uv tool install --python 3.12 'harbor-rewardkit==0.2.4' \
- && rewardkit --help >/dev/null
+ && rewardkit --help >/dev/null \
+ # Reward Kit runs on uv's managed Python under /opt/uv; remove the system
+ # interpreters a candidate could shell out to (the grader runs candidates
+ # with PATH=/usr/local/go/bin:/usr/bin:/bin and these absolute paths gone).
+ && rm -f /usr/local/bin/python3* /usr/local/bin/python \
+          /usr/bin/python3* /usr/bin/python \
+ && ! ls /usr/bin/python3 /usr/bin/python /usr/local/bin/python3 /usr/local/bin/python 2>/dev/null \
+ && rewardkit --help >/dev/null \
+ # Unprivileged user the grader drops to when running candidate binaries.
+ && useradd --uid 1001 --create-home --shell /usr/sbin/nologin runner
 
 COPY . /tests/
+# The hidden answers (and inputs) are readable only by the trusted grader,
+# which runs as root; the unprivileged "runner" that executes candidates cannot
+# read them, so a program cannot print the answer sheet instead of computing it.
+RUN chmod 600 /tests/data/hidden_inputs.txt /tests/data/hidden_expected.txt
 WORKDIR /tests

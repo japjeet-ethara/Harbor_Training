@@ -45,6 +45,9 @@ different answers for some lines.
 
 - Go standard library only: `go.mod` has no `require` lines and there is no `vendor/`
   folder.
+- Implement the transformation in Go itself. Do not shell out to an external interpreter
+  (python, perl, node, ...) or any other program to do the titlecasing; none is available
+  when your program is graded.
 - Use the Go 1.23 toolchain installed here (`GOTOOLCHAIN=local`); `go.mod` must not ask
   for a newer Go version.
 - When you finish, there must be no `.py` file anywhere under `/workspace/repo`.
@@ -54,8 +57,9 @@ different answers for some lines.
 
 ## 5. Not checked
 
-Speed and memory (beyond a limit of 60 seconds for a few thousand lines), standard
-error, exit codes, error messages, input that does not end with `\n`, and invalid UTF-8.
+Speed and memory (as long as the program finishes within the grading time limit on the
+hidden inputs), standard error, exit codes, error messages, input that does not end with
+`\n`, and invalid UTF-8.
 
 ## 6. Grading
 

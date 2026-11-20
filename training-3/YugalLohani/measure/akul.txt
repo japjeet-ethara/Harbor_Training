@@ -1,0 +1,37 @@
+# Akul Malviya's port on the new 100k exam
+wrong answers      17475 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'html gTLD McQ\tAT   œuvre v1.2 File.tar.gz'
+  want  'HTML gTLD McQ\tAT   Œuvre V1.2 File.tar.gz'
+  got   'HTML gTLD McQ\tAT   Œuvre v1.2 File.tar.gz'
+  input "iPad “html\xa0file.tar.gz _iOS o'reilly's mcgraw-hill d'artagnan\u2003ﬁsh mc"
+  want  "iPad “Html\xa0file.tar.gz _iOS O'Reilly's McGraw-Hill d'Artagnan\u2003FIsh Mc"
+  got   "iPad “Html\xa0file.tar.gz _iOS O'Reilly's McGraw-Hill d'Artagnan\u2003ﬁsh Mc"
+  input 'p.m.\u2009v1.2 km/h his/her AI AT  MacArthur css-\u2009vs.'
+  want  'p.m.\u2009V1.2 Km/H His/Her AI AT  MacArthur CSS-\u2009Vs.'
+  got   'p.m.\u2009v1.2 Km/H His/Her AI AT  MacArthur CSS-\u2009Vs.'
+  input "d'artagnan ftp? mother-in-law a/b/c _dream\u2003for  eBook\u2009WWW.SITE.ORG tcp"
+  want  "d'Artagnan Ftp? Mother-in-Law a/B/C _Dream\u2003for  eBook\u2009WWW.SITE.ORG TCP"
+  got   "d'Artagnan Ftp? Mother-in-Law a/B/C _dream\u2003for  eBook\u2009WWW.SITE.ORG TCP"
+  input 'xml v2.0 {gTLD co-op‘; xkcd HTML\tv2.0 ~input/output'
+  want  'XML V2.0 {gTLD Co-Op‘; XKCD HTML\tV2.0 ~Input/Output'
+  got   'XML v2.0 {gTLD Co-Op‘; XKCD HTML\tv2.0 ~Input/Output'
+
+# Akul's port on the old 2k exam:
+wrong answers      176 of 2000
+chance a random 2000 suite sees none of them: 0%
+  input 'Man-made ★ MR;\xa0of oRieNT anD œUvre'
+  want  'Man-Made ★ MR;\xa0of oRieNT anD œUvre'
+  got   'Man-Made ★ MR;\xa0of oRieNT anD ŒUvre'
+  input "TAle ſMall aNd o'BrIEn stOne"
+  want  "TAle ſMall aNd O'BrIEn stOne"
+  got   "TAle SMall aNd O'BrIEn stOne"
+  input 'CSS ON/BLOOD/LANGUAGE _UNDER_'
+  want  'CSS on/Blood/Language _Under_'
+  got   'CSS on/Blood/Language _under_'
+  input 'via d’angelo ﬀ! vs. catching U.S.'
+  want  'Via D’angelo FF! Vs. Catching U.S.'
+  got   'Via D’angelo ﬀ! Vs. Catching U.S.'
+  input 'catcher learning/AND/wind ǆungla'
+  want  'Catcher Learning/and/Wind Ǆungla'
+  got   'Catcher learning/AND/wind Ǆungla'
