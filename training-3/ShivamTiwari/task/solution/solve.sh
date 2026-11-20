@@ -17,12 +17,12 @@ import (
 	"unicode/utf8"
 )
 
-// Small words, longest first so a prefix match follows the regex module's
-// leftmost-longest rule (VERSION0). "v." / "vs." come from v\.? and vs\.?.
+// Small words in the same order as the Python SMALL alternation
+// (a|an|and|...|v\.?|via|vs\.?). Python's re module tries alternatives left to
+// right and lets \.? backtrack, so "v." and "vs." are listed before "v"/"vs".
 var smallWords = []string{
-	"and", "but", "for", "the", "via", "vs.",
-	"an", "as", "at", "by", "en", "if", "in", "of", "on", "or", "to", "v.", "vs",
-	"a", "v",
+	"a", "an", "and", "as", "at", "but", "by", "en", "for", "if",
+	"in", "of", "on", "or", "the", "to", "v.", "v", "via", "vs.", "vs",
 }
 
 func main() {
@@ -301,25 +301,28 @@ func isHonorific(word string) bool {
 func hasInlinePeriod(word string) bool {
 	rs := []rune(word)
 	for i := 0; i+2 < len(rs); i++ {
-		if isLetter(rs[i]) && rs[i+1] == '.' && isLetter(rs[i+2]) {
+		if isPyWord(rs[i]) && rs[i+1] == '.' && isPyWord(rs[i+2]) {
 			return true
 		}
 	}
 	return false
 }
 
+// hasUpperLater mirrors Python re's UC_ELSEWHERE = [PUNCT]*?[a-zA-Z]+[A-Z]+?:
+// only ASCII letters participate, and the uppercase must appear after at least
+// one earlier ASCII letter.
 func hasUpperLater(word string) bool {
 	rs := []rune(word)
 	i := 0
 	for i < len(rs) && isPunct(rs[i]) {
 		i++
 	}
-	if i >= len(rs) || !isLetter(rs[i]) {
+	if i >= len(rs) || !isASCIILetter(rs[i]) {
 		return false
 	}
 	i++
-	for i < len(rs) && isLetter(rs[i]) {
-		if isUpperLetter(rs[i]) {
+	for i < len(rs) && isASCIILetter(rs[i]) {
+		if isASCIIUpper(rs[i]) {
 			return true
 		}
 		i++
@@ -355,13 +358,16 @@ func allConsonants(word string) bool {
 	return true
 }
 
+// capFirst mirrors Python re's CAPFIRST = ^[PUNCT]*?([\w]). A non-greedy
+// punctuation prefix stops at the first word character, and "_" (which is both
+// punctuation and \w in Python) counts as that word character.
 func capFirst(word string) string {
 	rs := []rune(word)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	for i < len(rs) && isPunct(rs[i]) && !isPyWord(rs[i]) {
 		i++
 	}
-	if i < len(rs) && isLetter(rs[i]) {
+	if i < len(rs) && isPyWord(rs[i]) {
 		return string(rs[:i]) + strings.ToUpper(string(rs[i])) + string(rs[i+1:])
 	}
 	return word
@@ -373,33 +379,37 @@ func applySmallFirst(word string) string {
 	for i < len(rs) && isPunct(rs[i]) {
 		i++
 	}
-	n, ok := longestSmallBounded(rs, i)
+	n, ok := smallAt(rs, i, true, true)
 	if !ok {
 		return word
 	}
 	return string(rs[:i]) + capitalize(string(rs[i:i+n])) + string(rs[i+n:])
 }
 
-func longestSmallBounded(rs []rune, i int) (int, bool) {
-	best := 0
+// smallAt implements the leftmost-first alternation used by Python's re module.
+// Alternatives are tried in smallWords order; needBoundary adds the trailing \b
+// used by SMALL_FIRST/SMALL_LAST, and fold enables the re.I flag.
+func smallAt(rs []rune, i int, fold, needBoundary bool) (int, bool) {
 	for _, alt := range smallWords {
 		al := []rune(alt)
 		n := len(al)
-		if n <= best || i+n > len(rs) {
+		if i+n > len(rs) {
 			continue
 		}
-		if !strings.EqualFold(string(rs[i:i+n]), alt) {
+		seg := string(rs[i : i+n])
+		if fold {
+			if !strings.EqualFold(seg, alt) {
+				continue
+			}
+		} else if seg != alt {
 			continue
 		}
-		if !boundary(rs, i+n) {
+		if needBoundary && !boundary(rs, i+n) {
 			continue
 		}
-		best = n
+		return n, true
 	}
-	if best == 0 {
-		return 0, false
-	}
-	return best, true
+	return 0, false
 }
 
 func applySmallLast(word string) string {
@@ -444,7 +454,7 @@ func applySubphrase(s string) string {
 	var b strings.Builder
 	for i := 0; i < len(rs); {
 		if i+1 < len(rs) && isSubPunct(rs[i]) && rs[i+1] == ' ' {
-			if n, ok := longestSmall(rs[i+2:], false); ok {
+			if n, ok := smallAt(rs[i+2:], 0, false, false); ok {
 				b.WriteRune(rs[i])
 				b.WriteRune(' ')
 				b.WriteString(capitalize(string(rs[i+2 : i+2+n])))
@@ -456,30 +466,6 @@ func applySubphrase(s string) string {
 		i++
 	}
 	return b.String()
-}
-
-func longestSmall(rs []rune, fold bool) (int, bool) {
-	best := 0
-	for _, alt := range smallWords {
-		al := []rune(alt)
-		n := len(al)
-		if n > len(rs) || n <= best {
-			continue
-		}
-		seg := string(rs[:n])
-		if fold {
-			if !strings.EqualFold(seg, alt) {
-				continue
-			}
-		} else if seg != alt {
-			continue
-		}
-		best = n
-	}
-	if best == 0 {
-		return 0, false
-	}
-	return best, true
 }
 
 func capitalize(s string) string {
@@ -497,6 +483,17 @@ func runeLen(s string) int {
 func isLetter(r rune) bool { return unicode.IsLetter(r) }
 
 func isUpperLetter(r rune) bool { return unicode.Is(unicode.Lu, r) }
+
+func isASCIILetter(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z')
+}
+
+func isASCIIUpper(r rune) bool { return r >= 'A' && r <= 'Z' }
+
+// isPyWord matches Python re's \w for these inputs: letters, digits, underscore.
+func isPyWord(r rune) bool {
+	return unicode.IsLetter(r) || unicode.IsDigit(r) || r == '_'
+}
 
 func isWord(r rune) bool {
 	return unicode.IsLetter(r) || unicode.IsDigit(r) || unicode.IsMark(r) || unicode.Is(unicode.Nl, r) || unicode.Is(unicode.Pc, r)
