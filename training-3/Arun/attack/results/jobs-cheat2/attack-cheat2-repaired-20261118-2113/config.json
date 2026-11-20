@@ -1,0 +1,9 @@
+{
+    "job_name": "attack-cheat2-repaired-20261118-2113",
+    "jobs_dir": "attack\\results\\jobs-cheat2",
+    "tasks": [
+        {
+            "path": "attack\\scratch-cheat2"
+        }
+    ]
+}

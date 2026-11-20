@@ -1,0 +1,4 @@
+Target: Gunjit Arora
+Task: titlecase-go
+Repository: https://github.com/japjeet-ethara/Harbor_Training
+Commit SHA: 65064f8daa60e919c35d71d891eeea7d78bcee9e
