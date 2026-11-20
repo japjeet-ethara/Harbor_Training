@@ -1,0 +1,43 @@
+schema_version = "1.4"
+
+# The agent's repository is copied out after the agent finishes and placed at the
+# same path inside the separate verifier container.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "practice/titlecase-go"
+version = "1.0.0"
+description = "Port python-titlecase to Go"
+keywords = ["go", "port", "regex", "unicode"]
+
+[[task.authors]]
+name = "Yugal Lohani"
+email = "yugal.lohani17@ethara.ai"
+
+[metadata]
+author_name = "Yugal Lohani"
+category = "programming"
+tags = ["porting", "go", "python", "regex"]
+
+[verifier]
+timeout_sec = 600.0
+environment_mode = "separate"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
