@@ -1,3 +1,8 @@
-Cheat 1 - reward 0.01371 - jobs/satvik-day5-madhur-exact-1
-Cheat 2 - reward 0.0 - jobs/satvik-day5-madhur-exact-2
-Cheat 3 - reward 0.01371 - jobs/satvik-day5-madhur-exact-3
+Madhur's original three cheats on the current 100,000-case task:
+Cheat 1 (delete trick / echo): reward 0.01371, jobs/satvik-final-cheat1
+Cheat 2 (Python inside): reward 0.0, jobs/satvik-final-cheat2
+Cheat 3 (read the exam): reward 0.01371, jobs/satvik-final-cheat3
+
+Optional new Day 6 cheat:
+Cheat 4 (partial Go port): reward 0.21175, jobs/satvik-stdlib-shuffle-cheat4-current
+This exceeds 0.2 and is reported without changing the score.

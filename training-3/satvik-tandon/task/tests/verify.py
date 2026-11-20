@@ -2,7 +2,9 @@
 
 import json
 import os
+import random
 import resource
+import secrets
 import subprocess
 import tempfile
 from pathlib import Path
@@ -17,6 +19,7 @@ BUILD_ENV = dict(
     GOPROXY="off",
     GOTOOLCHAIN="local",
     GOWORK="off",
+    GO111MODULE="on",
 )
 
 
@@ -27,6 +30,33 @@ def run_build(*args):
     if result.returncode:
         print(result.stderr.decode("utf-8", errors="replace"))
     return result.returncode == 0
+
+
+def standard_library_only():
+    """Reject vendored, replaced, and other third-party Go dependencies."""
+    result = subprocess.run(
+        ["go", "list", "-deps", "-json", "./..."],
+        env=BUILD_ENV,
+        capture_output=True,
+        timeout=120,
+    )
+    if result.returncode:
+        print(result.stderr.decode("utf-8", errors="replace"))
+        return False
+
+    decoder = json.JSONDecoder()
+    data = result.stdout.decode("utf-8")
+    position = 0
+    while position < len(data):
+        while position < len(data) and data[position].isspace():
+            position += 1
+        if position == len(data):
+            break
+        package, position = decoder.raw_decode(data, position)
+        if not package.get("Standard") and not (package.get("Module") or {}).get("Main"):
+            print(f"Non-standard Go dependency: {package.get('ImportPath', '?')}")
+            return False
+    return True
 
 
 def run_submission(jail, inputs, max_output):
@@ -56,13 +86,23 @@ def run_submission(jail, inputs, max_output):
 def grade(scores):
     inputs = (DATA / "inputs.txt").read_bytes()
     expected = (DATA / "answers.txt").read_bytes()
-    if not expected.endswith(b"\n") or inputs.count(b"\n") != expected.count(b"\n"):
-        raise ValueError("Verifier fixture inputs and answers must have matching line counts")
-    expected_lines = expected[:-1].split(b"\n")
+    if (not inputs.endswith(b"\n") or not expected.endswith(b"\n")
+            or inputs.count(b"\n") != 100_000
+            or expected.count(b"\n") != 100_000):
+        raise ValueError("Verifier fixtures must each contain exactly 100,000 newline-terminated lines")
+    exam = list(zip(inputs[:-1].split(b"\n"), expected[:-1].split(b"\n")))
+    shuffle_seed = secrets.randbits(64)
+    random.Random(shuffle_seed).shuffle(exam)
+    inputs = b"\n".join(title for title, _ in exam) + b"\n"
+    expected_lines = [answer for _, answer in exam]
+    print(f"Exam shuffle seed: {shuffle_seed}")
 
     if not run_build("./..."):
         return
     scores["build"] = 1.0
+    if not standard_library_only():
+        return
+    scores["stdlib_only"] = 1.0
     if any(Path.cwd().rglob("*.py")):
         return
     scores["no_python"] = 1.0
@@ -86,7 +126,7 @@ def grade(scores):
 
 
 def main():
-    scores = dict.fromkeys(("build", "no_python", "behaviour", "reward"), 0.0)
+    scores = dict.fromkeys(("build", "stdlib_only", "no_python", "behaviour", "reward"), 0.0)
     try:
         grade(scores)
     except subprocess.TimeoutExpired:
