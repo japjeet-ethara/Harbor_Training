@@ -21,7 +21,7 @@ Implement a command-line Go program in `/workspace/repo` using standard input an
 
 # Required Behaviour
 
-For every input title, the Go program's output must match the original Python `titlecase()` function byte-for-byte when called with its default arguments (`callback=None`, `small_first_last=True`, `preserve_blank_lines=False`, `normalise_space_characters=False`).
+For every input title, the Go program's output must match the original Python `titlecase()` function byte-for-byte when called with its default arguments (`callback=None`, `small_first_last=True`, `preserve_blank_lines=False`, `normalise_space_characters=False`). Answers come from titlecase WITHOUT regex.
 
 Key rules implemented by the reference:
 - **Whitespace**: Preserve input whitespace within and around a title, including leading/trailing whitespace, tabs, and repeated spaces. Do not normalize whitespace separators.
@@ -39,7 +39,7 @@ Key rules implemented by the reference:
 
 # Not checked
 
-Execution speed, memory footprint, and exact error message formatting are not graded. The program must process 2000 lines within standard evaluation timeouts.
+Execution speed, memory footprint, and exact error message formatting are not graded. The program must process 100,000 lines within standard evaluation timeouts.
 
 # Grading
 
