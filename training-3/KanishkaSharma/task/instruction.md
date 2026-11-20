@@ -18,6 +18,8 @@ Build a Go program in `/workspace/repo`. It reads one title per line from standa
 
 The output must match the original Python `titlecase()` byte for byte, for every input.
 
+Reference answers are generated in Python stdlib `re` mode (`REGEX_AVAILABLE = False`, without the third-party `regex` package).
+
 ## 5. Not checked
 
 Speed, memory, and error-message wording are not checked.
