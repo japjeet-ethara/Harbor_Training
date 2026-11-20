@@ -84,3 +84,11 @@ The most significant technical discovery was that **Sanyam Sehrawat's reference 
 Investigation revealed that Sanyam committed the 100,000-line answer dataset using Windows CRLF (`\r\n`) line endings, protected from Git conversion by `.gitattributes`. His Go verifier (`tests/grade.go:117`) split answers on `\n` without stripping `\r`, leaving trailing `0x0D` bytes on every expected line. Because standard POSIX programs print LF lines via `fmt.Println`, every comparison failed byte-equality checks. This exposed how subtle line-ending parsing bugs in verifiers can catastrophically invalidate reference solutions.
 
 ---
+
+## 6. Remaining Limitations
+
+1. **Kernel DAC Boundaries vs Deep Isolation**: File system permissions (`0700 root:root`) and unprivileged user accounts (`nobody`) effectively block direct file reads and system binaries, but they do not provide full container namespacing (seccomp, eBPF, network namespaces) against kernel-level privilege escalation or memory inspection if the untrusted binary were to exploit kernel vulnerabilities.
+2. **Static Import Analysis Limits**: Checking `go list` imports detects explicit dependencies on `os/exec` or `syscall`, but cannot prevent obfuscated syscalls invoked via direct assembly stubs (`.s` files) or dynamic runtime manipulation if Go cgo or raw assembly were permitted.
+3. **Empirical Robustness vs Formal Proof**: Defeating the three specific demonstrated attacks confirms resilience against the known attack surface, but does not constitute mathematical proof of immunity against novel, unmodeled side-channel attacks, CPU timing leaks, or grader memory inspection.
+
+---
