@@ -1,0 +1,28 @@
+Final hardened-task re-attack results (Harbor oracle agent):
+
+cheat1: reward 0.0
+job folder: jobs/2026-11-20__17-57-48
+reason: original lookup script tried the stale expected.txt filename; behavior scored 0.
+
+cheat1-corrected: reward 0.0
+job folder: jobs/2026-11-20__17-56-15
+reason: corrected lookup was denied access to /tests/data/inputs.txt.
+Before the fix, the corrected lookup scored 1.0 in jobs/2026-11-20__17-47-49.
+
+cheat2: reward 0.07872
+job folder: jobs/2026-11-20__17-57-47
+reason: partial behavior only; below the required 0.2 threshold.
+
+cheat3: reward 0.0
+job folder: jobs/2026-11-20__17-57-46
+reason: emitted 0 lines for 100,000 inputs; behavior scored 0.
+
+oracle: reward 1.0
+job folder: jobs/2026-11-20__17-57-39
+
+nop: reward 0.0
+job folder: jobs/2026-11-20__17-59-38
+
+The prior 0.0 for the original lookup was genuine for that script but did
+not prove lookup was blocked. The corrected-path run found and then verified
+the fix for that leak.

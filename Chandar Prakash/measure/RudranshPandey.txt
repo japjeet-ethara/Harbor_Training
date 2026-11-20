@@ -1,0 +1,17 @@
+wrong answers      28064 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input "Dr D'Angelo  vs.\u2009αlpha TCP/IP river War"
+  want  "Dr d'Angelo  vs.\u2009Αlpha TCP/IP River War"
+  got   "Dr d'Angelo  Vs.\u2009αlpha TCP/IP River War"
+  input 'FTP://HOST/FILE MUSIC BOOK  VIA !AND VS MCGRAW-HILL LIGHT "ΑLPHA'
+  want  'Ftp://host/file Music Book  via !And vs McGraw-Hill Light "Αlpha'
+  got   'Ftp://host/file Music Book  via !And vs McGraw-Hill Light "αlpha'
+  input 'war\xa0\\data\u2009%summer'
+  want  'War\xa0\\Data\u2009%Summer'
+  got   'War\xa0\\data\u2009%summer'
+  input 'his/her\tand A/B/C  GTLD for in\u2009in dream: www.site.org'
+  want  'His/Her\tand a/B/C  GTLD for in\u2009in Dream: www.site.org'
+  got   'His/Her\tand a/B/C  GTLD for In\u2009in Dream: www.site.org'
+  input "night\u2009D'angelo mcgraw-hill war road{ book École  on for"
+  want  "Night\u2009d'Angelo McGraw-Hill War Road{ Book École  on For"
+  got   "Night\u2009D'angelo McGraw-Hill War Road{ Book École  on For"
