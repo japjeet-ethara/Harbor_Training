@@ -1,8 +1,8 @@
-# Titlecase in Go
+﻿# Titlecase in Go
 
 ## Repository
 
-python-titlecase (https://github.com/ppannuto/python-titlecase, commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`, MIT license) is a Python library that converts text to title case. Its `titlecase()` function capitalizes principal words and lowercases a fixed set of small words, except at the start or end of a line or immediately after a subphrase delimiter. It also applies special rules for hyphenated and slash-separated words, apostrophes, names beginning with "Mc", all-caps lines, consonant-only acronyms, and tokens that already contain internal capitals or periods. `/workspace/repo/NOTES.md` specifies that default behavior of `titlecase()` in `titlecase/__init__.py` at that commit, including the behavior that depends on the third-party `regex` package.
+python-titlecase (https://github.com/ppannuto/python-titlecase, commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`, MIT license) is a Python library that converts text to title case. Its `titlecase()` function capitalizes principal words and lowercases a fixed set of small words, except at the start or end of a line or immediately after a subphrase delimiter. It also applies special rules for hyphenated and slash-separated words, apostrophes, names beginning with "Mc", all-caps lines, consonant-only acronyms, and tokens that already contain internal capitals or periods. `/workspace/repo/NOTES.md` specifies that default behavior of `titlecase()` in `titlecase/__init__.py` at that commit, using the standard-library `re` fallback mode (REGEX_AVAILABLE=False), without the third-party `regex` package.
 
 ## What to build
 
@@ -24,4 +24,4 @@ Speed, memory usage, and error-message wording are not evaluated.
 
 ## Grading
 
-The task is evaluated using hidden automatic tests. Partial credit is possible.
+The task is evaluated using hidden automatic tests. Full credit is awarded only when every evaluation criterion passes. If any criterion fails, the overall reward is 0.0.

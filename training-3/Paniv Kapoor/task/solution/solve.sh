@@ -19,17 +19,23 @@ import (
 	"unicode/utf8"
 )
 
-// punct is the Python PUNCT class, in the same order the regex uses.
+// punct is the Python PUNCT class.
 const punct = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]_`{|}~"
 
-// whitespace matches the third-party regex module's \s (25 code points).
+// whitespace matches Python re module's \s (29 code points).
 var whitespace = map[rune]struct{}{
 	'\t': {}, '\n': {}, '\v': {}, '\f': {}, '\r': {}, ' ': {},
+	'\u001c': {}, '\u001d': {}, '\u001e': {}, '\u001f': {},
 	'\u0085': {}, '\u00a0': {}, '\u1680': {},
 	'\u2000': {}, '\u2001': {}, '\u2002': {}, '\u2003': {}, '\u2004': {},
 	'\u2005': {}, '\u2006': {}, '\u2007': {}, '\u2008': {}, '\u2009': {},
 	'\u200a': {}, '\u2028': {}, '\u2029': {}, '\u202f': {}, '\u205f': {},
 	'\u3000': {},
+}
+
+var smallCandidates = []string{
+	"a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
+	"of", "on", "or", "the", "to", "v.", "v", "via", "vs.", "vs",
 }
 
 func main() {
@@ -180,16 +186,20 @@ func matchInitials(rs []rune, i int) bool {
 	if i == len(rs) {
 		return i > 0
 	}
-	if i+1 >= len(rs) || !isUpperLetter(rs[i]) || rs[i+1] != '.' {
+	if i+1 >= len(rs) || !isASCIIUpper(rs[i]) || rs[i+1] != '.' {
 		return false
 	}
 	if matchInitials(rs, i+2) {
 		return true
 	}
-	if i+2 < len(rs) && isUpperLetter(rs[i+2]) && matchInitials(rs, i+3) {
+	if i+2 < len(rs) && isASCIIUpper(rs[i+2]) && matchInitials(rs, i+3) {
 		return true
 	}
 	return false
+}
+
+func isASCIIUpper(r rune) bool {
+	return r >= 'A' && r <= 'Z'
 }
 
 func recaseApostrophe(word string) (bool, string) {
@@ -217,10 +227,22 @@ func aposTail(rest []rune) bool {
 	if len(rest) == 0 {
 		return false
 	}
-	if allLetters(rest) {
+	allWord := true
+	for _, r := range rest {
+		if !isRegexWord(r) {
+			allWord = false
+			break
+		}
+	}
+	if allWord {
 		return true
 	}
-	if len(rest) >= 3 && allLetters(rest[:len(rest)-2]) && isAposSuffix(rest[len(rest)-2]) && isAposSuffix(rest[len(rest)-1]) {
+	if len(rest) >= 3 && isAposSuffix(rest[len(rest)-2]) && isAposSuffix(rest[len(rest)-1]) {
+		for _, r := range rest[:len(rest)-2] {
+			if !isRegexWord(r) {
+				return false
+			}
+		}
 		return true
 	}
 	return false
@@ -274,7 +296,7 @@ func isHonorific(word string) bool {
 func hasInlinePeriod(word string) bool {
 	rs := []rune(word)
 	for i := 0; i+2 < len(rs); i++ {
-		if unicode.IsLetter(rs[i]) && rs[i+1] == '.' && unicode.IsLetter(rs[i+2]) {
+		if isRegexWord(rs[i]) && rs[i+1] == '.' && isRegexWord(rs[i+2]) {
 			return true
 		}
 	}
@@ -287,17 +309,24 @@ func hasUCElsewhere(word string) bool {
 	for i < len(rs) && isPunct(rs[i]) {
 		i++
 	}
-	if i >= len(rs) || !unicode.IsLetter(rs[i]) {
-		return false
-	}
-	i++
-	for i < len(rs) && unicode.IsLetter(rs[i]) {
-		if isUpperLetter(rs[i]) {
-			return true
-		}
+	start := i
+	for i < len(rs) && isASCIILetter(rs[i]) {
 		i++
 	}
+	letters := rs[start:i]
+	if len(letters) < 2 {
+		return false
+	}
+	for _, r := range letters[1:] {
+		if r >= 'A' && r <= 'Z' {
+			return true
+		}
+	}
 	return false
+}
+
+func isASCIILetter(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z')
 }
 
 func isSmallWord(word string) bool {
@@ -332,10 +361,10 @@ func isASCIIConsonant(r rune) bool {
 func capFirst(word string) string {
 	rs := []rune(word)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	for i < len(rs) && isPunct(rs[i]) && !isRegexWord(rs[i]) {
 		i++
 	}
-	if i >= len(rs) || !unicode.IsLetter(rs[i]) {
+	if i >= len(rs) || !isRegexWord(rs[i]) {
 		return word
 	}
 	return string(rs[:i]) + pyUpperRune(rs[i]) + string(rs[i+1:])
@@ -347,13 +376,14 @@ func applySmallFirst(word string) string {
 	for i < len(rs) && isPunct(rs[i]) {
 		i++
 	}
-	// Leading punctuation is greedy, then the matcher backtracks.
-	for {
-		if n, ok := matchSmallAt(rs, i, true); ok {
-			return string(rs[:i]) + pyCapitalize(string(rs[i:i+n])) + string(rs[i+n:])
-		}
-		if i == 0 || !isPunct(rs[i-1]) {
-			break
+	for i >= 0 {
+		for _, cand := range smallCandidates {
+			if hasFoldPrefix(rs[i:], cand) {
+				m := runeLen(cand)
+				if hasBoundary(rs, i+m) {
+					return string(rs[:i]) + pyCapitalize(string(rs[i:i+m])) + string(rs[i+m:])
+				}
+			}
 		}
 		i--
 	}
@@ -362,20 +392,20 @@ func applySmallFirst(word string) string {
 
 func applySmallLast(word string) string {
 	rs := []rune(word)
-	for i := 0; i <= len(rs); i++ {
+	for i := 0; i < len(rs); i++ {
 		if !hasBoundary(rs, i) {
 			continue
 		}
-		n, ok := matchSmallAt(rs, i, true)
-		if !ok {
-			continue
-		}
-		end := i + n
-		if end < len(rs) && end+1 == len(rs) && isPunct(rs[end]) {
-			end++
-		}
-		if end == len(rs) {
-			return string(rs[:i]) + pyCapitalize(string(rs[i:end]))
+		for _, cand := range smallCandidates {
+			if hasFoldPrefix(rs[i:], cand) {
+				m := runeLen(cand)
+				rem := rs[i+m:]
+				if len(rem) == 0 {
+					return string(rs[:i]) + pyCapitalize(string(rs[i:i+m]))
+				} else if len(rem) == 1 && isPunct(rem[0]) {
+					return string(rs[:i]) + pyCapitalize(string(rs[i:i+m+1]))
+				}
+			}
 		}
 	}
 	return word
@@ -387,11 +417,18 @@ func applySubphrase(line string) string {
 	i := 0
 	for i < len(rs) {
 		if i+1 < len(rs) && isSubDelim(rs[i]) && rs[i+1] == ' ' {
-			if n, ok := matchSmallAt(rs, i+2, false); ok {
+			matched := ""
+			for _, cand := range smallCandidates {
+				if hasExactPrefix(rs[i+2:], cand) {
+					matched = cand
+					break
+				}
+			}
+			if matched != "" {
 				b.WriteRune(rs[i])
 				b.WriteRune(' ')
-				b.WriteString(pyCapitalize(string(rs[i+2 : i+2+n])))
-				i = i + 2 + n
+				b.WriteString(pyCapitalize(matched))
+				i += 2 + runeLen(matched)
 				continue
 			}
 		}
@@ -401,46 +438,17 @@ func applySubphrase(line string) string {
 	return b.String()
 }
 
-// matchSmallAt matches the Python small-word alternation at rs[i:].
-// When boundary is set, the match must end on a word boundary, and an
-// optional dot is dropped if keeping it would miss that boundary.
-func matchSmallAt(rs []rune, i int, boundary bool) (int, bool) {
-	literals := []string{
-		"a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
-		"of", "on", "or", "the", "to",
+func hasExactPrefix(rs []rune, stem string) bool {
+	ss := []rune(stem)
+	if len(rs) < len(ss) {
+		return false
 	}
-	for _, lit := range literals {
-		n := runeLen(lit)
-		if hasFoldPrefix(rs[i:], lit) && (!boundary || hasBoundary(rs, i+n)) {
-			return n, true
+	for i, r := range ss {
+		if rs[i] != r {
+			return false
 		}
 	}
-	if n, ok := matchStemDot(rs, i, "v", boundary); ok {
-		return n, true
-	}
-	if hasFoldPrefix(rs[i:], "via") && (!boundary || hasBoundary(rs, i+3)) {
-		return 3, true
-	}
-	if n, ok := matchStemDot(rs, i, "vs", boundary); ok {
-		return n, true
-	}
-	return 0, false
-}
-
-func matchStemDot(rs []rune, i int, stem string, boundary bool) (int, bool) {
-	if !hasFoldPrefix(rs[i:], stem) {
-		return 0, false
-	}
-	n := runeLen(stem)
-	if i+n < len(rs) && rs[i+n] == '.' {
-		if !boundary || hasBoundary(rs, i+n+1) {
-			return n + 1, true
-		}
-	}
-	if !boundary || hasBoundary(rs, i+n) {
-		return n, true
-	}
-	return 0, false
+	return true
 }
 
 func hasFoldPrefix(rs []rune, stem string) bool {
@@ -468,13 +476,7 @@ func hasBoundary(rs []rune, i int) bool {
 }
 
 func isRegexWord(r rune) bool {
-	if unicode.IsLetter(r) || unicode.IsDigit(r) || unicode.Is(unicode.Nl, r) {
-		return true
-	}
-	if unicode.Is(unicode.Mn, r) || unicode.Is(unicode.Mc, r) || unicode.Is(unicode.Me, r) {
-		return true
-	}
-	return unicode.Is(unicode.Pc, r)
+	return unicode.IsLetter(r) || unicode.IsNumber(r) || unicode.Is(unicode.Pc, r)
 }
 
 func isPunct(r rune) bool {
@@ -488,22 +490,6 @@ func isSubDelim(r rune) bool {
 	default:
 		return false
 	}
-}
-
-func isUpperLetter(r rune) bool {
-	return unicode.IsUpper(r)
-}
-
-func allLetters(rs []rune) bool {
-	if len(rs) == 0 {
-		return false
-	}
-	for _, r := range rs {
-		if !unicode.IsLetter(r) {
-			return false
-		}
-	}
-	return true
 }
 
 func runeLen(s string) int {
