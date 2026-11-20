@@ -82,3 +82,26 @@ How to fix:     Pay no_python only if behaviour > 0 on hidden cases; remove hidd
 ## Highest score any cheat got
 
 **1.0** (cheat 1 and cheat 2: a full score with no titlecase port at all).
+
+## Day 6 — re-attack on Vanam's hardened task
+
+Target: `training-3/VanamPrashanth/task/titlecase-go` at commit `2702d02` (hardened; his proof commit
+`c8600f1` only adds reports). Exported with `git archive` (LF endings), tests/environment untouched.
+Same method as Day 4: `harbor run -p <copy with the cheat as solution/solve.sh> -a oracle`.
+
+| Cheat | Day 4 | Day 6 | Components | Job folder |
+|---|---|---|---|---|
+| 1 read the exam | 1.0 | **0.1667** | build 1, no_python 0, behaviour 0 | `jobs/2026-11-20__15-32-55` |
+| 2 Python inside | 1.0 | **0.1667** | build 1, no_python 0, behaviour 0 | `jobs/2026-11-20__15-34-13` |
+| 3 lookup + half port | 0.728 | **0.1667** | build 1, no_python 0, behaviour 0 | `jobs/2026-11-20__15-35-25` |
+| 4 (new) reference mount scan | — | **0.1667** | build 1, no_python 0, behaviour 0 | `jobs/2026-11-20__15-36-38` |
+
+Cheat 4 is Charitra's Day 6 probe (`cheat4/solve.sh`): look for a Go port under `/solution/go`,
+`/opt/python-titlecase`, … and copy it. Vanam's port lives only inside `solution/solve.sh`, so it finds
+nothing and falls back to echoing the input. Reward files: `results/day6-cheat1..4-reward.json`.
+
+**Verdict:** every cheat is below 0.2; highest score now 0.1667 (was 1.0). The 0.1667 is only the
+build point. Looked at but not tried: a cgo `.incbin` of the answers at build time (the verifier image
+`python:3.12-slim` has no C compiler, and a fresh 2,000-title seed per run would beat a lookup anyway).
+Remaining weak spot I noticed: the agent image is `golang:1.23` (Debian, ships `python3`), so an agent
+can still *use* Python while working; the grader's empty jail stops it at grading time.
