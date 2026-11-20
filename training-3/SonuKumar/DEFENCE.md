@@ -84,16 +84,3 @@ The most significant technical discovery was that **Sanyam Sehrawat's reference 
 Investigation revealed that Sanyam committed the 100,000-line answer dataset using Windows CRLF (`\r\n`) line endings, protected from Git conversion by `.gitattributes`. His Go verifier (`tests/grade.go:117`) split answers on `\n` without stripping `\r`, leaving trailing `0x0D` bytes on every expected line. Because standard POSIX programs print LF lines via `fmt.Println`, every comparison failed byte-equality checks. This exposed how subtle line-ending parsing bugs in verifiers can catastrophically invalidate reference solutions.
 
 ---
-
-## 6. Limitations and Fairness
-
-### Nature of Cheat 4
-Ayush's Cheat 4 is a **genuine, incomplete Go implementation**, not an exploit. It uses no Python delegation, no filesystem answer leakage, no banned packages, and no container escapes. It legitimately capitalized simple words and preserved inner caps.
-
-### Grading Fairness Tradeoff of Quadratic Scoring
-1. **Convex Suppression**: Squaring accuracy ($x^2$) reduces low scores dramatically while preserving high scores:
-   - 32.63% accuracy ($0.3263$) becomes $0.1065$, reducing behaviour points from $2.9367$ to $0.9581$, driving total reward to $0.1958$.
-   - A near-complete 96.95% port ($0.9695$) becomes $0.9399$, yielding $0.9459$ reward (retaining full credit for genuine engineering).
-   - A 71.94% port ($0.7194$) becomes $0.5175$, yielding $0.5658$ reward.
-2. **Why Not Hard Cutoffs**: We intentionally rejected arbitrary cliffs (e.g. 95% or 99% cutoffs). A 95% cliff creates a mathematical "dead zone" where an implementation with 94.9% accuracy receives 0.0 behaviour, identical to an empty stub. Quadratic scoring remains strictly continuous and monotonic.
-3. **What Was Not Established**: Quadratic scoring was tested specifically on Ayush's 32.63% heuristic. Other partial ports with intermediate accuracy (e.g. 40%–60%) may receive between 0.24 and 0.42 reward. The < 0.2000 threshold applies to the assigned attacker's specific submission.
