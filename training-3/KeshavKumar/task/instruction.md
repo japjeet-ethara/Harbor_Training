@@ -34,19 +34,33 @@ For every input line `L`, the output line must be byte-for-byte identical to the
 the original Python code returns for `titlecase(L)`, where:
 
 - `titlecase` is called with default arguments only (no callback, no wordlist file);
-- the code runs on Python 3 with the standard-library `re` module, i.e. as it behaves
-  when the optional third-party `regex` module is not installed.
+- the answers come from titlecase **WITHOUT the `regex` package**: Python 3 with the
+  standard-library `re` module, i.e. as the code behaves when the optional third-party
+  `regex` module is not installed.
+
+Inputs include unusual Unicode letters, punctuation and whitespace (tabs, non-breaking
+and thin spaces).
+
+## Environment
+
+- Python is **not** installed, neither in your container nor where your program is graded.
+  The port must be real Go code; a Go program that calls Python gets no lines right.
+- There is no internet access while you work, and none while your program is graded.
+- Your program is graded as an unprivileged user with no access to anything outside its
+  standard input and output.
 
 ## Not checked
 
-Speed, memory use, code style, and the wording of error messages.
+Speed, memory use, code style, and the wording of error messages. (The whole hidden
+input must be processed within a generous 5-minute limit; a straightforward port needs
+well under a second.)
 
 ## Grading
 
 Hidden automatic tests produce a partial score from 0 to 1, as a weighted mean of:
 
-| Check | Weight | Scores 1 when |
-|-------|--------|---------------|
-| build | 1 | `go.mod` has no `require` directives and `go build ./...` succeeds in `/workspace/repo` |
-| no_python | 1 | no `.py` file exists under `/workspace/repo`, the build succeeds, **and** at least half of the hidden input lines match exactly |
-| behaviour | 4 | fraction of hidden input lines whose output line matches exactly (0 to 1) |
+| Check | Weight | Scores |
+|-------|--------|--------|
+| build | 1 | 1 if `go.mod` has no `require` directives and `go build ./...` succeeds in `/workspace/repo` |
+| no_python | 1 | 1 if no `.py` file exists under `/workspace/repo`, the build succeeds, **and** at least half of the hidden input lines match exactly |
+| behaviour | 4 | `(share - 0.5) / 0.5`, where `share` is the fraction of hidden input lines whose output line matches exactly; 0 when `share` is 0.5 or less |

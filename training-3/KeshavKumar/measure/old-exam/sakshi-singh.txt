@@ -1,0 +1,14 @@
+wrong answers      4 of 2000
+chance a random 2000 suite sees none of them: 0%
+  input "IF BLACK İSTANBUL STRASSE ‒ ?!\xa0O'NEIL - SOUL RICH\tSCIENCE"
+  want  "If Black İstanbul Strasse ‒ ?!\xa0O'NEIL - Soul Rich\tScience"
+  got   "If Black Istanbul Strasse ‒ ?!\xa0O'NEIL - Soul Rich\tScience"
+  input 'GIRL - THEORY SWORD — İSTANBUL\xa0EITHER/OR'
+  want  'Girl - Theory Sword — İstanbul\xa0Either/Or'
+  got   'Girl - Theory Sword — Istanbul\xa0Either/Or'
+  input 'GAME İSTANBUL\xa0MOTHER FREE AND FAMILY\tBUT MAN'
+  want  'Game İstanbul\xa0Mother Free and Family\tbut Man'
+  got   'Game Istanbul\xa0Mother Free and Family\tbut Man'
+  input 'MS YOUTUBE. BEAUTIFUL HUNT – İSTANBUL MOON'
+  want  'MS Youtube. Beautiful Hunt – İstanbul Moon'
+  got   'MS Youtube. Beautiful Hunt – Istanbul Moon'
