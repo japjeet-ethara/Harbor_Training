@@ -142,39 +142,53 @@ non-root fresh-UID `Worker` isolation (the read-the-exam vector) all held.
 
 ## Day 6 re-attack — Charitra's hardened task
 
-**Target now:** `training-3/Charitra/task` at commit
-`be2c020e946186669c9810d1517f46b3895691f8` (Charitra's Day 5 hardened version).
-Re-ran the same three cheats. Harbor 0.26.0, 2026-11-20.
+**Target now:** `training-3/Charitra/task` at branch commit
+`60180715048154fca7622a8626326c61f4367c3d` (Charitra's Day 5/6 hardened version;
+task tree unchanged since `be2c020`). Re-ran the same three cheats. Harbor
+0.26.0, 2026-11-20.
 
 | Cheat | Day 4 (original task) | Day 6 (hardened task) | Job folder |
 |---|---|---|---|
-| cheat1 lookup | 0.351 | **errored, no reward** | `attack/jobs/2026-11-20__13-53-15` |
-| cheat2 half-port | 0.3717 | **errored, no reward** | `attack/jobs/2026-11-20__13-54-19` |
-| cheat3 python-inside | 1.000 | **errored, no reward** | `attack/jobs/2026-11-20__13-55-07` |
+| cheat1 lookup | 0.351 | **errored, no reward** | `attack/jobs/2026-11-20__14-37-50` |
+| cheat2 half-port | 0.3717 | **errored, no reward** | `attack/jobs/2026-11-20__14-38-41` |
+| cheat3 python-inside | 1.000 | **errored, no reward** | `attack/jobs/2026-11-20__14-39-34` |
 
-**What happened:** none of the three cheats could be scored, because the
-hardened task no longer runs. Its verifier fails at config load, before any
-candidate is built, with:
+**Charitra did harden against my Day 4 attack, and well.** Comparing their
+`tests/grader.py` with the original, the Day 4 python-inside break (which scored
+1.0) is directly addressed:
+
+- the candidate's `PATH` is scrubbed to just `/usr/local/go/bin`, with a comment
+  that no interpreter directory is reachable;
+- the build audit now **rejects `os/exec` and `syscall` in the submitted root
+  package** (`external_process_execution_dependency`), so my cheat 3 would fail
+  the build outright — it imports `os/exec`;
+- the exam grew to 100,000 cases (`CASE_COUNT`), which would crush the half-port
+  and lookup cheats as it did on my own task.
+
+So, *had the task run*, all three of my cheats would almost certainly have scored
+below 0.2.
+
+**But the task does not run at all.** Every trial, for every cheat, errors at
+config load before any candidate is built:
 
 ```
 ValueError: /tests/reward.toml: unknown [[reward]].weights inputs: 'build'.
             Available inputs: 'behaviour', 'no_python'.
 ```
 
-Charitra's hardening changed `tests/reward.toml` to
-`weights = { build = 0.1, no_python = 0.1, behaviour = 5.8 }` but removed the
-`tests/build/` check directory (only `tests/behaviour/check.py` and
-`tests/no_python/check.py` remain). Reward Kit validates the reward weights
-against the available check names and raises, so the grader writes no
-`reward.json`; Harbor reports each trial as a `RewardFileNotFoundError` rather
-than a score.
+The hardening deleted `tests/build/check.py` (confirmed in the diff) but left
+`build = 0.1` in `tests/reward.toml`'s weights. Reward Kit validates weight names
+against the discovered check components (`behaviour`, `no_python`) and raises, so
+no `reward.json` is written and Harbor reports each trial as a
+`RewardFileNotFoundError`. This affects every submission, including Charitra's
+own oracle — the task cannot score 1.0 either.
 
-**Effect:** the hardening is a regression. The python-inside hole I found on
-Day 4 (which scored 1.0) is moot only because the whole task is now ungradeable
-— the oracle cannot score 1.0 either. This should be reported to Charitra: the
-fix is to restore a `tests/build/` check (or drop `build` from the reward
-weights) so the task runs again, and then re-close the python-inside hole
-(remove the interpreter from the verifier run environment and isolate the
-candidate, as noted in Finding / cheat 3 above).
+**Effect / to report to Charitra:** the anti-cheat logic is sound, but a
+packaging regression makes the task ungradeable. Fix: restore a `build`
+component (re-add `tests/build/check.py` returning `evaluate()["build"]`) or drop
+`build` from `reward.toml` weights. Once it runs again, my three cheats should
+all land below 0.2 — the python-inside cheat because `os/exec` is now rejected at
+build time, the half-port and lookup because of the 100k exam.
 
-**Highest re-attack score: none (all trials errored).**
+**Highest re-attack score: none (all trials errored — the task is currently
+ungradeable).**
