@@ -121,3 +121,121 @@ The saved reward files do not provide enough information to claim an exact compo
 The strongest attack was Cheat 2. It exposed a weakness in relying exclusively on `.py` filename detection to enforce a no-Python requirement.
 
 The main hardening lesson is that a verifier must validate actual runtime behaviour and implementation constraints, not just filenames or basic build success.
+
+---
+
+# Day 6 - Attack Re-evaluation Report
+
+## 8. Day 6 Target Information
+
+- Target owner: Yuvraj Singh
+- Target task: titlecase-go
+- Target commit: e70a69476ae4fe28a046f4a7c526ed7f77b45396
+- Attacker: Paniv Kapoor
+- Attack date: 2026-11-20
+- Test environment: Local copied target at `attack/target`
+- Original Yuvraj task was not modified.
+
+## 9. Day 6 Results Summary
+
+All four attacks were executed against Yuvraj's updated hardened task using Harbor.
+
+| Cheat | Strategy | Day 4 Reward | Day 6 Reward | Harbor Job |
+|---|---|---:|---:|---|
+| Cheat 1 | Visible-input lookup table | 0.3653 | 0.1250 | 2026-11-20__19-15-09 |
+| Cheat 2 | Python hidden in extensionless file | 1.0000 | 0.0625 | 2026-11-20__19-22-12 |
+| Cheat 3 | Partial Go implementation | 0.3653 | 0.1250 | 2026-11-20__19-26-24 |
+| Cheat 4 | Hidden Python engine with Go wrapper | Not recorded | 0.0625 | 2026-11-20__19-30-58 |
+
+All four runs completed with zero exceptions.
+
+### Saved result files
+
+- `results/cheat1-day6-result.json`
+- `results/cheat2-day6-result.json`
+- `results/cheat3-day6-result.json`
+- `results/cheat4-day6-result.json`
+
+## 10. Cheat-by-Cheat Analysis
+
+### Cheat 1 - Visible Input Lookup Table
+
+- Day 6 reward: 0.1250
+- Harbor job: `2026-11-20__19-15-09`
+- Evidence: `cheat1/solve.sh`
+
+The lookup-table strategy still obtained a non-zero reward, but its reward decreased from 0.3653 to 0.1250.
+
+Yuvraj's updated hidden tests and reward configuration significantly reduced the value of memorizing visible input-output pairs.
+
+### Cheat 2 - Python in an Extensionless File
+
+- Day 6 reward: 0.0625
+- Harbor job: `2026-11-20__19-22-12`
+- Evidence: `cheat2/solve.sh`
+
+The attack hides Python logic in a file without a `.py` extension and invokes it through a Go wrapper.
+
+The reward decreased from 1.0000 to 0.0625 after hardening.
+
+This demonstrates that the updated verifier and runtime restrictions substantially reduced the effectiveness of this bypass.
+
+### Cheat 3 - Partial Go Implementation
+
+- Day 6 reward: 0.1250
+- Harbor job: `2026-11-20__19-26-24`
+- Evidence: `cheat3/solve.sh`
+
+The partial implementation still receives a non-zero reward, but its reward decreased from 0.3653 to 0.1250.
+
+The stronger hidden behavioural tests make incomplete titlecase implementations much less effective.
+
+### Cheat 4 - Hidden Python Engine
+
+- Day 6 reward: 0.0625
+- Harbor job: `2026-11-20__19-30-58`
+- Evidence: `Yuvraj-Singh/attack/cheat4/solve.sh`
+
+This attack creates an extensionless Python file named `engine` and uses a Go wrapper to execute it.
+
+The attack obtained only 0.0625 reward against the updated target.
+
+This provides additional evidence that the extensionless Python execution strategy is substantially less effective after hardening.
+
+## 11. Final Oracle Restoration Verification
+
+After all four attacks, the original Yuvraj solution was restored from:
+
+`Yuvraj-Singh/task/solution/solve.sh`
+
+The restored solution was tested again using Harbor.
+
+- Reward: 1.0000
+- Exceptions: 0
+- Harbor job: `2026-11-20__19-41-16`
+- Saved result: `results/oracle-restored-day6-result.json`
+
+This confirms that the copied target was restored to a working original solution after attack testing.
+
+## 12. Day 4 vs Day 6 Comparison
+
+The three original attacks showed substantial reward reductions:
+
+- Cheat 1: 0.3653 -> 0.1250
+- Cheat 2: 1.0000 -> 0.0625
+- Cheat 3: 0.3653 -> 0.1250
+
+Cheat 4 also achieved only 0.0625 against the updated task.
+
+However, none of the four attacks achieved a zero reward. Therefore, these results demonstrate partial attack suppression, not complete attack elimination.
+
+## 13. Conclusion
+
+Yuvraj's hardening substantially reduced the effectiveness of all four tested attacks.
+
+The most significant reduction occurred in Cheat 2, which went from a perfect reward of 1.0000 to 0.0625.
+
+The updated hidden behavioural tests, no-Python enforcement, and reward configuration made the attacks considerably less successful.
+
+The final original Oracle verification achieved 1.0000, confirming that the target remained functional after the experiments.
+
