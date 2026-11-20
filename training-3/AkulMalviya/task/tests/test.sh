@@ -76,7 +76,10 @@ LC_ALL=C awk '
   ("x" $0) == ("x" want[FNR]) { matched++ }
   END {
     printf "%d/%d hidden lines matched\n", matched, total > "/dev/stderr"
-    printf "%.6f\n", matched / total
+    # Preserve low partial scores, but reserve passing credit for exact parity.
+    fraction = matched / total
+    reward = matched == total ? 1 : (fraction > 0.19 ? 0.19 : fraction)
+    printf "%.6f\n", reward
   }
 ' "$scratch/expected" "$scratch/actual" > "$scratch/score"
 cat "$scratch/score" > "$reward"
