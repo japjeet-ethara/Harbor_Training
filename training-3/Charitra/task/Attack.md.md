@@ -187,3 +187,14 @@ This report is based on the available `instruction.md`, `task.toml`, `tests/test
 *   Replace every PENDING field with actual run evidence.
      
 *   Confirm no target files outside your own folder were changed.
+## Day 6 - Re-attack against Adnan's hardened task (2026-11-20)
+
+I reran the same three probes described above against a private copy of Adnan's hardened task from commit `240786becf41ed7323faf933516b8fdc75d9aeb2` (`training-3/MohammadAdnan/task`). The task's `tests/`, `task.toml`, and `environment/` were unchanged. Each Harbor run used one trial with the `oracle` adapter and Docker environment.
+
+| Cheat | Accuracy | Behaviour | Build | No_Python | Reward | Harbor job folder | Saved reward |
+|---|---:|---:|---:|---:|---:|---|---|
+| 1 - Build-only | 0.000 | 0.000 | 1.000 | 0.000 | **0.167** | `jobs/adnan-reattack-20261120/adnan-c1-20261120` | `attack/results/day6-adnan-cheat1-reward.json` |
+| 2 - Delete-Python-only | 0.000 | 0.000 | 0.000 | 0.000 | **0.000** | `jobs/adnan-reattack-20261120/adnan-c2-20261120` | `attack/results/day6-adnan-cheat2-reward.json` |
+| 3 - Partial titlecase port | 0.16741 | 0.000 | 1.000 | 0.000 | **0.167** | `jobs/adnan-reattack-20261120/adnan-c3-20261120` | `attack/results/day6-adnan-cheat3-reward.json` |
+
+The partial port matched 16.741% of the 100,000-case exam, below Adnan's 50% behaviour-credit threshold, so it received no behaviour or no-Python credit. The highest of these three rerun scores was 0.167, below the Day 6 limit of 0.2. This confirms these three known cheats remain below the threshold on the hardened snapshot; it does not establish resistance to every possible new attack. I did not modify Adnan's repository files.
