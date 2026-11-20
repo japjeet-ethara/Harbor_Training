@@ -1,79 +1,77 @@
+import os
 from pathlib import Path
+import shutil
 import subprocess
 import tempfile
-import os
+
 from rewardkit import criterion
 
 REPO_DIR = Path("/workspace/repo")
 TESTS_DIR = Path(__file__).resolve().parent
-HIDDEN_INPUTS_PATH = TESTS_DIR / "data" / "hidden_inputs.txt"
-HIDDEN_EXPECTED_PATH = TESTS_DIR / "data" / "hidden_expected.txt"
+HIDDEN_INPUTS_PATH = TESTS_DIR / "data" / "inputs_100k.txt"
+HIDDEN_EXPECTED_PATH = TESTS_DIR / "data" / "answers_100k.txt"
 
 
 @criterion
 def check_behaviour(workspace: Path) -> float:
+    return score_behaviour(workspace)
+
+
+def score_behaviour(workspace: Path) -> float:
     repo_path = REPO_DIR if REPO_DIR.exists() else workspace
 
-    if not HIDDEN_INPUTS_PATH.exists() or not HIDDEN_EXPECTED_PATH.exists():
-        return 0.0
-
-    with open(HIDDEN_EXPECTED_PATH, "r", encoding="utf-8") as f:
-        expected_lines = [line.rstrip("\r\n") for line in f]
-
-    total_lines = len(expected_lines)
-    if total_lines == 0:
-        return 0.0
-
-    # Build the Go program into a temporary binary
-    with tempfile.TemporaryDirectory() as tmpdir:
-        bin_path = os.path.join(tmpdir, "titlecase_app")
-        try:
-            build_res = subprocess.run(
-                ["go", "build", "-o", bin_path, "."],
-                cwd=str(repo_path),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                timeout=120,
-            )
-            if build_res.returncode != 0:
-                # If building '.' fails, try building main package if in cmd/ or ./...
-                build_res = subprocess.run(
-                    ["go", "build", "-o", bin_path, "./..."],
-                    cwd=str(repo_path),
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                    timeout=120,
-                )
-                if build_res.returncode != 0:
-                    return 0.0
-        except Exception:
+    try:
+        hidden_inputs = HIDDEN_INPUTS_PATH.read_bytes()
+        expected_lines = HIDDEN_EXPECTED_PATH.read_bytes().splitlines()
+        if not expected_lines:
             return 0.0
 
-        # Feed tests/data/hidden_inputs.txt to the Go binary via stdin
-        try:
-            with open(HIDDEN_INPUTS_PATH, "r", encoding="utf-8") as infile:
-                run_res = subprocess.run(
-                    [bin_path],
-                    stdin=infile,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                    encoding="utf-8",
+        build_env = {**os.environ, "CGO_ENABLED": "0"}
+        with tempfile.TemporaryDirectory(dir="/tmp") as build_dir:
+            binary = Path(build_dir) / "titlecase_app"
+            for package in (".", "./..."):
+                build = subprocess.run(
+                    ["go", "build", "-o", str(binary), package],
+                    cwd=repo_path,
+                    env=build_env,
+                    capture_output=True,
                     timeout=120,
                 )
-            if run_res.returncode != 0:
+                if build.returncode == 0 and binary.is_file():
+                    break
+            else:
                 return 0.0
 
-            actual_lines = [line.rstrip("\r\n") for line in run_res.stdout.splitlines()]
-        except Exception:
-            return 0.0
+            with tempfile.TemporaryDirectory(dir="/tmp") as jail_dir:
+                jail = Path(jail_dir)
+                jail.chmod(0o755)
+                jailed_binary = jail / binary.name
+                shutil.copyfile(binary, jailed_binary)
+                jailed_binary.chmod(0o755)
 
-    # Score = share of lines that exactly match tests/data/hidden_expected.txt
-    matches = 0
-    for i in range(min(len(actual_lines), total_lines)):
-        if actual_lines[i] == expected_lines[i]:
-            matches += 1
+                def enter_jail() -> None:
+                    os.chroot(jail_dir)
+                    os.chdir("/")
+                    os.setgroups([])
+                    os.setgid(65534)
+                    os.setuid(65534)
 
-    return float(matches) / float(total_lines)
+                run = subprocess.run(
+                    [f"/{binary.name}"],
+                    input=hidden_inputs,
+                    capture_output=True,
+                    close_fds=True,
+                    env={},
+                    preexec_fn=enter_jail,
+                    timeout=120,
+                )
+                if run.returncode != 0:
+                    return 0.0
+    except (OSError, subprocess.SubprocessError):
+        return 0.0
+
+    actual_lines = run.stdout.splitlines()
+    matches = sum(
+        actual == expected for actual, expected in zip(actual_lines, expected_lines)
+    )
+    return matches / max(len(actual_lines), len(expected_lines))

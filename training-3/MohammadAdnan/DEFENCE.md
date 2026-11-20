@@ -21,7 +21,7 @@ Task: `training-3/MohammadAdnan/task` (titlecase-go). Attacker: Charitra. I atta
 
 **Copying the leaked reference port: 1.0 → 0.0.** My practice-1 `environment/Dockerfile` copied my own
 Go solution into the agent's image at `/opt/python-titlecase/` (Charitra's finding 1). A cheat that
-just copies those three files scored a perfect 1.0. Now the port is only in `solution/go/`, which
+just copies those three files scored a perfect 1.0. Now the port is only inside `solution/solve.sh` (Day 6: moved there from `solution/go/`), which
 Harbor uploads for oracle runs only, so the copy finds nothing and the build fails.
 
 Two other cheats also scored 1.0 before: reading `/tests/data/hidden_expected.txt` at run time (now:
@@ -65,9 +65,9 @@ titles are already correct as typed). Credit now starts above 50% accuracy.
 - `tests/checks/main.go`: locks `/tests` and `/logs`; `behaviour = max(0,(accuracy-0.5)/0.5)`;
   `no_python` only if behaviour > 0; `reward = (build + no_python + 4·behaviour)/6`.
 - `tests/data/inputs.txt`, `answers.txt`: from `kit/answers.py` (re mode).
-- `solution/solve.sh` + `solution/go/`: the port lives here only; removes the empty `titlecase/`
+- `solution/solve.sh`: the port lives only here, as heredocs (no `solution/go/` any more); removes the empty `titlecase/`
   folder that broke `go build ./...`.
-- `solution/go/titlecase.go`: `re`-mode patterns, Unicode `\w`, Python-style `upper()`,
+- the port's `titlecase.go`: `re`-mode patterns, Unicode `\w`, Python-style `upper()`,
   `str.isspace()` spaces, rune counts, title-case in `capitalize()`.
 - `instruction.md`: mode stated; no-Python rule spelled out; runs as unprivileged user; scoring rule.
 - `task.toml`: `[agent] user = "player"`, longer timeouts, name and author.
@@ -80,3 +80,30 @@ titles are already correct as typed). Credit now starts above 50% accuracy.
   every possible tool.
 - Ports that need more than 50% right to earn anything get no partial credit below that line; this
   is a deliberate trade so half-ports cannot score.
+
+## Day 6 — Charitra's re-attack and my answer
+
+Charitra re-ran their three probes on my hardened task (commit `240786b`): **0.167, 0.0, 0.167**, all
+below 0.2 (their `training-3/Charitra/task/Attack.md.md`). They added a fourth probe, **"reference mount
+scan"**, which scored **1.0**: it copies the Go port from `/solution/go/`.
+
+That path exists only in an oracle run (Harbor uploads `solution/` for the oracle agent only; a real
+agent never sees it), so it was not a leak to a candidate. Charitra said this too. But under the same rules
+every cheat here is tested with (cheat = a replaced `solve.sh`), the port was still on disk next to it.
+I closed that anyway: **the port now lives only inside `solution/solve.sh` as heredocs**, and
+`solution/go/` is gone. A replaced `solve.sh` has nothing to copy. The heredocs write the four files
+byte-for-byte identical to the old ones (checked with `cmp`).
+
+Full re-run after this change (reward files in `proof/day6/`):
+
+| Run | Must be | Got | Job folder |
+|---|---|---|---|
+| oracle | 1.0 | **1.0** | `jobs/2026-11-20__15-24-38` |
+| nop | 0.0 | **0.0** | `jobs/2026-11-20__15-25-41` |
+| c1 build-only | < 0.2 | **0.167** | `jobs/2026-11-20__15-26-31` |
+| c2 delete-Python-only | < 0.2 | **0.0** | `jobs/2026-11-20__15-27-23` |
+| c3 partial port | < 0.2 | **0.167** | `jobs/2026-11-20__15-28-16` |
+| c4 copy the leaked port | < 0.2 | **0.0** | `jobs/2026-11-20__15-29-09` |
+| c5 read the exam | < 0.2 | **0.167** | `jobs/2026-11-20__15-30-01` |
+| c6 Python inside | < 0.2 | **0.167** | `jobs/2026-11-20__15-30-54` |
+| c7 Charitra's mount scan | < 0.2 | **0.167** (was 1.0; accuracy 0.015 = echo fallback) | `jobs/2026-11-20__15-31-48` |

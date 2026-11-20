@@ -17,6 +17,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -29,7 +30,10 @@ var smallWords = map[string]bool{
 	"to": true, "v": true, "v.": true, "via": true, "vs": true, "vs.": true,
 }
 
-const punctuation = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]_`{|}~"
+const punctuation = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]`{|}~"
+const punctWithUnderscore = "!\"“#$%&'‘()*+,-–‒—―./:;?@[\\]_`{|}~"
+
+var reSubphrase = regexp.MustCompile(`([:.;?!\-–‒—―] )(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)`)
 
 func isPunctuation(r rune) bool {
 	return strings.ContainsRune(punctuation, r)
@@ -87,7 +91,7 @@ func hasInlinePeriod(s string) bool {
 func hasMixedCase(s string) bool {
 	r := []rune(s)
 	start := 0
-	for start < len(r) && isPunctuation(r[start]) {
+	for start < len(r) && strings.ContainsRune(punctWithUnderscore, r[start]) {
 		start++
 	}
 	seenLetter := false
@@ -155,7 +159,7 @@ func isSmall(s string) bool {
 func capitalizeSmallPrefix(s string) string {
 	r := []rune(s)
 	i := 0
-	for i < len(r) && isPunctuation(r[i]) {
+	for i < len(r) && strings.ContainsRune(punctWithUnderscore, r[i]) {
 		i++
 	}
 	for _, candidate := range []string{"a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in", "of", "on", "or", "the", "to", "v", "via", "vs"} {
@@ -252,45 +256,33 @@ func phraseSmallLast(s string) string {
 		c := []rune(candidate)
 		for suffixLen := 0; suffixLen <= 1; suffixLen++ {
 			start := len(r) - len(c) - suffixLen
-			if start < 0 || string(r[start:start+len(c)]) != candidate {
+			if start < 0 || !strings.EqualFold(string(r[start:start+len(c)]), candidate) {
 				continue
 			}
-			if suffixLen == 1 && !isPunctuation(r[len(r)-1]) {
+			if suffixLen == 1 && !strings.ContainsRune(punctWithUnderscore, r[len(r)-1]) {
 				continue
 			}
 			if start > 0 && isWordRune(r[start-1]) {
 				continue
 			}
-			return string(r[:start]) + strings.Title(strings.ToLower(string(r[start:len(r)-suffixLen]))) + string(r[len(r)-suffixLen:])
+			firstChar := []rune(strings.ToUpper(string(r[start])))
+			restChars := []rune(strings.ToLower(string(r[start+1 : len(r)-suffixLen])))
+			return string(r[:start]) + string(firstChar) + string(restChars) + string(r[len(r)-suffixLen:])
 		}
 	}
 	return s
 }
 
 func subphraseCap(s string) string {
-	r := []rune(s)
-	for i := 0; i+2 < len(r); i++ {
-		if strings.ContainsRune(":.;?!-–‒—―", r[i]) && r[i+1] == ' ' {
-			j := i + 2
-			for j < len(r) && (isLetter(r[j]) || r[j] == '.') {
-				j++
-			}
-			for _, candidate := range []string{"a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in", "of", "on", "or", "the", "to", "v", "via", "vs"} {
-				c := []rune(candidate)
-				end := i + 2 + len(c)
-				if end > len(r) || string(r[i+2:end]) != candidate {
-					continue
-				}
-				if end < len(r) && isWordRune(r[end]) {
-					continue
-				}
-				r = append(r[:i+2], append([]rune(strings.Title(candidate)), r[end:]...)...)
-				i = i + 1
-				break
-			}
+	return reSubphrase.ReplaceAllStringFunc(s, func(m string) string {
+		sub := reSubphrase.FindStringSubmatch(m)
+		if len(sub) == 3 {
+			r := []rune(sub[2])
+			r[0] = unicode.ToUpper(r[0])
+			return sub[1] + string(r)
 		}
-	}
-	return string(r)
+		return m
+	})
 }
 
 func titlecase(text string, smallFirstLast bool) string {
@@ -347,5 +339,3 @@ func main() {
 	}
 }
 EOF
-
-go build ./...

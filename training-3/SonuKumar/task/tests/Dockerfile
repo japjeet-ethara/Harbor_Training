@@ -13,3 +13,9 @@ RUN uv pip install --system pytest==8.4.1 pytest-json-ctrf==0.3.5
 WORKDIR /app
 
 COPY . /tests/
+
+# Secure tests directory and python interpreters: only root can access
+RUN chown -R root:root /tests && chmod -R 700 /tests && \
+    chmod 700 /usr/local/bin/python* /usr/local/bin/uv*
+
+

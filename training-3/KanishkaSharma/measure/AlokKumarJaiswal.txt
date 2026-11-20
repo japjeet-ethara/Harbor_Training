@@ -1,0 +1,17 @@
+wrong answers      28043 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'VS. U.S. ON\u2009NIGHT X-RAY/ SELF-MADE FOR+ ON \\AND/OR'
+  want  'Vs. U.S. On\u2009Night X-Ray/ Self-Made For+ on \\And/Or'
+  got   'Vs. U.S. On\u2009night X-Ray/ Self-Made For+ on \\And/Or'
+  input 'to A.B.C naïve( e.g. élan  house'
+  want  'To A.B.C Naïve( e.g. Élan  House'
+  got   'To A.B.C Naïve( e.g. élan  House'
+  input 'and TCP/IP world node.js[ heart\xa0www.site.org'
+  want  'And TCP/IP World node.js[ Heart\xa0www.site.org'
+  got   'And TCP/IP World node.js[ heart\xa0www.site.org'
+  input 'road of\u2009time TCP/IP the by'
+  want  'Road of\u2009Time TCP/IP the By'
+  got   'Road Of\u2009time TCP/IP the By'
+  input 'über winter'
+  want  'Über Winter'
+  got   'über Winter'

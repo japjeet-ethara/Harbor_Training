@@ -11,3 +11,8 @@ __pycache__/
 
 # Scratch copies of the target used to run each cheat (their work, not mine)
 attack/runs/
+
+# Day 5 local scratch (not deliverables)
+selfattack/
+akul-cheats/
+measure/old/

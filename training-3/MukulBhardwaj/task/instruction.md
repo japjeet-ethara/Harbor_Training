@@ -16,7 +16,7 @@ Build a Go program in `/workspace/repo` that reads one title per line from stand
 
 ## Behaviour
 
-For every input, the output must match the original Python `titlecase()` byte for byte.
+For every input, the output must match the original Python `titlecase()` byte for byte in standard-library `re` mode, without the optional `regex` package.
 
 ## Not checked
 
@@ -24,4 +24,4 @@ Speed, memory usage, and error message wording are not checked.
 
 ## How it is graded
 
-The task is graded by hidden automatic tests. Partial credit is available.
+The verifier grades 100,000 titles. Overall reward is zero unless the build and Python cleanup checks pass and at least 90% of output lines match exactly. At or above that threshold, the weighted score gives four parts to output accuracy and one part each to build and Python cleanup.

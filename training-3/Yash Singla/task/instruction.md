@@ -15,6 +15,7 @@ Build a Go program in `/workspace/repo` that reads one title per line from stand
 # Behavior
 
 For every input, the Go program's output must match the original Python `titlecase()` function byte for byte.
+The reference mode is the bundled package's standard-library `re` fallback (`REGEX_AVAILABLE = False`); the optional third-party `regex` extra is not part of the specification.
 
 # Not checked
 

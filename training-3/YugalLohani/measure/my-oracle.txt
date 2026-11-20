@@ -1,0 +1,7 @@
+# my oracle (Yugal Lohani) on the new 100k exam
+wrong answers      0 of 100000
+chance a random 2000 suite sees none of them: 100%
+
+# same oracle on the old 2k exam:
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%

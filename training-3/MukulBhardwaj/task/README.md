@@ -29,9 +29,9 @@ captured output.
 |---|---:|---|
 | Behaviour | 4 | Output compatibility on private automatic cases; partial credit is available. |
 | Build | 1 | `go build ./...` succeeds. |
-| No Python | 1 | The submitted workspace has no `.py` files, builds, and passes a public stdin smoke check. |
+| No Python | 1 | The submitted workspace has no `.py` files, builds, and passes a one-title stdin smoke check. |
 
-The overall reward is a weighted mean:
+The overall reward is zero unless build and Python cleanup pass and behavior accuracy is at least 90%. Otherwise it is the weighted mean below. The 100,000-title answer key was generated in standard-library `re` mode.
 
 ```text
 (4 × behaviour + build + no_python) / 6

@@ -69,8 +69,10 @@ func splitWS(s string) (words, spaces []string) {
 				words = append(words, word.String())
 				word.Reset()
 				atWord = false
+				spaces = append(spaces, string(r))
+			} else {
+				spaces[len(spaces)-1] += string(r)
 			}
-			spaces = append(spaces, string(r))
 			continue
 		}
 		atWord = true
@@ -177,7 +179,7 @@ func hasUpperElsewhere(word string) bool {
 func capfirst(word string) string {
 	rs := []rune(word)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	for i < len(rs) && isPunct(rs[i]) && !isWord(rs[i]) {
 		i++
 	}
 	if i >= len(rs) || !isWord(rs[i]) {

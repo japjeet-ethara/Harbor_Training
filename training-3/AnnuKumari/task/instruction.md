@@ -16,7 +16,7 @@ Replace this package with a Go program in `/workspace/repo`. The program reads o
 
 ## 4. Behaviour
 
-For every input, the output must match the original Python `titlecase()` byte for byte. Read that function and `NOTES.md` before removing the Python sources; the finished program has to reproduce `titlecase()` with its default arguments.
+For every input, the output must match the original Python `titlecase()` byte for byte. Read that function and `NOTES.md` before removing the Python sources; the finished program has to reproduce `titlecase()` with its default arguments (answers come from titlecase WITHOUT regex).
 
 ## 5. Not checked
 

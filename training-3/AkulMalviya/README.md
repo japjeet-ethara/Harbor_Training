@@ -1,6 +1,6 @@
 # Akul Malviya — Harbor Training Day 4
 
-[task/](task/) contains my unchanged practice-1 titlecase task. It scored **1.0** with the Harbor oracle in job `day4-practice-oracle`.
+[task/](task/) contains my titlecase task. The Day 4 practice version scored **1.0** with the Harbor oracle in job `day4-practice-oracle`.
 
 I reviewed Yugal Lohani's task at the revision recorded in [TARGET.txt](attack/TARGET.txt). Three incomplete Go implementations ran in the local Harbor job `day4-functional-baselines`.
 
@@ -11,3 +11,5 @@ I reviewed Yugal Lohani's task at the revision recorded in [TARGET.txt](attack/T
 All three builds passed. The Python-removal check scored 0.0 in each trial because the baselines left the original Python files in place. The highest overall reward was **0.3557**.
 
 The [Day 4 report](attack/ATTACK.md) includes the trial IDs, verifier findings, and proposed fixes.
+
+The [Day 5 hardening report](HARDEN.md) documents the isolated verifier, the 100,000-title exam, and the before-and-after measurements for three Go ports.

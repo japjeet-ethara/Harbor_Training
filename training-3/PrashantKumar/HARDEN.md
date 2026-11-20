@@ -2,22 +2,22 @@
 
 ## Holes closed
 
-The task was hardened using a 100,000-input exam, restricted access to expected answers, and exact-match Behaviour scoring.
+Yuvraj Singh attacked my original titlecase-go task using three cheats. I hardened the task with a 100,000-input exam, restricted access to exam answers, and exact-match Behaviour scoring.
 
-| Attack | Behaviour | Final reward | Harbor job |
-|---|---:|---:|---|
-| Cheat 1 | 0.000 | 0.1667 | `day5-cheat1-exact` |
-| Cheat 2 | 0.000 | 0.1667 | `day5-cheat2-exact` |
-| Cheat 3 | 0.000 | 0.1667 | `day5-cheat3-exact` |
+| Yuvraj's attack | Original reward | Hardened Behaviour | Hardened reward | Harbor job |
+|---|---:|---:|---:|---|
+| Cheat 1 — Hidden answer leak | 1.000 | 0.000 | 0.1667 | `day6-yuvraj-cheat1` |
+| Cheat 2 — Build trick | 0.394 | 0.000 | 0.1667 | `day6-yuvraj-cheat2` |
+| Cheat 3 — Half port | 0.338 | 0.000 | 0.1667 | `day6-yuvraj-cheat3` |
 
-All three cheats scored below the required 0.2 threshold.
+All three actual attacker scripts were rerun through Harbor against an isolated copy of the hardened task, with zero exceptions. All scored below the required 0.2 threshold.
 
 ### Fixes
 
-- **Cheat 1:** The lookup-table and partial-port solution could not match all 100,000 answers. Exact-match scoring prevents partial behavioural credit.
-- **Cheat 2:** The incomplete implementation failed the same full-exam requirement.
-- **Cheat 3:** Hidden test data was protected using file permissions, and the candidate executable runs as an unprivileged user.
-- **Reward configuration:** Behaviour now has weight 10, with Build and No_Python each weighted 1.
+- **Cheat 1 — Hidden answer leak:** Restricted access to exam data and ran the candidate executable as an unprivileged user. The hardened checker uses protected `exam_answers.txt` rather than the original hidden-answer file.
+- **Cheat 2 — Build trick:** A successful Go build and removal of Python files no longer earn a high overall reward without fully correct titlecase behaviour.
+- **Cheat 3 — Half port:** Expanded the exam to 100,000 inputs and required every answer to match, preventing partial implementations from earning Behaviour credit.
+- **Reward configuration:** Behaviour has weight 10; Build and No_Python each have weight 1.
 
 ## Exam: before and after
 

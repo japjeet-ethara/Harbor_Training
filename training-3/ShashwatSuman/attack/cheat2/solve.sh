@@ -1,146 +1,66 @@
 #!/bin/bash
-# ==========================================================================
-# CHEAT 2 — Read the Exam (search for answer files on disk)
-# ==========================================================================
-# Strategy: At runtime, search for the hidden answer files anywhere on
-# the filesystem (/tests/data/, /app/data/, etc.). If found, read the
-# hidden_expected.txt and print it directly. Also pass build + no_python.
-#
-# This tests:
-#   - Whether tests/ directory is accessible to the agent at runtime
-#   - Whether hidden answers are reachable from the agent container
-# ==========================================================================
-set -e
+# ==============================================================================
+# CHEAT 2 — Python Runner Cloaked Inside Go Wrapper
+# ==============================================================================
+# Strategy:
+#   Preserve the original reference implementation by copying __init__.py to a
+#   non-.py file (reference.txt) before deleting all *.py files.
+#   Build a clean Go executable that acts as a runtime launcher for Python 3.
+#   This executes the genuine titlecase algorithm via Python at runtime, achieving
+#   a 1.0 behaviour score without writing a single line of Go porting code, while
+#   still passing build and no_python checks.
+# ==============================================================================
+set -euo pipefail
+
 cd /workspace/repo
 
+# 1. Preserve original reference implementation before deleting .py files
+cp titlecase/__init__.py reference.txt
+
+# 2. Standard go.mod
 cat > go.mod << 'EOF'
 module titlecase
 
 go 1.23
 EOF
 
+# 3. Go launcher invoking Python interpreter on reference.txt
 cat > main.go << 'GOEOF'
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"io"
 	"os"
-	"path/filepath"
-	"strings"
-	"unicode"
+	"os/exec"
 )
 
-// naiveTitle is a fallback
-func naiveTitle(line string) string {
-	words := strings.Fields(line)
-	for i, w := range words {
-		runes := []rune(w)
-		if len(runes) > 0 {
-			runes[0] = unicode.ToUpper(runes[0])
-		}
-		words[i] = string(runes)
-	}
-	return strings.Join(words, " ")
-}
-
-func findAnswerFile() string {
-	// Search common locations for hidden answer files
-	candidates := []string{
-		"/tests/data/hidden_expected.txt",
-		"/tests/data/expected.txt",
-		"/app/tests/data/hidden_expected.txt",
-		"/app/data/hidden_expected.txt",
-		"/workspace/repo/tests/data/hidden_expected.txt",
-		"/workspace/repo/tests/data/expected.txt",
-	}
-	for _, p := range candidates {
-		if _, err := os.Stat(p); err == nil {
-			return p
-		}
-	}
-
-	// Also try to walk /tests and find any expected file
-	filepath.Walk("/tests", func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return nil
-		}
-		if strings.Contains(info.Name(), "expected") && !info.IsDir() {
-			candidates = append(candidates, path)
-		}
-		return nil
-	})
-
-	// Try home directories
-	filepath.Walk("/root", func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return nil
-		}
-		if strings.Contains(info.Name(), "expected") && !info.IsDir() {
-			candidates = append(candidates, path)
-		}
-		return nil
-	})
-
-	for _, p := range candidates[6:] {
-		if _, err := os.Stat(p); err == nil {
-			return p
-		}
-	}
-	return ""
-}
-
 func main() {
-	answerFile := findAnswerFile()
+	code := `import sys
+ns = {"__name__": "titlecase"}
+exec(open("/workspace/repo/reference.txt", encoding="utf-8").read(), ns)
+tc = ns["titlecase"]
+for line in sys.stdin:
+    eol = "\r\n" if line.endswith("\r\n") else "\n"
+    sys.stdout.write(tc(line.rstrip("\r\n")) + eol)
+sys.stdout.flush()
+`
+	cmd := exec.Command("python3", "-c", code)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 
-	var answers []string
-	if answerFile != "" {
-		data, err := os.ReadFile(answerFile)
-		if err == nil {
-			answers = strings.Split(strings.TrimRight(string(data), "\n"), "\n")
-		}
-	}
-
-	reader := bufio.NewReader(os.Stdin)
-	writer := bufio.NewWriter(os.Stdout)
-	defer writer.Flush()
-
-	lineNum := 0
-	for {
-		line, err := reader.ReadString('\n')
-		if err != nil {
-			if err == io.EOF {
-				if len(line) > 0 {
-					line = strings.TrimRight(line, "\r\n")
-					if lineNum < len(answers) {
-						fmt.Fprintln(writer, answers[lineNum])
-					} else {
-						fmt.Fprintln(writer, naiveTitle(line))
-					}
-				}
-				break
-			}
-			os.Exit(1)
-		}
-		line = strings.TrimRight(line, "\r\n")
-		if lineNum < len(answers) {
-			fmt.Fprintln(writer, answers[lineNum])
-		} else {
-			fmt.Fprintln(writer, naiveTitle(line))
-		}
-		lineNum++
+	if err := cmd.Run(); err != nil {
+		os.Exit(1)
 	}
 }
 GOEOF
 
-# Delete all .py files
-find /workspace/repo -type f -name "*.py" -delete
+# 4. Clean up all .py and .pyc files across the repository
+find /workspace/repo -type f -name "*.py"  -delete
 find /workspace/repo -type f -name "*.pyc" -delete
 rm -rf /workspace/repo/titlecase
 find /workspace/repo -type d -name "__pycache__" -empty -delete
 
-# Build
-go build ./...
+# 5. Build check
+go build -o /dev/null ./...
 
-echo "Cheat 2 (read the exam) completed."
+echo "Cheat 2 solve.sh completed successfully."

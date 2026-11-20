@@ -1,0 +1,17 @@
+wrong answers      4017 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'night _xkcd'
+  want  'Night _xkcd'
+  got   'Night _Xkcd'
+  input 'ıstanbul] to xkcd star} night _at\t"o\'reilly\'s'
+  want  'Istanbul] to XKCD Star} Night _at\t"O\'reilly\'s'
+  got   'Istanbul] to XKCD Star} Night _At\t"O\'reilly\'s'
+  input 'THE or vs for Mcx v1.2'
+  want  'The or vs for MCX v1.2'
+  got   'The or vs for MCX V1.2'
+  input 'v1.2 MS\xa0code rhythm lord out-of-date to )v: NIGHT'
+  want  'v1.2 MS\xa0Code Rhythm Lord Out-of-Date to )V: NIGHT'
+  got   'V1.2 MS\xa0Code Rhythm Lord Out-of-Date to )V: NIGHT'
+  input 'rhythm; for code island via'
+  want  'Rhythm; For Code Island Via'
+  got   'Rhythm; For Code Island via'

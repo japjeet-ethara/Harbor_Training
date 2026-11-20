@@ -26,8 +26,8 @@ def _lf_records(data: bytes) -> list[bytes]:
 
 @criterion
 def hidden_behavior_matches(workspace: Path) -> float:
-    inputs_path = Path("/tests/data/hidden_inputs.txt")
-    expected_path = Path("/tests/data/hidden_expected.txt")
+    inputs_path = Path("/tests/data/inputs.txt")
+    expected_path = Path("/tests/data/answers.txt")
     if not inputs_path.is_file() or not expected_path.is_file():
         return 0.0
 

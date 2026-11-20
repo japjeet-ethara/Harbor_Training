@@ -3,7 +3,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-import criteria as _criteria
+import criteria
 import rewardkit as rk
 
-rk.behaviour_check(name="behaviour")
+
+@rk.criterion(description="hidden titlecase outputs match")
+def behaviour(workspace: Path) -> float:
+    return criteria.behaviour_check(workspace)

@@ -1,0 +1,51 @@
+# Port measurement — AahanTrikha
+
+Implementation source: AyushRanjan/ports/AahanTrikha/ (verbatim Go source copy; ignored)
+Execution: Linux Go 1.23 container; UTF-8 line protocol.
+
+## 100K
+- Total expected inputs: 100000
+- Correct answers: 96100
+- Wrong answers: 3900
+- Failure percentage: 3.9000%
+- Output records: 100000
+- Output-count mismatch: false
+- Process/build crash: false
+- Trainer compare.py exit code: 0
+
+```text
+wrong answers      3900 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'war\xa0\\data\u2009%summer'
+  want  'War\xa0\\Data\u2009%Summer'
+  got   'War\xa0\\data\u2009%Summer'
+  input 'v1.2'
+  want  'v1.2'
+  got   'V1.2'
+  input 'mrs. in star“ v1.2\u2009the|'
+  want  'Mrs. In Star“ v1.2\u2009The|'
+  got   'Mrs. In Star“ V1.2\u2009The|'
+  input "to eBay BOOK D'Angelo\xa0o'neil v1.2 WORLD"
+  want  "To eBay BOOK d'Angelo\xa0O'Neil v1.2 WORLD"
+  got   "To eBay BOOK d'Angelo\xa0O'Neil V1.2 WORLD"
+  input 'ISTANBUL JavaScript v1.2. mr‘ — McDonald'
+  want  'ISTANBUL JavaScript v1.2. Mr‘ — McDonald'
+  got   'ISTANBUL JavaScript V1.2. Mr‘ — McDonald'
+```
+
+- Probability a random 2,000-input sample misses every observed 100K error: approximately 1.22910285e-35 (1.22910285e-33%).
+
+## old-2K
+- Total expected inputs: 2000
+- Correct answers: 2000
+- Wrong answers: 0
+- Failure percentage: 0.0000%
+- Output records: 2000
+- Output-count mismatch: false
+- Process/build crash: false
+- Trainer compare.py exit code: 0
+
+```text
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%
+```

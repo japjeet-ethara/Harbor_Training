@@ -17,3 +17,7 @@ The Go program must read input titles line-by-line from standard input (`stdin`)
 - Execution speed, memory usage, and error message wording are not evaluated.
 - Submissions are evaluated automatically against hidden test inputs and receive partial credit based on build success, absence of `.py` files, and the proportion of test titles matching the expected titlecased output exactly.
 
+
+## Reference behavior mode
+
+Expected outputs are frozen from `python-titlecase`'s default `titlecase()` behavior **without** the optional `regex` package installed (the standard-library `re` mode). Do not install `regex`; use this mode when checking outputs.

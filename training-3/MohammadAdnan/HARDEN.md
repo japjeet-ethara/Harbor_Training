@@ -35,8 +35,8 @@ as typed, which was enough for "at least one right answer". Fix 7 below closed b
 What I changed, file by file:
 
 1. **Leak** — `environment/Dockerfile` copied `go-solution/` to `/opt/python-titlecase/` (old line 6),
-   so any agent could copy my port (c4 = 1.0). The port now lives only in `solution/go/`, which Harbor
-   uploads for oracle runs only; `solution/solve.sh` copies it from `/solution/go/`.
+   so any agent could copy my port (c4 = 1.0). The port now lives only in `solution/`, which Harbor
+   uploads for oracle runs only (Day 6: written out by `solution/solve.sh` itself, see below).
 2. **Python inside** — old agent image `golang:1.23` (Debian, has `python3`) and old verifier image
    `python:3.12-slim` let a Go wrapper run the original Python (c6 = 1.0). Both images are now
    `golang:1.23-alpine` pinned by digest, with no Python at all; the agent image adds `bash` and runs
@@ -85,7 +85,7 @@ Files: `measure/my-oracle-original.txt`, `measure/my-oracle.txt`, `measure/vanam
 
 **My own port was wrong on 1,627 of 100,000** and my old exam never saw it. It used the `regex`-mode
 patterns (`\p{L}`), but the answers come from `re` mode, where `\w` also matches `_` and digits. So
-`_dream` became `_Dream` instead of `_dream`. I fixed the port (`solution/go/titlecase.go`):
+`_dream` became `_Dream` instead of `_dream`. I fixed the port (`titlecase.go`, written by `solution/solve.sh`):
 Unicode `\w` = `[\p{L}\p{N}_]` everywhere, the `re`-mode `UC_ELSEWHERE`/`UC_INITIALS` (ASCII),
 Python-style `upper()` (`ß` → `SS`) for the all-caps test, `\x1c`–`\x1f` as spaces, rune count for the
 consonant rule, and title-case in `capitalize()`. No input was removed. Vanam's port has related bugs

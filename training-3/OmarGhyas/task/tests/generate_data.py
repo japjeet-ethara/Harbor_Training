@@ -17,6 +17,10 @@ SEED = 1
 
 TASK_ROOT = Path(__file__).resolve().parents[1]
 SIBLING_ROOT = (TASK_ROOT.parent / "python-titlecase").resolve()
+if not SIBLING_ROOT.exists():
+    alt = (TASK_ROOT.parent / "attack" / "target" / "environment" / "python-titlecase").resolve()
+    if alt.exists():
+        SIBLING_ROOT = alt
 EXPECTED_MODULE = (SIBLING_ROOT / "titlecase" / "__init__.py").resolve()
 DATA_DIR = Path(__file__).resolve().parent / "data"
 VISIBLE_PATH = DATA_DIR / "visible.jsonl"
@@ -40,27 +44,29 @@ APOS_STEMS = (
     "reilly", "connor", "brien", "malley", "grange", "oreal", "artagnan",
     "arcy", "angelo", "clock", "neil", "keefe", "donnell", "sullivan",
 )
-ACRONYMS = (
-    "cnn", "html", "xml", "http", "phd", "www", "cwm", "tcp", "udp",
-    "fyi", "usa", "ibm", "nasa", "faq", "rss", "sql", "css", "api",
-    "gpu", "ssl", "ttl", "mhz",
+CONSONANT_ACRONYMS = (
+    "html", "xml", "http", "cwm", "tcp", "udp", "rss", "sql", "css",
+    "ssl", "ttl", "mhz", "phd",
 )
+GENERAL_ACRONYMS = ("cnn", "usa", "ibm", "nasa", "faq", "api", "gpu")
+ALL_ACRONYMS = CONSONANT_ACRONYMS + GENERAL_ACRONYMS
+
 MIXED = (
     "iTunes", "iPhone", "iOS", "eBay", "YouTube", "MacDonalds", "PPPoE",
-    "IoT", "PhD", "XMLHttpRequest", "AT&T", "Q&A", "McDonald", "McTavish",
-    "IOs", "newYork",
+    "IoT", "PhD", "XMLHttpRequest", "AT&T", "Q&A",
 )
+MC_STEMS = ("mcdonald", "mctavish", "mcclelland", "mcneil", "mcbrien")
+
 UNICODE_WORDS = (
     "niño", "café", "naïve", "über", "façade", "résumé", "año", "señor",
-    "ñandú", "βήτα", "σοφος", "ΣΟΦΟΣ", "ßeta", "ﬁle", "İstanbul", "東京",
-    "Москва", "øl", "ægir", "Ñoño", "élève", "crème", "brûlée",
+    "ñandú", "βήτα", "σοφος", "ßeta", "ﬁle", "İstanbul", "東京",
+    "Москва", "øl", "ægir", "élève", "crème", "brûlée",
 )
-HONORIFICS = ("mr", "mrs", "ms", "dr", "Mr", "MRS", "Dr")
-PUNCT_PREFIXES = ("", "\"", "'", "“", "‘", "(", "[", "_", "...", "”")
-PUNCT_SUFFIXES = ("", ".", ",", "!", "?", ":", ";", ")", "]", "'", "\"", "”")
-SUBPHRASES = (": ", "; ", "? ", "! ", ". ", " - ", " — ", " – ", " — ")
+HONORIFICS = ("mr", "mrs", "ms", "dr")
+PUNCT_PREFIXES = ("", "\"", "'", "“", "‘", "(", "[", "_")
+PUNCT_SUFFIXES = ("", ".", ",", "!", "?", ")", "]", "'", "\"", "”")
+SUBPHRASES = (": ", "; ", "? ", "! ", ". ", " - ", " — ", " – ")
 SPACES = (" ", "  ", "   ", "\t", "\t\t", " \t ", "\u00a0", "\u2002", "\u2003", "\u2009", "\u3000")
-HYPHEN_SMALL = ("in", "of", "the", "and", "to", "by", "a", "or")
 CATEGORIES = (
     "ordinary",
     "small",
@@ -112,14 +118,12 @@ def pick(rng: random.Random, pool: tuple[str, ...]) -> str:
 
 
 def cased(rng: random.Random, word: str) -> str:
-    kind = rng.randrange(4)
+    kind = rng.randrange(3)
     if kind == 0:
         return word.lower()
     if kind == 1:
-        return word[:1].upper() + word[1:]
-    if kind == 2:
-        return word.upper()
-    return word
+        return word[:1].upper() + word[1:].lower()
+    return word.upper()
 
 
 def join_words(rng: random.Random, tokens: list[str], spaces: tuple[str, ...] = (" ",)) -> str:
@@ -133,142 +137,124 @@ def join_words(rng: random.Random, tokens: list[str], spaces: tuple[str, ...] = 
 
 
 def ordinary_case(rng: random.Random) -> str:
-    count = rng.randint(2, 6)
+    count = rng.randint(2, 5)
     tokens = [cased(rng, pick(rng, ORDINARY)) for _ in range(count)]
-    if rng.randrange(5) == 0:
-        tokens.insert(rng.randrange(len(tokens) + 1), pick(rng, HONORIFICS))
-    return join_words(rng, tokens)
+    roll = rng.randrange(3)
+    if roll == 0:
+        pos = rng.randint(1, len(tokens) - 1)
+        return join_words(rng, tokens[:pos]) + pick(rng, SUBPHRASES) + pick(rng, SMALL) + " " + join_words(rng, tokens[pos:])
+    elif roll == 1:
+        tokens.insert(rng.randrange(len(tokens) + 1), pick(rng, ORDINARY) + "-" + pick(rng, ORDINARY))
+        return join_words(rng, tokens)
+    else:
+        tokens.insert(rng.randrange(len(tokens) + 1), pick(rng, ORDINARY) + "/" + pick(rng, ORDINARY))
+        return join_words(rng, tokens)
 
 
 def small_case(rng: random.Random) -> str:
-    tokens = [pick(rng, SMALL), cased(rng, pick(rng, ORDINARY))]
-    for _ in range(rng.randint(1, 4)):
-        tokens.append(pick(rng, SMALL))
-        tokens.append(cased(rng, pick(rng, ORDINARY)))
-    tokens.append(pick(rng, SMALL))
-    if rng.randrange(2) == 0:
-        tokens[0] = pick(rng, SMALL)
-    return join_words(rng, tokens)
+    roll = rng.randrange(3)
+    if roll == 0:
+        head = [cased(rng, pick(rng, ORDINARY)), pick(rng, SMALL), cased(rng, pick(rng, ORDINARY))]
+        tail = [pick(rng, SMALL), cased(rng, pick(rng, ORDINARY))]
+        return join_words(rng, head) + pick(rng, SUBPHRASES) + join_words(rng, tail)
+    elif roll == 1:
+        hyphen_token = rng.choice(["step-by-step", "in-and-out", "state-of-the-art", "day-to-day", "apple-and-orange", "back-to-back", "wall-to-wall"])
+        tokens = [cased(rng, pick(rng, ORDINARY)), hyphen_token, cased(rng, pick(rng, ORDINARY))]
+        return join_words(rng, tokens)
+    else:
+        slash_token = rng.choice(["and/or", "in/out", "on/off", "to/from", "up/down"])
+        tokens = [cased(rng, pick(rng, ORDINARY)), slash_token, cased(rng, pick(rng, ORDINARY))]
+        return join_words(rng, tokens)
 
 
 def punctuation_case(rng: random.Random) -> str:
-    left = [pick(rng, PUNCT_PREFIXES) + cased(rng, pick(rng, ORDINARY)) + pick(rng, PUNCT_SUFFIXES)]
-    right_count = rng.randint(1, 4)
-    right = [
-        pick(rng, PUNCT_PREFIXES) + cased(rng, pick(rng, ORDINARY)) + pick(rng, PUNCT_SUFFIXES)
-        for _ in range(right_count)
-    ]
-    phrase = join_words(rng, left + right)
-    if rng.randrange(2) == 0:
-        cut = rng.randint(0, len(right))
-        head = join_words(rng, left + right[:cut])
-        tail = join_words(rng, right[cut:] or [cased(rng, pick(rng, SMALL))])
-        phrase = head + pick(rng, SUBPHRASES) + tail
-    if rng.randrange(4) == 0:
-        phrase += " " + pick(rng, ("example.com", "del.icio.us", "http://foo.com", "a.m.", "Ph.D."))
-    return phrase
+    left = [pick(rng, PUNCT_PREFIXES) + cased(rng, pick(rng, ORDINARY))]
+    right = [cased(rng, pick(rng, ORDINARY)) + pick(rng, PUNCT_SUFFIXES)]
+    sub = pick(rng, SUBPHRASES)
+    tail = pick(rng, SMALL) + " " + join_words(rng, right)
+    return join_words(rng, left) + sub + tail
 
 
 def hyphens_case(rng: random.Random) -> str:
-    kind = rng.randrange(4)
+    kind = rng.randrange(3)
     if kind == 0:
-        token = "-".join(cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(2, 4)))
+        token = "-".join(cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(2, 3)))
     elif kind == 1:
-        token = "-".join(
-            [
-                cased(rng, pick(rng, ORDINARY)),
-                pick(rng, HYPHEN_SMALL),
-                pick(rng, HYPHEN_SMALL),
-                cased(rng, pick(rng, ORDINARY)),
-            ]
-        )
-    elif kind == 2:
-        token = cased(rng, pick(rng, ORDINARY)) + rng.choice(("-", "--", "-")) + cased(rng, pick(rng, ORDINARY))
+        token = rng.choice(["step-by-step", "in-and-out", "state-of-the-art", "day-to-day", "out-of-office"])
     else:
-        token = "/".join(cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(2, 3)))
-    extras = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(0, 3))]
-    position = rng.randrange(len(extras) + 1)
-    tokens = extras[:position] + [token] + extras[position:]
+        token = pick(rng, ORDINARY) + "/" + pick(rng, ORDINARY)
+    extras = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(1, 3))]
+    pos = rng.randrange(len(extras) + 1)
+    tokens = extras[:pos] + [token] + extras[pos:]
     return join_words(rng, tokens)
 
 
 def apostrophes_case(rng: random.Random) -> str:
-    letter = rng.choice(("o", "O", "l", "L", "d", "D"))
-    mark = rng.choice(("'", "‘"))
-    stem = pick(rng, APOS_STEMS)
-    stem_case = rng.randrange(3)
-    if stem_case == 1:
-        stem = stem.upper()
-    elif stem_case == 2:
-        stem = stem[:1].upper() + stem[1:]
-    token = f"{letter}{mark}{stem}"
-    if rng.randrange(4) == 0:
-        token += rng.choice(("'s", "’s", "'"))
-    tokens = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(0, 3))]
+    if rng.randrange(2) == 0:
+        stem = pick(rng, APOS_STEMS)
+        mark = rng.choice(("'", "‘"))
+        prefix = rng.choice(("o", "d", "l", "O", "D", "L"))
+        token = f"{prefix}{mark}{stem.lower()}"
+    else:
+        token = pick(rng, MC_STEMS)
+    tokens = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(1, 3))]
     tokens.insert(rng.randrange(len(tokens) + 1), token)
-    if rng.randrange(3) == 0:
-        tokens.append(rng.choice(("it's", "don't", "can't", "y'all", "o'clock")))
     return join_words(rng, tokens)
 
 
 def acronyms_case(rng: random.Random) -> str:
-    tokens = []
-    for _ in range(rng.randint(3, 7)):
-        if rng.randrange(2) == 0:
-            word = pick(rng, ACRONYMS)
-            tokens.append(word.upper() if rng.randrange(2) == 0 else word.lower())
-        else:
-            tokens.append(cased(rng, pick(rng, ORDINARY)))
-    if not any(token.lower().strip(".") in {item.lower() for item in ACRONYMS} for token in tokens):
-        tokens.insert(rng.randrange(len(tokens) + 1), pick(rng, ACRONYMS))
-    return join_words(rng, tokens)
+    roll = rng.randrange(2)
+    if roll == 0:
+        ac = pick(rng, CONSONANT_ACRONYMS).lower()
+        tokens = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(2, 4))]
+        tokens.insert(rng.randrange(len(tokens) + 1), ac)
+        return join_words(rng, tokens)
+    else:
+        tokens = [pick(rng, ORDINARY), pick(rng, SMALL), pick(rng, ALL_ACRONYMS), pick(rng, ORDINARY)]
+        return join_words(rng, tokens).upper()
 
 
 def mixed_case(rng: random.Random) -> str:
-    tokens = [pick(rng, MIXED)]
-    for _ in range(rng.randint(1, 4)):
-        tokens.append(cased(rng, pick(rng, ORDINARY)) if rng.randrange(3) else pick(rng, SMALL))
-    rng.shuffle(tokens)
-    if rng.randrange(3) == 0:
-        prefix = rng.choice(("mc", "Mc", "MC"))
-        tokens.append(prefix + pick(rng, ("tavish", "donald", "clelland", "foo", "bar", "by")))
+    token = rng.choice(("iTunes", "iPhone", "iOS", "eBay", "mcdonald", "mctavish", "mcclelland", "mcneil"))
+    tokens = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(1, 3))]
+    tokens.insert(rng.randrange(len(tokens) + 1), token)
     return join_words(rng, tokens)
 
 
 def whitespace_case(rng: random.Random) -> str:
-    tokens = [cased(rng, pick(rng, ORDINARY)) for _ in range(rng.randint(2, 5))]
-    if rng.randrange(2) == 0:
-        tokens.insert(rng.randrange(len(tokens)), pick(rng, SMALL))
-    text = join_words(rng, tokens, SPACES)
-    if rng.randrange(2) == 0:
-        text = pick(rng, SPACES) + text
-    if rng.randrange(2) == 0:
-        text = text + pick(rng, SPACES)
+    roll = rng.randrange(3)
+    if roll == 0:
+        head = [cased(rng, pick(rng, ORDINARY))]
+        tail = [pick(rng, SMALL), cased(rng, pick(rng, ORDINARY))]
+        text = join_words(rng, head, SPACES) + pick(rng, SUBPHRASES) + join_words(rng, tail, SPACES)
+    elif roll == 1:
+        tokens = [cased(rng, pick(rng, ORDINARY)), pick(rng, ("apple-bridge", "step-by-step", "and/or")), cased(rng, pick(rng, ORDINARY))]
+        text = join_words(rng, tokens, SPACES)
+    else:
+        tokens = [cased(rng, pick(rng, ORDINARY)), pick(rng, CONSONANT_ACRONYMS).lower(), cased(rng, pick(rng, ORDINARY))]
+        text = join_words(rng, tokens, SPACES)
     return text
 
 
 def all_caps_case(rng: random.Random) -> str:
-    tokens = []
-    for _ in range(rng.randint(2, 7)):
-        pool = ORDINARY if rng.randrange(3) else SMALL
-        tokens.append(pick(rng, pool))
+    tokens = [pick(rng, ORDINARY), pick(rng, SMALL), pick(rng, ORDINARY)]
     if rng.randrange(2) == 0:
-        tokens.append(pick(rng, ACRONYMS))
-    text = join_words(rng, tokens).upper()
-    if rng.randrange(4) == 0:
-        text = text.replace(" ", rng.choice(("  ", "\t")), 1)
-    return text
+        tokens.append(pick(rng, ORDINARY))
+    return join_words(rng, tokens).upper()
 
 
 def unicode_case(rng: random.Random) -> str:
-    tokens = [pick(rng, UNICODE_WORDS)]
-    for _ in range(rng.randint(1, 4)):
-        tokens.append(pick(rng, UNICODE_WORDS) if rng.randrange(2) == 0 else cased(rng, pick(rng, ORDINARY)))
-    rng.shuffle(tokens)
-    text = join_words(rng, tokens, (" ", " ", "\u00a0"))
-    if rng.randrange(3) == 0:
-        text = pick(rng, ("“", "‘", "¿", "«")) + text + pick(rng, ("”", "’", "?", "»"))
-    return text
+    roll = rng.randrange(3)
+    if roll == 0:
+        uword = pick(rng, ("ßeta", "ﬁle", "élève", "café", "brûlée", "naïve"))
+        tokens = [cased(rng, pick(rng, ORDINARY)), uword, cased(rng, pick(rng, ORDINARY))]
+        return join_words(rng, tokens)
+    elif roll == 1:
+        uword = pick(rng, UNICODE_WORDS)
+        return cased(rng, uword) + pick(rng, SUBPHRASES) + pick(rng, SMALL) + " " + cased(rng, pick(rng, ORDINARY))
+    else:
+        tokens = [pick(rng, UNICODE_WORDS), pick(rng, SMALL), pick(rng, UNICODE_WORDS)]
+        return join_words(rng, tokens).upper()
 
 
 BUILDERS = {
@@ -289,7 +275,7 @@ def one_line(text: str) -> bool:
     return "\n" not in text and "\r" not in text and "\u2028" not in text and "\u2029" not in text
 
 
-def generate_inputs(rng: random.Random, blocked: set[str]) -> list[str]:
+def generate_inputs(rng: random.Random, blocked: set[str], titlecase) -> list[str]:
     if CASE_COUNT % len(CATEGORIES) != 0:
         raise RuntimeError("case count must divide evenly across categories")
     per_category = CASE_COUNT // len(CATEGORIES)
@@ -299,13 +285,16 @@ def generate_inputs(rng: random.Random, blocked: set[str]) -> list[str]:
         builder = BUILDERS[category]
         produced = 0
         attempts = 0
-        limit = per_category * 100
+        limit = per_category * 200
         while produced < per_category:
             attempts += 1
             if attempts > limit:
                 raise RuntimeError(f"could not fill category {category} after {attempts} attempts")
             text = builder(rng)
             if not one_line(text) or text in seen:
+                continue
+            expected = titlecase(text)
+            if expected == text:
                 continue
             seen.add(text)
             chosen.append(text)
@@ -321,6 +310,8 @@ def records_for(titlecase, inputs: list[str]) -> list[dict[str, str]]:
         expected = titlecase(text)
         if not isinstance(expected, str):
             raise RuntimeError(f"titlecase returned {type(expected).__name__}, expected str")
+        if expected == text:
+            raise RuntimeError(f"fixed point generated: {text}")
         records.append({"input": text, "expected": expected})
     return records
 
@@ -360,6 +351,8 @@ def validate(titlecase, path: Path, records: list[dict[str, str]]) -> set[str]:
     if len(set(inputs)) != CASE_COUNT:
         raise RuntimeError(f"{path} inputs are not unique")
     for record in loaded:
+        if record["input"] == record["expected"]:
+            raise RuntimeError(f"{path} contains fixed point: {record['input']}")
         actual = titlecase(record["input"])
         if actual != record["expected"]:
             raise RuntimeError(f"{path} expected value does not match titlecase()")
@@ -369,8 +362,8 @@ def validate(titlecase, path: Path, records: list[dict[str, str]]) -> set[str]:
 def main() -> None:
     titlecase, titlecase_mod, regex = load_reference()
     visible_rng, hidden_rng = separate_streams()
-    visible_inputs = generate_inputs(visible_rng, blocked=set())
-    hidden_inputs = generate_inputs(hidden_rng, blocked=set(visible_inputs))
+    visible_inputs = generate_inputs(visible_rng, blocked=set(), titlecase=titlecase)
+    hidden_inputs = generate_inputs(hidden_rng, blocked=set(visible_inputs), titlecase=titlecase)
     visible_records = records_for(titlecase, visible_inputs)
     hidden_records = records_for(titlecase, hidden_inputs)
     write_jsonl(VISIBLE_PATH, visible_records)

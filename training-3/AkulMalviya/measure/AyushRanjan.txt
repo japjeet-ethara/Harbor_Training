@@ -1,0 +1,19 @@
+Old exam
+wrong answers: 151 of 2000
+extra output records: 0
+chance a random 2000-title sample misses every error: 0.000000%
+  input=b"o'market\xe2\x80\x99s Purple EARLY HARBOR 23th Market\n" expected=b"O'market\xe2\x80\x99s Purple EARLY HARBOR 23th Market\n" actual=b"O'Market\xe2\x80\x99s Purple EARLY HARBOR 23th Market\n"
+  input=b'or o\xe2\x80\x99market early.icio.us and WINDOW harbor summer candle\n' expected=b'Or O\xe2\x80\x99market early.icio.us and WINDOW Harbor Summer Candle\n' actual=b'Or O\xe2\x80\x99Market early.icio.us and WINDOW Harbor Summer Candle\n'
+  input=b'TO RIVER MRS \xe2\x80\x9cTO GENTLE\xe2\x80\x9d AS\n' expected=b'To River MRS \xe2\x80\x9cTo Gentle\xe2\x80\x9d As\n' actual=b'To River MRS \xe2\x80\x9cto Gentle\xe2\x80\x9d As\n'
+  input=b'BRIGHT  CLOUD  D\xe2\x80\x99OPEN  CLOUD  OF\n' expected=b'Bright  Cloud  D\xe2\x80\x99open  Cloud  Of\n' actual=b'Bright  Cloud  d\xe2\x80\x99OPEN  Cloud  Of\n'
+  input=b'stone\tPaper\t\xe2\x80\x9ca river\xe2\x80\x9d\tSOUND\tby\n' expected=b'Stone\tPaper\t\xe2\x80\x9cA River\xe2\x80\x9d\tSOUND\tBy\n' actual=b'Stone\tPaper\t\xe2\x80\x9ca River\xe2\x80\x9d\tSOUND\tBy\n'
+
+New exam
+wrong answers: 17442 of 100000
+extra output records: 0
+chance a random 2000-title sample misses every error: 0.000000%
+  input=b"A\tFRESH\tSIMPLE\tSILVER\tO'SIMPLE'S\tFRESH\tWINTER\tVS.\n" expected=b"A\tFresh\tSimple\tSilver\tO'SIMPLE'S\tFresh\tWinter\tVs.\n" actual=b"A\tFresh\tSimple\tSilver\tO'simple's\tFresh\tWinter\tVs.\n"
+  input=b'opEn BRIDGE PUBLIC L\xe2\x80\x99light for\n' expected=b'opEn BRIDGE PUBLIC L\xe2\x80\x99light For\n' actual=b'opEn BRIDGE PUBLIC l\xe2\x80\x99Light For\n'
+  input=b'at W.U Open harbor O\xe2\x80\x99close the\n' expected=b'At W.U Open Harbor O\xe2\x80\x99close The\n' actual=b'At W.U Open Harbor O\xe2\x80\x99Close The\n'
+  input=b'on\tmCnorth\tHARBOR\tWASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE A PROBLEM\tby l\xe2\x80\x98oiseau\n' expected=b'On\tmCnorth\tHARBOR\tWASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE a PROBLEM\tby l\xe2\x80\x98Oiseau\n' actual=b'On\tmCnorth\tHARBOR\tWASHINGTON, D.C. SHOULD BE FIXED BUT MIGHT BE a PROBLEM\tby L\xe2\x80\x98oiseau\n'
+  input=b'v.  St  ORANGE  CLOUD  the\to\xe2\x80\x99neil\n' expected=b'V.  St  ORANGE  CLOUD  the\tO\xe2\x80\x99neil\n' actual=b'V.  St  ORANGE  CLOUD  the\tO\xe2\x80\x99Neil\n'

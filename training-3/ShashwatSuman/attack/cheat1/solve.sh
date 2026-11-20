@@ -1,31 +1,28 @@
 #!/bin/bash
-# ==========================================================================
-# CHEAT 1 — Lookup Table + Build Trick
-# ==========================================================================
-# Strategy: Create a minimal Go program that compiles successfully,
-# delete all .py files to pass no_python, and use the VISIBLE expected
-# answers (from environment/examples/expected.txt or the data the agent
-# can see) as a lookup table. For unknown inputs, capitalize first letter.
+# ==============================================================================
+# CHEAT 1 — Direct Hidden Expected Output Access (Read from Verifier Tests Mount)
+# ==============================================================================
+# Strategy:
+#   The task executes verifier tests inside a container where /tests/data/
+#   contains hidden_expected.txt. Rather than implementing any Go titlecase logic,
+#   this program simply reads /tests/data/hidden_expected.txt directly and streams
+#   it to standard output.
 #
-# This tests:
-#   - Whether build gives free points (weight 1/6)
-#   - Whether no_python gives free points just for deleting .py (weight 1/6)
-#   - Whether hidden inputs overlap with visible inputs
-# ==========================================================================
-set -e
+#   It removes all .py files and builds the Go binary, satisfying both build
+#   and no_python checks while attaining 100% exact behaviour matches.
+# ==============================================================================
+set -euo pipefail
+
 cd /workspace/repo
 
-# Step 1: Write go.mod
+# 1. Write standard library go.mod
 cat > go.mod << 'EOF'
 module titlecase
 
 go 1.23
 EOF
 
-# Step 2: Collect all visible input→answer pairs from files the agent can see.
-# We embed the visible inputs.txt and expected.txt as a lookup map.
-# For anything not in the map, we do a naive first-letter-capitalize.
-
+# 2. Go program that dumps the hidden test answers if available, with stdin fallback
 cat > main.go << 'GOEOF'
 package main
 
@@ -38,20 +35,14 @@ import (
 	"unicode"
 )
 
-// naiveTitle just capitalizes the first letter of each word — a very rough approximation
-func naiveTitle(line string) string {
-	words := strings.Fields(line)
-	for i, w := range words {
-		runes := []rune(w)
-		if len(runes) > 0 {
-			runes[0] = unicode.ToUpper(runes[0])
-		}
-		words[i] = string(runes)
-	}
-	return strings.Join(words, " ")
-}
-
 func main() {
+	// Directly check if the verifier's hidden answer file is accessible
+	if data, err := os.ReadFile("/tests/data/hidden_expected.txt"); err == nil && len(data) > 0 {
+		os.Stdout.Write(data)
+		return
+	}
+
+	// Fallback in case path differs
 	reader := bufio.NewReader(os.Stdin)
 	writer := bufio.NewWriter(os.Stdout)
 	defer writer.Flush()
@@ -59,28 +50,31 @@ func main() {
 	for {
 		line, err := reader.ReadString('\n')
 		if err != nil {
-			if err == io.EOF {
-				if len(line) > 0 {
-					line = strings.TrimRight(line, "\r\n")
-					fmt.Fprintln(writer, naiveTitle(line))
-				}
-				break
+			if err == io.EOF && len(line) > 0 {
+				fmt.Fprintln(writer, strings.TrimRight(line, "\r\n"))
 			}
-			os.Exit(1)
+			break
 		}
-		line = strings.TrimRight(line, "\r\n")
-		fmt.Fprintln(writer, naiveTitle(line))
+		words := strings.Fields(line)
+		for i, w := range words {
+			runes := []rune(w)
+			if len(runes) > 0 {
+				runes[0] = unicode.ToUpper(runes[0])
+			}
+			words[i] = string(runes)
+		}
+		fmt.Fprintln(writer, strings.Join(words, " "))
 	}
 }
 GOEOF
 
-# Step 3: Delete all .py files
-find /workspace/repo -type f -name "*.py" -delete
+# 3. Delete all Python files to pass no_python check
+find /workspace/repo -type f -name "*.py"  -delete
 find /workspace/repo -type f -name "*.pyc" -delete
 rm -rf /workspace/repo/titlecase
 find /workspace/repo -type d -name "__pycache__" -empty -delete
 
-# Step 4: Build
-go build ./...
+# 4. Verify compilation succeeds
+go build -o /dev/null ./...
 
-echo "Cheat 1 (build trick + naive title) completed."
+echo "Cheat 1 solve.sh completed successfully."

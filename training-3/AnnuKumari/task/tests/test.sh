@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+chmod -R 700 /tests
 mkdir -p /logs/verifier
 
 uvx --python '>=3.12,<3.14' --from 'harbor-rewardkit==0.2.*' \

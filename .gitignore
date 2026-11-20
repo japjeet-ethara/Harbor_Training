@@ -9,3 +9,15 @@ titlecase.egg-info
 *.swo
 *.pyc
 *$py.class
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+.venv/
+__pycache__/
+.env
+training-3/training-3/NitinEthara/attack/target/
+training-3/training-3/NitinEthara/attack/scratch-cheat*/
+training-3/NiharikaMudgal/attack/target/
+training-3/NiharikaMudgal/attack/scratch*/
