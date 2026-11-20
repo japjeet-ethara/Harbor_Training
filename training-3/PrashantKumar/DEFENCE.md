@@ -14,16 +14,20 @@ The reference answers use Python titlecase WITHOUT the optional regex package.
 
 ## 2. Strongest attack
 
-The strongest Day 4 attack I developed against Annu Kumari's task was Cheat 3.
+Yuvraj Singh was assigned to attack my titlecase-go task.
 
-It searched the verifier filesystem for hidden expected answers and printed them instead of implementing titlecase.
+His strongest attack was Cheat 1, which read the hidden expected answers directly from `/tests/data/hidden_expected.txt` instead of solving the titlecase problem.
 
 Original Harbor result:
 - Behaviour: 1.000
 - Overall reward: 1.000
-- Job: cheat3__rczrpXL
+- Job: `2026-11-18__16-37-53`
 
-This demonstrated that separating the agent and verifier environments was insufficient when candidate executables could still access hidden answers during verification.
+This demonstrated that hidden answer files were accessible to the candidate during verification.
+
+Yuvraj's other attacks were:
+- Cheat 2: Minimal Go build and Python-file deletion; reward 0.394.
+- Cheat 3: Incomplete titlecase port; reward 0.338.
 
 ## 3. How I hardened my task
 
@@ -43,9 +47,9 @@ The final scoring policy gives zero Behaviour credit to an implementation that m
 | Exam size | 2,000 hidden inputs | 100,000 inputs |
 | Original Oracle | 1.000 on old exam | Initially 0.9692 on new exam |
 | Corrected Oracle | — | 1.000 |
-| Cheat 1 | — | 0.1667 |
-| Cheat 2 | — | 0.1667 |
-| Cheat 3 | — | 0.1667 |
+| Yuvraj Cheat 1 | 1.000 | 0.1667 |
+| Yuvraj Cheat 2 | 0.394 | 0.1667 |
+| Yuvraj Cheat 3 | 0.338 | 0.1667 |
 | NOP | — | 0.000 |
 
 The corrected Go oracle matched all 100,000 frozen Python answers.
@@ -78,17 +82,17 @@ NOP:
 - Reward: 0.000
 - Job: day6-nop-proof
 
-Cheat 1:
+Yuvraj Cheat 1:
 - Reward: 0.1667
-- Job: day5-cheat1-exact
+- Job: day6-yuvraj-cheat1
 
-Cheat 2:
+Yuvraj Cheat 2:
 - Reward: 0.1667
-- Job: day5-cheat2-exact
+- Job: day6-yuvraj-cheat2
 
-Cheat 3:
+Yuvraj Cheat 3:
 - Reward: 0.1667
-- Job: day5-cheat3-exact
+- Job: day6-yuvraj-cheat3
 
 All three cheats are below the required 0.2 threshold.
 
