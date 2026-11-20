@@ -35,6 +35,11 @@ Replace the Python library with a Go command line program that behaves the same 
 
 ## Required behaviour
 
+**Answer mode:** the frozen answers come from `titlecase` WITH the optional `regex` package,
+where `titlecase.REGEX_AVAILABLE` is `True`.
+The grader uses 100,000 frozen input lines. Answers were generated twice and every stable
+answer was retained.
+
 For every input line, the output line must be identical, byte for byte, to the value of
 `titlecase(line)` from the original library, called with default arguments while the
 optional `regex` package is importable (`titlecase.REGEX_AVAILABLE` is `True`). Both

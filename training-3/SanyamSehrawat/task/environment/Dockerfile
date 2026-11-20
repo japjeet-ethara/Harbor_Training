@@ -1,11 +1,8 @@
 # golang:1.23 (Debian bookworm), pinned by digest so every trial starts from the same image.
 FROM golang@sha256:60deed95d3888cc5e4d9ff8a10c54e5edc008c6ae3fba6187be6fb592e19e8c0
 
-# python3 + the optional `regex` package: the agent can run the original library,
-# which is exactly the behaviour its Go program has to reproduce.
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends python3 python3-regex \
-    && rm -rf /var/lib/apt/lists/*
+# No interpreter or network helper is installed in the agent image. The Go port must
+# compute titlecase on its own from the bundled source and tests.
 
 # The Go toolchain works offline and with the standard library only. Its caches live under
 # /tmp so that `go build` works for any user.
