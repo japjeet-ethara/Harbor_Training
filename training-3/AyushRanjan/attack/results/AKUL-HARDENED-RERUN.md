@@ -2,7 +2,7 @@
 
 Latest hardened task available locally: commit `2fbaa108203388562841f9d52faf7b45a39d8827`.
 
-Akul referenced `f5929f6`, which is not present in the local object database and could not be fetched as a remote ref. Confirm whether `2fbaa10` is the intended attached version before treating these scores as the exact requested-revision results.
+Akul's Slack message links directly to this task at commit `2fbaa108203388562841f9d52faf7b45a39d8827`; the Harbor scratch copies were extracted from that exact commit. The separate label `f5929f6` in the message does not match the linked commit SHA.
 
 | Cheat | Score | Job ID | Trial ID |
 |---|---:|---|---|
