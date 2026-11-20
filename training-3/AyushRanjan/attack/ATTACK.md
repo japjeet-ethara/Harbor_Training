@@ -54,3 +54,15 @@ The current Harbor numbers are the real results from the committed target copy, 
 - Highest measured Harbor score: `0.0`.
 - Strongest confirmed exposure: runtime access to all 2,000 hidden input/answer pairs; the score is masked by the line-ending defect.
 - Main hardening action: isolate expected answers from the candidate process and fix CRLF/LF comparison behavior.
+
+## Day 6 — Rerun against Akul's hardened task
+
+The three original Day 4 cheats were rerun against the latest hardened Akul task available in the fetched `training-3` branch. Akul's message referred to revision `f5929f6`, but that commit was not present locally or fetchable from `origin`; the latest available hardened task revision is commit `2fbaa108203388562841f9d52faf7b45a39d8827` (`harden: isolate verifier and add 100k re exam (re mode)`). These results are for `2fbaa10`, so they should not be represented as results for `f5929f6` unless Akul confirms the revisions are identical.
+
+| Cheat | Strategy | Reward | Harbor job ID | Trial ID | Saved reward file |
+|---|---|---:|---|---|---|
+| Cheat 1 | Build-only empty Go program | 0.0 | `efbc086c-42e8-4022-9e27-f9d55f8ccc3f` | `scratch-akul-2fbaa10-cheat1__QrDU92v` | `results/day6-akul-cheat1-reward.txt` |
+| Cheat 2 | Read hidden answer files at runtime | 0.0 | `6a311515-1c17-4ee2-8f2d-e6c945c84a04` | `scratch-akul-2fbaa10-cheat2__wUiRsRE` | `results/day6-akul-cheat2-reward.txt` |
+| Cheat 3 | Launch Python from Go | 0.0 | `ba467c0a-7870-4252-a4be-8eea88d19271` | `scratch-akul-2fbaa10-cheat3__x7GDnb8` | `results/day6-akul-cheat3-reward.txt` |
+
+All three successful Harbor trials completed with zero exceptions. Cheat 1's first attempt did not start because the Windows-extracted scratch `tests/test.sh` retained CRLF line endings, producing `bad interpreter`/missing reward. I changed only the scratch copy's line endings to LF and reran it; its recorded score above is from the successful retry. No files in Akul's folder were changed.
