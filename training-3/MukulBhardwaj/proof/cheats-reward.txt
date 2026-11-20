@@ -1,0 +1,5 @@
+Hardened task revision 0cda2e8
+Control | Harbor job | Reward | Behaviour | Build | No Python
+Control 1 | mukul-after-control1 | 0 | 0.0137 | 1 | 0
+Control 2 | mukul-after-control2 | 0 | 0 | 1 | 0
+Control 3 | mukul-after-control3 | 0 | 0.1599 | 1 | 1

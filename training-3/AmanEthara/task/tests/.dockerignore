@@ -1,0 +1,5 @@
+scripts/
+gen.py
+__pycache__/
+*.pyc
+.dockerignore

@@ -1,0 +1,121 @@
+records 100000  wrong 3063  (word-split mismatch lines: 0)
+
+lines by cause signature:
+    1329  ligature ﬂ
+    1305  ligature ﬁ
+     410  dotted capital I (U+0130)
+      19  ligature ﬁ + ligature ﬂ
+
+differing words by cause (Python all-caps line?, Go-simple all-caps line?):
+    1355  ligature ﬂ  py_allcaps=False go_allcaps=False
+    1333  ligature ﬁ  py_allcaps=False go_allcaps=False
+     399  dotted capital I (U+0130)  py_allcaps=True go_allcaps=True
+      20  dotted capital I (U+0130)  py_allcaps=False go_allcaps=False
+
+most frequent differing words per cause (input -> want | got):
+  [ligature ﬂ]
+     1093x  'ﬂight' -> want 'FLight' | got 'ﬂight'
+       16x  'ﬂight!' -> want 'FLight!' | got 'ﬂight!'
+       13x  'ﬂight;' -> want 'FLight;' | got 'ﬂight;'
+       12x  'ﬂight:' -> want 'FLight:' | got 'ﬂight:'
+       11x  'ﬂight?' -> want 'FLight?' | got 'ﬂight?'
+        9x  'ﬂight.' -> want 'FLight.' | got 'ﬂight.'
+  [ligature ﬁ]
+     1077x  'ﬁnal' -> want 'FInal' | got 'ﬁnal'
+       15x  'ﬁnal!' -> want 'FInal!' | got 'ﬁnal!'
+       15x  'ﬁnal:' -> want 'FInal:' | got 'ﬁnal:'
+       10x  'ﬁnal.' -> want 'FInal.' | got 'ﬁnal.'
+        9x  'ﬁnal;' -> want 'FInal;' | got 'ﬁnal;'
+        7x  'ﬁnal"' -> want 'FInal"' | got 'ﬁnal"'
+  [dotted capital I (U+0130)]
+      160x  'İZMIR' -> want 'İzmir' | got 'Izmir'
+      159x  'İSTANBUL' -> want 'İstanbul' | got 'Istanbul'
+        5x  'İSTANBUL-' -> want 'İstanbul-' | got 'Istanbul-'
+        4x  '-İSTANBUL' -> want '-İstanbul' | got '-Istanbul'
+        4x  'İSTANBUL/' -> want 'İstanbul/' | got 'Istanbul/'
+        3x  'İSTANBUL)' -> want 'İstanbul)' | got 'Istanbul)'
+
+representative full lines:
+  [ligature ﬁ]
+    line 4
+      input 'ﬁnal  en\u2002route winter MACHINE island but: machine a'
+      want  'FInal  en\u2002Route Winter MACHINE Island But: Machine A'
+      got   'ﬁnal  en\u2002Route Winter MACHINE Island But: Machine A'
+    line 61
+      input 'http://example.com/a/b peace https://x.org, or\tguide‘ rings ﬁnal" love'
+      want  'http://example.com/a/b Peace https://x.org, or\tGuide‘ Rings FInal" Love'
+      got   'http://example.com/a/b Peace https://x.org, or\tGuide‘ Rings ﬁnal" Love'
+    line 190
+      input 'on 3.14\xa0war For% history; ﬁnal\xa0by| city? pdf'
+      want  'On 3.14\xa0War For% History; FInal\xa0By| City? PDF'
+      got   'On 3.14\xa0War For% History; ﬁnal\xa0By| City? PDF'
+  [ligature ﬂ]
+    line 12
+      input 'vs. world! machine ﬂight v 1984'
+      want  'Vs. World! Machine FLight v 1984'
+      got   'Vs. World! Machine ﬂight v 1984'
+    line 104
+      input "book\u2009Heart\tﬂight Road  o'reilly's dream"
+      want  "Book\u2009Heart\tFLight Road  O'Reilly's Dream"
+      got   "Book\u2009Heart\tﬂight Road  O'Reilly's Dream"
+    line 133
+      input 'ﬂight "rings; dream Dream book'
+      want  'FLight "Rings; Dream Dream Book'
+      got   'ﬂight "Rings; Dream Dream Book'
+  [dotted capital I (U+0130)]
+    line 204
+      input 'STEP-BY-STEP  V OFFICE  FLIGHT → WORLD İSTANBUL)  ÉCOLENORMALE MCDONALD'
+      want  'Step-by-Step  v Office  Flight → World İstanbul)  Écolenormale McDonald'
+      got   'Step-by-Step  v Office  Flight → World Istanbul)  Écolenormale McDonald'
+    line 436
+      input 'İZMIR'
+      want  'İzmir'
+      got   'Izmir'
+    line 553
+      input 'İSTANBUL NIGHT'
+      want  'İstanbul Night'
+      got   'Istanbul Night'
+  [ligature ﬁ + ligature ﬂ]
+    line 22030
+      input "e.g. peace ﬂight $αlpha don’t! o'reilly's  ﬁnal an"
+      want  "e.g. Peace FLight $Αlpha Don’t! O'Reilly's  FInal An"
+      got   "e.g. Peace ﬂight $Αlpha Don’t! O'Reilly's  ﬁnal An"
+    line 42388
+      input 'X. code ﬁnal MCDONALD ﬂight'
+      want  'X. Code FInal McDonald FLight'
+      got   'X. Code ﬁnal McDonald ﬂight'
+    line 43663
+      input "oﬃce Dr '90s ﬂight as  MCDONALD ?love ﬁnal; x86,"
+      want  "Oﬃce Dr '90s FLight as  McDonald ?Love FInal; X86,"
+      got   "Oﬃce Dr '90s ﬂight as  McDonald ?Love ﬁnal; X86,"
+
+families (titles in suite / titles wrong):
+  small word                                 64588   2021
+  sub-phrase break + small word              10031    315
+  all-caps line                              10690    390
+  initials (A.B.)                            12958    402
+  d'/l'/o' apostrophe                        11759    377
+  Mc prefix                                  11680    347
+  honorific (exact)                           9816    295
+  inline period (domain, v1.2)               30102    905
+  ASCII internal caps                        40408   1295
+  slash split                                17557    574
+  double slash (URL)                         14474    430
+  hyphen split                               30840    955
+  consonant acronym                          14055    464
+  ordinal (21st)                              1465     56
+  tab or NBSP                                28913   1029
+  honorific + punctuation                     2237     59
+  other letter+digit word (mp3, 4k)          11924    401
+  decimal number                              3472    116
+  no-letter title                               87      0
+  non-ASCII letters                          30167   3063
+  case-expanding char (ß, ﬁ, İ)               8765   3063
+  non-ASCII internal caps                     7946    275
+  typographic apostrophe ’                    8160    274
+  contraction/possessive                     14000    437
+  punctuation/symbol outside PUNCT           22359    692
+  emoji / non-BMP                             1393     51
+  other Unicode space                         7814    246
+  zero-width char                             2092     74
+  URL/path with hyphen, no period             5126    168

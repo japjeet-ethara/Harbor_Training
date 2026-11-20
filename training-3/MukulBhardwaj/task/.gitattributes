@@ -1,0 +1,2 @@
+*.sh text eol=lf
+tests/data/*.txt text eol=lf

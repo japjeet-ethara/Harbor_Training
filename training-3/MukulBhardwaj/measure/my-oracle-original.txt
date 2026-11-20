@@ -1,0 +1,25 @@
+Source: a2bca77; Harbor job mukul-day5-hardened-oracle
+Go 1.23.12, Windows amd64, CGO disabled
+
+Old 2,000-title exam
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%
+
+New 100,000-title exam
+wrong answers      857 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input '-lead _and/or\u2009MCDONALD by #life an} data'
+  want  '-Lead _and/or\u2009McDonald by #Life An} Data'
+  got   '-Lead _And/or\u2009McDonald by #Life An} Data'
+  input 'JavaScript to ıstanbul for( _via vs night the'
+  want  'JavaScript to Istanbul For( _via vs Night The'
+  got   'JavaScript to Istanbul For( _Via vs Night The'
+  input 'of дом and MRS _via'
+  want  'Of Дом and MRS _via'
+  got   'Of Дом and MRS _Via'
+  input '-lead _winter https://x.org\u2009ıstanbul xkcd'
+  want  '-Lead _winter https://x.org\u2009Istanbul XKCD'
+  got   '-Lead _Winter https://x.org\u2009Istanbul XKCD'
+  input 'macintosh a/b/c _dream input/output'
+  want  'Macintosh a/B/C _dream Input/Output'
+  got   'Macintosh a/B/C _Dream Input/Output'

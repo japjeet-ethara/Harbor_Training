@@ -1,0 +1,15 @@
+# Day 4-6 — never push these (see 06-break-and-harden.md, "Never push")
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# OS / build junk
+.DS_Store
+/tmp/

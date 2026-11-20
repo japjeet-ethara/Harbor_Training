@@ -1,0 +1,37 @@
+Old exam
+wrong answers      8 of 2000
+chance a random 2000 suite sees none of them: 0%
+  input 'Reykjavík and ﬁle'
+  want  'Reykjavík and FIle'
+  got   'Reykjavík and ﬁle'
+  input 'smørrebrød and ﬁle'
+  want  'Smørrebrød and FIle'
+  got   'Smørrebrød and ﬁle'
+  input 'ΑΘΗΝΑ and ﬁle'
+  want  'ΑΘΗΝΑ and FIle'
+  got   'ΑΘΗΝΑ and ﬁle'
+  input 'ﬁle'
+  want  'FIle'
+  got   'ﬁle'
+  input 'ß and 東京'
+  want  'SS and 東京'
+  got   'ß and 東京'
+
+New exam
+wrong answers      3321 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'A.B.C dr  vs.\u2009d‘ß island on\texample.com'
+  want  'A.B.C Dr  vs.\u2009d‘SS Island on\texample.com'
+  got   'A.B.C Dr  vs.\u2009d‘ß Island on\texample.com'
+  input '-lead “U.S. peace _a/b/c for in\u2009in mcgraw-hill: ftp://host/file'
+  want  '-Lead “U.S. Peace _a/B/C for in\u2009in McGraw-Hill: Ftp://host/file'
+  got   '-Lead “U.S. Peace _A/B/C for in\u2009in McGraw-Hill: Ftp://host/file'
+  input 'summer; e.g.\u3000GUIDE A.B. d‘ß time'
+  want  'Summer; e.g.\u3000GUIDE A.B. d‘SS Time'
+  got   'Summer; e.g.\u3000GUIDE A.B. d‘ß Time'
+  input 'd‘ß 7.b TCP/IP re-enter\xa0d‘ß for|\tbook'
+  want  'd‘SS 7.b TCP/IP Re-Enter\xa0d‘SS For|\tBook'
+  got   'd‘ß 7.b TCP/IP Re-Enter\xa0d‘ß For|\tBook'
+  input 'game $en vs. vs _dream\u3000life as'
+  want  'Game $En vs. Vs _dream\u3000Life As'
+  got   'Game $En vs. Vs _Dream\u3000Life As'

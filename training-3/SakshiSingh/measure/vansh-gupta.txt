@@ -1,0 +1,17 @@
+wrong answers      5 of 100000
+chance a random 2000 suite sees none of them: 90%
+  input "v._ music! world - d'arcy"
+  want  "V._ Music! World - d'Arcy"
+  got   "v._ Music! World - d'Arcy"
+  input 'vs._ http://example.com/a/b‘'
+  want  'Vs._ http://example.com/a/b‘'
+  got   'vs._ http://example.com/a/b‘'
+  input 'vs._ vs. life A.B.C  game input/output A.B. — or'
+  want  'Vs._ vs. Life A.B.C  Game Input/Output A.B. — Or'
+  got   'vs._ vs. Life A.B.C  Game Input/Output A.B. — Or'
+  input 'vs._ V. HIS/HER\xa0light'
+  want  'Vs._ v. HIS/HER\xa0Light'
+  got   'vs._ v. HIS/HER\xa0Light'
+  input 'vs._ STORY  node.js love .RIVER Mcgraw-hill'
+  want  'Vs._ STORY  node.js Love .RIVER McGraw-Hill'
+  got   'vs._ STORY  node.js Love .RIVER McGraw-Hill'

@@ -1,0 +1,14 @@
+[no_python] .py files left: 0
+[behaviour] 2000/2000 hidden lines match
+[build] ok
+[build] ok
+behaviour: 1.0
+build: 1.0
+no_python: 1.0
+reward: 1.0
+{
+  "behaviour": 1.0,
+  "build": 1.0,
+  "no_python": 1.0,
+  "reward": 1.0
+}

@@ -1,0 +1,10 @@
+Attacker (Akul Malviya) cheats on the hardened task, plus my own probes.
+Each reward below is from a real Harbor run (job folder in parentheses); all < 0.2.
+
+akul-cheat1 capitalize-starts   0.1805  (selfattack/jobs/2026-11-20__12-48-27)
+akul-cheat2 normalize-casing    0.1469  (selfattack/jobs/2026-11-20__12-49-11)
+akul-cheat3 small-word-list     0.1584  (selfattack/jobs/2026-11-20__12-49-55)
+read-the-exam (his finding #1)  0.1547  (selfattack/jobs/2026-11-20__12-47-25)   [was 1.0 before the fix]
+my lookup/echo                  0.1547  (selfattack/jobs/2026-11-20__12-50-44)
+my half-port                    0.1547  (selfattack/jobs/2026-11-20__12-51-33)
+my python-inside                0.1540  (selfattack/jobs/2026-11-20__12-52-22)   [was 0.988 before the fix]

@@ -1,6 +1,11 @@
 #!/bin/bash
-set -euo pipefail
+# Runs the Go grader in tests/checks. Never trusts a reward file that already exists.
+mkdir -p /logs/verifier
+rm -f /logs/verifier/reward.json /logs/verifier/reward.txt
 
-export PATH="/usr/local/go/bin:/usr/local/bin:/usr/bin:/bin"
+cd /tests/checks && go run .
 
-uvx --python '>=3.12,<3.14' --from 'harbor-rewardkit==0.2.*' rewardkit --workspace /workspace/repo /tests
+if [ ! -s /logs/verifier/reward.json ]; then
+  echo '{"reward": 0, "build": 0, "no_python": 0, "behaviour": 0}' > /logs/verifier/reward.json
+fi
+exit 0

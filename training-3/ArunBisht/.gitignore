@@ -1,0 +1,24 @@
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+.venv/
+__pycache__/
+.env
+build/
+dist/
+
+# Keep only the intended attack deliverables in Git.
+attack/*
+!attack/cheat1/
+!attack/cheat1/**
+!attack/cheat2/
+!attack/cheat2/**
+!attack/cheat3/
+!attack/cheat3/**
+!attack/results/
+!attack/results/**
+!attack/ATTACK.md
+!attack/TARGET.txt

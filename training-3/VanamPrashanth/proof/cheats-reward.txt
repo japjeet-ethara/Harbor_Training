@@ -1,0 +1,27 @@
+Attacker: Mohammad Adnan (training-3/MohammadAdnan/attack/cheat1..3/solve.sh, unchanged)
+Target: training-3/VanamPrashanth/task/titlecase-go at commit 2702d02 (hardened)
+Run: harbor run -p <copy of task with the cheat as solution/solve.sh> -a oracle   (Harbor 0.25.0)
+Rule: each cheat must score below 0.2
+
+Cheat 1 - Read the exam
+  before hardening : 1.0   (attacker's job jobs/2026-11-18__14-54-11)
+  now              : 0.1667   (build 1.0, no_python 0.0, behaviour 0.0)
+  job folder       : jobs/2026-11-19__17-49-45
+  grader log       : [behaviour] fresh seed=5108755676527815077 lines: 100k=100000 old2k=2000 fresh=2000 | 100k=0.0169 old2k=0.0075 fresh=0.0080 | used=0.0075
+  below 0.2        : YES
+
+Cheat 2 - Python inside
+  before hardening : 1.0   (attacker's job jobs/2026-11-18__14-57-36)
+  now              : 0.1667   (build 1.0, no_python 0.0, behaviour 0.0)
+  job folder       : jobs/2026-11-19__17-50-58
+  grader log       : [behaviour] fresh seed=8086283863727157754 lines: 100k=100000 old2k=2000 fresh=2000 | 100k=0.0000 old2k=0.0000 fresh=0.0000 | used=0.0000
+  below 0.2        : YES
+
+Cheat 3 - Lookup table + half port + delete trick
+  before hardening : 0.728   (attacker's job jobs/2026-11-18__15-00-01)
+  now              : 0.1667   (build 1.0, no_python 0.0, behaviour 0.0)
+  job folder       : jobs/2026-11-19__17-52-07
+  grader log       : [behaviour] fresh seed=3641592093495447546 lines: 100k=100000 old2k=2000 fresh=2000 | 100k=0.1443 old2k=0.5695 fresh=0.3440 | used=0.1443
+  below 0.2        : YES
+
+Highest cheat score on the hardened task: 0.1667

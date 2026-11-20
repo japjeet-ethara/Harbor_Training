@@ -1,0 +1,7 @@
+# reward = (1*build + 1*no_python + 6*behaviour) / 8
+# behaviour is weighted heavily: this is a byte-exact porting task, so a program
+# that merely builds and deletes .py files must stay well below the pass mark.
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 6.0 }
