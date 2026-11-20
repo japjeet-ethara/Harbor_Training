@@ -64,18 +64,32 @@ if [ "$raw_build" -eq 1 ]; then
         chmod +x "$binary" 2>/dev/null || true
         actual_file="/tmp/actual_output.txt"
 
-        "$binary" < "$INPUTS_FILE" > "$actual_file" 2>/dev/null || true
+        binary_exit=0
+        "$binary" < "$INPUTS_FILE" > "$actual_file" 2>/dev/null || binary_exit=$?
 
-        if [ -s "$actual_file" ]; then
+        # Strict checks: binary must exit successfully (exit code 0) and generate output
+        if [ "$binary_exit" -eq 0 ] && [ -s "$actual_file" ]; then
             python3 -c "
+import itertools
+
 with open('$actual_file', 'rb') as f_act, open('$ANSWERS_FILE', 'rb') as f_exp:
     m = 0
-    t = 0
-    for a, e in zip(f_act, f_exp):
-        t += 1
-        if a.rstrip(b'\r\n') == e.rstrip(b'\r\n'):
+    act_count = 0
+    exp_count = 0
+    for a, e in itertools.zip_longest(f_act, f_exp, fillvalue=None):
+        if e is not None:
+            exp_count += 1
+        if a is not None:
+            act_count += 1
+        if a is not None and e is not None and a.rstrip(b'\r\n') == e.rstrip(b'\r\n'):
             m += 1
-    score = m / t if t > 0 else 0
+
+    # Require full line count match; partial output earns 0
+    if act_count != exp_count or exp_count == 0:
+        score = 0.0
+    else:
+        score = m / exp_count
+
     with open('/tmp/behaviour.txt', 'w') as f_out:
         f_out.write(f'{score:.6f}')
 "
