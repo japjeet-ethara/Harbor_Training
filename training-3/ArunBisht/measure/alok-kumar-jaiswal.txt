@@ -1,0 +1,17 @@
+wrong answers      9219 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input "and\xa0and\xa0o'reilly\xa0A.B.\xa0l'grange\xa0south\xa0north\xa0music"
+  want  "And\xa0and\xa0O'Reilly\xa0A.B.\xa0l'Grange\xa0South\xa0North\xa0Music"
+  got   "And\xa0and\xa0o'reilly\xa0A.B.\xa0l'grange\xa0south\xa0north\xa0music"
+  input 'but\u2006light\u2006the\u2006a\u2006tower\u2006and/or'
+  want  'But\u2006Light\u2006the\u2006a\u2006Tower\u2006and/Or'
+  got   'But\u2006light\u2006the\u2006a\u2006tower\u2006and/Or'
+  input "journey\u2006garden\u2006MacDonalds\u2006umbrella\u2006engine\u2006final\u2006html\u2006l'amour\u2006light\u2006journey"
+  want  "Journey\u2006Garden\u2006MacDonalds\u2006Umbrella\u2006Engine\u2006Final\u2006HTML\u2006l'Amour\u2006Light\u2006Journey"
+  got   "Journey\u2006garden\u2006MacDonalds\u2006umbrella\u2006engine\u2006final\u2006html\u2006l'amour\u2006light\u2006journey"
+  input 'and\u2006McTavish\u2006end-to-end\u2006bridge\u2006html\u2006A.B.'
+  want  'And\u2006McTavish\u2006End-to-End\u2006Bridge\u2006HTML\u2006A.B.'
+  got   'And\u2006McTavish\u2006end-to-end\u2006bridge\u2006html\u2006A.B.'
+  input "l'amour\u200alate\u200apicture\u200ariver\u200ayellow\u200ascience\u200aand\u200alate\u200agolden\u200adance"
+  want  "l'Amour\u200aLate\u200aPicture\u200aRiver\u200aYellow\u200aScience\u200aand\u200aLate\u200aGolden\u200aDance"
+  got   "L'amour\u200alate\u200apicture\u200ariver\u200ayellow\u200ascience\u200aand\u200alate\u200agolden\u200adance"
