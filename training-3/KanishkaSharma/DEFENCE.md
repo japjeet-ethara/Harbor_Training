@@ -4,13 +4,13 @@
 - **Oracle:** `1.000` (`proof/oracle-reward.json`, job: `jobs/2026-11-20__13-06-06`)
 - **Nop:** `0.000` (`proof/nop-reward.json`, job: `jobs/2026-11-20__13-07-15`)
 - **Attacker's Cheats (Shubham Tumane):**
-  - Cheat 1: `0.000` (`jobs/2026-11-20__17-01-17`)
-  - Cheat 2: `0.000` (`jobs/2026-11-20__12-23-09`)
-  - Cheat 3: `0.073` (`jobs/2026-11-20__12-24-50`)
+  - Cheat 1: `0.000` (`jobs/2026-11-20__17-34-49`)
+  - Cheat 2: `0.000` (`jobs/2026-11-20__17-35-53`)
+  - Cheat 3: `0.1695` (`jobs/2026-11-20__17-36-58`)
 
 ## 2. Strongest Cheat (Before vs After)
-- Strongest cheat (`Cheat 1` — reading hidden expected output directly): score was `1.00` before hardening, now `0.000` (`jobs/2026-11-20__17-01-17`).
-- Hardened `Dockerfile`, `docker-compose.yaml`, `tests/test.sh`, `tests/behaviour/check.py`, and `tests/reward.toml` so `build` and `no_python` cannot award points without real `behaviour` score, hidden test data stays isolated, and every cheat stays below `0.2` (max `0.073`).
+- Strongest cheat (`Cheat 1` — reading hidden exam directly from workspace): score was `1.000` before hardening (`jobs/2026-11-19__20-47-56`), now `0.000` (`jobs/2026-11-20__17-34-49`).
+- Hardened `Dockerfile`, `docker-compose.yaml`, `tests/test.sh`, `tests/behaviour/check.py`, and `tests/reward.toml` so `build` and `no_python` cannot award points without real `behaviour` score, hidden test data stays isolated, and every cheat stays below `0.2` (max `0.1695`).
 
 ## 3. Exam: Before vs After
 - **Old exam:** 2,000 inputs
