@@ -15,12 +15,11 @@ Verified controls for revision `a1173ff2253399c1728efa4e25255b6495c51493`:
 
 ---
 
-## Historical Evidence Note
+## Day 4 Evidence Gap
 
-- **Trial:** `titlecase-go__Ds2Qj9F`
-- **Harbor Job ID:** `b5c5ce87-c293-45a9-a2b4-f3437000e8c9`
-- **Recorded Reward:** `0.000`
-- **Details:** Setup stopped before behavioral grading, and Harbor recorded no Git commit for the run.
+- Nikhil confirmed the ZIP is his full set of records for the submitted task folder.
+- We checked all five archived trial configs and lock files. None records a Git commit, and none of their task digests matches the digest Nikhil supplied for `a1173ff2253399c1728efa4e25255b6495c51493`.
+- Trial `titlecase-go__Ds2Qj9F` (Harbor job ID `b5c5ce87-c293-45a9-a2b4-f3437000e8c9`) scored `0.000` after setup failed, before behavioral grading.
 
 ---
 
