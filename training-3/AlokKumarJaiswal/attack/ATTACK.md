@@ -184,3 +184,25 @@ All-caps-only is kept as an unnumbered comparison with job `lokesh-practice1-all
 Five behaviour-only submissions were measured and the three highest-scoring submissions were selected; trainer acceptance remains unconfirmed. Published Oracle and Nop remain identified as standard controls.
 
 Highest measured submission score — 0.905333 (cheat3)
+
+---
+
+## Day 6 retest — Lokesh Deshwal’s hardened task
+
+I retested Lokesh’s task at commit `dcbe88466f7281cfb7969a6ff9288f2be331de32`. Each submission ran in a fresh copy with only `solution/solve.sh` replaced. The oracle used the published solution. All five Harbor runs reported zero trial exceptions.
+
+| Run | Day 4 reward | Day 6 reward | Harbor job |
+| --- | ---: | ---: | --- |
+| Cheat 1 — compound words | 0.573000 | 0.0 | `lokesh-day6-cheat1-20261120-155620` |
+| Cheat 2 — interior small words | 0.624000 | 0.0 | `lokesh-day6-cheat2-20261120-155730` |
+| Cheat 3 — combined partial port | 0.905333 | 0.0 | `lokesh-day6-cheat3-20261120-155840` |
+| Published oracle | 1.0 | 1.0 | `lokesh-day6-oracle-20261120-160100` |
+| New control — omit the `Mc` rule | — | 0.0 | `lokesh-day6-mc-omission-20261120-162242` |
+
+The new control built in a separate smoke test. It returned `The Story of Mcdonald` for `the story of mcdonald`, while the Python reference returns `The Story of McDonald`.
+
+The verifier zeros all reported components when raw behaviour is below 0.98. The published zeroes alone cannot establish raw accuracy or build status inside Harbor. The verified outcome is that all three original submissions scored below 0.2 and the published oracle retained its 1.0 score.
+
+### Static Review: tests/test.sh
+
+Static review of `tests/test.sh`: the comparator does not check that output and reference have the same number of lines, and the verifier ignores the candidate’s exit status. Recommend requiring a successful exit and checking the full output line count before awarding credit. Reading tests/test.sh showed that the comparator does not check whether the output and reference have the same number of lines, and the verifier ignores the candidate’s exit status. Require a successful exit and verify that the line counts match before awarding credit.
