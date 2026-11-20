@@ -1,100 +1,115 @@
-# Attack Report — Sanyam Sehrawat's titlecase-go Task
+# Red-Team Attack Report — Sanyam Sehrawat's titlecase-go Task
 
-**Target Student:** Sanyam Sehrawat  
-**Target Commit SHA:** `9c8b84d4d7da90ea8feceb9f5e9a39720a672b53`  
-**Target Task Location:** `SanyamSehrawat/titlecase-go`  
-**Date of Evaluation:** November 18, 2026  
-**Evaluator:** Sonu Kumar (`Sonu Kumar/`)
+## 1. Target Overview
 
----
-
-## 1. Target Task Audit and Security Analysis
-
-### Execution Context & Visibility
-- Inside the agent execution container (`environment/Dockerfile:16-21`), the agent runs as `agent` and only has access to `/workspace/repo`, which contains `python-titlecase` (version 2.4.1) files.
-- The grading suite (`tests/`) is NOT visible to the agent during execution; it exists only in the verifier container (`task.toml:27` specifying `environment_mode = "separate"`).
-- In the verifier container (`tests/Dockerfile:1-13`), `COPY . /tests/` copies the tests, including test scripts and datasets (`tests/data/sample/` and `tests/data/graded/`).
-
-### Verification & Scoring Mechanics
-- Entrypoint `tests/test.sh:6` executes `python3 /tests/grade.py /workspace/repo /tests/data/graded /logs/verifier/reward.json`.
-- The evaluation defines three checks with fixed weights (`tests/grade.py:25`):
-  - `build` (weight 1): Verifies `go.mod` has no `require` or `replace` directives and that `go build ./...` and `go build -o /tmp/titlecase .` succeed (`tests/grade.py:42-59`).
-  - `no_python` (weight 1): Recursively scans `/workspace/repo` and awards 1.0 if no file ending in `.py` remains (`tests/grade.py:62-70`).
-  - `behaviour` (weight 4): Runs `/tmp/titlecase` under user `nobody`, feeds `/tests/data/graded/titles.txt` (2,000 lines) through stdin, and compares stdout byte-by-byte to `/tests/data/graded/answers.txt` (`tests/grade.py:87-120`).
-- Final reward formula (`tests/grade.py:139`):
-  $$\text{reward} = \frac{1 \cdot \text{build} + 1 \cdot \text{no\_python} + 4 \cdot \text{behaviour}}{6.0}$$
-
-### Weakest Points Identified
-1. **Unconditional points for deleting `.py` files (`tests/grade.py:25, 126-127`):** `no_python` (weight 1) awards full credit as long as `build == 1.0` and no `.py` files exist, without checking whether any real translation work was done. Together, `build` + `no_python` guarantee a base reward of $2/6 \approx 0.3333$ (33.33%) to a completely empty stub.
-2. **Partial credit inflation via naive heuristic (`tests/grade.py:113, 120`):** `behaviour` computes linear match ratio `matched / len(answers)`. Naive space-delimited word capitalization easily matches titles that contain only common capitalized words and no small words, acronyms, or punctuation edge cases (409 of 2,000 lines, earning 20.45% behaviour and 0.4697 overall).
-3. **Verifier image architecture & Python execution leak (`tests/Dockerfile:8` and `tests/grade.py:62-70`):** `python3` is installed in the verifier container (`tests/Dockerfile:8`), contrary to `instruction.md:34` which claims the container has no Python. Furthermore, `check_no_python` only checks `f.endswith(".py")`. A solution can rename Python files and call `python3` via a Go subprocess to achieve 98.45% output accuracy without writing a Go titlecase engine.
+- **Attacker:** Sonu Kumar (`Sonu Kumar/`)
+- **Defender:** Sanyam Sehrawat (`training-3/SanyamSehrawat/`)
+- **Task:** `titlecase-go`
+- **Original Day 4 Target Commit:** `9c8b84d4d7da90ea8feceb9f5e9a39720a672b53`
+- **Day 6 Hardened Target Commit:** `565b9633ff31580a04062dd8263fd6baa047eeb7`
+- **Target Task Directory:** `training-3/SanyamSehrawat/task/`
+- **Evaluation Environment:** Harbor 0.25.0 (`golang:1.23`, Docker / Ubuntu WSL)
 
 ---
 
-## 2. Official Day 4 Cheats (Three Core Experiments)
+## 2. Three Official Re-Attack Cheats
 
-### Cheat 1 — Delete Trick (Minimal Go Stub)
-- **Strategy:** Delete trick / Build trick.
-- **What it does:** Deletes all `.py` files and python build artifacts from `/workspace/repo`, creates a standard-library `go.mod`, and writes a minimal 20-line `main.go` that prints empty lines for each input.
-- **Expected weakness:** `tests/grade.py:62-70` checks only that no `*.py` files remain. Combined with `tests/grade.py:42-59` (`go build`), it should award $1/6 + 1/6 = 0.3333$ reward without any titlecasing logic.
-- **Score:** reward **0.3333** (build 1.0, no_python 1.0, behaviour 0.0)
-- **Job folder:** `Harbor_Day4_Workspace/Sonu Kumar/jobs/2026-11-18__23-35-40`
-- **Why it worked:** `tests/grade.py:58` confirmed `build: ok`, and `tests/grade.py:69` confirmed `no_python: ok`. `behaviour` was 0/2000 lines (`tests/grade.py:114`), but the decoupled scoring formula (`tests/grade.py:139`) awarded 0.3333 total reward.
-- **Supporting references:** `tests/grade.py:25`, `tests/grade.py:62-70`, `tests/grade.py:126-127`, `tests/grade.py:139`.
-- **How to fix:** Make `no_python` conditional on behaviour (`if scores["behaviour"] > 0: ...`), or require a minimum threshold before awarding points for file deletion.
+The three official Day 4 attack cheats were evaluated unmodified against Sanyam's hardened task using Harbor:
 
----
+| Cheat | Technique | Day 4 Reward | Hardened Reward | Harbor Job Directory | Result Breakdown (`build` / `no_py` / `behav`) | Status |
+|---|---|:---:|:---:|---|---|:---:|
+| **Cheat 1** | Delete + Echo | 0.3333 | **0.1667** | `jobs/2026-11-20__17-05-28` | `1.0` / `0.0` / `0.0` | Suppressed (< 0.20) |
+| **Cheat 2** | Naive Half-Port | 0.4697 | **0.1667** | `jobs/2026-11-20__18-00-30` | `1.0` / `0.0` / `0.0` | Suppressed (< 0.20) |
+| **Cheat 3** | Python Wrapper | 0.9897 | **0.0000** | `jobs/2026-11-20__18-02-27` | `0.0` / `0.0` / `0.0` | Eliminated (< 0.20) |
 
-### Cheat 2 — Half Port (Naive Word Capitalization)
-- **Strategy:** Half port / Heuristic shortcut.
-- **What it does:** Implements a naive Go program that splits input by whitespace and capitalizes the first character of each word, omitting all 20+ specialized rules of titlecase (small words like 'a'/'the', acronyms, Mc/Mac prefixes, contractions, slashes, URLs, punctuation).
-- **Expected weakness:** Tests how much partial credit the linear scoring metric (`tests/grade.py:113, 120`) gives to a simplistic heuristic on the 2,000-title dataset.
-- **Score:** reward **0.4697** (build 1.0, no_python 1.0, behaviour 0.2045)
-- **Job folder:** `Harbor_Day4_Workspace/Sonu Kumar/jobs/2026-11-18__23-38-45`
-- **Why it worked:** Out of 2,000 titles in `tests/data/graded/titles.txt`, exactly 409 titles (~20.45%) were simple sentences where naive capitalization coincided with python-titlecase output. In `tests/grade.py:120`, this gave `scores["behaviour"] = 409 / 2000 = 0.2045`. Weighted reward: `(1*1.0 + 1*1.0 + 4*0.2045) / 6.0 = 0.4697` (46.97% overall score).
-- **Supporting references:** `tests/grade.py:113-120`, `tests/grade.py:139`, `tests/data/graded/titles.txt`.
-- **How to fix:** Include complex, adversarial titles (small words, acronyms, diacritics, symbols, unusual whitespace) in the grading dataset so naive capitalization scores close to 0%, or use a non-linear scoring curve with a cutoff floor.
+### Technical Analysis of Suppression
+- **Cheat 1 (Delete + Echo):** In Day 4, removing all `.py` files unconditionally awarded 1.0 for `no_python` (`tests/grade.py:62-70`), granting $(1 + 1 + 0)/6 = 0.3333$ reward without titlecasing logic. In Day 6, `tests/grade.go:98-101` made `no_python` conditional on `behaviour >= 0.5`. Because the stub produces no matching lines, `no_python` is strictly zeroed, leaving only compilation credit ($1/6 \approx 0.1667$).
+- **Cheat 2 (Naive Half-Port):** In Day 4, basic whitespace-splitting and initial-character capitalization matched 409 of 2,000 simple titles (20.45%), yielding a reward of 0.4697 under linear grading. In Day 6, `tests/grade.go:163-166` introduced a 95% qualification cliff (`if ratio < 0.95 { return 0 }`). Matching $< 95\%$ on the 100K exam zeroes behaviour and gates out `no_python`, capping reward at 0.1667.
+- **Cheat 3 (Python Wrapper):** In Day 4, renaming the library to `titlecase.dat` and spawning `python3` via `os/exec` scored 0.9897. In Day 6, `tests/grade.go:24-26, 62-66` statically inspects source files for forbidden imports matching `os/exec|syscall|plugin|unsafe|C|net`, rejecting compilation (`build: 0.0`) and cascading to a total reward of 0.0000. Additionally, Python was removed from the container image.
 
 ---
 
-### Cheat 3 — Python Inside (Subprocess Wrapper Exploit)
-- **Strategy:** Python inside / Subprocess execution bypass.
-- **What it does:** Saves the original Python titlecase logic as `titlecase.dat` (mode 666), completely deletes all `*.py` files and the `titlecase/` directory to pass `check_no_python`. Writes a Go command-line program that receives stdin, spawns `python3 -c "..."` to execute `titlecase.dat`, and streams stdout.
-- **Expected weakness:** Evaluates whether `tests/Dockerfile:8` allows Python execution inside the container and whether `tests/grade.py:65` can be bypassed by non-`.py` file extensions.
-- **Score:** reward **0.9897** (build 1.0, no_python 1.0, behaviour 0.9845)
-- **Job folder:** `Harbor_Day4_Workspace/Sonu Kumar/jobs/2026-11-18__23-51-32`
-- **Why it worked:**
-  - `tests/Dockerfile:8` installed `python3` in the verifier container, allowing user `nobody` (`tests/grade.py:99`) to spawn `python3`.
-  - `tests/grade.py:65` checks only `f.endswith(".py")`. Renaming to `.dat` awarded full marks (`no_python: 1.0`).
-  - `go build` compiled cleanly (`build: 1.0`).
-  - Output correctness: The original Python library running under `re` matched **1,969 of 2,000 lines (98.45% output match rate)**, failing only 31 lines where Debian `re` differed slightly from `regex`.
-  - Specification compliance: **0% pure Go implementation.** The solution is an unauthorized subprocess wrapper that executes Python rather than porting it to Go, yet Sanyam's grader rewarded it with a near-perfect score of **0.9897**.
-- **Supporting references:** `tests/Dockerfile:8`, `tests/grade.py:62-70`, `tests/grade.py:98-101`, `instruction.md:23-24, 32-34`.
-- **How to fix:** Remove `python3` completely from the verifier container image by writing the grader in compiled Go, or use kernel sandboxing (e.g. `seccomp` or container isolation without `exec`) to prevent the binary from launching external interpreters.
+## 3. New Cheat 4 — Diagnostic Investigation
+
+Cheat 4 was conducted as an additional experimental investigation to test whether substantial functional titlecase compliance could break the 0.20 suppression threshold under Policy B. It is documented as a diagnostic probe, **not as a successful exploit**.
+
+### Experiment A — Initial Partial Port
+- **Technique:** Implemented whitespace tokenization, small-word lookups, and basic titlecasing.
+- **Standard LF Output (`jobs/2026-11-20__18-18-53`):**  
+  Produced 100,000 lines; verifier recorded **`0 / 100,000 matches`** (Reward: **`0.1667`**).
+- **Diagnostic CRLF Output (`jobs/2026-11-20__18-59-07`):**  
+  Produced 100,000 lines; verifier recorded **`33,673 / 100,000 matches`** (Reward: **`0.1667`**).
+- **Observation:** Emitting CRLF line endings restored 33,673 matching lines (33.67% accuracy) without altering titlecase logic, uncovering a verifier line-ending defect.
+
+### Experiment B — Advanced Deep Partial Port
+- **Technique:** Comprehensive standard-library Go engine incorporating `regexp` rules for small words, Mc/Mac prefixes (`McGraw-Hill`), apostrophe handling (`d'Angelo`), inner-capitalization preservation, and hyphen/slash subphrase processing, emitting CRLF lines.
+- **Harbor Job Directory:** `jobs/2026-11-20__23-56-52` (Trial: `sanyam-cheat4-deep__7urPztV`, Runtime: 1m 43s)
+- **Authentic Verifier Output:**
+  - `build: ok` (Score: **1.0**)
+  - `behaviour: 48215 of 100000 lines match (100000 lines produced)`
+  - `behaviour: below hardened 95% threshold` (Score: **0.0**)
+  - `no_python: behaviour threshold not met` (Score: **0.0**)
+  - Final Reward: **`0.1667`**
+- **Raw Accuracy:** **48.215%** (48,215 of 100,000 lines matched).
+
+### Assessment
+**The objective of achieving a reward above 0.20 was NOT achieved.**  
+Despite matching nearly half of the 100K exam (48.215%), the candidate remained capped at `0.1667` because Sanyam's verifier zeroed behaviour below 95% and gated `no_python` on behaviour $\ge 0.5$.
 
 ---
 
-## 3. Results Table (Official Day 4 Cheats)
+## 4. Critical Grader Findings
 
-| Cheat | Strategy | Overall Reward | Build | No-Python | Behaviour | Lines Matched | Output Match Rate | Specification Compliance | Job Folder |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Cheat 1** | Delete trick (Minimal stub) | **0.3333** | 1.000 | 1.000 | 0.0000 | 0 / 2000 | 0.00% | 0% (Empty stub) | `Harbor_Day4_Workspace/Sonu Kumar/jobs/2026-11-18__23-35-40` |
-| **Cheat 2** | Half port (Naive capitalization) | **0.4697** | 1.000 | 1.000 | 0.2045 | 409 / 2000 | 20.45% | Partial heuristic | `Harbor_Day4_Workspace/Sonu Kumar/jobs/2026-11-18__23-38-45` |
-| **Cheat 3** | Python inside (Subprocess wrapper) | **0.9897** | 1.000 | 1.000 | 0.9845 | 1969 / 2000 | **98.45%** | **0% (Python wrapper)** | `Harbor_Day4_Workspace/Sonu Kumar/jobs/2026-11-18__23-51-32` |
+### A. 95% Behaviour Cutoff (`tests/grade.go:163-166`)
+In `tests/grade.go:163-166`, the verifier enforces an all-or-nothing step cutoff:
+```go
+ratio := float64(matched) / float64(len(answers))
+if ratio < 0.95 {
+    fmt.Println("behaviour: below hardened 95% threshold")
+    return 0
+}
+```
+This contradicts `instruction.md:71-72` (which promises proportional credit based on the "share of hidden input lines") and completely zeroes legitimate partial solutions achieving up to 94.9% accuracy.
+
+### B. No-Python Dependency on Behaviour (`tests/grade.go:98-101`)
+In `tests/grade.go:98-101`, `checkNoPython` withholds file-deletion credit unless behaviour reaches 0.5:
+```go
+if behaviour < 0.5 {
+    fmt.Println("no_python: behaviour threshold not met")
+    return 0
+}
+```
+This undisclosed gate ensures that any candidate failing the 95% behaviour cutoff also receives 0.0 for `no_python`, even if all `.py` files have been removed.
+
+### C. CRLF Verifier Defect (`tests/grade.go:117`)
+- **Root Cause:** In Git commit `565b963`, `task/tests/data/graded/answers.txt` was committed with Windows CRLF (`\r\n`) line endings across all 100,000 lines, protected from Git translation by `tests/data/** -text` in `.gitattributes:3`.
+- **Grader Flaw:** In `tests/grade.go:117`, `bytes.Split(bytes.TrimSuffix(rawAnswers, []byte("\n")), []byte("\n"))` splits only on `\n` without stripping `\r`. Consequently, every answer slice retains a trailing `0x0D` (`\r`).
+- **Impact:** In `tests/grade.go:157`, `bytes.Equal(produced[i], want)` compares candidate output against `want`. Standard POSIX programs output LF lines, so slices without `\r` fail comparison on 100% of lines.
+
+### D. Genuine Reference Oracle Failure (`jobs/2026-11-20__18-57-24`)
+When Sanyam's authentic, untouched reference Oracle (`task/solution/solve.sh`) was evaluated in Harbor:
+- **Matches:** **`0 / 100,000 lines match`**
+- **Criterion Scores:** `build: 1.0`, `no_python: 0.0`, `behaviour: 0.0`
+- **Awarded Reward:** **`0.1667`**
+- **Explanation:** Sanyam's Oracle complies with `instruction.md:20-21` by printing standard LF lines via `fmt.Println`. Because the verifier expects CRLF lines, `bytes.Equal` failed on all 100,000 lines, causing the hardened verifier to reject its own reference implementation.
+
+### E. Mathematical Scoring Analysis
+The scoring formula implemented in `tests/grade.go:181` is:
+$$\text{Reward} = \frac{\text{Build} + \text{NoPython} + 4 \times \text{Behaviour}}{6.0}$$
+
+Under the observed criterion gates, the possible reward ranges are:
+1. `Reward = 0.0000`: Build failure or forbidden imports.
+2. `Reward = 0.1667`: Build succeeds, but accuracy is below 95% (`Behaviour = 0.0`, `NoPython = 0.0`).
+3. `Reward in [0.8000, 0.8333]`: Accuracy is $\ge 95\%$, but `.py` files remain in the repository (`NoPython = 0.0`).
+4. `Reward in [0.9667, 1.0000]`: Accuracy is $\ge 95\%$, and all `.py` files have been removed (`NoPython = 1.0`).
+
+**Qualification:** Under these specific criterion gates, ordinary candidates achieving below 95% accuracy are strictly capped at `0.1667`. The gap between 0.1667 and 0.8000 is unreachable through partial behavioral accuracy.
 
 ---
 
-## 4. Final Assessment
+## 5. Conclusion
 
-- **Highest reward achieved:** **0.9897** (achieved by Cheat 3 — Python Inside).
-- **Most critical grading weakness:** The presence of `python3` in the verifier container combined with a filename-only extension check (`.py`) for Python detection. This allows a candidate to wrap the original Python library in Go and earn ~99% marks without writing a single line of Go titlecase conversion.
-- **Three recommended improvements for Sanyam:**
-  1. **Purge Python from Verifier Container:** Rewrite `grade.py` into a compiled Go binary so `python3` is not installed anywhere in the verifier image.
-  2. **Condition `no_python` on Behaviour:** Require `behaviour >= 0.5` before awarding the `no_python` score point to prevent stub solutions from receiving free credit.
-  3. **Harden Test Inputs against Heuristics:** Expand the test suite to 100,000 diverse titles containing small words, acronyms, and non-ASCII characters to drive naive heuristics down to ~0%.
-
----
-
----
-
-The highest score any cheat got: 0.9897
+1. **Suppression Objective Met:** All three official re-attack cheats (Cheats 1–3) were successfully suppressed below the 0.20 threshold (scoring `0.1667`, `0.1667`, and `0.0000`).
+2. **Cheat 4 Diagnostic Outcome:** Cheat 4 did not exceed 0.20 (scoring `0.1667` despite 48.215% accuracy), confirming that ordinary partial implementations below 95% accuracy remain capped at 0.1667 under these gates.
+3. **Verifier Correctness Findings:** The CRLF line-ending defect in `tests/grade.go:117` and the resulting failure of Sanyam's reference Oracle (`0.1667` reward in `jobs/2026-11-20__18-57-24`) demonstrate significant verifier correctness issues in the committed task.
+4. **Task Integrity:** The defender's committed task files remained completely unmodified throughout this investigation.
