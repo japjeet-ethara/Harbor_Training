@@ -24,4 +24,4 @@ Speed, memory, and error message wording are not checked.
 
 ## Grading
 
-Hidden automatic tests grade the program. Partial scores are possible.
+Hidden automatic tests grade the program. Partial scores are possible. The 100,000-title exam was frozen twice under Python 3.14.10 in standard-library re mode.
