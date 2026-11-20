@@ -1,1 +1,2 @@
 Sonu Kumar a5918f4a0388388541231957cb18a423673e1b12 (SonuKumar/titlecase-go)
+Day 6 re-attack: Sonu Kumar 0b7d84877bca2ece1d9ab875853f8b98a49a46f4 (training-3/SonuKumar/task, hardened)

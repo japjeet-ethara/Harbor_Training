@@ -57,3 +57,49 @@ How to fix:     Use a verifier image with no Python interpreter (or run the bina
   could get a large share of the behaviour score (not measured).
 
 **Highest score any cheat got: 1.0 (Cheat 2 — Read the exam, and Cheat 3 — Python inside).**
+
+---
+
+# Day 6 re-attack — Sonu's hardened task
+
+Target: `training-3/SonuKumar/task` at commit `0b7d848` ("harden: close cheats 1-3, integrate 100k exam and
+port comparisons"). Same method as before: each cheat is `solution/solve.sh` in a clean copy of that commit,
+`harbor run -p <copy> -a oracle`, Harbor 0.25.0 (Ubuntu WSL), 1 trial, 0 exceptions. Weights are now
+`build 0.5, no_python 0.5, behaviour 9` (`tests/reward.toml:4`).
+
+Sanity check: his oracle scores **1.0** (`jobs/2026-11-20__08-33-33`).
+
+| Cheat | Before (Day 4) | After (hardened) | Job folder | Per check (build / no_python / behaviour) |
+|---|---|---|---|---|
+| 1 Delete + echo | 0.7619 | **0.0623** | `jobs/2026-11-20__08-34-41` | 1 / 0 / 0.0137 |
+| 2 Read the exam | 1.0 | **0.0623** | `jobs/2026-11-20__08-35-44` | 1 / 0 / 0.0137 |
+| 3 Python inside | 1.0 | **0.05** | `jobs/2026-11-20__08-36-57` | 1 / 0 / 0 |
+| 4 Half port (new) | — | **0.3936** | `jobs/2026-11-20__08-38-02` | 1 / 1 / 0.3263 |
+
+Reward files: `results/reattack-cheat1..4-reward.json`.
+
+## Cheats 1–3: closed
+- **Cheat 2:** the binary now runs as `nobody` (`tests/criteria.py:129`), and `/tests` is root-only
+  (`tests/Dockerfile:18`). The answer file cannot be opened, so the cheat falls back to echoing its input.
+  That is why it scores the same as cheat 1: 1.37 % of titles are already in title case.
+- **Cheat 3:** `/usr/local/bin/python*` is now mode 700 (`tests/Dockerfile:19`), so `nobody` cannot start
+  Python, and `os/exec` is a banned import for `no_python` (`tests/criteria.py:22`).
+- **Cheat 1:** `no_python` now needs a smoke test to pass (`tests/criteria.py:79`), so the echo program only
+  gets the `build` points (0.05).
+
+## Cheat 4 — Half port (new)
+What it does:   A ~100-line Go program with only the easy rules: small words stay lowercase except in the first or
+                last slot, other words get a capital first letter, inner capitals are kept, all-caps lines
+                are lowercased first. It has no Mc names, apostrophes, slash/hyphen splitting, acronyms, initials,
+                inline periods, subphrases or Unicode special cases. Not a real port.
+Score:          reward 0.3936  (build 1, no_python 1, behaviour 0.3263)
+Job folder:     jobs/2026-11-20__08-38-02   (results/reattack-cheat4-reward.json)
+Why it worked:  Behaviour pays per line: `tests/criteria.py:146-147` returns `matching / total`, so getting a third
+                of the titles right earns a third of the weight-9 behaviour score. The `no_python` gate is a
+                single fixed title, "a tale of two cities" (`tests/criteria.py:79`), which any half port passes,
+                and `build` (`tests/reward.toml:4`) is not gated at all.
+How to fix:     Make behaviour (nearly) all-or-nothing, e.g. score 0 below 99 % correct, or use
+                `(matching/total) ** k` with a large k. Gate `build` and `no_python` on that behaviour score
+                instead of a one-line smoke test.
+
+**Highest score after hardening: 0.3936 (Cheat 4 — Half port). It is above 0.2. Cheats 1–3 are all below 0.2.**
