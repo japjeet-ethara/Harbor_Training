@@ -1,4 +1,4 @@
-﻿# python-titlecase Reference Notes
+# python-titlecase Reference Notes
 
 - **Repository URL:** https://github.com/ppannuto/python-titlecase
 - **Commit SHA:** 42f43e2de55bf003b286c6f8e8d8b2d26676a167
