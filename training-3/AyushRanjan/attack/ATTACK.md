@@ -66,3 +66,7 @@ The three original Day 4 cheats were rerun against the exact task linked in Akul
 | Cheat 3 | Launch Python from Go | 0.0 | `ba467c0a-7870-4252-a4be-8eea88d19271` | `scratch-akul-2fbaa10-cheat3__x7GDnb8` | `results/day6-akul-cheat3-reward.txt` |
 
 All three successful Harbor trials completed with zero exceptions. Cheat 1's first attempt did not start because the Windows-extracted scratch `tests/test.sh` retained CRLF line endings, producing `bad interpreter`/missing reward. I changed only the scratch copy's line endings to LF and reran it; its recorded score above is from the successful retry. No files in Akul's folder were changed.
+
+## Additional probes on the hardened task
+
+I also tested two incomplete implementations against the linked hardened revision. Cheat 4 is a basic whitespace-token titlecaser and scored **0.06136** (6,136/100,000 exact lines). Cheat 5 reuses my earlier practice-1 Go port, which is incomplete on Akul's larger exam, and scored **0.82558** despite 17,442/100,000 wrong lines. Job IDs, trial IDs, raw rewards, and the scoring weakness are documented in `results/AKUL-HARDENED-RERUN.md`. The high score is possible because `AkulMalviya/task/tests/test.sh:74-81` returns the fraction of matching lines instead of requiring an exact complete result. This is an evaluator weakness to report, not a claim that the answer-file or Python isolation was broken.
