@@ -1,0 +1,17 @@
+wrong answers      656 of 101958
+chance a random 2000 suite sees none of them: 0%
+  input 'X. TCP/IP history as! X-RAY'
+  want  'X. TCP/IP History As! X-Ray'
+  got   'X. TCP/IP History As! X-RAY'
+  input "a/b/c GAME D'Angelo X-RAY DREAM vs x-ray\tvs"
+  want  "A/B/C GAME d'Angelo X-Ray DREAM vs X-Ray\tVs"
+  got   "A/B/C GAME d'Angelo X-RAY DREAM vs X-Ray\tVs"
+  input "by an via Ocean an& (D'ARCY/\xa0or life\tguide"
+  want  "By an via Ocean An& (D'arcy/\xa0or Life\tGuide"
+  got   "By an via Ocean An& (D'ARCY/\xa0or Life\tGuide"
+  input 'MCDONALD by: story\u2009V.\tmacOS X-RAY'
+  want  'McDonald By: Story\u2009v.\tmacOS X-Ray'
+  got   'McDonald By: Story\u2009v.\tmacOS X-RAY'
+  input '_vs pdf light or@ .vs input/output'
+  want  '_Vs PDF Light Or@ .Vs Input/Output'
+  got   '_vs PDF Light Or@ .Vs Input/Output'
