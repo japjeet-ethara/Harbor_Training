@@ -1,91 +1,109 @@
-"""Check C: exact line-by-line behaviour on the hidden dataset."""
+"""Run the submitted Go port and score exact output against three input sets."""
 
 from __future__ import annotations
 
+import json
+import os
+import random
+import signal
+import string
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+TESTS_DIR = Path(__file__).resolve().parents[1]
+sys.path[:0] = [str(TESTS_DIR / "criteria"), str(TESTS_DIR / "reference")]
+from _lib import build_port, compare_lines  # noqa: E402
+from titlecase import REGEX_AVAILABLE, titlecase  # noqa: E402
 
-from _lib import (  # noqa: E402
-    RUN_TIMEOUT_SEC,
-    compare_lines,
-    describe_build,
-    describe_line,
-    go_build_binary,
-    go_env,
-    tail,
-)
-from rewardkit.session import criterion  # noqa: E402
-
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-HIDDEN_INPUTS = DATA_DIR / "hidden_inputs.txt"
-HIDDEN_EXPECTED = DATA_DIR / "hidden_expected.txt"
+DATA_DIR = TESTS_DIR / "data"
+FRESH_COUNT = 2000
+RUN_TIMEOUT_SEC = 120
+OUTPUT_LIMIT = 16 * 1024 * 1024
 
 
-@criterion(description="Check the Go program against hidden inputs byte for byte")
-def behaviour(workspace: Path) -> dict:
+def fresh_exam(frozen_inputs: bytes) -> tuple[bytes, bytes]:
+    if REGEX_AVAILABLE:
+        raise RuntimeError("the reference must use the standard-library re mode")
+    rng = random.SystemRandom()
+    pool = frozen_inputs.decode("utf-8").split("\n")[:-1]
+    titles = []
+    for first, second in zip(rng.sample(pool, FRESH_COUNT), rng.sample(pool, FRESH_COUNT)):
+        word = "".join(rng.choices(string.ascii_lowercase, k=12))
+        titles.append(f"{first} {word} {second}")
+    inputs = "".join(title + "\n" for title in titles).encode("utf-8")
+    answers = "".join(titlecase(title) + "\n" for title in titles).encode("utf-8")
+    return inputs, answers
+
+
+def run_port(jail: Path, inputs: bytes) -> bytes:
+    # The temporary root contains only the static Go binary. No interpreter,
+    # workspace, /proc, or verifier files are mounted inside it.
+    with tempfile.TemporaryFile() as output:
+        with subprocess.Popen(
+            [
+                "prlimit", f"--fsize={OUTPUT_LIMIT}", "--",
+                "setpriv", "--no-new-privs",
+                "chroot", "--userspec=65534:65534", "--groups=65534",
+                str(jail), "/port",
+            ],
+            cwd="/",
+            env={"PATH": "/usr/sbin:/usr/bin:/sbin:/bin", "LANG": "C.UTF-8"},
+            stdin=subprocess.PIPE,
+            stdout=output,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+        ) as proc:
+            try:
+                proc.communicate(inputs, timeout=RUN_TIMEOUT_SEC)
+                if proc.returncode:
+                    raise RuntimeError(f"program exited with status {proc.returncode}")
+            finally:
+                try:
+                    os.killpg(proc.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+        output.seek(0)
+        return output.read()
+
+
+def grade(workspace: Path) -> tuple[float, str]:
     if not workspace.is_dir():
-        return {"score": 0.0, "reasoning": f"workspace is missing: {workspace}"}
+        return 0.0, "submitted workspace is missing"
+    if any(entry.is_file() or entry.is_symlink() for entry in workspace.rglob("*.py")):
+        return 0.0, "Python source remains in the submitted workspace"
 
     try:
-        hidden_inputs = HIDDEN_INPUTS.read_bytes()
-        hidden_expected = HIDDEN_EXPECTED.read_bytes()
-    except OSError as exc:
-        return {"score": 0.0, "reasoning": f"hidden dataset unavailable: {exc}"}
-
-    with tempfile.TemporaryDirectory(prefix="titlecase-verify-") as tmp:
-        binary = Path(tmp) / "titlecase-go"
-        try:
-            build_proc = go_build_binary(workspace, binary)
-        except Exception as exc:  # noqa: BLE001 - explicit failure reporting
-            return {"score": 0.0, "reasoning": f"could not build the program: {exc}"}
-
-        if build_proc.returncode != 0:
-            return {
-                "score": 0.0,
-                "reasoning": f"could not build the program; {describe_build(build_proc)}",
-            }
-
-        try:
-            proc = subprocess.run(
-                [str(binary)],
-                cwd=str(workspace),
-                env=go_env(),
-                input=hidden_inputs,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                timeout=RUN_TIMEOUT_SEC,
+        with tempfile.TemporaryDirectory(prefix="titlecase-verify-") as tmp:
+            build_dir = Path(tmp) / "build"
+            build_dir.mkdir()
+            jail = Path(tmp) / "runtime"
+            jail.mkdir()
+            build_port(workspace, build_dir, jail / "port")
+            frozen_inputs = (DATA_DIR / "inputs.txt").read_bytes()
+            exams = (
+                ("original", (DATA_DIR / "hidden_inputs.txt").read_bytes(),
+                 (DATA_DIR / "hidden_expected.txt").read_bytes()),
+                ("frozen", frozen_inputs, (DATA_DIR / "answers.txt").read_bytes()),
+                ("fresh", *fresh_exam(frozen_inputs)),
             )
-        except subprocess.TimeoutExpired:
-            return {
-                "score": 0.0,
-                "reasoning": f"program timed out after {RUN_TIMEOUT_SEC} seconds",
-            }
-        except Exception as exc:  # noqa: BLE001 - explicit failure reporting
-            return {"score": 0.0, "reasoning": f"could not run the program: {exc}"}
+            scores = []
+            details = []
+            for name, inputs, expected in exams:
+                actual = run_port(jail, inputs)
+                correct, total = compare_lines(expected, actual)
+                scores.append(correct / total)
+                details.append(f"{name}: {correct}/{total} exact matches")
+    except (RuntimeError, subprocess.TimeoutExpired) as exc:
+        return 0.0, str(exc)
 
-        if proc.returncode != 0:
-            stderr = tail(proc.stderr.decode("utf-8", errors="replace"))
-            suffix = f"; stderr: {stderr}" if stderr else ""
-            return {
-                "score": 0.0,
-                "reasoning": f"program exited with status {proc.returncode}{suffix}",
-            }
+    return min(scores), " | ".join(details)
 
-        correct, total, first_bad, expected_lines, actual_lines = compare_lines(
-            hidden_expected, proc.stdout
-        )
-        incorrect = total - correct
-        if total == 0:
-            return {"score": 0.0, "reasoning": "hidden dataset produced zero expected lines"}
 
-        reasoning = (
-            f"{correct} correct, {incorrect} incorrect, {total} total "
-            f"(expected {len(expected_lines)} lines, got {len(actual_lines)} lines)"
-        )
-        if first_bad is not None:
-            reasoning += "; " + describe_line(first_bad, expected_lines, actual_lines)
-        return {"score": correct / total, "reasoning": reasoning}
+if __name__ == "__main__":
+    workspace, reward_file = map(Path, sys.argv[1:])
+    score, details = grade(workspace)
+    print(details)
+    print(f"reward: {score}")
+    reward_file.write_text(json.dumps({"reward": score}) + "\n", encoding="utf-8")

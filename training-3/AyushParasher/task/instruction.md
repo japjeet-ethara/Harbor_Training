@@ -8,7 +8,7 @@ Migrate the vendored Python titlecase library to a Go stdin filter. For each inp
 
 The library rewrites text into title case. It keeps a fixed list of small words in lowercase, drawn from the New York Times Manual of Style, plus `v`, `v.`, `vs`, and `vs.`. It also tries to leave abbreviations, initials, hostnames, and intentional internal capitals alone. The rules are American-English heuristics: they do not know that "us" and "US" are different words, and they only partly handle non-English text.
 
-The behavior to port is the function `titlecase(text)` in `titlecase/__init__.py`. Its defaults are `callback=None`, `small_first_last=True`, `preserve_blank_lines=False`, and `normalise_space_characters=False`. The optional third-party `regex` package is not part of this task. Use the standard-library `re` patterns, the ones assigned when `import regex` fails. Those patterns run on Python 3 `str` values, so `\w`, `\s`, and `\b` are Unicode, while `[A-Z]` and `[a-zA-Z]` are ASCII.
+The behavior to port is the function `titlecase(text)` in `titlecase/__init__.py`. Its defaults are `callback=None`, `small_first_last=True`, `preserve_blank_lines=False`, and `normalise_space_characters=False`. **Mode: answers come from titlecase WITHOUT regex.** The expected outputs were produced by running the original with the optional third-party `regex` package *not* installed (`REGEX_AVAILABLE = False`). Use the standard-library `re` patterns, the ones assigned when `import regex` fails. Those patterns run on Python 3 `str` values, so `\w`, `\s`, and `\b` are Unicode, while `[A-Z]` and `[a-zA-Z]` are ASCII.
 
 The Python command-line tool, `~/.titlecase.txt`, custom abbreviation files, the callback argument, and `set_small_word_list()` are not part of the Go program.
 
@@ -131,10 +131,12 @@ These do not affect the result:
 
 ## 6. Grading
 
-Hidden automatic tests grade the submission with partial scoring. The three scored outcomes are independent, and a submission can receive credit for each one it satisfies:
+Hidden automatic tests grade the submission on a large set of hidden titles. Three outcomes are scored:
 
+- Behavioural correctness: the share of hidden titles whose stdout line matches section 4 exactly.
 - Build success: `go build ./...` succeeds in `/workspace/repo`.
-- Removal of Python files: no file under `/workspace/repo` still has a name ending in `.py`.
-- Behavioural correctness: the program's stdout matches section 4 for the inputs under test.
+- Removal of Python files: no file under `/workspace/repo` still has a name ending in `.py`, and the project still builds.
 
-A failure in one outcome does not erase credit for the others.
+Build success and Python removal are worth credit only together with a working port: each of them is multiplied by the behavioural score. A program that builds but does not title-case earns nothing.
+
+The program is built and then run as an unprivileged user, with an empty environment and a fresh empty working directory. It cannot read the test files, and no Python interpreter is available while it runs.

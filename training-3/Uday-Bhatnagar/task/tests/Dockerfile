@@ -1,17 +1,11 @@
-FROM python:3.12-slim
+FROM golang:1.23 AS go
+FROM python:3.14-slim
 
-# Go toolchain for the build and behaviour checks.  The task targets linux/amd64.
-ARG GO_VERSION=1.23.12
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates curl \
-    && rm -rf /var/lib/apt/lists/* \
-    && curl -fsSL "https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz" -o /tmp/go.tar.gz \
-    && tar -C /usr/local -xzf /tmp/go.tar.gz \
-    && rm /tmp/go.tar.gz \
-    && /usr/local/go/bin/go version
+COPY --from=go /usr/local/go /usr/local/go
 
 ENV PATH="/usr/local/go/bin:${PATH}" \
     GOTOOLCHAIN=local \
+    CGO_ENABLED=0 \
     GOCACHE=/tmp/go-build-cache
 
 # Pre-warm the Go build cache so the timed verifier does not rebuild the
@@ -23,9 +17,6 @@ RUN mkdir -p /tmp/go-warm \
     && go build ./... \
     && cd / \
     && rm -rf /tmp/go-warm
-
-# Pinned so verifier execution never needs the network.
-RUN python -m pip install --no-cache-dir "harbor-rewardkit==0.2.4"
 
 WORKDIR /tests
 

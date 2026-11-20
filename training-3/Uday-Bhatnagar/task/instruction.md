@@ -21,12 +21,16 @@ standard output, one line per input line, in the same order.
 ## Behaviour
 For every input line, your output must match the original Python
 `titlecase()` function, called with its default arguments, byte for byte.
+The reference is python-titlecase 2.4.1 without the optional `regex` package
+(the standard-library `re` mode).
 
 ## Not checked
 Speed, memory use, and the wording of error messages.
 
 ## How it is graded
-Hidden automatic tests give a partial score. Whether the code builds, whether
-any Python files remain, and the share of input lines whose output matches the
-original exactly are each scored, and matching the original's output counts for
-the most.
+The Go build and removal of Python source are required for any credit. The
+verifier checks a frozen 100,000-title exam, the original regression cases,
+and fresh titles generated for each run. The score is the lowest exact-match
+rate across the three sets. Full credit requires every answer to match. The
+executable runs with standard input and output in an isolated filesystem
+without the workspace, reference, or exam files.

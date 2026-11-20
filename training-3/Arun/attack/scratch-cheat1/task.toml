@@ -1,0 +1,48 @@
+schema_version = "1.4"
+# The agent's final repository is copied out and handed to the separate verifier
+# container at the same path.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "practice/titlecase-go"
+version = "1.0.0"
+description = "Port python-titlecase to Go with byte-identical output"
+keywords = ["go", "python", "porting", "regex", "unicode"]
+
+[[task.authors]]
+name = "Gunjit"
+email = "gunjit.arora@ethara.ai"
+
+[metadata]
+category = "programming"
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_commit = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[verifier]
+timeout_sec = 600.0
+# The tests run in their own container (tests/Dockerfile), so the agent never
+# sees tests/ or the answer sheets.
+environment_mode = "separate"
+# Grading needs no network: Reward Kit is already inside the verifier image.
+network_mode = "no-network"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 3600.0
+# Non-root user created in environment/Dockerfile.
+user = "agent"
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 900.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
