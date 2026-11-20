@@ -1,0 +1,14 @@
+Old exam
+wrong answers: 0 of 2000
+extra output records: 0
+chance a random 2000-title sample misses every error: 100.000000%
+
+New exam
+wrong answers: 5882 of 100000
+extra output records: 0
+chance a random 2000-title sample misses every error: 0.000000%
+  input=b'SILVER Bright 2st purple ST EARLY\xe2\x80\x89_dream\n' expected=b'SILVER Bright 2st Purple ST EARLY\xe2\x80\x89_dream\n' actual=b'SILVER Bright 2st Purple ST EARLY\xe2\x80\x89_Dream\n'
+  input=b'at\tcandle\tpaper\tCircle\tat\tfresh\tSOUND\xe2\x80\x89_dream\n' expected=b'At\tCandle\tPaper\tCircle\tat\tFresh\tSOUND\xe2\x80\x89_dream\n' actual=b'At\tCandle\tPaper\tCircle\tat\tFresh\tSOUND\xe2\x80\x89_Dream\n'
+  input=b'GARDEN APPLE//YELLOW CLOUD APPLE/SILVER PUBLIC ; IF WINTER x\xc2\xb2.y\n' expected=b'GARDEN APPLE//YELLOW CLOUD APPLE/SILVER PUBLIC ; IF WINTER x\xc2\xb2.y\n' actual=b'GARDEN APPLE//YELLOW CLOUD APPLE/SILVER PUBLIC ; IF WINTER X\xc2\xb2.y\n'
+  input=b"LIGHT\tAPPLE\tOPEN\tD'STORY\xe2\x80\x99S\tMR\tORANGE\tGENTLE//EN\tSILVER\xe2\x80\x83v1.2\n" expected=b"LIGHT\tAPPLE\tOPEN\tD'STORY\xe2\x80\x99S\tMR\tORANGE\tGENTLE//EN\tSILVER\xe2\x80\x83v1.2\n" actual=b"LIGHT\tAPPLE\tOPEN\tD'STORY\xe2\x80\x99S\tMR\tORANGE\tGENTLE//EN\tSILVER\xe2\x80\x83V1.2\n"
+  input=b'Letter MUSIC gentle a simple tcp and udp wrapper Bright LIGHT\xc2\xa0_dream\n' expected=b'Letter MUSIC Gentle a Simple TCP and Udp Wrapper Bright LIGHT\xc2\xa0_dream\n' actual=b'Letter MUSIC Gentle a Simple TCP and Udp Wrapper Bright LIGHT\xc2\xa0_Dream\n'

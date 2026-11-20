@@ -312,24 +312,29 @@ func isSubPunct(r rune) bool {
 	}
 }
 
-func hasSmallPrefix(rs []rune) bool {
+func smallPrefixLength(rs []rune) int {
 	s := string(rs)
 	for _, w := range []string{
 		"a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
-		"of", "on", "or", "the", "to", "v.", "vs.", "via", "v", "vs",
+		"of", "on", "or", "the", "to", "v.", "v", "via", "vs.", "vs",
 	} {
 		if strings.HasPrefix(s, w) {
-			return true
+			return len(w)
 		}
 	}
-	return false
+	return 0
 }
 
 func applySubphrase(s string) string {
 	rs := []rune(s)
 	for i := 0; i+2 < len(rs); i++ {
-		if isSubPunct(rs[i]) && rs[i+1] == ' ' && hasSmallPrefix(rs[i+2:]) {
+		if !isSubPunct(rs[i]) || rs[i+1] != ' ' {
+			continue
+		}
+		if length := smallPrefixLength(rs[i+2:]); length > 0 {
 			rs[i+2] = unicode.ToUpper(rs[i+2])
+			// Python's re.sub resumes after the entire match, including v.'s period.
+			i += 1 + length
 		}
 	}
 	return string(rs)
@@ -462,8 +467,12 @@ func hasInlinePeriod(word string) bool {
 
 func hasInternalCap(word string) bool {
 	rs := []rune(word)
-	for i := 0; i+1 < len(rs); i++ {
-		if isASCIILetter(rs[i]) && isASCIIUpper(rs[i+1]) {
+	start := 0
+	for start < len(rs) && isPunct(rs[start]) {
+		start++
+	}
+	for i := start + 1; i < len(rs) && isASCIILetter(rs[i-1]); i++ {
+		if isASCIIUpper(rs[i]) {
 			return true
 		}
 	}
