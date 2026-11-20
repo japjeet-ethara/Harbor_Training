@@ -1,4 +1,4 @@
-"""Generate deterministic titlecase fixtures from the original Python library.
+"""Generate deterministic visible practice fixtures from the original Python library.
 
 Run from the repository root:
 
@@ -108,8 +108,7 @@ def _official() -> list[str]:
 
 def _generate(rng: random.Random, official: list[str]) -> list[str]:
     lines = [_one(rng) for _ in range(COUNT)]
-    # Place each official case in its own slot. Visible and hidden draws use
-    # later positions in the same seeded stream, so the slots differ.
+    # Reserve distinct slots for the original library's official test cases.
     for slot, case in zip(rng.sample(range(COUNT), len(official)), official):
         lines[slot] = case
     for line in lines:
@@ -136,26 +135,18 @@ def main() -> None:
 
     rng = random.Random(1)
     official = _official()
-    visible = _generate(rng, official)
-    hidden = _generate(rng, official)
-    visible_expected = [titlecase(line) for line in visible]
-    hidden_expected = [titlecase(line) for line in hidden]
-    overlap = sum(a == b for a, b in zip(visible_expected, hidden_expected))
-    if overlap / COUNT >= 0.01:
-        raise SystemExit(f"visible/hidden overlap too high: {overlap}/{COUNT}")
+    practice = _generate(rng, official)
+    practice_expected = [titlecase(line) for line in practice]
 
     DATA.mkdir(parents=True, exist_ok=True)
-    _write("inputs.txt", visible)
-    _write("expected.txt", visible_expected)
-    _write("hidden_inputs.txt", hidden)
-    _write("hidden_expected.txt", hidden_expected)
-    for name in ("inputs.txt", "expected.txt", "hidden_inputs.txt", "hidden_expected.txt"):
+    _write("practice_inputs.txt", practice)
+    _write("practice_expected.txt", practice_expected)
+    for name in ("practice_inputs.txt", "practice_expected.txt"):
         text = (DATA / name).read_text(encoding="utf-8")
         count = text.splitlines()
         if len(count) != COUNT:
             raise SystemExit(f"{name} has {len(count)} lines")
         print(f"{name} {len(count)} {_sha(DATA / name)}")
-    print(f"positional_expected_overlap {overlap}")
 
 
 if __name__ == "__main__":
