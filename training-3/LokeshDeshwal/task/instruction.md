@@ -2,7 +2,7 @@
 
 ## Repository
 
-The directory `/workspace/repo` contains [python-titlecase](https://github.com/ppannuto/python-titlecase), a Python library that converts strings to title case following the rules of the New York Times Manual of Style. The canonical logic is implemented in `titlecase/__init__.py` (commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`).
+The directory `/workspace/repo` contains [python-titlecase](https://github.com/ppannuto/python-titlecase), a Python library that converts strings to title case following the rules of the New York Times Manual of Style. Answers come from titlecase WITHOUT regex (canonical logic in standard `re` mode from `titlecase/__init__.py`, commit `42f43e2de55bf003b286c6f8e8d8b2d26676a167`).
 
 ## What to Build
 

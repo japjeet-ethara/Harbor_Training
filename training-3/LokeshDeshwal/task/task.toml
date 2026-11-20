@@ -15,7 +15,7 @@ network_mode = "allowlist"
 allowed_hosts = []
 
 [verifier]
-timeout_sec = 120.0
+timeout_sec = 600.0
 environment_mode = "separate"
 network_mode = "allowlist"
 allowed_hosts = []

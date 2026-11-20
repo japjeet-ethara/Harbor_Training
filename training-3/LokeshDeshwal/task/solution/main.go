@@ -10,24 +10,24 @@ import (
 )
 
 // In Python:
-// SMALL = r'a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?'
+// SMALL = r'a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs'
 // PUNCT = r"""!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_`{|}~"""
 
 const punct = `!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`{|}~"
 
 var (
 	// SMALL_WORDS = regex.compile(r'^(%s)$' % SMALL, regex.I)
-	smallWordsRegex = regexp.MustCompile(`^(?i:a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)$`)
+	smallWordsRegex = regexp.MustCompile(`^(?i:a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)$`)
 
 	// SMALL_FIRST = regex.compile(r'^([%s]*)(%s)\b' % (PUNCT, SMALL), regex.I)
-	smallFirstRegex = regexp.MustCompile(`^(?i:([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*)(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)\b)`)
+	smallFirstRegex = regexp.MustCompile(`^(?i:([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*)(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)\b)`)
 
 	// SMALL_LAST = regex.compile(r'\b(%s)[%s]?$' % (SMALL, PUNCT), regex.I)
-	smallLastRegex = regexp.MustCompile(`(?i:\b(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]?)$`)
+	smallLastRegex = regexp.MustCompile(`(?i:\b(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]?)$`)
 
 	// SUBPHRASE = regex.compile(r'([:.;?!\-–‒—―][ ])(%s)' % SMALL)
 	// Note: in Python, SUBPHRASE does NOT have regex.I flag!
-	subphraseRegex = regexp.MustCompile(`([:.;?!\-–‒—―] )(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)`)
+	subphraseRegex = regexp.MustCompile(`([:.;?!\-–‒—―] )(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)`)
 
 	// MAC_MC = regex.compile(r"^([Mm]c|MC)(\w.+)")
 	macMcRegex = regexp.MustCompile(`^([Mm]c|MC)(\w.+)`)
@@ -35,17 +35,17 @@ var (
 	// MR_MRS_MS_DR = regex.compile(r"^((m((rs?)|s))|Dr)$", regex.I)
 	mrMrsMsDrRegex = regexp.MustCompile(`^(?i:(m((rs?)|s))|Dr)$`)
 
-	// INLINE_PERIOD: [\p{Letter}][.][\p{Letter}]
-	inlinePeriodRegex = regexp.MustCompile(`(?i:\p{L}\.\p{L})`)
+	// INLINE_PERIOD: [\w][.][\w]
+	inlinePeriodRegex = regexp.MustCompile(`(?i:[\p{L}0-9_]\.[\p{L}0-9_])`)
 
-	// UC_ELSEWHERE: [%s]*?[\p{Letter}]+[\p{Uppercase_Letter}]+? % PUNCT
-	ucElsewhereRegex = regexp.MustCompile(`^[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*\p{L}+\p{Lu}`)
+	// UC_ELSEWHERE: [%s]*?[a-zA-Z]+[A-Z]+? % PUNCT
+	ucElsewhereRegex = regexp.MustCompile(`^[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*?[a-zA-Z]+[A-Z]+`)
 
-	// CAPFIRST = regex.compile(r"^[%s]*?([\p{Letter}])" % PUNCT)
-	capfirstRegex = regexp.MustCompile(`^([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*?)(\p{L})`)
+	// CAPFIRST = regex.compile(r"^[%s]*?([\w])" % PUNCT)
+	capfirstRegex = regexp.MustCompile(`^([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*?)([\p{L}0-9_])`)
 
-	// APOS_SECOND = regex.compile(r"^[dol]{1}['‘]{1}[\p{Letter}]+(?:['s]{2})?$", regex.I)
-	aposSecondRegex = regexp.MustCompile(`^(?i:[dol]['‘]\p{L}+(?:['’]s)?)$`)
+	// APOS_SECOND = regex.compile(r"^[dol]{1}['‘]{1}[\w]+(?:['s]{2})?$", regex.I)
+	aposSecondRegex = regexp.MustCompile(`^(?i:[dol]['‘][\p{L}0-9_]+(?:['’]s)?)$`)
 
 	// UC_INITIALS = regex.compile(r"^(?:[\p{Uppercase_Letter}]{1}\.{1}|[\p{Uppercase_Letter}]{1}\.{1}[\p{Uppercase_Letter}]{1})+$")
 	ucInitialsRegex = regexp.MustCompile(`^(?:(?:\p{Lu}\.|\p{Lu}\.\p{Lu}))+$`)
@@ -232,23 +232,26 @@ func titlecase(text string, smallFirstLast bool) string {
 
 			// CAPFIRST.sub(lambda m: m.group(0).upper(), word)
 			tcLine[wi] = capfirstRegex.ReplaceAllStringFunc(word, func(m string) string {
+				sub := capfirstRegex.FindStringSubmatch(m)
+				if len(sub) >= 3 {
+					return sub[1] + strings.ToUpper(sub[2])
+				}
 				return strings.ToUpper(m)
 			})
 		}
 
 		if smallFirstLast && len(tcLine) > 0 {
-			tcLine[0] = smallFirstRegex.ReplaceAllStringFunc(tcLine[0], func(m string) string {
-				sub := smallFirstRegex.FindStringSubmatch(m)
-				if len(sub) >= 3 {
-					return sub[1] + capitalize(sub[2])
-				}
-				return m
-			})
+			if sub := smallFirstRegex.FindStringSubmatchIndex(tcLine[0]); sub != nil {
+				g1 := tcLine[0][sub[2]:sub[3]]
+				g2 := tcLine[0][sub[4]:sub[5]]
+				tcLine[0] = g1 + capitalize(g2) + tcLine[0][sub[1]:]
+			}
 
 			lastIdx := len(tcLine) - 1
-			tcLine[lastIdx] = smallLastRegex.ReplaceAllStringFunc(tcLine[lastIdx], func(m string) string {
-				return capitalize(m)
-			})
+			if sub := smallLastRegex.FindStringSubmatchIndex(tcLine[lastIdx]); sub != nil {
+				g1 := tcLine[lastIdx][sub[2]:sub[3]]
+				tcLine[lastIdx] = tcLine[lastIdx][:sub[0]] + capitalize(g1) + tcLine[lastIdx][sub[3]:]
+			}
 		}
 
 		// Recombine words and spaces
