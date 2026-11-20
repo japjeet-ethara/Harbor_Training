@@ -15,3 +15,8 @@ Rules:
 Speed, memory use, and error message wording are not graded.
 
 Grading is automatic and hidden. It checks the build, the absence of `.py` files, and the share of test lines whose output matches exactly. A partial match gets a partial score.
+
+## Reference implementation mode
+
+The expected answers come from Python titlecase WITHOUT regex
+(the optional third-party `regex` package is not installed).

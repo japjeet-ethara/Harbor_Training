@@ -19,13 +19,21 @@ def _remove(path: Path) -> None:
         path.unlink()
 
 
+def _no_py_files(repo: Path) -> bool:
+    """Reject behavior credit if any Python source files remain in repo."""
+    return not any(repo.rglob("*.py"))
+
+
 def _score(expected: list[str], actual: list[str]) -> float:
     if not expected:
         return 0.0
     matches = sum(
         1 for i, exp in enumerate(expected) if i < len(actual) and actual[i] == exp
     )
-    return matches / len(expected)
+    ratio = matches / len(expected)
+    if ratio < 0.10:
+        return 0.0
+    return ratio
 
 
 @criterion
@@ -33,6 +41,8 @@ def hidden_behavior(workspace: Path) -> float:
     del workspace
     try:
         if not REPO.is_dir() or not HIDDEN_IN.is_file() or not HIDDEN_OUT.is_file():
+            return 0.0
+        if not _no_py_files(REPO):
             return 0.0
         expected = HIDDEN_OUT.read_text(encoding="utf-8").splitlines()
         _remove(BINARY)
