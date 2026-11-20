@@ -1,10 +1,10 @@
 #!/bin/bash
 # Author tool, not part of grading. Runs solution/solve.sh in the task image,
-# feeds it the visible inputs, and prints the first 10 lines that differ.
+# feeds it the exam inputs, and prints the first 10 lines that differ.
 # Usage (from the task folder): bash tests/first_diffs.sh [inputs expected]
 set -euo pipefail
 INPUTS=${1:-inputs.txt}
-EXPECTED=${2:-expected.txt}
+EXPECTED=${2:-answers.txt}
 HOST=$(pwd -W 2>/dev/null || pwd)
 
 docker build -q -t titlecase-go-env environment > /dev/null

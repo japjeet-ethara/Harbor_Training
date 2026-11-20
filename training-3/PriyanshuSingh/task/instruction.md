@@ -38,13 +38,15 @@ The reference implementation is the original `titlecase(line)` function running 
 
 The optional `regex` package is not installed in the reference environment. Therefore, the original module uses Python's standard library `re` implementation.
 
+**Mode: the expected answers come from titlecase WITHOUT `regex`** (the standard library `re` branch of `titlecase/__init__.py`).
+
 ## What Will Not Be Tested
 
 Execution speed and memory consumption are not part of the evaluation.
 
 The exact wording of error messages also does not matter.
 
-The only performance requirement is that a single run processing a few thousand titles must finish within 120 seconds.
+The only performance requirement is that a single run processing about 102,000 titles must finish within 120 seconds.
 
 ## How the Solution Will Be Evaluated
 
@@ -52,6 +54,10 @@ The solution will be evaluated through hidden automated tests after completion, 
 
 The grading is divided into three parts:
 
-1. **Successful build:** Credit is awarded when `go build ./...` passes.
-2. **Python file removal:** Credit is awarded when no `.py` files remain and the build also passes.
-3. **Behavioural accuracy:** The largest portion of the score is the share of titles whose output exactly matches the original Python implementation.
+1. **Successful build:** Credit is awarded when `go build ./...` passes and the program also titlecases correctly.
+2. **Python file removal:** Credit is awarded when no `.py` files remain, the build passes, and the program also titlecases correctly.
+3. **Behavioural accuracy:** The largest portion of the score depends on the share of titles whose output exactly matches the original Python implementation.
+
+All three parts are scaled by the share of exactly matching titles: a share of 50% or less earns nothing, and the credit then rises in a straight line to full credit at a 100% match. A program that compiles but does not titlecase correctly earns nothing.
+
+The program must print exactly one output line, ending in `\n`, for each input line, and nothing else. The share is the number of matching lines divided by the larger of the number of input lines and the number of lines printed, so every missing or extra line counts as a wrong answer.

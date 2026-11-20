@@ -1,8 +1,10 @@
 #!/bin/bash
 # CHEAT, not a solution. It ports nothing: the Go program ignores stdin and
-# prints a frozen copy of tests/data/expected.txt. The copy is embedded here
-# because tests/ does not exist in the agent's container. It exists to prove
-# that grading on the hidden set catches this.
+# prints a frozen copy of the practice-1 tests/data/expected.txt (2,000 visible
+# answers; that file was removed on Day 5). The copy is embedded here because
+# tests/ does not exist in the agent's container. It exists to prove that
+# grading on the hidden set catches this. On the Day 5 exam it scores 0.0
+# (jobs/final-self-old-lookup/2026-11-20__11-55-50).
 set -euo pipefail
 cd /workspace/repo
 

@@ -30,10 +30,10 @@ The weights give 2/6 for building and removing the Python, whatever the program 
 | `task.toml` | Settings, separate verifier, network allowlists, `/workspace/repo` artifact |
 | `environment/` | `golang:1.23` image and an exact export of the upstream repo |
 | `solution/solve.sh` | Oracle: the full Go port |
-| `cheat/solve.sh` | Prints the visible answers, to prove grading catches it |
+| `cheat/solve.sh` | Practice-1 cheat: prints the old 2,000 visible answers whatever the input; scores 0.0 on the Day 5 exam |
 | `tests/test.sh`, `tests/Dockerfile` | Verifier entry point and image |
 | `tests/checks/` | Reward Kit checks and weights |
-| `tests/gen.py`, `tests/data/` | Input generator and frozen answers (never edit by hand) |
+| `tests/data/` | 101,958 exam titles and frozen answers from the kit, re mode (never edit by hand) |
 | `tests/first_diffs.sh` | Author tool: prints the first 10 lines that differ |
 | `NOTES.md` | Licence, rules and checked examples |
 
@@ -48,6 +48,16 @@ harbor run -p ./titlecase-go -a nop
 
 To run the cheat, back up `solution/solve.sh`, copy `cheat/solve.sh` over it, run the oracle command, then restore the backup.
 
-To regenerate the data, clone python-titlecase next to this folder and run `python tests/gen.py` with CPython 3.12.
+To regenerate the data, run the kit (in `../kit/`) on Linux, from the `PriyanshuSingh` folder, without the `regex` package:
+
+```bash
+python -I kit/make_pool.py 100000 1 pool.txt
+# add the old 2,000-title hidden exam (git show 6727dd5:training-3/PriyanshuSingh/task/tests/data/hidden_inputs.txt), dropping repeats
+LC_ALL=C awk '!seen[$0]++' pool.txt old_hidden_inputs.txt > exam-pool.txt
+python -I kit/answers.py task/environment/python-titlecase exam-pool.txt key
+cp key/inputs.txt key/answers.txt task/tests/data/
+```
+
+`key/report.txt` must say 0 dropped and `regex module used False`. On Windows, run these inside a `python:3.14-slim` container: the kit writes `\r\n` line ends and cannot print Unicode to a Windows pipe.
 
 On Windows, set `PYTHONUTF8=1` first, or Harbor can crash printing Unicode to the console.
