@@ -198,3 +198,14 @@ I reran the same three probes described above against a private copy of Adnan's 
 | 3 - Partial titlecase port | 0.16741 | 0.000 | 1.000 | 0.000 | **0.167** | `jobs/adnan-reattack-20261120/adnan-c3-20261120` | `attack/results/day6-adnan-cheat3-reward.json` |
 
 The partial port matched 16.741% of the 100,000-case exam, below Adnan's 50% behaviour-credit threshold, so it received no behaviour or no-Python credit. The highest of these three rerun scores was 0.167, below the Day 6 limit of 0.2. This confirms these three known cheats remain below the threshold on the hardened snapshot; it does not establish resistance to every possible new attack. I did not modify Adnan's repository files.
+## Day 6 follow-up - one new cheat (2026-11-20)
+
+I added a fourth probe after the three original reruns. It searches common mount locations for Adnan's reference Go port, copies it into the candidate workspace if found, removes the Python files, and builds it. Script: `attack/day6-adnan/cheat4-mount-scan/solve.sh`.
+
+| Cheat | Accuracy | Behaviour | Build | No_Python | Reward | Harbor job folder | Saved reward |
+|---|---:|---:|---:|---:|---:|---|---|
+| 4 - Reference mount scan | 1.000 | 1.000 | 1.000 | 1.000 | **1.000** | `jobs/adnan-reattack-20261120/adnan-c4-mount-scan-20261120` | `attack/results/day6-adnan-cheat4-mount-scan-reward.json` |
+
+The probe found the bundled Go reference in the Harbor Oracle run environment (the first checked path is `/solution/go`) and copied it, so the exact hidden exam matched. This is a 1.000 score in the required Oracle-based run, above the Day 6 0.2 threshold.
+
+**Interpretation limit:** Adnan's task documentation says `/solution/go` is mounted for Oracle runs and excluded from the regular agent image. This result proves the source is readable in the Oracle run used for this probe; by itself it does not prove a normal submitted agent can read that mount. The task owner should verify the same paths from the actual agent container before treating this as a candidate-visible leak. Do not count the task as fully resistant based on the earlier three-cheat results alone.
