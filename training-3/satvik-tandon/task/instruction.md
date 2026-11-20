@@ -22,5 +22,8 @@ title-cased result per line to standard output.
 
 ## Grading
 
-Hidden automated tests award partial credit. Speed, memory consumption, and
-error-message wording are not graded.
+The 100,000 hidden answers come from Python 3.14's built-in `re` mode,
+with the optional `regex` package disabled. A successful build and removal of
+Python source files are prerequisites. The score is the fraction of exact
+answers after writing one line per input. The static Go binary runs as an
+unprivileged user with the input stream, its own executable, and no network.

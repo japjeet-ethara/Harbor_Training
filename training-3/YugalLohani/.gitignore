@@ -1,0 +1,13 @@
+# Never pushed (break-and-harden.md, section 2a)
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+.venv/
+__pycache__/
+.env
+
+# Scratch copies of the target used to run each cheat (their work, not mine)
+attack/runs/

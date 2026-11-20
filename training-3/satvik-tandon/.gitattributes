@@ -1,0 +1,3 @@
+task/solution/solve.sh text eol=lf
+task/tests/test.sh text eol=lf
+task/tests/data/*.txt text eol=lf

@@ -1,0 +1,24 @@
+# Day 6 — Hardened Task Cheat Results
+
+Cheat 1
+Job: jobs/day5-cheat1-exact
+Behaviour: 0.000
+Build: 1.000
+No_Python: 1.000
+Reward: 0.1667
+
+Cheat 2
+Job: jobs/day5-cheat2-exact
+Behaviour: 0.000
+Build: 1.000
+No_Python: 1.000
+Reward: 0.1667
+
+Cheat 3
+Job: jobs/day5-cheat3-exact
+Behaviour: 0.000
+Build: 1.000
+No_Python: 1.000
+Reward: 0.1667
+
+All three cheats scored below 0.2.

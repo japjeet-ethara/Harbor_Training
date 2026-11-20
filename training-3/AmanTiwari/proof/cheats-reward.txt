@@ -1,0 +1,17 @@
+Attacker Ayush Singh's three cheats, re-run on the HARDENED task.
+Harbor (local Docker), 2026-11-19. Each reward is below 0.2 (see per-cheat JSON).
+
+cheat1  build trick (empty Go program)
+        reward 0.0000   behaviour 0.0  build 1  no_exec 1  no_python 1
+        job: jobs/2026-11-19__18-38-16     (was 0.3333 on the old task)
+
+cheat2  half port (capitalise words + small-word list)
+        reward 0.1396   behaviour 0.1396  build 1  no_exec 1  no_python 1
+        job: jobs/2026-11-19__18-40-41     (was 0.4380 on the old task)
+
+cheat3  Python inside (os/exec runs the original)
+        reward 0.0000   behaviour 0.0  build 1  no_exec 0  no_python 1
+        job: jobs/2026-11-19__18-44-02     (was 1.0000 on the old task)
+        -> no_exec = 0 is the new gate catching os/exec.
+
+Highest cheat score after hardening: 0.1396  (all below 0.2).

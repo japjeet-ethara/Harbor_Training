@@ -1,0 +1,11 @@
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+attack/titlecase-go/
+attack/python-titlecase/
+.venv/
+__pycache__/
+.env

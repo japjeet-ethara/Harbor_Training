@@ -1,0 +1,39 @@
+python: 3.14.2  uv: uv 0.9.30
+MATCH: both pool copies are byte-identical
+779b81d3930a23b0f3af5cf56ef19de29dea3cb632e6aca1fce2a5e20da9606f  pool.txt
+779b81d3930a23b0f3af5cf56ef19de29dea3cb632e6aca1fce2a5e20da9606f  pool-repeat.txt
+pool records 100000 | unique 100000 | ends with LF True | CR bytes 0 | NUL/SOH 0
+splitlines() boundaries: 0 | empty titles: 0
+overlap with old inputs.txt: 1 [(883, 'dr')]
+overlap with old hidden_inputs.txt: 0 []
+family                                        old-practice        old-hidden       trainer-kit          new-pool
+(titles)                                             2,000             2,000           100,000           100,000
+small word                                           1,072             1,067            70,370            64,588
+sub-phrase break + small word                          165               176            12,331            10,031
+all-caps line                                          371               364            10,569            10,690
+initials (A.B.)                                        178               175            15,262            12,958
+d'/l'/o' apostrophe                                    167               168            13,881            11,759
+Mc prefix                                              182               191            13,650            11,680
+honorific (exact)                                       39                47            11,817             9,816
+inline period (domain, v1.2)                           335               329            33,888            30,102
+ASCII internal caps                                    204               220            43,618            40,408
+slash split                                            127               127            19,206            17,557
+double slash (URL)                                     134               124            11,553            14,474
+hyphen split                                           255               228            28,992            30,840
+consonant acronym                                      179               167            16,588            14,055
+ordinal (21st)                                          36                38                 0             1,465
+tab or NBSP                                            143               140            28,943            28,913
+honorific + punctuation                                  0                 0             2,597             2,237
+other letter+digit word (mp3, 4k)                        7                14             3,041            11,924
+decimal number                                           0                 0             3,041             3,472
+no-letter title                                          0                 0                 0                87
+non-ASCII letters                                        0                 0            16,211            30,167
+case-expanding char (ß, ﬁ, İ)                            0                 0             1,908             8,765
+non-ASCII internal caps                                  0                 0               177             7,946
+typographic apostrophe ’                                 0                 0                 0             8,160
+contraction/possessive                                   0                 0             2,968            14,000
+punctuation/symbol outside PUNCT                        16                10                 0            22,359
+emoji / non-BMP                                          0                 0                 0             1,393
+other Unicode space                                      0                 0                 0             7,814
+zero-width char                                          0                 0                 0             2,092
+URL/path with hyphen, no period                          0                 0                28             5,126

@@ -1,0 +1,15 @@
+Attacker's cheats (Saurabh Baghel) on my hardened task, 100,000-title exam. Harbor 0.25.0, -a oracle, 1 trial each.
+Each must be below 0.2.
+
+Saurabh cheat1 (direct hidden-answer read)
+  job: jobs/2026-11-20__05-19-10
+  {"reward":0.0,"build":0.0,"no_python":0.0,"behaviour":0.0}
+Saurabh cheat2 (hidden input/answer map)
+  job: jobs/2026-11-20__05-20-00
+  {"reward":0.0,"build":0.0,"no_python":0.0,"behaviour":0.0}
+Saurabh cheat3 (recursive hidden-answer search)
+  job: jobs/2026-11-20__05-20-48
+  {"reward":0.0,"build":0.0,"no_python":0.0,"behaviour":0.0}
+Extra: Python inside Go wrapper (my cheat vs Sonu)
+  job: jobs/2026-11-20__05-21-36
+  {"reward":0.0,"build":0.0,"no_python":0.0,"behaviour":0.0}

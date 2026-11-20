@@ -1,0 +1,22 @@
+Old exam
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%
+
+New exam
+wrong answers      39344 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input "Dr D'Angelo  vs.\u2009αlpha TCP/IP river War"
+  want  "Dr d'Angelo  vs.\u2009Αlpha TCP/IP River War"
+  got   "Dr d'Angelo  Vs.\u2009αlpha TCP/IP River War"
+  input 'war\xa0\\data\u2009%summer'
+  want  'War\xa0\\Data\u2009%Summer'
+  got   'War\xa0\\data\u2009%summer'
+  input 'X. TCP/IP history as! X-RAY'
+  want  'X. TCP/IP History As! X-Ray'
+  got   'X. TCP/IP History As! X-RAY'
+  input 'music\tstar v.'
+  want  'Music\tStar V.'
+  got   'Music\tstar V.'
+  input 'night v. Input/output and @World! and/or'
+  want  'Night v. Input/Output and @World! And/Or'
+  got   'Night v. Input/Output and @World! and/or'

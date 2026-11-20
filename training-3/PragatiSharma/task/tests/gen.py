@@ -1,6 +1,13 @@
-"""Generate reproducible titlecase inputs and frozen reference answers.
+"""Generate the visible practice set: reproducible titles and frozen reference answers.
 
 Answers come only from the original Python titlecase() function.
+
+This script writes only tests/data/practice_inputs.txt and
+tests/data/practice_expected.txt. The graded exam, tests/data/inputs.txt and
+tests/data/answers.txt (100,000 records), comes from ../kit/make_pool.py and
+../kit/answers.py. This script never writes those files.
+
+Usage: python -I tests/gen.py [path/to/python-titlecase]
 """
 
 import random
@@ -8,8 +15,14 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ORIGINAL = (HERE.parent / ".." / "python-titlecase").resolve()
+ORIGINAL = (
+    Path(sys.argv[1]) if len(sys.argv) > 1 else HERE.parent / ".." / "python-titlecase"
+).resolve()
 DATA = HERE / "data"
+PRACTICE_INPUTS = DATA / "practice_inputs.txt"
+PRACTICE_EXPECTED = DATA / "practice_expected.txt"
+# The graded exam. Never written here.
+EXAM_FILES = frozenset({DATA / "inputs.txt", DATA / "answers.txt"})
 
 REQUIRED = (
     "visit http://example.com for the details",
@@ -356,32 +369,29 @@ def read_records(path):
 def main():
     titlecase_mod = load_titlecase()
     source = Path(titlecase_mod.__file__).resolve()
-    practice, hidden = build_inputs()
+    # The round-1 hidden set is still generated, so the random sequence and the
+    # practice titles stay byte-identical. It is not written: the graded exam
+    # comes from ../kit, and the round-1 set is kept in
+    # ../kit/evidence/old-exam-2000/.
+    practice, old_hidden = build_inputs()
     practice_expected = [titlecase_mod.titlecase(title) for title in practice]
-    hidden_expected = [titlecase_mod.titlecase(title) for title in hidden]
 
+    files = {PRACTICE_INPUTS: practice, PRACTICE_EXPECTED: practice_expected}
+    if set(files) & EXAM_FILES:
+        raise SystemExit("Refusing to write the graded exam files.")
     DATA.mkdir(parents=True, exist_ok=True)
-    files = {
-        DATA / "inputs.txt": practice,
-        DATA / "hidden_inputs.txt": hidden,
-        DATA / "expected.txt": practice_expected,
-        DATA / "hidden_expected.txt": hidden_expected,
-    }
     for path, records in files.items():
         write_records(path, records)
     loaded = {path.name: read_records(path) for path in files}
-    if loaded["inputs.txt"] != practice or loaded["expected.txt"] != practice_expected:
+    if loaded[PRACTICE_INPUTS.name] != practice or loaded[PRACTICE_EXPECTED.name] != practice_expected:
         raise SystemExit("Practice files did not round-trip.")
-    if loaded["hidden_inputs.txt"] != hidden or loaded["hidden_expected.txt"] != hidden_expected:
-        raise SystemExit("Hidden files did not round-trip.")
 
     print(f"source={source}")
     print(f"REGEX_AVAILABLE={titlecase_mod.REGEX_AVAILABLE}")
     for name, records in loaded.items():
         print(f"{name}={len(records)}")
     print(f"practice_unique={len(set(practice)) == 2000}")
-    print(f"hidden_unique={len(set(hidden)) == 2000}")
-    print(f"disjoint={set(practice).isdisjoint(hidden)}")
+    print(f"disjoint_from_round1_hidden={set(practice).isdisjoint(old_hidden)}")
 
 
 if __name__ == "__main__":

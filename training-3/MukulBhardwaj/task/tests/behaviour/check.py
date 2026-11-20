@@ -44,6 +44,8 @@ def hidden_behavior_matches(workspace: Path) -> float:
         with tempfile.TemporaryDirectory(
             prefix="titlecase-check-", dir=workspace.resolve()
         ) as temp_dir:
+            # The runner executes the binary as an unprivileged user.
+            Path(temp_dir).chmod(0o711)
             executable = Path(temp_dir) / "titlecase"
             build_env = os.environ.copy()
             build_env["CGO_ENABLED"] = "0"

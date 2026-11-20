@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+attack/jobs*/
+attack/scratch*/
+validation/

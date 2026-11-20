@@ -1,0 +1,3 @@
+Mukul Bhardwaj cheat1: {"reward":0.1667,"build":1.0,"no_python":0.0,"behaviour":0.0}  job folder: jobs/proof-mukul-cheat1/proof-cheat1__9kXcc4y
+Mukul Bhardwaj cheat2: {"reward":0.0,"build":0.0,"no_python":0.0,"behaviour":0.0}  job folder: jobs/proof-mukul-cheat2/proof-cheat2__L3EYuXQ
+Mukul Bhardwaj cheat3: {"reward":0.1667,"build":1.0,"no_python":0.0,"behaviour":0.0}  job folder: jobs/proof-mukul-cheat3/proof-cheat3__kENbsFc
