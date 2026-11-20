@@ -2,4 +2,4 @@ services:
   main:
     build:
       additional_contexts:
-        python-titlecase: ../../python-titlecase
+        python-titlecase: ./python-titlecase-src
