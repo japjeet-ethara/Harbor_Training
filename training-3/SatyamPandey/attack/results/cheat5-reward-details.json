@@ -1,0 +1,60 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 0.9277,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "behaviour",
+        "weight": 4.0,
+        "detail": {
+          "score": 0.8915,
+          "criteria": [
+            {
+              "name": "behaviour",
+              "value": 0.8915,
+              "raw": 0.8915,
+              "weight": 1.0,
+              "description": "Share of hidden title lines matching the original Python titlecase outputs exactly"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "build",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "build",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "`go build ./...` succeeds in the submitted repository"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "no_python",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "no_python",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "No .py files remain and `go build ./...` succeeds"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}
