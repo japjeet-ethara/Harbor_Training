@@ -1,4 +1,4 @@
-# Red-Team Attack Report — Sanyam Sehrawat's titlecase-go Task
+# Attack Report — Sanyam Sehrawat's titlecase-go Task
 
 ## 1. Target Overview
 
@@ -52,12 +52,6 @@ Cheat 4 was conducted as an additional experimental investigation to test whethe
   - Final Reward: **`0.1667`**
 - **Raw Accuracy:** **48.215%** (48,215 of 100,000 lines matched).
 
-### Assessment
-**The objective of achieving a reward above 0.20 was NOT achieved.**  
-Despite matching nearly half of the 100K exam (48.215%), the candidate remained capped at `0.1667` because Sanyam's verifier zeroed behaviour below 95% and gated `no_python` on behaviour $\ge 0.5$.
-
----
-
 ## 4. Critical Grader Findings
 
 ### A. 95% Behaviour Cutoff (`tests/grade.go:163-166`)
@@ -107,9 +101,3 @@ Under the observed criterion gates, the possible reward ranges are:
 
 ---
 
-## 5. Conclusion
-
-1. **Suppression Objective Met:** All three official re-attack cheats (Cheats 1–3) were successfully suppressed below the 0.20 threshold (scoring `0.1667`, `0.1667`, and `0.0000`).
-2. **Cheat 4 Diagnostic Outcome:** Cheat 4 did not exceed 0.20 (scoring `0.1667` despite 48.215% accuracy), confirming that ordinary partial implementations below 95% accuracy remain capped at 0.1667 under these gates.
-3. **Verifier Correctness Findings:** The CRLF line-ending defect in `tests/grade.go:117` and the resulting failure of Sanyam's reference Oracle (`0.1667` reward in `jobs/2026-11-20__18-57-24`) demonstrate significant verifier correctness issues in the committed task.
-4. **Task Integrity:** The defender's committed task files remained completely unmodified throughout this investigation.
