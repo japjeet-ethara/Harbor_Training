@@ -1,0 +1,11 @@
+{
+  "reward": 1.0,
+  "job": "day5-100k-oracle",
+  "job_id": "b6afc0cd-6f96-4328-bde9-670bc1534aee",
+  "trial": "task__D7KYSt8",
+  "trial_id": "cc42022b-b27b-4bbc-a3c6-5c2ec606db0e",
+  "source": "jobs/day5-100k-oracle/task__D7KYSt8/verifier/reward.txt",
+  "task_commit": "f5929f6",
+  "published_task_commit": "2fbaa108203388562841f9d52faf7b45a39d8827",
+  "task_tree": "1fd4bd73774de2851977612bbc50f39aa0932161"
+}

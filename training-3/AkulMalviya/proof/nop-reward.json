@@ -1,0 +1,11 @@
+{
+  "reward": 0.0,
+  "job": "day5-100k-nop",
+  "job_id": "665fa42a-6eae-4214-b0d0-c23c28275996",
+  "trial": "task__D2xZNSR",
+  "trial_id": "5e90994b-a923-4491-ba98-c0cf949ec30c",
+  "source": "jobs/day5-100k-nop/task__D2xZNSR/verifier/reward.txt",
+  "task_commit": "f5929f6",
+  "published_task_commit": "2fbaa108203388562841f9d52faf7b45a39d8827",
+  "task_tree": "1fd4bd73774de2851977612bbc50f39aa0932161"
+}

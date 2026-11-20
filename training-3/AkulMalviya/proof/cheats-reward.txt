@@ -1,0 +1,42 @@
+Day 6 reviewer results — Ayush Ranjan
+Published task commit: 2fbaa108203388562841f9d52faf7b45a39d8827
+Reviewer evidence commit: 6a22cbfad12f118447ced7f48614ea6359f84958
+Cutoff: strictly below 0.2
+
+Original Day 4 submissions
+
+1. Build-only Go program — 0.0 before, 0.0 after
+   Harbor job ID: efbc086c-42e8-4022-9e27-f9d55f8ccc3f
+   Trial: scratch-akul-2fbaa10-cheat1__QrDU92v
+   Raw reward: day6-akul-cheat1-reward.txt
+
+2. Answer-file lookup — 0.0 before, 0.0 after
+   Harbor job ID: 6a311515-1c17-4ee2-8f2d-e6c945c84a04
+   Trial: scratch-akul-2fbaa10-cheat2__wUiRsRE
+   Raw reward: day6-akul-cheat2-reward.txt
+
+3. Python wrapper — 0.0 before, 0.0 after
+   Harbor job ID: ba467c0a-7870-4252-a4be-8eea88d19271
+   Trial: scratch-akul-2fbaa10-cheat3__x7GDnb8
+   Raw reward: day6-akul-cheat3-reward.txt
+
+All three original submissions met the cutoff. Ayush used the successful
+build-only retry after normalizing line endings in his scratch copy.
+
+Additional probes
+
+4. Basic whitespace-token heuristic — 0.06136 (below cutoff)
+   Exact matches: 6,136 of 100,000
+   Harbor job ID: 1ed4629d-ca27-44e9-b8b4-4e6aca8c0a34
+   Trial: scratch-akul-2fbaa10-cheat4__big4B8M
+   Raw reward: day6-akul-cheat4-reward.txt
+
+5. Older practice-1 Go port — 0.82558 (above cutoff)
+   Exact matches: 82,558 of 100,000 (17,442 wrong)
+   Harbor job ID: 635c97f8-d57b-4f3c-9559-196f43cef4e5
+   Trial: scratch-akul-2fbaa10-cheat5__SvpbY7s
+   Raw reward: day6-akul-cheat5-reward.txt
+
+The older port received proportional credit for its exact matches.
+Raw rewards and the reviewer evidence are in:
+https://github.com/japjeet-ethara/Harbor_Training/tree/6a22cbfad12f118447ced7f48614ea6359f84958/training-3/AyushRanjan/attack/results
