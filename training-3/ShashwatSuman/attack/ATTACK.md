@@ -119,16 +119,3 @@ The hidden exam is generated from `gen.py` which produces titles from 12 generat
 
 ---
 
-## Summary
-
-**Highest cheat score (expected): Cheat 2 — up to 1.0** if the Go binary can read `/tests/data/hidden_expected.txt` at runtime.
-
-Even if Cheat 2 is blocked (filesystem not reachable), **Cheat 3 (half port) is expected to score ~0.73** due to the small exam size and proportional scoring with no minimum threshold.
-
-**Cheat 1 scores ~0.47** purely from `build` + `no_python` free points plus trivial text processing.
-
----
-
-## Day 6 — Re-attack on Hardened Task
-
-*(To be filled after Ramandeep hardens their task on Day 5)*
