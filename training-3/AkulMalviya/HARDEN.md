@@ -34,3 +34,7 @@ uv run --no-project --python 3.14.10 python -I -B kit/answers.py task/environmen
 ## What the larger exam caught
 
 The original oracle passed the old 2,000 cases and missed **1,595** titles on the new exam. One rule detected internal capitals after punctuation where Python's pattern only checks the initial letter run, causing strings such as `X-RAY` to skip compound processing. Another rule reconsidered the period in a matched `v.` subphrase, while Python resumes after the entire match. Correcting both rules brought the mismatch count to **zero** without changing the generated cases. [Subphrase fix](task/solution/solve.sh#L328-L341), [internal-capital fix](task/solution/solve.sh#L468-L481).
+
+## Day 6 scoring follow-up
+
+Ayush's older Go port scored **0.82558** on the published verifier despite **17,442** wrong answers. The follow-up caps partial credit at **0.19**, while exact parity still scores **1.0**. The same older port matched the same **82,558** lines in the Harbor rerun and scored **0.19**. Fresh oracle, no-op, and build-only runs scored **1.0**, **0.0**, and **0.0** respectively. [Updated proof](proof/cheats-reward.txt)

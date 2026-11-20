@@ -1,11 +1,10 @@
 {
   "reward": 0.0,
-  "job": "day5-100k-nop",
-  "job_id": "665fa42a-6eae-4214-b0d0-c23c28275996",
-  "trial": "task__D2xZNSR",
-  "trial_id": "5e90994b-a923-4491-ba98-c0cf949ec30c",
-  "source": "jobs/day5-100k-nop/task__D2xZNSR/verifier/reward.txt",
-  "task_commit": "f5929f6",
-  "published_task_commit": "2fbaa108203388562841f9d52faf7b45a39d8827",
-  "task_tree": "1fd4bd73774de2851977612bbc50f39aa0932161"
+  "job": "day6-cap-nop",
+  "job_id": "eccbac0b-2646-4077-a27e-8b47e2aa4853",
+  "trial": "task__UrKZe5X",
+  "trial_id": "4ddb9b28-3088-433e-b301-8526973275e2",
+  "source": "jobs/day6-cap-nop/task__UrKZe5X/verifier/reward.txt",
+  "task_commit": "9b57ca6f204e2309792fa45655b41fb1453a7e6d",
+  "task_tree": "b88107e1645d935d66f6b41d380a58aede20a87f"
 }

@@ -1,6 +1,6 @@
 # Day 6 — Five-minute defence
 
-Ayush tested published revision `2fbaa10`. The oracle and no-op ran on local revision `f5929f6`, which has the same Git tree for `task/`. [Day 5 report](HARDEN.md)
+Ayush tested published revision `2fbaa10`. The follow-up scoring fix is in local revision `9b57ca6`. [Day 5 report](HARDEN.md)
 
 ## 0:00–1:15 | The strongest finding
 
@@ -27,5 +27,6 @@ My original oracle had a perfect score on 2,000 titles and still missed **1,595*
 ## 4:15–5:00 | What the evidence proves
 
 - Harbor verified **1.0** for the corrected oracle, with all 100,000 lines matched. [Oracle evidence](proof/oracle-reward.json)
-- Harbor verified **0.0** for the no-op. Ayush independently reran the three original shortcuts. All three scored **0.0** and met the strict `< 0.2` cutoff. [No-op evidence](proof/nop-reward.json), [reviewer reruns](proof/cheats-reward.txt)
-- Ayush's extra heuristic scored **0.06136**. His older Go port scored **0.82558** because it matched 82,558 of 100,000 titles, leaving 17,442 errors. This exposes a limit of proportional scoring. If passing means matching every output, the reward must enforce that condition. [Additional probe evidence](https://github.com/japjeet-ethara/Harbor_Training/blob/6a22cbfad12f118447ced7f48614ea6359f84958/training-3/AyushRanjan/attack/results/AKUL-HARDENED-RERUN.md)
+- Harbor verified **0.0** for the no-op. Ayush independently reran the three original shortcuts on the published revision. All three scored **0.0** and met the strict `< 0.2` cutoff. [No-op evidence](proof/nop-reward.json), [reviewer reruns](proof/cheats-reward.txt)
+- Ayush's extra heuristic scored **0.06136**. His older Go port scored **0.82558** because it matched 82,558 of 100,000 titles, leaving 17,442 errors. I kept exact parity at **1.0** and capped every incomplete result at **0.19**. The cap preserves the grader's ability to distinguish low partial scores. [Additional probe evidence](https://github.com/japjeet-ethara/Harbor_Training/blob/6a22cbfad12f118447ced7f48614ea6359f84958/training-3/AyushRanjan/attack/results/AKUL-HARDENED-RERUN.md), [scoring rule](task/tests/test.sh#L74-L84).
+- With the fix, the older Go port still matched 82,558 titles and now scored **0.19**. Fresh Harbor controls confirmed that the oracle still scored **1.0** and both the no-op and build-only program scored **0.0**. [Follow-up Harbor evidence](proof/cheats-reward.txt)

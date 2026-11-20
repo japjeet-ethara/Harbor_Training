@@ -40,3 +40,28 @@ Additional probes
 The older port received proportional credit for its exact matches.
 Raw rewards and the reviewer evidence are in:
 https://github.com/japjeet-ethara/Harbor_Training/tree/6a22cbfad12f118447ced7f48614ea6359f84958/training-3/AyushRanjan/attack/results
+
+Follow-up scoring fix — local task commit 9b57ca6f204e2309792fa45655b41fb1453a7e6d
+
+The revised grader awards 1.0 for exact parity and otherwise caps credit at
+0.19. Validation or execution failures still earn 0.0.
+
+Older practice-1 Go port — 0.19 (below cutoff)
+   Exact matches: 82,558 of 100,000 (17,442 wrong)
+   Harbor job: day6-cap-regressions
+   Job ID: f4ce306a-a83f-49be-8592-1e0a52958b37
+   Trial: older-port__KTvgMNT
+   Trial ID: f1700f79-1d54-4e63-b01c-0d1893293eb9
+   Raw reward: jobs/day6-cap-regressions/older-port__KTvgMNT/verifier/reward.txt
+
+Build-only Go program — 0.0 (below cutoff)
+   Harbor job: day6-cap-regressions
+   Job ID: f4ce306a-a83f-49be-8592-1e0a52958b37
+   Trial: build-only__KPNoFxn
+   Trial ID: 057cd138-5751-429e-8569-782cca12dadb
+   Raw reward: jobs/day6-cap-regressions/build-only__KPNoFxn/verifier/reward.txt
+
+The lookup, Python wrapper, and basic heuristic scores above are Ayush's
+measurements on the published revision. Only the reward formula changed, so
+the same verifier outputs cannot score higher under the revised rule. These
+three submissions have no independent rerun on the revised commit yet.
