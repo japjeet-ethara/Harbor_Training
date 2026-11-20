@@ -45,3 +45,12 @@
 
 ---
 **Highest score achieved by a cheat:** 1.00
+
+---
+
+## Day 6 Re-Attack on Hardened Task (`AyushMishra/task`)
+
+- **Cheat 1 Re-Attack:** reward `0.050` | Job folder: `jobs/2026-11-20__15-36-57`
+- **Cheat 2 Re-Attack:** reward `0.050` | Job folder: `jobs/2026-11-20__15-40-03`
+- **Cheat 3 Re-Attack:** reward `0.050` | Job folder: `jobs/2026-11-20__15-41-41`
+- **Highest Day 6 re-attack cheat score:** `0.050`
