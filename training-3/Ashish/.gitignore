@@ -8,3 +8,41 @@ attack/target/
 __pycache__/
 .env
 AGENTS.md
+
+# --- Go build output (the "Never push" table lists this; it was the one gap) ---
+# solve.sh builds a binary named after the module. If it is ever built outside
+# the container it lands here.
+titlecaseport
+*.exe
+*.test
+*.out
+
+# --- secrets: the handout says any API key, token or .env file, not just .env ---
+.env.*
+*.pem
+*.key
+*_token
+
+# --- scratch copies of someone else's task, same rule as attack/target/ ---
+attack/scratch/
+scratch/
+
+# --- intermediates produced by kit/ scripts ---
+# HARDEN.md tells a reader to re-run gen_case_table.py and make_probes.py. The
+# probe inputs in particular must never be pushed: they are the evidence that
+# the port was not tuned to the exam, and they are not the exam.
+key-regex/
+case_table.txt
+ranges.txt
+go_case.txt
+go_props.txt
+probe_inputs.txt
+probe_want.txt
+probe_got.txt
+
+# --- OS and editor junk ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+venv/
