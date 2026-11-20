@@ -29,7 +29,8 @@ Replace the Python project with a Go program in `/workspace/repo`.
 
 For every input line, the output line must be byte-for-byte identical to what the original Python
 `titlecase(line)` returns for that line, with default arguments, running as it does in this
-environment (plain Python `re`; the optional `regex` package is not installed).
+environment. The expected answers come from titlecase running WITHOUT the optional `regex` package
+(plain Python `re` mode); that package is not installed here.
 
 Input lines are UTF-8 text. They contain no `\r` and are never empty. They can contain spaces (including Unicode
 spaces such as the no-break space U+00A0), tabs, punctuation, digits, URLs and non-English letters. The last line ends with `\n`.
@@ -40,5 +41,7 @@ Speed, memory use, code style, comments, error messages, and behaviour on empty 
 
 ## How it is graded
 
-Hidden automatic tests give a partial score between 0 and 1. The hard rules are checked, and most of
-the score is the share of hidden input lines whose output matches exactly.
+Hidden automatic tests give a partial score between 0 and 1. The hard rules are checked, and the
+score is the share of hidden input lines whose output matches exactly. That share is measured on two
+sets of inputs, a large fixed one and a new random one made when your work is graded, and the lower
+of the two shares is your score. The lines are of the same kind as the ones described above.

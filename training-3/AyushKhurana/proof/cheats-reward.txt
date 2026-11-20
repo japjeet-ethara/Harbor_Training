@@ -1,0 +1,7 @@
+oracle                 1            OK  (must be 1.0)
+nop                    0            OK  (must be 0.0)
+Aman cheat 1           0.1373       OK  (must be below 0.2)
+Aman cheat 2           0            OK  (must be 0.0)
+Aman cheat 3           0            OK  (must be below 0.2 (or the run never built anything))
+lookup + half port     0.1632       OK  (must be below 0.2)
+allowlist probe        raw.githubusercontent.com BLOCKED OK 

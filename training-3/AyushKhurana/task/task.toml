@@ -15,7 +15,7 @@ source_repo = "https://github.com/ppannuto/python-titlecase"
 source_sha = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
 source_license = "MIT"
 difficulty_explanation = "Go regexp has no backtracking and ASCII-only \\w, \\b and \\s; the port must rebuild order-dependent Unicode-aware rules exactly (no-break spaces, re.IGNORECASE folding of İ ı ſ K, SUBPHRASE consumption, full case mapping)."
-validation = "oracle 1.0, nop 0.0, cheat (memorised visible answers, obeys all hard rules) 0.0"
+validation = "Day 5 hardening: oracle must score 1.0 and nop 0.0; half-port, hidden-Python and answer-lookup cheats must stay below 0.2 (see HARDEN.md for the job folders)"
 
 [verifier]
 timeout_sec = 600.0
@@ -27,6 +27,10 @@ collect = []
 
 [agent]
 timeout_sec = 600.0
+# Day 5, hole 3: the agent room is no longer open to the whole internet, so the public repo that
+# holds the answers (raw.githubusercontent.com) is unreachable. Only the model endpoints are allowed.
+network_mode = "allowlist"
+allowed_hosts = ["api.anthropic.com", "host.docker.internal"]
 
 [environment]
 network_mode = "public"

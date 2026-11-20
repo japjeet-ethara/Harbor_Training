@@ -151,3 +151,14 @@ Rules that need care in Go (no backtracking, ASCII-only \w \b \s in Go's regexp)
   - SUBPHRASE is case-sensitive, needs a literal ' ', has no \b, and 'v.' consumes its '.'
   - Python full case mapping: 'ß'.upper() == 'SS', final sigma in lower()
   - Recursion: Mc-words and every slash/hyphen part run the WHOLE titlecase again (own all_caps)
+
+## Day 5 update (hardening)
+
+The Day 4 exam above (tests/gen.py, 2,000 visible + 2,000 hidden lines) was replaced. History above is kept as written.
+- tests/data/inputs.txt + answers.txt: 100,000 lines from the kit generator (kit/make_pool.py, seed 20261119),
+  answers frozen from the ORIGINAL titlecase in plain `re` mode with PYTHONHASHSEED 1 and 2 (kit/answers.py);
+  all 100,000 lines were stable. The same answers come out under Python 3.11 and 3.12 (both without `regex`).
+  inputs.txt  sha256 7d71d24339894744a2127c9e6c14b07db690902b6400f7778ff9dd259ebe6ed7
+  answers.txt sha256 ff8c78a76f155f4c790a7d41859832f370d6cefa5538f60c641f73f52657fd22
+- The grader also builds a NEW random exam (20,000 lines) at grading time with the original Python in tests/ref
+  and scores min(frozen share, fresh share). Details in HARDEN.md.

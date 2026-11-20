@@ -3,7 +3,16 @@
 Port [python-titlecase](https://github.com/ppannuto/python-titlecase) (MIT, SHA `42f43e2`, v2.4.1) to a
 Go 1.23 standard-library program whose output matches the original `titlecase()` byte for byte.
 
-## Results
+## Day 5 hardening (read this first)
+
+The task was attacked by a classmate and then hardened; what was found and what changed is in
+`../HARDEN.md` (the attack on this task is in Aman Tiwari's folder, `AmanTiwari/attack/`). In short: a nested Go module could hide `os/exec`,
+the grader image still ran Python, and the answers were public while the agent had internet.
+The checker now looks at the whole build, the agent's program cannot run Python, the agent network is an
+allowlist, and the score is the lower of a fixed 100,000-line exam and a fresh 20,000-line exam made at grading time.
+The table below is the **Day 4** result on the task *before* hardening.
+
+## Results (Day 4, before hardening)
 
 | Run | reward | build | no_python | no_exec | behaviour | Evidence |
 |---|---|---|---|---|---|---|
@@ -32,7 +41,7 @@ echo input 0.0225, read `/tests` at grading time 0.0, hand off to another progra
   agent image contains `python3`, so otherwise a Go program could run the Python source as a string.
 - **Grading as `nobody`**: the agent's program cannot read `/tests` (root-only) during grading.
 - **Reward Kit criteria live in `tests/checks/`**, because Reward Kit executes every `.py` in the folder it
-  is given; `tests/gen.py` would otherwise run inside the grader.
+  is given; helpers (`tests/lib`, `tests/ref`) live outside `checks/` for the same reason.
 - **Answers frozen with the container's own Python 3.11.2** (the agent can run it), pinned base image by
   digest, `GOTOOLCHAIN=local`, `artifacts = ["/workspace/repo"]` for the separate verifier.
 
@@ -43,7 +52,7 @@ harbor run -p ./titlecase-go -a oracle      # 1.0
 harbor run -p ./titlecase-go -a nop         # 0.0
 # cheat: copy titlecase-go/cheat/solve.sh over solution/solve.sh, run -a oracle, then restore  -> 0.0
 # answer sheet: cd titlecase-go && docker build -t titlecase-go-env environment &&
-#   docker run --rm -v "$PWD:/task" -w /task titlecase-go-env python3 -B tests/gen.py   (deterministic)
+#   Day 5 exam: see HARDEN.md (kit/make_pool.py -> kit/answers.py, plain `re` mode)
 ```
 
 `NOTES.md` = author notes: every rule with real outputs, surprises, frozen hashes, oracle findings.

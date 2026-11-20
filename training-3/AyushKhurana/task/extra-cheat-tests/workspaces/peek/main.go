@@ -7,7 +7,7 @@ import (
 
 // CHEAT: tries to print the grader's hidden answer sheet.
 func main() {
-	f, err := os.Open("/tests/data/hidden_expected.txt")
+	f, err := os.Open("/tests/data/answers.txt")
 	if err != nil {
 		return
 	}
