@@ -1,0 +1,17 @@
+wrong answers      450 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'but rings! road\t-lead\xa0winter[! island! OF U.S. en'
+  want  'But Rings! Road\t-Lead\xa0Winter[! Island! OF U.S. En'
+  got   'But Rings! Road\t-Lead\xa0Winter[! Island! Of U.S. En'
+  input "'v data of an and/or–? the vs. ON LIFE"
+  want  "'V Data of an and/Or–? The vs. ON LIFE"
+  got   "'V Data of an and/Or–? The vs. On LIFE"
+  input 'J.R.R. IF$ nasa’s mcdonald: as  night'
+  want  'J.R.R. IF$ Nasa’s McDonald: As  Night'
+  got   'J.R.R. If$ Nasa’s McDonald: As  Night'
+  input 'as music! TO %war http://example.com/a/b. time'
+  want  'As Music! TO %War http://example.com/a/b. Time'
+  got   'As Music! To %War http://example.com/a/b. Time'
+  input 'war of vs. U.S.; BUT& book'
+  want  'War of vs. U.S.; BUT& Book'
+  got   'War of vs. U.S.; But& Book'

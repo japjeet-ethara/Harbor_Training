@@ -1,0 +1,17 @@
+wrong answers      1499 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'game iPhone\u2009mcé ß. e.g. V vs machine'
+  want  'Game iPhone\u2009Mcé SS. e.g. V vs Machine'
+  got   'Game iPhone\u2009Mcé ß. e.g. V vs Machine'
+  input 'to ﬁnance MS'
+  want  'To FInance MS'
+  got   'To ﬁnance MS'
+  input 'U.S. MACHINE AT ISLAND‘ CITY İSTANBUL$ VS. MACHINE'
+  want  'U.S. Machine at Island‘ City İstanbul$ vs. Machine'
+  got   'U.S. Machine at Island‘ City Istanbul$ vs. Machine'
+  input 'ROAD BBC\ta/b/c" rings step-by-step ﬁnance\tJavaScript'
+  want  'ROAD BBC\ta/B/C" Rings Step-by-Step FInance\tJavaScript'
+  got   'ROAD BBC\ta/B/C" Rings Step-by-Step ﬁnance\tJavaScript'
+  input 'V1.2 ﬁnance Life ocean — book McDonald\xa0code[ BBC'
+  want  'V1.2 FInance Life Ocean — Book McDonald\xa0Code[ BBC'
+  got   'V1.2 ﬁnance Life Ocean — Book McDonald\xa0Code[ BBC'

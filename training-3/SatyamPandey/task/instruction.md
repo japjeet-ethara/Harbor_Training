@@ -27,11 +27,20 @@ Replace the Python implementation with a Go program at the root of `/workspace/r
   byte for byte, for every possible input line, including lines with non-ASCII letters,
   unusual punctuation, tabs, other whitespace characters, and leading or trailing spaces.
 
+**Mode: the answers come from titlecase WITH the `regex` package** (`REGEX_AVAILABLE`
+is `True`). Without `regex` the original falls back to `re` and gives different answers
+for many titles; those answers are not the specification.
+
 ## Hard rules
 
-- Go standard library only. No third-party modules, no cgo.
-- The program must be self-contained: it must not start other programs (no `os/exec`) and
-  must not need Python at run time.
+- Go standard library only. No third-party modules, no cgo, no assembly or other
+  non-Go source files, no symbolic links.
+- The program must be self-contained: it must not start other programs and must not need
+  Python at run time. The packages `os/exec`, `syscall`, `unsafe` and `plugin` may not be
+  imported (and no imported package may depend on `os/exec` or `plugin`), and the names
+  `StartProcess` and `ForkExec` may not appear in the Go source.
+- At grading time the program runs as an unprivileged user that can read nothing but its
+  standard input: not the repository, not any test files.
 - When you finish, no `.py` files may remain anywhere under `/workspace/repo`.
 - `go build ./...` must pass in `/workspace/repo` with the Go toolchain in the container
   (Go 1.23).
@@ -42,10 +51,12 @@ Speed, memory use, error message wording, code style, documentation, and unit te
 
 ## How it is graded
 
-Hidden automatic checks run against what is in `/workspace/repo` after you finish, and the
-score is partial:
+Hidden automatic checks run against what is in `/workspace/repo` after you finish:
 
-1. The Go program builds.
-2. No Python files remain and the rules above are respected, and the program builds.
-3. The program's output on a large set of titles that you have not seen, measured as the
-   share of lines that match the original's output exactly.
+1. The rules above are checked and the program is built. If either fails, the score is 0.
+2. The program is run on 100,000 titles that you have not seen, plus 5,000 new titles
+   generated at grading time (same kinds of words, many of them changed into words that
+   appear nowhere else; their expected output is computed by the original at that moment). For each set the share of lines that match the
+   original's output exactly is measured and turned into `max(0, (share - 0.9) / 0.1)`:
+   nothing below 90% exact, 1.0 only when every line is exact. The score is the lower
+   of the two.

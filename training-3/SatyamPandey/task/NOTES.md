@@ -52,3 +52,23 @@ ideographic space) and `\w` (word boundary next to accented letters / digits / u
   2. A stale `__pycache__/*.pyc` from the author's machine was in the image and failed `no_python`.
      Fix: removed it, and the check now looks at `.py` only (exactly what the instruction forbids).
   3. Reward Kit needs Python >= 3.12; the Go image has 3.11. Fix: `uv` + Python 3.12 in `tests/Dockerfile`.
+
+## Day 5 hardening (2026-11-20) — details in `../HARDEN.md`
+- Exam replaced: `tests/data/inputs.txt` + `answers.txt`, 100,000 titles from `kit/make_pool.py 100000 1`
+  (trainer kit + extra word families), answers frozen twice by `kit/answers.py` WITH `regex`
+  (0 dropped). `tests/gen.py` and the old 2,000 + 2,000 files were removed (old hidden set kept in
+  `../measure/old-exam/` for the before/after measurement).
+- Checks moved to `tests/checks/`. Only `behaviour` is scored; `build` / `no_python` have weight 0 and
+  are a gate inside `behaviour`. The agent's program runs in Reward Kit's `Worker` (fresh unprivileged
+  UID; `/tests`, `/logs/verifier`, `/workspace` unreadable). Score = `max(0, (share - 0.9) / 0.1)`.
+- The new exam found a real bug in this oracle: 1,499 / 100,000 wrong (full Unicode case mapping:
+  `ß`→`SS`, `ﬁ`→`FI`, `İ`→`i̇`). Fixed in `solution/solve.sh` (`casing.go`, `casetables.go`), plus the
+  `regex` `\w` and `regex.I` folding (`ſ`, `K`, `İ`) found by a differential fuzz. Now 0 / 100,000.
+- `cheat/solve.sh` (Day 1 cheat) still prints the OLD visible answers; kept for history.
+- Re-verify (counter-attacks): `behaviour` also grades 5,000 fresh titles made at grading time
+  (`tests/checks/fresh.py`, answers from `tests/original/` WITH pinned `regex`) and takes the min,
+  so a lookup table of the public answers scores 0; `rules.py` also bans `os/exec` / `plugin` /
+  `runtime/cgo` anywhere in the dependency tree (closes `net/http/cgi`).
+- Counter-attack round 2: fresh titles now mutate ~half of their words (46% of fresh words are not in
+  the public pool), because a word-by-word table learned from the public answers reached 88.8% on
+  unmutated fresh titles; now 37.9% (probe-wordtable scores 0.0, `jobs/2026-11-20__16-45-53`).
