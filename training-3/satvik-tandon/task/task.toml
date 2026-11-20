@@ -13,7 +13,7 @@ keywords = ["go", "porting", "titlecase", "hidden-tests"]
 [verifier]
 timeout_sec = 600.0
 environment_mode = "separate"
-network_mode = "public"
+network_mode = "no-network"
 collect = []
 
 [verifier.env]
