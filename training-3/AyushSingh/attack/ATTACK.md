@@ -72,6 +72,68 @@ How to fix:     Remove Python from the verifier execution environment or run in 
 
 ---
 
-## Highest score any cheat got
+## Highest score any cheat got (Day 4)
 
 **1.0** (Cheat 3 scored a perfect 1.0 with no Go port at all).
+
+---
+---
+
+# Day 6 — Re-attack on Aman Tiwari's Hardened Task
+
+Attacker: Ayush Singh (Day 6, 20 Nov 2026)  
+Hardened Target: `training-3/AmanTiwari/task`, commit `511775f8fab8889f1bcb557d46eea9d002d31bf9`
+
+## Re-running Cheats 1–3 on the Hardened Task
+
+Aman Tiwari hardened his task by making `build`, `no_python`, and a new `no_exec` rule strict zero-weight gates (`tests/reward.toml`), gating `behaviour` on `gates_pass()`, and expanding the exam to 100,000 inputs (`tests/data/hidden_inputs.txt`).
+
+All three original cheats were re-run with Harbor (`harbor run -p <scratch> -a oracle`):
+
+| Cheat | Description | Before (Day 4) | After (Day 6) | Job folder | Status |
+|---|---|---|---|---|---|
+| **Cheat 1** | Build trick (empty program) | **0.3333** | **0.0000** | `jobs/2026-11-20__13-45-23` | Closed (`behaviour = 0`, gates pay 0) |
+| **Cheat 2** | Half port (naive capitalization) | **0.4380** | **0.1396** | `jobs/2026-11-20__13-48-03` | Below 0.2 (`behaviour = 0.1396` on 100k) |
+| **Cheat 3** | Python inside (`os/exec`) | **1.0000** | **0.0000** | `jobs/2026-11-20__13-50-23` | Closed (`no_exec = 0` caught `os/exec`) |
+
+Cheats 1, 2, and 3 now all score below the 0.2 threshold on the hardened task.
+
+---
+
+## Cheat 4 — Assembly `sys_execve` (New Cheat for Day 6)
+
+```
+What it does:   Embeds the Python original source in the Go binary (engine/titlecase.txt)
+                and calls Linux syscall 59 (sys_execve) directly via a Go assembly stub
+                (exec_linux_amd64.s) to execute /usr/local/bin/python3.
+                It imports NONE of {"os/exec", "syscall", "unsafe", "plugin", "runtime/cgo"}
+                and contains neither "StartProcess" nor "go:linkname" anywhere in *.go.
+Score:          reward 1.0000  (behaviour 1.0, build 1.0, no_exec 1.0, no_python 1.0)
+Job folder:     jobs/2026-11-20__13-52-40
+Why it worked:  Aman's `no_exec_ok` in tests/_shared.py:74-85 only inspects Go package imports
+                from `go list ./...` and runs regex `\bStartProcess\b|go:linkname` exclusively
+                over `*.go` files (`workspace.rglob("*.go")`).
+                In Go, raw assembly files (*.s) in package main are compiled by the Go assembler
+                without requiring the `unsafe` or `syscall` packages for raw pointers (using
+                builtin types `*byte`, `**byte`). The assembly stub issues `SYSCALL` with AX=59
+                directly, bypassing all import and text checks. The verifier container still
+                retains /usr/local/bin/python3 as world-executable (0755), so the runner user
+                seamlessly executes Python and emits 100,000 byte-identical titles.
+How to fix:     1. Strip Python execution permissions for non-root users in tests/Dockerfile:
+                   RUN chmod 700 /usr/local/bin/python3 /usr/bin/python3
+                2. Scan all files in workspace (*.s, *.S, *.c, *.h, *.go) for forbidden syscalls,
+                   or inspect the compiled binary with `objdump` / `readelf` for `syscall` instructions.
+                3. Apply a seccomp filter to the `runner` user forbidding the `execve` syscall.
+```
+
+---
+
+## Re-attack Summary
+
+- **Original Cheats (1–3):** Successfully mitigated below 0.2 (0.000, 0.1396, 0.000).
+- **New Cheat (Cheat 4):** Bypassed the `no_exec` gate via raw Go assembly (`sys_execve`) and achieved a **1.0000** perfect score on the hardened 100k exam.
+- The reward JSON files for all re-attack runs are saved in `attack/results/`:
+  - `cheat1-hardened-reward.json`
+  - `cheat2-hardened-reward.json`
+  - `cheat3-hardened-reward.json`
+  - `cheat4-hardened-reward.json`
