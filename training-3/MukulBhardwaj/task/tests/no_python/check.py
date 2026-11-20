@@ -60,6 +60,8 @@ def no_python_and_build_passes(workspace: Path) -> bool:
         with tempfile.TemporaryDirectory(
             prefix="titlecase-smoke-", dir=workspace.resolve()
         ) as temp_dir:
+            # The runner executes the binary as an unprivileged user.
+            Path(temp_dir).chmod(0o711)
             executable = Path(temp_dir) / "titlecase"
             build_env = os.environ.copy()
             build_env["CGO_ENABLED"] = "0"
