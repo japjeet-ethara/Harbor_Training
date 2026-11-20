@@ -1,0 +1,9 @@
+# Only `behaviour` is scored (Day 5 fix for cheats 1 and 2, which earned 2/6 = 0.33
+# from `build` + `no_python` alone). The other two are still run and reported in
+# reward-details.json so a failing run is easy to diagnose, and both conditions are
+# enforced inside `behaviour` as a gate.
+#   nothing done = 0, rules broken = 0, under 90% exact = 0, perfect = 1.0
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 0.0, no_python = 0.0, behaviour = 1.0 }
