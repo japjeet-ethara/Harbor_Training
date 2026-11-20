@@ -73,12 +73,12 @@ func hasUcElsewhere(word string) bool {
 	for i < len(runes) && isPunct(runes[i]) && runes[i] != '^' {
 		i++
 	}
-	if i >= len(runes) || !unicode.IsLetter(runes[i]) {
+	if i >= len(runes) || runes[i] > 127 || !isAsciiLetter(byte(runes[i])) {
 		return false
 	}
 	start := i
-	for i < len(runes) && unicode.IsLetter(runes[i]) {
-		if i > start && unicode.IsUpper(runes[i]) {
+	for i < len(runes) && runes[i] <= 127 && isAsciiLetter(byte(runes[i])) {
+		if i > start && runes[i] >= 'A' && runes[i] <= 'Z' {
 			return true
 		}
 		i++
@@ -148,14 +148,21 @@ func matchAposSecond(word string) (bool, string) {
 }
 
 func matchMacMc(word string) (bool, string, string) {
-	if len(word) < 3 {
+	if len(word) < 4 {
 		return false, "", ""
 	}
 	prefix := word[:2]
-	if prefix == "mc" || prefix == "Mc" || prefix == "MC" {
-		return true, "Mc", word[2:]
+	if prefix != "mc" && prefix != "Mc" && prefix != "MC" {
+		return false, "", ""
 	}
-	return false, "", ""
+	suffix := []rune(word[2:])
+	if len(suffix) < 2 {
+		return false, "", ""
+	}
+	if first := suffix[0]; first != '_' && !unicode.IsLetter(first) && !unicode.IsNumber(first) {
+		return false, "", ""
+	}
+	return true, "Mc", word[2:]
 }
 
 func matchMrMrsMsDr(word string) bool {
@@ -169,11 +176,11 @@ func matchMrMrsMsDr(word string) bool {
 func capFirst(word string) string {
 	runes := []rune(word)
 	for i, r := range runes {
-		if isPunct(r) {
-			continue
-		}
-		if isWordChar(byte(r)) || r > 127 {
+		if r == '_' || unicode.IsLetter(r) || unicode.IsNumber(r) {
 			runes[i] = unicode.ToUpper(r)
+			break
+		}
+		if !isPunct(r) {
 			break
 		}
 	}
@@ -206,36 +213,35 @@ func applySmallFirst(word string) string {
 	if i >= len(runes) {
 		return word
 	}
-	j := i
-	for j < len(runes) && (isWordChar(byte(runes[j])) || runes[j] == '.') {
-		j++
-	}
-	sub := string(runes[i:j])
-	if isSmallWord(sub) {
-		capSub := strings.ToUpper(sub[:1]) + strings.ToLower(sub[1:])
-		return string(runes[:i]) + capSub + string(runes[j:])
+	for end := i + 1; end <= len(runes) && end-i <= 3; end++ {
+		before := isPythonWordRune(runes[end-1])
+		after := end < len(runes) && isPythonWordRune(runes[end])
+		if before != after && isSmallWord(string(runes[i:end])) {
+			return string(runes[:i]) + strings.ToUpper(string(runes[i])) +
+				strings.ToLower(string(runes[i+1:end])) + string(runes[end:])
+		}
 	}
 	return word
 }
 
+func isPythonWordRune(r rune) bool {
+	return r == '_' || unicode.IsLetter(r) || unicode.IsNumber(r)
+}
+
 func applySmallLast(word string) string {
 	runes := []rune(word)
-	if len(runes) == 0 {
-		return word
-	}
-	end := len(runes)
-	if isPunct(runes[end-1]) {
-		end--
-	}
-	start := end
-	for start > 0 && (isWordChar(byte(runes[start-1])) || runes[start-1] == '.') {
-		start--
-	}
-	if start < end {
-		sub := string(runes[start:end])
-		if isSmallWord(sub) {
-			capSub := strings.ToUpper(sub[:1]) + strings.ToLower(sub[1:])
-			return string(runes[:start]) + capSub + string(runes[end:])
+	for start, r := range runes {
+		if !isPythonWordRune(r) || (start > 0 && isPythonWordRune(runes[start-1])) {
+			continue
+		}
+		for end := len(runes); end > start; end-- {
+			if end < len(runes) && (end != len(runes)-1 || !isPunct(runes[end])) {
+				break
+			}
+			if isSmallWord(string(runes[start:end])) {
+				return string(runes[:start]) + strings.ToUpper(string(r)) +
+					strings.ToLower(string(runes[start+1:end])) + string(runes[end:])
+			}
 		}
 	}
 	return word

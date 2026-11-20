@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 )
 
 // Patterns copied from the stdlib-re fallback in python-titlecase.
@@ -18,14 +19,13 @@ var (
 	subphrase  = regexp.MustCompile("([:.;?!\\-\u2013\u2012\u2014\u2015][ ])(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\\.?|via|vs\\.?)")
 	macMC      = regexp.MustCompile("^([Mm]c|MC)(\\w.+)")
 	mrMrs      = regexp.MustCompile("(?i)^((m((rs?)|s))|Dr)$")
-	inlinePeriod = regexp.MustCompile("(?i)[\\w][.][\\w]")
+	inlinePeriod = regexp.MustCompile("(?i)[\\p{L}\\p{N}_][.][\\p{L}\\p{N}_]")
 	ucElsewhere  = regexp.MustCompile("\\A[!\"\u201c#$%&'\u2018()*+,\\-\u2013\u2012\u2014\u2015./:;?@[\\\\\\]_`{|}~]*?[a-zA-Z]+[A-Z]+?")
-	capFirst     = regexp.MustCompile("^[!\"\u201c#$%&'\u2018()*+,\\-\u2013\u2012\u2014\u2015./:;?@[\\\\\\]_`{|}~]*?([\\w])")
-	aposSecond   = regexp.MustCompile("(?i)^[dol]['\u2018][\\w]+(?:['s]{2})?$")
-	ucInitials   = regexp.MustCompile("^(?:[A-Z]\\.|[A-Z]\\.[A-Z])+$")
+	capFirst     = regexp.MustCompile("^[!\"\u201c#$%&'\u2018()*+,\\-\u2013\u2012\u2014\u2015./:;?@[\\\\\\]_`{|}~]*?([\\p{L}\\p{N}_])")
+	aposSecond   = regexp.MustCompile("(?i)^[dol]['\u2018][\\p{L}\\p{N}_]+(?:['s]{2})?$")
+	ucInitials   = regexp.MustCompile("^(?:[\\p{Lu}]\\.|[\\p{Lu}]\\.[\\p{Lu}])+$")
 	consonants   = regexp.MustCompile("(?i)\\A[bcdfghjklmnpqrstvwxz]+\\z")
 	lineSep      = regexp.MustCompile(`[\r\n]+`)
-	spaceSep     = regexp.MustCompile(`\s`)
 )
 
 func main() {
@@ -159,7 +159,12 @@ func subphraseReplace(s string) string {
 }
 
 func splitWS(s string) (words, spaces []string) {
-	idxs := spaceSep.FindAllStringIndex(s, -1)
+	idxs := make([][2]int, 0)
+	for i, r := range s {
+		if unicode.IsSpace(r) {
+			idxs = append(idxs, [2]int{i, i + utf8.RuneLen(r)})
+		}
+	}
 	if len(idxs) == 0 {
 		return []string{s}, nil
 	}

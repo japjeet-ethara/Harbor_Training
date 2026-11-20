@@ -1,0 +1,39 @@
+# AyushRanjan port
+
+## old exam (2,000)
+wrong answers      47 of 2000
+chance a random 2000 suite sees none of them: 0%
+  input 'thing the v1.2 blue room'
+  want  'Thing the V1.2 Blue Room'
+  got   'Thing the v1.2 Blue Room'
+  input 'http://foo/bar v1.2 at car round keeper \t way'
+  want  'Http://foo/bar V1.2 at Car Round Keeper \t Way'
+  got   'Http://foo/bar v1.2 at Car Round Keeper \t Way'
+  input 'j.r.r. fear of follow but Sleep proud \t by '
+  want  'j.r.r. Fear of Follow but Sleep Proud \t by '
+  got   'j.r.r. Fear of Follow but Sleep Proud \t By '
+  input 'under map \t mcand mother'
+  want  'Under Map \t McAnd Mother'
+  got   'Under Map \t Mcand Mother'
+  input 'LinkedIn either/or _the_ silver LIFE after honest wish'
+  want  'LinkedIn Either/or _The_ Silver LIFE After Honest Wish'
+  got   'LinkedIn Either/or _the_ Silver LIFE After Honest Wish'
+
+## new exam (100,000)
+wrong answers      10833 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'ocean "v1.2. war\xa0\\data\u2009%summer a/b/c rhythm'
+  want  'Ocean "V1.2. War\xa0\\Data\u2009%Summer a/B/C Rhythm'
+  got   'Ocean "v1.2. War\xa0\\Data\u2009%Summer a/B/C Rhythm'
+  input 'McAfee ftp://host/file peace] vs._ for a\tMrs book ifconfig'
+  want  'McAfee Ftp://host/file Peace] Vs._ for a\tMrs Book Ifconfig'
+  got   'McAfee Ftp://host/file Peace] vs._ for a\tMrs Book Ifconfig'
+  input '_the_'
+  want  '_The_'
+  got   '_the_'
+  input '+winter naïve %_the_ a/b/c asphalt [for xkcd \\game'
+  want  '+Winter Naïve %_The_ a/B/C Asphalt [For XKCD \\Game'
+  got   '+Winter Naïve %_the_ a/B/C Asphalt [For XKCD \\Game'
+  input 'TCP/IP _dream. Mrs'
+  want  'TCP/IP _Dream. Mrs'
+  got   'TCP/IP _dream. Mrs'

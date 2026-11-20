@@ -15,3 +15,5 @@ chance a random 2000 suite sees none of them: 0%
   input '_dream  $v v? for river Mcx- macintosh'
   want  '_dream  $V V? For River McX- Macintosh'
   got   '_Dream  $V V? For River McX- Macintosh'
+
+Old exam: 0 wrong answers of 2000.

@@ -108,4 +108,4 @@ def hidden_lines_match(workspace: Path) -> float:
     )
     if compared == 0:
         return 1.0
-    return matched / compared
+    return 1.0 if matched == compared else 0.0

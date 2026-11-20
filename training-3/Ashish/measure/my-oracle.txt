@@ -1,0 +1,6 @@
+port: my oracle (training-3/Ashish/task/solution/solve.sh, hardened)
+method: ran solve.sh in golang:1.23 --network none, then the built binary on key/inputs.txt
+exam: Ashish 100,000-line exam, mode re (without regex)
+
+wrong answers      0 of 100000
+chance a random 2000 suite sees none of them: 100%

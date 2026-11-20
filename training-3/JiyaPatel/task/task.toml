@@ -1,5 +1,5 @@
 schema_version = "1.4"
-artifacts = []
+artifacts = ["/workspace/repo"]
 
 [task]
 name = "japjeet-ethara/titlecase-go"
@@ -12,6 +12,7 @@ keywords = []
 
 [verifier]
 timeout_sec = 600.0
+environment_mode = "separate"
 collect = []
 
 [verifier.env]

@@ -1,9 +1,12 @@
 schema_version = "1.4"
+artifacts = ["/workspace/repo"]
 
 [metadata]
 
 [verifier]
 timeout_sec = 900.0
+environment_mode = "separate"
+network_mode = "no-network"
 
 [agent]
 timeout_sec = 900.0

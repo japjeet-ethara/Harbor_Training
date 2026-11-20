@@ -1,0 +1,80 @@
+Port survey for the before-and-after table
+==========================================
+
+Exam:   Ashish 100,000-line exam, mode re (WITHOUT the regex package)
+        task/tests/data/inputs.txt + answers.txt, frozen from pool.txt
+        (kit/make_pool.py 100000 1) by kit/answers.py, 0 inputs dropped.
+Old exam: the 2,000 hidden lines of the attacked commit
+        d0f6618c3e98c53d2ee133301080289f7a24aa92
+        (Ashishreliable/titlecase-go/tests/data/hidden_inputs.txt).
+
+How each port was run
+---------------------
+Every port came out of the class repo with `git cat-file blob`; no classmate
+folder was touched and no classmate port is pushed. Each one was copied into
+training-3/Ashish/ports/<name>/ , which .gitignore excludes.
+
+Default method: seed /workspace/repo with the pristine python-titlecase
+snapshot, run the port's own solution/solve.sh inside golang:1.23 with
+--network none, then `go build -o /tmp/port .` and feed key/inputs.txt on
+stdin. That reproduces what the port's author's own task does.
+
+MadhurJain and MohammadAdnan needed the handout's simpler recipe instead:
+their solve.sh copies from an absolute /solution/go/ path that only exists
+inside their own Harbor container, so their solution/go/ directory was built
+directly. This is noted in their measure files.
+
+Results
+-------
+
+| Port            | Wrong on new 100k exam | Wrong on old 2k exam | Lines printed |
+|-----------------|-----------------------:|---------------------:|--------------:|
+| my oracle       |                      0 |                    0 |       100,000 |
+| PriyanshuSingh  |                      0 |                    0 |       100,000 |
+| Charitra        |                      0 |                    0 |       100,000 |
+| MadhurJain      |                      0 |                    0 |       100,000 |
+| OmarGhyas       |                  6,583 |                    0 |       100,000 |
+| NehaGaur        |                  8,022 |                    0 |       100,000 |
+| MohammadAdnan   |                 99,485 |                    0 |        99,999 |
+
+Not one of the six was caught by the old 2,000-line exam. All six score a
+clean 0 wrong on it, including the port that is wrong on 99,485 of 100,000.
+
+The two ports chosen for HARDEN.md
+----------------------------------
+Asked for: the port with the most wrong answers that does not crash, and a
+port with only a handful wrong.
+
+Most wrong, not a crash:  MohammadAdnan, 99,485 of 100,000. It exits 0 and
+never crashes. It swallows the pool's single empty input line, so every later
+line is shifted by one. Realigned past that one dropped line it is wrong on
+only 149 of 99,999, so the 99,485 is one line-contract bug amplified, not
+99,485 independent mistakes. Both numbers are in measure/MohammadAdnan.txt.
+
+A handful wrong:  no port in this survey qualifies, and I am not going to
+pretend otherwise. The six results are 0, 0, 0, 6,583, 8,022 and 99,485 -
+there is nothing in the 1-to-100 range. The survey was capped at six ports,
+so a handful-wrong port may well exist elsewhere in the class; I did not find
+one in this sample. NehaGaur (8,022) is used as the second row instead.
+
+The Lesson-2 point still has a real measurement behind it, just from a
+different direction: MohammadAdnan's fatal bug is triggered by exactly one
+input out of 100,000, and a random 2,000-line exam contains that input only
+2.0% of the time. compare.py's own "chance a random 2000 suite sees none of
+them" column reads 0% for the 6,583 and 8,022 cases, which is the other half
+of the lesson: once a port is wrong on thousands of lines, size stops
+mattering and weirdness is what did the catching.
+
+What the failures actually are
+------------------------------
+OmarGhyas, 6,583 wrong: his port is not buggy at all, it is built for the
+other mode. His 6,583 wrong lines are exactly the set of lines where the two
+modes disagree, and he matches the WITH-regex answers on all 100,000. This is
+the whole reason instruction.md now states the mode.
+
+NehaGaur, 8,022 wrong: mostly the same mode question, from the CAPFIRST rule -
+_dream -> _Dream (1,416), __init__ -> __Init__ (1,454), v1.2 -> V1.2 (1,528) -
+plus 972 lines of the full-case-mapping bug my own port also had
+(nt-with-apostrophe -> wrong case).
+
+MohammadAdnan, 99,485 wrong: drops the empty line, then 149 genuine errors.

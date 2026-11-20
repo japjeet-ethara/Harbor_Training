@@ -15,7 +15,7 @@ allowed_hosts = []          # Harbor adds the model endpoint automatically
 
 [verifier]
 timeout_sec = 600.0
-environment_mode = "shared"   # tests run in their own container, agent cannot see tests/
+environment_mode = "separate"
 network_mode = "no-network"     # grading is fully local, no judge API needed
 
 [environment]

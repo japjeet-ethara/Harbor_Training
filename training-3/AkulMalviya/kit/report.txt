@@ -1,0 +1,4 @@
+Pool inputs: 100000
+Stable answers: 100000
+Unstable answers dropped: 0
+Reference: CPython 3.14.10, re mode

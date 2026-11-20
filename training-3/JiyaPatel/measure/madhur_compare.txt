@@ -1,0 +1,17 @@
+wrong answers      876 of 105000
+chance a random 2000 suite sees none of them: 0%
+  input 'night _xkcd'
+  want  'Night _xkcd'
+  got   'Night _Xkcd'
+  input 'ıstanbul] to xkcd star} night _at\t"o\'reilly\'s'
+  want  'Istanbul] to XKCD Star} Night _at\t"O\'reilly\'s'
+  got   'Istanbul] to XKCD Star} Night _At\t"O\'reilly\'s'
+  input 'mr star\t`in rings\xa0node.js -lead _guide peace'
+  want  'Mr Star\t`In Rings\xa0node.js -Lead _guide Peace'
+  got   'Mr Star\t`In Rings\xa0node.js -Lead _Guide Peace'
+  input 'and for “Mcdonald - _for. story. A/B/C! v1.2'
+  want  'And for “Mcdonald - _for. Story. A/B/C! V1.2'
+  got   'And for “Mcdonald - _For. Story. A/B/C! V1.2'
+  input '—summer École island _lord war'
+  want  '—Summer École Island _lord War'
+  got   '—Summer École Island _Lord War'

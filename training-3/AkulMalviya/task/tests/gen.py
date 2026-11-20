@@ -1,6 +1,6 @@
-"""Generate fixed titlecase inputs and expected output from the original library.
+"""Generate the original 2,000-title practice fixtures in the ignored key directory.
 
-Expected lines are produced only by calling titlecase() in ../python-titlecase.
+The 100,000-title exam uses kit/make_pool.py and kit/answers.py.
 """
 
 import random
@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 TASK_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = TASK_ROOT / "tests" / "data"
+DATA_DIR = TASK_ROOT.parent / "key" / "practice-2000"
 COUNT = 2000
 
 # Small words kept lowercase in the middle of a title.

@@ -11,6 +11,10 @@ if SPEC is None or SPEC.loader is None:
     raise RuntimeError(f"Cannot load bundled titlecase source: {SOURCE}")
 MODULE = module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+if MODULE.REGEX_AVAILABLE:
+    raise RuntimeError(
+        "Generate the pinned fallback-mode fixtures without the optional regex package"
+    )
 
 tokens = [
     "river", "garden", "quiet", "bright", "silver", "morning", "window",
@@ -18,6 +22,7 @@ tokens = [
     "dream", "small", "city", "music", "shadow", "open", "world", "light",
     "a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
     "of", "on", "or", "the", "to", "via", "vs", "v",
+    "v1.2", "_dream", "ıstanbul", "Mcx-", "non\u00a0breaking",
 ]
 
 def ordinary():
@@ -57,7 +62,10 @@ def make_title():
         return random.choice(["McDONALD meets eBay", "d'ARTAGNAN and the king", "DR. SMITH vs. JONES"])
     if kind == 14:
         return random.choice(["river: of dreams", "city—of glass", "paper? the answer", "music! and light"])
-    return base.title()
+    return random.choice([
+        base.title(), "v1.2", "_dream", "ıstanbul", "Mcx-",
+        "a\u00a0the end", "two\u00a0words and\u00a0spaces",
+    ])
 
 def generate(count, excluded):
     found = set()
@@ -68,7 +76,43 @@ def generate(count, excluded):
     return sorted(found)
 
 normal = generate(2000, set())
-hidden = generate(2000, set(normal))
+regressions = {
+    "v1.2",
+    "_dream",
+    "ıstanbul",
+    "Mcx-",
+    "a\u00a0the end",
+    "two\u00a0words and\u00a0spaces",
+    "one\u00a0two\tthree",
+    "IF",
+    "aB",
+}
+
+# Keep the rule-specific families in the hidden split even though the visible
+# generator has only a small finite set of apostrophe, slash, hyphen, and
+# punctuation templates. The generator still emits exactly 100,000 hidden
+# inputs; these cases replace random inputs rather than expanding the exam.
+rule_words = [
+    "river", "garden", "quiet", "bright", "silver", "morning", "window",
+    "journey", "story", "paper", "blue", "mountain", "clock", "summer",
+    "dream", "small",
+]
+for i, left in enumerate(rule_words):
+    for j, right in enumerate(rule_words):
+        for apostrophe_name in ("o'neill", "d'artagnan", "l'ivry", "O’NEILL"):
+            regressions.add(f"{apostrophe_name} {left} {right}")
+        regressions.add(f"{left}/{right} {right}")
+        regressions.add(f"{left}-{right} {right}")
+        regressions.add(f"eBay {left} {right}")
+        regressions.add(f"NASA {left} {right}")
+        regressions.add(f"{chr(65 + i)}. {chr(65 + j)}. {left} {right}")
+        for opening, closing in (("(", ")"), ("[", "]"), ('"', '"'), ("#", "")):
+            regressions.add(f"{opening}{left}{closing} and {right}")
+
+hidden = sorted(
+    regressions
+    | set(generate(100_000 - len(regressions), set(normal) | regressions))
+)
 
 data = ROOT / "tests" / "data"
 data.mkdir(parents=True, exist_ok=True)

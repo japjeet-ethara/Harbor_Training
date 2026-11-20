@@ -13,6 +13,6 @@ reward files.
 | `tests/test.sh` | runs the Go grader in `tests/checks/` |
 | `tests/checks/` | `build.go`, `no_python.go`, `behaviour.go`, `main.go` — weights 1 / 1 / 4 |
 | `tests/data/inputs.txt`, `answers.txt` | 100,000 titles and frozen answers from `../kit/answers.py` |
-| `solution/solve.sh`, `solution/go/` | the oracle (uploaded only for oracle runs) |
+| `solution/solve.sh` | the oracle; the Go port is written out by this script (uploaded only for oracle runs) |
 
 `Screenshots/` holds the practice-1 screenshots (before hardening).

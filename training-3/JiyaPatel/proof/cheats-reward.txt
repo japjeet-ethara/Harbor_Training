@@ -1,0 +1,5 @@
+oracle:              build=1.0 no_python=1.0 behaviour=1.0000 reward=1.0000
+nop:                 build=0.0 no_python=0.0 behaviour=0.0000 reward=0.0000
+niharika-cheat1:     build=0.0 no_python=0.0 behaviour=0.0000 reward=0.0000 (was 0.3417)
+niharika-cheat2:     build=0.0 no_python=0.0 behaviour=0.0000 reward=0.0000 (was 0.4070)
+niharika-cheat3:     build=0.0 no_python=0.0 behaviour=0.0000 reward=0.0000 (was 0.3417)

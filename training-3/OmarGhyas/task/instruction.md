@@ -14,7 +14,7 @@ Use the Go standard library only. No `.py` files may be left anywhere in the rep
 
 ## 4. Behaviour
 
-The output must match the original Python `titlecase()` byte for byte, for every input.
+The output must match the original Python `titlecase()` in `regex` mode (with the optional `regex` package installed) byte for byte, for every input.
 
 ## 5. Not checked
 
@@ -22,4 +22,4 @@ Speed, memory, and error-message wording are not checked.
 
 ## 6. How it is graded
 
-Hidden automatic tests grade the program. The score can be partial.
+Hidden automatic tests (evaluated in `regex` mode) grade the program. The score can be partial.

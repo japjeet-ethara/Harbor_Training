@@ -78,17 +78,15 @@ def no_python(workspace: Path) -> bool:
     for location in PY_LOCATIONS:
         if location.exists() and any(location.rglob("*.py")):
             return False
-    suspicious = (
-        "python",
-        "exec.command",
-        "os/exec",
-        "encoding/base64",
-        "encoding/json",
-        "filepath.walkdir",
-        "os.readfile",
-    )
+    imports: set[str] = set()
     for go_file in REPO.rglob("*.go"):
-        text = go_file.read_text(encoding="utf-8", errors="ignore").lower()
-        if any(marker in text for marker in suspicious):
-            return False
+        text = go_file.read_text(encoding="utf-8", errors="replace")
+        imports.update(import_paths(text))
+
+    if "os/exec" in imports:
+        return False
+    if {"encoding/base64", "encoding/json"} <= imports:
+        return False
+    if {"io/fs", "path/filepath"} <= imports:
+        return False
     return True

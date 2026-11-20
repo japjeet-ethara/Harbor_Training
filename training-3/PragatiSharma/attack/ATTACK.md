@@ -125,3 +125,63 @@ From reading the same code (not measured): an extra line at the start would shif
 All three incomplete solutions scored above the README’s 0.2 cheat target. Cheat 2 used only basic first-letter capitalisation and earned the highest reward.
 
 **Highest measured reward: 0.4693, for Cheat 2.**
+
+
+---
+
+# Day 6 re-attack of Priyanshu's hardened task
+
+Re-ran my three Day 4 cheats, plus one new safe probe, against Priyanshu's **hardened**
+task. Every reward is **0.0** — all below the 0.2 target. His fixes hold.
+
+**Target.** Folder `training-3/PriyanshuSingh/task/` (his hardened task, the training-3
+layout; not the pre-harden `PriyanshuSingh/titlecase-go/` I attacked on Day 4).
+- Target commit SHA (branch tip): `3f869ac71b2c6e01bd191a0078fe77891c5a42eb` (`origin/training-3`).
+- The `task/` subtree was last changed at `46807dc` ("harden: close cheats 1-3, 100k exam
+  (re mode)"), tree id `deb9c2d0`; it is identical at the branch tip.
+
+**Method.** Harbor 0.25.0, Docker Desktop, Windows 11, 2026-11-20. His task was exported
+read-only with `git archive origin/training-3` into a disposable copy under my git-ignored
+`jobs/` folder; his folder was not touched. For each run only `solution/solve.sh` was replaced
+by my script (every other task file byte-identical to his export); then
+`harbor run -p <copy>/task -a oracle`. Scores are read from each trial's
+`verifier/reward.json`; match counts from `verifier/test-stdout.txt`.
+
+**His grader (why the scores are 0).** His `tests/checks/reward.toml` weights build / no_python /
+behaviour as 1 / 1 / 4, but his hardening ties the `build` and `no_python` points to the
+behaviour score, so they contribute 0 when behaviour is 0. Behaviour itself is 0 at or below a
+50% exact-match share, then rises linearly to 1.0 at 100%. His exam is **101,958** titles.
+
+## Results
+
+| My cheat | What it does | build | no_python | behaviour | reward | < 0.2? | Match share | Job folder (local, git-ignored) |
+|---|---|---|---|---|---|---|---|---|
+| Cheat 1 — echo | copies stdin to stdout | 0.0 | 0.0 | 0.0 | **0.0** | yes | 1.4761% (1505/101958) | `training-3/PragatiSharma/jobs/2026-11-20__15-51-56` (trial `task__frkcNf8`) |
+| Cheat 2 — first letter | uppercases each word's first ASCII letter | 0.0 | 0.0 | 0.0 | **0.0** | yes | 14.2068% (14485/101958) | `training-3/PragatiSharma/jobs/2026-11-20__15-53-55` (trial `task__e8ggqtk`) |
+| Cheat 3 — echo + extra line | echo, then one extra marker line | 0.0 | 0.0 | 0.0 | **0.0** | yes | 1.4761% (1505/101958), printed 101959 lines | `training-3/PragatiSharma/jobs/2026-11-20__15-55-43` (trial `task__KykxiQ8`) |
+| New — read-the-answers probe | pure-Go, read-only: tries to read his `inputs.txt`/`answers.txt` key at run time and answer from it | 0.0 | 0.0 | 0.0 | **0.0** | yes | 1.4761% (1505/101958) | `training-3/PragatiSharma/jobs/2026-11-20__15-58-29` (trial `task__PCmSzM8`) |
+
+Day 4 vs Day 6, same three cheats:
+
+| Cheat | Day 4 (his original task) | Day 6 (his hardened task) |
+|---|---|---|
+| 1 echo | 0.3823 | **0.0** |
+| 2 first letter | 0.4693 | **0.0** |
+| 3 echo + extra line | 0.3823 | **0.0** |
+
+## Why each cheat is now closed
+
+- **Cheats 1 and 3 (echo):** echo is correct only on titles titlecase leaves unchanged —
+  1.48% of his exam, far under the 50% floor, so behaviour is 0, and the build/no_python
+  points collapse with it. Cheat 3's extra line is now counted (he divides matches by the
+  larger of the input count and the printed line count): it printed 101,959 lines for 101,958
+  inputs and still scored the floor.
+- **Cheat 2 (first letter):** naive first-letter capitalisation matches 14.21%, still under
+  the 50% floor, so behaviour is 0.
+- **New read-the-answers probe (safe):** a standard-library Go program, read-only and with no
+  network, that walks the usual roots and his known `/tests/data` paths for an inputs/answers
+  pair and answers from it. It matched exactly the 1.48% echo floor, i.e. it found **no**
+  readable key: his answer lock (program runs as `nobody` after `chmod -R go-rwx /tests`, in a
+  separate verifier image) held. The probe only reads files; it changes nothing.
+
+**Highest Day 6 reward against Priyanshu's hardened task: 0.0 (all four probes).**

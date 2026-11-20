@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import json
 import subprocess
 from pathlib import Path
 
-HIDDEN_DATASET = Path("/tests/data/hidden.jsonl")
+INPUTS_FILE = Path("/tests/data/inputs.txt")
+ANSWERS_FILE = Path("/tests/data/answers.txt")
 BUILD_TIMEOUT_SEC = 120
-RUN_TIMEOUT_SEC = 60
+RUN_TIMEOUT_SEC = 120
 PROGRAM_USER = "nobody"
 
 
@@ -31,21 +31,15 @@ def python_files_absent(workspace: Path) -> bool:
     return not any(path.suffix == ".py" for path in workspace.rglob("*") if path.is_file())
 
 
-def load_hidden_cases() -> list[dict[str, str]]:
-    records = []
-    with HIDDEN_DATASET.open(encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, start=1):
-            record = json.loads(line)
-            if not isinstance(record, dict):
-                raise ValueError(f"hidden dataset line {line_number} is not an object")
-            text = record.get("input")
-            expected = record.get("expected")
-            if not isinstance(text, str) or not isinstance(expected, str):
-                raise ValueError(f"hidden dataset line {line_number} is missing strings")
-            records.append({"input": text, "expected": expected})
-    if not records:
+def load_hidden_cases() -> tuple[list[str], list[str]]:
+    with INPUTS_FILE.open(encoding="utf-8") as f_in, ANSWERS_FILE.open(encoding="utf-8") as f_ans:
+        inputs = f_in.read().split("\n")[:-1]
+        expected = f_ans.read().split("\n")[:-1]
+    if len(inputs) != len(expected):
+        raise ValueError(f"mismatched line counts: inputs={len(inputs)}, expected={len(expected)}")
+    if not inputs:
         raise ValueError("hidden dataset is empty")
-    return records
+    return inputs, expected
 
 
 def output_lines(stdout: bytes) -> list[str] | None:
@@ -62,7 +56,9 @@ def output_lines(stdout: bytes) -> list[str] | None:
 
 def behaviour_score(workspace: Path) -> float:
     """Build the workspace program and return the fraction of exact hidden matches."""
-    cases = load_hidden_cases()
+    if not go_build_succeeds(workspace) or not python_files_absent(workspace):
+        return 0.0
+    inputs, expected = load_hidden_cases()
     binary = Path("/var/grader/titlecase")
     binary.unlink(missing_ok=True)
     try:
@@ -79,7 +75,7 @@ def behaviour_score(workspace: Path) -> float:
         return 0.0
     binary.chmod(0o755)
 
-    payload = "\n".join(case["input"] for case in cases) + "\n"
+    payload = "\n".join(inputs) + "\n"
     try:
         ran = subprocess.run(
             [str(binary)],
@@ -98,7 +94,7 @@ def behaviour_score(workspace: Path) -> float:
         return 0.0
     matches = sum(
         1
-        for index, case in enumerate(cases)
-        if index < len(lines) and lines[index] == case["expected"]
+        for index, want in enumerate(expected)
+        if index < len(lines) and lines[index] == want
     )
-    return matches / len(cases)
+    return matches / len(expected)
