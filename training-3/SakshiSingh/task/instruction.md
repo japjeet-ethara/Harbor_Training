@@ -8,8 +8,10 @@ small words such as `a`, `an`, `and`, `of`, `the`, `to`, `via` and `vs`.
 The behaviour you must reproduce is the single public function
 `titlecase(text)` in `titlecase/__init__.py`.
 
-The library runs on Python's standard-library `re` module in this image (the
-third-party `regex` package is **not** installed).
+**Which original the answers come from:** every expected answer was produced by
+python-titlecase 2.4.1 running **WITHOUT the `regex` package**, i.e. on Python's
+standard-library `re` module (`titlecase.REGEX_AVAILABLE == False`). The library
+behaves differently when `regex` is installed; match the `re` behaviour.
 
 ## What to build
 
@@ -32,6 +34,11 @@ function:
 5. The output must match the original Python `titlecase.titlecase(line)` **byte for
    byte** for every input line: same letters, same case, same punctuation and the
    same spacing.
+6. **The program must work on its own.** It is built with `CGO_ENABLED=0` and run
+   as an unprivileged user inside an empty directory that contains nothing but the
+   program itself: no other files, no Python, no shell, no network. It may only
+   read standard input and write standard output. Calling another program or
+   reading files will not work.
 
 > Tip: deleting the `.py` files can leave `titlecase/` empty. Remove the empty
 > directory (`rmdir titlecase`) before running a bare `go build ./...`: Go names
@@ -47,11 +54,14 @@ function:
 
 ## How you are graded
 
-Hidden automatic tests run after you stop. The score is a weighted mean:
+Hidden automatic tests run after you stop, on 100,000 hidden titles. The score is
+a weighted mean:
 
-- **build** (weight 1): `go build ./...` passes;
-- **no_python** (weight 1): no `.py` file remains **and** the build passes;
-- **behaviour** (weight 4): the share of hidden input lines whose output matches
-  the original Python library exactly.
+- **behaviour** (weight 4): the share of hidden titles whose output matches the
+  original Python library exactly;
+- **build** (weight 1): `go build ./...` passes **and** behaviour is at least 0.5;
+- **no_python** (weight 1): no `.py` file remains, the build passes **and**
+  behaviour is at least 0.5.
 
-Partial credit is given for behaviour. Doing nothing scores 0.
+Partial credit is given for behaviour. A program that builds but is not a real
+port earns nothing. Doing nothing scores 0.
