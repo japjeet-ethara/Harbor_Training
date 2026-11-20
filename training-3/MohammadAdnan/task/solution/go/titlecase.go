@@ -4,6 +4,7 @@ import (
 	"regexp"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 )
 
 const (
@@ -11,18 +12,25 @@ const (
 	punctPattern      = `!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}~`
 )
 
+// The answers come from titlecase WITHOUT the optional `regex` package, i.e. Python's `re`
+// module. There, \w on a str means any Unicode letter or digit, or "_" (Go's \w is ASCII only),
+// so wordClass spells it out. The `re`-mode patterns from titlecase/__init__.py are used:
+// INLINE_PERIOD [\w][.][\w], UC_ELSEWHERE [a-zA-Z]+[A-Z]+?, CAPFIRST ([\w]),
+// APOS_SECOND [\w]+, UC_INITIALS [A-Z].
+const wordClass = `\p{L}\p{N}_`
+
 var (
 	reSmallWords        = regexp.MustCompile(`(?i)^(` + smallWordsPattern + `)$`)
-	reSmallFirst        = regexp.MustCompile(`(?i)^([` + punctPattern + `]*)(` + smallWordsPattern + `)($|[^\p{L}\p{N}_])`)
-	reSmallLast         = regexp.MustCompile(`(?i)(^|[^\p{L}\p{N}_])(` + smallWordsPattern + `)([` + punctPattern + `]?)$`)
+	reSmallFirst        = regexp.MustCompile(`(?i)^([` + punctPattern + `]*)(` + smallWordsPattern + `)($|[^` + wordClass + `])`)
+	reSmallLast         = regexp.MustCompile(`(?i)(^|[^` + wordClass + `])(` + smallWordsPattern + `)([` + punctPattern + `]?)$`)
 	reSubphrase         = regexp.MustCompile(`([:.;?!\-–‒—―] )(` + smallWordsPattern + `)`)
-	reMacMc             = regexp.MustCompile(`^([Mm]c|MC)(\w.+)`)
+	reMacMc             = regexp.MustCompile(`^([Mm]c|MC)([` + wordClass + `].+)`)
 	reMrMrsMsDr         = regexp.MustCompile(`(?i)^((m((rs?)|s))|Dr)$`)
-	reInlinePeriod      = regexp.MustCompile(`(?i)\w\.\w`)
-	reUCElsewhere       = regexp.MustCompile(`^[` + punctPattern + `]*?\p{L}+\p{Lu}+`)
-	reCapFirst          = regexp.MustCompile(`^[` + punctPattern + `]*?(\p{L})`)
-	reAposSecond        = regexp.MustCompile(`(?i)^[dol]['‘]\w+(?:['s]{2})?$`)
-	reUCInitials        = regexp.MustCompile(`^(?:\p{Lu}\.|\p{Lu}\.\p{Lu})+$`)
+	reInlinePeriod      = regexp.MustCompile(`(?i)[` + wordClass + `]\.[` + wordClass + `]`)
+	reUCElsewhere       = regexp.MustCompile(`^[` + punctPattern + `]*?[a-zA-Z]+[A-Z]+?`)
+	reCapFirst          = regexp.MustCompile(`^[` + punctPattern + `]*?([` + wordClass + `])`)
+	reAposSecond        = regexp.MustCompile(`(?i)^[dol]['‘][` + wordClass + `]+(?:['s]{2})?$`)
+	reUCInitials        = regexp.MustCompile(`^(?:[A-Z]\.|[A-Z]\.[A-Z])+$`)
 	reAllConsonants     = regexp.MustCompile(`(?i)^[bcdfghjklmnpqrstvwxz]+$`)
 	reLineSplitDefault  = regexp.MustCompile(`[\r\n]+`)
 	reLineSplitPreserve = regexp.MustCompile(`[\r\n]`)
@@ -72,7 +80,7 @@ func TitlecaseWithOptions(text string, opts Options) string {
 	processed := make([]string, 0, len(lines))
 
 	for _, line := range lines {
-		allCaps := strings.ToUpper(line) == line
+		allCaps := pyUpper(line) == line
 		words, spaces := splitLine(line)
 		tcLine := make([]wordToken, 0, len(words))
 
@@ -175,13 +183,13 @@ func TitlecaseWithOptions(text string, opts Options) string {
 				word = strings.ToLower(word)
 			}
 
-			if reAllConsonants.MatchString(word) && len(word) > 2 {
-				tcLine = append(tcLine, wordToken{text: strings.ToUpper(word), immutable: false})
+			if reAllConsonants.MatchString(word) && utf8.RuneCountInString(word) > 2 {
+				tcLine = append(tcLine, wordToken{text: pyUpper(word), immutable: false})
 				continue
 			}
 
 			word = reCapFirst.ReplaceAllStringFunc(word, func(m string) string {
-				return strings.ToUpper(m)
+				return pyUpper(m)
 			})
 
 			tcLine = append(tcLine, wordToken{text: word, immutable: false})
@@ -250,7 +258,7 @@ func splitLine(line string) ([]string, []string) {
 	var wordBuf strings.Builder
 
 	for _, r := range line {
-		if unicode.IsSpace(r) {
+		if pyIsSpace(r) {
 			words = append(words, wordBuf.String())
 			wordBuf.Reset()
 			spaces = append(spaces, string(r))
@@ -263,13 +271,37 @@ func splitLine(line string) ([]string, []string) {
 	return words, spaces
 }
 
+// pyIsSpace matches Python's \s on a str (str.isspace): Go's unicode.IsSpace plus \x1c-\x1f.
+func pyIsSpace(r rune) bool {
+	return unicode.IsSpace(r) || (r >= 0x1c && r <= 0x1f)
+}
+
+// pySpecialUpper holds characters whose Python str.upper() is longer than one character.
+var pySpecialUpper = map[rune]string{
+	'ß': "SS", 'ŉ': "ʼN", 'ǰ': "J̌", 'ΐ': "Ϊ́", 'ΰ': "Ϋ́", 'և': "ԵՒ",
+	'ﬀ': "FF", 'ﬁ': "FI", 'ﬂ': "FL", 'ﬃ': "FFI", 'ﬄ': "FFL", 'ﬅ': "ST", 'ﬆ': "ST",
+}
+
+// pyUpper matches Python's str.upper() for the characters titlecase can meet.
+func pyUpper(s string) string {
+	var b strings.Builder
+	for _, r := range s {
+		if up, ok := pySpecialUpper[r]; ok {
+			b.WriteString(up)
+		} else {
+			b.WriteRune(unicode.ToUpper(r))
+		}
+	}
+	return b.String()
+}
+
 func capitalize(s string) string {
 	if s == "" {
 		return ""
 	}
 
 	runes := []rune(s)
-	runes[0] = unicode.ToUpper(runes[0])
+	runes[0] = unicode.ToTitle(runes[0]) // Python's capitalize() title-cases the first character
 
 	for i := 1; i < len(runes); i++ {
 		runes[i] = unicode.ToLower(runes[i])
