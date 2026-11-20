@@ -2,7 +2,7 @@ schema_version = "1.4"
 artifacts = []
 
 [task]
-name = "my-org/titlecase-go"
+name = "ShubhamTumane/titlecase-go"
 version = "1.0.0"
 description = "Port python-titlecase to a standalone Go command-line tool"
 authors = [{ name = "Shubham Tumane" }]
@@ -11,7 +11,7 @@ keywords = ["go", "titlecase", "porting"]
 [metadata]
 
 [verifier]
-timeout_sec = 180.0
+timeout_sec = 300.0
 environment_mode = "shared"
 network_mode = "public"
 collect = []

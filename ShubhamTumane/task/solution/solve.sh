@@ -3,324 +3,299 @@ set -euo pipefail
 
 cd /workspace/repo
 
-# 1. Initialize Go module
 cat << 'EOF' > go.mod
 module titlecase
 
-go 1.22
+go 1.23
 EOF
 
-# 2. Write Go implementation via python
-python3 - << 'PYEOF'
-code = r'''package main
+cat << 'EOF' > main.go
+package main
 
 import (
-	"bufio"
-	"flag"
-	"fmt"
-	"io"
-	"os"
-	"regexp"
-	"strings"
-	"unicode"
+"bufio"
+"flag"
+"fmt"
+"io"
+"os"
+"regexp"
+"strings"
+"unicode"
+"unicode/utf8"
 )
 
-var (
-	smallWords = map[string]bool{
-		"a": true, "an": true, "and": true, "as": true, "at": true,
-		"but": true, "by": true, "en": true, "for": true, "if": true,
-		"in": true, "of": true, "on": true, "or": true, "the": true,
-		"to": true, "v": true, "v.": true, "via": true, "vs": true, "vs.": true,
-	}
+const smallPat = `a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?`
+const punctCls = `!"\x{201c}#$%&'\x{2018}()*+,./:;?@[\\\]_` + "`" + `{|}~\x{2013}\x{2012}\x{2014}\x{2015}-`
 
-	urlRegex     = regexp.MustCompile(`^(https?://|www\.)[^\s]+$`)
-	macMcRegex   = regexp.MustCompile(`^([Mm]c|MC)(.+)`)
-	mrMrsRegex   = regexp.MustCompile(`(?i)^((m((rs?)|s))|dr)$`)
-	inlinePeriod = regexp.MustCompile(`[a-zA-Z]\.[a-zA-Z]`)
-	ucInitials   = regexp.MustCompile(`^(?:[A-Z]\.|[A-Z]\.[A-Z])+$`)
-)
+var smallWordsRe = regexp.MustCompile(`(?i)^(` + smallPat + `)$`)
+var smallFirstRe = regexp.MustCompile(`(?i)^([` + punctCls + `]*)(` + smallPat + `)\b`)
+var smallLastRe = regexp.MustCompile(`(?i)\b(` + smallPat + `)[` + punctCls + `]?$`)
+var subphraseRe = regexp.MustCompile(`([:.;?!\-\x{2013}\x{2012}\x{2014}\x{2015}] )(` + smallPat + `)`)
+var macMcRe = regexp.MustCompile(`^([Mm]c|MC)([\p{L}\p{N}_].+)`)
+var mrMrsMsDrRe = regexp.MustCompile(`(?i)^((m((rs?)|s))|Dr)$`)
+var inlinePeriod = regexp.MustCompile(`(?i)[\p{L}\p{N}_][.][\p{L}\p{N}_]`)
+var ucElsewhere = regexp.MustCompile(`^[` + punctCls + `]*?[a-zA-Z]+[A-Z]`)
+var capfirstRe = regexp.MustCompile(`^[` + punctCls + `]*?([\p{L}\p{N}_])`)
+var ucInitialsRe = regexp.MustCompile(`^(?:[A-Z]\.|[A-Z]\.[A-Z])+$`)
 
-func isAllUpper(s string) bool {
-	hasLetter := false
-	for _, r := range s {
-		if unicode.IsLetter(r) {
-			hasLetter = true
-			if !unicode.IsUpper(r) {
-				return false
-			}
-		}
-	}
-	return hasLetter
+func pyCapitalize(s string) string {
+if s == "" {
+return ""
+}
+r, size := utf8.DecodeRuneInString(s)
+return strings.ToUpper(string(r)) + strings.ToLower(s[size:])
 }
 
-func isAllConsonants(w string) bool {
-	letters := ""
-	for _, r := range w {
-		if unicode.IsLetter(r) {
-			letters += string(unicode.ToLower(r))
-		}
-	}
-	if len(letters) <= 2 {
-		return false
-	}
-	for _, r := range letters {
-		if strings.ContainsRune("aeiouy", r) {
-			return false
-		}
-	}
-	return true
+func isPySpace(r rune) bool {
+if unicode.IsSpace(r) {
+return true
+}
+switch r {
+case '\x1c', '\x1d', '\x1e', '\x1f', '\u2028', '\u2029':
+return true
+}
+return false
 }
 
-func capFirstLetter(s string) string {
-	if urlRegex.MatchString(s) {
-		return s
-	}
-	runes := []rune(s)
-	for i, r := range runes {
-		if unicode.IsLetter(r) {
-			runes[i] = unicode.ToUpper(r)
-			break
-		}
-	}
-	return string(runes)
+func pySplitSpace(line string) ([]string, []string) {
+var words []string
+var spaces []string
+var cur strings.Builder
+for _, r := range line {
+if isPySpace(r) {
+words = append(words, cur.String())
+cur.Reset()
+spaces = append(spaces, string(r))
+} else {
+cur.WriteRune(r)
+}
+}
+words = append(words, cur.String())
+return words, spaces
 }
 
-func hasInternalCap(s string) bool {
-	runes := []rune(s)
-	seenLower := false
-	for _, r := range runes {
-		if unicode.IsLower(r) {
-			seenLower = true
-		} else if seenLower && unicode.IsUpper(r) {
-			return true
-		}
-	}
-	return false
+func isAsciiConsonants(w string) bool {
+if len(w) <= 2 {
+return false
+}
+for i := 0; i < len(w); i++ {
+c := w[i]
+if c >= 'A' && c <= 'Z' {
+c += 'a' - 'A'
+}
+if c < 'a' || c > 'z' {
+return false
+}
+switch c {
+case 'a', 'e', 'i', 'o', 'u', 'y':
+return false
+}
+}
+return true
 }
 
-func isSmallWord(w string) bool {
-	clean := strings.ToLower(strings.Trim(w, "!\"#$%&'()*+,-./:;?@[\\]^_`{|}~\u201c\u201d\u2018\u2019\u2013\u2014\u2015"))
-	return smallWords[clean]
+func matchAposSecond(w string) bool {
+rs := []rune(w)
+if len(rs) < 3 {
+return false
+}
+first := unicode.ToLower(rs[0])
+if first != 'd' && first != 'o' && first != 'l' {
+return false
+}
+if rs[1] != '\'' && rs[1] != '\u2018' {
+return false
+}
+body := rs[2:]
+isPyWord := func(r rune) bool {
+return r == '_' || unicode.IsLetter(r) || unicode.IsDigit(r)
+}
+if len(body) >= 3 && (body[len(body)-2] == '\'' || body[len(body)-2] == 's' || body[len(body)-2] == 'S') &&
+(body[len(body)-1] == '\'' || body[len(body)-1] == 's' || body[len(body)-1] == 'S') {
+allW := true
+for _, r := range body[:len(body)-2] {
+if !isPyWord(r) {
+allW = false
+break
+}
+}
+if allW {
+return true
+}
+}
+for _, r := range body {
+if !isPyWord(r) {
+return false
+}
+}
+return true
 }
 
-func titlecaseWord(word string, allCaps bool) string {
-	if word == "" {
-		return ""
-	}
+func titlecaseCore(text string, smallFirstLast bool) string {
+lines := strings.Split(text, "\n")
+processed := make([]string, 0, len(lines))
 
-	// 1. URLs must remain completely untouched
-	if urlRegex.MatchString(word) {
-		return word
-	}
+for _, line := range lines {
+line = strings.TrimSuffix(line, "\r")
+allCaps := strings.ToUpper(line) == line
+words, spaces := pySplitSpace(line)
+tcLine := make([]string, 0, len(words))
 
-	// 2. Acronyms / initials
-	if allCaps && ucInitials.MatchString(word) {
-		return word
-	}
-
-	// 3. Contractions: d', o', l'
-	lower := strings.ToLower(word)
-	if strings.HasPrefix(lower, "o'") || strings.HasPrefix(lower, "o\u2019") ||
-		strings.HasPrefix(lower, "d'") || strings.HasPrefix(lower, "d\u2019") ||
-		strings.HasPrefix(lower, "l'") || strings.HasPrefix(lower, "l\u2019") {
-		runes := []rune(word)
-		if len(runes) >= 3 {
-			first := unicode.ToLower(runes[0])
-			if strings.ContainsRune("aeiou", first) {
-				first = unicode.ToUpper(first)
-			}
-			runes[0] = first
-			runes[2] = unicode.ToUpper(runes[2])
-			return string(runes)
-		}
-	}
-
-	// 4. Mc / Mac
-	if m := macMcRegex.FindStringSubmatch(word); m != nil {
-		prefix := capFirstLetter(strings.ToLower(m[1]))
-		return prefix + titlecaseText(m[2])
-	}
-
-	// 5. Mr / Mrs / Ms / Dr
-	if mrMrsRegex.MatchString(word) {
-		return capFirstLetter(strings.ToLower(word))
-	}
-
-	// 6. Inline period (e.g. domain.com) or internal uppercase (e.g. iPhone)
-	if inlinePeriod.MatchString(word) || (!allCaps && hasInternalCap(word)) {
-		return word
-	}
-
-	// 7. Small words
-	if isSmallWord(word) {
-		return strings.ToLower(word)
-	}
-
-	// 8. Slashes (only if not a URL / protocol)
-	if strings.Contains(word, "/") && !strings.Contains(word, "//") {
-		parts := strings.Split(word, "/")
-		for i, p := range parts {
-			parts[i] = titlecaseWord(p, allCaps)
-		}
-		return strings.Join(parts, "/")
-	}
-
-	// 9. Hyphens
-	if strings.Contains(word, "-") {
-		parts := strings.Split(word, "-")
-		for i, p := range parts {
-			parts[i] = titlecaseWord(p, allCaps)
-		}
-		return strings.Join(parts, "-")
-	}
-
-	if allCaps {
-		word = strings.ToLower(word)
-	}
-
-	if isAllConsonants(word) {
-		return strings.ToUpper(word)
-	}
-
-	return capFirstLetter(word)
+for _, word := range words {
+if allCaps {
+if ucInitialsRe.MatchString(word) {
+tcLine = append(tcLine, word)
+continue
+}
 }
 
-func titlecaseLine(line string) string {
-	if line == "" {
-		return ""
-	}
-
-	allCaps := isAllUpper(line)
-
-	var tokens []string
-	var isSpace []bool
-	runes := []rune(line)
-	n := len(runes)
-	i := 0
-	for i < n {
-		start := i
-		if unicode.IsSpace(runes[i]) {
-			for i < n && unicode.IsSpace(runes[i]) {
-				i++
-			}
-			tokens = append(tokens, string(runes[start:i]))
-			isSpace = append(isSpace, true)
-		} else {
-			for i < n && !unicode.IsSpace(runes[i]) {
-				i++
-			}
-			tokens = append(tokens, string(runes[start:i]))
-			isSpace = append(isSpace, false)
-		}
-	}
-
-	var wordsIndices []int
-	for idx, sp := range isSpace {
-		if !sp {
-			wordsIndices = append(wordsIndices, idx)
-		}
-	}
-
-	for _, wIdx := range wordsIndices {
-		tokens[wIdx] = titlecaseWord(tokens[wIdx], allCaps)
-	}
-
-	// Capitalize boundary words (unless they are URLs)
-	if len(wordsIndices) > 0 {
-		firstIdx := wordsIndices[0]
-		if !urlRegex.MatchString(tokens[firstIdx]) {
-			tokens[firstIdx] = capFirstLetter(tokens[firstIdx])
-		}
-
-		lastIdx := wordsIndices[len(wordsIndices)-1]
-		if !urlRegex.MatchString(tokens[lastIdx]) {
-			tokens[lastIdx] = capFirstLetter(tokens[lastIdx])
-		}
-	}
-
-	// Subphrase rule
-	for idx := 1; idx < len(wordsIndices); idx++ {
-		prevWordIdx := wordsIndices[idx-1]
-		currWordIdx := wordsIndices[idx]
-		prevWord := tokens[prevWordIdx]
-
-		if strings.HasSuffix(prevWord, ":") || strings.HasSuffix(prevWord, ";") ||
-			strings.HasSuffix(prevWord, ".") || strings.HasSuffix(prevWord, "!") ||
-			strings.HasSuffix(prevWord, "?") || strings.HasSuffix(prevWord, "-") ||
-			strings.HasSuffix(prevWord, "\u2013") || strings.HasSuffix(prevWord, "\u2014") ||
-			strings.HasSuffix(prevWord, "\u2015") {
-			if !urlRegex.MatchString(tokens[currWordIdx]) {
-				tokens[currWordIdx] = capFirstLetter(tokens[currWordIdx])
-			}
-		}
-	}
-
-	return strings.Join(tokens, "")
+if matchAposSecond(word) {
+rs := []rune(word)
+if !strings.ContainsRune("aeiouAEIOU", rs[0]) {
+rs[0] = unicode.ToLower(rs[0])
+} else {
+rs[0] = unicode.ToUpper(rs[0])
+}
+rs[2] = unicode.ToUpper(rs[2])
+tcLine = append(tcLine, string(rs))
+continue
 }
 
-func titlecaseText(text string) string {
-	lines := strings.Split(text, "\n")
-	for i, l := range lines {
-		trimmed := strings.TrimRight(l, "\r")
-		lines[i] = titlecaseLine(trimmed)
-	}
-	return strings.Join(lines, "\n")
+if m := macMcRe.FindStringSubmatch(word); m != nil {
+tcLine = append(tcLine, pyCapitalize(m[1])+titlecaseCore(m[2], true))
+continue
+}
+
+if mrMrsMsDrRe.MatchString(word) {
+rs := []rune(word)
+rs[0] = unicode.ToUpper(rs[0])
+tcLine = append(tcLine, string(rs))
+continue
+}
+
+if inlinePeriod.MatchString(word) || (!allCaps && ucElsewhere.MatchString(word)) {
+tcLine = append(tcLine, word)
+continue
+}
+
+if smallWordsRe.MatchString(word) {
+tcLine = append(tcLine, strings.ToLower(word))
+continue
+}
+
+if strings.Contains(word, "/") && !strings.Contains(word, "//") {
+parts := strings.Split(word, "/")
+for i, p := range parts {
+parts[i] = titlecaseCore(p, false)
+}
+tcLine = append(tcLine, strings.Join(parts, "/"))
+continue
+}
+
+if strings.Contains(word, "-") {
+parts := strings.Split(word, "-")
+for i, p := range parts {
+parts[i] = titlecaseCore(p, false)
+}
+tcLine = append(tcLine, strings.Join(parts, "-"))
+continue
+}
+
+if allCaps {
+word = strings.ToLower(word)
+}
+
+if isAsciiConsonants(word) {
+tcLine = append(tcLine, strings.ToUpper(word))
+continue
+}
+
+loc := capfirstRe.FindStringIndex(word)
+if loc != nil {
+tcLine = append(tcLine, strings.ToUpper(word[:loc[1]])+word[loc[1]:])
+} else {
+tcLine = append(tcLine, word)
+}
+}
+
+if smallFirstLast && len(tcLine) > 0 {
+if m := smallFirstRe.FindStringSubmatchIndex(tcLine[0]); m != nil {
+p1 := tcLine[0][m[2]:m[3]]
+p2 := tcLine[0][m[4]:m[5]]
+tcLine[0] = p1 + pyCapitalize(p2) + tcLine[0][m[1]:]
+}
+lastIdx := len(tcLine) - 1
+if m := smallLastRe.FindStringIndex(tcLine[lastIdx]); m != nil {
+tcLine[lastIdx] = tcLine[lastIdx][:m[0]] + pyCapitalize(tcLine[lastIdx][m[0]:m[1]]) + tcLine[lastIdx][m[1]:]
+}
+}
+
+var joined strings.Builder
+for i := range tcLine {
+joined.WriteString(tcLine[i])
+if i < len(spaces) {
+joined.WriteString(spaces[i])
+}
+}
+res := joined.String()
+
+res = subphraseRe.ReplaceAllStringFunc(res, func(match string) string {
+sub := subphraseRe.FindStringSubmatch(match)
+return sub[1] + pyCapitalize(sub[2])
+})
+
+processed = append(processed, res)
+}
+
+return strings.Join(processed, "\n")
 }
 
 func main() {
-	inputFile := flag.String("f", "", "File to read from")
-	flag.String("input-file", "", "File to read from")
-	outputFile := flag.String("o", "", "File to write to")
-	flag.String("output-file", "", "File to write to")
-	flag.String("w", "", "Wordlist")
-	flag.String("wordlist", "", "Wordlist")
-	flag.Bool("preserve-blank-lines", false, "Preserve blank lines")
-	flag.Parse()
+inputFile := flag.String("f", "", "File to read from")
+flag.String("input-file", "", "File to read from")
+outputFile := flag.String("o", "", "File to write to")
+flag.String("output-file", "", "File to write to")
+flag.String("w", "", "Wordlist")
+flag.String("wordlist", "", "Wordlist")
+flag.Bool("preserve-blank-lines", false, "Preserve blank lines")
+flag.Parse()
 
-	var reader io.Reader = os.Stdin
-	if *inputFile != "" && *inputFile != "-" {
-		f, err := os.Open(*inputFile)
-		if err == nil {
-			defer f.Close()
-			reader = f
-		}
-	}
-
-	var writer io.Writer = os.Stdout
-	if *outputFile != "" && *outputFile != "-" {
-		f, err := os.Create(*outputFile)
-		if err == nil {
-			defer f.Close()
-			writer = f
-		}
-	}
-
-	args := flag.Args()
-	if len(args) > 0 {
-		out := titlecaseText(strings.Join(args, " "))
-		fmt.Fprintln(writer, out)
-		return
-	}
-
-	scanner := bufio.NewScanner(reader)
-	first := true
-	for scanner.Scan() {
-		if !first {
-			fmt.Fprintln(writer)
-		}
-		first = false
-		fmt.Fprint(writer, titlecaseLine(scanner.Text()))
-	}
-	fmt.Fprintln(writer)
+var reader io.Reader = os.Stdin
+if *inputFile != "" && *inputFile != "-" {
+if f, err := os.Open(*inputFile); err == nil {
+defer f.Close()
+reader = f
 }
-'''
-with open("main.go", "w", encoding="utf-8") as f:
-    f.write(code)
-PYEOF
+}
 
-# 3. Clean python files
+var writer io.Writer = os.Stdout
+if *outputFile != "" && *outputFile != "-" {
+if f, err := os.Create(*outputFile); err == nil {
+defer f.Close()
+writer = f
+}
+}
+
+args := flag.Args()
+if len(args) > 0 {
+fmt.Fprintln(writer, titlecaseCore(strings.Join(args, " "), true))
+return
+}
+
+scanner := bufio.NewScanner(reader)
+scanner.Buffer(make([]byte, 0, 1024*1024), 10*1024*1024)
+out := bufio.NewWriter(writer)
+for scanner.Scan() {
+out.WriteString(titlecaseCore(scanner.Text(), true))
+out.WriteByte('\n')
+}
+out.Flush()
+}
+EOF
+
 find . -name "*.py" -type f -delete
 find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
 rm -rf titlecase tox.ini pyproject.toml setup.cfg setup.py
 
+go build ./...
 echo "Oracle solve completed successfully."

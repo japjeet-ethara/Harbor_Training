@@ -1,0 +1,17 @@
+wrong answers      928 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input '-lead “U.S. peace _a/b/c for in\u2009in mcgraw-hill: ftp://host/file'
+  want  '-Lead “U.S. Peace _a/B/C for in\u2009in McGraw-Hill: Ftp://host/file'
+  got   '-Lead “U.S. Peace _A/B/C for in\u2009in McGraw-Hill: Ftp://host/file'
+  input "Mcafee _self-made\u2009l'amour by #life an} data"
+  want  "McAfee _self-Made\u2009l'Amour by #Life An} Data"
+  got   "McAfee _Self-Made\u2009l'Amour by #Life An} Data"
+  input 'MACOS. CRWTH _VS /ΑLPHA }BOOK $IF ISLAND ISTANBUL MCDONALD'
+  want  'Macos. CRWTH _vs /Αlpha }Book $If Island Istanbul McDonald'
+  got   'Macos. CRWTH _Vs /Αlpha }Book $If Island Istanbul McDonald'
+  input "and d'arcy on 1990s story crwth _winter"
+  want  "And d'Arcy on 1990s Story CRWTH _winter"
+  got   "And d'Arcy on 1990s Story CRWTH _Winter"
+  input 'book vs.: war EBAY macOS\xa0_nth winter pdf Book'
+  want  'Book Vs.: War EBAY macOS\xa0_nth Winter PDF Book'
+  got   'Book Vs.: War EBAY macOS\xa0_Nth Winter PDF Book'

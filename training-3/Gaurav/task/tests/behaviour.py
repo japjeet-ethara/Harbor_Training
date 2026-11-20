@@ -7,9 +7,8 @@ from pathlib import Path
 from rewardkit import criterion
 
 REPO = Path("/workspace/repo")
-HIDDEN_IN = Path("/tests/data/hidden_inputs.txt")
-HIDDEN_EXP = Path("/tests/data/hidden_expected.txt")
-VISIBLE_EXP = Path("/tests/data/expected.txt")
+HIDDEN_IN = Path("/tests/data/inputs.txt")
+HIDDEN_EXP = Path("/tests/data/answers.txt")
 BINARY = Path("/tmp/titlecase-candidate")
 
 
@@ -48,9 +47,8 @@ def behaviour(workspace: Path) -> float:
     if proc.returncode != 0 or not BINARY.is_file():
         return 0.0
     os.chmod(BINARY, 0o755)
-    for locked in (HIDDEN_EXP, VISIBLE_EXP):
-        if locked.exists():
-            os.chmod(locked, 0o600)
+    if HIDDEN_EXP.exists():
+        os.chmod(HIDDEN_EXP, 0o600)
     with HIDDEN_IN.open(encoding="utf-8", newline="\n") as stdin:
         run = subprocess.run(
             ["su", "nobody", "-s", "/bin/sh", "-c", str(BINARY)],

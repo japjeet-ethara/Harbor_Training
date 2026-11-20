@@ -1,0 +1,16 @@
+Incoming Attacker: Isha Jakhad (targeting ShubhamTumane/titlecase-go)
+
+Cheat 1 (Python Inside) - Job: defense_jobs/cheat1/2026-11-20__11-53-43
+{
+  "reward": 0.0
+}
+---
+Cheat 2 (Half Port) - Job: defense_jobs/cheat2/2026-11-20__11-48-52
+{
+  "reward": 0.0
+}
+---
+Cheat 3 (Build Trick) - Job: defense_jobs/cheat3/2026-11-20__11-50-21
+{
+  "reward": 0.0
+}

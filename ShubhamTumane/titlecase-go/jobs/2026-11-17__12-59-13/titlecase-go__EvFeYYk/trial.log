@@ -1,4 +1,0 @@
-Skipping image OS validation for hb__b9788a2a1af38372cf62bebb4eb6c277: docker inspect returned 1
-Collecting main service artifacts
-Skipping image OS validation for hb__b9788a2a1af38372cf62bebb4eb6c277: docker inspect returned 1
-Trial titlecase-go__EvFeYYk failed: No reward file found at jobs\2026-11-17__12-59-13\titlecase-go__EvFeYYk\verifier\reward.txt or jobs\2026-11-17__12-59-13\titlecase-go__EvFeYYk\verifier\reward.json

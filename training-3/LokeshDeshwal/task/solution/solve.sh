@@ -26,43 +26,53 @@ import (
 	"unicode"
 )
 
-// Regex definitions matching python-titlecase rules without unsupported look-ahead/behind
+// In Python:
+// SMALL = r'a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs'
+// PUNCT = r"""!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_`{|}~"""
+
+const punct = `!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`{|}~"
+
 var (
-	// Small words list
-	smallWordsRegex = regexp.MustCompile(`^(?i:a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)$`)
+	// SMALL_WORDS = regex.compile(r'^(%s)$' % SMALL, regex.I)
+	smallWordsRegex = regexp.MustCompile(`^(?i:a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)$`)
 
-	// Small first word regex
-	smallFirstRegex = regexp.MustCompile(`^(?i:([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*)(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)\b)`)
+	// SMALL_FIRST = regex.compile(r'^([%s]*)(%s)\b' % (PUNCT, SMALL), regex.I)
+	smallFirstRegex = regexp.MustCompile(`^(?i:([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*)(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)\b)`)
 
-	// Small last word regex
-	smallLastRegex = regexp.MustCompile(`(?i:\b(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]?)$`)
+	// SMALL_LAST = regex.compile(r'\b(%s)[%s]?$' % (SMALL, PUNCT), regex.I)
+	smallLastRegex = regexp.MustCompile(`(?i:\b(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]?)$`)
 
-	// Subphrase punctuation followed by space and small word
-	subphraseRegex = regexp.MustCompile(`([:.;?!\-–‒—―] )(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?)`)
+	// SUBPHRASE = regex.compile(r'([:.;?!\-–‒—―][ ])(%s)' % SMALL)
+	// Note: in Python, SUBPHRASE does NOT have regex.I flag!
+	subphraseRegex = regexp.MustCompile(`([:.;?!\-–‒—―] )(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.|v|via|vs\.|vs)`)
 
-	// Mc/Mac names
+	// MAC_MC = regex.compile(r"^([Mm]c|MC)(\w.+)")
 	macMcRegex = regexp.MustCompile(`^([Mm]c|MC)(\w.+)`)
 
-	// Honorifics
+	// MR_MRS_MS_DR = regex.compile(r"^((m((rs?)|s))|Dr)$", regex.I)
 	mrMrsMsDrRegex = regexp.MustCompile(`^(?i:(m((rs?)|s))|Dr)$`)
 
-	// Inline period: letter.letter
-	inlinePeriodRegex = regexp.MustCompile(`(?i:\p{L}\.\p{L})`)
+	// INLINE_PERIOD: [\w][.][\w]
+	inlinePeriodRegex = regexp.MustCompile(`(?i:[\p{L}0-9_]\.[\p{L}0-9_])`)
 
-	// Uppercase elsewhere (e.g. iPhone)
-	ucElsewhereRegex = regexp.MustCompile(`^[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*\p{L}+\p{Lu}`)
+	// UC_ELSEWHERE: [%s]*?[a-zA-Z]+[A-Z]+? % PUNCT
+	ucElsewhereRegex = regexp.MustCompile(`^[!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*?[a-zA-Z]+[A-Z]+`)
 
-	// Capitalize first letter (skipping leading punctuation)
-	capfirstRegex = regexp.MustCompile(`^([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*?)(\p{L})`)
+	// CAPFIRST = regex.compile(r"^[%s]*?([\w])" % PUNCT)
+	capfirstRegex = regexp.MustCompile(`^([!"“#$%&'‘()*+,\-–‒—―./:;?@[\\\]_` + "`" + `{|}\~]*?)([\p{L}0-9_])`)
 
-	// Apostrophe second (e.g. d'Artagnan, O'Brien)
-	aposSecondRegex = regexp.MustCompile(`^(?i:[dol]['‘]\p{L}+(?:['’]s)?)$`)
+	// APOS_SECOND = regex.compile(r"^[dol]{1}['‘]{1}[\w]+(?:['s]{2})?$", regex.I)
+	aposSecondRegex = regexp.MustCompile(`^(?i:[dol]['‘][\p{L}0-9_]+(?:['’]s)?)$`)
 
-	// UC initials (e.g. A.B. or A.B.C.)
+	// UC_INITIALS = regex.compile(r"^(?:[\p{Uppercase_Letter}]{1}\.{1}|[\p{Uppercase_Letter}]{1}\.{1}[\p{Uppercase_Letter}]{1})+$")
 	ucInitialsRegex = regexp.MustCompile(`^(?:(?:\p{Lu}\.|\p{Lu}\.\p{Lu}))+$`)
 
-	// All consonants > 2 characters
+	// CONSONANTS: string.ascii_lowercase - {'a','e','i','o','u','y'}
+	// \A[consonants]+\Z
 	allConsonantsRegex = regexp.MustCompile(`^(?i:[bcdfghjklmnpqrstvwxz]+)$`)
+
+	// whitespace splitter
+	whitespaceRegex = regexp.MustCompile(`\s`)
 )
 
 func capitalize(s string) string {
@@ -78,20 +88,59 @@ func capitalize(s string) string {
 }
 
 func titlecase(text string, smallFirstLast bool) string {
+	// In Python: lines = regex.split('[\r\n]+', text)
+	// On line-by-line input, text has no newlines
 	lines := strings.Split(text, "\n")
 	var processed []string
 
 	for _, line := range lines {
 		allCaps := strings.ToUpper(line) == line
 
-		var pWords []string
-		var pSpaces []string
+		// split_line = regex.split(r'(\s)', line)
+		// We preserve whitespace tokens exactly
+		var words []string
+		var spaces []string
 
 		runes := []rune(line)
 		n := len(runes)
+		i := 0
+		inSpace := false
+		var cur []rune
+
+		for i < n {
+			isSp := unicode.IsSpace(runes[i])
+			if i == 0 {
+				inSpace = isSp
+			}
+			if isSp == inSpace {
+				cur = append(cur, runes[i])
+			} else {
+				if inSpace {
+					spaces = append(spaces, string(cur))
+				} else {
+					words = append(words, string(cur))
+				}
+				cur = []rune{runes[i]}
+				inSpace = isSp
+			}
+			i++
+		}
+		if len(cur) > 0 {
+			if inSpace {
+				spaces = append(spaces, string(cur))
+			} else {
+				words = append(words, string(cur))
+			}
+		}
+
+		// Realign so words is split_line[::2] and spaces is split_line[1::2]
+		// In python: regex.split(r'(\s)', line)
+		// If line begins with space: words[0] = "", spaces[0] = space_char, words[1] = ...
+		var pWords []string
+		var pSpaces []string
+
 		pos := 0
 		expectWord := true
-
 		for pos < n {
 			if expectWord {
 				if unicode.IsSpace(runes[pos]) {
@@ -106,6 +155,8 @@ func titlecase(text string, smallFirstLast bool) string {
 					expectWord = false
 				}
 			} else {
+				// space token (single whitespace char in Python's regex.split(r'(\s)', line))
+				// Wait! In Python, r'(\s)' splits on EVERY single whitespace character!
 				start := pos
 				pos++
 				pSpaces = append(pSpaces, string(runes[start:pos]))
@@ -196,26 +247,31 @@ func titlecase(text string, smallFirstLast bool) string {
 				continue
 			}
 
+			// CAPFIRST.sub(lambda m: m.group(0).upper(), word)
 			tcLine[wi] = capfirstRegex.ReplaceAllStringFunc(word, func(m string) string {
+				sub := capfirstRegex.FindStringSubmatch(m)
+				if len(sub) >= 3 {
+					return sub[1] + strings.ToUpper(sub[2])
+				}
 				return strings.ToUpper(m)
 			})
 		}
 
 		if smallFirstLast && len(tcLine) > 0 {
-			tcLine[0] = smallFirstRegex.ReplaceAllStringFunc(tcLine[0], func(m string) string {
-				sub := smallFirstRegex.FindStringSubmatch(m)
-				if len(sub) >= 3 {
-					return sub[1] + capitalize(sub[2])
-				}
-				return m
-			})
+			if sub := smallFirstRegex.FindStringSubmatchIndex(tcLine[0]); sub != nil {
+				g1 := tcLine[0][sub[2]:sub[3]]
+				g2 := tcLine[0][sub[4]:sub[5]]
+				tcLine[0] = g1 + capitalize(g2) + tcLine[0][sub[1]:]
+			}
 
 			lastIdx := len(tcLine) - 1
-			tcLine[lastIdx] = smallLastRegex.ReplaceAllStringFunc(tcLine[lastIdx], func(m string) string {
-				return capitalize(m)
-			})
+			if sub := smallLastRegex.FindStringSubmatchIndex(tcLine[lastIdx]); sub != nil {
+				g1 := tcLine[lastIdx][sub[2]:sub[3]]
+				tcLine[lastIdx] = tcLine[lastIdx][:sub[0]] + capitalize(g1) + tcLine[lastIdx][sub[3]:]
+			}
 		}
 
+		// Recombine words and spaces
 		var sb strings.Builder
 		for idx, w := range tcLine {
 			sb.WriteString(w)
@@ -225,6 +281,7 @@ func titlecase(text string, smallFirstLast bool) string {
 		}
 		res := sb.String()
 
+		// SUBPHRASE.sub(lambda m: '%s%s' % (m.group(1), m.group(2).capitalize()), result)
 		res = subphraseRegex.ReplaceAllStringFunc(res, func(m string) string {
 			sub := subphraseRegex.FindStringSubmatch(m)
 			if len(sub) >= 3 {
@@ -249,6 +306,7 @@ func main() {
 		fmt.Println(titlecase(line, true))
 	}
 }
+
 GOEOF
 
 echo "Building Go module..."

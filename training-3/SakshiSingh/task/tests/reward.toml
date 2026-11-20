@@ -1,5 +1,6 @@
-# build = 1, no_python = 1, hidden behaviour = 4  ->  everything must be right
-# to reach 1.0. Cheat that copies visible answers but leaves .py scores 1/6.
+# build = 1, no_python = 1, hidden behaviour = 4 (criteria in build.py, no_python.py, behaviour.py; shared logic in port_check.py).
+# build and no_python only count when behaviour >= 0.5, so a program that builds
+# but is not a real port scores 0 instead of the old free 2/6.
 [[reward]]
 name = "reward"
 aggregation = "weighted-mean"
