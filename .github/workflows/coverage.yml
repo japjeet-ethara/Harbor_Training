@@ -9,16 +9,15 @@ jobs:
         fetch-depth: '2'
 
     - name: Setup Python
-      uses: actions/setup-python@master
+      uses: actions/setup-python@v6
       with:
-        python-version: '3.x'
+        python-version: '3.10'
     - name: Install Dependencies
       run: |
-        pip install regex
+        python -m pip install regex setuptools setuptools_scm wheel coverage
         python setup.py install
     - name: Generate Coverage Report
       run: |
-        pip install coverage
-        coverage run -m unittest
+        python -m coverage run -m unittest
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v2
