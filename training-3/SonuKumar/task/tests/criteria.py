@@ -144,4 +144,5 @@ def behaviour_check(workspace: Path | None = None) -> float:
     if not expected:
         return float(not actual)
     matching = sum(a == e for a, e in zip(actual, expected))
-    return matching / max(len(actual), len(expected))
+    accuracy = matching / max(len(actual), len(expected))
+    return accuracy ** 2

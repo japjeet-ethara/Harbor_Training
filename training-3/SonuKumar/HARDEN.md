@@ -6,7 +6,7 @@
 - **Working Tree Status**: Uncommitted changes maintained in working tree (commit/push withheld pending final sign-off)
 - **Harbor CLI Version**: 0.25.0 (Docker Desktop 29.9.2 on Windows x86_64 host)
 - **Evaluation Suite**: 100,000-title high-entropy exam (`pool.txt`, seed `1`, mode: `WITHOUT regex`)
-- **Scoring Policy**: Policy B (`weights = { build = 0.5, no_python = 0.5, behaviour = 9.0 }`)
+- **Scoring Policy**: Policy B with Quadratic Behaviour Scoring (`weights = { build = 0.5, no_python = 0.5, behaviour = 9.0 }`, $\text{Reward} = [0.5 \cdot \text{build} + 0.5 \cdot \text{no\_python} + 9.0 \cdot (\text{accuracy})^2] / 10.0$)
 
 ---
 
@@ -58,6 +58,9 @@ Three distinct attacker vulnerabilities were identified, audited, patched, and v
 | **Cheat 2 (Leakage)** | `scratch/cheat3/...` | 1.0000 | `jobs/2026-11-20__12-39-46` | **0.1481** | **PASSED** ($< 0.20$) |
 | **Naive Go Half-Port** | `attack/cheat2/solve.sh` | Not independently tested | `jobs/2026-11-20__12-37-57` | **0.1481** | **PASSED** ($< 0.20$) |
 | **Cheat 3 (Python inside)**| `attack/cheat3/solve.sh` | 1.0000 | `jobs/2026-11-20__12-43-47` | **0.0500** | **PASSED** ($< 0.10$) |
+
+### Day 6 Quadratic Scoring Refinement (Cheat 4 Suppression)
+In Day 6, `task/tests/criteria.py` was refined to calculate behaviour as $\text{accuracy}^2$. Under Policy B weights, this safely suppresses incomplete Go half-ports (such as Ayush's Cheat 4, raw accuracy 32.63%) from $0.3936$ to an authentic Harbor reward of **$0.1958$** (`jobs/2026-11-21__01-24-18`), bringing every attacker cheat strictly below the $0.2000$ threshold while preserving the Genuine Oracle at $1.0000$ (`jobs/2026-11-21__01-16-20`) and Nop at $0.0000$ (`jobs/2026-11-21__01-18-08`).
 
 ---
 
