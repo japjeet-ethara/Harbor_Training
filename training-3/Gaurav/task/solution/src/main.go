@@ -119,85 +119,6 @@ func processWord(word string, allCaps bool) string {
 	if allCaps && ucInitials(word) {
 		return word
 	}
-	// In the no-regex mode, an underscore is a Python \w character and is
-	// not an introducer for capitalization (for example "_dream").
-	if prefix, rest, ok := splitLeadingUnderscore(word); ok {
-		if strings.HasPrefix(rest, "VS.") {
-			return prefix + "vs." + rest[len("VS."):]
-		}
-		if rest == "VS-" {
-			return prefix + rest
-		}
-		if strings.HasPrefix(rest, "-") && restTextIsUpper(rest[1:]) {
-			return prefix + rest
-		}
-		if restTextIsMixed(rest) && strings.Contains(rest, "-") &&
-			(strings.HasPrefix(rest, "Mc") || strings.HasPrefix(rest, "mc")) {
-			return prefix + rest
-		}
-		if strings.HasPrefix(rest, "A/") {
-			return prefix + "a/" + rest[2:]
-		}
-		if restAllUpper(rest) && strings.Contains(rest, "-") {
-			parts := strings.Split(rest, "-")
-			parts[0] = strings.ToLower(parts[0])
-			for i := 1; i < len(parts); i++ {
-				parts[i] = titlecaseFlag(parts[i], false)
-			}
-			return prefix + strings.Join(parts, "-")
-		}
-		if restAllUpper(rest) {
-			if strings.Contains(rest, ".") {
-				if strings.HasPrefix(rest, "DREAM") && allCaps {
-					return prefix + strings.ToLower(rest)
-				}
-				return prefix + rest
-			}
-			if allCaps {
-				return prefix + strings.ToLower(rest)
-			}
-			return prefix + rest
-		}
-		if strings.Contains(rest, "://") {
-			return prefix + strings.ToLower(rest)
-		}
-		if restAllUpper(rest) && strings.Contains(rest, "/") {
-			parts := strings.Split(rest, "/")
-			parts[0] = strings.ToLower(parts[0])
-			for i := 1; i < len(parts); i++ {
-				parts[i] = titlecaseFlag(parts[i], false)
-			}
-			return prefix + strings.Join(parts, "/")
-		}
-		if strings.Contains(rest, "-") && restTextIsLower(rest) {
-			parts := strings.Split(rest, "-")
-			parts[0] = strings.ToLower(parts[0])
-			for i := 1; i < len(parts); i++ {
-				parts[i] = titlecaseFlag(parts[i], false)
-			}
-			return prefix + strings.Join(parts, "-")
-		}
-		if strings.Contains(rest, "/") && restTextIsLower(rest) {
-			parts := strings.Split(rest, "/")
-			parts[0] = strings.ToLower(parts[0])
-			for i := 1; i < len(parts); i++ {
-				parts[i] = titlecaseFlag(parts[i], false)
-			}
-			return prefix + strings.Join(parts, "/")
-		}
-		if restAllLower(rest) {
-			return prefix + rest
-		}
-		if restTextIsMixed(rest) && !strings.Contains(rest, "/") && !strings.Contains(rest, "-") {
-			return prefix + rest
-		}
-		rs := []rune(rest)
-		if len(rs) > 0 && unicode.IsUpper(rs[0]) &&
-			(strings.Contains(rest, "'") || strings.Contains(rest, "\u2018")) {
-			return prefix + rest
-		}
-		return prefix + titlecaseFlag(rest, false)
-	}
 	if aposMatch(word) {
 		return applyApos(word)
 	}
@@ -211,15 +132,9 @@ func processWord(word string, allCaps bool) string {
 		return word
 	}
 	if isSmallWord(word) {
-		if len([]rune(word)) > 1 && allUpperWord(word) && !allCaps && !strings.Contains(word, ".") {
-			return word
-		}
 		return strings.ToLower(word)
 	}
 	if strings.Contains(word, "/") && !strings.Contains(word, "//") {
-		if word == "A/B/C_" {
-			return word
-		}
 		parts := strings.Split(word, "/")
 		for i, p := range parts {
 			parts[i] = titlecaseFlag(p, false)
@@ -245,7 +160,7 @@ func processWord(word string, allCaps bool) string {
 func capFirst(word string) string {
 	rs := []rune(word)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	for i < len(rs) && isPunct(rs[i]) && rs[i] != '_' {
 		i++
 	}
 	if i >= len(rs) || !isPyWord(rs[i]) {
@@ -480,14 +395,10 @@ func applySubphrase(s string) string {
 	var b strings.Builder
 	for i := 0; i < len(rs); {
 		if i+1 < len(rs) && isSubDelim(rs[i]) && rs[i+1] == ' ' {
-			if matched, ok := matchSmallPrefix(rs[i+2:], false); ok {
+			if matched, ok := matchSmallPrefixExact(rs[i+2:]); ok {
 				b.WriteRune(rs[i])
 				b.WriteRune(' ')
-				if allUpperWord(matched) && len([]rune(matched)) > 1 {
-					b.WriteString(matched)
-				} else {
-					b.WriteString(pyCapitalize(matched))
-				}
+				b.WriteString(pyCapitalize(matched))
 				i += 2 + len([]rune(matched))
 				continue
 			}
@@ -496,6 +407,18 @@ func applySubphrase(s string) string {
 		i++
 	}
 	return b.String()
+}
+
+func matchSmallPrefixExact(rs []rune) (string, bool) {
+	for _, candidates := range smallCands {
+		for _, candidate := range candidates {
+			cr := []rune(candidate)
+			if len(cr) <= len(rs) && string(rs[:len(cr)]) == candidate {
+				return string(rs[:len(cr)]), true
+			}
+		}
+	}
+	return "", false
 }
 
 // smallCands follows Python's left-first alternation. v\.? and vs\.? try the
@@ -597,106 +520,6 @@ func isPyWord(r rune) bool {
 		return true
 	}
 	return unicode.IsLetter(r) || unicode.IsNumber(r)
-}
-
-func splitLeadingUnderscore(word string) (prefix, rest string, ok bool) {
-	rs := []rune(word)
-	for i, r := range rs {
-		if r == '_' {
-			return string(rs[:i+1]), string(rs[i+1:]), true
-		}
-		if unicode.IsLetter(r) || unicode.IsNumber(r) {
-			return "", "", false
-		}
-	}
-	return "", "", false
-}
-
-func restAllUpper(s string) bool {
-	found := false
-	for _, r := range s {
-		if unicode.IsLetter(r) {
-			found = true
-			if unicode.IsLower(r) {
-				return false
-			}
-		}
-	}
-	return found
-}
-
-func restTextIsLower(s string) bool {
-	found := false
-	for _, r := range s {
-		if unicode.IsLetter(r) {
-			found = true
-			if unicode.IsUpper(r) {
-				return false
-			}
-		}
-	}
-	return found
-}
-
-func restTextIsMixed(s string) bool {
-	hasLower, hasUpper := false, false
-	for _, r := range s {
-		if unicode.IsLetter(r) {
-			hasLower = hasLower || unicode.IsLower(r)
-			hasUpper = hasUpper || unicode.IsUpper(r)
-		}
-	}
-	return hasLower && hasUpper
-}
-
-func restTextIsUpper(s string) bool {
-	found := false
-	for _, r := range s {
-		if unicode.IsLetter(r) {
-			found = true
-			if unicode.IsLower(r) {
-				return false
-			}
-		}
-	}
-	return found
-}
-
-func restAllLower(s string) bool {
-	found := false
-	rs := []rune(s)
-	for i, r := range rs {
-		if unicode.IsLetter(r) {
-			found = true
-			if unicode.IsUpper(r) {
-				return false
-			}
-		} else if r == '-' {
-			if i != len(rs)-1 {
-				return false
-			}
-		} else if r == '/' {
-			return false
-		} else if r == '\\' || r == '_' {
-			if i != len(rs)-1 {
-				return false
-			}
-		}
-	}
-	return found
-}
-
-func allUpperWord(word string) bool {
-	found := false
-	for _, r := range word {
-		if unicode.IsLetter(r) {
-			found = true
-			if unicode.IsLower(r) {
-				return false
-			}
-		}
-	}
-	return found
 }
 
 func isPySpace(r rune) bool {
