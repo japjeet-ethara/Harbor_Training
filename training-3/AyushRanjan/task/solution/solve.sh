@@ -49,15 +49,56 @@ var smallWords = map[string]bool{
 	"in": true, "of": true, "on": true, "or": true, "the": true,
 	"to": true, "v": true, "v.": true, "via": true, "vs": true, "vs.": true,
 }
+var smallPatternOrder = []string{
+	"a", "an", "and", "as", "at", "but", "by", "en", "for", "if",
+	"in", "of", "on", "or", "the", "to", "v.", "v", "via", "vs", "vs.",
+}
 
 func isSmall(word string) bool {
 	return smallWords[strings.ToLower(word)]
 }
 
+// smallMatchAt mirrors SMALL\b: match a small-word prefix only when the
+// following rune is not a Python-style word character.
+func smallMatchAt(runes []rune, start int) (int, bool) {
+	for small := range smallWords {
+		candidate := []rune(small)
+		if len(runes)-start < len(candidate) ||
+			!strings.EqualFold(string(runes[start:start+len(candidate)]), small) {
+			continue
+		}
+		end := start + len(candidate)
+		if end < len(runes) && isWordRune(runes[end]) {
+			continue
+		}
+		return end, true
+	}
+	return start, false
+}
+
+// SUBPHRASE has no word boundary and is case-sensitive in the reference.
+func smallPrefixAt(runes []rune) (int, bool) {
+	text := string(runes)
+	for _, small := range smallPatternOrder {
+		if strings.HasPrefix(text, small) {
+			return len([]rune(small)), true
+		}
+	}
+	return 0, false
+}
+
+func capitalizeMatch(runes []rune, start, end int) []rune {
+	word := []rune(strings.ToLower(string(runes[start:end])))
+	if len(word) > 0 {
+		word[0] = unicode.ToUpper(word[0])
+	}
+	return append(append(append([]rune{}, runes[:start]...), word...), runes[end:]...)
+}
+
 // PUNCT characters from the Python source.
 // Written as individual runes to avoid encoding issues in the heredoc.
 var punctRunes = []rune{
-	'!', '"', '#', '$', '%', '&', '\'', '\u2018', '\u2019', '(', ')', '*',
+	'!', '"', '\u201c', '#', '$', '%', '&', '\'', '\u2018', '(', ')', '*',
 	'+', ',', '\\', '-', '\u2013', '\u2012', '\u2014', '\u2015',
 	'.', '/', ':', ';', '?', '@', '[', '\\', ']', '_', '`', '{', '|', '}', '~',
 }
@@ -86,6 +127,13 @@ func isSubphrasePunct(r rune) bool {
 
 func isLetter(r rune) bool { return unicode.IsLetter(r) }
 func isUpper(r rune) bool  { return unicode.IsUpper(r) }
+func isASCIIAlpha(r rune) bool {
+	return r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z'
+}
+func isASCIIUpper(r rune) bool { return r >= 'A' && r <= 'Z' }
+func isWordRune(r rune) bool {
+	return unicode.IsLetter(r) || unicode.IsNumber(r) || r == '_'
+}
 
 func isVowel(r rune) bool {
 	switch unicode.ToLower(r) {
@@ -104,7 +152,7 @@ func isAllCaps(line string) bool {
 func hasInlinePeriod(word string) bool {
 	runes := []rune(word)
 	for i := 1; i < len(runes)-1; i++ {
-		if runes[i] == '.' && isLetter(runes[i-1]) && isLetter(runes[i+1]) {
+		if runes[i] == '.' && isWordRune(runes[i-1]) && isWordRune(runes[i+1]) {
 			return true
 		}
 	}
@@ -122,8 +170,8 @@ func hasUCElsewhere(word string) bool {
 	seenLetter := false
 	for ; i < len(runes); i++ {
 		r := runes[i]
-		if isLetter(r) {
-			if seenLetter && isUpper(r) {
+		if isASCIIAlpha(r) {
+			if seenLetter && isASCIIUpper(r) {
 				return true
 			}
 			seenLetter = true
@@ -180,7 +228,7 @@ func isAposSecond(word string) bool {
 	if first != 'd' && first != 'o' && first != 'l' {
 		return false
 	}
-	if runes[1] != '\'' && runes[1] != '\u2019' {
+	if runes[1] != '\'' && runes[1] != '\u2018' {
 		return false
 	}
 	if !isLetter(runes[2]) {
@@ -189,8 +237,9 @@ func isAposSecond(word string) bool {
 	// Allow optional trailing 's
 	end := len(runes)
 	if end >= 2 {
-		last2 := string(runes[end-2:])
-		if last2 == "'s" || last2 == "\u2019s" {
+		lastApostrophe := runes[end-2]
+		lastS := unicode.ToLower(runes[end-1])
+		if (lastApostrophe == '\'' || lastApostrophe == '\u2018') && lastS == 's' {
 			end -= 2
 		}
 	}
@@ -257,12 +306,12 @@ func matchMrMrsMsDr(word string) bool {
 func capFirst(word string) string {
 	runes := []rune(word)
 	for i, r := range runes {
-		if isLetter(r) {
+		if isWordRune(r) {
 			runes[i] = unicode.ToUpper(r)
 			return string(runes)
 		}
-		// Non-PUNCT, non-letter (e.g. a digit) before the first letter means
-		// Python's CAPFIRST regex [\p{Letter}] cannot match — return unchanged.
+		// Python's no-regex CAPFIRST uses [\w], so digits and underscore
+		// count as the first word character too.
 		if !isPunct(r) {
 			return word
 		}
@@ -444,15 +493,12 @@ func joinWords(words, spaces []string) string {
 // word, capitalize it.  Mirrors Python SMALL_FIRST regex.
 func applySmallFirst(word string) string {
 	runes := []rune(word)
-	for i, r := range runes {
-		if isLetter(r) {
-			rest := string(runes[i:])
-			if isSmall(rest) {
-				runes[i] = unicode.ToUpper(r)
-				return string(runes)
-			}
-			return word
-		}
+	i := 0
+	for i < len(runes) && isPunct(runes[i]) {
+		i++
+	}
+	if end, ok := smallMatchAt(runes, i); ok {
+		return string(capitalizeMatch(runes, i, end))
 	}
 	return word
 }
@@ -466,33 +512,17 @@ func applySmallLast(word string) string {
 	if end > 0 && isPunct(runes[end-1]) {
 		end--
 	}
-	if end == 0 {
-		return word
-	}
-	// Find the start of the last letter-run by scanning backward.
-	// Python's \b fires between a \W char and a \w char (letter/digit/underscore).
-	// We only capitalize if the boundary before the run is a genuine \W character
-	// (not a digit or underscore, which are \w in Python regex).
-	start := end
-	for start > 0 && isLetter(runes[start-1]) {
-		start--
-	}
-	if start == end {
-		return word // no trailing letter-run found
-	}
-	// Check the word-boundary: the char immediately before the run must be
-	// non-\w (not letter, digit, or underscore) or we must be at string start.
-	if start > 0 {
-		prev := runes[start-1]
-		if isLetter(prev) || unicode.IsDigit(prev) || prev == '_' {
-			// No \b here — Python SMALL_LAST would not match.
-			return word
+	for start := end - 1; start >= 0; start-- {
+		if start > 0 && isWordRune(runes[start-1]) {
+			continue
 		}
-	}
-	candidate := strings.ToLower(string(runes[start:end]))
-	if isSmall(candidate) {
-		runes[start] = unicode.ToUpper(runes[start])
-		return string(runes)
+		for _, small := range smallPatternOrder {
+			candidate := []rune(small)
+			if start+len(candidate) == end &&
+				strings.EqualFold(string(runes[start:end]), small) {
+				return string(capitalizeMatch(runes, start, end))
+			}
+		}
 	}
 	return word
 }
@@ -513,12 +543,11 @@ func applySubphrase(s string) string {
 			for j < len(runes) && !unicode.IsSpace(runes[j]) {
 				j++
 			}
-			candidate := string(runes[i:j])
-			if isSmall(candidate) && len(candidate) > 0 {
-				cr := []rune(candidate)
-				cr[0] = unicode.ToUpper(cr[0])
-				out = append(out, cr...)
-				i = j
+			candidate := runes[i:j]
+			if end, ok := smallPrefixAt(candidate); ok {
+				cased := capitalizeMatch(candidate, 0, end)
+				out = append(out, cased[:end]...)
+				i += end
 				continue
 			}
 			// Not a small word — emit as-is from current position.

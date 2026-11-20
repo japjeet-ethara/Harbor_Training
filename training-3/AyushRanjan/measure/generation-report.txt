@@ -1,0 +1,15 @@
+# 100K exam generation evidence
+
+- Trainer kit source: shared Day 5 kit copies (`make_pool.py`, `answers.py`, `compare.py`) from `training-3/AmanTiwari/kit/`; copied into this folder's `kit/`.
+- Pool command: `uv run --no-project --python 3.14 python -I kit/make_pool.py 100000 1 kit/pool.txt`.
+- Answer freezer: `answers.py` ran the original bundled `python-titlecase` source twice with `PYTHONHASHSEED=1` and `2`; a Windows UTF-8 stdout portability line was added to the working copy. Selection logic is unchanged.
+- Pool: 100000 records, 100000 unique.
+- Stable retained: 100000; discarded as unstable: 0.
+- Reference mode: `regex module used False` (`REGEX_AVAILABLE=False`), so the source's standard-library `re` fallback was used.
+- Frozen inputs: 100000 records, 100000 unique, UTF-8, final newline.
+- Frozen answers: 100000 records, 99164 unique, UTF-8, final newline. Repeated answer strings are expected; one output is retained per input.
+- Determinism check: regenerated pool exactly matches the original; SHA-256 `132bdd057a2ac492ef89c74b92177049b0eac76686eee0373c9a88e765ac7dc2`.
+- Input SHA-256: `132bdd057a2ac492ef89c74b92177049b0eac76686eee0373c9a88e765ac7dc2`.
+- Answer SHA-256: `3d46633407b6424c9fd62cbe7c147515154f3a9395cc1577078b08642b4faf3d`.
+- Installed `task/tests/data/inputs.txt` and `answers.txt` are byte-for-byte equal to the frozen files. The prior visible and hidden 2K files were archived unchanged in ignored `kit/old-2k/` for old-exam measurements.
+- The original 2,000 hidden input/answer records also remain active as a protected regression check at `task/tests/data/legacy-2k/inputs.txt` and `answers.txt`.
