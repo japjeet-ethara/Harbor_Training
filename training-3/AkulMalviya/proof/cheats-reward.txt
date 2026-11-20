@@ -65,3 +65,39 @@ The lookup, Python wrapper, and basic heuristic scores above are Ayush's
 measurements on the published revision. Only the reward formula changed, so
 the same verifier outputs cannot score higher under the revised rule. These
 three submissions have no independent rerun on the revised commit yet.
+
+Final layout verification — local task commit 846e3b205fbf792fa5e7cfad57420bfe2e5e12f8
+
+Task tree: 555cfcc7d1a976c433a4b30f73dccf654ae11097
+
+Oracle — 1.0
+   Harbor job: day6-layout-oracle
+   Job ID: 5a0c6ba8-166a-4ff5-9a6e-5eb0a4d75add
+   Trial: task__UChXnTe
+   Trial ID: 83598bcd-10ed-48ea-bb1c-7b3698ff22ce
+   Raw reward: jobs/day6-layout-oracle/task__UChXnTe/verifier/reward.txt
+
+No-op — 0.0
+   Harbor job: day6-layout-nop
+   Job ID: 431173cb-931f-4697-b58b-6faf5e910ca8
+   Trial: task__w9kP9Mb
+   Trial ID: 57597141-ddc6-43ed-9bbe-01e03e18436b
+   Raw reward: jobs/day6-layout-nop/task__w9kP9Mb/verifier/reward.txt
+
+Older practice-1 port — 0.19
+   Harbor job: day6-layout-regressions
+   Job ID: 759680e1-352a-4388-8ba1-b34b21350a27
+   Trial: older-port__BRb5rua
+   Trial ID: 425c6add-f421-4fe9-94f6-65fac03e87e1
+   Raw reward: jobs/day6-layout-regressions/older-port__BRb5rua/verifier/reward.txt
+
+Build-only program — 0.0
+   Harbor job: day6-layout-regressions
+   Job ID: 759680e1-352a-4388-8ba1-b34b21350a27
+   Trial: build-only__4sR3jfh
+   Trial ID: ab96f7e5-73d3-448c-bc4a-f9e391059f7b
+   Raw reward: jobs/day6-layout-regressions/build-only__4sR3jfh/verifier/reward.txt
+
+The verifier commands, order, and scoring policy match the published capped
+grader. The independent lookup, Python-wrapper, and heuristic runs above
+remain tied to the first published hardened revision.
