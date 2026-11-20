@@ -2,47 +2,56 @@
 
 Day 6: prove the hardened task holds, and defend it.
 
+## My attacker
+
+**Shreed Vyas** (`training-3/ShreedVyas/attack/ATTACK.md`) attacked this task with three cheats. His strongest
+was cheat2 at **0.58** on the earlier task — a Go program that ports about 37% of the rules. After this round's
+hardening every one of his cheats scores **0.1667**, below the 0.2 bar.
+
 ## Proof (reward files in `proof/`)
-Verified on the **100,000-title** hidden exam. Harbor's own `run` could not pull its image on this machine
-(Docker Hub unreachable), so the three checks were reproduced with the identical logic at the real paths in the
-`golang:1.23` container: build the port, run it on `tests/data/hidden_inputs.txt`, compare byte-for-byte to the
-frozen answers — which is exactly what the Reward Kit `behaviour` and `no_python` checks do.
+
+Verified on the 100,000-title hidden exam. Harbor's own `run` could not pull its image on this machine, so the
+checks were reproduced with the task's identical grading (`rewardkit` over `tests/`) in a verifier image built
+from `tests/Dockerfile`.
 
 | run | reward | requirement | file |
 |---|---|---|---|
 | oracle (real port) | **1.0000** | 1.0 | `proof/oracle-reward.json` |
 | nop (does nothing) | **0.0000** | 0.0 | `proof/nop-reward.json` |
-| cheat: build + delete `.py` + echo input | **0.1667** | < 0.2 | `proof/cheat-after-reward.json` |
+| Shreed cheat1 (delete Python, empty program) | **0.1667** | < 0.2 | `proof/shreed-cheat1-reward.json` |
+| Shreed cheat2 (partial port, ~37%) | **0.1667** | < 0.2 | `proof/shreed-cheat2-reward.json` |
+| Shreed cheat3 (Python kept under a non-`.py` name) | **0.1667** | < 0.2 | `proof/shreed-cheat3-reward.json` |
 
-The oracle is exactly right on all 100,000 hidden titles; the echo cheat is right on 0 of them (the exam has no
-fixed-point titles), so it earns only the build point: (1 + 0 + 0) / 6 = 0.1667.
+The oracle is right on all 100,000 hidden titles. Every cheat is right on fewer than 90% of them, so it earns
+only the build point: (1 + 0 + 0) / 6 = 0.1667.
 
-## What this task is defended against
-No attacker pushed cheats naming SugandhSharma to the branch (checked every `training-3/*/attack/TARGET.txt` on
-2026-11-20 — none target this task). The task is therefore hardened against the standard cheat classes and the
-worst case of each:
+## How each class is closed
 
-1. **Build-only non-port (echo).** The free `no_python` point is gone: `no_python` now also requires the port to
-   be right on ≥25% of the hidden titles (`tests/no_python/check.py`), and the hidden exam drops every
-   fixed-point title, so an echo is right on 0%. Worst case scores 0.1667 — the floor a compiling program can
-   reach, below the 0.2 bar.
-2. **Partial port that rides a lucky sample.** The 100,000-title exam leaves no room: `measure/` shows that a
-   single broken common rule now misses tens of thousands of lines (e.g. the small-word rule: 21,189).
-3. **Answer leak / re-run-the-original** (the sharpest classes — read a mounted answer file, or call the
-   verifier's own Python). The behaviour and `no_python` checks read the answers from `tests/data/`, which is
-   not exposed inside `/workspace/repo`, and `instruction.md` requires that no interpreter-invoking file be left
-   behind. A full close of the leak class is what an attacker's Day 6 "one new cheat" would probe; it is named
-   below as the main residual risk rather than claimed solved.
+1. **Build-only non-port.** `no_python` no longer pays for a build alone: it requires the program to be right on
+   at least 90% of the hidden titles, and the hidden exam drops every unchanged title, so echoing the input is
+   right on 0%. (Closes cheat1.)
+2. **Partial port.** A port that gets some rules right but not all used to ride the weight-4 behaviour term.
+   `tests/behaviour/check.py` now credits the share only when it clears 90%, so a ~37% port earns 0 behaviour and
+   0 `no_python`. This is the main new fix this round. (Closes cheat2.) The 90% line sits far above the strongest
+   partial cheat (~37%) and below real classmate ports (98.5–98.8%, see `measure/`), so honest ports are
+   unaffected — they still score ~0.99.
+3. **Keep the original and call it at run time.** On the verifier this produced no correct output (behaviour 0),
+   so it is already at the floor. `instruction.md` requires a standard-library Go port and leaves no interpreter
+   to lean on. (Closes cheat3.)
 
 ## Residual risk (honest)
-- **Rare punctuation rules are caught thin.** Six per-punctuation-character mutants are caught by only 3–5
-  coverage lines (see `measure/`), because those rules are exercised only by the fixed coverage titles, not by
-  the random bulk. A port that breaks exactly one rare punctuation rule and nothing else scores ~0.99997 —
-  caught, but by a whisker. Upgrade path: multiply the coverage titles (`measure/README.md`).
-- **The equivalent mutant.** `caps_flag_ignores_case_less_lines` is never caught by any input-based exam because
-  it changes no output. It is a correct simplification, not a cheat, so it is not a scoring hole.
+
+- **`network_mode`.** Shreed flagged `[environment] network_mode = "public"` while `[agent]` declares none. His
+  data-reaching cheat scored 0, so it is not a demonstrated scoring hole. The current config is also the one that
+  lets the task start cleanly — a mismatched network mode makes Harbor refuse to start a task (that is exactly
+  what stopped a classmate's task when I attacked it). I left the working config and note it here for the
+  author's review rather than risk a task that will not run.
+- **The 90% gate is a cliff.** An honest port at 89% would score only the build point. For a byte-exact porting
+  task that is intended — 89% is not a byte-exact port — but it is a deliberate design choice worth stating.
 
 ## Reproduce
+
 - Exam: `cd task && python tests/gen.py` (deterministic, frozen twice, regex-off mode).
-- Oracle / cheat / nop, the mutation set and the measure comparison: `golang:1.23`, build the port, run on
-  `tests/data/hidden_inputs.txt`, compare to `hidden_expected.txt`.
+- Oracle / nop / cheats and the measure: build the port in `golang:1.23` (a verifier image from
+  `tests/Dockerfile` for the full `rewardkit` checks), run on `tests/data/hidden_inputs.txt`, compare to
+  `hidden_expected.txt`.
