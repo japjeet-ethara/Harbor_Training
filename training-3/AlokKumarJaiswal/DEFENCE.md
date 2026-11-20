@@ -1,8 +1,9 @@
 # 5-Minute Defence Talk Outline: Hardening titlecase-go
 
-**Speaker:** Alok Kumar Jaiswal  
-**Task:** `titlecase-go`  
-**Duration:** 5 Minutes  
+**Speaker:** Alok Kumar Jaiswal
+**Task:** `titlecase-go`
+**Duration:** 5 Minutes
+**Final Local Task Revision:** `b1019a4`
 
 ---
 
@@ -22,18 +23,19 @@
 
 ## Minute 2: Two Critical Grader Fixes (1:00 – 2:00)
 
-### Slide / Topic: Gating and Precision Architecture
+### Slide / Topic: Gating and Squared Behaviour Scoring
 1. **Strict Scoring Gate (`build` and `no_python` gate behaviour credit):**
    - Behaviour credit is now strictly conditional on passing both `build` and `no_python` gates (`1.0` each).
    - If either structural check fails, the final reward is strictly `0.0`. Passing compilation or having no Python files no longer awards unearned baseline points.
-2. **Unrounded Behaviour Scores:**
-   - The verifier extracts exact, unrounded raw floating-point behaviour scores directly from `criteria.hidden_output_matches`.
-   - Eliminates premature rounding to 4 or 6 decimal places, preserving precision across large exam corpora.
+2. **Squared Behaviour Scoring & Unrounded Precision:**
+   - In final task revision `b1019a4`, the verifier publishes the square of raw behaviour ($\text{reward} = \text{behaviour}^2$) when both structural checks pass, and zero otherwise.
+   - Squaring changes the reward for partial correctness while preserving raw accuracy and the official exam.
+   - Raw behaviour is extracted directly as an unrounded float from `criteria.hidden_output_matches`, preventing premature precision loss.
 
 > **Speaking Notes:**
-> - "To fix this, we implemented two major grader improvements."
-> - "First: `build` and `no_python` now strictly gate behaviour credit. If the binary fails to build or Python files are present, reward is zero—no free structural baseline."
-> - "Second: the verifier now publishes unrounded behaviour scores directly from raw output comparisons, preventing premature truncation."
+> - "To fix this, we implemented strict structural gating and squared behaviour scoring in final local task revision b1019a4."
+> - "First: `build` and `no_python` strictly gate behaviour credit. If the binary fails to build or Python files are present, reward is zero—no free structural baseline."
+> - "Second: when both structural checks pass, the verifier publishes the square of raw behaviour, and zero otherwise. Squaring changes the reward for partial correctness while preserving raw accuracy and the official exam."
 
 ---
 
@@ -77,23 +79,28 @@
 
 ## Minute 5: Control Proofs & Verification Status (4:00 – 5:00)
 
-### Slide / Topic: Verified Control Rewards and Pending Submissions
-- **Verified Control Rewards:**
-  - The runs confirmed oracle `1.0` and nop `0.0` on the hardened task.
-  - Final Oracle Reward: `1.0` &rarr; verified in [proof/oracle-reward.json](proof/oracle-reward.json).
-  - Nop Baseline Reward: `0.0` &rarr; verified in [proof/nop-reward.json](proof/nop-reward.json).
-- **Classmate Submission Audits:**
-  - Verification against Sanyam’s Day 4 submissions remains pending. His scores are left blank.
+### Slide / Topic: Verified Control Rewards and Classmate Audits
+- **Verified Control Rewards (Task Revision `b1019a4`):**
+  - Final Oracle Reward: `1.0` in job `practice1-squared-oracle-20261120-125015` (verified in [proof/oracle-reward.json](proof/oracle-reward.json)).
+  - Nop Baseline Reward: `0.0` in job `practice1-squared-nop-20261120-125222` (verified in [proof/nop-reward.json](proof/nop-reward.json)).
+- **Classmate Submission Results:**
+  - Baseline rewards are attributed to Sanyam’s published report.
+  - Sanyam Cheat 2 first scored `0.33993` under the linear gate in `practice1-sanyam-cheat2-hardened-20261120-124059`. It fell below 0.2 after squaring ($0.33993^2 = 0.1155524049$).
+  - Sanyam Cheat 3 exact replay was not performed; the separate echo-only control is kept separate from Cheat 3.
 
-### Control & Audit Summary
+### Verified Results Summary
 
-| Target / Submission | Overall Reward | Verification Status |
-| :--- | :---: | :--- |
-| **Final Oracle** | 1.0 | Verified in [proof/oracle-reward.json](proof/oracle-reward.json) |
-| **Nop Baseline** | 0.0 | Verified in [proof/nop-reward.json](proof/nop-reward.json) |
-| **Sanyam Day 4 Submissions** | | *Pending verification* |
+| Check | Baseline reward | Final reward | Final Harbor job |
+| :--- | :--- | :--- | :--- |
+| **Sanyam Cheat 1** | 0.3640 | 0.0001890625 | `practice1-sanyam-cheat1-squared-20261120-125733` |
+| **Sanyam Cheat 2** | 0.5217 | 0.1155524049 | `practice1-sanyam-cheat2-squared-20261120-124826` |
+| **Sanyam Cheat 3** | 0.3640 | Unverified | Exact replay not performed |
+| **Separate echo-only control** | — | 0.0001879641 | `practice1-echo-only-squared-20261120-130327` |
+
+*Proof Artifacts:* Linked in [proof/cheats-reward.txt](proof/cheats-reward.txt), [proof/sanyam-cheat1-reward.json](proof/sanyam-cheat1-reward.json), [proof/sanyam-cheat2-reward.json](proof/sanyam-cheat2-reward.json), and [proof/echo-only-reward.json](proof/echo-only-reward.json).
 
 > **Speaking Notes:**
-> - "Verified Control Rewards: the runs confirmed oracle 1.0 and nop 0.0 on the hardened task (verified in [proof/oracle-reward.json](proof/oracle-reward.json) and [proof/nop-reward.json](proof/nop-reward.json))."
-> - "Verification against Sanyam's Day 4 submissions remains pending, so those scores remain blank."
-> - "The official exam and both Harbor controls are verified. The remaining check is whether each of Sanyam’s Day 4 submissions scores below 0.2. Thank you."
+> - "Verified Control Rewards under final revision b1019a4: the runs confirmed oracle 1.0 in `practice1-squared-oracle-20261120-125015` and nop 0.0 in `practice1-squared-nop-20261120-125222`."
+> - "Evaluating Sanyam's Day 4 attacks: Cheat 1 earned 0.0001890625. Cheat 2, which initially scored 0.33993 under the linear gate, dropped to 0.1155524049 after squaring, safely below 0.2."
+> - "Cheat 3 was not replayed exactly; our separate echo-only control scored 0.0001879641."
+> - "Cheats 1 and 2 scored below 0.2 on revision b1019a4. Cheat 3’s hardened score remains unverified."

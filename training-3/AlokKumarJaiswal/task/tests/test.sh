@@ -152,8 +152,8 @@ if not (0.0 <= beh_val <= 1.0):
 # Preserve raw details for diagnostics
 final_details_path.write_text(raw_details_path.read_text(encoding="utf-8"), encoding="utf-8")
 
-# Award behaviour score when build and no_python both equal 1; otherwise award 0
-final_reward_val = beh_val if (build_val == 1.0 and no_py_val == 1.0) else 0.0
+# Award behaviour squared when build and no_python both equal 1; otherwise award 0
+final_reward_val = (beh_val ** 2) if (build_val == 1.0 and no_py_val == 1.0) else 0.0
 
 # Stage the gated reward on the target filesystem
 stage_reward_path.write_text(json.dumps({"reward": final_reward_val}, indent=2) + "\n", encoding="utf-8")

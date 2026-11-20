@@ -32,4 +32,4 @@ Memory use and error-message wording are not scored.
 
 # Grading
 
-Hidden automatic checks cover the build, the absence of `.py` files (no_python), and the output on a hidden set of lines (behaviour). The build and no_python checks are prerequisites for earning the byte-exact behaviour score. The score is partial (between 0 and 1).
+Hidden automatic checks cover the build, the absence of `.py` files (no_python), and the output on a hidden set of lines (behaviour). The build and no_python checks are strict prerequisites: if either `build` or `no_python` fails, the final reward is `0.0`. When both pass (`build == 1` and `no_python == 1`), the final reward is the square of the byte-exact behaviour score ($\text{reward} = \text{behaviour}^2$). The score is partial (between 0 and 1).
