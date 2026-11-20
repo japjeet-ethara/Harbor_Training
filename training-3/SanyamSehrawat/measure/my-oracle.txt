@@ -1,17 +1,3 @@
-﻿wrong answers      21649 of 100000
-chance a random 2000 suite sees none of them: 0%
-  input 'music\tstar v.'
-  want  'Music\tStar V.'
-  got   'Music\tStar v.'
-  input 'night v. Input/output and @World! and/or'
-  want  'Night v. Input/Output and @World! And/Or'
-  got   'Night v. Input/Output and @World! And/or'
-  input 'en st a STORY vs v. Дом but'
-  want  'En St a STORY vs v. Дом But'
-  got   'En St a STORY vs v. Дом but'
-  input 'house as summer| machine&  and'
-  want  'House as Summer| Machine&  And'
-  got   'House as Summer| Machine&  and'
-  input 'winter in'
-  want  'Winter In'
-  got   'Winter in'
+﻿wrong answers      0 of 100000
+chance a random 2000 suite sees none of them: 100%
+

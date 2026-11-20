@@ -159,7 +159,12 @@ func checkBehaviour(dataDir string) float64 {
 		}
 	}
 	fmt.Printf("behaviour: %d of %d lines match (%d lines produced)\n", matched, len(answers), len(produced))
-	return float64(matched) / float64(len(answers))
+	ratio := float64(matched) / float64(len(answers))
+	if ratio < 0.95 {
+		fmt.Println("behaviour: below hardened 95% threshold")
+		return 0
+	}
+	return ratio
 }
 
 func main() {

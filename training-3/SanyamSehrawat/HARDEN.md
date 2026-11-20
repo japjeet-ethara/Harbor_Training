@@ -26,7 +26,7 @@
 | Sonu cheat | Before | Fix |
 |---|---:|---|
 | Delete trick | 0.3333 | Build is still 1, but behaviour and gated `no_python` are 0, giving at most 0.1667 reward. |
-| Half port | 0.4697 | Behaviour stays below the gate and `no_python` remains 0. |
+| Half port | 0.4697 | Behaviour is capped below the 95% threshold and `no_python` remains 0. |
 | Python Inside | 0.9897 | Forbidden `os/exec` build check and removal of Python reject the wrapper. |
 
 These are hardening properties based on the verifier logic; they still require real Harbor
