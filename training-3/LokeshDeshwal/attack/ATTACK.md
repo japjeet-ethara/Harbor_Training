@@ -24,3 +24,28 @@ Why it worked: Builds cleanly and passes the `no_python` check. Because `tests/t
 How to fix: Implement a graded reward scale for behaviour so partial ports get credit, while ensuring structural checks (`no_python`) cannot earn points on their own.
 
 Highest score any cheat got: 1.000
+
+---
+
+## Day 6 Re-Attack — Neha Gaur's Hardened Task
+
+- **Target:** `training-3/NehaGaur/task` at commit `ceefab5` (*"harden: close cheats 1,2 and 3, 100k exam (separate)"*)
+- **Test Engine:** Harbor 0.25.0, 1 trial per run, 0 exceptions
+
+### Re-Attack Score Table
+
+| Cheat / Baseline | Day 4 Score (Before) | Day 6 Score (Hardened) | Harbor Job ID | Status |
+| :--- | :---: | :---: | :--- | :--- |
+| **Published Oracle** | 1.000000 | **1.000000** | `jobs/2026-11-21__19-53-14` | PASSED (1.000) |
+| **Cheat 1 — Answer Peeking** | 1.000000 | **0.000000** | `jobs/2026-11-21__19-54-19` | CLOSED (< 0.20) |
+| **Cheat 2 — Delete & Build Trick** | 0.333333 | **0.000000** | `jobs/2026-11-21__19-55-22` | CLOSED (< 0.20) |
+| **Cheat 3 — Naive Capitalizer** | 0.333333 | **0.000000** | `jobs/2026-11-21__19-56-23` | CLOSED (< 0.20) |
+
+Reward evidence files: [`attack/results/reattack-cheat1-reward.json`](results/reattack-cheat1-reward.json), [`reattack-cheat2-reward.json`](results/reattack-cheat2-reward.json), [`reattack-cheat3-reward.json`](results/reattack-cheat3-reward.json).
+
+### Defense Verification Analysis
+1. **Cheat 1 (Answer Peeking) Neutralized:** Neha restricted permissions on the hidden expected file (`chmod 0600`) and drops process privileges before executing the candidate binary (`os.setgid(65534)`, `os.setuid(65534)` as user `nobody`). When the binary attempts to read `/tests/data/hidden_expected.jsonl`, it fails with `Permission Denied` and produces no output.
+2. **Cheats 2 & 3 (Structural Point Exploits) Neutralized:** Neha restructured the composite reward formula:
+   $$\text{reward} = \text{scores}[\text{behavior}] \times \frac{\text{scores}[\text{build}] + \text{scores}[\text{no\_python}] + 4}{6}$$
+   Because `behavior` score directly multiplies the entire score, solutions that fail behavioral correctness earn an overall reward of `0.000000`, completely eliminating the $0.333$ baseline free credit.
+3. **Conclusion:** All three cheats have been successfully driven to `0.000000` (well below the `< 0.20` requirement), while the reference oracle maintains a perfect `1.000000`. Neha Gaur's task is confirmed hardened.
