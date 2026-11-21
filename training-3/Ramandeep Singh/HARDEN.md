@@ -58,9 +58,9 @@ The three tested cheats were blocked or substantially reduced after hardening. T
 
 | Port | Wrong answers | Accuracy | Chance random 2,000 misses all errors |
 |:--|--:|--:|--:|
-| my-oracle | 912 | 99.088% | 0% |
+| my-oracle | 912 | 99.088% | 99% |
 | MadhurJain | 0 | 100% | 100% |
-| NehaGaur | 3,520 | 96.480% | 0% |
+| NehaGaur | 3,520 | 96.480% | 96% |
 
 Comparison reports are saved in `measure/my-oracle-day5.txt`, `measure/MadhurJain-day5.txt`, and `measure/NehaGaur-day5.txt`.
 
