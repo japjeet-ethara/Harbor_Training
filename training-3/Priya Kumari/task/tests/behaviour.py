@@ -4,8 +4,8 @@ from pathlib import Path
 
 from rewardkit import Worker, WorkerError, criterion
 
-HIDDEN_INPUTS = Path("/tests/data/hidden_inputs.txt")
-HIDDEN_EXPECTED = Path("/tests/data/hidden_expected.txt")
+INPUTS = Path("/tests/data/inputs.txt")
+ANSWERS = Path("/tests/data/answers.txt")
 
 
 def _line_score(actual: str, expected: str) -> float:
@@ -23,7 +23,7 @@ def _line_score(actual: str, expected: str) -> float:
 def behaviour(workspace: Path) -> float:
     if not workspace.is_dir():
         return 0.0
-    if not HIDDEN_INPUTS.is_file() or not HIDDEN_EXPECTED.is_file():
+    if not INPUTS.is_file() or not ANSWERS.is_file():
         return 0.0
     try:
         result = Worker(
@@ -31,7 +31,7 @@ def behaviour(workspace: Path) -> float:
         ).run(
             f"cd {workspace.name} && go build -o titlecase . && ./titlecase",
             files=[workspace],
-            stdin=HIDDEN_INPUTS.read_bytes(),
+            stdin=INPUTS.read_bytes(),
             timeout_sec=180,
         )
     except WorkerError:
@@ -40,5 +40,5 @@ def behaviour(workspace: Path) -> float:
         actual = result.stdout.decode("utf-8")
     except UnicodeDecodeError:
         return 0.0
-    expected = HIDDEN_EXPECTED.read_text(encoding="utf-8")
+    expected = ANSWERS.read_text(encoding="utf-8")
     return _line_score(actual, expected)
