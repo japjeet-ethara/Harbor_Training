@@ -7,3 +7,9 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 WORKDIR /app
 
 COPY . /tests/
+
+# Lock down tests directory so only root (the verifier) can access test data
+RUN chmod 700 /tests && chmod -R 600 /tests/data
+
+# Restrict Python runtime execution to root only (prevents unprivileged binary from calling python3)
+RUN chmod 700 /usr/local/bin/python* /usr/bin/python* 2>/dev/null || true

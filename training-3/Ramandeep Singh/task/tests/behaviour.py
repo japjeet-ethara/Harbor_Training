@@ -1,12 +1,16 @@
+
 """
 Criterion 3: behaviour (weight 4)
-Build the Go program, feed it tests/data/hidden_inputs.txt via stdin,
-and compare its output line by line against tests/data/hidden_expected.txt.
-Score the fraction of lines that match exactly (between 0.0 and 1.0).
+
+Run the candidate Go program as an unprivileged user.
+Protect hidden test data from candidate access.
+Score the fraction of matching output lines.
 """
 
 import os
+import pwd
 import subprocess
+import tempfile
 from pathlib import Path
 
 try:
@@ -19,71 +23,105 @@ except ImportError:
 @criterion
 def check_behaviour(workspace: Path) -> float:
     try:
-        # Locate hidden inputs and hidden expected outputs
-        data_dir = Path(__file__).resolve().parent / "data"
-        hidden_inputs_path = data_dir / "hidden_inputs.txt"
-        hidden_expected_path = data_dir / "hidden_expected.txt"
-
-        if not hidden_inputs_path.exists() or not hidden_expected_path.exists():
+        if os.name != "posix" or os.geteuid() != 0:
             return 0.0
 
-        with open(hidden_expected_path, "r", encoding="utf-8") as f:
-            expected_lines = f.read().splitlines()
+        nobody = pwd.getpwnam("nobody")
+
+        data_dir = Path(__file__).resolve().parent / "data"
+        inputs_path = data_dir / "hidden_inputs.txt"
+        expected_path = data_dir / "hidden_expected.txt"
+
+        if not inputs_path.is_file():
+            inputs_path = data_dir / "inputs.txt"
+        if not expected_path.is_file():
+            expected_path = data_dir / "answers.txt"
+
+        if not inputs_path.is_file() or not expected_path.is_file():
+            return 0.0
+
+        # Read verifier data before restricting candidate access.
+        input_bytes = inputs_path.read_bytes()
+        expected_lines = expected_path.read_text(
+            encoding="utf-8"
+        ).splitlines()
 
         if not expected_lines:
             return 0.0
-
-        with open(hidden_inputs_path, "rb") as f:
-            input_bytes = f.read()
-
-        # Build Go binary to a temporary path inside /tmp (or OS tempdir)
-        import tempfile
-        tmp_dir = Path(tempfile.gettempdir())
-        bin_path = tmp_dir / "_titlecase_eval_bin"
-        if bin_path.exists():
-            try:
-                bin_path.unlink()
-            except Exception:
-                pass
-
-        build_res = subprocess.run(
-            ["go", "build", "-o", str(bin_path), "."],
+        
+        # Reject direct use of Go's process-execution package.
+        import_res = subprocess.run(
+            ["go", "list", "-f", "{{join .Imports \"\\n\"}}", "."],
             cwd=str(workspace),
             capture_output=True,
-            timeout=120,
+            text=True,
+            timeout=60,
         )
-        if build_res.returncode != 0 or not bin_path.exists():
+
+        if import_res.returncode != 0:
             return 0.0
 
-        # Execute the Go binary with hidden inputs fed to stdin
-        try:
-            run_res = subprocess.run(
-                [str(bin_path)],
-                input=input_bytes,
+        direct_imports = set(import_res.stdout.splitlines())
+
+        if "os/exec" in direct_imports:
+            return 0.0
+
+        # Protect hidden files and their containing directory.
+        expected_path.chmod(0o600)
+        data_dir.chmod(0o700)
+
+        with tempfile.TemporaryDirectory() as build_dir:
+            build_path = Path(build_dir)
+            build_path.chmod(0o755)
+
+            bin_path = build_path / "titlecase_eval"
+
+            build_res = subprocess.run(
+                ["go", "build", "-o", str(bin_path), "."],
+                cwd=str(workspace),
                 capture_output=True,
                 timeout=120,
             )
-        finally:
-            if bin_path.exists():
-                try:
-                    bin_path.unlink()
-                except Exception:
-                    pass
 
-        if run_res.returncode != 0:
-            return 0.0
+            if build_res.returncode != 0:
+                return 0.0
 
-        actual_output = run_res.stdout.decode("utf-8", errors="replace")
-        actual_lines = actual_output.splitlines()
+            bin_path.chmod(0o755)
 
-        # Score line-by-line exact matches against expected outputs
-        total = len(expected_lines)
-        matches = 0
-        for i in range(total):
-            if i < len(actual_lines) and actual_lines[i] == expected_lines[i]:
-                matches += 1
+            with tempfile.TemporaryDirectory() as run_dir:
+                run_path = Path(run_dir)
+                run_path.chmod(0o755)
 
-        return float(matches) / float(total)
+                run_res = subprocess.run(
+                    [str(bin_path)],
+                    cwd=str(run_path),
+                    input=input_bytes,
+                    capture_output=True,
+                    timeout=120,
+                    env={
+                        "PATH": "/usr/bin:/bin",
+                        "HOME": str(run_path),
+                        "TMPDIR": str(run_path),
+                    },
+                    user=nobody.pw_uid,
+                    group=nobody.pw_gid,
+                )
+
+            if run_res.returncode != 0:
+                return 0.0
+
+            actual_lines = run_res.stdout.decode(
+                "utf-8", errors="replace"
+            ).splitlines()
+
+            matches = sum(
+                1 for i, expected in enumerate(expected_lines)
+                if i < len(actual_lines)
+                and actual_lines[i] == expected
+            )
+
+            return matches / len(expected_lines)
+
     except Exception:
         return 0.0
 
