@@ -22,7 +22,7 @@ _build_result = None
 def _write_reward():
     """Write the weighted reward. Safe to call more than once."""
     REWARD_PATH.parent.mkdir(parents=True, exist_ok=True)
-    reward = (scores["build"] + scores["no_python"] + 4 * scores["behavior"]) / 6
+    reward = scores["behavior"] * (scores["build"] + scores["no_python"] + 4) / 6
     REWARD_PATH.write_text(
         json.dumps({"reward": reward}) + "\n",
         encoding="utf-8",
@@ -168,6 +168,16 @@ def _hidden_behavior_failure():
             if binary is None:
                 return "go build -o did not produce a binary"
 
+            # The verifier retains access to expected answers; the candidate does not.
+            binary.chmod(0o755)
+            Path(tmp).chmod(0o755)
+            HIDDEN_EXPECTED.chmod(0o600)
+
+            def _drop_candidate_privileges():
+                import os
+                os.setgid(65534)
+                os.setuid(65534)
+
             try:
                 proc = subprocess.run(
                     [str(binary)],
@@ -175,6 +185,7 @@ def _hidden_behavior_failure():
                     input=payload,
                     capture_output=True,
                     timeout=COMMAND_TIMEOUT_SEC,
+                    preexec_fn=_drop_candidate_privileges,
                 )
             except subprocess.TimeoutExpired:
                 return "Go program timed out"
