@@ -26,4 +26,4 @@ Speed, memory, and error-message wording are not checked.
 
 ## 6. How it is graded
 
-Hidden automatic tests grade the program. A partial score is possible.
+The verifier awards 1.0 only when every expected output line matches. A valid submission with any wrong line earns the fraction of matching lines, capped at 0.19. Build, runtime, or output-format failures earn 0.0.

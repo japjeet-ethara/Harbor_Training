@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Generate deterministic titlecase fixtures.
-
-Expected files are produced by running the original Python titlecase(),
-not by hand.
-"""
+"""Generate deterministic, diverse titlecase fixtures using the reference."""
 
 import random
 import sys
@@ -11,31 +7,55 @@ from pathlib import Path
 
 TESTS_DIR = Path(__file__).resolve().parent
 DATA_DIR = TESTS_DIR / "data"
-# ../python-titlecase relative to the Harbor task directory.
-ORIGINAL = TESTS_DIR.parent.parent / "python-titlecase"
+ORIGINAL = TESTS_DIR.parent.parent.parent / "python-titlecase"
 
-COUNT = 2000
+COUNT = 100000
 
-# Ordinary vocabulary mixed into every batch of titles.
 NORMAL_WORDS = [
     "apple", "bridge", "castle", "dancer", "engine", "forest", "garden",
     "harbor", "island", "jacket", "kettle", "lantern", "market", "needle",
     "orange", "palace", "quartz", "river", "silver", "temple", "umbrella",
     "valley", "window", "yellow", "zebra", "report", "history", "music",
-    "paper", "garden", "captain", "letter", "season", "village", "morning",
-    "copper", "silent", "public", "winter", "golden",
+    "paper", "captain", "letter", "season", "village", "morning", "copper",
+    "silent", "public", "winter", "golden", "planet", "station", "system",
+    "camera", "network", "machine", "science", "project", "company",
+    "library", "mountain", "ocean", "picture", "computer", "archive",
 ]
 
-# Small words from the New York Times list, plus v and vs.
 SMALL_WORDS = [
     "a", "an", "and", "as", "at", "but", "by", "en", "for", "if", "in",
     "of", "on", "or", "the", "to", "v", "v.", "via", "vs", "vs.",
 ]
 
-# Single-line inputs pasted from the NOTES.md rule list.
-RULE_EXAMPLES = [
-    "text\twith\ttabs",
-    "the end",
+APOSTROPHE_STEMS = [
+    "grange", "clock", "melveny", "doyle", "amour", "angelo",
+    "smith", "jackson", "connor", "wright", "ocean",
+]
+
+MC_STEMS = [
+    "clelland", "donalds", "tavish", "foo", "bar", "maier",
+    "cay", "by", "intosh", "gregor",
+]
+
+HOSTS = [
+    "example.com", "del.icio.us", "http://foo.com", "iTunes",
+    "AT&T", "Q&A", "PPPoE", "www.example.org",
+]
+
+ACRONYMS = [
+    "cnn", "bbc", "html", "nyt", "st", "tv", "rfc", "sec",
+    "NASA", "FBI", "USA", "HTML", "API", "CPU",
+]
+
+ORDINALS = ["34th", "3rd", "2nd", "5th", "21st", "101st", "12th"]
+
+PUNCTUATION = [": ", ". ", "; ", "? ", "! ", " — ", " – ", " - "]
+
+QUOTES = ['"', "'", "“", "‘"]
+
+WHITESPACES = ["  ", "   ", "\t", "\u00a0", "\u200a", "\u2006"]
+
+FIXED_CASES = [
     "WASHINGTON, D.C. SHOULD BE FIXED",
     "o'grange l'grange",
     "mcclelland",
@@ -54,177 +74,179 @@ RULE_EXAMPLES = [
     "Starting Sub-Phrase With a Small Word: a Trick, Perhaps?",
     "Line number one",
     "and Line three",
+    "text\twith\ttabs",
+    "the end",
 ]
 
-# Recorded NOTES.md outputs. These are inputs here so the original
-# titlecase() can supply the real expected line. Multiline samples are
-# split so every generated file stays one title per line.
-WRONG_EXAMPLES = [
-    "Text With Tabs",
-    "the End",
-    "Washington, D.C. Should Be Fixed",
-    "O'Grange l'Grange",
-    "McClelland",
-    "Mr Smith and Dr Jones",
-    "This Is Just an example.com",
-    "iTunes Should Be Unmolested",
-    "This vs. That",
-    "Word/Word",
-    "End-to-End",
-    "This Is All Caps and Should Be Addressed",
-    "Words With All Consonants Like CNN",
-    "Hello World",
-    "34th 3rd 2nd",
-    "'By the Way, Small Word at the Start but Within Quotes.'",
-    "Small Word at End Is Nothing to Be Afraid Of",
-    "Starting Sub-Phrase With a Small Word: A Trick, Perhaps?",
-    "Line Number One",
-    "And Line Three",
-]
+def word(rng):
+    return rng.choice(NORMAL_WORDS)
 
-NOTES_EXAMPLES = RULE_EXAMPLES + WRONG_EXAMPLES
+def small_word(rng):
+    return rng.choice(SMALL_WORDS)
 
-APOSTROPHE_STEMS = ["grange", "clock", "melveny", "doyle", "amour", "angelo"]
-MC_STEMS = ["clelland", "donalds", "tavish", "foo", "bar", "maier", "cay", "by"]
-HOSTS = ["example.com", "del.icio.us", "http://foo.com", "iTunes", "AT&T", "Q&A", "PPPoE"]
-ACRONYMS = ["cnn", "bbc", "html", "nyt", "st", "tv", "rfc", "sec"]
-ORDINALS = ["34th", "3rd", "2nd", "5th", "21st"]
-SUBPHRASE_MARKS = [": ", ". ", "; ", "? ", "! ", " - ", " — ", " – ", " ‒ ", " ― "]
+def normal_phrase(rng, minimum=2, maximum=8):
+    return " ".join(word(rng) for _ in range(rng.randint(minimum, maximum)))
 
-
-def pick_words(n, pool):
-    return [random.choice(pool) for _ in range(n)]
-
-
-def normal_phrase():
-    return " ".join(pick_words(random.randint(2, 8), NORMAL_WORDS))
-
-
-def small_phrase():
+def small_phrase(rng):
     parts = []
-    for _ in range(random.randint(3, 8)):
-        pool = SMALL_WORDS if random.random() < 0.45 else NORMAL_WORDS
-        parts.append(random.choice(pool))
+    for _ in range(rng.randint(3, 8)):
+        parts.append(small_word(rng) if rng.random() < 0.5 else word(rng))
     return " ".join(parts)
 
+def apostrophe_word(rng):
+    prefix = rng.choice(["o", "O", "l", "L", "d", "D"])
+    mark = rng.choice(["'", "’"])
+    result = prefix + mark + rng.choice(APOSTROPHE_STEMS)
+    if rng.random() < 0.35:
+        result += "'s"
+    return result
 
-def apostrophe_word():
-    prefix = random.choice(["o", "O", "l", "L", "d", "D"])
-    mark = random.choice(["'", "‘"])
-    word = prefix + mark + random.choice(APOSTROPHE_STEMS)
-    if random.random() < 0.35:
-        word += "'s"
-    return word
+def mc_word(rng):
+    return rng.choice(["mc", "Mc", "MC"]) + rng.choice(MC_STEMS)
 
+def honorific_phrase(rng):
+    title = rng.choice(["mr", "mrs", "ms", "dr", "MR", "MRS", "Dr"])
+    return title + " " + word(rng)
 
-def mc_word():
-    return random.choice(["mc", "Mc", "MC"]) + random.choice(MC_STEMS)
-
-
-def honorific_phrase():
-    title = random.choice(["mr", "mrs", "ms", "dr", "MR", "MRS", "Dr"])
-    return title + " " + random.choice(NORMAL_WORDS)
-
-
-def hyphenated():
-    count = random.randint(2, 4)
+def hyphenated(rng):
     parts = []
-    for _ in range(count):
-        pool = SMALL_WORDS if random.random() < 0.4 else NORMAL_WORDS
-        parts.append(random.choice(pool))
+    for _ in range(rng.randint(2, 4)):
+        parts.append(small_word(rng) if rng.random() < 0.45 else word(rng))
     return "-".join(parts)
 
-
-def slashed():
-    count = random.randint(2, 3)
+def slashed(rng):
     parts = []
-    for _ in range(count):
-        pool = SMALL_WORDS if random.random() < 0.4 else NORMAL_WORDS
-        parts.append(random.choice(pool))
+    for _ in range(rng.randint(2, 3)):
+        parts.append(small_word(rng) if rng.random() < 0.45 else word(rng))
     return "/".join(parts)
 
-
-def initials_phrase():
-    head = " ".join(word.upper() for word in pick_words(random.randint(2, 5), NORMAL_WORDS))
-    initials = random.choice(["D.C.", "A.B", "A.B.", "U.S.A."])
-    tail = random.choice(NORMAL_WORDS).upper()
+def initials_phrase(rng):
+    head = " ".join(word(rng).upper() for _ in range(rng.randint(2, 5)))
+    initials = rng.choice(["D.C.", "A.B", "A.B.", "U.S.A.", "J.R.R."])
+    tail = rng.choice(NORMAL_WORDS).upper()
     return f"{head} {initials} {tail}"
 
+def subphrase(rng):
+    mark = rng.choice(PUNCTUATION)
+    small = rng.choice(["a", "an", "the", "of", "and", "in", "to"])
+    return normal_phrase(rng) + mark + small + " " + normal_phrase(rng)
 
-def subphrase():
-    mark = random.choice(SUBPHRASE_MARKS)
-    small = random.choice(["a", "an", "the", "of", "and"])
-    return normal_phrase() + mark + small + " " + normal_phrase()
+def quoted_small_start(rng):
+    opener = rng.choice(QUOTES)
+    closer = {"“": "”", "‘": "’", '"': '"', "'": "'"}[opener]
+    return opener + small_word(rng) + " " + normal_phrase(rng) + closer
 
+def mixed_whitespace(rng):
+    words = [
+        small_word(rng) if rng.random() < 0.3 else word(rng)
+        for _ in range(rng.randint(2, 6))
+    ]
 
-def quoted_small_start():
-    opener = random.choice(["'", "‘", '"', "“"])
-    closer = {"'": "'", "‘": "’", '"': '"', "“": "”"}[opener]
-    return opener + random.choice(SMALL_WORDS) + " " + normal_phrase() + closer
+    # Either uniform whitespace throughout or mixed combinations between words
+    if rng.random() < 0.5:
+        gap = rng.choice(WHITESPACES)
+        middle = gap.join(words)
+    else:
+        parts = [words[0]]
+        for w in words[1:]:
+            parts.append(rng.choice(WHITESPACES))
+            parts.append(w)
+        middle = "".join(parts)
 
+    # Optional leading and trailing whitespace variations
+    leading = rng.choice(WHITESPACES) if rng.random() < 0.35 else ""
+    trailing = rng.choice(WHITESPACES) if rng.random() < 0.35 else ""
 
-def mixed_whitespace():
-    gap = random.choice(["\t", "\u00a0", "\u200a", "\u2006", "  "])
-    return gap.join(pick_words(random.randint(2, 6), NORMAL_WORDS))
+    return f"{leading}{middle}{trailing}"
 
+def punctuation_chain(rng):
+    pieces = []
+    for _ in range(rng.randint(3, 6)):
+        pieces.append(
+            rng.choice([
+                word(rng), small_word(rng), apostrophe_word(rng),
+                mc_word(rng), rng.choice(ACRONYMS),
+            ])
+        )
+    return rng.choice(PUNCTUATION).join(pieces)
 
-def tricky_fragment():
-    kind = random.randrange(12)
-    if kind == 0:
-        return random.choice(NOTES_EXAMPLES)
-    if kind == 1:
-        return apostrophe_word()
-    if kind == 2:
-        return mc_word()
-    if kind == 3:
-        return honorific_phrase()
-    if kind == 4:
-        return hyphenated()
-    if kind == 5:
-        return slashed()
-    if kind == 6:
-        return random.choice(HOSTS)
-    if kind == 7:
-        return random.choice(ACRONYMS)
-    if kind == 8:
-        return random.choice(ORDINALS)
-    if kind == 9:
-        return initials_phrase()
-    if kind == 10:
-        return quoted_small_start()
-    return mixed_whitespace()
+def composite_title(rng):
+    """Combine several independently tricky features."""
+    pieces = []
 
+    pieces.append(rng.choice([
+        normal_phrase(rng, 1, 3),
+        small_phrase(rng),
+        word(rng).upper(),
+    ]))
 
-def make_title():
-    """One title: normal words, or normal words mixed with a tricky case."""
-    mode = random.randrange(6)
+    for _ in range(rng.randint(2, 4)):
+        pieces.append(rng.choice([
+            small_word(rng),
+            apostrophe_word(rng),
+            mc_word(rng),
+            honorific_phrase(rng),
+            hyphenated(rng),
+            slashed(rng),
+            rng.choice(HOSTS),
+            rng.choice(ACRONYMS),
+            rng.choice(ORDINALS),
+            initials_phrase(rng),
+            quoted_small_start(rng),
+            subphrase(rng),
+        ]))
+
+    if rng.random() < 0.5:
+        pieces.append(normal_phrase(rng, 1, 3))
+
+    return " ".join(pieces)
+
+def make_title(rng):
+    # Balanced generation modes. Each mode is sampled independently.
+    mode = rng.randrange(11)
+
     if mode == 0:
-        return normal_phrase()
+        return normal_phrase(rng)
+
     if mode == 1:
-        return small_phrase()
+        return small_phrase(rng)
+
     if mode == 2:
-        return normal_phrase().upper()
+        return normal_phrase(rng).upper()
+
     if mode == 3:
-        return random.choice(NOTES_EXAMPLES)
+        return rng.choice(FIXED_CASES)
+
     if mode == 4:
-        return subphrase()
-    parts = [normal_phrase(), tricky_fragment()]
-    if random.random() < 0.5:
-        parts.append(random.choice(SMALL_WORDS))
-    if random.random() < 0.5:
-        parts.append(normal_phrase())
-    if random.random() < 0.25:
-        parts.append(tricky_fragment())
-    return " ".join(parts)
+        return subphrase(rng)
 
+    if mode == 5:
+        return hyphenated(rng)
 
-def generate(count):
+    if mode == 6:
+        return slashed(rng)
+
+    if mode == 7:
+        return punctuation_chain(rng)
+
+    if mode == 8:
+        return quoted_small_start(rng)
+
+    if mode == 9:
+        return mixed_whitespace(rng)
+
+    return composite_title(rng)
+
+def generate(count, seed):
+    rng = random.Random(seed)
     titles = []
-    for _ in range(count):
-        title = make_title().replace("\r", " ").replace("\n", " ")
-        titles.append(title)
-    return titles
 
+    for _ in range(count):
+        title = make_title(rng)
+        title = title.replace("\r", " ").replace("\n", " ")
+        titles.append(title)
+
+    return titles
 
 def write_lines(path, lines):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -232,23 +254,20 @@ def write_lines(path, lines):
         for line in lines:
             handle.write(line + "\n")
 
-
 def expect(lines, titlecase):
     return [titlecase(line) for line in lines]
 
-
 def main():
-    random.seed(1)
     sys.path.insert(0, str(ORIGINAL))
     from titlecase import titlecase
 
-    visible = generate(COUNT)
-    hidden = generate(COUNT)
+    visible = generate(COUNT, seed=1)
+    hidden = generate(COUNT, seed=2)
+
     write_lines(DATA_DIR / "inputs.txt", visible)
     write_lines(DATA_DIR / "hidden_inputs.txt", hidden)
     write_lines(DATA_DIR / "expected.txt", expect(visible, titlecase))
     write_lines(DATA_DIR / "hidden_expected.txt", expect(hidden, titlecase))
-
 
 if __name__ == "__main__":
     main()

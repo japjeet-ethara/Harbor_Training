@@ -7,8 +7,14 @@ from pathlib import Path
 
 from rewardkit import Worker, WorkerError, WorkerSetupError, criterion
 
-HIDDEN_INPUTS = Path("/tests/data/hidden_inputs.txt")
-HIDDEN_EXPECTED = Path("/tests/data/hidden_expected.txt")
+HIDDEN_INPUTS = (
+    Path("/tests/data/hidden_inputs.txt"),
+    Path("/tests/data/strong_hidden_inputs.txt"),
+)
+HIDDEN_EXPECTED = (
+    Path("/tests/data/hidden_expected.txt"),
+    Path("/tests/data/strong_hidden_expected.txt"),
+)
 RUN_TIMEOUT_SEC = 120
 
 
@@ -27,23 +33,44 @@ def go_lock():
 def line_score(stdout: bytes) -> float:
     try:
         actual = stdout.decode("utf-8").splitlines()
-        expected = HIDDEN_EXPECTED.read_text(encoding="utf-8").splitlines()
+        expected = [
+            line
+            for path in HIDDEN_EXPECTED
+            for line in path.read_text(encoding="utf-8").splitlines()
+        ]
     except (OSError, UnicodeError):
         return 0.0
-    if not expected:
+    if len(expected) != 4400 or len(actual) != 4400:
         return 0.0
     matched = sum(
         1
         for index, line in enumerate(expected)
-        if index < len(actual) and actual[index] == line
+        if actual[index] == line
     )
     return matched / len(expected)
 
 
 @criterion
 def behaviour(workspace: Path) -> float:
-    if not workspace.is_dir() or not HIDDEN_INPUTS.is_file():
+    if not workspace.is_dir():
         return 0.0
+    if not all(path.is_file() for path in HIDDEN_INPUTS):
+        return 0.0
+    if not all(path.is_file() for path in HIDDEN_EXPECTED):
+        return 0.0
+
+    try:
+        input_lines = [
+            line
+            for path in HIDDEN_INPUTS
+            for line in path.read_text(encoding="utf-8").splitlines()
+        ]
+    except (OSError, UnicodeError):
+        return 0.0
+    if len(input_lines) != 4400:
+        return 0.0
+
+    combined_input = ("\n".join(input_lines) + "\n").encode("utf-8")
     folder = shlex.quote(workspace.name)
     script = f"""
 set -eu
@@ -68,7 +95,7 @@ exec "$HOME/titlecase"
             result = worker.run(
                 script,
                 files=[workspace],
-                stdin=HIDDEN_INPUTS.read_bytes(),
+                stdin=combined_input,
                 timeout_sec=RUN_TIMEOUT_SEC,
             )
     except WorkerSetupError:
