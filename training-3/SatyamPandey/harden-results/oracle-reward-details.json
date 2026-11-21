@@ -1,0 +1,60 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 1.0,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "behaviour",
+        "weight": 1.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "behaviour",
+              "value": 1.0,
+              "raw": 1.0,
+              "weight": 1.0,
+              "description": "min over the 100,000 frozen titles and 5,000 fresh titles of max(0, (exact share - 0.9) / 0.1); 0 if the rules fail"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "build",
+        "weight": 0.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "build",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "`go build ./...` passes in the repository (diagnostic, weight 0)"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "no_python",
+        "weight": 0.0,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "no_python",
+              "value": 1.0,
+              "raw": true,
+              "weight": 1.0,
+              "description": "no Python files, stdlib only, no starting programs, builds (diagnostic, weight 0)"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+python: 3.14.2
+pool.txt done in 2s
+pool-repeat.txt done in 2s
+MATCH: both pool copies are byte-identical
+15e6b1cec92429ae14224e1053792ea3bf189ca10b4d6a584950d8c08504a76b  pool.txt
+15e6b1cec92429ae14224e1053792ea3bf189ca10b4d6a584950d8c08504a76b  pool-repeat.txt

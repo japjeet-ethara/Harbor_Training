@@ -1,0 +1,4 @@
+pool inputs        101958
+kept (stable)      101958
+dropped (unstable) 0
+regex module used  False

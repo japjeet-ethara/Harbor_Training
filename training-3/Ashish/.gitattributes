@@ -1,0 +1,4 @@
+# The exam data is graded byte for byte. Never let a Windows checkout turn the
+# answer files into CRLF: the Go port prints LF, so CRLF answers fail every line.
+* text=auto eol=lf
+*.png binary

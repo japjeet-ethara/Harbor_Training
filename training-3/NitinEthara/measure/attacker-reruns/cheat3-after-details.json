@@ -1,0 +1,41 @@
+{
+  "behaviour": {
+    "score": 0.1468,
+    "criteria": [
+      {
+        "name": "behaviour",
+        "value": 0.1468,
+        "raw": 0.14682,
+        "weight": 1.0,
+        "description": "Share of hidden titles whose output equals the original titlecase() byte for byte"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "build": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "build",
+        "value": 0.0,
+        "raw": false,
+        "weight": 1.0,
+        "description": "Build succeeds and every frozen exam answer matches"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "no_python": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "no_python",
+        "value": 0.0,
+        "raw": false,
+        "weight": 1.0,
+        "description": "No .py files remain and the program exactly passes the frozen exam"
+      }
+    ],
+    "kind": "programmatic"
+  }
+}

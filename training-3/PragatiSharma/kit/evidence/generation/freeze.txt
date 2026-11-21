@@ -1,0 +1,22 @@
+python: 3.14.2 /usr/local/bin/python3.14
+=== freeze 1 -> key/
+pool inputs        100000
+kept (stable)      100000
+dropped (unstable) 0
+regex module used  False
+(10s)
+=== freeze 2 -> key-repeat/
+pool inputs        100000
+kept (stable)      100000
+dropped (unstable) 0
+regex module used  False
+(10s)
+=== key/ vs key-repeat/
+MATCH inputs.txt
+MATCH answers.txt
+MATCH report.txt
+779b81d3930a23b0f3af5cf56ef19de29dea3cb632e6aca1fce2a5e20da9606f  key/inputs.txt
+e583966925128443d0fc96d605bed9b486c72463e14b79f66a1add0343ac1b36  key/answers.txt
+ecd4f5dae06a3fc2b843c155b833e1162c70f178c3319ff30a5e188681f64376  key/report.txt
+779b81d3930a23b0f3af5cf56ef19de29dea3cb632e6aca1fce2a5e20da9606f  key-repeat/inputs.txt
+e583966925128443d0fc96d605bed9b486c72463e14b79f66a1add0343ac1b36  key-repeat/answers.txt

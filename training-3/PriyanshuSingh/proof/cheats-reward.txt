@@ -1,0 +1,13 @@
+Attacker: Pragati Sharma (training-3/PragatiSharma/attack/ATTACK.md, Day 6 re-attack in commit c2fa84e)
+Target: training-3/PriyanshuSingh/task as pushed (last changed in 46807dc), exported with git archive.
+Each run: only solution/solve.sh replaced by her pushed attack/cheatN/solve.sh, then
+harbor run -p <copy> -a oracle -o jobs/<name>. Harbor 0.25.0, Docker 29.9.2, 2026-11-20.
+Exam: 101,958 hidden titles. Behaviour is 0 at or below a 50% match share.
+
+cheat   what it does              reward  build  no_python  behaviour  grader log                                         job folder
+cheat1  echo the input            0.0     0.0    0.0        0.0        matched 1505 of 101958, printed 101958 (1.4761%)   jobs/proof-pragati-cheat1/2026-11-20__17-36-06/pragati-cheat1__woystaW
+cheat2  first letter of each word 0.0     0.0    0.0        0.0        matched 14485 of 101958, printed 101958 (14.2068%) jobs/proof-pragati-cheat2/2026-11-20__17-37-15/pragati-cheat2__vaJsvBS
+cheat3  echo + one extra line     0.0     0.0    0.0        0.0        matched 1505 of 101958, printed 101959 (1.4761%)   jobs/proof-pragati-cheat3/2026-11-20__17-38-22/pragati-cheat3__6ZudZea
+
+All three are below 0.2.
+Her new Day 6 cheat (read-the-answers probe) also scored 0.0 in her own run; see her ATTACK.md.

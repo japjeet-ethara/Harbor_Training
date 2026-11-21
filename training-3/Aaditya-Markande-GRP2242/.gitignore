@@ -1,0 +1,11 @@
+jobs/
+pool.txt
+got.txt
+key/
+key_*/
+ports/
+attack/target/
+rudransh-attack/
+.venv/
+__pycache__/
+.env

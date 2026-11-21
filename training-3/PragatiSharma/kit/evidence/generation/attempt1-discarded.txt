@@ -1,0 +1,15 @@
+Discarded first pool attempt (2026-11-19)
+
+The first extension appended five characters to SPACES:
+  " ", "　", " ", " ", "​"
+That made about 1 in 6 word separators exotic. Result (seed 1, count 100000):
+  pool.txt sha256 15e6b1cec92429ae14224e1053792ea3bf189ca10b4d6a584950d8c08504a76b (both copies matched)
+  titles with another Unicode space: 42,857 of 100,000
+  titles with a zero-width space:    13,231 of 100,000
+Over-weighted, so SPACES was restored to the trainer's list and the same
+characters moved into a SPACED word bank (weight 2). The regenerated pool
+(sha256 779b81d3930a23b0f3af5cf56ef19de29dea3cb632e6aca1fce2a5e20da9606f)
+replaced it. No answers were frozen from the discarded pool.
+
+The first attempt's console logs are kept as logs/pool-attempt1.txt and
+logs/families-attempt1.txt.

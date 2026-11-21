@@ -1,0 +1,123 @@
+{
+    "id": "90bf48d0-e7ba-46e6-8880-e1c2a4a4b774",
+    "task_name": "practice/titlecase-go",
+    "trial_name": "scratch-cheat2__dYuFELb",
+    "trial_uri": "file:///C:/Users/ArunBisht/Desktop/Arun/attack/results/jobs-cheat2/attack-cheat2/scratch-cheat2__dYuFELb",
+    "task_id": {
+        "path": "attack\\scratch-cheat2"
+    },
+    "source": null,
+    "task_checksum": "cae32a4d73b3c8667910df15f492156f9cb9495c22c1bd5335f997fe1ce59607",
+    "config": {
+        "task": {
+            "path": "attack\\scratch-cheat2",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "scratch-cheat2__dYuFELb",
+        "trials_dir": "attack\\results\\jobs-cheat2\\attack-cheat2",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "81231468-e159-4d20-89a9-26504d621f12",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "behaviour": 0.0135,
+            "build": 1.0,
+            "no_python": 1.0,
+            "reward": 0.3423
+        }
+    },
+    "verifier_environment_mode": "separate",
+    "exception_info": null,
+    "started_at": "2026-11-18T12:12:52.990188Z",
+    "finished_at": "2026-11-18T12:14:33.852512Z",
+    "environment_setup": {
+        "started_at": "2026-11-18T12:12:53.276701Z",
+        "finished_at": "2026-11-18T12:13:12.864810Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-18T12:13:12.864919Z",
+        "finished_at": "2026-11-18T12:13:12.865001Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-18T12:13:12.865111Z",
+        "finished_at": "2026-11-18T12:13:24.520170Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-18T12:13:35.513176Z",
+        "finished_at": "2026-11-18T12:14:33.852490Z"
+    },
+    "step_results": null
+}

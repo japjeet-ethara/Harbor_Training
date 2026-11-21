@@ -1,0 +1,13 @@
+{
+    "job_name": "2026-11-16__12-51-13",
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "titlecase-go"
+        }
+    ]
+}

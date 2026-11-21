@@ -1,0 +1,40 @@
+schema_version = "1.4"
+
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "local/titlecase-go"
+version = "1.0.0"
+description = "Port python-titlecase to Go so titlecase() output matches byte for byte."
+keywords = ["go", "python", "titlecase", "porting", "rewardkit", "strings"]
+
+[metadata]
+author_name = "YuvrajSingh"
+difficulty = "medium"
+category = "programming"
+tags = ["go", "porting", "unicode", "titlecase"]
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+
+[verifier.environment]
+build_timeout_sec = 900.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+network_mode = "public"
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+network_mode = "public"
+
+[solution.env]
+
+[verifier.env]

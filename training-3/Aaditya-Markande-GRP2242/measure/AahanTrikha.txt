@@ -1,0 +1,17 @@
+wrong answers      889 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'war\xa0\\data\u2009%summer'
+  want  'War\xa0\\Data\u2009%Summer'
+  got   'War\xa0\\data\u2009%Summer'
+  input "\\élan\u2009star of D'Angelo machine\xa0AN"
+  want  "\\Élan\u2009Star of d'Angelo Machine\xa0An"
+  got   "\\élan\u2009Star of d'Angelo Machine\xa0An"
+  input "\\music star, rings en history  D'ARCY %music"
+  want  "\\Music Star, Rings en History  d'ARCY %Music"
+  got   "\\music Star, Rings en History  d'ARCY %Music"
+  input '\\OUT-OF-DATE'
+  want  '\\Out-of-Date'
+  got   '\\out-of-Date'
+  input 'WINTER CODE  #NAÏVE MCAFEE \\HOUSE AND NAÏVE TCP/IP'
+  want  'Winter Code  #Naïve McAfee \\House and Naïve TCP/Ip'
+  got   'Winter Code  #Naïve McAfee \\house and Naïve TCP/Ip'

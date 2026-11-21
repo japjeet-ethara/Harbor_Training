@@ -1,0 +1,19 @@
+Local Hardened Task Revision: b1019a4
+Grader Rule: Verifier publishes behaviour^2 when build and no_python both equal 1.0, and 0.0 otherwise.
+Squaring changes the reward for partial correctness while preserving raw accuracy and the official exam.
+
+Verified Results:
+Check                       Baseline reward    Final reward      Final Harbor job
+Sanyam Cheat 1              0.3640             0.0001890625      practice1-sanyam-cheat1-squared-20261120-125733
+Sanyam Cheat 2              0.5217             0.1155524049      practice1-sanyam-cheat2-squared-20261120-124826
+Sanyam Cheat 3              0.3640             Unverified        Exact replay not performed
+Separate echo-only control  —                  0.0001879641      practice1-echo-only-squared-20261120-130327
+
+Standard Controls:
+Final Oracle                1.0                1.0               practice1-squared-oracle-20261120-125015
+Nop                         0.0                0.0               practice1-squared-nop-20261120-125222
+
+Notes:
+- Baseline rewards are attributed to Sanyam's published Day 4 report.
+- Sanyam Cheat 2 first scored 0.33993 under the linear gate in practice1-sanyam-cheat2-hardened-20261120-124059. It fell below 0.2 after squaring (0.33993^2 = 0.1155524049).
+- Sanyam Cheat 3 exact replay was not performed; the echo-only control is kept separate.

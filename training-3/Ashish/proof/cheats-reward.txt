@@ -1,0 +1,40 @@
+My attacker's three cheats, re-run on my HARDENED task
+======================================================
+
+Attacker: Priyanshu Singh
+Cheats:   training-3/PriyanshuSingh/attack/cheat1..3/solve.sh, taken unchanged
+          from git and placed in solution/solve.sh of a fresh copy of my task.
+Task:     training-3/Ashish/task at the commit that carries this file.
+Harness:  Harbor 0.25.0, Docker 29.9.2, WSL2 Ubuntu.
+Required: each below 0.2.
+
+cheat                  before     after      job folder
+---------------------- --------   --------   ----------------------------------
+1 - read the exam      1.0        0.0000     jobs/net-cheat1/netc1__JxLiDsz
+2 - Python inside      1.0        0.0000     jobs/net-cheat2/netc2__e2zpwhY
+3 - half port          0.4185     0.0000     jobs/net-cheat3/netc3__3e2KKt9
+
+The 'before' column is my own re-run of his cheats on the task he attacked
+(jobs/pre-cheat1/scratch-c1__rWA43Tg, jobs/pre-cheat2/scratch-c2__5kEFFu8,
+jobs/pre-cheat3/scratch-c3__3rFvVPh). They reproduced his reported 1.0, 1.0
+and 0.4185 exactly.
+
+Raw reward.json contents, as written by the verifier:
+  cheat1: {"reward":0.000000}
+  cheat2: {"reward":0.000000}
+  cheat3: {"reward":0.000000}
+
+Why each one scores 0, from the verifier log (not inferred):
+  cheat 1:
+    behaviour: matched 2175 of 100000 lines (rate 0.021750) -> score 0.000000
+  cheat 2:
+    behaviour: the program exited 1
+    behaviour: matched 0 of 100000 lines (rate 0.000000) -> score 0.000000
+  cheat 3:
+    behaviour: matched 19529 of 100000 lines (rate 0.195290) -> score 0.000000
+
+Note on cheat 1. 'matched 2175 of 100000' is not a partial success: 2,175 is
+exactly the number of inputs in my exam that already equal their own answer,
+which is what the cheat's echo-the-line-back fallback earns. Its lookup table
+found zero answers. On the old 2,000-line exam that same baseline was 0, so
+its original 1.0 came entirely from reading the answer file.

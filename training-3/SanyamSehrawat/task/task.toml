@@ -1,0 +1,50 @@
+schema_version = "1.4"
+
+# The verifier runs in its own container. Whatever the agent left in /workspace/repo is
+# carried over to the verifier container at the same path.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "sanyam/titlecase-go"
+version = "1.0.0"
+description = "Rewrite the python-titlecase library as a Go command line program with byte-identical output"
+keywords = ["go", "python", "port", "text-processing", "unicode", "regex"]
+
+[[task.authors]]
+name = "Sanyam Sehrawat"
+
+[metadata]
+category = "programming"
+difficulty = "hard"
+upstream_repo = "https://github.com/ppannuto/python-titlecase"
+upstream_commit = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+upstream_version = "2.4.1"
+upstream_licence = "MIT"
+
+[verifier]
+# The three checks (build, no_python, behaviour) are computed by tests/grade.py.
+timeout_sec = 900.0
+environment_mode = "separate"
+# Grading is fully offline: no downloads, no API calls.
+network_mode = "no-network"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 3600.0
+# Non-root user created in environment/Dockerfile.
+user = "agent"
+
+[environment]
+network_mode = "public"
+build_timeout_sec = 1200.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 10240
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

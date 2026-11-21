@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "proof_type": "real Harbor Docker trial artifacts",
+  "validated_at": "2026-11-11T12:06:01.681059+00:00",
+  "jobs": {
+    "oracle": {
+      "trial_name": "titlecase-go__qkM5TUi",
+      "trial_result": "jobs/oracle/titlecase-go__qkM5TUi/result.json",
+      "trial_result_sha256": "2521866075a0749b7300ae85d33ae1f7e59d34adf1c494bcd774b7ff0fb08d2b",
+      "reward_json": "jobs/oracle/titlecase-go__qkM5TUi/verifier/reward.json",
+      "scores": {
+        "behaviour": 1.0,
+        "build": 1.0,
+        "no_python": 1.0,
+        "reward": 1.0
+      },
+      "matched_records": 2000,
+      "output_records": 2000,
+      "build_status": "passed",
+      "behaviour_status": "compared",
+      "started_at": "2026-11-11T12:00:43.176972Z",
+      "finished_at": "2026-11-11T12:03:13.262701Z"
+    },
+    "nop": {
+      "trial_name": "titlecase-go__ss28mrT",
+      "trial_result": "jobs/nop/titlecase-go__ss28mrT/result.json",
+      "trial_result_sha256": "5e2902e5bdb25e6458169d1355124fdb5aeb7811233ef4f7a27f9256c80f5c16",
+      "reward_json": "jobs/nop/titlecase-go__ss28mrT/verifier/reward.json",
+      "scores": {
+        "behaviour": 0.0,
+        "build": 0.0,
+        "no_python": 0.0,
+        "reward": 0.0
+      },
+      "matched_records": 0,
+      "output_records": 0,
+      "build_status": "command_failed",
+      "behaviour_status": "not_run",
+      "started_at": "2026-11-11T12:03:22.618416Z",
+      "finished_at": "2026-11-11T12:04:15.983977Z"
+    },
+    "cheat": {
+      "trial_name": "titlecase-go-replay__ZoKJEcs",
+      "trial_result": "jobs/cheat/titlecase-go-replay__ZoKJEcs/result.json",
+      "trial_result_sha256": "213b4b54f2231e89f61839d8e4182a95cc4d752f0c7ceac21143227c4629f2a5",
+      "reward_json": "jobs/cheat/titlecase-go-replay__ZoKJEcs/verifier/reward.json",
+      "scores": {
+        "behaviour": 0.001,
+        "build": 1.0,
+        "no_python": 0.0,
+        "reward": 0.1673
+      },
+      "matched_records": 2,
+      "output_records": 2000,
+      "build_status": "passed",
+      "behaviour_status": "compared",
+      "started_at": "2026-11-11T12:04:26.414030Z",
+      "finished_at": "2026-11-11T12:05:25.218111Z"
+    }
+  },
+  "requirements": {
+    "oracle": "all four scores equal 1",
+    "nop": "all four scores equal 0",
+    "cheat": "build=1; no_python=0; reward<0.2"
+  }
+}

@@ -1,0 +1,20 @@
+# Build / job output (never push)
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+
+# Attack working copy of the target task (never push)
+attack/target/
+attack/_run/
+attack/_probe/
+
+# Python / env junk
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# OS
+.DS_Store

@@ -1,0 +1,17 @@
+wrong answers      252 of 2000
+chance a random 2000 suite sees none of them: 0%
+  input "U.S. / murder ‒ D'ANGELO: earth\xa0ıstanbul\xa0if DEsErT"
+  want  "U.S. / Murder ‒ D'ANGELO: Earth\xa0Istanbul\xa0if DEsErT"
+  got   "U.S. / Murder ‒ D'ANGELO: Earth\xa0ıstanbul\xa0if DEsErT"
+  input 'by v. Book Art? i.e. – and v. “quote” star'
+  want  'By v. Book Art? i.e. – And v. “Quote” Star'
+  got   'By v. Book Art? i.e. – And v. “quote” Star'
+  input 'tv mr or U.S.A 2001 v1.2 Fast mINd adventure'
+  want  'Tv Mr or U.S.A 2001 v1.2 Fast mINd Adventure'
+  got   'Tv Mr or U.S.A 2001 V1.2 Fast mINd Adventure'
+  input 'SKY MRS.  BUT ― V AN 007 ÞORN ROAD – THE'
+  want  'Sky Mrs.  but ― V an 007 Þorn Road – The'
+  got   'Sky Mrs.  but ― V an 007 þorn Road – The'
+  input 'EN “QUOTE” '
+  want  'En “Quote” '
+  got   'En “quote” '

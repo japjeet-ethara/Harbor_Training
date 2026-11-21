@@ -1,0 +1,6 @@
+port: MadhurJain  (training-3/MadhurJain/task/solution/go)
+method: built the port directory directly (its solve.sh needs its own task container layout)
+exam: Ashish 100,000-line exam, mode re (without regex)
+
+wrong answers      0 of 100000
+chance a random 2000 suite sees none of them: 100%

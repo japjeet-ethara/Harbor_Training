@@ -1,0 +1,4 @@
+LOCAL public: 2000/2000 records match exactly
+LOCAL hidden: 2000/2000 records match exactly
+Local validation report: evidence/terminal-validation/local-validation.json
+This result is local validation, not a Harbor trial or reward.

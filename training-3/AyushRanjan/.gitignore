@@ -1,0 +1,14 @@
+jobs/
+pool.txt
+kit/.uv-cache/
+kit/old-2k/
+got.txt
+key/
+ports/
+attack/target/
+.venv/
+__pycache__/
+.env
+
+attack/target/
+attack/scratch*/

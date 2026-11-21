@@ -1,0 +1,10 @@
+Attacker: NiharikaMudgal
+Target: JiyaPatel
+
+Assignment: Day 4 — Break a Classmate's Task
+
+Target task original path: C:\Users\NiharikaMudgal\Desktop\task3\JiyaPatel\titlecase-go
+Local attack copy: C:\Users\NiharikaMudgal\Desktop\task3\NiharikaMudgal\attack\target\
+
+Target commit SHA: 4a5d1a812e5d7a9ffca5fbedd98918e091443113
+

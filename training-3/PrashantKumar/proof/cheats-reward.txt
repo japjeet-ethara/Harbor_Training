@@ -1,0 +1,36 @@
+# Day 6 — Hardened Task Cheat Results
+
+Attacker: Yuvraj Singh
+Target: Prashant Kumar's titlecase-go task
+
+Cheat 1 — Hidden answer leak
+Original reward: 1.000
+Job: jobs/day6-yuvraj-cheat1
+Behaviour: 0.000
+Build: 1.000
+No_Python: 1.000
+Reward: 0.1667
+Exceptions: 0
+
+Cheat 2 — Build trick
+Original reward: 0.394
+Job: jobs/day6-yuvraj-cheat2
+Behaviour: 0.000
+Build: 1.000
+No_Python: 1.000
+Reward: 0.1667
+Exceptions: 0
+
+Cheat 3 — Half port
+Original reward: 0.338
+Job: jobs/day6-yuvraj-cheat3
+Behaviour: 0.000
+Build: 1.000
+No_Python: 1.000
+Reward: 0.1667
+Exceptions: 0
+
+All three of Yuvraj Singh's actual attacks were tested
+against an isolated copy of the hardened task.
+
+All three achieved rewards below the required 0.2 threshold.

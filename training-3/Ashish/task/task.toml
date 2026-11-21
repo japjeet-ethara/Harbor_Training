@@ -1,0 +1,35 @@
+schema_version = "1.4"
+
+# Only the agent's working tree is carried into the verifier container. tests/
+# never exists in the agent container, and the agent's container no longer
+# exists when grading runs.
+artifacts = ["/workspace/repo"]
+
+[metadata]
+difficulty = "medium"
+category = "programming"
+tags = ["go", "titlecase"]
+
+[verifier]
+# Grading reads 100,000 lines and builds the module twice, so it gets more room
+# than the old 2,000-line exam needed.
+timeout_sec = 1800.0
+# "separate" puts grading in its own container, built from a fresh copy of
+# [environment]. The agent can therefore never see tests/, and the answer files
+# are not on disk while the agent is working. Closes cheat 1 together with the
+# permission work in tests/test.sh.
+environment_mode = "separate"
+# Nothing may be downloaded while grading, including during `go build`.
+network_mode = "no-network"
+
+[agent]
+timeout_sec = 600.0
+# The task needs no network: the Go standard library only, and the original
+# source is already in /workspace/repo. Harbor upgrades a "no-network" agent
+# phase to an allowlist holding just the model inference host, so a real agent
+# still works, but apt and pypi are unreachable. That removes the one route to
+# a cheat-2 variant: fetch an interpreter and ship it inside the artifact.
+network_mode = "no-network"
+
+[environment]
+build_timeout_sec = 1200.0

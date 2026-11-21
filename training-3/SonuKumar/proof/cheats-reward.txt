@@ -1,0 +1,94 @@
+Attacker's Cheats on Sonu Kumar's Hardened Task
+=================================================
+Attacker: Ayush Parasher (commit 50af008cd3074a19282cc0bfc5d8b07a448fe4ed)
+Target: Harbor_Day4_Workspace/Sonu Kumar/task (hardened with quadratic behaviour scoring)
+Harness: Harbor 0.25.0, Ubuntu WSL / Docker, -a oracle, 1 trial each, 0 exceptions
+Exam: 100,000 titles from tests/data/inputs.txt and tests/data/expected.txt (mode: WITHOUT regex)
+Scoring Policy: Policy B Structural Re-weighting with Quadratic Behaviour Scoring
+Weights: build = 0.5, no_python = 0.5, behaviour = 9.0; Total = 10.0
+Formula: Reward = (0.5 * build + 0.5 * no_python + 9.0 * (accuracy ^ 2)) / 10.0
+
+=================================================
+SECTION 1: FRESH HARBOR PROOF RUNS (ALL CHEATS < 0.2000)
+=================================================
+
+Cheat 1: Delete Trick + Echo Program
+------------------------------------
+Attack Mechanism : Deletes .py files and writes a Go program that echoes input unchanged.
+Day 4 Baseline   : 0.7619  (attacker job: jobs/2026-11-19__08-09-08)
+Day 6 Linear     : 0.0623  (attacker re-attack job: jobs/2026-11-20__08-34-41)
+Fresh Hardened   : 0.0502  (Harbor job: jobs/2026-11-21__01-19-32, trial: final_eval_cheat1__ZnP8bLY)
+Criterion Detail : build = 1.0 (weight 0.5), no_python = 0.0 (weight 0.5), behaviour = 0.0002 (raw = 0.0001879641, weight 9.0)
+Calculation      : (0.5 * 1.0 + 0.5 * 0.0 + 9.0 * 0.0001879641) / 10.0 = 0.50169 / 10.0 = 0.0502
+Below 0.2000     : YES (0.0502 < 0.2000) [PASS]
+
+Cheat 2: Read the Exam at Runtime (Filesystem Leakage)
+------------------------------------------------------
+Attack Mechanism : Attempts to read hidden answer files from /tests/data/ and outputs them; falls back to echo.
+Day 4 Baseline   : 1.0000  (attacker job: jobs/2026-11-19__08-10-18)
+Day 6 Linear     : 0.0623  (attacker re-attack job: jobs/2026-11-20__08-35-44)
+Fresh Hardened   : 0.0502  (Harbor job: jobs/2026-11-21__01-21-10, trial: final_eval_cheat2__8TfdNaF)
+Criterion Detail : build = 1.0 (weight 0.5), no_python = 0.0 (weight 0.5), behaviour = 0.0002 (raw = 0.0001879641, weight 9.0)
+Calculation      : (0.5 * 1.0 + 0.5 * 0.0 + 9.0 * 0.0001879641) / 10.0 = 0.50169 / 10.0 = 0.0502
+Why Suppressed   : Binary runs as nobody (uid 65534); /tests is chmod 700 root:root; answer access is blocked (EACCES);
+                   fallback echo matches only 1,371 / 100,000 titles; quadratic behaviour drops score to 0.0002.
+Below 0.2000     : YES (0.0502 < 0.2000) [PASS]
+
+Cheat 3: Python Inside Go Wrapper (os/exec)
+-------------------------------------------
+Attack Mechanism : Base64-packs Python titlecase into Go wrapper and executes python3 via os/exec.
+Day 4 Baseline   : 1.0000  (attacker job: jobs/2026-11-19__08-11-29)
+Day 6 Linear     : 0.0500  (attacker re-attack job: jobs/2026-11-20__08-36-57)
+Fresh Hardened   : 0.0500  (Harbor job: jobs/2026-11-21__01-22-44, trial: final_eval_cheat3__xcFkpsd)
+Criterion Detail : build = 1.0 (weight 0.5), no_python = 0.0 (weight 0.5), behaviour = 0.0 (raw = 0.0, weight 9.0)
+Calculation      : (0.5 * 1.0 + 0.5 * 0.0 + 9.0 * 0.0) / 10.0 = 0.5000 / 10.0 = 0.0500
+Why Suppressed   : Python interpreters chmod 700; static import inspection bans os/exec; execution fails completely.
+Below 0.2000     : YES (0.0500 < 0.2000) [PASS]
+
+Cheat 4: Half Port (Pure Go Heuristic Engine)
+--------------------------------------------
+Attack Mechanism : Pure Go implementation handling basic capitalization rules, inner caps, and small words,
+                   but omitting Mc-prefixes, apostrophes, hyphen/slash splitting, and Unicode edge cases.
+Day 6 Linear     : 0.3936  (attacker re-attack job: jobs/2026-11-20__08-38-02, raw accuracy: 32,630 / 100,000 = 32.63%)
+Fresh Hardened   : 0.1958  (Harbor job: jobs/2026-11-21__01-24-18, trial: final_eval_cheat4__AZYhqLW)
+Criterion Detail : build = 1.0 (weight 0.5), no_python = 1.0 (weight 0.5), behaviour = 0.1065 (raw = 0.1064521129, weight 9.0)
+Calculation      : (0.5 * 1.0 + 0.5 * 1.0 + 9.0 * 0.1064521129) / 10.0 = 1.95807 / 10.0 = 0.1958
+Why Suppressed   : Quadratic behaviour scoring: raw accuracy 32.63% (0.3263) yields behaviour score 0.3263^2 = 0.1065,
+                   scaling behaviour credit from 2.9367 pts down to 0.9581 pts, bringing total reward strictly below 0.2000.
+Below 0.2000     : YES (0.1958 < 0.2000) [PASS]
+
+=================================================
+SECTION 2: PROOF BASELINE RUNS (ORACLE & NOP)
+=================================================
+
+Genuine Oracle
+--------------
+Agent            : oracle
+Harbor Job       : jobs/2026-11-21__01-16-20 (trial: task__mvnxxGs)
+Criterion Detail : build = 1.0 (weight 0.5), no_python = 1.0 (weight 0.5), behaviour = 1.0 (raw = 1.0, weight 9.0)
+Total Reward     : 1.0000 [PASS]
+Reward JSON File : proof/oracle-reward.json
+
+Nop Baseline
+------------
+Agent            : nop
+Harbor Job       : jobs/2026-11-21__01-18-08 (trial: task__8NMKBK8)
+Criterion Detail : build = 0.0 (weight 0.5), no_python = 0.0 (weight 0.5), behaviour = 0.0 (raw = 0.0, weight 9.0)
+Total Reward     : 0.0000 [PASS]
+Reward JSON File : proof/nop-reward.json
+
+=================================================
+SECTION 3: SUMMARY & VERIFICATION STATUS
+=================================================
+
+All four attacker cheats score strictly below 0.2000:
+- Cheat 1: 0.0502 < 0.2000 [PASS]
+- Cheat 2: 0.0502 < 0.2000 [PASS]
+- Cheat 3: 0.0500 < 0.2000 [PASS]
+- Cheat 4: 0.1958 < 0.2000 [PASS]
+
+Baselines verified:
+- Oracle = 1.0000 [PASS]
+- Nop    = 0.0000 [PASS]
+
+Status: ALL ATTACKER CHEATS FULLY SUPPRESSED (< 0.2000). RUBRIC CONDITIONS SATISFIED.

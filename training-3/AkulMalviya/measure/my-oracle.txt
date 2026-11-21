@@ -1,0 +1,28 @@
+Corrected Day 5 oracle
+
+Old exam
+wrong answers: 0 of 2000
+extra output records: 0
+chance a random 2000-title sample misses every error: 100.000000%
+
+New exam
+wrong answers: 0 of 100000
+extra output records: 0
+chance a random 2000-title sample misses every error: 100.000000%
+
+Original Day 4 oracle (before parity fixes)
+
+Old exam
+wrong answers: 0 of 2000
+extra output records: 0
+chance a random 2000-title sample misses every error: 100.000000%
+
+New exam
+wrong answers: 1595 of 100000
+extra output records: 0
+chance a random 2000-title sample misses every error: 0.000000%
+  input=b'vs\tmrs\tRound\tRiver\tFinal\tFINAL\tROUND\xe2\x80\x89X-RAY\n' expected=b'Vs\tMrs\tRound\tRiver\tFinal\tFINAL\tROUND\xe2\x80\x89X-Ray\n' actual=b'Vs\tMrs\tRound\tRiver\tFinal\tFINAL\tROUND\xe2\x80\x89X-RAY\n'
+  input=b"Window\torange\t'to cloud'\tFresh\tMRS\tPUBLIC\torange\tsharp\tX-RAY\n" expected=b"Window\tOrange\t'To Cloud'\tFresh\tMRS\tPUBLIC\tOrange\tSharp\tX-Ray\n" actual=b"Window\tOrange\t'To Cloud'\tFresh\tMRS\tPUBLIC\tOrange\tSharp\tX-RAY\n"
+  input=b'SIMPLE\tFRESH\tOrange\tgArden\tclose\tround\tcloud\tthe\xc2\xa0X-RAY\n' expected=b'SIMPLE\tFRESH\tOrange\tgArden\tClose\tRound\tCloud\tthe\xc2\xa0X-Ray\n' actual=b'SIMPLE\tFRESH\tOrange\tgArden\tClose\tRound\tCloud\tthe\xc2\xa0X-RAY\n'
+  input=b'if final Early "by open" SIMPLE garden vs.\xe2\x80\x89X-RAY\n' expected=b'If Final Early "By Open" SIMPLE Garden vs.\xe2\x80\x89X-Ray\n' actual=b'If Final Early "By Open" SIMPLE Garden vs.\xe2\x80\x89X-RAY\n'
+  input=b'and\tsharp\tROUND\tSIMPLE\tQFQN\tMarket\tFINAL X-RAY\n' expected=b'And\tSharp\tROUND\tSIMPLE\tQFQN\tMarket\tFINAL X-Ray\n' actual=b'And\tSharp\tROUND\tSIMPLE\tQFQN\tMarket\tFINAL X-RAY\n'

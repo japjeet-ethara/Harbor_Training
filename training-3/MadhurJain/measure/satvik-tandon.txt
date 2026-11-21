@@ -1,0 +1,17 @@
+wrong answers      50750 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'A.B.C dr  vs.\u2009dream_ re-enter river War'
+  want  'A.B.C Dr  vs.\u2009Dream_ Re-Enter River War'
+  got   'A.B.C Dr  Vs.\u2009dream_ Re-Enter River War'
+  input 'war\xa0\\data\u2009%summer'
+  want  'War\xa0\\Data\u2009%Summer'
+  got   'War\xa0\\data\u2009%summer'
+  input 'v2.0.1 TCP/IP history as! ST'
+  want  'v2.0.1 TCP/IP History As! ST'
+  got   'V2.0.1 TCP/IP History As! ST'
+  input 'music\tstar v.'
+  want  'Music\tStar V.'
+  got   'Music\tstar V.'
+  input 'iPhone out-of-date “U.S. peace _a/b/c for in\u2009in Mcx'
+  want  'iPhone Out-of-Date “U.S. Peace _a/B/C for in\u2009in MCX'
+  got   'iPhone Out-of-Date “U.S. Peace _A/B/C for In\u2009in MCX'

@@ -1,0 +1,19 @@
+# Harbor generated files
+**/jobs/
+**/pool.txt
+**/got.txt
+**/key/
+**/ports/
+
+# Original target must never be submitted
+attack/target/
+
+# Local diagnostics and generated binaries
+**/local-check/
+**/*.exe
+**/*.bak
+
+# Python and environment files
+**/.venv/
+**/__pycache__/
+.env

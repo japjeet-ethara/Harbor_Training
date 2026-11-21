@@ -1,0 +1,26 @@
+version = "1.0"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "shreedethara/titlecase-go"
+
+[metadata]
+author_name = "shreed vyas"
+author_email = "shreed.vyas@ethara.ai"
+category = "programming"
+tags = ["go", "python-port", "titlecase", "regex"]
+
+[agent]
+timeout_sec = 1800.0
+network_mode = "no-network"
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+network_mode = "no-network"
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240

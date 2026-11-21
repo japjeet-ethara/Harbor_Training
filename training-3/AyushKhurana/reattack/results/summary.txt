@@ -1,0 +1,4 @@
+oracle   1        OK  (must be 1.0)
+nop      0        OK  (must be 0.0)
+cheat1   1        OK  (memorisation must reproduce (>=0.8, expect 1.0))
+cheat2   0.1159   OK  (half-port partial credit (<0.2))

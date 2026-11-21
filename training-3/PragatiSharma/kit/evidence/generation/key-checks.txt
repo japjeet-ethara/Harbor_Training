@@ -1,0 +1,15 @@
+=== reference run (re mode, no regex):
+mode: REGEX_AVAILABLE = False
+records: inputs 100000 | answers 100000 | paired True
+unique inputs: 100000
+CR bytes: inputs 0 | answers 0
+embedded line boundaries: inputs 0 | answers 0
+empty answers: 0
+independent recomputation matches answers.txt: 100000 / 100000
+answers that differ from their input: 97955
+pool.txt == key/inputs.txt: True
+=== throwaway comparison: same inputs with the regex package installed (not used for the key):
+regex 2026.11.19 REGEX_AVAILABLE True | answers that would differ: 7701 of 100000
+  input 'x-ray\\ by v1.2 The but' | re 'X-Ray\\ by v1.2 the But' | regex 'X-Ray\\ by V1.2 the But'
+  input 'and/or çaVa time ~McDonald house' | re 'And/or ÇaVa Time ~McDonald House' | regex 'And/or çaVa Time ~McDonald House'
+  input "war to überCool ~dream or ftp://host/file\xa0'90s" | re "War to ÜberCool ~Dream or Ftp://host/file\xa0'90s" | regex "War to überCool ~Dream or Ftp://host/file\xa0'90s"
