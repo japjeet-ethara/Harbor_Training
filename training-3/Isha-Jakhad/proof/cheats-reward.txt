@@ -1,0 +1,39 @@
+Day 6 Harbor results — Aman Ethara attacks against Isha Jakhad
+
+Source scripts: training-3\AmanEthara\attack\cheatN\solve.sh
+Each score and component below is transcribed from the corresponding
+Harbor trial verifier\reward.json. All three trials completed without errors.
+
+Cheat 1
+  behavior:  0.0000
+  build:     1.0000
+  no_exec:   1.0000
+  no_python: 1.0000
+  reward:    0.0000
+  Harbor reward file:
+  C:\Users\IshaJakhad\Desktop\Mainn\Harbor_Training\day6-jobs\day6-aman-cheat1\task__CsSVTDa\verifier\reward.json
+
+Cheat 2
+  behavior:  0.0000
+  build:     1.0000
+  no_exec:   0.0000
+  no_python: 1.0000
+  reward:    0.0000
+  Harbor reward file:
+  C:\Users\IshaJakhad\Desktop\Mainn\Harbor_Training\day6-jobs\day6-aman-cheat2\task__no8CYRg\verifier\reward.json
+
+Cheat 3
+  behavior:  0.0949
+  build:     1.0000
+  no_exec:   1.0000
+  no_python: 1.0000
+  reward:    0.0949
+  Harbor reward file:
+  C:\Users\IshaJakhad\Desktop\Mainn\Harbor_Training\day6-jobs\day6-aman-cheat3\task__cJ9YLiu\verifier\reward.json
+
+All three actual reward scores are below 0.2.
+
+Evidence reconciliation: the pre-existing day6-cheat2-fixed job scored 0.0912,
+but its captured Go source was a naive half-port, not Aman's current Cheat 2
+Python wrapper. It was not used as evidence for Aman's Cheat 2. The earlier
+day6-cheat1-fixed artifact was likewise not used for Aman's Cheat 1.
