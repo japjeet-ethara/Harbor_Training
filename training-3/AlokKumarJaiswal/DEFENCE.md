@@ -86,7 +86,7 @@
 - **Classmate Submission Results:**
   - Baseline rewards are attributed to Sanyam’s published report.
   - Sanyam Cheat 2 first scored `0.33993` under the linear gate in `practice1-sanyam-cheat2-hardened-20261120-124059`. It fell below 0.2 after squaring ($0.33993^2 = 0.1155524049$).
-  - Sanyam Cheat 3 exact replay was not performed; the separate echo-only control is kept separate from Cheat 3.
+  - Sanyam independently replayed all three submissions on published revision `395755d`. All three scored below `0.2`. [Independent retest](https://github.com/japjeet-ethara/Harbor_Training/blob/c40906d0a797c025b5e63df5b7a63538640fb926/training-3/SanyamSehrawat/attack/ATTACK.md#10-day-6--independent-re-attack-on-aloks-hardened-task)
 
 ### Verified Results Summary
 
@@ -94,13 +94,13 @@
 | :--- | :--- | :--- | :--- |
 | **Sanyam Cheat 1** | 0.3640 | 0.0001890625 | `practice1-sanyam-cheat1-squared-20261120-125733` |
 | **Sanyam Cheat 2** | 0.5217 | 0.1155524049 | `practice1-sanyam-cheat2-squared-20261120-124826` |
-| **Sanyam Cheat 3** | 0.3640 | Unverified | Exact replay not performed |
+| **Sanyam Cheat 3** | 0.3640 | 0.0001879641 | `sanyam-day6-cheat3-395755d` |
 | **Separate echo-only control** | — | 0.0001879641 | `practice1-echo-only-squared-20261120-130327` |
 
-*Proof Artifacts:* Linked in [proof/cheats-reward.txt](proof/cheats-reward.txt), [proof/sanyam-cheat1-reward.json](proof/sanyam-cheat1-reward.json), [proof/sanyam-cheat2-reward.json](proof/sanyam-cheat2-reward.json), and [proof/echo-only-reward.json](proof/echo-only-reward.json).
+*Proof Artifacts:* Linked in [proof/cheats-reward.txt](proof/cheats-reward.txt), [proof/sanyam-cheat1-reward.json](proof/sanyam-cheat1-reward.json), [proof/sanyam-cheat2-reward.json](proof/sanyam-cheat2-reward.json), [proof/sanyam-cheat3-reward.json](proof/sanyam-cheat3-reward.json), and [proof/echo-only-reward.json](proof/echo-only-reward.json).
 
 > **Speaking Notes:**
 > - "Verified Control Rewards under final revision b1019a4: the runs confirmed oracle 1.0 in `practice1-squared-oracle-20261120-125015` and nop 0.0 in `practice1-squared-nop-20261120-125222`."
 > - "Evaluating Sanyam's Day 4 attacks: Cheat 1 earned 0.0001890625. Cheat 2, which initially scored 0.33993 under the linear gate, dropped to 0.1155524049 after squaring, safely below 0.2."
-> - "Cheat 3 was not replayed exactly; our separate echo-only control scored 0.0001879641."
-> - "Cheats 1 and 2 scored below 0.2 on revision b1019a4. Cheat 3’s hardened score remains unverified."
+> - "The independent Cheat 3 replay scored 0.0001879641, matching our earlier echo-only control."
+> - "All three independent retests scored below 0.2 on published revision 395755d."

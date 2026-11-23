@@ -82,24 +82,24 @@ Hardened task integration was verified through final Harbor control runs under t
 
 1. **Small Exams Mask Edge Cases:** A 2,000-sample test suite was insufficient to detect subtle Unicode edge cases, allowing an oracle with flawed whitespace and casing handling to achieve a misleading 100% score. Expanding the exam to 100,000 titles exposed failure modes (7,976 mismatches in the local-draft result and 11,188 mismatches on the official exam before the thin-space fix) because the larger corpus introduced Unicode whitespace and character combinations that the original exam omitted.
 2. **Library-Specific Semantics Matter:** Python's standard-library `re` behaves differently from external regex modules (e.g., `regex`) and other languages' regex engines (e.g., Go's `regexp`), especially regarding Unicode character classes (`\s` including non-breaking spaces `\u00a0` and thin spaces `\u2009`), case transformations (`\u0130` casing), and uppercase checks (U+00DF in `isAllCaps`). Ports must strictly match the exact contract of the target library.
-3. **Scoring Gates and Squaring Prevent Score Inflation:** Arithmetic averaging in multi-criteria evaluation allows broken submissions to gain artificial credit from simple structural checks. Gating behaviour scores behind mandatory build and hygiene gates ensures that reward strictly reflects functional correctness. Squaring reduced the reward for Sanyam's Cheat 2 from `0.33993` to `0.1155524049`. The oracle still scored `1.0`, and Cheat 3's hardened reward remains unverified.
+3. **Scoring Gates and Squaring Prevent Score Inflation:** Arithmetic averaging in multi-criteria evaluation allows broken submissions to gain artificial credit from simple structural checks. Gating behaviour scores behind mandatory build and hygiene gates ensures that reward strictly reflects functional correctness. Squaring reduced the reward for Sanyam's Cheat 2 from `0.33993` to `0.1155524049`. The oracle still scored `1.0`.
 4. **Preserving Full Precision is Essential:** Premature rounding in grading scripts discards discriminative capability. Operating on raw unrounded values maintains precision across large exam datasets.
 
 ---
 
 ## Classmate Submission Verification
 
-Under final local task revision `b1019a4`: We replayed Sanyam’s Cheats 1 and 2 and ran a separate echo-only control. Cheat 3 was not replayed.
+We replayed Cheats 1 and 2 and ran an echo-only control on local revision `b1019a4`. Sanyam independently replayed all three submissions on published revision `395755d`. All three scored below `0.2`. [Independent retest](https://github.com/japjeet-ethara/Harbor_Training/blob/c40906d0a797c025b5e63df5b7a63538640fb926/training-3/SanyamSehrawat/attack/ATTACK.md#10-day-6--independent-re-attack-on-aloks-hardened-task)
 
 | Check | Baseline reward | Final reward | Final Harbor job |
 | :--- | :--- | :--- | :--- |
 | **Sanyam Cheat 1** | 0.3640 | 0.0001890625 | `practice1-sanyam-cheat1-squared-20261120-125733` |
 | **Sanyam Cheat 2** | 0.5217 | 0.1155524049 | `practice1-sanyam-cheat2-squared-20261120-124826` |
-| **Sanyam Cheat 3** | 0.3640 | Unverified | Exact replay not performed |
+| **Sanyam Cheat 3** | 0.3640 | 0.0001879641 | `sanyam-day6-cheat3-395755d` |
 | **Separate echo-only control** | — | 0.0001879641 | `practice1-echo-only-squared-20261120-130327` |
 
 ### Key Verification Notes:
 - **Baseline Attribution:** Baseline rewards are attributed to Sanyam’s published report.
 - **Cheat 2 Hardening Progression:** Sanyam Cheat 2 first scored `0.33993` under the linear gate in job `practice1-sanyam-cheat2-hardened-20261120-124059`. Under revision `b1019a4`, squaring reduced the final reward to `0.1155524049` ($0.33993^2 = 0.1155524049$), successfully pushing it below 0.2.
-- **Cheat 3 vs. Echo-Only:** Sanyam Cheat 3 exact replay was not performed; the separate echo-only control (`practice1-echo-only-squared-20261120-130327`) scored `0.0001879641` and is kept separate from Cheat 3.
-- **Proof Files:** Verified proofs are preserved under [proof/cheats-reward.txt](proof/cheats-reward.txt), [proof/sanyam-cheat1-reward.json](proof/sanyam-cheat1-reward.json), [proof/sanyam-cheat2-reward.json](proof/sanyam-cheat2-reward.json), [proof/echo-only-reward.json](proof/echo-only-reward.json), [proof/oracle-reward.json](proof/oracle-reward.json), and [proof/nop-reward.json](proof/nop-reward.json).
+- Sanyam’s exact Cheat 3 replay scored `0.0001879641`. The earlier echo-only control (`practice1-echo-only-squared-20261120-130327`) independently produced the same score.
+- **Proof Files:** Verified proofs are preserved under [proof/cheats-reward.txt](proof/cheats-reward.txt), [proof/sanyam-cheat1-reward.json](proof/sanyam-cheat1-reward.json), [proof/sanyam-cheat2-reward.json](proof/sanyam-cheat2-reward.json), [proof/sanyam-cheat3-reward.json](proof/sanyam-cheat3-reward.json), [proof/echo-only-reward.json](proof/echo-only-reward.json), [proof/oracle-reward.json](proof/oracle-reward.json), and [proof/nop-reward.json](proof/nop-reward.json).
