@@ -1,0 +1,12 @@
+grader framing: 8 cases passed
+Profile: native subprocesses, no Docker or Linux UID isolation; go version go1.23.12 windows/amd64
+Traceback (most recent call last):
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\kushal-titlecase-go\tools\check_grader.py", line 140, in <module>
+    main()
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\kushal-titlecase-go\tools\check_grader.py", line 109, in main
+    from rewardkit import run
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\__init__.py", line 19, in <module>
+    from rewardkit.sandbox import Worker, WorkerError, WorkerResult, WorkerSetupError
+  File "C:\Users\KushalGirdhar\Documents\Codex\2026-11-17\build-a-complete-harbor-section-18\work\harbor-venv\Lib\site-packages\rewardkit\sandbox.py", line 6, in <module>
+    import grp
+ModuleNotFoundError: No module named 'grp'

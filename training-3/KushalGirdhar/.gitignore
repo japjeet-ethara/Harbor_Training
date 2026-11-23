@@ -1,0 +1,11 @@
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+.venv/
+__pycache__/
+.env
+# the repo-root .gitignore ignores "build"; keep the grader's build check
+!task/tests/build/

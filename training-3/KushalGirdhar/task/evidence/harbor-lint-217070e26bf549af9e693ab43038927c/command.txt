@@ -1,0 +1,1 @@
+harbor lint work/kushal-titlecase-go --select ALL --json (exit 1)

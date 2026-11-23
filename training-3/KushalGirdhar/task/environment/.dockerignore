@@ -1,0 +1,7 @@
+**
+!Dockerfile
+!repo/
+!repo/**
+repo/**/__pycache__/
+repo/**/*.pyc
+repo/.git/

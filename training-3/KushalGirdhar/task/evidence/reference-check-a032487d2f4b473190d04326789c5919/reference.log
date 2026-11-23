@@ -1,0 +1,11 @@
+{"python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]", "unicode": "15.0.0", "regex": "stdlib re; optional regex unavailable", "upstream_commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167"}
+visible: 2,000 frozen answers verified and matched; stdout SHA256 fe159b154bb26f4988665711091d274efc56835b14ff6c38519cc2a49db40415
+spot check 1: 'reference for store-and-forward query examples' -> 'Reference for Store-and-Forward Query Examples'
+spot check 464: 'artifact registry packaging via _apiGW' -> 'Artifact Registry Packaging via _apiGW'
+spot check 912: 'follow-up for -to-standby disk saturation' -> 'Follow-Up for -to-Standby Disk Saturation'
+spot check 1488: 'service mesh fallback via \u0130n' -> 'Service Mesh Fallback via i\u0307n'
+spot check 2000: 'edge proxy fallback via 1.23' -> 'Edge Proxy Fallback via 1.23'
+hidden_: 2,000 frozen answers verified and matched; stdout SHA256 4a842ca0be39fd303f1f3bace2ac6245abd1aa82884fc9cbd70befc7fafa744a
+split overlap: 0 inputs, 0 outputs
+protocol: 8 byte-exact cases
+independent stress: 120,000 records, 119,378 distinct, zero mismatches; stdout SHA256 f2a9cc372472cefc453dc039914c962c786afa4d16072306a0b0b86a5b605582
