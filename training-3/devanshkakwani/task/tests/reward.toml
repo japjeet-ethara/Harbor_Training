@@ -1,0 +1,6 @@
+# Gates, not points: the reward is 1.0 only if every criterion passes
+# (build, source_check, and behaviour on the full exam), else 0.0.
+[[reward]]
+name = "reward"
+aggregation = "all-pass"
+weights = { build = 1.0, source_check = 1.0, behaviour = 1.0 }
