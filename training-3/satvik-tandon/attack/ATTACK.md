@@ -80,3 +80,78 @@ reports 0 wrong after fixing leading underscores, but the committed
 `capFirst()` without the reported underscore exception. The submitted oracle
 script needs the fix and a new Harbor oracle run; changing the exam to hide
 those errors would not repair the port.
+
+## Follow-up: current branch recheck
+
+I fetched `origin/training-3` and reran the three original cheats and Priya's
+committed oracle against her task at commit
+`08c76937d2903ee9cdc504b1a27dbded0f0bba3e`. Since the preceding Day 6
+run, her only changed file was `HARDEN.md`; the task files were unchanged.
+The fresh Harbor runs had no exceptions:
+
+| Run | Reward | Fresh Harbor job | Saved reward |
+| --- | ---: | --- | --- |
+| My cheat 1: echo | **0.3425** | `jobs/priya-rerun-cheat1-exact` | `results/confirm-cheat1-reward.json` |
+| My cheat 2: capitalize word starts | **0.4060** | `jobs/priya-rerun-cheat2-exact` | `results/confirm-cheat2-reward.json` |
+| My cheat 3: add small-word rules | **0.4227** | `jobs/priya-rerun-cheat3-exact` | `results/confirm-cheat3-reward.json` |
+| Priya's committed oracle | **0.9943** | `jobs/priya-rerun-oracle-exact` | `results/confirm-oracle-reward.json` |
+
+All three of my cheats remain above the required **below 0.2** target.
+Priya's `HARDEN.md:13-15` describes a different set of cheats and reports
+scores 0.1355, 0.1684 and 0.2205. Even its third reported score is above
+0.2, despite the `DEFENDED` label. These reported scores do not describe
+the three programs in my `attack/cheat1-3/` folders.
+
+The report also says the verifier weights are 1:1:23 and that `no_python.py`
+has a canonical smoke test (`HARDEN.md:7,27-29`). The current submitted files
+still have 1:1:4 weights (`task/tests/reward.toml:4`), and `no_python.py:23-29`
+only checks for Python files and a successful Go build. The reported oracle
+fix is likewise absent from `task/solution/solve.sh:263`. The fresh oracle
+reward remains 0.9943, below the required 1.0.
+
+## Latest re-attack: Priya's Day 6 proof commit
+
+Priya then pushed `ed95cf832935b14ea964187aea04bb0fe45be745`, which changes
+the submitted task itself: `reward.toml` now weights behaviour at 23,
+`no_python.py` runs a four-case correctness smoke test, and the oracle has
+the leading-underscore fix. I rebuilt each scratch task from that commit's
+Git blobs and changed only `solution/solve.sh` for my three cheats. These
+fresh Harbor runs supersede the scores above for the **current** task:
+
+| Run | Reward | Harbor job | Saved reward |
+| --- | ---: | --- | --- |
+| My cheat 1: echo | **0.0526** | `jobs/priya-current-cheat1` | `results/current-cheat1-reward.json` |
+| My cheat 2: capitalize word starts | **0.1403** | `jobs/priya-current-cheat2` | `results/current-cheat2-reward.json` |
+| My cheat 3: add small-word rules | **0.1634** | `jobs/priya-current-cheat3` | `results/current-cheat3-reward.json` |
+| Priya's committed oracle | **1.0000** | `jobs/priya-current-oracle` | `results/current-oracle-reward.json` |
+
+**Current outcome:** Priya's oracle reaches 1.0 and all three of my original
+cheats are below 0.2. The earlier follow-up records the preceding commit
+and must not be read as the current task's outcome. Her `HARDEN.md` and
+`DEFENCE.md` still report 0.2205 for a different cheat 3; that reported
+score remains above the stated below-0.2 target for that particular cheat.
+
+## One new Day 6 cheat: compact rule heuristic
+
+On the same current commit, I submitted `attack/cheat4/solve.sh` in a scratch
+copy where **only `solution/solve.sh` was replaced**. This cheat writes a
+small Go program. It handles small words, existing internal capitals, `Mc`
+names, domain-like words and hyphenated compounds (`attack/cheat4/solve.sh:22-70`).
+It does not fetch the public answer file or implement the full reference port.
+
+| Run | Build | No Python | Exact behaviour | Final reward | Harbor job | Saved reward |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| New cheat 4 | 1.0 | 1.0 | 0.19942 (19,942/100,000) | **0.2635** | `jobs/priya-current-cheat4-rule-heuristic` | `results/current-cheat4-reward.json` |
+
+The general rules happen to satisfy all four canonical smoke cases in
+`task/tests/no_python.py:8-44`, so this incomplete program earns the
+`no_python` point. The verifier's weights in `task/tests/reward.toml:4`
+then give `(1 + 1 + 23 * 0.19942) / 25 = 0.2635` after rounding. The
+score exceeds the Day 6 below-0.2 target, even though the program gets
+about 80% of the exam wrong.
+
+**Fix:** Keep the no-Python check about language compliance and use the
+100,000-case exact-match fraction as the reward once build and compliance
+pass. Under that rule this same cheat would score 0.19942. Alternatively,
+the exam could cover more of the general rules this heuristic misses; any
+change should preserve the required 100,000 cases and oracle score 1.0.
