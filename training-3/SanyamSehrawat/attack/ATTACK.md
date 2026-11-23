@@ -131,3 +131,22 @@ No fix was applied to the target's original task.
 Alok's task has a strong core: the grader isolates the hidden answer set and runs the candidate binary in a locked-down `chroot` jail with an import allow-list, so the two "shortcut" attacks (lookup of visible answers, reading the exam at run time) both fail and score only the `0.364` floor. The real weakness is the reward shape: `build` and `no_python` guarantee `0.333` to anything that compiles cleanly, and the behaviour check pays penalty-free proportional credit, so a visibly incomplete half-port reached `0.5217`. The task is robust against data theft but lenient toward partial correctness; tightening the reward weights and the line-matching rule would close the remaining gap.
 
 **Highest score any cheat got: 0.5217 (cheat 2).**
+
+---
+
+## 10. Day 6 — Independent Re-attack on Alok's Hardened Task
+
+Alok's published hardened task was re-tested at commit
+`395755d7270e696f43c77f1be9afb960d1b080b8`. For each run, a fresh scratch copy was made
+from that exact commit and only `solution/solve.sh` was replaced with the corresponding
+original Day 4 cheat. The verifier, task configuration, and environment were left unchanged.
+Runs used Harbor 0.25.0 with the `oracle` agent.
+
+| Cheat | Harbor reward | Job name | Harbor run ID | Trial ID | Saved verifier reward |
+|---|---:|---|---|---|---|
+| Cheat 1 — visible lookup | `0.0001890625` | `sanyam-day6-cheat1-395755d` | `35302cd6-90f7-4c54-9bf7-95329cdd72f9` | `cheat1__4rP8zsp` | [`cheat1-reattack-395755d-reward.json`](results/cheat1-reattack-395755d-reward.json) |
+| Cheat 2 — partial implementation | `0.1155524049` | `sanyam-day6-cheat2-395755d` | `62aa4f7c-222f-4e23-a433-5382a5978d0d` | `cheat2__9bd36Ea` | [`cheat2-reattack-395755d-reward.json`](results/cheat2-reattack-395755d-reward.json) |
+| Cheat 3 — read the exam | `0.0001879641` | `sanyam-day6-cheat3-395755d` | `f901b076-c0d9-4170-abca-40c8f04bf46c` | `cheat3__MDQN8fP` | [`cheat3-reattack-395755d-reward.json`](results/cheat3-reattack-395755d-reward.json) |
+
+All three independently measured rewards are below `0.2`. The first two match the scores
+Alok reported. Cheat 3's exact score is now independently verified at `0.0001879641`.
