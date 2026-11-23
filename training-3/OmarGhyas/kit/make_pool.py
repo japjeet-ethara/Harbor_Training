@@ -25,9 +25,9 @@ UNICODE = ["\u00e9lan", "\u00fcber", "na\u00efve", "\u00c9cole", "stra\u00dfe",
 PUNCT = list("!\"#$%&'()*+,-./:;?@[\\]_`{|}~") + ["\u201c", "\u2018", "\u2013", "\u2014"]
 SPACES = [" "] * 20 + ["  ", "\t", "\u00a0", "\u2009"]
 
-BANKS = [(SMALL, 25), (NORMAL, 30), (NAMES, 3), (APOS, 3), (TITLES, 3),
-         (INITIALS, 3), (DOTTED, 3), (URLS, 2), (SLASH, 3), (HYPHEN, 4),
-         (CONSONANT, 3), (MIXED, 3), (UNICODE, 3)]
+BANKS = [(SMALL, 12), (NORMAL, 14), (NAMES, 8), (APOS, 8), (TITLES, 6),
+         (INITIALS, 6), (DOTTED, 8), (URLS, 6), (SLASH, 8), (HYPHEN, 10),
+         (CONSONANT, 8), (MIXED, 8), (UNICODE, 6)]
 WORD_BANKS = [b for b, _ in BANKS]
 WEIGHTS = [w for _, w in BANKS]
 

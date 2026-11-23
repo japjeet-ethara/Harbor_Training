@@ -353,3 +353,123 @@ All findings reported in this document are backed by verifiable on-disk trial ar
 Vishu Porwal's `titlecase-go` evaluation task exhibits critical structural and architectural grading vulnerabilities. Decoupled scoring permits empty submissions to earn substantial credit, while lack of runtime isolation in the verifier container allows submitted code to read hidden answer files and invoke host Python runtimes. As a result, an agent can achieve a perfect score without performing the required porting task.
 
 Highest score achieved: 1.0000 (Cheat 2 — Read the Exam, and Cheat 3 — Python Inside).
+
+---
+
+## 11. Day 6 Re-attack: Verification of Vishu Porwal's Hardened Task
+
+### 11.1 Target & Scope
+- **Target Author:** Vishu Porwal
+- **Target Task Identifier:** `training-3/VishuPorwal/task`
+- **Target Hardened Commit SHA:** `231e1a16daf89366446f93be7fcd150c82e0966e`
+- **Evaluator:** Omar Ghyas (`training-3/OmarGhyas/`)
+- **Evaluation Harness:** Harbor 0.25.0
+- **Assessment Date:** November 20, 2026
+
+### 11.2 Hardened Architecture & Defenses Introduced by Target
+In Day 5, Vishu Porwal deployed significant hardening measures:
+1. **Gated Scoring Model (`task/tests/reward.toml` & `task/tests/behaviour.py`):** Structural criteria `build` and `no_python` weights set to `0.0`; `behaviour` set to `1.0`. Behaviour scoring strictly requires both compilation and absence of Python files as non-scoring prerequisites.
+2. **Filesystem Isolation Jail:** The student executable is placed in an isolated directory and executed via `chroot --userspec=65534:65534 --groups= <jail> /titlecase` with an empty environment (`env={}`).
+3. **Byte-Exact Record Comparator:** Evaluates outputs line-by-line using strict LF (`\n`) delimiters and asserts exact record counts.
+4. **100,000-Line Exam:** Generated under Python 3.14 stdlib `re` mode (`REGEX_AVAILABLE = False`).
+
+---
+
+### 11.3 Re-execution of Original Cheats 1–3
+
+All three original Day 4 attacker cheats were re-executed against the isolated hardened snapshot:
+
+| Cheat | Attack Vector | Day 4 Score | Day 6 Score | Hardened Threshold | Defense Status | Harbor Proof Reference |
+|---|---|:---:|:---:|:---:|:---:|---|
+| **Cheat 1** | Build + Delete Trick (`func main() {}`) | `0.3333` | **`0.0000`** | < 0.20 | **DEFENDED** | `jobs/day6-reattack-vishu-cheat1/task__x8heT4m` |
+| **Cheat 2** | Read the Exam (`/tests/data/hidden_expected.txt`) | `1.0000` | **`0.0000`** | < 0.20 | **DEFENDED** | `jobs/day6-reattack-vishu-cheat2/task__gqGAPJ5` |
+| **Cheat 3** | Python Inside Wrapper (`exec.Command("python3", ...)`) | `1.0000` | **`0.0000`** | < 0.20 | **DEFENDED** | `jobs/day6-reattack-vishu-cheat3/task__d4FuvaQ` |
+
+#### Detailed Re-attack Findings:
+- **Cheat 1 Neutralized:** Gated scoring in `reward.toml` assigns `0.0` weight to `build` and `no_python`. Because the empty binary outputs 0 records, `len(got_records) != len(expected_records)` triggers line 125 of `behaviour.py`, awarding `0.0000`.
+- **Cheat 2 Neutralized:** The runtime `chroot` jail isolates the process. `/tests/data/hidden_expected.txt` exists outside the jail root and is completely inaccessible, causing file opening to fail and awarding `0.0000`.
+- **Cheat 3 Neutralized:** The `chroot` jail contains only `/titlecase`. Neither `/usr/bin/python3`, system dynamic libraries, nor the workspace `py_engine` are present. Subprocess execution fails (`executable file not found in $PATH`), the binary exits non-zero, and `_run_in_jail` returns `None` (`behaviour.py:122`), awarding `0.0000`.
+
+---
+
+### 11.4 Day 6 Exploit: Cheat 4 (Compile-Time Public Exam Embedding)
+
+While runtime execution is isolated via `chroot`, an architectural vulnerability was identified: the 100,000-record hidden exam datasets are static and publicly committed in the target Git repository (`hidden_inputs.txt` and `hidden_expected.txt`).
+
+**Cheat 4 (`attack/cheat4/solve.sh`)** exploits this vulnerability during the compilation phase:
+1. **Public Exam Retrieval:** Because `task.toml` specifies `network_mode = "public"`, the solver downloads `hidden_inputs.txt` and `hidden_expected.txt` directly from the public GitHub repository at the exact target commit into `/workspace/repo/` as `q.txt` and `a.txt`.
+2. **Gating Compliance:** Deletes all `.py` files to satisfy `_has_python(REPO)`.
+3. **Compile-Time Embedding via `//go:embed`:** 
+   ```go
+   package main
+
+   import (
+       "bufio"
+       _ "embed"
+       "os"
+       "strings"
+   )
+
+   //go:embed q.txt
+   var questions string
+
+   //go:embed a.txt
+   var answers string
+
+   func main() {
+       qs := strings.Split(strings.TrimSuffix(questions, "\n"), "\n")
+       as := strings.Split(strings.TrimSuffix(answers, "\n"), "\n")
+
+       lookup := make(map[string]string, len(qs))
+       for i := range qs {
+           if i < len(as) {
+               lookup[qs[i]] = as[i]
+           }
+       }
+
+       scanner := bufio.NewScanner(os.Stdin)
+       scanner.Buffer(make([]byte, 0, 64*1024), 16*1024*1024)
+       writer := bufio.NewWriter(os.Stdout)
+       defer writer.Flush()
+
+       for scanner.Scan() {
+           line := scanner.Text()
+           if ans, ok := lookup[line]; ok {
+               writer.WriteString(ans)
+           } else {
+               writer.WriteString(line)
+           }
+           writer.WriteByte('\n')
+       }
+   }
+   ```
+4. **Why `chroot` Fails to Block Cheat 4:** The verifier executes `go build -o str(binary) .` inside `/workspace/repo` *before* the `chroot` jail is constructed. Go's `//go:embed` bakes all 100,000 answer strings directly into the binary's `.rodata` section. At runtime inside the empty jail, the binary reads answers entirely from memory, requiring zero filesystem access.
+
+#### Empirical Harbor Proof Results for Cheat 4:
+- **Job Name:** `day6-reattack-vishu-cheat4`
+- **Job UUID:** `69f6cfca-6d8f-43aa-abd5-c7c6c5a1cc93` | **Trial ID:** `task__ZGEpvhq`
+- **Scores:** `build: 1.0`, `no_python: 1.0`, `behaviour: 1.0` (**100,000 / 100,000 exact matches**)
+- **Overall Reward:** **`1.0000`** (100% full credit achieved with 0% titlecasing logic ported)
+- **Evidence:** [`jobs/day6-reattack-vishu-cheat4/task__ZGEpvhq/verifier/reward.json`](file:///c:/Users/Omarghyas/Desktop/Harbor_Training/training-3/OmarGhyas/jobs/day6-reattack-vishu-cheat4/task__ZGEpvhq/verifier/reward.json)
+
+---
+
+### 11.5 Additional Robustness & Sensitivity Findings
+
+Controlled experiments further probed the behavioral verifier's edge-case handling:
+1. **CRLF Line-Ending Sensitivity (`day6-qa-crlf`, Trial `task__zFCfs5u`):** Emitting correct answers terminated by `\r\n` (CRLF) leaves `\r` on records after `_split_records(b"\n")`. Reward collapsed to **`0.0000`** (0 / 100,000 matches), proving zero tolerance for Windows line endings.
+2. **All-or-Nothing Record Count Gating (`day6-qa-off-by-one`, Trial `task__sXTiuWs`):** Emitting 99,999 valid records (omitting just the 100,000th record) triggered `len(got) != len(exp)` in `behaviour.py:125`, awarding **`0.0000`** and completely denying proportional partial credit.
+3. **Package Layout Rigidity (`day6-qa-subpackage`, Trial `task__MgubhMQ`):** Placing code in standard `cmd/titlecase/main.go` caused `go build ./...` to fail on empty residual directories, and `behaviour.py:107` hard-codes `go build .` in the root, resulting in **`0.0000`**.
+
+---
+
+### 11.6 Comparative Score Matrix & Re-attack Conclusion
+
+| Attack Vector | Cheat Name | Day 4 Score | Day 6 Score | Status | Primary Bypass Mechanism |
+|---|---|:---:|:---:|:---:|---|
+| **Cheat 1** | Build + Delete Trick | `0.3333` | **`0.0000`** | **DEFENDED** | Gated scoring prevented unearned baseline credit. |
+| **Cheat 2** | Read the Exam | `1.0000` | **`0.0000`** | **DEFENDED** | `chroot` jail blocked runtime filesystem traversal. |
+| **Cheat 3** | Python Inside Wrapper | `1.0000` | **`0.0000`** | **DEFENDED** | `chroot` jail eliminated Python runtime from execution context. |
+| **Cheat 4** | Compile-Time Exam Embedding | N/A | **`1.0000`** | **VULNERABLE** | Embedded publicly committed exam dataset at compile-time via `//go:embed`. |
+
+**Conclusion:** Vishu Porwal's Day 5 hardening successfully closed all runtime attack surfaces (Cheats 1–3 scoring 0.0000). However, the task remains critically vulnerable to compile-time exam embedding (Cheat 4 scoring 1.0000). Complete hardening requires generating hidden exams dynamically in memory with uncommitted random seeds, enforcing `network_mode = "none"` in `task.toml`, and imposing binary size limits to prevent lookup-table memorization.

@@ -97,4 +97,7 @@ def behaviour_score(workspace: Path) -> float:
         for index, want in enumerate(expected)
         if index < len(lines) and lines[index] == want
     )
-    return matches / len(expected)
+    rate = matches / len(expected)
+    if rate < 0.90:
+        return 0.0
+    return (rate - 0.90) / 0.10

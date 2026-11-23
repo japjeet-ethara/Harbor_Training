@@ -1,0 +1,34 @@
+Day 6 Phase 3 - Attacker Cheats Hardened Verification Proofs
+
+Target Task: training-3/OmarGhyas/task (100K exam, regex mode)
+Attacker: Ashish (training-3/Ashish-Reference/attack)
+
+Cheat 1 - Lookup Table:
+  Job: day6-phase3-cheat1
+  Job ID: d5c07eec-5c04-4fb4-ad3a-1d7a94019075
+  Job Trial: task__uVfrNjD
+  Reward: 0.0
+  Expected: < 0.20
+  Status: PASS
+  Job Path: training-3/OmarGhyas/jobs/day6-phase3-cheat1
+  Reward File: training-3/OmarGhyas/jobs/day6-phase3-cheat1/task__uVfrNjD/verifier/reward.json
+
+Cheat 2 - Half Port:
+  Job: day6-phase3-cheat2
+  Job ID: 2ccd1bdd-465b-48f6-8e78-efe5867a4828
+  Job Trial: task__6Wz8s3h
+  Reward: 0.0
+  Expected: < 0.20
+  Status: PASS
+  Job Path: training-3/OmarGhyas/jobs/day6-phase3-cheat2
+  Reward File: training-3/OmarGhyas/jobs/day6-phase3-cheat2/task__6Wz8s3h/verifier/reward.json
+
+Cheat 3 - Silent Binary:
+  Job: day6-phase3-cheat3
+  Job ID: 7c13e795-fd8e-4f6b-927e-aa0dfa1032bc
+  Job Trial: task__42DoPXV
+  Reward: 0.0
+  Expected: < 0.20
+  Status: PASS
+  Job Path: training-3/OmarGhyas/jobs/day6-phase3-cheat3
+  Reward File: training-3/OmarGhyas/jobs/day6-phase3-cheat3/task__42DoPXV/verifier/reward.json
