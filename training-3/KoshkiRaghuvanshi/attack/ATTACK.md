@@ -22,3 +22,11 @@ Why it worked:  `environment/Dockerfile:2` (`COPY python-titlecase /workspace/re
 How to fix:     Remove `python3` from the runtime image (or search the entire filesystem `/` for `.py` files and block `os/exec` calls to Python), and avoid leaving the reference Python implementation in `/workspace/repo` if not needed.
 
 Highest score any cheat got: 0.3333
+## Day 6: re-run on Aahan Trikha's hardened task
+Hardened task commit: 041dff1
+
+| Cheat | Day 4 score | After hardening | Job folder |
+|---|---|---|---|
+| cheat1 | 0.3333 | 0.0730 | jobs/2026-11-23__16-13-13 |
+| cheat2 | 0.3333 | 0.3490 | jobs/2026-11-23__16-14-25 |
+| cheat3 | 0.3333 | 0.0730 | jobs/2026-11-23__16-15-35 |
