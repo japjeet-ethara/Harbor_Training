@@ -248,7 +248,7 @@ func isAllConsonants(word string) bool {
 func capFirst(word string) string {
 	rs := []rune(word)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	for i < len(rs) && isPunct(rs[i]) && rs[i] != '_' {
 		i++
 	}
 	if i >= len(rs) || !isWord(rs[i]) {

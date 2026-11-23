@@ -29,7 +29,7 @@ def behaviour(workspace: Path) -> float:
         result = Worker(
             env={"PATH": "/usr/local/go/bin:/usr/local/bin:/usr/bin:/bin"}
         ).run(
-            f"cd {workspace.name} && go build -o titlecase . && ./titlecase",
+            f"cd {workspace.name} && go build -o /tmp/titlecase . && /tmp/titlecase",
             files=[workspace],
             stdin=INPUTS.read_bytes(),
             timeout_sec=180,
