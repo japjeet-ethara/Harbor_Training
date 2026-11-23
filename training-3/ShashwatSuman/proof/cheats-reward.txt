@@ -1,0 +1,5 @@
+Cheat 1 (Read exam at run time): reward 0.000000 (build 1.0, no_python 1.0, behaviour 0.0 - blocked by pre-hashed comparisons and isolated sandbox directory without access to /tests)
+Cheat 2 (Python inside): reward 0.012195 (build 1.0, no_python 0.0, behaviour 0.0 - blocked by AST/content inspection in no_python.py and os/exec import check)
+Cheat 3 (Delete trick + empty program): reward 0.024390 (build 1.0, no_python 1.0, behaviour 0.0 - minimal weights 0.05/0.05 prevent unearned marks)
+
+All attacker cheats score strictly below 0.20 on the hardened task.
