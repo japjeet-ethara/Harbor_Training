@@ -1,0 +1,21 @@
+# Main score: correctness counts 4x as much as each of the two other checks.
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 1.0, behaviour = 4.0 }
+
+# One named score per check, so reward.json shows each check on its own.
+[[reward]]
+name = "build"
+aggregation = "weighted-mean"
+weights = { build = 1.0, no_python = 0.0, behaviour = 0.0 }
+
+[[reward]]
+name = "no_python"
+aggregation = "weighted-mean"
+weights = { build = 0.0, no_python = 1.0, behaviour = 0.0 }
+
+[[reward]]
+name = "behaviour"
+aggregation = "weighted-mean"
+weights = { build = 0.0, no_python = 0.0, behaviour = 1.0 }

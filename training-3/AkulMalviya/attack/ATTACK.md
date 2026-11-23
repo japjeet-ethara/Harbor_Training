@@ -51,3 +51,15 @@ Trial `baseline-3__MQnFmdv` scored **0.355**. Build was 1.0, Python removal was 
 The unchanged practice task scored **1.0** with the Harbor oracle. The verifier emitted `reward.txt` in job `day4-practice-oracle`, trial `task__5WLi62q`. This run validates the practice task's Day 4 baseline.
 
 **Highest measured baseline reward was 0.3557 (baseline 2).**
+
+## Day 6 — Rerun on Yugal's hardened task
+
+I reran the same three Go baselines against Yugal's task at revision `d38df1b4acaf3ab46075ddcd23c83ba61d04f62f`. The local Harbor job `day6-yugal-baselines` (ID `5fa2bdeb-adaa-44d7-bbd3-f9f6608ceb60`) completed all three trials without exceptions.
+
+| Baseline | Day 4 reward | Day 6 reward | Harbor trial | Raw reward |
+| --- | ---: | ---: | --- | --- |
+| Capitalize word starts | 0.339 | 0.1805 | `baseline-1__fKdK3fn` | [JSON](results/day6-yugal-baseline1-reward.json) |
+| Normalize word casing | 0.3557 | 0.1469 | `baseline-2__x8BGAha` | [JSON](results/day6-yugal-baseline2-reward.json) |
+| Apply a small-word list | 0.355 | 0.1584 | `baseline-3__KvapQCk` | [JSON](results/day6-yugal-baseline3-reward.json) |
+
+The highest rerun reward was **0.1805**. All three baselines scored below **0.2**, matching the scores Yugal independently reported. [Yugal's proof](https://github.com/japjeet-ethara/Harbor_Training/blob/d38df1b4acaf3ab46075ddcd23c83ba61d04f62f/training-3/YugalLohani/proof/cheats-reward.txt)

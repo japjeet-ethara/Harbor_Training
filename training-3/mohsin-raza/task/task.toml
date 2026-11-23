@@ -1,0 +1,37 @@
+schema_version = "1.4"
+
+# After the agent finishes, Harbor copies /workspace/repo out of the agent container and
+# puts it at the same path inside the separate verifier container.
+artifacts = [{ source = "/workspace/repo", destination = "repo" }]
+
+[metadata]
+description = "Port python-titlecase (titlecase() v2.4.1) to Go, byte-for-byte identical, with no Python left."
+difficulty = "medium"
+category = "code-porting"
+tags = ["go", "python", "porting", "regex", "titlecase"]
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_commit = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[verifier]
+timeout_sec = 600.0
+# Separate container: tests/ (and the hidden answers inside it) are never present
+# in the container the agent works in.
+environment_mode = "separate"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+# The verifier downloads Reward Kit with uvx, so it needs network access.
+network_mode = "public"
+build_timeout_sec = 600.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

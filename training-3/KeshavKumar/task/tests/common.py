@@ -3,6 +3,18 @@
 This file registers no criteria, so Reward Kit ignores it as a scoring input.
 Every helper catches its own errors and reports failure as a score of 0:
 an exception inside a criterion would crash the whole Reward Kit run.
+
+Hardening (Day 5):
+- The exam is tests/data/inputs.txt + answers.txt: 100,000 titles, answers frozen
+  from the original python-titlecase WITHOUT the `regex` package (kit/answers.py).
+- The agent's program never runs as root. It runs as `nobody`, which cannot read
+  /tests (chmod 700 in test.sh and tests/Dockerfile), /root (where Reward Kit's
+  Python lives) or /logs/verifier. The grader reads the answers into memory first.
+- After the program exits, every process left behind by `nobody` is killed, so it
+  cannot change anything once grading moves on.
+- The verifier has no network (task.toml), so the program cannot fetch answers.
+- Behaviour credit starts above a floor: a port that gets half the titles wrong
+  earns nothing for behaviour (see BEHAVIOUR_FLOOR).
 """
 
 import os
@@ -17,22 +29,37 @@ TESTS_DIR = Path(__file__).resolve().parent
 DATA_DIR = TESTS_DIR / "data"
 LOG_DIR = Path("/logs/verifier")
 
-# Grading uses ONLY the hidden set. The visible inputs.txt / expected.txt are
-# never read by any check.
-HIDDEN_INPUTS = DATA_DIR / "hidden_inputs.txt"
-HIDDEN_EXPECTED = DATA_DIR / "hidden_expected.txt"
+EXAM_INPUTS = DATA_DIR / "inputs.txt"
+EXAM_ANSWERS = DATA_DIR / "answers.txt"
 
 BUILD_TIMEOUT_SEC = 300
-RUN_TIMEOUT_SEC = 120
+RUN_TIMEOUT_SEC = 300
+
+# The agent's program runs as this unprivileged user (exists in golang:1.23).
+RUN_UID = 65534  # nobody
+RUN_GID = 65534  # nogroup
+RUN_ENV = {"PATH": "/usr/bin:/bin", "HOME": "/nonexistent", "LANG": "C.UTF-8"}
+
+# behaviour credit = (share - FLOOR) / (1 - FLOOR), and 0 when share <= FLOOR.
+# 100% right -> 1.0, 99% -> 0.98, 75% -> 0.5, 50% or less -> 0.
+BEHAVIOUR_FLOOR = 0.5
 
 # no_python only pays when the port does real work: at least this share of
-# hidden lines must be correct. Stops "trivial program + delete .py" cheats.
-NO_PYTHON_MIN_BEHAVIOUR = 0.5
+# exam lines must be correct. Stops "trivial program + delete .py" cheats.
+NO_PYTHON_MIN_SHARE = 0.5
 
 REQUIRE_DIRECTIVE = re.compile(r"^\s*require\b", re.MULTILINE)
 
 _GO = shutil.which("go") or "/usr/local/go/bin/go"
-_ENV = {**os.environ, "GOFLAGS": "-buildvcs=false"}
+# Building runs as root, so turn off everything that could run agent code or
+# reach outside the module: no cgo, no toolchain download, no module proxy.
+_BUILD_ENV = {
+    **os.environ,
+    "GOFLAGS": "-buildvcs=false",
+    "CGO_ENABLED": "0",
+    "GOTOOLCHAIN": "local",
+    "GOPROXY": "off",
+}
 
 _lock = threading.Lock()
 _build_cache: dict[str, tuple[bool, str]] = {}
@@ -51,7 +78,7 @@ def copy_repo(workspace: Path) -> Path:
 def run_go(args: list[str], cwd: Path) -> tuple[bool, str]:
     try:
         r = subprocess.run(
-            [_GO, *args], cwd=cwd, env=_ENV,
+            [_GO, *args], cwd=cwd, env=_BUILD_ENV,
             capture_output=True, text=True, timeout=BUILD_TIMEOUT_SEC,
         )
     except subprocess.TimeoutExpired:
@@ -103,22 +130,45 @@ def find_py_files(workspace: Path) -> list[str]:
     return sorted(found)
 
 
-def behaviour_score(workspace: Path) -> tuple[float, str]:
-    """Fraction of hidden input lines whose output line matches byte for byte.
+def _kill_leftovers() -> None:
+    """Kill every process still running as `nobody` (daemons, children, ...).
+
+    `kill -KILL -1` sent BY nobody reaches every process nobody owns, itself included.
+    Run twice in case a process forked while the first round was running.
+    """
+    for _ in range(2):
+        try:
+            subprocess.run(
+                ["/bin/sh", "-c", "kill -KILL -1"], user=RUN_UID, group=RUN_GID,
+                extra_groups=[], env=RUN_ENV, cwd="/", capture_output=True, timeout=30,
+            )
+        except Exception:
+            pass
+
+
+def behaviour_share(workspace: Path) -> tuple[float, str]:
+    """Share of exam lines whose output line matches byte for byte (0.0 to 1.0).
 
     Cached, so behaviour and no_python run the program only once.
     """
     key = str(workspace)
     with _behaviour_lock:
         if key not in _behaviour_cache:
-            _behaviour_cache[key] = _behaviour_score(Path(workspace))
+            _behaviour_cache[key] = _behaviour_share(Path(workspace))
         return _behaviour_cache[key]
 
 
-def _behaviour_score(workspace: Path) -> tuple[float, str]:
+def behaviour_credit(share: float) -> float:
+    if share <= BEHAVIOUR_FLOOR:
+        return 0.0
+    return (share - BEHAVIOUR_FLOOR) / (1.0 - BEHAVIOUR_FLOOR)
+
+
+def _behaviour_share(workspace: Path) -> tuple[float, str]:
     try:
-        inputs = HIDDEN_INPUTS.read_bytes()
-        expected = HIDDEN_EXPECTED.read_bytes().split(b"\n")
+        # Read the key into the grader's memory BEFORE the agent's program starts.
+        inputs = EXAM_INPUTS.read_bytes()
+        expected = EXAM_ANSWERS.read_bytes().split(b"\n")
         if expected and expected[-1] == b"":
             expected.pop()                      # file ends with "\n"
         input_lines = inputs.split(b"\n")
@@ -131,14 +181,20 @@ def _behaviour_score(workspace: Path) -> tuple[float, str]:
             ok, why = run_go(["build", "-o", str(binary), "."], repo)
             if not ok:
                 return 0.0, why
+            # nobody needs to reach and execute the binary, nothing more.
+            os.chmod(repo.parent, 0o711)
+            os.chmod(binary, 0o711)
             try:
                 r = subprocess.run(
                     [str(binary)], input=inputs, capture_output=True,
-                    timeout=RUN_TIMEOUT_SEC, cwd=repo,
+                    timeout=RUN_TIMEOUT_SEC, cwd="/", env=RUN_ENV,
+                    user=RUN_UID, group=RUN_GID, extra_groups=[],
                 )
                 stdout, note = r.stdout, f"exit code {r.returncode}"
             except subprocess.TimeoutExpired as e:
                 stdout, note = e.stdout or b"", f"timed out after {RUN_TIMEOUT_SEC}s"
+            finally:
+                _kill_leftovers()
         finally:
             shutil.rmtree(repo.parent, ignore_errors=True)
 
@@ -152,8 +208,8 @@ def _behaviour_score(workspace: Path) -> tuple[float, str]:
             elif len(mismatches) < 50:
                 mismatches.append((i + 1, input_lines[i], exp, got))
         _write_mismatches(mismatches, matched, len(expected))
-        score = matched / len(expected)
-        return score, f"{matched}/{len(expected)} hidden lines match exactly ({note})"
+        share = matched / len(expected)
+        return share, f"{matched}/{len(expected)} exam lines match exactly ({note})"
     except Exception as e:  # never crash the Reward Kit run
         return 0.0, f"behaviour check error: {e!r}"
 

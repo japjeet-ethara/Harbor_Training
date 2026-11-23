@@ -85,25 +85,53 @@ func splitBreaks(text string) []string {
 	return append(lines, text[start:])
 }
 
+func isUpperSmall(word string) bool {
+        if !smallWord(word) {
+                return false
+        }
+        hasLetter := false
+        for _, r := range word {
+                if unicode.IsLetter(r) {
+                        hasLetter = true
+                        if !unicode.IsUpper(r) {
+                                return false
+                        }
+                }
+        }
+        return hasLetter
+}
+
 func titleLine(line string, smallFirstLast bool) string {
-	allCaps := line == strings.ToUpper(line)
-	words, spaces := splitSpaces(line)
-	tc := make([]string, len(words))
-	for i, word := range words {
-		tc[i] = titleWord(word, allCaps)
-	}
-	if smallFirstLast && len(tc) > 0 {
-		tc[0] = applySmallFirst(tc[0])
-		tc[len(tc)-1] = applySmallLast(tc[len(tc)-1])
-	}
-	var b strings.Builder
-	for i, word := range tc {
-		b.WriteString(word)
-		if i < len(spaces) {
-			b.WriteString(spaces[i])
-		}
-	}
-	return applySubphrase(b.String())
+        allCaps := line == strings.ToUpper(line)
+        words, spaces := splitSpaces(line)
+        tc := make([]string, len(words))
+        upperSmall := make([]bool, len(words))
+        for i, word := range words {
+                upperSmall[i] = !allCaps && isUpperSmall(word)
+                tc[i] = titleWord(word, allCaps)
+        }
+        if smallFirstLast && len(tc) > 0 {
+                tc[0] = applySmallFirst(tc[0])
+                tc[len(tc)-1] = applySmallLast(tc[len(tc)-1])
+        }
+        var b strings.Builder
+        for i, word := range tc {
+                isLast := smallFirstLast && i == len(tc)-1
+                if i > 0 && !isLast && upperSmall[i] && endsWithSubPunct(b.String()) {
+                        b.WriteString(strings.ToUpper(word))
+                } else {
+                        b.WriteString(word)
+                }
+                if i < len(spaces) {
+                        b.WriteString(spaces[i])
+                }
+        }
+        return applySubphrase(b.String(), allCaps)
+}
+
+func endsWithSubPunct(s string) bool {
+        rs := []rune(s)
+        return len(rs) >= 2 && isSubPunct(rs[len(rs)-2]) && rs[len(rs)-1] == ' '
 }
 
 func splitSpaces(line string) (words, spaces []string) {
@@ -301,6 +329,20 @@ func isASCIILetter(r rune) bool {
 	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z')
 }
 
+
+func isAllUpperWord(s string) bool {
+        hasLetter := false
+        for _, r := range s {
+                if unicode.IsLetter(r) {
+                        hasLetter = true
+                        if !unicode.IsUpper(r) {
+                                return false
+                        }
+                }
+        }
+        return hasLetter
+}
+
 func smallWord(word string) bool {
 	rs := []rune(word)
 	for _, alt := range smallAlts {
@@ -399,32 +441,54 @@ func wordBoundary(rs []rune, i int) bool {
 	return left != right
 }
 
-func applySubphrase(s string) string {
-	rs := []rune(s)
-	var b strings.Builder
-	for i := 0; i < len(rs); {
-		if i+1 < len(rs) && isSubPunct(rs[i]) && rs[i+1] == ' ' {
-			if n, ok := firstSmallPrefix(rs[i+2:]); ok {
-				b.WriteRune(rs[i])
-				b.WriteByte(' ')
-				b.WriteString(capitalize(string(rs[i+2 : i+2+n])))
-				i += 2 + n
-				continue
-			}
-		}
-		b.WriteRune(rs[i])
-		i++
-	}
-	return b.String()
+func applySubphrase(s string, allCaps bool) string {
+        rs := []rune(s)
+        var b strings.Builder
+        for i := 0; i < len(rs); {
+                if i+1 < len(rs) && isSubPunct(rs[i]) && rs[i+1] == ' ' {
+                        if n, ok := firstSmallPrefix(rs[i+2:]); ok {
+                                seg := string(rs[i+2 : i+2+n])
+                                b.WriteRune(rs[i])
+                                b.WriteByte(' ')
+                                if isAllUpperWord(seg) {
+                                        b.WriteString(seg)
+                                } else {
+                                        b.WriteString(capitalize(seg))
+                                }
+                                i += 2 + n
+                                for (strings.EqualFold(seg, "vs.") || (allCaps && strings.EqualFold(seg, "v."))) && i < len(rs) && rs[i] == ' ' {
+                                        if n2, ok2 := firstSmallPrefix(rs[i+1:]); ok2 {
+                                                seg = string(rs[i+1 : i+1+n2])
+                                                b.WriteByte(' ')
+                                                if isAllUpperWord(seg) {
+                                                        b.WriteString(seg)
+                                                } else {
+                                                        b.WriteString(capitalize(seg))
+                                                }
+                                                i += 1 + n2
+                                        } else {
+                                                break
+                                        }
+                                }
+                                continue
+                        }
+                }
+                b.WriteRune(rs[i])
+                i++
+        }
+        return b.String()
 }
 
 func firstSmallPrefix(rs []rune) (int, bool) {
-	for _, alt := range smallAlts {
-		if n := matchAlt(rs, alt); n >= 0 {
-			return n, true
-		}
-	}
-	return 0, false
+        for _, alt := range smallAlts {
+                if n := matchAlt(rs, alt); n >= 0 {
+                        if n < len(rs) && unicode.IsLetter(rs[n]) {
+                                continue
+                        }
+                        return n, true
+                }
+        }
+        return 0, false
 }
 
 func allConsonants(word string) bool {

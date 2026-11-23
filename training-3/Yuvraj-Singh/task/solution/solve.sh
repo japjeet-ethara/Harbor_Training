@@ -510,3 +510,11 @@ find /workspace/repo -type f -name '*.py' -delete
 # name. The vendored Python package is a directory called titlecase, and Go
 # refuses to replace a directory with that binary.
 rm -rf /workspace/repo/titlecase
+
+# Remove Python virtual environment and project files so `no_python` check passes
+rm -rf /workspace/repo/.venv
+rm -f /workspace/repo/pyproject.toml
+rm -f /workspace/repo/setup.cfg
+rm -f /workspace/repo/setup.py
+rm -f /workspace/repo/tox.ini
+rm -f /workspace/repo/uv.lock

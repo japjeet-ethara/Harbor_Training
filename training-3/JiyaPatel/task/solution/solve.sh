@@ -26,20 +26,22 @@ import (
 const (
 	smallPattern = `a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v\.?|via|vs\.?`
 	punctClass   = `!"“#$%&'‘()*+,\-–‒—―./:;?@\[\\\]_` + "`" + `{|}~`
+	pyWordChar   = `[\p{L}\p{N}_]`
+	pyNonWord    = `[^\p{L}\p{N}_]`
 )
 
 var (
 	reSmallWords   = regexp.MustCompile(`(?i)^(` + smallPattern + `)$`)
-	reSmallFirst   = regexp.MustCompile(`(?i)^([` + punctClass + `]*)(` + smallPattern + `)\b`)
-	reSmallLast    = regexp.MustCompile(`(?i)\b(` + smallPattern + `)[` + punctClass + `]?$`)
+	reSmallFirst   = regexp.MustCompile(`(?i)^([` + punctClass + `]*)(` + smallPattern + `)(?:` + pyNonWord + `|$)`)
+	reSmallLast    = regexp.MustCompile(`(?i)(?:^|` + pyNonWord + `)(` + smallPattern + `)[` + punctClass + `]?$`)
 	reSubphrase    = regexp.MustCompile(`([:.;?!\-–‒—―][ ])(` + smallPattern + `)`)
-	reMacMc        = regexp.MustCompile(`^([Mm]c|MC)(\w.+)`)
+	reMacMc        = regexp.MustCompile(`^([Mm]c|MC)(` + pyWordChar + `.+)`)
 	reMrMrsMsDr    = regexp.MustCompile(`(?i)^((m((rs?)|s))|Dr)$`)
-	reInlinePeriod = regexp.MustCompile(`(?i)[\p{L}][.][\p{L}]`)
-	reUcElsewhere  = regexp.MustCompile(`[` + punctClass + `]*?[\p{L}]+[\p{Lu}]+?`)
-	reCapFirst     = regexp.MustCompile(`^[` + punctClass + `]*?([\p{L}])`)
-	reAposSecond   = regexp.MustCompile(`(?i)^[dol]['‘][\p{L}]+(?:'s)?$`)
-	reUcInitials   = regexp.MustCompile(`^(?:[\p{Lu}]\.|[\p{Lu}]\.[\p{Lu}])+$`)
+	reInlinePeriod = regexp.MustCompile(`(?i)` + pyWordChar + `[.]` + pyWordChar)
+	reUcElsewhere  = regexp.MustCompile(`^[` + punctClass + `]*?[a-zA-Z]+[A-Z]+?`)
+	reCapFirst     = regexp.MustCompile(`^[` + punctClass + `]*?(` + pyWordChar + `)`)
+	reAposSecond   = regexp.MustCompile(`(?i)^[dol]['‘]` + pyWordChar + `+(?:['s]{2})?$`)
+	reUcInitials   = regexp.MustCompile(`^(?:[A-Z]\.|[A-Z]\.[A-Z])+$`)
 	reAllCons      = regexp.MustCompile(`(?i)^[bcdfghjklmnpqrstvwxz]+$`)
 )
 
@@ -52,12 +54,24 @@ func capitalizeFirst(s string) string {
 	return string(runes)
 }
 
+func isPySpace(r rune) bool {
+	switch r {
+	case ' ', '\t', '\n', '\r', '\v', '\f',
+		'\u00a0', '\u1680', '\u2000', '\u2001', '\u2002', '\u2003',
+		'\u2004', '\u2005', '\u2006', '\u2007', '\u2008', '\u2009',
+		'\u200a', '\u2028', '\u2029', '\u202f', '\u205f', '\u3000',
+		'\u001c', '\u001d', '\u001e', '\u001f', '\u0085':
+		return true
+	}
+	return false
+}
+
 func splitWhitespaceKeep(s string) ([]string, []string) {
 	var words []string
 	var spaces []string
 	var cur strings.Builder
 	for _, r := range s {
-		if unicode.IsSpace(r) {
+		if isPySpace(r) {
 			words = append(words, cur.String())
 			cur.Reset()
 			spaces = append(spaces, string(r))
@@ -157,15 +171,14 @@ func titlecaseLine(line string, smallFirstLast bool) string {
 		if m := reSmallFirst.FindStringSubmatchIndex(tcLine[0]); m != nil {
 			p1 := tcLine[0][m[2]:m[3]]
 			p2 := tcLine[0][m[4]:m[5]]
-			rest := tcLine[0][m[1]:]
+			rest := tcLine[0][m[5]:]
 			tcLine[0] = p1 + capitalizeFirst(strings.ToLower(p2)) + rest
 		}
 		lastIdx := len(tcLine) - 1
 		if m := reSmallLast.FindStringSubmatchIndex(tcLine[lastIdx]); m != nil {
-			before := tcLine[lastIdx][:m[0]]
-			matched := tcLine[lastIdx][m[0]:m[1]]
-			after := tcLine[lastIdx][m[1]:]
-			tcLine[lastIdx] = before + capitalizeFirst(strings.ToLower(matched)) + after
+			before := tcLine[lastIdx][:m[2]]
+			matched := tcLine[lastIdx][m[2]:m[1]]
+			tcLine[lastIdx] = before + capitalizeFirst(strings.ToLower(matched))
 		}
 	}
 

@@ -1,6 +1,6 @@
 # Day 5 hardening report
 
-The verifier now awards credit for correct output after the Go build and Python-source checks pass. It runs the statically linked program as UID 65534 in a temporary root containing only its executable. The trusted verifier keeps the answer key outside that root and sends the program the titles on stdin. Harbor disables network access for the verifier.
+The verifier awards credit for correct output after the Go build and Python-source checks pass. It runs the statically linked program as UID 65534 in a temporary root containing only its executable. The trusted verifier keeps the answer key outside that root and sends the program the titles on stdin. Harbor disables network access for the verifier.
 
 ## Findings from Madhur Jain's review
 
@@ -32,4 +32,4 @@ I built the ports with Go 1.23 in Docker with networking disabled. The peer solu
 - Oracle earned **1.0** in `jobs/satvik-day5-verified-oracle`.
 - Nop earned **0.0** in `jobs/satvik-day5-nop`.
 
-The larger exam surfaced 39,344 disagreements in my original port after it passed the original 2,000 titles. I updated the Go port to preserve Python's whitespace handling, use the same punctuation and word boundaries, and match the reference's casing rules for acronyms, apostrophes, and Unicode. No fixtures were removed from the new corpus.
+The enlarged exam surfaced 39,344 disagreements in my original port after it passed the original 2,000 titles. I updated the Go port to preserve Python's whitespace handling, use the same punctuation and word boundaries, and match the reference's casing rules for acronyms, apostrophes, and Unicode. No fixtures were removed from the new corpus.

@@ -15,10 +15,10 @@ Weighted mean of three programmatic checks:
 | Check | Weight | What it measures |
 |---|---:|---|
 | `build` | 1 | `go build ./...` succeeds |
-| `no_python` | 1 | no `.py` files under `/workspace/repo`, and the build still succeeds |
-| `behaviour` | 4 | fraction of `/tests/data/hidden_inputs.txt` lines that match `hidden_expected.txt` |
+| `no_python` | 1 | no `.py` files, no python shebangs or python subprocess invocations, and the build still succeeds |
+| `behaviour` | 14 | fraction of `/tests/data/hidden_inputs.txt` lines that match `hidden_expected.txt` (gated on no Python files) |
 
-Nothing done scores 0. A build that leaves the Python files in place scores about 0.17. A perfect port scores 1.
+Nothing done scores 0. A build that leaves the Python files in place scores about 0.06 (1/16). A build and clean repo with zero behaviour scores 0.125 (2/16). A perfect port scores 1.0.
 
 Regenerate the frozen answers with `uv run --python 3.12 tools/gen.py`. The script calls the original function; do not edit the answer files by hand.
 

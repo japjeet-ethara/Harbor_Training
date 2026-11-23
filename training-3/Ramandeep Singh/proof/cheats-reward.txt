@@ -1,0 +1,6 @@
+﻿Cheat 1 - Read the Exam Key: 0.1000
+Cheat 2 - Python Code Inside Go Wrapper: 0.0500
+Cheat 3 - Build/Echo Trick: 0.0531
+
+All three cheats scored below the required 0.2 threshold.
+Source: HARDEN.md

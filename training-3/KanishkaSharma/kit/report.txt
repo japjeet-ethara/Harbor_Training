@@ -1,0 +1,4 @@
+pool: 100000
+kept: 100000
+dropped: 0
+regex: False

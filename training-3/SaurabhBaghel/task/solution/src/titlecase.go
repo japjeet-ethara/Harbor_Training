@@ -44,7 +44,7 @@ func splitLines(text string) []string {
 }
 
 func titleCaseLine(line string, smallFirstLast bool) string {
-	allCaps := strings.ToUpper(line) == line
+	allCaps := upperString(line) == line
 	words, spaces := splitSpaces(line)
 	tc := make([]string, len(words))
 	for i, word := range words {
@@ -80,7 +80,7 @@ func titleWord(word string, allCaps bool, smallFirstLast bool) string {
 		return word
 	}
 	if isEntireSmall(rs) {
-		return strings.ToLower(word)
+		return lowerString(word)
 	}
 	if strings.Contains(word, "/") && !strings.Contains(word, "//") {
 		parts := strings.Split(word, "/")
@@ -97,7 +97,7 @@ func titleWord(word string, allCaps bool, smallFirstLast bool) string {
 		return strings.Join(parts, "-")
 	}
 	if allCaps {
-		word = strings.ToLower(word)
+		word = lowerString(word)
 		rs = []rune(word)
 	}
 	if allConsonants(rs) {
@@ -393,10 +393,10 @@ func capitalize(rs []rune) []rune {
 	if len(rs) == 0 {
 		return rs
 	}
-	out := append([]rune{}, rs...)
-	out[0] = unicode.ToUpper(out[0])
-	for i := 1; i < len(out); i++ {
-		out[i] = unicode.ToLower(out[i])
+	var out []rune
+	out = append(out, []rune(upperRune(rs[0]))...)
+	for _, r := range rs[1:] {
+		out = append(out, []rune(lowerRune(r))...)
 	}
 	return out
 }
@@ -409,10 +409,55 @@ func capFirst(rs []rune) []rune {
 	if i >= len(rs) || !unicode.IsLetter(rs[i]) {
 		return rs
 	}
-	out := append([]rune{}, rs...)
-	upper := unicode.ToUpper(out[i])
-	out[i] = upper
+	out := make([]rune, 0, len(rs)+1)
+	out = append(out, rs[:i]...)
+	out = append(out, []rune(upperRune(rs[i]))...)
+	out = append(out, rs[i+1:]...)
 	return out
+}
+
+func upperString(s string) string {
+	var out strings.Builder
+	for _, r := range s {
+		out.WriteString(upperRune(r))
+	}
+	return out.String()
+}
+
+func lowerString(s string) string {
+	var out strings.Builder
+	for _, r := range s {
+		out.WriteString(lowerRune(r))
+	}
+	return out.String()
+}
+
+func upperRune(r rune) string {
+	switch r {
+	case '\u00df':
+		return "SS"
+	case '\ufb01':
+		return "FI"
+	case '\ufb02':
+		return "FL"
+	case '\ufb03':
+		return "FFI"
+	case '\ufb04':
+		return "FFL"
+	default:
+		return string(unicode.ToUpper(r))
+	}
+}
+
+func lowerRune(r rune) string {
+	switch r {
+	case '\u0130':
+		return "i\u0307"
+	case '\u1e9e':
+		return "ß"
+	default:
+		return string(unicode.ToLower(r))
+	}
 }
 
 func hasInlinePeriod(rs []rune) bool {
@@ -584,9 +629,34 @@ func subphrase(s string) string {
 
 func subMatch(rs []rune) int {
 	for _, a := range smallAlts {
-		n := matchAlt(rs, a, true)
+		n := matchAltCaseSensitive(rs, a)
 		if n > 0 {
 			return n
+		}
+	}
+	return 0
+}
+
+func matchAltCaseSensitive(rs []rune, a alt) int {
+	switch a.kind {
+	case altWord:
+		word := []rune(a.word)
+		if len(rs) >= len(word) && string(rs[:len(word)]) == a.word {
+			return len(word)
+		}
+	case altV:
+		if len(rs) > 0 && rs[0] == 'v' {
+			if len(rs) > 1 && rs[1] == '.' {
+				return 2
+			}
+			return 1
+		}
+	case altVS:
+		if len(rs) > 1 && string(rs[:2]) == "vs" {
+			if len(rs) > 2 && rs[2] == '.' {
+				return 3
+			}
+			return 2
 		}
 	}
 	return 0

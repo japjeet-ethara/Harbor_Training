@@ -9,6 +9,9 @@ __pycache__/
 .env
 build/
 dist/
+scratch/
+.omo/
+
 
 # Keep only the intended attack deliverables in Git.
 attack/*

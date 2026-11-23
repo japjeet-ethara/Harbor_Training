@@ -1,0 +1,60 @@
+{
+  "reward": {
+    "kind": "group",
+    "score": 0.05,
+    "aggregation": "weighted-mean",
+    "components": [
+      {
+        "name": "behaviour",
+        "weight": 0.9,
+        "detail": {
+          "score": 0.0,
+          "criteria": [
+            {
+              "name": "check_behaviour",
+              "value": 0.0,
+              "raw": 0.0,
+              "weight": 1.0,
+              "description": "check_behaviour"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "build",
+        "weight": 0.05,
+        "detail": {
+          "score": 1.0,
+          "criteria": [
+            {
+              "name": "check_build",
+              "value": 1.0,
+              "raw": 1.0,
+              "weight": 1.0,
+              "description": "check_build"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      },
+      {
+        "name": "no_python",
+        "weight": 0.05,
+        "detail": {
+          "score": 0.0,
+          "criteria": [
+            {
+              "name": "check_no_python",
+              "value": 0.0,
+              "raw": 0.0,
+              "weight": 1.0,
+              "description": "check_no_python"
+            }
+          ],
+          "kind": "programmatic"
+        }
+      }
+    ]
+  }
+}

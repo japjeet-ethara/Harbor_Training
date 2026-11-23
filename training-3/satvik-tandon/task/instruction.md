@@ -24,6 +24,9 @@ title-cased result per line to standard output.
 
 The 100,000 hidden answers come from Python 3.14's built-in `re` mode,
 with the optional `regex` package disabled. A successful build and removal of
-Python source files are prerequisites. The score is the fraction of exact
-answers after writing one line per input. The static Go binary runs as an
+Python source files are prerequisites. The verifier also checks the full Go
+dependency list for third-party packages. The same 100,000 titles may be sent
+in a different order on each grading run. Each input must produce one output line.
+The reward is the number of exact answers divided by the total number of
+inputs. The static Go binary runs as an
 unprivileged user with the input stream, its own executable, and no network.

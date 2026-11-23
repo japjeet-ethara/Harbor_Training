@@ -100,3 +100,54 @@ The three attacks produced two distinct outcomes:
 The most serious finding is the verifier isolation weakness: the candidate program was able to access hidden expected-output data during execution and reproduce it exactly.
 
 All results are backed by actual Harbor job folders and verifier reward files.
+
+## Post-hardening retest — 20 November 2026
+
+Annu Kumari subsequently hardened her `titlecase-go` task. I reran my
+three original attack scripts against isolated copies of her updated task.
+
+The updated verifier uses a 100,000-title exam, restricted candidate
+execution privileges, Go/Python security checks, and a behavioural
+score that raises accuracy below 80% to the fourth power.
+
+### Verifier configuration issue
+
+The published `tests/reward.toml` references a `build` criterion that
+is missing from the updated `tests/` directory.
+
+The first unmodified retest failed with `RewardFileNotFoundError`.
+Its reported mean of zero is not a valid attack score.
+
+For meaningful retesting, I restored the missing Build criterion
+using the task's existing `go_build()` helper, only inside my
+isolated test copies. Annu's original files were not modified.
+
+### Actual Harbor retest results
+
+| Attack | Original reward | New Behaviour | Build | No Python | New reward |
+|---|---:|---:|---:|---:|---:|
+| Cheat 1 — Lookup table | 0.417 | 0.0029 | 1.000 | 0.000 | 0.1686 |
+| Cheat 2 — Half port | 0.417 | 0.0029 | 1.000 | 0.000 | 0.1686 |
+| Cheat 3 — Hidden-answer exploit | 1.000 | 0.0000 | 1.000 | 0.000 | 0.1667 |
+
+All three repaired-verifier Harbor runs completed with zero exceptions.
+
+Harbor job folders:
+- Cheat 1: `jobs/annu-retest-cheat1-fixed/`
+- Cheat 2: `jobs/annu-retest-cheat2-fixed/`
+- Cheat 3: `jobs/annu-retest-cheat3-fixed/`
+
+### Retest conclusion
+
+All three original attacks now score below 0.2 against the locally
+repaired hardened task.
+
+Cheat 3, which previously achieved reward 1.000 by accessing hidden
+expected answers, now receives zero Behaviour credit.
+
+The original attack was successful against the earlier task version,
+but it no longer achieves a successful reward in these retests.
+
+These results do not establish that every possible attack is blocked.
+The missing Build criterion in Annu's published configuration also
+needs correction before that exact version can be evaluated normally.

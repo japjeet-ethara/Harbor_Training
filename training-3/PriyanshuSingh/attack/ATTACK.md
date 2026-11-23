@@ -83,3 +83,44 @@ How to fix:     Grade on a much bigger and weirder pool (URLs, Mc-, d'Arcy, tabs
 ---
 
 **Highest score any cheat got: 1.0** (Cheat 1 and Cheat 2).
+
+---
+
+## Day 6 — Re-attack on Ashish's hardened task
+
+Target: `training-3/Ashish/task` at commit `abb5dbf` ("harden: close cheats 1-3, 100k exam (re)").
+Harbor 0.25.0, Docker 29.9.2, Windows 11, run on 2026-11-20.
+
+Same method as Day 4: `git archive abb5dbf` of his task into ignored scratch copies
+(`attack/scratch/day6/cheatN`), only `solution/solve.sh` replaced by my unchanged Day 4
+`attack/cheatN/solve.sh`, then `harbor run -p attack/scratch/day6/cheatN -a oracle -o jobs/day6-ashish-cheatN`.
+`tests/`, `task.toml` and `environment/` were not edited.
+
+Baseline: his oracle scores **1.0** (`jobs/day6-ashish-oracle/2026-11-20__17-05-28/hardened__UCGdkZe`,
+log: `behaviour: byte-identical on the whole stream`).
+
+| Cheat | Day 4 | Day 6 | Verifier log | Job folder |
+|---|---:|---:|---|---|
+| 1 — Read the exam | 1.0 | **0.0** | `matched 2175 of 100000 lines (rate 0.021750)` | `jobs/day6-ashish-cheat1/2026-11-20__17-06-18/cheat1__HTFFJbD` |
+| 2 — Python inside | 1.0 | **0.0** | `the program exited 1`, `matched 0 of 100000` | `jobs/day6-ashish-cheat2/2026-11-20__17-06-59/cheat2__kYqcxeG` |
+| 3 — Half port | 0.4185 | **0.0** | `matched 19529 of 100000 lines (rate 0.195290)` | `jobs/day6-ashish-cheat3/2026-11-20__17-07-40/cheat3__ZMHwQL4` |
+
+Reward files: `results/day6-cheat1-reward.json`, `day6-cheat2-reward.json`, `day6-cheat3-reward.json`,
+`day6-oracle-reward.json`. My numbers match the ones in his `HARDEN.md` exactly.
+
+Why each one now fails:
+
+- **Cheat 1.** Grading runs in a separate container (`task.toml:21`), only `/workspace/repo`
+  crosses over (`task.toml:6`), `/tests` is made root-only (`tests/test.sh:39-40`) and the binary
+  runs as uid 65534 (`tests/checks/behaviour.sh:51`, `:62`). The cheat found no answer file. The
+  2,175 matches are only its "echo the input back" fallback, i.e. lines whose answer equals the input.
+- **Cheat 2.** Every scripting interpreter is deleted from the image, and the build fails if one is
+  still found (`environment/Dockerfile:21-27`). With network off (`task.toml:23`, `:32`) none can be
+  fetched back. The embedded Python source has nothing to run on, so the program exits 1.
+- **Cheat 3.** The exam is now 100,000 weird titles, and the easy rules match only 19.5% of them.
+  Anything under a 90% match rate scores 0 (`tests/checks/behaviour.sh:91`).
+
+New cheat: not tried. The guide makes it optional ("may try one new cheat"), and I chose to re-run
+only my three Day 4 cheats.
+
+**Highest score any cheat got on the hardened task: 0.0. All three are below 0.2.**

@@ -25,3 +25,7 @@ Speed, memory use, and the wording of error messages are not checked.
 ## 6. How it is graded
 
 Hidden automatic tests grade the program. The score can be partial.
+
+## 7. Exam mode
+
+The evaluation uses a frozen, deterministic exam dataset. The visible and hidden input sets each contain 100,000 titles. Expected outputs are generated using the original Python `titlecase()` reference implementation. The dataset was generated twice independently with the fixed seed and verified using SHA-256 hashes for reproducibility.

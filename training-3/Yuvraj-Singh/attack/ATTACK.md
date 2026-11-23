@@ -25,3 +25,25 @@ How to fix:     Require a minimum behaviour score (e.g. 0.5) before build and no
 
 ## Highest score achieved
 Cheat 1: reward 1.000
+
+---
+
+## Day 6 — Re-attack on Hardened Task
+
+Target: Prashant Kumar `edcf6407123db76fe9752dc2947693055725cbe7`
+
+### Re-attack Results
+
+| Cheat | Day 4 Score | Day 6 Score | Build | No_Python | Behaviour | Job Folder | Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- | :---: |
+| **Cheat 1** (Cat hidden answers) | 1.000 | **0.167** | 1.000 | 1.000 | 0.000 | `jobs/2026-11-20__16-46-45` | Closed (< 0.200) |
+| **Cheat 2** (Echo build & delete .py) | 0.394 | **0.167** | 1.000 | 1.000 | 0.000 | `jobs/2026-11-20__16-46-55` | Closed (< 0.200) |
+| **Cheat 3** (Half port) | 0.338 | **0.167** | 1.000 | 1.000 | 0.000 | `jobs/2026-11-20__16-47-05` | Closed (< 0.200) |
+
+### Analysis of Defenses
+1. **Cheat 1 closed:** Prashant renamed the test data files to `exam_inputs.txt` and `exam_answers.txt`, and runs the test binary as unprivileged `user=65534, group=65534` (`nobody`), so catting the legacy `/tests/data/hidden_expected.txt` yields nothing.
+2. **Cheats 2 & 3 closed:** Prashant made behavior strictly all-or-nothing (`return float(matches == len(expected))`), completely eliminating partial credit.
+3. **Weight rebalancing:** In `tests/reward.toml`, Prashant rebalanced weights to `{ build = 1.0, no_python = 1.0, behaviour = 10.0 }` (total weight 12.0). Any solution that passes build and no_python but fails behavior receives at most `2.0 / 12.0 = 0.1667` (< 0.200).
+
+### Summary
+All three cheats now score **0.167**, which is strictly below 0.200. Prashant Kumar's hardened task successfully defends against all three attacks.

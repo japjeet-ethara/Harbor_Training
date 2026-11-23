@@ -1,0 +1,3 @@
+Cheat 1 - Python inside: 0.1667 (jobs/2026-11-20__14-44-14)
+Cheat 2 - Lookup table: 0.1765 (jobs/2026-11-20__14-46-14)
+Cheat 3 - Read the exam: 0.1667 (jobs/2026-11-20__14-48-10)

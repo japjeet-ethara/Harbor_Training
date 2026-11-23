@@ -1,3 +1,4 @@
+cat > task/instruction.md <<'EOF'
 # Port python-titlecase to Go
 
 ## The repository
@@ -12,14 +13,21 @@ the original, for example:
 ## What to build
 A Go program whose module root is `/workspace/repo` (`go.mod` in that folder, `package main` in
 the same folder). It reads standard input one title per line and writes the titlecased result to
-standard output, one result per line, each ending with a newline. Titles are single lines of
-printable ASCII (spaces and tabs may appear between words). The program takes no arguments.
+standard output, one result per line, each ending with a newline. Input is UTF-8 text: titles can
+contain Unicode letters, punctuation, tabs and other unusual spaces. The program takes no arguments.
+
+## Mode
+The expected answers come from the original `titlecase()` with its default options **WITH the
+`regex` module installed** (`REGEX_AVAILABLE` is True).
 
 ## Hard rules
-1. Use the Go standard library only. No third-party modules.
-2. When you finish, no file ending in `.py` may exist anywhere under `/workspace/repo`.
-   Delete the original Python files after you have ported them.
+1. Use the Go standard library only. No third-party modules, no `vendor` folder.
+2. When you finish, no file ending in `.py` may exist anywhere under `/workspace`.
 3. `go build ./...` run in `/workspace/repo` must succeed.
+4. The program must be self-contained. It is run alone, as an unprivileged user, in an empty
+   folder: no Python, no other files, no network. The packages `os/exec`, `syscall`, `plugin`
+   and `unsafe`, `import "C"`, `//go:embed` and `//go:linkname` are not allowed. All files in
+   `/workspace/repo` together must stay under 400 KB.
 
 ## Behaviour
 For every input line, your output must be identical, byte for byte, to what the original
@@ -29,6 +37,6 @@ For every input line, your output must be identical, byte for byte, to what the 
 Speed, memory use, error message wording, tests, documentation and code style.
 
 ## How it is graded
-Hidden automatic tests give a partial score from 0 to 1. It combines: the build passing, no
-`.py` files remaining, and the share of input lines whose output matches exactly (this part
-counts the most).
+The score is the share of 100,000 hidden input lines whose output matches exactly, from 0 to 1.
+It counts only if the build passes and the rules in "Hard rules" are met; otherwise the score is 0.
+EOF

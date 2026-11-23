@@ -15,3 +15,5 @@ Port that behavior to Go in `/workspace/repo`.
 - Speed, memory usage, and exact error wording are not evaluated.
 
 The solution will be evaluated using automatic tests, including hidden tests, and partial credit is possible.
+
+Environment mode: separate.

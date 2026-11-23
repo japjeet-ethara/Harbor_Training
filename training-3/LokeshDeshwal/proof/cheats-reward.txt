@@ -1,0 +1,19 @@
+# Day 6 Retest Proof: Attacker Cheats on Lokesh Deshwal's Hardened Task
+Target Task: practice/titlecase-go
+Evaluated by: Alok Kumar Jaiswal (Designated Attacker)
+Hardened Commit: dcbe88466f7281cfb7969a6ff9288f2be331de32
+Verification Engine: Harbor 0.25.0
+
+| Submission / Control | Day 4 Score | Day 6 Score | Harbor Job | Result |
+| :--- | :---: | :---: | :--- | :--- |
+| Published Oracle | 1.000000 | 1.000000 | lokesh-day6-oracle-20261120-160100 | PASSED (1.000) |
+| Cheat 1 (Compound-word control) | 0.573000 | 0.000000 | lokesh-day6-cheat1-20261120-155620 | DEFEATED (< 0.20) |
+| Cheat 2 (Interior small words) | 0.624000 | 0.000000 | lokesh-day6-cheat2-20261120-155730 | DEFEATED (< 0.20) |
+| Cheat 3 (Combined partial port) | 0.905333 | 0.000000 | lokesh-day6-cheat3-20261120-155840 | DEFEATED (< 0.20) |
+| New Control (Omit Mc rule) | n/a | 0.000000 | lokesh-day6-mc-omission-20261120-162242 | DEFEATED (< 0.20) |
+| Nop Baseline | 0.000000 | 0.000000 | jobs/2026-11-20__17-39-17 | ZERO (0.000) |
+
+Summary:
+All cheats scored 0.000000, well below the required 0.20 threshold.
+The oracle retained full 1.000000 reward.
+Zero trial exceptions observed across all runs.

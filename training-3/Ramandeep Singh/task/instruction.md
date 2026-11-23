@@ -32,7 +32,7 @@ You must implement an executable Go program located in `/workspace/repo`. The `m
   - The absence of all `.py` files across the entire repository is explicitly checked at the end of grading.
 
 ## Behaviour
-The Go program's output MUST match the original Python `titlecase()` output byte for byte for every input. The Python reference implementation in `titlecase/__init__.py` at the start of the task is the single source of truth.
+The Go program's output MUST match the original Python `titlecase()` output byte for byte for every input. The Python reference implementation in `titlecase/__init__.py` at the start of the task is the single source of truth, evaluated in standard-library `re` fallback mode (WITHOUT the optional third-party `regex` package, `REGEX_AVAILABLE = False`). All reference answers come from titlecase WITHOUT regex.
 
 The Go implementation must apply transformation rules in the exact order enforced by the Python reference implementation. That order is binding:
 

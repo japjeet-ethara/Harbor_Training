@@ -1,0 +1,41 @@
+{
+  "behaviour": {
+    "score": 0.002,
+    "criteria": [
+      {
+        "name": "behaviour",
+        "value": 0.002,
+        "raw": 0.002,
+        "weight": 1.0,
+        "description": "Share of hidden titles whose output equals the original titlecase() byte for byte"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "build": {
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "command_succeeds:go build -o /dev/null ./...",
+        "value": 1.0,
+        "raw": true,
+        "weight": 1.0,
+        "description": "Check that the command `go build -o /dev/null ./...` exits with code 0"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "no_python": {
+    "score": 1.0,
+    "criteria": [
+      {
+        "name": "no_python",
+        "value": 1.0,
+        "raw": true,
+        "weight": 1.0,
+        "description": "No .py files remain under the repository and `go build ./...` passes"
+      }
+    ],
+    "kind": "programmatic"
+  }
+}

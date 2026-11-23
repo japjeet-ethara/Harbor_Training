@@ -1,0 +1,19 @@
+Paniv Kapoor Cheats on Hardened Task (Yuvraj Singh)
+===================================================
+
+Cheat 1 (Hardcoded Map):
+  Score: 0.125
+  Job: jobs/2026-11-20__17-44-29
+  Status: PASS (< 0.200)
+
+Cheat 2 (Python via Go Wrapper):
+  Score: 0.062
+  Job: jobs/2026-11-20__17-44-44
+  Status: PASS (< 0.200)
+
+Cheat 3 (Half Titlecase):
+  Score: 0.125
+  Job: jobs/2026-11-20__17-44-57
+  Status: PASS (< 0.200)
+
+All attacker cheats score strictly below 0.200 under balanced weights (build=1, no_python=1, behaviour=14).

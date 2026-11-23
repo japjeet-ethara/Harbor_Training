@@ -1,3 +1,0 @@
-go build ./... failed.
-pattern ./...: directory prefix . does not contain main module or its selected dependencies
-Check scores: build=0.000000, no_python=0.000000, behaviour=0.000000; weighted reward=0.000000

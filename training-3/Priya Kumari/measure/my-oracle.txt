@@ -1,0 +1,17 @@
+﻿wrong answers      857 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input '-lead _and/or\u2009MCDONALD by #life an} data'
+  want  '-Lead _and/or\u2009McDonald by #Life An} Data'
+  got   '-Lead _And/or\u2009McDonald by #Life An} Data'
+  input 'JavaScript to ─▒stanbul for( _via vs night the'
+  want  'JavaScript to Istanbul For( _via vs Night The'
+  got   'JavaScript to Istanbul For( _Via vs Night The'
+  input 'of ╨┤╨╛╨╝ and MRS _via'
+  want  'Of ╨ö╨╛╨╝ and MRS _via'
+  got   'Of ╨ö╨╛╨╝ and MRS _Via'
+  input '-lead _winter https://x.org\u2009─▒stanbul xkcd'
+  want  '-Lead _winter https://x.org\u2009Istanbul XKCD'
+  got   '-Lead _Winter https://x.org\u2009Istanbul XKCD'
+  input 'macintosh a/b/c _dream input/output'
+  want  'Macintosh a/B/C _dream Input/Output'
+  got   'Macintosh a/B/C _Dream Input/Output'

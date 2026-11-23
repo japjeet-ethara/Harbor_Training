@@ -1,0 +1,28 @@
+Hardened rerun of the three cheats from the Day 4 attack report.
+
+Scripts:  proof/cheats/cheatN/solve.sh
+          Reconstructions of the mechanisms described in the report. The
+          attacker's original job folders (jobs/2026-11-19__14-5*) were not
+          present in this workspace, so the "before" column is the score from
+          the report and the "now" column is a real Harbor rerun.
+
+Runs:     harbor run -p <scratch copy of task> -a oracle
+Jobs:     harden-runs/jobs/cheatN-hardened (Harbor job dirs, not committed)
+
+cheat  mechanism                          before   now        build  no_python  behaviour
+1      Python inside (embed + python3)     1.0000   0.000000   0      0          0.0000
+2      half port (naive capitaliser)       0.4530   0.003600   0      0          0.0055
+3      delete trick + NOTES lookup         0.3883   0.002200   0      0          0.0034
+
+Exact verifier values, copied from each job's verifier/reward.json:
+  cheat1: {"reward": 0.0}      trial cheat1__PPAe6GV  total 1m09s
+  cheat2: {"reward": 0.0036}   trial cheat2__GYNpSJY  total 1m04s
+  cheat3: {"reward": 0.0022}   trial cheat3__BQosQTy  total 1m07s
+
+Reference runs on the same hardened task:
+  oracle: {"reward": 1.0}      trial task__nXsWFVH    total 1m21s
+  nop:    {"reward": 0.0}      trial task__gXicSUV    total 0m55s
+
+All three cheats are below the required 0.2 ceiling. Behaviour in the table is
+the raw criterion value; the reported reward applies weight 4/6 to it, so
+cheat 2 (0.0055) contributes 0.0036 and cheat 3 (0.0034) contributes 0.0022.

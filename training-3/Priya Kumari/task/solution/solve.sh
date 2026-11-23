@@ -477,7 +477,6 @@ func runeLen(s string) int {
 }
 EOF
 
+rm -rf /workspace/repo/titlecase
 find /workspace/repo -type f -name '*.py' -delete
-if [ -d /workspace/repo/titlecase ]; then
-    rmdir /workspace/repo/titlecase
-fi
+find /workspace/repo -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true

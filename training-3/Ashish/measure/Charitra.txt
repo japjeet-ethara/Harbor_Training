@@ -1,0 +1,5 @@
+port: Charitra  (training-3/Charitra/task/solution)
+exam: Ashish 100,000-line exam, mode re (without regex)
+
+wrong answers      0 of 100000
+chance a random 2000 suite sees none of them: 100%

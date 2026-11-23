@@ -1,0 +1,8 @@
+port: port-b (anonymised classmate Go port; name withheld on purpose)
+mode: re (REGEX_AVAILABLE = False)
+new exam: 100000 lines, 0 wrong, 100.00% correct
+old exam: 2000 lines, 0 wrong, 100.00% correct
+method: main.go extracted from that trainee's solution/solve.sh, built inside
+        golang:1.23 with GOTOOLCHAIN=local CGO_ENABLED=0, stdin = exam inputs,
+        stdout compared byte for byte against the frozen answers
+measured: 2026-11-20

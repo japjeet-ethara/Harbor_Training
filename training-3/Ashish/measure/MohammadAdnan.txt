@@ -1,0 +1,29 @@
+port: MohammadAdnan  (training-3/MohammadAdnan/task/solution/go)
+method: built the port directory directly (its solve.sh needs its own task container layout)
+exam: Ashish 100,000-line exam, mode re (without regex)
+
+wrong answers      99485 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input ''
+  want  ''
+  got   'Straße] Peace House  Rhythm Foo//bar  vs iPhone Or'
+  input 'straße] peace house  rhythm foo//bar  vs iPhone or'
+  want  'Straße] Peace House  Rhythm Foo//bar  vs iPhone Or'
+  got   'Machine as Game Love Star - Code a/B/C (For'
+  input 'machine as game love star - code A/b/c (for'
+  want  'Machine as Game Love Star - Code a/B/C (For'
+  got   'iPhone His/Her'
+  input 'iPhone his/her'
+  want  'iPhone His/Her'
+  got   'The" — Island'
+  input 'the" — Island'
+  want  'The" — Island'
+  got   'Love.'
+
+extra analysis (not part of compare.py):
+  it printed 99999 lines for 100000 inputs, so it swallowed the pool's
+  1 empty input line and every later line is off by one.
+  realigned past that one dropped line it is wrong on 149 of 99999.
+  a random 2,000-line exam contains the empty input only 2.0% of the time,
+  so a small exam would usually see neither the line-contract bug nor
+  most of the remaining errors.

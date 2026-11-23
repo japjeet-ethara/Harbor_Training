@@ -1,5 +1,7 @@
 jobs/
 pool.txt
+kit/.uv-cache/
+kit/old-2k/
 got.txt
 key/
 ports/

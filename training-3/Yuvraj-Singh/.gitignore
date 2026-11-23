@@ -1,3 +1,4 @@
+# Specification ignores (never push these)
 jobs/
 pool.txt
 got.txt
@@ -6,9 +7,11 @@ ports/
 attack/target/
 .venv/
 __pycache__/
+*.pyc
 .env
-kit/
-scratch-cheat1/
-scratch-cheat2/
-scratch-cheat3/
-kit/
+
+# Local scratch evaluation folders
+scratch-*/
+
+# Build binaries and temporary artifacts
+*.exe

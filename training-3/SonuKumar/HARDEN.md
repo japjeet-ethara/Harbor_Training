@@ -6,7 +6,7 @@
 - **Working Tree Status**: Uncommitted changes maintained in working tree (commit/push withheld pending final sign-off)
 - **Harbor CLI Version**: 0.25.0 (Docker Desktop 29.9.2 on Windows x86_64 host)
 - **Evaluation Suite**: 100,000-title high-entropy exam (`pool.txt`, seed `1`, mode: `WITHOUT regex`)
-- **Scoring Policy**: Policy B (`weights = { build = 0.5, no_python = 0.5, behaviour = 9.0 }`)
+- **Scoring Policy**: Policy B with Quadratic Behaviour Scoring (`weights = { build = 0.5, no_python = 0.5, behaviour = 9.0 }`, $\text{Reward} = [0.5 \cdot \text{build} + 0.5 \cdot \text{no\_python} + 9.0 \cdot (\text{accuracy})^2] / 10.0$)
 
 ---
 
@@ -58,6 +58,9 @@ Three distinct attacker vulnerabilities were identified, audited, patched, and v
 | **Cheat 2 (Leakage)** | `scratch/cheat3/...` | 1.0000 | `jobs/2026-11-20__12-39-46` | **0.1481** | **PASSED** ($< 0.20$) |
 | **Naive Go Half-Port** | `attack/cheat2/solve.sh` | Not independently tested | `jobs/2026-11-20__12-37-57` | **0.1481** | **PASSED** ($< 0.20$) |
 | **Cheat 3 (Python inside)**| `attack/cheat3/solve.sh` | 1.0000 | `jobs/2026-11-20__12-43-47` | **0.0500** | **PASSED** ($< 0.10$) |
+
+### Day 6 Quadratic Scoring Refinement (Cheat 4 Suppression)
+In Day 6, `task/tests/criteria.py` was refined to calculate behaviour as $\text{accuracy}^2$. Under Policy B weights, this safely suppresses incomplete Go half-ports (such as Ayush's Cheat 4, raw accuracy 32.63%) from $0.3936$ to an authentic Harbor reward of **$0.1958$** (`jobs/2026-11-21__01-24-18`), bringing every attacker cheat strictly below the $0.2000$ threshold while preserving the Genuine Oracle at $1.0000$ (`jobs/2026-11-21__01-16-20`) and Nop at $0.0000$ (`jobs/2026-11-21__01-18-08`).
 
 ---
 
@@ -121,22 +124,3 @@ Each port was compiled natively and evaluated on the 100,000-case suite using th
 3. **The Necessity of High-Entropy Scaling**: Small, clean test suites breed a false sense of correctness. Scaling to a deterministic, high-entropy 100,000-case exam immediately exposes subtle divergence in regex engines, Unicode handling, and incomplete procedural ports that scored 100% on toy suites.
 
 ---
-
-## 5. Remaining Limitations
-
-1. **Kernel DAC Boundaries vs Deep Isolation**: File system permissions (`0700 root:root`) and unprivileged user accounts (`nobody`) effectively block direct file reads and system binaries, but they do not provide full container namespacing (seccomp, eBPF, network namespaces) against kernel-level privilege escalation or memory inspection if the untrusted binary were to exploit kernel vulnerabilities.
-2. **Static Import Analysis Limits**: Checking `go list` imports detects explicit dependencies on `os/exec` or `syscall`, but cannot prevent obfuscated syscalls invoked via direct assembly stubs (`.s` files) or dynamic runtime manipulation if Go cgo or raw assembly were permitted.
-3. **Empirical Robustness vs Formal Proof**: Defeating the three specific demonstrated attacks confirms resilience against the known attack surface, but does not constitute mathematical proof of immunity against novel, unmodeled side-channel attacks, CPU timing leaks, or grader memory inspection.
-
----
-
-## 6. Artifact & File References
-
-- **Hardened Task Directory**: `Harbor_Day4_Workspace/Sonu Kumar/task/`
-- **Measurement Reports**:
-  - `measure/my-oracle.txt`
-  - `measure/sanyam-sehrawat.txt`
-  - `measure/alok-kumar-jaiswal.txt`
-- **Exam Kit Verification**: `kit/report.txt` (Identical to `key/report.txt`)
-- **Pre-Hardening Evidence**: `proof(Before Hardening)/`
-- **Validation Audit Logs**: `CHEAT1_VALIDATION.md`, `CHEAT2_VALIDATION.md`, `CHEAT3_VALIDATION.md`, `EXAM_100K_MAIN_VALIDATION.md`

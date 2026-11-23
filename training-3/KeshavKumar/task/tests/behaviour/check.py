@@ -1,9 +1,11 @@
 """Check 3 - behaviour (weight 4).
 
-Builds the Go program (`go build -o <bin> .` in /workspace/repo), feeds it
-tests/data/hidden_inputs.txt on stdin, and scores the share of lines that are
-byte-for-byte equal to tests/data/hidden_expected.txt (0.0 to 1.0).
-Only the HIDDEN files are used. The first mismatches are written to
+Builds the Go program (`go build -o <bin> .` in /workspace/repo), runs it as the
+unprivileged user `nobody`, feeds it tests/data/inputs.txt (100,000 titles) on
+stdin, and compares each output line byte for byte with tests/data/answers.txt.
+
+score = (share - 0.5) / 0.5, and 0 when share <= 0.5, where share is the fraction
+of lines that match. The first mismatches are written to
 /logs/verifier/behaviour_mismatches.txt.
 """
 
@@ -15,7 +17,8 @@ import common  # noqa: E402
 from rewardkit import criterion  # noqa: E402
 
 
-@criterion(description="share of hidden lines that match the original Python exactly")
-def hidden_lines_match(workspace: Path) -> dict:
-    score, why = common.behaviour_score(workspace)
-    return {"score": score, "reasoning": why}
+@criterion(description="share of exam lines that match the original Python exactly, above a 50% floor")
+def exam_lines_match(workspace: Path) -> dict:
+    share, why = common.behaviour_share(workspace)
+    credit = common.behaviour_credit(share)
+    return {"score": credit, "reasoning": f"{why}; share {share:.4%} -> credit {credit:.4f}"}

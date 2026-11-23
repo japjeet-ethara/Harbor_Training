@@ -18,7 +18,11 @@ def main():
     print(f"wrong answers      {b} of {n}")
     print(f"chance a random {small} suite sees none of them: {miss:.0%}")
     for i in bad[:5]:
-        print(f"  input {inputs[i]!r}\n  want  {want[i]!r}\n  got   {got[i]!r}")
+        print(
+            f"  input {ascii(inputs[i])}\n"
+            f"  want  {ascii(want[i])}\n"
+            f"  got   {ascii(got[i])}"
+        )
 
 
 if __name__ == "__main__":

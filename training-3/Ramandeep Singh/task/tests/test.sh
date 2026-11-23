@@ -2,6 +2,7 @@
 set -eo pipefail
 
 mkdir -p /logs/verifier
+chmod 700 /logs/verifier
 
 WORKSPACE="/workspace/repo"
 TESTS_DIR="/tests"
@@ -25,9 +26,9 @@ s_build = float(check_build(workspace))
 s_no_py = float(check_no_python(workspace))
 s_behav = float(check_behaviour(workspace))
 
-# Weighted-mean aggregation: weights { build = 1.0, no_python = 1.0, behaviour = 4.0 }
-total_weight = 1.0 + 1.0 + 4.0
-w_mean = (1.0 * s_build + 1.0 * s_no_py + 4.0 * s_behav) / total_weight
+# Weighted-mean aggregation: weights { build = 0.5, no_python = 0.5, behaviour = 9.0 }
+total_weight = 0.5 + 0.5 + 9.0
+w_mean = (0.5 * s_build + 0.5 * s_no_py + 9.0 * s_behav) / total_weight
 
 scores = {
     "reward": round(w_mean, 6),

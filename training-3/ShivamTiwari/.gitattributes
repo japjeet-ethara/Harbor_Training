@@ -1,0 +1,4 @@
+# Keep every text file in this folder LF in the working tree.
+# The task is executed inside Linux containers: CRLF in a shell script or in
+# tests/data/inputs.txt would break the oracle even though the blob is correct.
+* text=auto eol=lf

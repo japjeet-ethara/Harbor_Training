@@ -1,0 +1,7 @@
+# Shell scripts and Dockerfiles run inside Linux containers: always LF.
+*.sh        text eol=lf
+Dockerfile  text eol=lf
+*.py        text eol=lf
+*.toml      text eol=lf
+# The frozen exam must stay byte-for-byte as kit/answers.py wrote it (LF, UTF-8).
+task/tests/data/*.txt -text

@@ -18,10 +18,12 @@ Build a Go program in `/workspace/repo`. It reads one title per line from standa
 
 For every input, the output must match the original Python `titlecase()` byte for byte. Use the default arguments: no callback, small words capitalized at the first and last position, and the original space characters kept.
 
+The exam answers come from the vendored titlecase 2.4.1 on CPython 3.14.10, using the built-in `re` module without the optional `regex` package. Emit each output line with an LF terminator.
+
 ## 5. Not checked
 
 Speed, memory, and error-message wording are not checked.
 
 ## 6. How it is graded
 
-Hidden automatic tests grade the program. A partial score is possible.
+The verifier awards 1.0 only when every expected output line matches. A valid submission with any wrong line earns the fraction of matching lines, capped at 0.19. Build, runtime, or output-format failures earn 0.0.

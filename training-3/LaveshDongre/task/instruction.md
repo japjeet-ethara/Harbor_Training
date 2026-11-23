@@ -23,3 +23,8 @@ Speed, memory, and error-message wording are not checked.
 ## Grading
 
 Hidden automatic tests grade the program. The score can be partial.
+
+The hidden evaluation uses 100,000 stable inputs. The reference mode calls
+`titlecase()` with its default arguments and without the optional `regex`
+package, using the standard-library `re` implementation. Answers are retained
+only when runs with `PYTHONHASHSEED=1` and `PYTHONHASHSEED=2` agree.
