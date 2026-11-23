@@ -1,0 +1,7 @@
+# Keep Linux line endings for files that run inside Docker,
+# even on a Windows checkout with core.autocrlf=true.
+*.sh         text eol=lf
+Dockerfile   text eol=lf
+*.py         text eol=lf
+*.toml       text eol=lf
+*.txt        text eol=lf
