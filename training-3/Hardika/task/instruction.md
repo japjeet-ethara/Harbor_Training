@@ -8,4 +8,4 @@ Use the Go standard library. Ensure go build ./... succeeds in /workspace/repo a
 
 Match the bytes returned by the original titlecase() function with its default arguments, using CPython 3.12.14 and optional regex 2026.11.15 in VERSION0 mode. Preserve whitespace and punctuation exactly as the reference does. The environment includes that Python interpreter and regex dependency for examining the upstream behavior.
 
-Hidden automatic checks award partial credit for a successful build, removal of Python files after a successful build, and the fraction of exact output records. Speed, memory use and error-message wording do not affect the score.
+Hidden automatic checks award partial credit for the fraction of exact output records. Credit for a successful build and for removal of Python files is awarded only when at least half of the output records are exact. Speed, memory use and error-message wording do not affect the score.

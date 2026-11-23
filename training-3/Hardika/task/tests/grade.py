@@ -12,6 +12,7 @@ RECORDS = 2000
 MAX_OUTPUT = 8 * 1024 * 1024
 LINUX_GO = "/usr/local/go/bin/go"
 NOBODY = 65534
+GATE = 0.5
 
 
 def frozen_records(data):
@@ -65,7 +66,7 @@ def run(command, *, workspace, environment, timeout, isolated, input_file=None, 
                     pass
 
 
-def grade(workspace, go, *, isolated):
+def measure(workspace, go, *, isolated):
     result = {"build": 0.0, "no_python": 0.0, "behaviour": 0.0}
     inputs = DATA / "hidden_inputs.txt"
     frozen_records(inputs.read_bytes())
@@ -113,6 +114,16 @@ def grade(workspace, go, *, isolated):
                 data = output.read(MAX_OUTPUT + 1)
                 if len(data) <= MAX_OUTPUT:
                     result["behaviour"] = share_correct(data, answers)
+    return result
+
+
+def grade(workspace, go, *, isolated):
+    # build and no_python are earned only by a port that really works: a program that
+    # compiles but gets fewer than GATE of the hidden titles right scores 0 on both.
+    result = measure(workspace, go, isolated=isolated)
+    if result["behaviour"] < GATE:
+        result["build"] = 0.0
+        result["no_python"] = 0.0
     return result
 
 
