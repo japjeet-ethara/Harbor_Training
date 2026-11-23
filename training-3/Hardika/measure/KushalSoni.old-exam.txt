@@ -1,0 +1,17 @@
+wrong answers      296 of 2000
+chance a random 2000 suite sees none of them: 0%
+  input "CURATOR'S NOTES OF ₂.A AND EMBROIDERED PANELS — FOR TROMSØ\xa0"
+  want  "Curator's Notes of ₂.a and Embroidered Panels — For Tromsø\xa0"
+  got   "Curator's Notes of ₂.A and Embroidered Panels — For Tromsø\xa0"
+  input "d'ßelle on work-in-progress― ın curator's notes for ’s-hertogenbosch"
+  want  "d'SSelle on Work-in-Progress― In Curator's Notes for ’s-Hertogenbosch"
+  got   "d'ßelle on Work-in-Progress― In Curator's Notes for ’s-Hertogenbosch"
+  input 'mcdonald and mckee- İn field recordings on stained glass'
+  want  'McDonald and McKee- i̇n Field Recordings on Stained Glass'
+  got   'McDonald and McKee- İn Field Recordings on Stained Glass'
+  input 'SELECTIONS OF ΟΔΥΣΣΕΎΣ AND VERNACULAR LETTERING - FOR\x0bISTANBUL'
+  want  'Selections of Οδυσσεύς and Vernacular Lettering - For\x0bIstanbul'
+  got   'Selections of Οδυσσεύσ and Vernacular Lettering - For\x0bIstanbul'
+  input '__for_ counterpoint\u202fwith i̇pek en-plein-air'
+  want  '__For_ Counterpoint\u202fWith İpek en-Plein-Air'
+  got   '__for_ Counterpoint\u202fWith İpek en-Plein-Air'
