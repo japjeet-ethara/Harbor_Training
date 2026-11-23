@@ -3,20 +3,20 @@ wrong answers      0 of 2000
 chance a random 2000 suite sees none of them: 100%
 
 New exam
-wrong answers      39344 of 100000
+wrong answers      41859 of 100000
 chance a random 2000 suite sees none of them: 0%
-  input "Dr D'Angelo  vs.\u2009αlpha TCP/IP river War"
-  want  "Dr d'Angelo  vs.\u2009Αlpha TCP/IP River War"
-  got   "Dr d'Angelo  Vs.\u2009αlpha TCP/IP River War"
-  input 'war\xa0\\data\u2009%summer'
-  want  'War\xa0\\Data\u2009%Summer'
-  got   'War\xa0\\data\u2009%summer'
-  input 'X. TCP/IP history as! X-RAY'
-  want  'X. TCP/IP History As! X-Ray'
-  got   'X. TCP/IP History As! X-RAY'
-  input 'music\tstar v.'
-  want  'Music\tStar V.'
-  got   'Music\tstar V.'
-  input 'night v. Input/output and @World! and/or'
-  want  'Night v. Input/Output and @World! And/Or'
-  got   'Night v. Input/Output and @World! and/or'
+  input 'A.B. a\xa0mcgraw-hill'
+  want  'A.B. A\xa0McGraw-Hill'
+  got   'A.B. A\xa0mcgraw-Hill'
+  input '"αlpha. Mcx\xa0\\o\'neil\u2009%summer a/b/c out-of-date D\'Angelo as! ST'
+  want  '"Αlpha. MCX\xa0\\O\'neil\u2009%Summer a/B/C Out-of-Date d\'Angelo As! ST'
+  got   '"Αlpha. McX\xa0\\o\'neil\u2009%summer a/B/C Out-of-Date d\'Angelo As! ST'
+  input 'music\tDr+ star'
+  want  'Music\tDr+ Star'
+  got   'music\tDr+ Star'
+  input 'macOS a STORY book peace Дом but vs. MCDONALD!'
+  want  'macOS a STORY Book Peace Дом but vs. McDonald!'
+  got   'macOS a STORY Book Peace ДОМ but vs. McDonald!'
+  input "O'neil\tat out-of-date out-of-date\xa0house -lead"
+  want  "O'Neil\tat Out-of-Date Out-of-Date\xa0House -Lead"
+  got   "O'neil\tat Out-of-Date Out-of-Date\xa0house -Lead"

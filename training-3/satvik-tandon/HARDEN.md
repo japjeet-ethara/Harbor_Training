@@ -12,18 +12,20 @@ The verifier awards credit for correct output after the Go build and Python-sour
 
 The hardened results use Madhur's original three scripts. Build and source removal each used to confer one sixth of the reward. They are now prerequisites, so the echo only earns credit for the 1,371 new titles that are already in the expected form. The verifier also rejects runs with the wrong number of output lines.
 
+These are the original Day 5 runs. Current results on the rebalanced exam are in [proof/](proof/).
+
 See [Madhur's original report](https://github.com/japjeet-ethara/Harbor_Training/blob/ae96885bdbcab8a6726074e08e2acfc80842d60f/training-3/MadhurJain/attack/ATTACK.md) and the implementation in [tests/verify.py](task/tests/verify.py).
 
 ## Exam comparison
 
-The original hidden exam contained 2,000 titles. The kit generated 100,000 distinct titles with seed 1 and froze answers from the bundled Python reference in standard-library `re` mode on Python 3.14.10. Both reference runs agreed on all 100,000 answers. The child runs use different Python hash seeds and UTF-8 output on Windows. See [kit/report.txt](kit/report.txt).
+The original hidden exam contained 2,000 titles. The kit generates 100,000 distinct titles with seed 1 and freezes answers from the bundled Python reference in standard-library `re` mode on Python 3.14.10. Both reference runs agreed on all 100,000 answers. The child runs use different Python hash seeds and UTF-8 output on Windows. On Day 6 I rebalanced the existing word families toward compounds, apostrophes, punctuation, and Unicode while retaining the 100,000-case count. See [kit/report.txt](kit/report.txt).
 
 | Go port | Wrong on the old exam (2,000) | Wrong on the new exam (100,000) | Chance a random 2,000 from the new exam misses all errors |
 | --- | ---: | ---: | ---: |
-| Satvik's original oracle | 0 | 39,344 | <1% |
+| Satvik's original oracle | 0 | 41,859 | <1% |
 | Satvik's hardened oracle | 0 | 0 | — |
-| Priya Kumari | 0 | 857 | <1% |
-| Neha Gaur | 0 | 3,520 | <1% |
+| Priya Kumari | 0 | 765 | <1% |
+| Neha Gaur | 0 | 4,349 | <1% |
 
 I built the ports with Go 1.23 in Docker with networking disabled. The peer solutions came from class branch commit `ae96885bdbcab8a6726074e08e2acfc80842d60f`. Results and representative mismatches are in [measure/](measure/). The old corpus remains available in the published Day 4 commit `74c5b13`.
 
@@ -32,4 +34,4 @@ I built the ports with Go 1.23 in Docker with networking disabled. The peer solu
 - Oracle earned **1.0** in `jobs/satvik-day5-verified-oracle`.
 - Nop earned **0.0** in `jobs/satvik-day5-nop`.
 
-The enlarged exam surfaced 39,344 disagreements in my original port after it passed the original 2,000 titles. I updated the Go port to preserve Python's whitespace handling, use the same punctuation and word boundaries, and match the reference's casing rules for acronyms, apostrophes, and Unicode. No fixtures were removed from the new corpus.
+The initial Day 5 exam surfaced 39,344 disagreements in my original port after it passed the original 2,000 titles; the rebalanced 100,000-case exam surfaces 41,859. I updated the Go port to preserve Python's whitespace handling, use the same punctuation and word boundaries, and match the reference's casing rules for acronyms, apostrophes, and Unicode. The hardened oracle still matches every case.

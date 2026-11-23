@@ -3,20 +3,20 @@ wrong answers      0 of 2000
 chance a random 2000 suite sees none of them: 100%
 
 New exam
-wrong answers      3520 of 100000
+wrong answers      4349 of 100000
 chance a random 2000 suite sees none of them: 0%
-  input 'v1.2'
-  want  'v1.2'
-  got   'V1.2'
-  input 'mrs. in star“ v1.2\u2009the|'
-  want  'Mrs. In Star“ v1.2\u2009The|'
-  got   'Mrs. In Star“ V1.2\u2009The|'
-  input "to eBay BOOK D'Angelo\xa0o'neil v1.2 WORLD"
-  want  "To eBay BOOK d'Angelo\xa0O'Neil v1.2 WORLD"
-  got   "To eBay BOOK d'Angelo\xa0O'Neil V1.2 WORLD"
-  input 'ISTANBUL JavaScript v1.2. mr‘ — McDonald'
-  want  'ISTANBUL JavaScript v1.2. Mr‘ — McDonald'
-  got   'ISTANBUL JavaScript V1.2. Mr‘ — McDonald'
-  input 'v1.2 mcdonald city McDonald'
-  want  'v1.2 McDonald City McDonald'
-  got   'V1.2 McDonald City McDonald'
+  input 'l\'amour\ti.e."\twww.site.org or A.B.C node.js #v1.2 life'
+  want  'l\'Amour\ti.e."\twww.site.org or A.B.C node.js #v1.2 Life'
+  got   'l\'Amour\ti.e."\twww.site.org or A.B.C node.js #V1.2 Life'
+  input 'of re-enter ıstanbul. RHYTHM for\u2009v1.2'
+  want  'Of Re-Enter Istanbul. RHYTHM for\u2009v1.2'
+  got   'Of Re-Enter Istanbul. RHYTHM for\u2009V1.2'
+  input 'to Example.com By v1.2 MCDONALD self-made game machine'
+  want  'To Example.com by v1.2 McDonald Self-Made Game Machine'
+  got   'To Example.com by V1.2 McDonald Self-Made Game Machine'
+  input 'v1.2 island TCP/IP )McDonald\u2009dream house'
+  want  'v1.2 Island TCP/IP )McDonald\u2009Dream House'
+  got   'V1.2 Island TCP/IP )McDonald\u2009Dream House'
+  input 'v1.2 Ocean A.B.'
+  want  'v1.2 Ocean A.B.'
+  got   'V1.2 Ocean A.B.'

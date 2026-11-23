@@ -3,20 +3,20 @@ wrong answers      0 of 2000
 chance a random 2000 suite sees none of them: 100%
 
 New exam
-wrong answers      857 of 100000
+wrong answers      765 of 100000
 chance a random 2000 suite sees none of them: 0%
-  input '-lead _and/or\u2009MCDONALD by #life an} data'
-  want  '-Lead _and/or\u2009McDonald by #Life An} Data'
-  got   '-Lead _And/or\u2009McDonald by #Life An} Data'
-  input 'JavaScript to ıstanbul for( _via vs night the'
-  want  'JavaScript to Istanbul For( _via vs Night The'
-  got   'JavaScript to Istanbul For( _Via vs Night The'
-  input 'of дом and MRS _via'
-  want  'Of Дом and MRS _via'
-  got   'Of Дом and MRS _Via'
-  input '-lead _winter https://x.org\u2009ıstanbul xkcd'
-  want  '-Lead _winter https://x.org\u2009Istanbul XKCD'
-  got   '-Lead _Winter https://x.org\u2009Istanbul XKCD'
-  input 'macintosh a/b/c _dream input/output'
-  want  'Macintosh a/B/C _dream Input/Output'
-  got   'Macintosh a/B/C _Dream Input/Output'
+  input 'Crwth _self-made\u2009v1.2 by #life an} U.S.'
+  want  'CRWTH _self-Made\u2009v1.2 by #Life An} U.S.'
+  got   'CRWTH _Self-Made\u2009v1.2 by #Life An} U.S.'
+  input 'дом to ıstanbul for( _via book mcdonald life'
+  want  'Дом to Istanbul For( _via Book McDonald Life'
+  got   'Дом to Istanbul For( _Via Book McDonald Life'
+  input "self-made music\u2009_self-made — and st o'reilly's JavaScript, VIA"
+  want  "Self-Made Music\u2009_self-Made — And St O'Reilly's JavaScript, Via"
+  got   "Self-Made Music\u2009_Self-Made — And St O'Reilly's JavaScript, Via"
+  input 'love story _αlpha}'
+  want  'Love Story _αlpha}'
+  got   'Love Story _Αlpha}'
+  input "macOS _o'neil"
+  want  "macOS _o'neil"
+  got   "macOS _O'neil"

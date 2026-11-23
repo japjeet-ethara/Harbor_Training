@@ -25,9 +25,11 @@ UNICODE = ["\u00e9lan", "\u00fcber", "na\u00efve", "\u00c9cole", "stra\u00dfe",
 PUNCT = list("!\"#$%&'()*+,-./:;?@[\\]_`{|}~") + ["\u201c", "\u2018", "\u2013", "\u2014"]
 SPACES = [" "] * 20 + ["  ", "\t", "\u00a0", "\u2009"]
 
-BANKS = [(SMALL, 25), (NORMAL, 30), (NAMES, 3), (APOS, 3), (TITLES, 3),
-         (INITIALS, 3), (DOTTED, 3), (URLS, 2), (SLASH, 3), (HYPHEN, 4),
-         (CONSONANT, 3), (MIXED, 3), (UNICODE, 3)]
+# Balance familiar words against the existing rule-heavy families. This
+# samples punctuation, compounds, acronyms, and non-English letters broadly.
+BANKS = [(SMALL, 20), (NORMAL, 20), (NAMES, 5), (APOS, 7), (TITLES, 4),
+         (INITIALS, 4), (DOTTED, 5), (URLS, 4), (SLASH, 7), (HYPHEN, 10),
+         (CONSONANT, 4), (MIXED, 4), (UNICODE, 6)]
 WORD_BANKS = [b for b, _ in BANKS]
 WEIGHTS = [w for _, w in BANKS]
 

@@ -42,3 +42,41 @@ I verified the target files against commit `02684e6e2e8a31edc7fed5acd21fd507c496
 The first pass left an empty `titlecase/` directory after removing the Python source. Go reported that its default executable path was already a directory. All three first-pass jobs earned 0.0 (`jobs/satvik-day4-20261118-162204-cheat1`, `jobs/satvik-day4-20261118-162204-cheat2`, and `jobs/satvik-day4-20261118-162204-cheat3`). Removing the empty directory in each installer allowed Harbor to evaluate the intended Go behaviour.
 
 Highest measured reward across the final submissions: **0.6543** (submission 2).
+
+## Day 6 re-attack of Priya's hardened task
+
+I tested Priya's task as present at branch commit `041dff11a03ba7312ed647fc4d3d876848b9f92c`;
+the latest commit changing her task was `ce43152ea0d5405c7a1c63fc10c050ab002431d0`.
+Each valid run used the committed task files unchanged and replaced only
+`solution/solve.sh` in an ignored scratch copy. The first local attempt had
+Windows-converted CRLF line endings in `tests/test.sh` and produced no reward;
+I excluded it and rebuilt the scratch copies from Git's raw blobs.
+
+| Submission | Behaviour | Reward | Harbor job | Saved reward |
+| --- | ---: | ---: | --- | --- |
+| Cheat 1: echo | 0.0137 | **0.3425** | `jobs/priya-day6-cheat1-exact` | `results/recheat1-reward.json` |
+| Cheat 2: capitalize word starts | 0.1090 | **0.4060** | `jobs/priya-day6-cheat2-exact` | `results/recheat2-reward.json` |
+| Cheat 3: add small-word rules | 0.1341 | **0.4227** | `jobs/priya-day6-cheat3-exact` | `results/recheat3-reward.json` |
+
+The new 100,000-title exam reduced the three original programs' behaviour
+shares, but all three rewards remain above 0.2. `tests/reward.toml:4` still
+weights `build` and `no_python` at 1 each and behaviour at 4. The first two
+checks pass for these Go programs, so they receive one-third of the reward
+before any title is right. Make those checks prerequisites and award the final
+reward from exact behaviour only; this removes the structural baseline without
+discarding partial accuracy.
+
+**Highest Day 6 re-attack reward: 0.4227 (cheat 3).**
+
+### Hardened oracle check
+
+I also ran Priya's committed `solution/solve.sh` unchanged on the same task.
+Harbor awarded **0.9943** (`behaviour` raw **0.99143**) in
+`jobs/priya-day6-oracle-exact`; the reward is saved as
+`results/priya-oracle-reward.json`. This is 857 wrong titles out of 100,000,
+matching the *before-fix* count in her measurement files. Her `HARDEN.md`
+reports 0 wrong after fixing leading underscores, but the committed
+`task/solution/solve.sh:263` still skips every punctuation character in
+`capFirst()` without the reported underscore exception. The submitted oracle
+script needs the fix and a new Harbor oracle run; changing the exam to hide
+those errors would not repair the port.
