@@ -26,21 +26,24 @@ Replace the Python program with a Go program in `/workspace/repo`:
 - Use the Go standard library only: `go.mod` must have no `require` lines.
   `go.mod` must allow Go 1.23 (the Go version installed here). There is no
   internet access.
+- The Go program must be a genuine, pure Go implementation: invoking Python,
+  calling external interpreters via subprocess or os/exec, or embedding Python
+  source code is strictly prohibited.
 - Every package in `/workspace/repo` must compile: `go build -o <a temporary folder>/ ./...`
   must pass.
 - When you are done, no `.py` files may be left anywhere under `/workspace/repo`.
 
 ## Behaviour
 
-The output must match the original Python `titlecase()` (run with Python 3 and
-the `regex` package installed, which this environment has) byte for byte, for
-every input line. Input lines contain no line breaks; they use printable ASCII,
-the Latin-1 letters `À`–`ÿ`, and punctuation such as `“ ‘ ’ ” – ‒ — ― « » ¿ ¡`.
+The output must match the original Python `titlecase()` (run with Python 3 WITH
+the `regex` package installed, which this environment has: answers come from
+titlecase WITH regex) byte for byte, for every input line. Input lines contain no
+line breaks; they use printable ASCII, Latin-1 letters, Unicode, and various punctuation.
 
 Go's `regexp` package has no look-ahead, look-behind or back-references, so the
 Python regular expressions cannot all be copied across unchanged.
 
-`/workspace/examples/inputs.txt` holds 2000 example titles and
+`/workspace/examples/inputs.txt` holds example titles and
 `/workspace/examples/expected.txt` holds the correct output for each one, line
 by line. You can also run the original Python code to check any input while
 the `.py` files still exist.
@@ -48,9 +51,3 @@ the `.py` files still exist.
 ## Not checked
 
 Speed, memory use, code style, and the wording of error messages.
-
-## How it is graded
-
-Hidden automatic tests, with partial credit. They check that the build passes
-with no third-party modules, that no `.py` files are left, and how many of a
-separate, unseen set of titles your program titlecases exactly right.

@@ -16,3 +16,4 @@ ENV GOTOOLCHAIN=local \
 WORKDIR /workspace/repo
 
 COPY . /tests/
+RUN chmod -R 700 /tests && chmod -R 700 /opt/uv-tools /opt/uv-python 2>/dev/null || true
