@@ -7,3 +7,6 @@ attack/target/
 .venv/
 __pycache__/
 .env
+
+# The repo-root .gitignore ignores "build"; keep my build check tracked.
+!task/tests/checks/build/

@@ -1,31 +1,20 @@
-"""no_python (weight 1): no .py files anywhere under /workspace/repo AND the
-build passes -> 1, else 0.
+"""no_python (weight 1): no Python file by NAME or by CONTENT anywhere under
+/workspace/repo, the build passes, AND behaviour >= GATE -> 1, else 0.
 
-Gated on the build so that an agent which only deletes files (and builds
-nothing) gets no free points.
+Content check: the original source renamed to .txt and //go:embed-ed still
+counts as Python (Day 4 cheat 2). The gate stops "delete the .py files and
+build an empty program" from earning anything (Day 4 cheat 3).
 """
-import shutil
-import subprocess
-import tempfile
+import sys
 from pathlib import Path
 
 import rewardkit as rk
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "lib"))
+import grade  # noqa: E402
 
-@rk.criterion(description="No .py files remain and `go build ./...` succeeds")
+
+@rk.criterion(description="No Python (by name or content) remains, build passes, behaviour >= 0.5")
 def no_python_and_builds(workspace: Path) -> bool:
-    leftovers = [p for p in workspace.rglob("*") if p.suffix.lower() == ".py"]
-    if leftovers:
-        print("Python files left:", *[str(p) for p in leftovers[:20]], sep="\n  ")
-        return False
-    if not (workspace / "go.mod").is_file():
-        return False
-    with tempfile.TemporaryDirectory() as tmp:
-        repo = Path(tmp) / "repo"
-        shutil.copytree(workspace, repo, symlinks=True)
-        try:
-            r = subprocess.run(["go", "build", "./..."], cwd=repo,
-                               capture_output=True, text=True, timeout=240)
-        except subprocess.TimeoutExpired:
-            return False
-    return r.returncode == 0
+    r = grade.grade(workspace)
+    return r["no_python"] and r["built"] and grade.gated(r)

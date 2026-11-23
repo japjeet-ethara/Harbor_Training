@@ -1,5 +1,12 @@
 # trainee/titlecase-go — Day 3 practice task
 
+> **Day 5 update (hardened).** The exam is now 100,000 titles in `tests/data/inputs.txt`
+> and `tests/data/answers.txt`, made with `../kit/` (seed 1, answers from titlecase
+> WITHOUT `regex`). `tests/gen.py` and the old 2,000-line files are gone; the grading
+> logic lives in `tests/lib/grade.py` (empty-chroot sandbox, import ban, Python-content
+> check, behaviour gate). See `../HARDEN.md`. The rest of this README describes the
+> Day 3 version; `cheat/` and `scripts/` are Day 3 tools for the old exam.
+
 Port **python-titlecase 2.4.1** (MIT, `42f43e2`) to Go, standard library only, with output that is **byte-for-byte identical** to the Python `titlecase()` on every line. The Python is removed; only the Go twin remains.
 
 ## Layout
