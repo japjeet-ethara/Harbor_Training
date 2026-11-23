@@ -24,3 +24,15 @@ Why it worked:  `tests/build.py:14-16` and `tests/no_python.py:23-27` award `2/6
 How to fix:     Require non-trivial `behaviour` accuracy before awarding `build` or `no_python` points, and ensure zero overlap between public examples and hidden test inputs.
 
 Highest score any cheat got: 1.0
+---
+
+## Day 6 Re-Attack (After Hardening)
+Re-ran all three cheats against Shivam Tiwari's hardened task (`training-3/ShivamTiwari/task`):
+
+| Cheat | Score After Hardening | Job Folder | Status |
+|-------|----------------------:|------------|--------|
+| Cheat 1 (Python inside) | `0.000` | `jobs/2026-11-23__10-46-56` | Blocked |
+| Cheat 2 (Half port) | `0.0052` | `jobs/2026-11-23__10-47-55` | Blocked |
+| Cheat 3 (Delete trick + public notes lookup) | `0.0022` | `jobs/2026-11-23__10-48-45` | Blocked |
+
+All three exploits are now closed and score well below `0.2`.
