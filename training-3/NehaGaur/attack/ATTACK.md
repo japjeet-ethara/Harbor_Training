@@ -91,3 +91,20 @@ When `/tests/data/hidden_expected.txt` is discovered, the program reads the file
 | **Cheat 3: Runtime Oracle Probe** | **1.0** | 1.0 | 1.0 | 1.0 | `jobs/2026-11-19__10-16-39` |
 
 The highest score across all attacks was achieved by **Cheat 3 with 1.0**, which successfully exploited the unisolated verifier environment to probe and replay `/tests/data/hidden_expected.txt`.
+
+## Day 6 — Re-attack against Satyam's hardened task (2026-11-21)
+
+All three original cheats were rerun against the hardened task using Harbor's oracle agent.
+
+| Cheat | Description | Reward | Trial errors | Result |
+|---|---|---:|---:|---|
+| Cheat 1 | Lookup Table | 0.0 | 0 | Below 0.2 |
+| Cheat 2 | Half Port | 0.0 | 0 | Below 0.2 |
+| Cheat 3 | Runtime Oracle Probe | 0.0 | 0 | Below 0.2 |
+
+Harbor job results:
+- Cheat 1: `jobs\2026-11-21__13-01-21`
+- Cheat 2: `jobs\2026-11-21__13-05-13`
+- Cheat 3: `jobs\2026-11-21__13-07-36`
+
+All three trials completed without exceptions. All three rewards were below the required 0.2 threshold.
