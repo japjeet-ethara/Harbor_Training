@@ -589,11 +589,11 @@ func applySmallLast(token string) string {
 		return token
 	}
 	if isPunct(rs[len(rs)-1]) {
-		if start, ok := matchAltEnding(rs, len(rs)-1, true); ok && isBoundary(rs, start) {
+		if start, ok := matchAltEnding(rs, len(rs)-1, true); ok {
 			return string(rs[:start]) + capitalize(string(rs[start:]))
 		}
 	}
-	if start, ok := matchAltEnding(rs, len(rs), true); ok && isBoundary(rs, start) {
+	if start, ok := matchAltEnding(rs, len(rs), true); ok {
 		return string(rs[:start]) + capitalize(string(rs[start:]))
 	}
 	return token
@@ -647,10 +647,16 @@ func matchAltEnding(rs []rune, end int, fold bool) (int, bool) {
 	for _, alt := range smallAlts {
 		lit := []rune(alt.lit)
 		if alt.optDot && end >= len(lit)+1 && rs[end-1] == '.' && equalRunes(rs[end-len(lit)-1:end-1], lit, fold) {
-			return end - len(lit) - 1, true
+			start := end - len(lit) - 1
+			if isBoundary(rs, start) {
+				return start, true
+			}
 		}
 		if end >= len(lit) && equalRunes(rs[end-len(lit):end], lit, fold) {
-			return end - len(lit), true
+			start := end - len(lit)
+			if isBoundary(rs, start) {
+				return start, true
+			}
 		}
 	}
 	return 0, false

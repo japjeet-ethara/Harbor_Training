@@ -1,0 +1,17 @@
+wrong answers      1045 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'McDonald Mrs\tvia'
+  want  'McDonald Mrs\tVia'
+  got   'McDonald Mrs\tvia'
+  input 'code city mr in — DREAM via via'
+  want  'Code City Mr in — DREAM via Via'
+  got   'Code City Mr in — DREAM via via'
+  input 'if vs. vs http://example.com/a/b U.S. École via'
+  want  'If vs. Vs http://example.com/a/b U.S. École Via'
+  got   'If vs. Vs http://example.com/a/b U.S. École via'
+  input 'en and\tvia-'
+  want  'En and\tVia-'
+  got   'En and\tvia-'
+  input 'IF OF CITY BY U.S.; MUSIC+ NIGHT MS VIA'
+  want  'If of City by U.S.; Music+ Night MS Via'
+  got   'If of City by U.S.; Music+ Night MS via'

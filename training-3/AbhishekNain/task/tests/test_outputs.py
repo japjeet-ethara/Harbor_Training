@@ -431,3 +431,29 @@ def test_titlecase_rules(text, expected, tmp_path):
     )
     assert result.returncode == 0
     assert result.stdout == expected.encode()
+
+
+def _first_differing_line(actual: bytes, expected: bytes) -> int:
+    actual_lines = actual.splitlines(keepends=True)
+    expected_lines = expected.splitlines(keepends=True)
+    for idx, (act, exp) in enumerate(zip(actual_lines, expected_lines), start=1):
+        if act != exp:
+            return idx
+    return min(len(actual_lines), len(expected_lines)) + 1
+
+
+def test_frozen_100000_title_corpus(tmp_path):
+    data_dir = Path(__file__).resolve().parent / "data"
+    inputs = (data_dir / "inputs.txt").read_bytes()
+    expected = (data_dir / "answers.txt").read_bytes()
+
+    result = run_titlecase([], stdin=inputs, home=make_home(tmp_path))
+
+    if result.returncode != 0:
+        pytest.fail(f"titlecase exited with code {result.returncode}")
+
+    if result.stdout != expected:
+        diff_line = _first_differing_line(result.stdout, expected)
+        pytest.fail(
+            f"stdout does not match expected output (first differing line: {diff_line})"
+        )
