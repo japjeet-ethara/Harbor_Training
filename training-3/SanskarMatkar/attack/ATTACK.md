@@ -96,3 +96,11 @@ How to fix:     no_python should pay only when the program also gets real answer
 ```
 
 ## Highest score any cheat got: **1.000** (cheat 1, Python inside, jobs/2026-11-23__11-07-37)
+
+## Day 6 — Re-attack
+
+**Not run yet.** As of commit `facddcc` on `training-3` (2026-11-23), Tanya has not pushed a
+hardened task: the last commit touching `training-3/TanyaShrivastava/task/` is still
+`e56beb9` ("copy practice task before hardening"). Her `tests/` are the same files I
+attacked on Day 4, so re-running now would only repeat the Day 4 numbers. I will re-run
+cheats 1–3 here, with their job folders, once her Day 5 commit lands.
