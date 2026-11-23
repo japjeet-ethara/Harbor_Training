@@ -1,0 +1,48 @@
+schema_version = "1.4"
+
+# The agent's whole repository is handed to the separate verifier container.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "trainee/titlecase-go"
+version = "1.0.0"
+description = "Port python-titlecase 2.4.1 to Go (standard library only) with byte-for-byte identical output."
+authors = []
+keywords = ["go", "porting", "regex", "text-processing"]
+
+[metadata]
+category = "programming"
+tags = ["porting", "go", "python", "regex", "byte-exact"]
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_sha = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[agent]
+timeout_sec = 3600.0
+user = "agent"
+# No internet for the agent: it cannot download a port or an answer sheet.
+# Harbor adds the model endpoint automatically for model-backed agents.
+network_mode = "allowlist"
+allowed_hosts = []
+
+[verifier]
+timeout_sec = 300.0
+# Tests run in their own container built from tests/Dockerfile.
+environment_mode = "separate"
+# Reward Kit is baked into the verifier image, so grading needs no network.
+network_mode = "no-network"
+
+[verifier.env]
+
+[environment]
+build_timeout_sec = 900.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 10240
+network_mode = "public"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
