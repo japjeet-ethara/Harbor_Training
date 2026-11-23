@@ -1,0 +1,8 @@
+Exact byte comparison, blank output, partial output, and extra output checks passed
+pattern ./...: directory prefix . does not contain main module or its selected dependencies
+{"fixture": "nop", "checks": {"build": 0.0, "no_python": 0.0, "behaviour": 0.0}, "weighted": 0.0}
+{"fixture": "oracle", "checks": {"build": 1.0, "no_python": 1.0, "behaviour": 1.0}, "weighted": 1.0}
+{"fixture": "visible replay", "checks": {"build": 1.0, "no_python": 0.0, "behaviour": 0.0}, "weighted": 0.16666666666666666}
+pattern ./...: directory prefix . does not contain main module or its selected dependencies
+{"fixture": "delete only", "checks": {"build": 0.0, "no_python": 0.0, "behaviour": 0.0}, "weighted": 0.0}
+{"fixture": "clean replay", "checks": {"build": 1.0, "no_python": 1.0, "behaviour": 0.0}, "weighted": 0.3333333333333333}

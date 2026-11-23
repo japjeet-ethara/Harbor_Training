@@ -1,0 +1,361 @@
++ harbor --version
+0.26.0
++ docker version
+Client:
+ Version:           29.9.2
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        a82e528
+ Built:             Tue Oct 20 18:44:02 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Desktop 4.98.0 (245422)
+ Engine:
+  Version:          29.9.2
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       0367cbe
+  Built:            Tue Oct 20 18:45:02 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
++ docker compose version
+Docker Compose version v5.6.1
++ harbor lint --select ALL /tmp/titlecase-wsl.yqs3RQvx/task
++ docker build --tag titlecase-go-agent:section18 /tmp/titlecase-wsl.yqs3RQvx/task/environment
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 981B done
+#1 DONE 0.0s
+
+#2 [stage-0  1/10] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 CACHED
+
+#3 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#3 CACHED
+
+#4 [stage-0  2/10] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#4 DONE 0.7s
+
+#5 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#5 DONE 0.0s
+
+#6 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 DONE 0.0s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 72B done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 35.68kB done
+#8 DONE 0.0s
+
+#9 [stage-0 3/7] COPY requirements.lock /tmp/reference-requirements.lock
+#9 DONE 0.0s
+
+#10 [stage-0 4/7] RUN /usr/local/bin/python -m pip install --no-cache-dir --only-binary=:all: --require-hashes -r /tmp/reference-requirements.lock     && /usr/local/bin/python -c 'import regex, ssl, sys, unicodedata; assert sys.version_info[:3] == (3,12,14); assert unicodedata.unidata_version == "15.0.0"; assert regex.DEFAULT_VERSION == regex.VERSION0'     && rm /tmp/reference-requirements.lock
+#10 3.341 Collecting regex==2026.11.15 (from -r /tmp/reference-requirements.lock (line 1))
+#10 3.448   Downloading regex-2026.11.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (809 kB)
+#10 4.317      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 809.2/809.2 kB 935.2 kB/s eta 0:00:00
+#10 4.331 Installing collected packages: regex
+#10 4.457 Successfully installed regex-2026.11.15
+#10 4.458 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 4.653 
+#10 4.653 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#10 4.653 [notice] To update, run: pip install --upgrade pip
+#10 DONE 4.8s
+
+#11 [stage-0 5/7] RUN useradd --create-home --uid 10001 agent && install -d -o agent -g agent /workspace/repo
+#11 DONE 0.4s
+
+#12 [stage-0 6/7] WORKDIR /workspace/repo
+#12 DONE 0.1s
+
+#13 [stage-0 7/7] COPY --chown=agent:agent upstream/ /workspace/repo/
+#13 DONE 0.1s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.7s done
+#14 writing image sha256:3552ed1b9f75c92f6c82798c29ada33e4d71ccf64c66b9c013b728c37a9acdcc done
+#14 naming to docker.io/library/titlecase-go-agent:section18 done
+#14 DONE 0.7s
++ docker run --rm --network none titlecase-go-agent:section18 bash -ec 'test "$PWD" = /workspace/repo; test -f titlecase/__init__.py; test ! -e /tests; go version; python -c "import regex, titlecase; assert titlecase.REGEX_AVAILABLE; print(regex.__version__)"'
+go version go1.23.12 linux/amd64
+2026.11.15
++ docker build --tag titlecase-go-verifier:section18 /tmp/titlecase-wsl.yqs3RQvx/task/tests
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 926B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#3 DONE 0.0s
+
+#4 [stage-0  1/10] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#4 CACHED
+
+#5 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#5 CACHED
+
+#6 [stage-0  2/10] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#6 DONE 0.7s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 253B done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 396.24kB 0.0s done
+#8 DONE 0.1s
+
+#9 [stage-0  3/10] COPY requirements.lock /tmp/verifier-requirements.lock
+#9 DONE 0.1s
+
+#10 [stage-0  4/10] RUN /usr/local/bin/python -m pip install --no-cache-dir --require-hashes --only-binary=:all: -r /tmp/verifier-requirements.lock     && /usr/local/bin/rewardkit --help >/dev/null     && rm /tmp/verifier-requirements.lock     && mkdir -p /workspace/repo /tests/data     && chmod 700 /tests
+#10 4.326 Collecting aiohappyeyeballs==2.7.1 (from -r /tmp/verifier-requirements.lock (line 1))
+#10 4.821   Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+#10 7.464 Collecting aiohttp==3.14.5 (from -r /tmp/verifier-requirements.lock (line 4))
+#10 7.873   Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.9 MB)
+#10 23.73      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 109.9 kB/s eta 0:00:00
+#10 23.89 Collecting aiosignal==1.4.0 (from -r /tmp/verifier-requirements.lock (line 166))
+#10 24.00   Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+#10 24.20 Collecting annotated-types==0.8.0 (from -r /tmp/verifier-requirements.lock (line 169))
+#10 24.28   Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#10 24.45 Collecting anyio==4.16.0 (from -r /tmp/verifier-requirements.lock (line 172))
+#10 24.51   Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+#10 25.45 Collecting attrs==26.1.0 (from -r /tmp/verifier-requirements.lock (line 175))
+#10 25.47   Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#10 26.98 Collecting boto3==1.44.4 (from -r /tmp/verifier-requirements.lock (line 178))
+#10 27.12   Downloading boto3-1.44.4-py3-none-any.whl (140 kB)
+#10 31.93 Collecting botocore==1.44.4 (from -r /tmp/verifier-requirements.lock (line 181))
+#10 31.97   Downloading botocore-1.44.4-py3-none-any.whl (16.5 MB)
+#10 151.7      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.5/16.5 MB 214.6 kB/s eta 0:00:00
+#10 151.8 Collecting certifi==2026.10.23 (from -r /tmp/verifier-requirements.lock (line 184))
+#10 151.8   Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#10 152.6 Collecting charset-normalizer==3.5.2 (from -r /tmp/verifier-requirements.lock (line 187))
+#10 152.6   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#10 153.1 Collecting click==8.5.1 (from -r /tmp/verifier-requirements.lock (line 360))
+#10 153.1   Downloading click-8.5.1-py3-none-any.whl (126 kB)
+#10 153.3 Collecting fastuuid==0.14.0 (from -r /tmp/verifier-requirements.lock (line 363))
+#10 153.4   Downloading fastuuid-0.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (278 kB)
+#10 153.8 Collecting filelock==4.2.11 (from -r /tmp/verifier-requirements.lock (line 442))
+#10 153.9   Downloading filelock-4.2.11-py3-none-any.whl (222 kB)
+#10 154.6 Collecting frozenlist==1.8.0 (from -r /tmp/verifier-requirements.lock (line 445))
+#10 154.6   Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+#10 155.0 Collecting fsspec==2026.9.0 (from -r /tmp/verifier-requirements.lock (line 576))
+#10 155.1   Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+#10 156.0 Collecting h11==0.16.0 (from -r /tmp/verifier-requirements.lock (line 579))
+#10 156.1   Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#10 156.3 Collecting h2==4.4.1 (from -r /tmp/verifier-requirements.lock (line 582))
+#10 156.3   Downloading h2-4.4.1-py3-none-any.whl (62 kB)
+#10 156.5 Collecting harbor-rewardkit==0.2.4 (from -r /tmp/verifier-requirements.lock (line 585))
+#10 156.5   Downloading harbor_rewardkit-0.2.4-py3-none-any.whl (78 kB)
+#10 156.9 Collecting hf-xet==1.8.0 (from -r /tmp/verifier-requirements.lock (line 588))
+#10 156.9   Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+#10 164.4      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 577.8 kB/s eta 0:00:00
+#10 164.5 Collecting hpack==4.2.0 (from -r /tmp/verifier-requirements.lock (line 606))
+#10 164.5   Downloading hpack-4.2.0-py3-none-any.whl (34 kB)
+#10 164.6 Collecting httpcore==1.0.9 (from -r /tmp/verifier-requirements.lock (line 609))
+#10 164.6   Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#10 164.7 Collecting httpcore2==2.16.2 (from -r /tmp/verifier-requirements.lock (line 612))
+#10 164.7   Downloading httpcore2-2.16.2-py3-none-any.whl (85 kB)
+#10 164.9 Collecting httpx==0.28.1 (from -r /tmp/verifier-requirements.lock (line 615))
+#10 164.9   Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#10 165.0 Collecting httpx2==2.16.2 (from -r /tmp/verifier-requirements.lock (line 618))
+#10 165.1   Downloading httpx2-2.16.2-py3-none-any.whl (97 kB)
+#10 165.5 Collecting huggingface-hub==1.33.0 (from -r /tmp/verifier-requirements.lock (line 621))
+#10 165.5   Downloading huggingface_hub-1.33.0-py3-none-any.whl (846 kB)
+#10 167.1      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 846.4/846.4 kB 472.8 kB/s eta 0:00:00
+#10 167.2 Collecting hyperframe==6.1.0 (from -r /tmp/verifier-requirements.lock (line 624))
+#10 167.2   Downloading hyperframe-6.1.0-py3-none-any.whl (13 kB)
+#10 167.2 Collecting idna==3.20 (from -r /tmp/verifier-requirements.lock (line 627))
+#10 167.2   Downloading idna-3.20-py3-none-any.whl (69 kB)
+#10 167.4 Collecting importlib-metadata==8.9.0 (from -r /tmp/verifier-requirements.lock (line 630))
+#10 167.5   Downloading importlib_metadata-8.9.0-py3-none-any.whl (27 kB)
+#10 167.5 Collecting jinja2==3.1.6 (from -r /tmp/verifier-requirements.lock (line 633))
+#10 167.6   Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#10 168.5 Collecting jiter==0.19.0 (from -r /tmp/verifier-requirements.lock (line 636))
+#10 168.5   Downloading jiter-0.19.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (338 kB)
+#10 169.1 Collecting jmespath==1.1.0 (from -r /tmp/verifier-requirements.lock (line 742))
+#10 169.1   Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+#10 169.2 Collecting jsonschema==4.26.0 (from -r /tmp/verifier-requirements.lock (line 745))
+#10 169.2   Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#10 169.3 Collecting jsonschema-specifications==2025.9.1 (from -r /tmp/verifier-requirements.lock (line 748))
+#10 169.4   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#10 170.3 Collecting litellm==1.109.1 (from -r /tmp/verifier-requirements.lock (line 751))
+#10 170.3   Downloading litellm-1.109.1-cp310-abi3-manylinux_2_28_x86_64.whl (41.1 MB)
+#10 255.6      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.1/41.1 MB 352.6 kB/s eta 0:00:00
+#10 256.1 Collecting markupsafe==3.0.4 (from -r /tmp/verifier-requirements.lock (line 760))
+#10 256.1   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#10 257.6 Collecting multidict==7.2.1 (from -r /tmp/verifier-requirements.lock (line 912))
+#10 257.6   Downloading multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (516 kB)
+#10 258.8 Collecting openai==3.52.0 (from -r /tmp/verifier-requirements.lock (line 1064))
+#10 258.8   Downloading openai-3.52.0-py3-none-any.whl (2.4 MB)
+#10 262.6      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 639.4 kB/s eta 0:00:00
+#10 262.7 Collecting packaging==26.3 (from -r /tmp/verifier-requirements.lock (line 1067))
+#10 262.7   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 263.2 Collecting propcache==0.5.4 (from -r /tmp/verifier-requirements.lock (line 1070))
+#10 263.3   Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (250 kB)
+#10 264.1 Collecting pydantic==2.14.3 (from -r /tmp/verifier-requirements.lock (line 1209))
+#10 264.1   Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+#10 288.8 Collecting pydantic-core==2.50.4 (from -r /tmp/verifier-requirements.lock (line 1212))
+#10 288.9   Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+#10 298.7      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 277.7 kB/s eta 0:00:00
+#10 298.8 Collecting pydantic-settings==2.16.3 (from -r /tmp/verifier-requirements.lock (line 1353))
+#10 298.8   Downloading pydantic_settings-2.16.3-py3-none-any.whl (82 kB)
+#10 299.0 Collecting python-dateutil==2.9.0.post0 (from -r /tmp/verifier-requirements.lock (line 1356))
+#10 299.0   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#10 299.5 Collecting python-dotenv==1.2.4 (from -r /tmp/verifier-requirements.lock (line 1359))
+#10 299.6   Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#10 299.8 Collecting pyyaml==6.0.3 (from -r /tmp/verifier-requirements.lock (line 1362))
+#10 299.8   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#10 300.9      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 708.1 kB/s eta 0:00:00
+#10 301.0 Collecting referencing==0.37.0 (from -r /tmp/verifier-requirements.lock (line 1436))
+#10 301.0   Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#10 304.6 Collecting regex==2026.11.15 (from -r /tmp/verifier-requirements.lock (line 1439))
+#10 304.6   Downloading regex-2026.11.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (809 kB)
+#10 306.5      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 809.2/809.2 kB 442.7 kB/s eta 0:00:00
+#10 306.8 Collecting requests==2.34.2 (from -r /tmp/verifier-requirements.lock (line 1554))
+#10 306.8   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#10 308.3 Collecting rpds-py==2026.9.1 (from -r /tmp/verifier-requirements.lock (line 1557))
+#10 308.4   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#10 309.3 Collecting s3transfer==0.19.3 (from -r /tmp/verifier-requirements.lock (line 1686))
+#10 309.4   Downloading s3transfer-0.19.3-py3-none-any.whl (90 kB)
+#10 309.6 Collecting six==1.17.0 (from -r /tmp/verifier-requirements.lock (line 1689))
+#10 309.7   Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#10 309.7 Collecting sniffio==1.3.1 (from -r /tmp/verifier-requirements.lock (line 1692))
+#10 309.8   Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#10 310.0 Collecting tiktoken==0.14.0 (from -r /tmp/verifier-requirements.lock (line 1695))
+#10 310.0   Downloading tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl (1.2 MB)
+#10 313.7      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 326.0 kB/s eta 0:00:00
+#10 336.0 Collecting tokenizers==0.23.3 (from -r /tmp/verifier-requirements.lock (line 1760))
+#10 336.1   Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+#10 343.3      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 507.9 kB/s eta 0:00:00
+#10 343.4 Collecting tqdm==4.70.1 (from -r /tmp/verifier-requirements.lock (line 1785))
+#10 343.5   Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+#10 343.6 Collecting truststore==0.10.5 (from -r /tmp/verifier-requirements.lock (line 1788))
+#10 343.7   Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+#10 343.7 Collecting typing-extensions==4.16.0 (from -r /tmp/verifier-requirements.lock (line 1791))
+#10 343.8   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 343.9 Collecting typing-inspection==0.4.5 (from -r /tmp/verifier-requirements.lock (line 1794))
+#10 343.9   Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+#10 344.0 Collecting urllib3==2.8.0 (from -r /tmp/verifier-requirements.lock (line 1797))
+#10 344.0   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#10 345.2 Collecting yarl==1.25.1 (from -r /tmp/verifier-requirements.lock (line 1800))
+#10 345.2   Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (117 kB)
+#10 345.4 Collecting zipp==4.1.2 (from -r /tmp/verifier-requirements.lock (line 1939))
+#10 345.4   Downloading zipp-4.1.2-py3-none-any.whl (10 kB)
+#10 346.3 Installing collected packages: zipp, urllib3, typing-extensions, truststore, tqdm, sniffio, six, rpds-py, regex, pyyaml, python-dotenv, propcache, packaging, multidict, markupsafe, jmespath, jiter, idna, hyperframe, hpack, hf-xet, h11, fsspec, frozenlist, filelock, fastuuid, click, charset-normalizer, certifi, attrs, annotated-types, aiohappyeyeballs, yarl, typing-inspection, requests, referencing, python-dateutil, pydantic-core, jinja2, importlib-metadata, httpcore2, httpcore, h2, anyio, aiosignal, tiktoken, pydantic, jsonschema-specifications, httpx2, httpx, botocore, aiohttp, s3transfer, pydantic-settings, openai, jsonschema, huggingface-hub, tokenizers, boto3, litellm, harbor-rewardkit
+#10 362.9 Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 boto3-1.44.4 botocore-1.44.4 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 fastuuid-0.14.0 filelock-4.2.11 frozenlist-1.8.0 fsspec-2026.9.0 h11-0.16.0 h2-4.4.1 harbor-rewardkit-0.2.4 hf-xet-1.8.0 hpack-4.2.0 httpcore-1.0.9 httpcore2-2.16.2 httpx-0.28.1 httpx2-2.16.2 huggingface-hub-1.33.0 hyperframe-6.1.0 idna-3.20 importlib-metadata-8.9.0 jinja2-3.1.6 jiter-0.19.0 jmespath-1.1.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 litellm-1.109.1 markupsafe-3.0.4 multidict-7.2.1 openai-3.52.0 packaging-26.3 propcache-0.5.4 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-settings-2.16.3 python-dateutil-2.9.0.post0 python-dotenv-1.2.4 pyyaml-6.0.3 referencing-0.37.0 regex-2026.11.15 requests-2.34.2 rpds-py-2026.9.1 s3transfer-0.19.3 six-1.17.0 sniffio-1.3.1 tiktoken-0.14.0 tokenizers-0.23.3 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 yarl-1.25.1 zipp-4.1.2
+#10 362.9 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 363.0 
+#10 363.0 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#10 363.0 [notice] To update, run: pip install --upgrade pip
+#10 DONE 369.1s
+
+#11 [stage-0  5/10] COPY grade.py reward.toml test.sh /tests/
+#11 DONE 0.1s
+
+#12 [stage-0  6/10] COPY build/check.py /tests/build/check.py
+#12 DONE 0.1s
+
+#13 [stage-0  7/10] COPY no_python/check.py /tests/no_python/check.py
+#13 DONE 0.1s
+
+#14 [stage-0  8/10] COPY behaviour/check.py /tests/behaviour/check.py
+#14 DONE 0.1s
+
+#15 [stage-0  9/10] COPY data/hidden_inputs.txt data/hidden_expected.txt /tests/data/
+#15 DONE 0.1s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 3.5s done
+#16 writing image sha256:b759fb887e925459091ceae2ccee9b2507e0086f3bf85041c2dc03b5b71b1eb9 done
+#16 naming to docker.io/library/titlecase-go-verifier:section18 done
+#16 DONE 3.6s
++ docker run --rm --network none -e LITELLM_LOCAL_MODEL_COST_MAP=True titlecase-go-verifier:section18 bash -ec 'test -s /tests/data/hidden_expected.txt; rewardkit --help >/dev/null'
++ python /tmp/titlecase-wsl.yqs3RQvx/task/tools/replay_task.py /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.jcWQhORh/replay-task
++ harbor run -p /tmp/titlecase-wsl.yqs3RQvx/task --env docker -a oracle --jobs-dir /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.jcWQhORh/jobs --job-name oracle
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:42 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     1.000 │ 1.000 │     1.000 │  1.000 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 42s
+Results written to 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.jcWQhORh/jobs/oracle/result.js
+on
+Inspect results by running `harbor view 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.jcWQhORh/jobs`
+Share results by running `harbor upload 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.jcWQhORh/jobs/oracle`
+
++ harbor run -p /tmp/titlecase-wsl.yqs3RQvx/task --env docker -a nop --jobs-dir /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.jcWQhORh/jobs --job-name nop
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /tmp/titlecase-wsl.yqs3RQvx/venv/lib/python3.14/site-packages/harbor/cli/job │
+│ s.py:2082 in start                                                           │
+│                                                                              │
+│   2079 │   options = signature(build_job_config).bind(*args, **kwargs)       │
+│   2080 │   options.apply_defaults()                                          │
+│   2081 │   try:                                                              │
+│ ❱ 2082 │   │   config = build_job_config(**options.arguments)                │
+│   2083 │   │   return _execute_job(                                          │
+│   2084 │   │   │   config,                                                   │
+│   2085 │   │   │   diff_sources=options.arguments["diff_sources"],           │
+│                                                                              │
+│ /tmp/titlecase-wsl.yqs3RQvx/venv/lib/python3.14/site-packages/harbor/cli/job │
+│ s.py:1593 in build_job_config                                                │
+│                                                                              │
+│   1590 │   # and an explicit ``--env-file`` (loaded next with                │
+│        ``override=True``)                                                    │
+│   1591 │   # both win for any key they set, while keys *only* in             │
+│        ``.env.local`` —                                                      │
+│   1592 │   # such as the OIDC token — still reach ``os.environ``.            │
+│ ❱ 1593 │   if (Path.cwd() / ".env.local").exists():                          │
+│   1594 │   │   load_dotenv(Path.cwd() / ".env.local", override=False)        │
+│   1595 │                                                                     │
+│   1596 │   if env_file is not None:                                          │
+│                                                                              │
+│ /usr/lib/python3.14/pathlib/__init__.py:928 in cwd                           │
+│                                                                              │
+│    925 │   @classmethod                                                      │
+│    926 │   def cwd(cls):                                                     │
+│    927 │   │   """Return a new path pointing to the current working          │
+│        directory."""                                                         │
+│ ❱  928 │   │   cwd = os.getcwd()                                             │
+│    929 │   │   path = cls(cwd)                                               │
+│    930 │   │   path._str = cwd  # getcwd() returns a normalized path         │
+│    931 │   │   return path                                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+FileNotFoundError: [Errno 2] No such file or directory

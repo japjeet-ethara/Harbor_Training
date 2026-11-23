@@ -1,0 +1,40 @@
++ uname -a
+Linux KushalG-GRP1268 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
++ docker version
+Client:
+ Version:           29.9.2
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        a82e528
+ Built:             Tue Oct 20 18:44:02 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Desktop 4.98.0 (245422)
+ Engine:
+  Version:          29.9.2
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       0367cbe
+  Built:            Tue Oct 20 18:45:02 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
++ docker compose version
+Docker Compose version v5.6.1
++ python3 -VV
+Python 3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]
++ uv --version
+wsl-validation.sh: line 15: uv: command not found
+++ command -v python3
++ uv venv --python /usr/bin/python3 /tmp/titlecase-wsl.I1RbjBtX/venv
+wsl-validation.sh: line 16: uv: command not found
++ exit

@@ -1,0 +1,18 @@
+# Harbor run output (but keep the small evidence jobs that ship with the task)
+jobs/
+!task/evidence/**/jobs/
+# the repo root ignores build/, but this is a grader check
+!task/tests/build/
+# regenerated from the seed / kit, never pushed
+pool.txt
+got.txt
+got-old.txt
+key/
+old-key/
+ports/
+attack/target/
+# build junk and secrets
+.venv/
+__pycache__/
+*.exe
+.env
