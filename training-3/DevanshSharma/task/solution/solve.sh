@@ -312,11 +312,15 @@ func isMr(word string) bool {
 func hasInlinePeriod(word string) bool {
 	rs := []rune(word)
 	for i := 0; i+2 < len(rs); i++ {
-		if unicode.IsLetter(rs[i]) && rs[i+1] == '.' && unicode.IsLetter(rs[i+2]) {
+		if isWordChar(rs[i]) && rs[i+1] == '.' && isWordChar(rs[i+2]) {
 			return true
 		}
 	}
 	return false
+}
+
+func isWordChar(r rune) bool {
+	return unicode.IsLetter(r) || unicode.IsDigit(r) || r == '_'
 }
 
 func hasUCElsewhere(word string) bool {
@@ -383,7 +387,10 @@ func isASCIIConsonant(r rune) bool {
 func capFirst(word string) string {
 	rs := []rune(word)
 	i := 0
-	for i < len(rs) && isPunct(rs[i]) {
+	// Skip "pure punct" only — chars that are punct but NOT also word chars.
+	// _ is in PUNCT in the Python source but also in \w, so the lazy regex
+	// stops there; we must not skip it here.
+	for i < len(rs) && isPunct(rs[i]) && !isWord(rs[i]) {
 		i++
 	}
 	if i >= len(rs) || !unicode.IsLetter(rs[i]) {

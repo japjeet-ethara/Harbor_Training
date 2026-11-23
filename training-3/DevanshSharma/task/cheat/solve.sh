@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 set -euo pipefail
 dest=/workspace/repo
 mkdir -p "$dest"

@@ -13,12 +13,25 @@ keywords = []
 [verifier]
 timeout_sec = 600.0
 environment_mode = "separate"
+network_mode = "allowlist"
+allowed_hosts = [
+  "pypi.org",
+  "files.pythonhosted.org",
+  "pypi.python.org",
+  "github.com",
+  "*.github.com",
+  "*.githubusercontent.com",
+  "astral.sh",
+  "*.astral.sh",
+]
 collect = []
 
 [verifier.env]
 
 [agent]
 timeout_sec = 600.0
+network_mode = "allowlist"
+allowed_hosts = []
 
 [environment]
 network_mode = "public"
