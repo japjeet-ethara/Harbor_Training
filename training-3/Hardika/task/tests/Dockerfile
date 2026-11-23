@@ -11,5 +11,5 @@ COPY grade.py reward.toml test.sh /tests/
 COPY build/check.py /tests/build/check.py
 COPY no_python/check.py /tests/no_python/check.py
 COPY behaviour/check.py /tests/behaviour/check.py
-COPY data/hidden_inputs.txt data/hidden_expected.txt /tests/data/
+COPY data/inputs.txt data/answers.txt /tests/data/
 WORKDIR /

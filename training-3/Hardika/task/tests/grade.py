@@ -8,7 +8,7 @@ import tempfile
 from pathlib import Path
 
 DATA = Path(__file__).resolve().parent / "data"
-RECORDS = 2000
+RECORDS = 100000
 MAX_OUTPUT = 8 * 1024 * 1024
 LINUX_GO = "/usr/local/go/bin/go"
 NOBODY = 65534
@@ -68,9 +68,9 @@ def run(command, *, workspace, environment, timeout, isolated, input_file=None, 
 
 def measure(workspace, go, *, isolated):
     result = {"build": 0.0, "no_python": 0.0, "behaviour": 0.0}
-    inputs = DATA / "hidden_inputs.txt"
+    inputs = DATA / "inputs.txt"
     frozen_records(inputs.read_bytes())
-    answers = frozen_records((DATA / "hidden_expected.txt").read_bytes())
+    answers = frozen_records((DATA / "answers.txt").read_bytes())
 
     if not workspace.is_dir():
         return result

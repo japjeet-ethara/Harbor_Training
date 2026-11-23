@@ -9,6 +9,7 @@ got.txt
 got-old.txt
 key/
 old-key/
+key-re/
 ports/
 attack/target/
 # build junk and secrets
