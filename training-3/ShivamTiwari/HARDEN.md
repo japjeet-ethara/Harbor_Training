@@ -140,13 +140,108 @@ compiles inside the Python-free verifier image and reproduces the exam exactly.
 `proof/` contains the verifier reward JSON for the oracle and nop runs, and
 `proof/cheats-reward.txt` records the three cheat reruns.
 
+## Round 2 — re-attack hardening (2026-11-20)
+
+Annu Kumari's `attack/ATTACK.md` is byte-for-byte the same three-cheat report
+that round 1 closed: same target SHA (`8a12385d…`), same reported scores
+(1.0 / 0.453 / 0.3883). Round 2 therefore targets what a re-attack would find,
+rather than re-fixing the same three scripts.
+
+### What was still open after round 1
+
+The round-1 rules were enforced only inside `no_python`. `build` and
+`behaviour` never ran the rule scan, and the verifier made the Python
+*executables* unreadable but left the standard library world-readable. A
+submission that
+
+1. copied `/usr/bin/python3.11` into `/workspace/repo/pybin`,
+2. kept the reference source as a plain-text asset, and
+3. ran the copy with `os/exec`
+
+kept perfect behaviour and the build point. Measured against the round-1 task:
+**0.8333** (build 1, no_python 0, behaviour 1.0). That is the residual hole.
+
+### Round-2 changes
+
+- **One gate for all criteria.** `tests/checks/_common.py` now owns `audit()`
+  and `exam()`; `build`, `no_python` and `behaviour` all call them. A
+  structural violation is worth 0 everywhere instead of 5/6.
+- **Authoritative import graph.** `go list -deps` resolves every reachable
+  package belonging to the submitted module. Raw-string (``import `os/exec` ``),
+  escaped (`"os\x2fexec"`) and aliased (`import e "os/exec"`) spellings all
+  canonicalise to the same path. Direct `syscall`/`unsafe` are banned per local
+  package (the stdlib itself reaches them, so only submitted packages are
+  checked there); `os/exec`, `plugin`, `net*`, `golang.org/x/sys`, `embed` and
+  `runtime/cgo` are banned transitively. Packages under `_hidden/`, which the
+  `./...` wildcard skips, are still inspected because they are reachable.
+- **Alias-proof symbol bans.** `StartProcess`, `ProcAttr`, `exec.Cmd`,
+  `exec.LookPath`, `syscall.Syscall`, … are rejected as bare names, so
+  `import o "os"; o.StartProcess(...)` is caught.
+- **Sealed standard library.** The verifier also runs
+  `chmod 700 /usr/lib/python3* /usr/local/lib/python3* …/libpython*`. A copied
+  interpreter starts but cannot find `encodings`, so it cannot run.
+- **Pinned build environment.** `GO111MODULE=on`, `GOTOOLCHAIN=local`,
+  `GOWORK=off`, `GOPROXY=off`, `CGO_ENABLED=0`.
+- **Expanded file rules.** Foreign/native extensions (`.s`, `.syso`, `.o`, `.a`,
+  `.so`, `.dll`, `.c`, `.h`, `.cpp`, `.wasm`, …), other runtimes (`.js`, `.pl`,
+  `.rb`, `.php`, `.lua`, `.jar`, …), symlinks (files and directories),
+  `vendor/`, `go.work`, `require`/`replace`/`toolchain`, and files over 64 MB
+  are rejected.
+
+### Round-2 measurements
+
+| Attempt | Round-1 task | Round-2 task |
+|---|---|---|
+| Oracle (real Go port) | 1.0000 | 1.0000 |
+| Do nothing | 0.0000 | 0.0000 |
+| Annu cheat 1 (embed + `os/exec`) | 0.0000 | 0.0000 |
+| Annu cheat 2 (half port) | 0.0052 | 0.0052 |
+| Annu cheat 3 (delete + NOTES lookup) | 0.0022 | 0.0022 |
+| Copied interpreter (new, `cheat4`) | 0.8333 | 0.0000 |
+
+The two non-zero residuals are below-floor behaviour credit (10% of raw
+accuracy); `build` and `no_python` are 0 for both, so neither can exceed 0.5%.
+
+Ann's three scripts were run exactly as committed (line endings normalised to
+LF for bash) against scratch copies of the pre-round-2 task and of the round-2
+task. The copied-interpreter attack is mine (`proof/cheats/cheat4/solve.sh`),
+because it is the hole a re-attack would naturally reach for. Job folders:
+`harden-runs/jobs/*-before*` and `harden-runs/jobs/*-final`.
+
+| Run | Job | Trial | Reward |
+|---|---|---|---|
+| Oracle | `oracle-final` | `task__EtFCBdB` | 1.0000 |
+| Do nothing | `nop-final` | `task__eKGotkQ` | 0.0000 |
+| Annu cheat 1 | `annu-cheat1-final` | `annu-cheat1__SNZh2na` | 0.0000 |
+| Annu cheat 2 | `annu-cheat2-final` | `annu-cheat2__cHxeAgH` | 0.0052 |
+| Annu cheat 3 | `annu-cheat3-final` | `annu-cheat3__TZ2rt6e` | 0.0022 |
+| Copied interpreter | `cheat-smuggle-final` | `cheat-smuggle__rUCFCDr` | 0.0000 |
+
+The matching round-1 baselines are `annu-cheat1-before-retry`
+(`annu-cheat1__D33RjNp`, 0.0), `annu-cheat2-before` (`annu-cheat2__nU37MTH`,
+0.0052), `annu-cheat3-before` (`annu-cheat3__Yy9bdS9`, 0.0022) and
+`cheat-smuggle-before` (`cheat-smuggle__bXvJfQa`, 0.8333).
+
+### Verifying the gate itself
+
+`proof/audit-probe.txt` calls the audit directly in `golang:1.23` against 27
+synthetic workspaces plus the real oracle (28 assertions). The oracle must be
+clean; the real solution's workspace is; every bypass must be rejected:
+escaped/raw imports, aliased `os.StartProcess`, a hidden `_p` package,
+`.syso`/`.s`, `//go:embed`, cgo, `go.work`, symlinks and the Python-binary
+signature. All 28 assertions pass. `proof/cheats/cheat4/solve.sh` is the exact
+smuggler that scored 0.8333 before this round.
+
 ## Changed files
 
-- `task/tests/Dockerfile` — `golang:1.23`, `runner` user, Python chmod 700.
+- `task/tests/Dockerfile` — `golang:1.23`, `runner` user, interpreters and
+  stdlib chmod 700.
 - `task/tests/test.sh` — runs only the checks directory.
-- `task/tests/checks/build.py` — build plus ≥ 0.98 exam gate.
-- `task/tests/checks/no_python.py` — deep scan, runtime interpreter probe, exam gate.
-- `task/tests/checks/behaviour.py` — overall and edge-case floors, 0.10 factor.
+- `task/tests/checks/_common.py` — shared audit (files, symbols, `go list`
+  import graph) and exam runner used by every criterion.
+- `task/tests/checks/build.py` — build plus audit plus ≥ 0.98 exam gate.
+- `task/tests/checks/no_python.py` — audit, runtime interpreter probe, exam gate.
+- `task/tests/checks/behaviour.py` — audit, overall and edge-case floors, 0.10 factor.
 - `task/tests/checks/reward.toml` — weights 1 / 1 / 4 over build / no_python / behaviour.
 - `task/tests/data/inputs.txt`, `task/tests/data/answers.txt` — new 100,000-line exam.
 - `task/solution/solve.sh` — real Go port, fixed against the new exam
@@ -157,6 +252,8 @@ compiles inside the Python-free verifier image and reproduces the exam exactly.
   `solve.sh` at the previous commit.
 - `kit/` — `make_pool.py`, `answers.py`, `compare.py`, `report.txt`, evidence of
   the old exam and old verifier.
+- `proof/cheats/cheat4/solve.sh`, `proof/audit-probe.txt`,
+  `proof/reattack-round2.txt` — round-2 evidence.
 - `measure/`, `proof/`, `HARDEN.md`, `DEFENCE.md` — new.
 
 ## What I learned

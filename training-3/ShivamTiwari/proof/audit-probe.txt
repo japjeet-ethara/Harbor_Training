@@ -1,0 +1,78 @@
+Audit probe - task/tests/checks/_common.py
+==========================================
+
+Date: 2026-11-20
+Image: golang:1.23 (the verifier base image)
+Method: mount the checks directory at /src, build each synthetic workspace
+under /tmp/ws, call _common.audit() directly. A PASS line means the workspace
+was classified as intended ("clean" for legitimate code, a violation for an
+attack). Both suites exit 0 with "FAILURES: 0".
+
+Part 1 - structural rules (21 cases)
+------------------------------------
+Command:
+  docker run --rm -v <casegen>:/t -v <checks>:/src golang:1.23 \
+      python3 /t/audit_test.py
+
+PASS clean-oracle | clean
+PASS exec | banned import in /tmp/ws/exec/main.go
+PASS syscall | banned import in /tmp/ws/syscall/main.go
+PASS net | banned import in /tmp/ws/net/main.go
+PASS unsafe | banned import in /tmp/ws/unsafe/main.go
+PASS embed | banned construct '//go:embed' in /tmp/ws/embed/main.go
+PASS startproc | banned construct 'StartProcess' in /tmp/ws/startproc/main.go
+PASS importC | banned construct 'import "C"' in /tmp/ws/importC/main.go
+PASS asm | banned file type: /tmp/ws/asm/x.s
+PASS syso | banned file type: /tmp/ws/syso/x.syso
+PASS header | banned file type: /tmp/ws/header/x.h
+PASS vendor | vendor/ directory is not allowed
+PASS workspace | go workspace file is not allowed: /tmp/ws/workspace/go.work
+PASS pysource | runtime marker in /tmp/ws/pysource/py_engine.txt
+PASS pybin | runtime marker in /tmp/ws/pybin/pybin
+PASS perl | banned file type: /tmp/ws/perl/x.pl
+PASS linkname | banned construct '//go:linkname' in /tmp/ws/linkname/main.go
+PASS go.mod require | go.mod may not use require, replace or toolchain
+PASS go.mod replace | go.mod may not use require, replace or toolchain
+PASS go.mod toolchain | go.mod may not use require, replace or toolchain
+PASS symlink | symlink is not allowed: /tmp/ws/symlink/leak.txt
+FAILURES: 0
+
+Part 2 - import-spelling and alias bypasses
+-------------------------------------------
+Command:
+  docker run --rm -v <oracle-workspace>:/workspace/repo -v <checks>:/src \
+      -v <solution>:/sol -v <bypass-gen>:/t golang:1.23 \
+      sh -c 'bash /sol/solve.sh >/dev/null && python3 /t/probe.py'
+
+The oracle workspace is produced by the real task solution, so the first line
+proves the audit does not flag legitimate code.
+
+ORACLE problems: []
+PASS escaped-exec | banned construct 'exec.Cmd' in /tmp/ws/escaped-exec/main.go
+PASS alias-os-startprocess | banned construct 'StartProcess' in /tmp/ws/alias-os-startprocess/main.go
+PASS hidden-alias-startprocess | banned construct 'StartProcess' in /tmp/ws/hidden-alias-startprocess/_p/p.go
+PASS hidden-escaped-syscall | banned import in x/_p: syscall
+PASS hidden-raw-net | banned import in /tmp/ws/hidden-raw-net/_p/p.go
+PASS alias-legit | clean
+FAILURES: 0
+
+Why the bypass cases matter
+---------------------------
+- "escaped-exec" imports "os\x2fexec" and constructs `&exec.Cmd{...}`. Go
+  accepts both the escaped path and this API; there is no `exec.Command` token
+  to match. It is caught because imports are resolved with `go list` and
+  `exec.Cmd` is a banned symbol.
+- "alias-os-startprocess" uses `import o "os"; o.StartProcess(...)`. The
+  qualified token `os.StartProcess` never appears; banning the bare symbol
+  name closes it.
+- The two "hidden-*" cases place the attack in a `_p` directory. Go's `./...`
+  wildcard skips `_` directories, so `go list -deps` is asked for every
+  reachable package that belongs to the submitted module, not just wildcard
+  matches.
+- "alias-legit" confirms ordinary aliased stdlib imports are not rejected.
+
+Reproduce
+---------
+The two generator scripts are not shipped with the task (they are test-only
+harnesses). The assertions above were executed against the committed
+`_common.py`; the same cases are the acceptance list for the round-2 gate.

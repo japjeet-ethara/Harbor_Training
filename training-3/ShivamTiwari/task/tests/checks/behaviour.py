@@ -1,20 +1,24 @@
 """Behaviour criterion over the frozen 100,000-title hidden exam.
 
 The score is the fraction of lines matching the reference byte for byte, but a
-submission only keeps that score when it clears both a minimum overall accuracy
-and a minimum edge-case accuracy.  Below the thresholds the partial credit is
-reduced sharply so a weak or naive port cannot collect most of the reward.
+submission only keeps that score when it clears the shared structural audit,
+a minimum overall accuracy and a minimum edge-case accuracy. Below the
+thresholds the partial credit is reduced sharply so a weak or naive port cannot
+collect most of the reward, and a rule violation scores zero outright.
 """
 
-import os
-import pwd
+import importlib.util
 import re
-import subprocess
 from pathlib import Path
 
 from rewardkit import criterion
 
-DATA = Path("/tests/data")
+_SPEC = importlib.util.spec_from_file_location(
+    "tc_common", Path(__file__).with_name("_common.py")
+)
+_common = importlib.util.module_from_spec(_SPEC)
+_SPEC.loader.exec_module(_common)
+
 BIN = Path("/tmp/tc_behaviour_bin")
 
 OVERALL_FLOOR = 0.98
@@ -49,49 +53,16 @@ def _is_edge(line: bytes) -> bool:
     return SUB_PHRASE.search(text) is not None
 
 
-def _lines(data: bytes) -> list[bytes]:
-    lines = data.split(b"\n")
-    if lines and lines[-1] == b"":
-        lines.pop()
-    return lines
-
-
 @criterion(description="fraction of hidden inputs matching Python titlecase() byte for byte")
 def behaviour(workspace: Path) -> float:
-    build = subprocess.run(
-        ["/usr/local/go/bin/go", "build", "-o", str(BIN), "."],
-        cwd=workspace,
-        capture_output=True,
-        text=True,
-        timeout=180,
-    )
-    if build.returncode != 0 or not BIN.is_file():
+    result = _common.exam(workspace, BIN)
+    if result is None:
         return 0.0
-    os.chmod(BIN, 0o755)
-    try:
-        inputs = (DATA / "inputs.txt").read_bytes()
-        expected = (DATA / "answers.txt").read_bytes()
-        pw = pwd.getpwnam("runner")
-        run = subprocess.run(
-            [str(BIN)],
-            cwd="/tmp",
-            user=pw.pw_uid,
-            group=pw.pw_gid,
-            input=inputs,
-            capture_output=True,
-            timeout=300,
-            env={"PATH": "/usr/local/go/bin:/usr/bin:/bin", "HOME": pw.pw_dir, "CGO_ENABLED": "0"},
-        )
-    except Exception:
-        return 0.0
-    finally:
-        BIN.unlink(missing_ok=True)
-    if run.returncode != 0:
-        return 0.0
+    stdout, inputs, expected, _ = result
 
-    expected_lines = _lines(expected)
-    actual_lines = _lines(run.stdout)
-    input_lines = _lines(inputs)
+    expected_lines = _common._lines(expected)
+    actual_lines = _common._lines(stdout)
+    input_lines = _common._lines(inputs)
     if not expected_lines:
         return 0.0
 
