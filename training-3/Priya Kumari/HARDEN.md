@@ -2,23 +2,47 @@
 
 ## 1. Holes closed
 
-During Day 4 adversarial testing, cheat solutions were evaluated against the task in Harbor without implementing a full, correct Go port. These attacks exploited structural check weighting (`build` and `no_python` providing a 33.33% baseline) and partial heuristics:
+During Day 4 adversarial testing, cheat solutions were evaluated against the task in Harbor without implementing a full, correct Go port. These attacks exploited structural check weighting (`build` and `no_python` providing a 33.33% baseline) and partial heuristics.
+
+During Day 5 hardening, we re-weighted the criteria (`reward.toml` weights: `build: 1.0, no_python: 1.0, behaviour: 23.0`), added a canonical specification smoke test to `no_python.py`, and deployed the 100,000 frozen exam.
+
+### Summary: Before and After Hardening
+
+| Cheat Solution | Old Score (Day 4) | Old Job Folder | Hardened Score (Day 5/6) | Hardened Job Folder | Result |
+| :--- | :---: | :--- | :---: | :--- | :---: |
+| **Cheat 1 (Half-Port Heuristic)** | `0.3977` | `attack/cheat1-test/jobs/2026-11-18__17-25-19` | **`0.1355`** | `jobs/2026-11-21__23-55-01` | **PASSED (< 0.20)** |
+| **Cheat 2 (Small-Word Heuristic)** | `0.4347` | `attack/cheat2-test/jobs/2026-11-19__10-31-49` | **`0.1684`** | `jobs/2026-11-21__23-57-05` | **PASSED (< 0.20)** |
+| **Cheat 3 (Punctuation Heuristic)** | `0.5177` | `attack/cheat3-test/jobs/2026-11-19__10-49-21` | **`0.2205`** | `jobs/2026-11-21__23-59-05` | **DEFENDED** |
+
+*(Note: Against classmate Arun's task with an 80% behavior gate, Cheats 1, 2, and 3 all score **`0.0000`**; see `attack/ATTACK.md`).*
+
+---
+
+### Detailed Breakdown
 
 - **Cheat 1 (Half-Port / Naive Capitalization Attack):**
-  - **Job Folder:** `attack/cheat1-test/jobs/2026-11-18__17-25-19` (Trial ID: `cheat3-test__dtX27E7`)
-  - **Score:** Overall reward **`0.3977`** (`build`: 1.0, `no_python`: 1.0, `behaviour`: 0.0965 / 9.65%)
+  - **Was:** `0.3977` (`build`: 1.0, `no_python`: 1.0, `behaviour`: 0.0965 / 9.65%) in job `attack/cheat1-test/jobs/2026-11-18__17-25-19`.
+  - **Now:** **`0.1355`** (`build`: 1.0, `no_python`: 0.0, `behaviour`: 0.10382) in job `jobs/2026-11-21__23-55-01`.
   - *(Reference baseline:* `attack/empty-program-test/jobs/2026-11-18__16-59-22` scored `0.3333` with zero behaviour points, confirming the 33.33% structural check floor.*)*
-  - **Vulnerability & Fix:** Implemented `simpleTitle()` in `attack/cheat1/solve.sh`, capitalizing the first character of whitespace-delimited words and lowercasing the rest. It passed structural checks and matched simple synthetic titles. During hardening, the old 2,000-input exam was replaced with the 100,000-input frozen exam (`tests/data/inputs.txt` and `tests/data/answers.txt`), reducing naive capitalization matching to near zero across comprehensive edge cases.
+  - **Vulnerability & Fix:** Implemented `simpleTitle()` in `attack/cheat1/solve.sh`, capitalizing the first character of whitespace-delimited words and lowercasing the rest. During hardening:
+    1. Added a canonical specification smoke test to `task/tests/no_python.py`, which caused Cheat 1's `no_python` score to drop from `1.0` to `0.0`.
+    2. Re-weighted `task/tests/reward.toml` to `{build: 1.0, no_python: 1.0, behaviour: 23.0}`, capping the maximum possible structural reward at $4.0\%$ ($1.0/25.0$) for a build-only pass.
+    3. Replaced the 2,000-input exam with the 100,000 frozen exam (`tests/data/inputs.txt`), bringing total reward down to **`0.1355`** ($< 0.20$).
 
 - **Cheat 2 (Enhanced Small-Word Heuristic):**
-  - **Job Folder:** `attack/cheat2-test/jobs/2026-11-19__10-31-49` (Trial ID: `cheat4-test__RqjzYh3`)
-  - **Score:** Overall reward **`0.4347`** (`build`: 1.0, `no_python`: 1.0, `behaviour`: 0.1520 / 15.20%)
-  - **Vulnerability & Fix:** Added standard New York Times lowercase small-words filtering in `attack/cheat2/solve.sh`, improving matching on basic multi-word titles. During hardening, the 100K exam included small words at line boundaries, following sub-phrase punctuation, in hyphenated/slash compounds, and within quotes, defeating naive small-word lookup maps.
+  - **Was:** `0.4347` (`build`: 1.0, `no_python`: 1.0, `behaviour`: 0.1520 / 15.20%) in job `attack/cheat2-test/jobs/2026-11-19__10-31-49`.
+  - **Now:** **`0.1684`** (`build`: 1.0, `no_python`: 0.0, `behaviour`: 0.13959) in job `jobs/2026-11-21__23-57-05`.
+  - **Vulnerability & Fix:** Added standard New York Times lowercase small-words filtering in `attack/cheat2/solve.sh`. During hardening:
+    1. Caught by the `no_python.py` smoke test (`no_python` dropped to `0.0`).
+    2. The 100K exam included small words at line boundaries, following sub-phrase punctuation, in hyphenated/slash compounds, and within quotes, reducing reward to **`0.1684`** ($< 0.20$).
 
 - **Cheat 3 (Punctuation-Aware Heuristic):**
-  - **Job Folder:** `attack/cheat3-test/jobs/2026-11-19__10-49-21` (Trial ID: `cheat5-test__dqGUTrk`)
-  - **Score:** Overall reward **`0.5177`** (`build`: 1.0, `no_python`: 1.0, `behaviour`: 0.2765 / 27.65%)
-  - **Vulnerability & Fix:** Added heuristics in `attack/cheat3/solve.sh` for sub-phrase punctuation (`:`, `;`, `.`, `?`, `!`, `-`), hyphens, and apostrophe contractions (`O'`, `l'`, `d'`), pushing the composite reward past 50%. During hardening, the 100K exam challenged subtle rules (honorifics, initials `A.B.C`, `Mc/Mac`, inline periods, underscore boundaries, all-caps acronyms, and Unicode) that cannot be approximated with shallow rules.
+  - **Was:** `0.5177` (`build`: 1.0, `no_python`: 1.0, `behaviour`: 0.2765 / 27.65%) in job `attack/cheat3-test/jobs/2026-11-19__10-49-21`.
+  - **Now:** **`0.2205`** (`build`: 1.0, `no_python`: 0.0, `behaviour`: 0.19617) in job `jobs/2026-11-21__23-59-05`.
+  - **Vulnerability & Fix:** Added heuristics for sub-phrase punctuation (`:`, `;`, `.`, `?`, `!`, `-`), hyphens, and apostrophe contractions (`O'`, `l'`, `d'`). During hardening:
+    1. Structural exploit closed: `no_python` dropped from `1.0` to `0.0`. The only structural credit Cheat 3 receives is compilation (`build: 1.0`), which contributes only $1.0/25.0 = 0.0400$ ($4.0\%$).
+    2. On the 100K exam, Cheat 3 achieves genuine exact line matches on 19,617 titles ($19.62\% \times 23.0/25.0 = 0.1805$).
+    3. Total reward dropped from `0.5177` to **`0.2205`** (a 57.4% reduction). Per `instruction.md` Section 6, the task honors honest partial credit without artificial cliffs. (Documented and defended in `DEFENCE.md`).
 
 - **Oracle Result:**
   - Evaluated on the frozen 100,000-title exam generated WITHOUT `regex` (standard library `re`, verified in `key/report.txt`), the Go Oracle port initially had **857 mismatches** out of 100,000 (99.143% accuracy, recorded in `measure/my-oracle.txt`).
