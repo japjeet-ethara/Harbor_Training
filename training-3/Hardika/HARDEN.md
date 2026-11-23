@@ -56,4 +56,6 @@ Raw outputs are in `measure/`. The `*.old-exam.txt` files are the same port on t
 
 ## What I learned (3 lines)
 
-TODO: in your own words.
+1. A check that pays on its own ("it compiles", "no .py files") is free points for a cheat; partial credit must be tied to real correct answers.
+2. A bigger exam is not automatically harder: my 100k pool *raised* the half-port cheat until the gate was added, so every exam change has to be re-measured against the cheats.
+3. The mode (regex vs re) is part of the answer key: two correct ports disagree on 3% of titles, so `instruction.md` must say which mode is graded.
