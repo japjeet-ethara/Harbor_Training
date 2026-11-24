@@ -320,22 +320,20 @@ func isAllConsonants(word string) bool {
 }
 
 func capFirst(word string) string {
+	// Python: ^[PUNCT]*?([\w]) -- the prefix is lazy, so the first rune that
+	// is a word character is captured even if it is also punctuation ('_').
 	i := 0
 	for i < len(word) {
 		r, size := utf8.DecodeRuneInString(word[i:])
+		if isWord(r) {
+			return strings.ToUpper(word[:i+size]) + word[i+size:]
+		}
 		if !isPunct(r) {
-			break
+			return word
 		}
 		i += size
 	}
-	if i >= len(word) {
-		return word
-	}
-	r, size := utf8.DecodeRuneInString(word[i:])
-	if !isWord(r) {
-		return word
-	}
-	return strings.ToUpper(word[:i+size]) + word[i+size:]
+	return word
 }
 
 func applySmallFirst(word string) string {

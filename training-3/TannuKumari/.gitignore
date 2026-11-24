@@ -28,3 +28,4 @@ key/
 ports/
 attack/target/
 .env
+harden_scratch/

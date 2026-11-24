@@ -1,0 +1,4 @@
+# Task scripts run in Linux containers: always check out with LF.
+* text=auto eol=lf
+# Frozen exam data must stay byte-for-byte as generated.
+task/tests/data/*.txt -text

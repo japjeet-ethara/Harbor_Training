@@ -1,0 +1,17 @@
+wrong answers      488 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'BBC: OF at\xa0Mcx-\tif summer time by'
+  want  'BBC: OF at\xa0McX-\tif Summer Time By'
+  got   'BBC: Of at\xa0McX-\tif Summer Time By'
+  input 'star river) love MS  to - OF" music guide'
+  want  'Star River) Love MS  to - OF" Music Guide'
+  got   'Star River) Love MS  to - Of" Music Guide'
+  input 'ıstanbul  game en vs.: THE rhythm city re-enter'
+  want  'Istanbul  Game en Vs.: THE Rhythm City Re-Enter'
+  got   'Istanbul  Game en Vs.: The Rhythm City Re-Enter'
+  input 'ocean x-ray The guide ftp://host/file or\xa0v. FOR en'
+  want  'Ocean X-Ray the Guide Ftp://host/file or\xa0v. FOR En'
+  got   'Ocean X-Ray the Guide Ftp://host/file or\xa0v. For En'
+  input 'a macOS guide - BUT\u2009city peace - MACHINE www.site.org vs.'
+  want  'A macOS Guide - BUT\u2009City Peace - MACHINE www.site.org Vs.'
+  got   'A macOS Guide - But\u2009City Peace - MACHINE www.site.org Vs.'
