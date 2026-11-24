@@ -1,0 +1,46 @@
+schema_version = "1.4"
+
+# Files collected from the agent's container and re-created, at the same path,
+# inside the separate verifier container.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "practice/titlecase-go"
+version = "1.0.0"
+description = "Port the Python titlecase library to Go with byte-for-byte identical output."
+authors = []
+keywords = ["go", "python", "port", "regex", "titlecase"]
+
+[metadata]
+category = "programming"
+difficulty = "medium"
+tags = ["porting", "go", "python", "regex", "edge-cases"]
+source_repo = "https://github.com/ppannuto/python-titlecase"
+source_sha = "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+source_license = "MIT"
+
+[agent]
+timeout_sec = 3600.0
+network_mode = "allowlist"   # Harbor adds the model endpoint automatically
+allowed_hosts = []
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"   # tests run in their own container, the agent never sees tests/
+network_mode = "no-network"     # Reward Kit is pre-installed in tests/Dockerfile, no judge API needed
+collect = []
+
+[verifier.env]
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+os = "linux"
+network_mode = "public"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]
