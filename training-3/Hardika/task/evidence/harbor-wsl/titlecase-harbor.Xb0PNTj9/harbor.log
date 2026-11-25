@@ -1,0 +1,237 @@
++ harbor --version
+0.26.0
++ docker version
+Client:
+ Version:           29.9.2
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        a82e528
+ Built:             Tue Oct 20 18:44:02 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Desktop 4.98.0 (245422)
+ Engine:
+  Version:          29.9.2
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       0367cbe
+  Built:            Tue Oct 20 18:45:02 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
++ docker compose version
+Docker Compose version v5.6.1
++ harbor lint --select ALL /tmp/titlecase-wsl.yqs3RQvx/task
++ docker build --tag titlecase-go-agent:section18 /tmp/titlecase-wsl.yqs3RQvx/task/environment
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 981B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 72B done
+#4 DONE 0.0s
+
+#5 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#5 DONE 0.0s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 706B done
+#7 DONE 0.0s
+
+#8 [stage-0 2/7] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#8 CACHED
+
+#9 [stage-0 6/7] WORKDIR /workspace/repo
+#9 CACHED
+
+#10 [stage-0 3/7] COPY requirements.lock /tmp/reference-requirements.lock
+#10 CACHED
+
+#11 [stage-0 4/7] RUN /usr/local/bin/python -m pip install --no-cache-dir --only-binary=:all: --require-hashes -r /tmp/reference-requirements.lock     && /usr/local/bin/python -c 'import regex, ssl, sys, unicodedata; assert sys.version_info[:3] == (3,12,14); assert unicodedata.unidata_version == "15.0.0"; assert regex.DEFAULT_VERSION == regex.VERSION0'     && rm /tmp/reference-requirements.lock
+#11 CACHED
+
+#12 [stage-0 5/7] RUN useradd --create-home --uid 10001 agent && install -d -o agent -g agent /workspace/repo
+#12 CACHED
+
+#13 [stage-0 7/7] COPY --chown=agent:agent upstream/ /workspace/repo/
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 writing image sha256:3552ed1b9f75c92f6c82798c29ada33e4d71ccf64c66b9c013b728c37a9acdcc done
+#14 naming to docker.io/library/titlecase-go-agent:section18 done
+#14 DONE 0.0s
++ docker run --rm --network none titlecase-go-agent:section18 bash -ec 'test "$PWD" = /workspace/repo; test -f titlecase/__init__.py; test ! -e /tests; go version; python -c "import regex, titlecase; assert titlecase.REGEX_AVAILABLE; print(regex.__version__)"'
+go version go1.23.12 linux/amd64
+2026.11.15
++ docker build --tag titlecase-go-verifier:section18 /tmp/titlecase-wsl.yqs3RQvx/task/tests
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 926B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 253B done
+#4 DONE 0.0s
+
+#5 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#5 DONE 0.0s
+
+#6 [stage-0  1/10] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 430B done
+#7 DONE 0.0s
+
+#8 [stage-0  4/10] RUN /usr/local/bin/python -m pip install --no-cache-dir --require-hashes --only-binary=:all: -r /tmp/verifier-requirements.lock     && /usr/local/bin/rewardkit --help >/dev/null     && rm /tmp/verifier-requirements.lock     && mkdir -p /workspace/repo /tests/data     && chmod 700 /tests
+#8 CACHED
+
+#9 [stage-0  5/10] COPY grade.py reward.toml test.sh /tests/
+#9 CACHED
+
+#10 [stage-0  3/10] COPY requirements.lock /tmp/verifier-requirements.lock
+#10 CACHED
+
+#11 [stage-0  7/10] COPY no_python/check.py /tests/no_python/check.py
+#11 CACHED
+
+#12 [stage-0  2/10] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#12 CACHED
+
+#13 [stage-0  6/10] COPY build/check.py /tests/build/check.py
+#13 CACHED
+
+#14 [stage-0  8/10] COPY behaviour/check.py /tests/behaviour/check.py
+#14 CACHED
+
+#15 [stage-0  9/10] COPY data/hidden_inputs.txt data/hidden_expected.txt /tests/data/
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 writing image sha256:b759fb887e925459091ceae2ccee9b2507e0086f3bf85041c2dc03b5b71b1eb9 done
+#16 naming to docker.io/library/titlecase-go-verifier:section18 done
+#16 DONE 0.0s
++ docker run --rm --network none -e LITELLM_LOCAL_MODEL_COST_MAP=True titlecase-go-verifier:section18 bash -ec 'test -s /tests/data/hidden_expected.txt; rewardkit --help >/dev/null'
++ python /tmp/titlecase-wsl.yqs3RQvx/task/tools/replay_task.py /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/replay-task
++ harbor run -p /tmp/titlecase-wsl.yqs3RQvx/task --env docker -a oracle --jobs-dir /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs --job-name oracle
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:36 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     1.000 │ 1.000 │     1.000 │  1.000 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+│ 1.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 36s
+Results written to 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/oracle/result.js
+on
+Inspect results by running `harbor view 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs`
+Share results by running `harbor upload 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/oracle`
+
++ harbor run -p /tmp/titlecase-wsl.yqs3RQvx/task --env docker -a nop --jobs-dir /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs --job-name nop
+Agent 'nop' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:00:29 0:00:00
+adhoc • nop
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     0.000 │ 0.000 │     0.000 │  0.000 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+│ 0.0    │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 29s
+Results written to 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/nop/result.json
+Inspect results by running `harbor view 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs`
+Share results by running `harbor upload 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/nop`
+
++ harbor run -p /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/replay-task --env docker -a oracle --jobs-dir /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs --job-name replay
+Agent 'oracle' exposes no native web search or fetch tools for Harbor to disable; continuing. Sandbox network policy still applies.
+  1/1 Behaviour: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:01:00 0:00:00
+adhoc • oracle
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Trials ┃ Exceptions ┃ Behaviour ┃ Build ┃ No_Python ┃ Reward ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│      1 │          0 │     0.000 │ 1.000 │     0.000 │  0.167 │
+└────────┴────────────┴───────────┴───────┴───────────┴────────┘
+
+┏━━━━━━━━┳━━━━━━━┓
+┃ Reward ┃ Count ┃
+┡━━━━━━━━╇━━━━━━━┩
+│ 0.0    │     1 │
+│ 1.0    │     1 │
+│ 0.0    │     1 │
+│ 0.1667 │     1 │
+└────────┴───────┘
+
+Job Info
+Total runtime: 1m 0s
+Results written to 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/replay/result.js
+on
+Inspect results by running `harbor view 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs`
+Share results by running `harbor upload 
+/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/replay`
+
+08:45:33 - LiteLLM:WARNING: get_model_cost_map.py:397 - LiteLLM: model cost map fetch attempt 1/3 failed (ConnectError fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution); retrying in 2.4s
+08:45:33 - LiteLLM:WARNING: get_model_cost_map.py:775 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: ConnectError fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.
++ python /tmp/titlecase-wsl.yqs3RQvx/task/tools/verify_harbor_rewards.py /tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs
+oracle reward=1.0 source=/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/oracle/task__dQU4p3x/verifier/reward.json
+nop reward=0.0 source=/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/nop/task__EvuWG7c/verifier/reward.json
+replay reward=0.1667 source=/tmp/titlecase-wsl.yqs3RQvx/runs/titlecase-harbor.Xb0PNTj9/jobs/replay/replay-task__Uy2pFcn/verifier/reward.json

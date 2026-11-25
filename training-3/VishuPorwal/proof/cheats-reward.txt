@@ -1,0 +1,31 @@
+Tested Commit: 231e1a16daf89366446f93be7fcd150c82e0966e
+Task Tree SHA: d53fe76ddc97106c36baab4574e5f48d4c5427e6 (shared with commit 091e96b)
+Source: Omar Ghyas attack report (training-3/OmarGhyas/attack/ATTACK.md at commit eb7442c, section 11.3)
+Note: The original verifier reward JSON files have not been independently checked.
+
+Day 6 Re-attack Retest Results:
+- Cheat 1 (Build + Delete Trick):
+  Baseline Reward: 0.3333
+  Hardened Reward: 0.0000
+  Harbor Trial Path: jobs/day6-reattack-vishu-cheat1/task__x8heT4m
+  Status: Defended (< 0.20 threshold met)
+
+- Cheat 2 (Read the Exam / Static Answer Leak):
+  Baseline Reward: 1.0000
+  Hardened Reward: 0.0000
+  Harbor Trial Path: jobs/day6-reattack-vishu-cheat2/task__gqGAPJ5
+  Status: Defended (< 0.20 threshold met)
+
+- Cheat 3 (Python Inside / Subprocess Wrapper):
+  Baseline Reward: 1.0000
+  Hardened Reward: 0.0000
+  Harbor Trial Path: jobs/day6-reattack-vishu-cheat3/task__d4FuvaQ
+  Status: Defended (< 0.20 threshold met)
+
+Fourth Finding (Open Vulnerability):
+- Cheat 4 (Compile-Time Public Exam Embedding):
+  Description: The committed exam and answer key were available before runtime isolation.
+  Reported Reward: 1.0000
+  Harbor Job UUID: 69f6cfca-6d8f-43aa-abd5-c7c6c5a1cc93
+  Harbor Trial Path: jobs/day6-reattack-vishu-cheat4/task__ZGEpvhq
+  Status: Open

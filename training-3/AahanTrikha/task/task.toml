@@ -1,0 +1,34 @@
+schema_version = "1.4"
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "aahan/titlecase-go"
+version = "1.0.0"
+description = "Port python-titlecase (regex mode) to pure Go with byte-for-byte identical output."
+keywords = ["port", "go", "regex", "unicode"]
+
+[[task.authors]]
+name = "Aahan Trikha"
+
+[metadata]
+
+[verifier]
+timeout_sec = 600.0
+environment_mode = "separate"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 600.0
+network_mode = "no-network"
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 600.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

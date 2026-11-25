@@ -1,0 +1,18 @@
+[no_python] .py files left: 3
+  /workspace/repo/setup.py
+  /workspace/repo/titlecase/tests.py
+  /workspace/repo/titlecase/__init__.py
+[behaviour] go build -o ... . failed:
+go: go.mod file not found in current directory or any parent directory; see 'go help modules'
+
+[build] no go.mod in the repository
+behaviour: 0.0
+build: 0.0
+no_python: 0.0
+reward: 0.0
+{
+  "behaviour": 0.0,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0
+}

@@ -1,0 +1,17 @@
+wrong answers      8752 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'iPhone out-of-date “U.S. peace _a/b/c for in\u2009in Mcx'
+  want  'iPhone Out-of-Date “U.S. Peace _a/B/C for in\u2009in MCX'
+  got   'iPhone Out-of-Date “U.S. Peace _A/B/C for in\u2009in MCX'
+  input 'by\xa0dr city history\u2009_dream _dream'
+  want  'By\xa0Dr City History\u2009_dream _dream'
+  got   'By\xa0Dr City History\u2009_Dream _Dream'
+  input '__init__ v. en\xa0McDonald as if J.R.R.'
+  want  '__init__ v. En\xa0McDonald as if J.R.R.'
+  got   '__Init__ v. En\xa0McDonald as if J.R.R.'
+  input 'U.S. of of dr J.R.R.  input/output; crwth @data: __init__'
+  want  'U.S. Of of Dr J.R.R.  Input/Output; CRWTH @Data: __init__'
+  got   'U.S. Of of Dr J.R.R.  Input/Output; CRWTH @Data: __Init__'
+  input 'J.R.R. über ocean\u2009AS __init__ book story! AND'
+  want  'J.R.R. Über Ocean\u2009AS __init__ Book Story! And'
+  got   'J.R.R. Über Ocean\u2009AS __Init__ Book Story! And'

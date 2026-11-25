@@ -1,0 +1,17 @@
+wrong answers      4711 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'peace _a/b/c for in\u2009in mcgraw-hill: ftp://host/file house as'
+  want  'Peace _a/B/C for in\u2009in McGraw-Hill: Ftp://host/file House As'
+  got   'Peace _A/B/C for in\u2009in McGraw-Hill: Ftp://host/file House As'
+  input 'VS.–! A peace TCP/IP city v1.2 city music'
+  want  'Vs.–! A Peace TCP/IP City v1.2 City Music'
+  got   'Vs.–! A Peace TCP/IP City V1.2 City Music'
+  input 'dr v1.2'
+  want  'Dr v1.2'
+  got   'Dr V1.2'
+  input 'www.site.org\xa0vs.–\xa0war! X.` vs._ GARDEN lord history vs'
+  want  'www.site.org\xa0Vs.–\xa0War! X.` vs._ GARDEN Lord History Vs'
+  got   'www.site.org\xa0Vs.–\xa0War! X.` Vs._ GARDEN Lord History Vs'
+  input ';macintosh war v1.2[\tfor X-RAY winter— dream\xa0guide'
+  want  ';Macintosh War v1.2[\tfor X-Ray Winter— Dream\xa0Guide'
+  got   ';Macintosh War V1.2[\tfor X-Ray Winter— Dream\xa0Guide'

@@ -1,0 +1,17 @@
+wrong answers      18508 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input '|DREAM ǆungla winter ‒ TCP/IP music book  via'
+  want  '|DREAM Ǆungla Winter ‒ TCP/IP Music Book  Via'
+  got   '|DREAM ǆungla Winter ‒ TCP/IP Music Book  Via'
+  input 'en macOS a STORY vs v. _under_ but'
+  want  'En macOS a STORY vs v. _under_ But'
+  got   'En macOS a STORY vs v. _Under_ But'
+  input '-lead “U.S. peace _a/b/c for in\u2009in mcgraw-hill. ftp://host/file'
+  want  '-Lead “U.S. Peace _a/B/C for in\u2009in McGraw-Hill. Ftp://host/file'
+  got   '-Lead “U.S. Peace _A/B/C for in\u2009in McGraw-Hill. Ftp://host/file'
+  input 'https://x.org mc-hammer v to ŉ ~dream or mrs.'
+  want  'https://x.org Mc-Hammer v to ʼN ~Dream or Mrs.'
+  got   'https://x.org Mc-Hammer v to ŉ ~Dream or Mrs.'
+  input 'VS.– ‒ A peace TCP/IP city v1.2 city music'
+  want  'Vs.– ‒ A Peace TCP/IP City v1.2 City Music'
+  got   'Vs.– ‒ A Peace TCP/IP City V1.2 City Music'

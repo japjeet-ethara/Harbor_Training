@@ -1,0 +1,17 @@
+wrong answers      13275 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input "Dr D'Angelo  vs.\u2009αlpha TCP/IP river War"
+  want  "Dr d'Angelo  vs.\u2009Αlpha TCP/IP River War"
+  got   "Dr d'Angelo  vs.\u2009αlpha TCP/IP River War"
+  input 'FTP://HOST/FILE MUSIC BOOK  VIA !AND VS MCGRAW-HILL LIGHT "ΑLPHA'
+  want  'Ftp://host/file Music Book  via !And vs McGraw-Hill Light "Αlpha'
+  got   'Ftp://host/file Music Book  via !And vs McGraw-Hill Light "αlpha'
+  input 'v1.2'
+  want  'v1.2'
+  got   'V1.2'
+  input 'X. story if élan mr vs. in'
+  want  'X. Story if Élan Mr vs. In'
+  got   'X. Story if élan Mr vs. In'
+  input 'e.g.\xa0élan'
+  want  'e.g.\xa0Élan'
+  got   'e.g.\xa0élan'

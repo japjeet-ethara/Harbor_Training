@@ -1,1 +1,0 @@
-# Ethara.AI/titlecase-go

@@ -1,0 +1,27 @@
+Port: Ayush Khurana (training-3/AyushKhurana/task)
+Implementation: Go standard library port (training-3/AyushKhurana/task/solution/solve.sh)
+Reference: Python titlecase 2.4.1 in standard-library re fallback mode (REGEX_AVAILABLE = False)
+
+=== Old Exam (2,000 Inputs) ===
+Input suite: task/tests/data/inputs.txt (2,000 titles)
+Expected suite: task/tests/data/expected.txt (2,000 titles)
+Total inputs: 2000
+Wrong answers: 0 of 2000
+Accuracy: 100.00%
+Error rate: 0.00%
+
+=== New Exam (100,000 Inputs) ===
+Input suite: task/tests/data/hidden_inputs.txt (100,000 titles)
+Expected suite: task/tests/data/hidden_expected.txt (100,000 titles)
+Generation: kit/make_pool.py 100000 1 (100,000 unique titles, seed 1)
+Stability: kit/answers.py across PYTHONHASHSEED 1 and 2 (100,000 kept, 0 dropped, regex module used False)
+Total inputs: 100000
+Wrong answers: 0 of 100000
+Accuracy: 100.00%
+Error rate: 0.00%
+
+=== Summary & Verification Findings ===
+- Verified genuine classmate Go implementation.
+- Evaluated with kit/compare.py under normalized \n stdin stream matching verifier jail.
+- Zero false positives: 100% accuracy on both the 2,000-input and 100,000-input suites.
+- Confirms consistency across independent classmate Go ports on the hardened 100K exam.

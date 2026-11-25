@@ -1,0 +1,14 @@
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+.venv/
+__pycache__/
+.env
+
+attack/cheat1-test/
+attack/cheat2-test/
+attack/cheat3-test/
+attack/empty-program-test/

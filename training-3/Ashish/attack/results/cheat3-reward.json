@@ -1,0 +1,25 @@
+{
+  "reward": 0.3333,
+  "job_folder": "2026-11-19__16-48-15",
+  "trial": "titlecase-go__TAYJotC",
+  "source": "verifier/reward.json copied from the real Harbor run",
+  "components": {
+    "build": 1,
+    "no_python": 1,
+    "behaviour": 0
+  },
+  "weights": {
+    "build": 1.0,
+    "no_python": 1.0,
+    "behaviour": 4.0
+  },
+  "calculation": "(4×0 + 1×1 + 1×1) / (4+1+1) = 2 / 6 = 0.3333333333 → 0.3333",
+  "source_of_weights": "tests/reward.toml:4",
+  "challenge_method": [
+    "Read verifier/reward-details.json and recomputed the weighted mean from tests/reward.toml:4; it matched reward.json.",
+    "Copied the exact artifact workspace to scratch; 'go build ./...' exited 0 and 'find . -type f -name \"*.py\"' returned 0 files, confirming build=1 and no_python=1.",
+    "Fed all 2,000 hidden inputs to the rebuilt artifact binary; it emitted OUTPUT_BYTES=0. tests/support.py:96-104 therefore counts 0 matching lines out of 2,000, giving behaviour=0.",
+    "No surprise component appeared, so no cheat fix or second run was needed for cheat 3."
+  ],
+  "why_it_matters": "This is an exact demonstration of the unconditional 2/6 floor: a program with zero correct answers still scores 0.3333 purely for building and having no .py files in the workspace."
+}

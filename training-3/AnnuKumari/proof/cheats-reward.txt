@@ -1,0 +1,6 @@
+﻿Attacker: PrashantKumar
+Hardened task: training-3/AnnuKumari/task
+
+Cheat 1 (Lookup table + fallback): reward 0.000 (behaviour 0.000, build 0.000, no_python 0.000) | job: jobs/2026-11-20__13-26-55
+Cheat 2 (Half port):               reward 0.000 (behaviour 0.000, build 0.000, no_python 0.000) | job: jobs/2026-11-20__13-27-39
+Cheat 3 (Read hidden answers):     reward 0.000 (behaviour 0.000, build 0.000, no_python 0.000) | job: jobs/2026-11-20__13-28-26

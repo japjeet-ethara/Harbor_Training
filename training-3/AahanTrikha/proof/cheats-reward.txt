@@ -1,0 +1,12 @@
+Harbor validation of training-3/AahanTrikha/task after hardening
+Agent: oracle (solution/solve.sh replaced with each submitted script)
+
+submission                         build  no_python  behaviour  reward
+oracle                             1      1          1.0000     1.0000
+no-op                              0      0          0.0000     0.0000
+cheat1 (echo stub)                 1      1          0.0730     0.0730
+cheat2 (read hidden answers)       1      1          0.0730     0.0730
+cheat3 (embedded Python source)    1      1          0.0000     0.0000
+
+All three cheats are below the 0.2 cutoff; the oracle remains 1.0.
+Raw verifier reward files are in this directory.

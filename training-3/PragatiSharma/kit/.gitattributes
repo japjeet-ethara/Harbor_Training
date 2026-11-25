@@ -1,0 +1,3 @@
+# Keep every kit file byte for byte: the trainer's scripts are CRLF as
+# distributed, and the data files are LF-only records.
+* -text -whitespace

@@ -1,0 +1,7 @@
+inputs.txt count=2000 sha256=be446d942df932eb18376043f816ab078c6c3c45b89f6743df05411141f7b838
+expected.txt count=2000 sha256=d5b7ff533e3d429d79e1343a45ad8a26b45a640cf7255920b30e2a60f7c15d14
+visible families={'bibliographic': 400, 'museum': 400, 'publication': 400, 'music': 400, 'historical': 400}
+hidden_inputs.txt count=2000 sha256=fc5ba81ad5ad9d97599b7f758ca8dadaa22ad45bcbbe8efc1f948f1eee1246d7
+hidden_expected.txt count=2000 sha256=62871eab9c801955b0ef16a114d3f406ae22b62fa684bf6d31758f63d4e3cf52
+hidden_ families={'bibliographic': 400, 'museum': 400, 'publication': 400, 'music': 400, 'historical': 400}
+distinct inputs=4000 distinct outputs=4000

@@ -1,0 +1,22 @@
+Old exam
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%
+
+New exam
+wrong answers      41859 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'A.B. a\xa0mcgraw-hill'
+  want  'A.B. A\xa0McGraw-Hill'
+  got   'A.B. A\xa0mcgraw-Hill'
+  input '"αlpha. Mcx\xa0\\o\'neil\u2009%summer a/b/c out-of-date D\'Angelo as! ST'
+  want  '"Αlpha. MCX\xa0\\O\'neil\u2009%Summer a/B/C Out-of-Date d\'Angelo As! ST'
+  got   '"Αlpha. McX\xa0\\o\'neil\u2009%summer a/B/C Out-of-Date d\'Angelo As! ST'
+  input 'music\tDr+ star'
+  want  'Music\tDr+ Star'
+  got   'music\tDr+ Star'
+  input 'macOS a STORY book peace Дом but vs. MCDONALD!'
+  want  'macOS a STORY Book Peace Дом but vs. McDonald!'
+  got   'macOS a STORY Book Peace ДОМ but vs. McDonald!'
+  input "O'neil\tat out-of-date out-of-date\xa0house -lead"
+  want  "O'Neil\tat Out-of-Date Out-of-Date\xa0House -Lead"
+  got   "O'neil\tat Out-of-Date Out-of-Date\xa0house -Lead"

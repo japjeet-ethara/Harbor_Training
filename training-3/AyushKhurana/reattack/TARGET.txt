@@ -1,0 +1,4 @@
+Pragati Sharma (ethara/titlecase-go), HARDENED task
+commit b21faef9ce8116cc0af36f76c1a31aad83025304
+path training-3/PragatiSharma/task
+(Day 4 target was the same author's task at 8b79bbcfbcce50f0a50058fdf397cd55f0abc018, before hardening.)

@@ -1,0 +1,19 @@
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+attack/titlecase-go/
+attack/python-titlecase/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# Generated exam artefacts: the committed copies live in task/tests/data/.
+kit/out/
+
+# Scratch copies and logs used while validating the hardened task.
+proof/runs/

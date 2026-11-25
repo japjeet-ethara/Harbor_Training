@@ -1,0 +1,42 @@
+schema_version = "1.4"
+# The agent's repo is collected after the agent finishes and uploaded to the
+# same path in the separate verifier container.
+artifacts = ["/workspace/repo"]
+
+[task]
+name = "local/titlecase-go"
+version = "1.1.0"
+description = ""
+authors = []
+keywords = []
+
+[metadata]
+
+[verifier]
+timeout_sec = 900.0
+environment_mode = "separate"
+# Grading is fully offline: Reward Kit is baked into tests/Dockerfile, and the
+# agent's program must not be able to fetch answers while it is graded.
+network_mode = "no-network"
+collect = []
+
+[verifier.env]
+
+[agent]
+timeout_sec = 600.0
+# While the agent works it can reach only the model endpoint (Harbor adds it).
+# The task's answer files are on public GitHub, so open internet = free answers.
+network_mode = "allowlist"
+allowed_hosts = []
+
+[environment]
+# Baseline for environment setup (e.g. installing the agent CLI). The agent
+# phase above overrides it with the allowlist.
+network_mode = "public"
+build_timeout_sec = 900.0
+os = "linux"
+mcp_servers = []
+
+[environment.env]
+
+[solution.env]

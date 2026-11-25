@@ -1,0 +1,106 @@
+Round 2 - re-attack against titlecase-go
+========================================
+
+Date: 2026-11-20
+Task: training-3/ShivamTiwari/task
+Runner: harbor run -p <task> -a oracle|nop, measured on 2026-11-20
+Evidence root (outside the repo):
+  C:\Users\ShivamTiwari\attack\harden-runs\jobs
+
+Annu Kumari's attack/ATTACK.md is byte-for-byte the round-1 report: same target
+SHA (8a12385d0284da21ba6478497c37ed3bd630db16), same claimed scores
+(1.0 / 0.453 / 0.3883). Those three scripts were already closed in round 1, so
+round 2 searched for the hole a re-attack would actually use.
+
+Residual hole found
+-------------------
+The round-1 rules were enforced only by no_python. build and behaviour never
+looked at the tree, and /usr/lib/python3.11 was still world-readable to the
+"runner" user. Copying /usr/bin/python3.11 into the repository and running it
+with os/exec therefore kept perfect behaviour and the build point:
+
+  cheat-smuggle-before: 0.8333  (build 1, no_python 0, behaviour 1.0)
+  job:   harden-runs/jobs/cheat-smuggle-before
+  trial: cheat-smuggle__bXvJfQa
+
+Fix (round 2):
+  - one shared audit in task/tests/checks/_common.py; build, no_python and
+    behaviour all call audit() and exam(), so any structural violation is 0
+    everywhere instead of 5/6;
+  - go list -deps resolves the real import graph (raw-string, escaped and
+    aliased imports cannot hide os/exec/syscall/net/...);
+  - alias-proof symbol bans (StartProcess, ProcAttr, exec.Cmd, ...);
+  - the verifier seals /usr/lib/python3*, /usr/local/lib/python3* and libpython
+    with chmod 700, in addition to the interpreter binaries;
+  - pinned build environment (GO111MODULE=on, GOTOOLCHAIN=local, GOWORK=off,
+    GOPROXY=off, CGO_ENABLED=0).
+
+Ann's three exact scripts
+-------------------------
+Her solve.sh files were copied to a scratch task, line endings normalised to
+LF for bash, and run with the oracle agent. Nothing in her folder was modified.
+
+  attempt                    round-1 task                round-2 task
+  -------------------------  --------------------------  ---------------------------
+  annu-cheat1 (embed+exec)   0.0000                      0.0000
+    job                      annu-cheat1-before-retry    annu-cheat1-final
+    trial                    annu-cheat1__D33RjNp        annu-cheat1__SNZh2na
+  annu-cheat2 (half port)    0.0052                      0.0052
+    job                      annu-cheat2-before          annu-cheat2-final
+    trial                    annu-cheat2__nU37MTH        annu-cheat2__cHxeAgH
+  annu-cheat3 (lookup)       0.0022                      0.0022
+    job                      annu-cheat3-before          annu-cheat3-final
+    trial                    annu-cheat3__Yy9bdS9        annu-cheat3__TZ2rt6e
+
+The first annu-cheat1-before attempt (trial annu-cheat1__M2ybaeJ) errored while
+pulling docker/dockerfile:1 from the registry; the retry above is the valid
+measurement and is the one quoted.
+
+The two non-zero residuals are below-floor behaviour credit only: behaviour
+0.0077 and 0.0034, with build = 0 and no_python = 0 for both.
+
+New attack: copied interpreter (cheat4)
+---------------------------------------
+Script: proof/cheats/cheat4/solve.sh (mine, not Annu's)
+
+  round-1 task:  0.8333  build 1, no_python 0, behaviour 1.0
+                 job   harden-runs/jobs/cheat-smuggle-before
+                 trial cheat-smuggle__bXvJfQa
+  round-2 task:  0.0000  build 0, no_python 0, behaviour 0.0
+                 job   harden-runs/jobs/cheat-smuggle-final
+                 trial cheat-smuggle__rUCFCDr
+
+End-to-end validation on the round-2 task
+-----------------------------------------
+  run      job                              trial                   reward  b/np/beh
+  -------  -------------------------------  ----------------------  ------  -----------
+  oracle   harden-runs/jobs/oracle-final    task__EtFCBdB           1.0000  1/1/1
+  nop      harden-runs/jobs/nop-final       task__eKGotkQ           0.0000  0/0/0
+  cheat1   annu-cheat1-final                annu-cheat1__SNZh2na    0.0000  0/0/0
+  cheat2   annu-cheat2-final                annu-cheat2__cHxeAgH    0.0052  0/0/0.0077
+  cheat3   annu-cheat3-final                annu-cheat3__TZ2rt6e    0.0022  0/0/0.0034
+  cheat4   cheat-smuggle-final              cheat-smuggle__rUCFCDr  0.0000  0/0/0
+
+Oracle component detail: behaviour 1.0, build 1.0, no_python 1.0 (100,000 of
+100,000 lines exact). The oracle run is also the proof that the shared audit
+does not reject legitimate code and that the real Go port still compiles and
+runs as "runner" inside the hardened verifier image.
+
+Why each attempt lands where it does
+------------------------------------
+  - annu-cheat1 is rejected because it imports os/exec and uses //go:embed.
+  - cheat4 is rejected three ways: os/exec import, Python interpreter byte
+    signatures in pybin, and the sealed stdlib at runtime.
+  - annu-cheat2/3 are structurally clean, so they still receive the same tiny
+    below-floor behaviour fraction as in round 1; neither can collect build or
+    no_python.
+  - the oracle is clean on all 28 audit assertions in proof/audit-probe.txt.
+
+Reproduce
+---------
+  harbor run -p training-3/ShivamTiwari/task -a oracle
+  harbor run -p training-3/ShivamTiwari/task -a nop
+  # scratch copy of the task with solution/solve.sh replaced by the cheat:
+  harbor run -p <scratch> -a oracle
+
+Nothing here was pushed. All jobs above are local evidence, not upstream.

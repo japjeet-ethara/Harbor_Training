@@ -1,0 +1,4 @@
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { behaviour = 1.0 }

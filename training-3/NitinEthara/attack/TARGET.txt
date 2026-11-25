@@ -1,0 +1,9 @@
+Attacker: Nitin
+Target: AyushRanjan
+
+Assignment: Day 4 - Break a Classmate's Task
+
+Target task original path: C:\Users\Nitin\Desktop\atk\Nitin\AyushRanjan-titlecase-go
+Local attack copy: C:\Users\Nitin\Desktop\atk\Nitin\training-3\training-3\NitinEthara\attack\target
+
+Target commit SHA: 616287ad5cbfc45e1ae7b0936bf8a1158577c747

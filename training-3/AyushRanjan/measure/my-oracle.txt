@@ -1,0 +1,36 @@
+# Port measurement — my-oracle
+
+Implementation source: AyushRanjan/task/solution/solve.sh
+Execution: Linux Go 1.23 container; UTF-8 line protocol.
+
+## 100K
+- Total expected inputs: 100000
+- Correct answers: 100000
+- Wrong answers: 0
+- Failure percentage: 0.0000%
+- Output records: 100000
+- Output-count mismatch: false
+- Process/build crash: false
+- Trainer compare.py exit code: 0
+
+```text
+wrong answers      0 of 100000
+chance a random 2000 suite sees none of them: 100%
+```
+
+- Probability a random 2,000-input sample misses every observed 100K error: 100.00000000% (100.0000%)
+
+## old-2K
+- Total expected inputs: 2000
+- Correct answers: 2000
+- Wrong answers: 0
+- Failure percentage: 0.0000%
+- Output records: 2000
+- Output-count mismatch: false
+- Process/build crash: false
+- Trainer compare.py exit code: 0
+
+```text
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%
+```

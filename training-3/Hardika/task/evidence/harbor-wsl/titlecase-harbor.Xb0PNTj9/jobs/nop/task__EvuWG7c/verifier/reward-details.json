@@ -1,0 +1,41 @@
+{
+  "behaviour": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "check_hidden_agreement",
+        "value": 0.0,
+        "raw": 0.0,
+        "weight": 1.0,
+        "description": "check_hidden_agreement"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "build": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "compile_packages",
+        "value": 0.0,
+        "raw": 0.0,
+        "weight": 1.0,
+        "description": "compile_packages"
+      }
+    ],
+    "kind": "programmatic"
+  },
+  "no_python": {
+    "score": 0.0,
+    "criteria": [
+      {
+        "name": "check_python_removal",
+        "value": 0.0,
+        "raw": 0.0,
+        "weight": 1.0,
+        "description": "check_python_removal"
+      }
+    ],
+    "kind": "programmatic"
+  }
+}

@@ -28,5 +28,7 @@ Speed, memory use and the wording of error messages.
 
 ## How it is graded
 
-Hidden automatic tests award a partial score from three weighted checks: that the project builds,
-that no Python files remain, and the share of output lines that exactly match the original.
+The project must build and contain no Python files to be eligible for a score. The behavior score
+is the fraction of hidden cases whose output records match the original implementation exactly.
+The program must emit exactly one output record per input line; missing or extra records receive no
+behavior credit. A behavior score below 20% receives no reward.

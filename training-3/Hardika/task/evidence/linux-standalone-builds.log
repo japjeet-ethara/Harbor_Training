@@ -1,0 +1,505 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.1s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 981B 0.9s done
+#1 DONE 3.7s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#3 DONE 11.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#2 DONE 35.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 72B 0.3s done
+#4 DONE 0.5s
+
+#5 [internal] load build context
+#5 transferring context: 35.68kB 0.2s done
+#5 DONE 0.6s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 resolve docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 resolve docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db 0.7s done
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 resolve docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e 0.8s done
+#7 DONE 2.0s
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558 0B / 249B 0.2s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 0B / 13.67MB 0.2s
+#7 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 0B / 3.53MB 0.2s
+#7 ...
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 DONE 2.7s
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 0B / 28.24MB 0.2s
+#7 sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558 249B / 249B 1.5s done
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 1.05MB / 13.67MB 1.6s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 2.10MB / 13.67MB 1.7s
+#7 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 1.05MB / 3.53MB 2.0s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 3.15MB / 13.67MB 2.3s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 4.19MB / 13.67MB 3.0s
+#7 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 2.10MB / 3.53MB 3.0s
+#7 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 3.15MB / 3.53MB 3.9s
+#7 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 3.41MB / 3.53MB 4.2s
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 2.10MB / 28.24MB 4.2s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 5.24MB / 13.67MB 4.4s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 6.29MB / 13.67MB 4.5s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 7.34MB / 13.67MB 4.8s
+#7 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 3.53MB / 3.53MB 4.6s done
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 8.39MB / 13.67MB 5.3s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 9.44MB / 13.67MB 5.7s
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 4.19MB / 28.24MB 5.4s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 10.49MB / 13.67MB 6.5s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 11.53MB / 13.67MB 7.5s
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 6.29MB / 28.24MB 7.4s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 12.58MB / 13.67MB 8.1s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 13.67MB / 13.67MB 9.3s
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 8.39MB / 28.24MB 9.2s
+#7 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 13.67MB / 13.67MB 9.6s done
+#7 ...
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0B / 32B 1.4s
+#6 sha256:01b3c4a0d5c8f9abfa7395525fc8c3e2d9b8d3fec47edaf0d9c58f6253797d34 125B / 125B 1.2s done
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 4.19MB / 74.07MB 5.7s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 6.29MB / 92.38MB 5.6s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 0B / 64.40MB 0.5s
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 10.49MB / 28.24MB 10.5s
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 12.58MB / 28.24MB 13.4s
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 14.68MB / 28.24MB 16.7s
+#7 ...
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 9.44MB / 74.07MB 12.5s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 18.87MB / 92.38MB 12.5s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 2.10MB / 64.40MB 7.4s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 24.12MB / 92.38MB 15.0s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 11.53MB / 74.07MB 17.6s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 5.24MB / 64.40MB 12.5s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 29.36MB / 92.38MB 17.9s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 34.60MB / 92.38MB 20.7s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 15.73MB / 74.07MB 22.2s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 7.34MB / 64.40MB 17.6s
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 23.07MB / 28.24MB 27.5s
+#7 ...
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 39.85MB / 92.38MB 23.0s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 45.09MB / 92.38MB 25.4s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 18.87MB / 74.07MB 27.3s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 10.49MB / 64.40MB 22.7s
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 28.24MB / 28.24MB 32.6s done
+#7 DONE 35.2s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 0B / 24.02MB 0.2s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 50.33MB / 92.38MB 28.6s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 23.07MB / 74.07MB 30.8s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 55.57MB / 92.38MB 31.4s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 14.68MB / 64.40MB 26.9s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 1.05MB / 24.02MB 5.3s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 60.82MB / 92.38MB 34.8s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 27.26MB / 74.07MB 35.8s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 18.87MB / 64.40MB 31.4s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 3.15MB / 24.02MB 9.5s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 66.06MB / 92.38MB 38.3s
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 extracting sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150
+#7 ...
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 31.46MB / 74.07MB 39.7s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 22.02MB / 64.40MB 36.4s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 5.24MB / 24.02MB 14.5s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 71.30MB / 92.38MB 43.1s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 33.55MB / 74.07MB 45.3s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 26.21MB / 64.40MB 40.8s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 7.34MB / 24.02MB 18.0s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 76.55MB / 92.38MB 47.4s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 30.41MB / 64.40MB 43.9s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 9.44MB / 24.02MB 20.8s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 36.70MB / 74.07MB 50.3s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 11.53MB / 24.02MB 22.6s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 81.79MB / 92.38MB 50.8s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 13.63MB / 24.02MB 24.3s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 15.73MB / 24.02MB 25.1s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 87.03MB / 92.38MB 53.4s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 33.55MB / 64.40MB 49.0s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 17.83MB / 24.02MB 27.0s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 39.85MB / 74.07MB 55.4s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 92.27MB / 92.38MB 56.7s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 19.92MB / 24.02MB 29.0s
+#6 sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 92.38MB / 92.38MB 57.3s done
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 0B / 48.49MB 0.2s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 37.75MB / 64.40MB 53.3s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 22.02MB / 24.02MB 30.2s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 44.04MB / 74.07MB 59.6s
+#6 sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 24.02MB / 24.02MB 31.7s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 41.94MB / 64.40MB 56.8s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 3.15MB / 48.49MB 4.4s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 48.23MB / 74.07MB 62.7s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 6.29MB / 48.49MB 7.1s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 46.14MB / 64.40MB 60.7s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 52.43MB / 74.07MB 66.4s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 9.44MB / 48.49MB 10.3s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 12.58MB / 48.49MB 12.5s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 56.62MB / 74.07MB 70.7s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 49.28MB / 64.40MB 65.7s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 15.73MB / 48.49MB 15.1s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 18.87MB / 48.49MB 17.4s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 59.77MB / 74.07MB 75.8s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 53.48MB / 64.40MB 71.1s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 22.02MB / 48.49MB 19.2s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 63.96MB / 74.07MB 78.2s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 25.17MB / 48.49MB 21.3s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 56.62MB / 64.40MB 76.3s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 28.31MB / 48.49MB 23.9s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 68.16MB / 74.07MB 83.1s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 31.46MB / 48.49MB 25.5s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 34.60MB / 48.49MB 27.9s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 60.82MB / 64.40MB 80.6s
+#6 sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 72.35MB / 74.07MB 86.6s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 36.70MB / 48.49MB 33.0s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 64.40MB / 64.40MB 86.5s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 39.85MB / 48.49MB 35.0s
+#6 sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 64.40MB / 64.40MB 87.3s done
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 42.99MB / 48.49MB 37.1s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 46.14MB / 48.49MB 38.0s
+#6 sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 48.49MB / 48.49MB 39.6s done
+#6 DONE 104.6s
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 ...
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 extracting sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 78.3s done
+#7 DONE 113.6s
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 extracting sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30
+#7 extracting sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 4.7s done
+#7 DONE 118.3s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 extracting sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8
+#7 extracting sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 21.1s done
+#7 DONE 139.4s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 ...
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 extracting sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558
+#7 extracting sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558 0.5s done
+#7 DONE 140.0s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:f014853ae2033c0e173500a9c5027c3ecffe2ffacbd09b789ac2f2dc63ddaa63 56.3s done
+#6 DONE 160.9s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334
+#6 extracting sha256:6d6401b7636bba3fe2d916b154ba44abe2081a737e117b2c736167ca6ea42334 13.9s done
+#6 DONE 174.8s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05
+#6 extracting sha256:cffef7dc6f99e0837fd18f5ab2b363aff8d1c12ed377199f6d6478f80b458c05 41.8s done
+#6 DONE 216.6s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877
+#6 extracting sha256:d64c83132511ab5226f18a66abc03228a24fffcaf1ab1b4e9c9cdb64d16ad877 41.1s done
+#6 DONE 257.6s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3
+#6 extracting sha256:d5791340ef181f05ef1e99760e4be81cb2008d99b2bc1e56b2faa9b6295d0ac3 61.6s done
+#6 DONE 319.2s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:01b3c4a0d5c8f9abfa7395525fc8c3e2d9b8d3fec47edaf0d9c58f6253797d34
+#6 extracting sha256:01b3c4a0d5c8f9abfa7395525fc8c3e2d9b8d3fec47edaf0d9c58f6253797d34 0.5s done
+#6 DONE 319.8s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
+#6 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0.2s done
+#6 DONE 319.9s
+
+#8 [stage-0 2/7] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#8 DONE 8.7s
+
+#9 [stage-0 3/7] COPY requirements.lock /tmp/reference-requirements.lock
+#9 DONE 0.5s
+
+#10 [stage-0 4/7] RUN /usr/local/bin/python -m pip install --no-cache-dir --only-binary=:all: --require-hashes -r /tmp/reference-requirements.lock     && /usr/local/bin/python -c 'import regex, ssl, sys, unicodedata; assert sys.version_info[:3] == (3,12,14); assert unicodedata.unidata_version == "15.0.0"; assert regex.DEFAULT_VERSION == regex.VERSION0'     && rm /tmp/reference-requirements.lock
+#10 70.93 Collecting regex==2026.11.15 (from -r /tmp/reference-requirements.lock (line 1))
+#10 72.73   Downloading regex-2026.11.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (809 kB)
+#10 73.09      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 809.2/809.2 kB 5.5 MB/s eta 0:00:00
+#10 73.56 Installing collected packages: regex
+#10 75.49 Successfully installed regex-2026.11.15
+#10 75.51 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 79.77 
+#10 79.77 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#10 79.77 [notice] To update, run: pip install --upgrade pip
+#10 DONE 84.0s
+
+#11 [stage-0 5/7] RUN useradd --create-home --uid 10001 agent && install -d -o agent -g agent /workspace/repo
+#11 DONE 8.9s
+
+#12 [stage-0 6/7] WORKDIR /workspace/repo
+#12 DONE 2.3s
+
+#13 [stage-0 7/7] COPY --chown=agent:agent upstream/ /workspace/repo/
+#13 DONE 1.4s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 23.4s done
+#14 exporting manifest sha256:0aa4ed45a4699120ba70ea3897db90234fa5df1c2f3f0b6c1e2c0e6a65914414
+#14 exporting manifest sha256:0aa4ed45a4699120ba70ea3897db90234fa5df1c2f3f0b6c1e2c0e6a65914414 0.2s done
+#14 exporting config sha256:47125f7e0a56fde0da2eae18219527e1d31f2c1ec7738bdde18884b3ff4d6aeb
+#14 exporting config sha256:47125f7e0a56fde0da2eae18219527e1d31f2c1ec7738bdde18884b3ff4d6aeb 0.1s done
+#14 exporting attestation manifest sha256:62a537f79b268dc7479eade5de2f0cbfdbf1d24e13232fa401e224234f2047ff
+#14 exporting attestation manifest sha256:62a537f79b268dc7479eade5de2f0cbfdbf1d24e13232fa401e224234f2047ff 0.2s done
+#14 exporting manifest list sha256:80ee429270f59d11faa56166894cf0524e2996e4dd2197c5d7f43ee2c87cecda 0.1s done
+#14 naming to docker.io/library/titlecase-go-agent:section18
+#14 naming to docker.io/library/titlecase-go-agent:section18 0.5s done
+#14 unpacking to docker.io/library/titlecase-go-agent:section18
+#14 unpacking to docker.io/library/titlecase-go-agent:section18 14.7s done
+#14 DONE 41.6s
+go version go1.23.12 linux/amd64
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 819B 0.4s done
+#1 DONE 1.8s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#2 DONE 1.0s
+
+#3 [internal] load metadata for docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#3 DONE 1.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 203B 0.3s done
+#4 DONE 0.6s
+
+#5 [internal] load build context
+#5 transferring context: 396.13kB 0.6s done
+#5 DONE 1.2s
+
+#6 [stage-0 1/7] FROM docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db
+#6 resolve docker.io/library/golang:1.23.12-bookworm@sha256:167053a2bb901972bf2c1611f8f52c44d5fe7e762e5cab213708d82c421614db 0.9s done
+#6 DONE 1.2s
+
+#7 FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#7 resolve docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e 1.0s done
+#7 DONE 1.2s
+
+#8 [stage-0 2/7] COPY --from=python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e /usr/local/ /usr/local/
+#8 CACHED
+
+#9 [stage-0 3/7] COPY requirements.lock /tmp/verifier-requirements.lock
+#9 DONE 0.5s
+
+#10 [stage-0 4/7] RUN /usr/local/bin/python -m pip install --no-cache-dir --require-hashes --only-binary=:all: -r /tmp/verifier-requirements.lock     && /usr/local/bin/rewardkit --help >/dev/null     && rm /tmp/verifier-requirements.lock     && mkdir -p /workspace/repo /tests/data     && chmod 700 /tests
+#10 70.48 Collecting aiohappyeyeballs==2.7.1 (from -r /tmp/verifier-requirements.lock (line 1))
+#10 72.03   Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+#10 90.68 Collecting aiohttp==3.14.5 (from -r /tmp/verifier-requirements.lock (line 4))
+#10 90.99   Downloading aiohttp-3.14.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.9 MB)
+#10 91.75      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 3.6 MB/s eta 0:00:00
+#10 92.06 Collecting aiosignal==1.4.0 (from -r /tmp/verifier-requirements.lock (line 166))
+#10 92.10   Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+#10 92.25 Collecting annotated-types==0.8.0 (from -r /tmp/verifier-requirements.lock (line 169))
+#10 92.30   Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#10 92.67 Collecting anyio==4.16.0 (from -r /tmp/verifier-requirements.lock (line 172))
+#10 92.72   Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+#10 93.05 Collecting attrs==26.1.0 (from -r /tmp/verifier-requirements.lock (line 175))
+#10 93.12   Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#10 103.7 Collecting boto3==1.44.4 (from -r /tmp/verifier-requirements.lock (line 178))
+#10 103.9   Downloading boto3-1.44.4-py3-none-any.whl (140 kB)
+#10 113.4 Collecting botocore==1.44.4 (from -r /tmp/verifier-requirements.lock (line 181))
+#10 113.6   Downloading botocore-1.44.4-py3-none-any.whl (16.5 MB)
+#10 118.1      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.5/16.5 MB 3.7 MB/s eta 0:00:00
+#10 118.9 Collecting certifi==2026.10.23 (from -r /tmp/verifier-requirements.lock (line 184))
+#10 119.0   Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#10 121.1 Collecting charset-normalizer==3.5.2 (from -r /tmp/verifier-requirements.lock (line 187))
+#10 121.2   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#10 121.6 Collecting click==8.5.1 (from -r /tmp/verifier-requirements.lock (line 360))
+#10 121.6   Downloading click-8.5.1-py3-none-any.whl (126 kB)
+#10 122.5 Collecting fastuuid==0.14.0 (from -r /tmp/verifier-requirements.lock (line 363))
+#10 122.7   Downloading fastuuid-0.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (278 kB)
+#10 123.8 Collecting filelock==4.2.11 (from -r /tmp/verifier-requirements.lock (line 442))
+#10 124.0   Downloading filelock-4.2.11-py3-none-any.whl (222 kB)
+#10 126.4 Collecting frozenlist==1.8.0 (from -r /tmp/verifier-requirements.lock (line 445))
+#10 126.4   Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+#10 126.9 Collecting fsspec==2026.9.0 (from -r /tmp/verifier-requirements.lock (line 576))
+#10 127.0   Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+#10 128.5 Collecting h11==0.16.0 (from -r /tmp/verifier-requirements.lock (line 579))
+#10 128.6   Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#10 129.0 Collecting h2==4.4.1 (from -r /tmp/verifier-requirements.lock (line 582))
+#10 129.1   Downloading h2-4.4.1-py3-none-any.whl (62 kB)
+#10 129.3 Collecting harbor-rewardkit==0.2.4 (from -r /tmp/verifier-requirements.lock (line 585))
+#10 129.4   Downloading harbor_rewardkit-0.2.4-py3-none-any.whl (78 kB)
+#10 131.1 Collecting hf-xet==1.8.0 (from -r /tmp/verifier-requirements.lock (line 588))
+#10 131.5   Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+#10 132.6      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 4.3 MB/s eta 0:00:00
+#10 133.0 Collecting hpack==4.2.0 (from -r /tmp/verifier-requirements.lock (line 606))
+#10 133.0   Downloading hpack-4.2.0-py3-none-any.whl (34 kB)
+#10 133.3 Collecting httpcore==1.0.9 (from -r /tmp/verifier-requirements.lock (line 609))
+#10 133.4   Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#10 133.6 Collecting httpcore2==2.16.2 (from -r /tmp/verifier-requirements.lock (line 612))
+#10 133.6   Downloading httpcore2-2.16.2-py3-none-any.whl (85 kB)
+#10 134.1 Collecting httpx==0.28.1 (from -r /tmp/verifier-requirements.lock (line 615))
+#10 134.1   Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#10 134.4 Collecting httpx2==2.16.2 (from -r /tmp/verifier-requirements.lock (line 618))
+#10 134.4   Downloading httpx2-2.16.2-py3-none-any.whl (97 kB)
+#10 135.6 Collecting huggingface-hub==1.33.0 (from -r /tmp/verifier-requirements.lock (line 621))
+#10 135.7   Downloading huggingface_hub-1.33.0-py3-none-any.whl (846 kB)
+#10 135.9      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 846.4/846.4 kB 4.3 MB/s eta 0:00:00
+#10 137.3 Collecting hyperframe==6.1.0 (from -r /tmp/verifier-requirements.lock (line 624))
+#10 137.4   Downloading hyperframe-6.1.0-py3-none-any.whl (13 kB)
+#10 138.2 Collecting idna==3.20 (from -r /tmp/verifier-requirements.lock (line 627))
+#10 138.2   Downloading idna-3.20-py3-none-any.whl (69 kB)
+#10 139.7 Collecting importlib-metadata==8.9.0 (from -r /tmp/verifier-requirements.lock (line 630))
+#10 139.8   Downloading importlib_metadata-8.9.0-py3-none-any.whl (27 kB)
+#10 140.1 Collecting jinja2==3.1.6 (from -r /tmp/verifier-requirements.lock (line 633))
+#10 140.2   Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#10 145.2 Collecting jiter==0.19.0 (from -r /tmp/verifier-requirements.lock (line 636))
+#10 145.4   Downloading jiter-0.19.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (338 kB)
+#10 146.0 Collecting jmespath==1.1.0 (from -r /tmp/verifier-requirements.lock (line 742))
+#10 146.2   Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+#10 146.7 Collecting jsonschema==4.26.0 (from -r /tmp/verifier-requirements.lock (line 745))
+#10 146.8   Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#10 147.1 Collecting jsonschema-specifications==2025.9.1 (from -r /tmp/verifier-requirements.lock (line 748))
+#10 147.1   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#10 151.9 Collecting litellm==1.109.1 (from -r /tmp/verifier-requirements.lock (line 751))
+#10 152.2   Downloading litellm-1.109.1-cp310-abi3-manylinux_2_28_x86_64.whl (41.1 MB)
+#10 165.8      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.1/41.1 MB 3.0 MB/s eta 0:00:00
+#10 170.8 Collecting markupsafe==3.0.4 (from -r /tmp/verifier-requirements.lock (line 760))
+#10 171.1   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#10 179.6 Collecting multidict==7.2.1 (from -r /tmp/verifier-requirements.lock (line 912))
+#10 179.8   Downloading multidict-7.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (516 kB)
+#10 181.5 Collecting openai==3.52.0 (from -r /tmp/verifier-requirements.lock (line 1064))
+#10 181.6   Downloading openai-3.52.0-py3-none-any.whl (2.4 MB)
+#10 183.3      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 1.5 MB/s eta 0:00:00
+#10 184.9 Collecting packaging==26.3 (from -r /tmp/verifier-requirements.lock (line 1067))
+#10 185.2   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 187.3 Collecting propcache==0.5.4 (from -r /tmp/verifier-requirements.lock (line 1070))
+#10 187.4   Downloading propcache-0.5.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (250 kB)
+#10 190.2 Collecting pydantic==2.14.3 (from -r /tmp/verifier-requirements.lock (line 1209))
+#10 190.3   Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+#10 215.9 Collecting pydantic-core==2.50.4 (from -r /tmp/verifier-requirements.lock (line 1212))
+#10 216.2   Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+#10 217.1      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 2.6 MB/s eta 0:00:00
+#10 217.5 Collecting pydantic-settings==2.16.3 (from -r /tmp/verifier-requirements.lock (line 1353))
+#10 217.5   Downloading pydantic_settings-2.16.3-py3-none-any.whl (82 kB)
+#10 217.8 Collecting python-dateutil==2.9.0.post0 (from -r /tmp/verifier-requirements.lock (line 1356))
+#10 217.9   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#10 218.5 Collecting python-dotenv==1.2.4 (from -r /tmp/verifier-requirements.lock (line 1359))
+#10 218.6   Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#10 220.4 Collecting pyyaml==6.0.3 (from -r /tmp/verifier-requirements.lock (line 1362))
+#10 221.0   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#10 221.4      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 5.8 MB/s eta 0:00:00
+#10 222.3 Collecting referencing==0.37.0 (from -r /tmp/verifier-requirements.lock (line 1436))
+#10 222.5   Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#10 235.9 Collecting regex==2026.11.15 (from -r /tmp/verifier-requirements.lock (line 1439))
+#10 236.0   Downloading regex-2026.11.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (809 kB)
+#10 236.6      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 809.2/809.2 kB 1.8 MB/s eta 0:00:00
+#10 237.2 Collecting requests==2.34.2 (from -r /tmp/verifier-requirements.lock (line 1554))
+#10 237.3   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#10 245.2 Collecting rpds-py==2026.9.1 (from -r /tmp/verifier-requirements.lock (line 1557))
+#10 245.4   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#10 246.0 Collecting s3transfer==0.19.3 (from -r /tmp/verifier-requirements.lock (line 1686))
+#10 246.0   Downloading s3transfer-0.19.3-py3-none-any.whl (90 kB)
+#10 246.3 Collecting six==1.17.0 (from -r /tmp/verifier-requirements.lock (line 1689))
+#10 246.4   Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#10 246.5 Collecting sniffio==1.3.1 (from -r /tmp/verifier-requirements.lock (line 1692))
+#10 246.6   Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#10 248.0 Collecting tiktoken==0.14.0 (from -r /tmp/verifier-requirements.lock (line 1695))
+#10 248.4   Downloading tiktoken-0.14.0-cp312-cp312-manylinux_2_28_x86_64.whl (1.2 MB)
+#10 248.8      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 4.8 MB/s eta 0:00:00
+#10 255.0 Collecting tokenizers==0.23.3 (from -r /tmp/verifier-requirements.lock (line 1760))
+#10 255.6   Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+#10 257.2      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 2.5 MB/s eta 0:00:00
+#10 258.6 Collecting tqdm==4.70.1 (from -r /tmp/verifier-requirements.lock (line 1785))
+#10 259.0   Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+#10 259.5 Collecting truststore==0.10.5 (from -r /tmp/verifier-requirements.lock (line 1788))
+#10 259.6   Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+#10 259.8 Collecting typing-extensions==4.16.0 (from -r /tmp/verifier-requirements.lock (line 1791))
+#10 259.9   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 260.0 Collecting typing-inspection==0.4.5 (from -r /tmp/verifier-requirements.lock (line 1794))
+#10 260.1   Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+#10 260.8 Collecting urllib3==2.8.0 (from -r /tmp/verifier-requirements.lock (line 1797))
+#10 261.0   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#10 271.9 Collecting yarl==1.25.1 (from -r /tmp/verifier-requirements.lock (line 1800))
+#10 272.0   Downloading yarl-1.25.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (117 kB)
+#10 273.7 Collecting zipp==4.1.2 (from -r /tmp/verifier-requirements.lock (line 1939))
+#10 274.2   Downloading zipp-4.1.2-py3-none-any.whl (10 kB)
+#10 312.3 Installing collected packages: zipp, urllib3, typing-extensions, truststore, tqdm, sniffio, six, rpds-py, regex, pyyaml, python-dotenv, propcache, packaging, multidict, markupsafe, jmespath, jiter, idna, hyperframe, hpack, hf-xet, h11, fsspec, frozenlist, filelock, fastuuid, click, charset-normalizer, certifi, attrs, annotated-types, aiohappyeyeballs, yarl, typing-inspection, requests, referencing, python-dateutil, pydantic-core, jinja2, importlib-metadata, httpcore2, httpcore, h2, anyio, aiosignal, tiktoken, pydantic, jsonschema-specifications, httpx2, httpx, botocore, aiohttp, s3transfer, pydantic-settings, openai, jsonschema, huggingface-hub, tokenizers, boto3, litellm, harbor-rewardkit
+#10 710.4 Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 boto3-1.44.4 botocore-1.44.4 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 fastuuid-0.14.0 filelock-4.2.11 frozenlist-1.8.0 fsspec-2026.9.0 h11-0.16.0 h2-4.4.1 harbor-rewardkit-0.2.4 hf-xet-1.8.0 hpack-4.2.0 httpcore-1.0.9 httpcore2-2.16.2 httpx-0.28.1 httpx2-2.16.2 huggingface-hub-1.33.0 hyperframe-6.1.0 idna-3.20 importlib-metadata-8.9.0 jinja2-3.1.6 jiter-0.19.0 jmespath-1.1.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 litellm-1.109.1 markupsafe-3.0.4 multidict-7.2.1 openai-3.52.0 packaging-26.3 propcache-0.5.4 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-settings-2.16.3 python-dateutil-2.9.0.post0 python-dotenv-1.2.4 pyyaml-6.0.3 referencing-0.37.0 regex-2026.11.15 requests-2.34.2 rpds-py-2026.9.1 s3transfer-0.19.3 six-1.17.0 sniffio-1.3.1 tiktoken-0.14.0 tokenizers-0.23.3 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 yarl-1.25.1 zipp-4.1.2
+#10 710.4 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 715.0 
+#10 715.0 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#10 715.0 [notice] To update, run: pip install --upgrade pip
+#10 DONE 825.1s
+
+#11 [stage-0 5/7] COPY grade.py build.py no_python.py behaviour.py reward.toml test.sh /tests/
+#11 DONE 3.2s
+
+#12 [stage-0 6/7] COPY data/hidden_inputs.txt data/hidden_expected.txt /tests/data/
+#12 DONE 0.8s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 145.4s done
+#13 exporting manifest sha256:ab53f4a852e58a62f9c2ac4b09eab1116634ba2a1265eafa73567b53be0bf9fd
+#13 exporting manifest sha256:ab53f4a852e58a62f9c2ac4b09eab1116634ba2a1265eafa73567b53be0bf9fd 0.4s done
+#13 exporting config sha256:d44107473ebfe563f96660fc4117cd864c382f78ae2d5cced49aa884f1418271
+#13 exporting config sha256:d44107473ebfe563f96660fc4117cd864c382f78ae2d5cced49aa884f1418271 0.6s done
+#13 exporting attestation manifest sha256:66d32dc72eb1e049ff671be795ec2a5b88e7f89a1b661dac65a76d6689008bd5
+#13 exporting attestation manifest sha256:66d32dc72eb1e049ff671be795ec2a5b88e7f89a1b661dac65a76d6689008bd5 0.2s done
+#13 exporting manifest list sha256:541e7d697be50622ff29b9fb6d33b124308c0b0435db7de0d7081168f5c51e73 0.1s done
+#13 naming to docker.io/library/titlecase-go-verifier:section18 0.0s done
+#13 unpacking to docker.io/library/titlecase-go-verifier:section18
+#13 unpacking to docker.io/library/titlecase-go-verifier:section18 159.8s done
+#13 DONE 309.8s

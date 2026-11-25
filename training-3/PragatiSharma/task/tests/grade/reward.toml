@@ -1,0 +1,7 @@
+# build and no_python are required conditions, enforced inside behaviour:
+# behaviour scores 0 unless both pass. The reward is behaviour alone.
+# build and no_python are still reported in reward.json for diagnosis.
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+weights = { build = 0.0, no_python = 0.0, behaviour = 1.0 }

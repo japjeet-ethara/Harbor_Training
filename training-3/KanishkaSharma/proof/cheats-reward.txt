@@ -1,0 +1,9 @@
+Attacker: Shubham Tumane
+Target: KanishkaSharma/task (hardened)
+
+Cheat 1: reward 0.000 (build 1.0, no_python 1.0, behaviour 0.0) job: jobs/2026-11-20__17-34-49
+Cheat 2: reward 0.000 (build 1.0, no_python 1.0, behaviour 0.0) job: jobs/2026-11-20__17-35-53
+Cheat 3: reward 0.1695 (build 1.0, no_python 1.0, behaviour 0.1695) job: jobs/2026-11-20__17-36-58
+
+Oracle:  reward 1.000 (build 1.0, no_python 1.0, behaviour 1.0) job: jobs/2026-11-20__13-06-06
+Nop:     reward 0.000 (build 0.0, no_python 0.0, behaviour 0.0) job: jobs/2026-11-20__13-07-15

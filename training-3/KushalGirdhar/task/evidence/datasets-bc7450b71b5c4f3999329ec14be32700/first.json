@@ -1,0 +1,219 @@
+{
+  "reference": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "regex": "stdlib re; optional regex unavailable",
+    "unicode": "15.0.0",
+    "upstream_commit": "42f43e2de55bf003b286c6f8e8d8b2d26676a167"
+  },
+  "seed": 1,
+  "splits": {
+    "hidden": {
+      "coverage": {
+        "apostrophe": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "boundary": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "compounds": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "consonants": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "edges": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "expansion": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        },
+        "honorifics": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "initials": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        },
+        "inline": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        },
+        "mc": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "mixed": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "nested": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "separators": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "sigma": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "small": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "subphrase": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        }
+      },
+      "files": {
+        "hidden_expected.txt": "4a842ca0be39fd303f1f3bace2ac6245abd1aa82884fc9cbd70befc7fafa744a",
+        "hidden_inputs.txt": "e913903e84dcfd01e690c623374242d78f89548ec50df59c04d18da01bea1131"
+      }
+    },
+    "visible": {
+      "coverage": {
+        "apostrophe": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "boundary": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "compounds": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "consonants": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "edges": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "expansion": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        },
+        "honorifics": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "initials": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        },
+        "inline": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        },
+        "mc": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "mixed": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "nested": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "separators": {
+          "documentation": 31,
+          "incident": 32,
+          "network": 31,
+          "release": 31
+        },
+        "sigma": {
+          "documentation": 32,
+          "incident": 31,
+          "network": 31,
+          "release": 31
+        },
+        "small": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 31,
+          "release": 32
+        },
+        "subphrase": {
+          "documentation": 31,
+          "incident": 31,
+          "network": 32,
+          "release": 31
+        }
+      },
+      "files": {
+        "expected.txt": "fe159b154bb26f4988665711091d274efc56835b14ff6c38519cc2a49db40415",
+        "inputs.txt": "6460271bd6496647b005f6f855b1efd0fb31865cbd0c90851f7fa0d21cd42f12"
+      }
+    }
+  }
+}

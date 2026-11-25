@@ -1,0 +1,33 @@
+Sneha Sadhukhan's cheats (training-3/SnehaSadhukhan/attack/cheatN/solve.sh) on the hardened task.
+Each run: copy of training-3/Hardika/task with solution/solve.sh replaced by the cheat, harbor run --env docker -a oracle (Harbor 0.26.0).
+
+cheat  job folder            behaviour  build  no_python  reward   (before hardening)
+1      2026-11-23__09-43-38  0.013      0.0    0.0        0.0087   (0.3333)
+2      2026-11-23__09-45-25  0.1357     0.0    0.0        0.0905   (0.3597)
+3      2026-11-23__09-46-28  0.013      0.0    0.0        0.0087   (0.3333)
+
+All three are below 0.2.
+--- cheat1 reward.json
+{
+  "behaviour": 0.013,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0087
+}
+
+--- cheat2 reward.json
+{
+  "behaviour": 0.1357,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0905
+}
+
+--- cheat3 reward.json
+{
+  "behaviour": 0.013,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0087
+}
+

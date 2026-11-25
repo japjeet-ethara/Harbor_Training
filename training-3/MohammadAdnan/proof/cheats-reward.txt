@@ -1,0 +1,12 @@
+Hardened task (training-3/MohammadAdnan/task) — each cheat run with: harbor run -p <copy-with-cheat-as-solution> -a oracle
+reward = (build + no_python + 4*behaviour)/6, behaviour = max(0,(accuracy-0.5)/0.5). Every cheat is below 0.2.
+
+cheat                        reward   accuracy   job
+c1-build-only                0.167    0          jobs/2026-11-20__12-50-08
+c2-delete-only               0        0          jobs/2026-11-20__12-50-59
+c3-partial-port              0.167    0.16741    jobs/2026-11-20__12-51-51
+c4-copy-leak                 0        0          jobs/2026-11-20__12-52-44
+c5-read-exam                 0.167    0.01502    jobs/2026-11-20__12-53-36
+c6-python-inside             0.167    0          jobs/2026-11-20__12-54-27
+
+c1-c3 are Charitra's three probes (written from charitra/titlecase-go/Attack.md.md, which had no scripts); c4 is Charitra's finding 1 as a cheat; c5-c6 are extra.

@@ -1,0 +1,1 @@
+port printed 2001 lines for 100000 inputs: it crashed or stopped early

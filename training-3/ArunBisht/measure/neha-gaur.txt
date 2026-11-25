@@ -1,0 +1,17 @@
+wrong answers      16 of 100000
+chance a random 2000 suite sees none of them: 72%
+  input 'LATE TOWER GRAND D.C. V. THE 3RD MCFOO'
+  want  'Late Tower Grand D.C. V. The 3rd McFoo'
+  got   'Late Tower Grand D.C. V. the 3rd McFoo'
+  input 'D.C. V. V BUT BY'
+  want  'D.C. V. V but By'
+  got   'D.C. V. v but By'
+  input "FINAL O'GRANGE'S A.B. D.C. V. A-B CALM V. AS"
+  want  "Final O'GRANGE'S A.B. D.C. V. A-B Calm V. As"
+  got   "Final O'GRANGE'S A.B. D.C. V. a-B Calm V. As"
+  input "D'ARTAGNAN LATE SILVER D.C. V. A-B AS"
+  want  "d'ARTAGNAN Late Silver D.C. V. A-B As"
+  got   "d'ARTAGNAN Late Silver D.C. V. a-B As"
+  input 'OCEAN MR ITUNES MCCARTHY D.C. V. VS. PUBLIC'
+  want  'Ocean MR Itunes McCarthy D.C. V. Vs. Public'
+  got   'Ocean MR Itunes McCarthy D.C. V. vs. Public'

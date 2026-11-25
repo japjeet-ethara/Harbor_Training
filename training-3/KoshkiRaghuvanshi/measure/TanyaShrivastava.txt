@@ -1,0 +1,17 @@
+wrong answers      3053 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'v1.2'
+  want  'v1.2'
+  got   'V1.2'
+  input 'mrs. in star“ v1.2\u2009the|'
+  want  'Mrs. In Star“ v1.2\u2009The|'
+  got   'Mrs. In Star“ V1.2\u2009The|'
+  input "to eBay BOOK D'Angelo\xa0o'neil v1.2 WORLD"
+  want  "To eBay BOOK d'Angelo\xa0O'Neil v1.2 WORLD"
+  got   "To eBay BOOK d'Angelo\xa0O'Neil V1.2 WORLD"
+  input 'ISTANBUL JavaScript v1.2. mr‘ — McDonald'
+  want  'ISTANBUL JavaScript v1.2. Mr‘ — McDonald'
+  got   'ISTANBUL JavaScript V1.2. Mr‘ — McDonald'
+  input 'v1.2 mcdonald city McDonald'
+  want  'v1.2 McDonald City McDonald'
+  got   'V1.2 McDonald City McDonald'

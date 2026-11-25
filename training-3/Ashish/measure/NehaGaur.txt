@@ -1,0 +1,20 @@
+port: NehaGaur  (training-3/NehaGaur/task/solution)
+exam: Ashish 100,000-line exam, mode re (without regex)
+
+wrong answers      8022 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input '_dream en X-RAY mp3'
+  want  '_dream en X-Ray Mp3'
+  got   '_Dream en X-Ray Mp3'
+  input '\tMS as: __init__& U.S. input/output road {macOS Dr‘'
+  want  '\tMS As: __init__& U.S. Input/Output Road {macOS Dr‘'
+  got   '\tMS As: __Init__& U.S. Input/Output Road {macOS Dr‘'
+  input '__init__ www.site.org world node.js v|\xa0step-by-step:'
+  want  '__init__ www.site.org World node.js V|\xa0Step-by-Step:'
+  got   '__Init__ www.site.org World node.js V|\xa0Step-by-Step:'
+  input 'T-SHIRT v1.2 macOS or step-by-step'
+  want  'T-Shirt v1.2 macOS or Step-by-Step'
+  got   'T-Shirt V1.2 macOS or Step-by-Step'
+  input 'DATA\xa0COVID-19; _DREAM VS. TIME X.%. ON'
+  want  'Data\xa0Covid-19; _dream vs. Time X.%. On'
+  got   'Data\xa0Covid-19; _Dream vs. Time X.%. On'

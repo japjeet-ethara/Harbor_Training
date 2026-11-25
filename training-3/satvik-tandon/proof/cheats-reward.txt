@@ -1,0 +1,9 @@
+Madhur's original three cheats on the rebalanced 100,000-case task:
+Cheat 1 (delete trick / echo): reward 0.01888, jobs/satvik-rebalanced-cheat1
+Cheat 2 (Python inside): reward 0.0, jobs/satvik-rebalanced-cheat2
+Cheat 3 (read the exam): reward 0.01888, jobs/satvik-rebalanced-cheat3
+
+Optional new Day 6 cheat:
+Cheat 4 (partial Go port): reward 0.11065, jobs/satvik-rebalanced-cheat4
+Before the exam rebalance it scored 0.21175 in jobs/satvik-stdlib-shuffle-cheat4-current.
+All rewards remain the share of 100,000 exact answers; no scoring floor was added.

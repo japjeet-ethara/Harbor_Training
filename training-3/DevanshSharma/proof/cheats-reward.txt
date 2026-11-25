@@ -1,0 +1,5 @@
+Kushal Soni's cheats on hardened task (all must be below 0.2)
+
+cheat1c: reward=0.1111  (job: cheat1c__qzeKsW5)
+cheat2c: reward=0.0556  (job: cheat2c__muxvQ4M)
+cheat3c: reward=0.1111  (job: cheat3c__Ljx3M7b)

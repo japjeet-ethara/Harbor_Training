@@ -1,0 +1,13 @@
+jobs/
+pool.txt
+got.txt
+key/
+ports/
+attack/target/
+attack/hardened_verify/
+.venv/
+__pycache__/
+*.pyc
+*.zip
+.env
+.DS_Store

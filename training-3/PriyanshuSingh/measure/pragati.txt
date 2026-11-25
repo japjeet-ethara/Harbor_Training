@@ -1,0 +1,17 @@
+wrong answers      238 of 101958
+chance a random 2000 suite sees none of them: 1%
+  input 'SKY LORD QUICK 1/2 FOR MR 3D ŉ'
+  want  'SKY LORD QUICK 1/2 FOR MR 3D ʼN'
+  got   'Sky Lord Quick 1/2 for MR 3d ŉ'
+  input 'JAVASCRIPT ﬁNAL'
+  want  'JAVASCRIPT FINAL'
+  got   'Javascript ﬁnal'
+  input "--or o'ßa AT via"
+  want  "--Or O'SSa AT Via"
+  got   "--Or O'ßa AT Via"
+  input 'MC THE, ST ŉ'
+  want  'MC THE, ST ʼN'
+  got   'Mc The, St ŉ'
+  input 'V MARKET BY A/ SIMPLE WITH ǰ'
+  want  'V MARKET BY a/ SIMPLE WITH J̌'
+  got   'V Market by a/ Simple With ǰ'

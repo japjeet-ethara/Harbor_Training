@@ -1,0 +1,7 @@
+Oracle (task/solution/solve.sh) vs frozen 100k exam
+pool: kit/make_pool.py 100000 20261119   (unique titles, 100,000)
+freeze: kit/answers.py, original python-titlecase 2.4.1 twice (PYTHONHASHSEED 1 and 2)
+  pool inputs 100000 | kept (stable) 100000 | dropped 0 | regex module used False
+  -> answers come from plain Python re (no optional regex package)
+compare: kit/compare.py exam100k got.txt 2000
+  wrong answers 0 of 100000

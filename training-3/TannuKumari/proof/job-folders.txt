@@ -1,0 +1,9 @@
+after-oracle: jobs/after-oracle/task__DyRk3qa
+after-nop: jobs/after-nop/task__togy8xA
+after-cheat1: jobs/after-cheat1/new-cheat1__6csPqYM
+after-cheat2: jobs/after-cheat2/new-cheat2__FfqqGkY
+after-cheat3: jobs/after-cheat3/new-cheat3__3Hau36F
+probe-cheat3-answers: jobs/probe-cheat3-answers/probe-cheat3-answers__ULXjSJC
+before-cheat1: jobs/before-cheat1/old-cheat1__ehSDRjc
+before-cheat2: jobs/before-cheat2/old-cheat2__WDvRsCt
+before-cheat3: jobs/before-cheat3/old-cheat3__wkDJpQE

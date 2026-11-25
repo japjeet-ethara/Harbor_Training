@@ -1,0 +1,5 @@
+# exam data must reach the trainer byte-for-byte (no LF/CRLF conversion)
+task/tests/data/* -text
+measure/old-exam/* -text
+# shell scripts must stay LF so they run inside Linux containers
+*.sh text eol=lf

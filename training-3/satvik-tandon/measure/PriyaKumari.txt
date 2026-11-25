@@ -1,0 +1,22 @@
+Old exam
+wrong answers      0 of 2000
+chance a random 2000 suite sees none of them: 100%
+
+New exam
+wrong answers      765 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'Crwth _self-made\u2009v1.2 by #life an} U.S.'
+  want  'CRWTH _self-Made\u2009v1.2 by #Life An} U.S.'
+  got   'CRWTH _Self-Made\u2009v1.2 by #Life An} U.S.'
+  input 'дом to ıstanbul for( _via book mcdonald life'
+  want  'Дом to Istanbul For( _via Book McDonald Life'
+  got   'Дом to Istanbul For( _Via Book McDonald Life'
+  input "self-made music\u2009_self-made — and st o'reilly's JavaScript, VIA"
+  want  "Self-Made Music\u2009_self-Made — And St O'Reilly's JavaScript, Via"
+  got   "Self-Made Music\u2009_Self-Made — And St O'Reilly's JavaScript, Via"
+  input 'love story _αlpha}'
+  want  'Love Story _αlpha}'
+  got   'Love Story _Αlpha}'
+  input "macOS _o'neil"
+  want  "macOS _o'neil"
+  got   "macOS _O'neil"

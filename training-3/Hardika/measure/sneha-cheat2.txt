@@ -1,0 +1,17 @@
+wrong answers      86432 of 100000
+chance a random 2000 suite sees none of them: 0%
+  input 'ocean  {Music MS'
+  want  'Ocean  {Music MS'
+  got   'Ocean  {Music Ms'
+  input "Dr D'Angelo  vs.\u2009αlpha TCP/IP river War"
+  want  "Dr d'Angelo  vs.\u2009Αlpha TCP/IP River War"
+  got   "Dr D'angelo  Vs.\u2009αlpha Tcp/ip River War"
+  input 'en game DREAM'
+  want  'En Game DREAM'
+  got   'En Game Dream'
+  input 'FTP://HOST/FILE MUSIC BOOK  VIA !AND VS MCGRAW-HILL LIGHT "ΑLPHA'
+  want  'Ftp://host/file Music Book  via !And vs McGraw-Hill Light "Αlpha'
+  got   'Ftp://host/file Music Book  via !And vs Mcgraw-hill Light "ΑLpha'
+  input 'war\xa0\\data\u2009%summer'
+  want  'War\xa0\\Data\u2009%Summer'
+  got   'War\xa0\\data\u2009%summer'

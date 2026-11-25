@@ -1,0 +1,3 @@
+cheat1  reward 0.0  jobs/2026-11-23__11-17-34
+cheat2  reward 0.0  jobs/2026-11-23__11-19-19
+cheat3  reward 0.0  jobs/2026-11-23__11-21-05

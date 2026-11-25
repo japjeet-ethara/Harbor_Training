@@ -1,0 +1,9 @@
+[
+  {
+    "rule": "unused-harborignore",
+    "path": "C:\\Users\\KushalGirdhar\\Documents\\Codex\\2026-11-17\\build-a-complete-harbor-section-18\\work\\kushal-titlecase-go\\.harborignore",
+    "message": "Ignore rules only apply inside tests/ or solution/, including step directories; move or remove this file.",
+    "line": null,
+    "column": null
+  }
+]

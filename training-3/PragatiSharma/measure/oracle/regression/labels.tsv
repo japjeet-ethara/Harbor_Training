@@ -1,0 +1,74 @@
+1	ligature	1	ligature starts the word
+2	ligature	1	ligature starts the word
+3	ligature	1	three-letter ligature
+4	ligature	1	ligature st
+5	ligature	1	ligature not first (control)
+6	ligature	1	leading punctuation
+7	ligature	1	two ligature words
+8	ligature	1	small words around
+9	ligature	1	ligature alone
+10	ligature all-caps	1	ligature stops the line being all-caps
+11	ligature all-caps	1	ligature stops the line being all-caps
+12	ligature hyphen	1	hyphen part
+13	ligature hyphen	1	both hyphen parts
+14	ligature slash	1	both slash parts
+15	ligature slash	1	small word and ligature
+16	ligature apostrophe	1	APOS_SECOND upper of third character
+17	ligature apostrophe	1	APOS_SECOND upper of third character
+18	dotted I	1	all-caps line
+19	dotted I	1	all-caps line
+20	dotted I	1	all-caps line, small word first
+21	dotted I	1	all-caps line, alone
+22	dotted I	1	all-caps line, doubled
+23	dotted I	1	mixed-case line (control)
+24	dotted I	1	mixed-case line (control)
+25	dotted I hyphen	1	all-caps line
+26	dotted I hyphen	1	all-caps line
+27	dotted I hyphen	1	mixed line, all-caps hyphen parts
+28	dotted I hyphen	1	mixed line, leading hyphen
+29	dotted I slash	1	all-caps line
+30	dotted I slash	1	mixed line, all-caps slash part
+31	dotted I slash	1	mixed line, all-caps slash parts
+32	dotted I other rules	1	Mc prefix, recursive call
+33	dotted I other rules	1	apostrophe rule (no lowering)
+34	dotted I other rules	1	small word via re.I, then lower()
+35	dotted I other rules	1	small word last, lower()
+36	dotted I other rules	1	SMALL_LAST capitalize() lowers the rest
+37	other full mappings	1	sharp s, mixed case
+38	other full mappings	1	sharp s stops the line being all-caps
+39	other full mappings	1	capital sharp s, all-caps line
+40	other full mappings	1	n preceded by apostrophe
+41	other full mappings	1	Armenian ligature
+42	other full mappings	1	final sigma, all-caps line
+43	other full mappings	1	final and initial sigma
+44	other full mappings	1	final sigma before punctuation
+45	other full mappings	1	final sigma in hyphen parts
+46	other full mappings	1	digraph, CAPFIRST
+47	control	1	plain title
+48	control	1	Mc prefix
+49	control	1	hyphens and small words
+50	dotless i	1	dotless i matches i under re.IGNORECASE
+51	long s	1	long s matches s under re.IGNORECASE
+52	extra whitespace	1	U+001F is \s in Python, not in Go unicode.IsSpace
+53	word chars (Unicode 16)	1	Garay letter (Unicode 16.0) is \w in Python 3.14
+54	dotless i	1	small word first, SMALL_FIRST capitalize()
+55	dotless i	1	small word last, SMALL_LAST capitalize()
+56	dotless i	1	small word with dot
+57	dotless i	1	hyphen parts
+58	dotless i	1	slash parts
+59	dotless i	1	all-caps test: upper() of ı is I
+60	long s	1	small word first
+61	long s	1	small word with dot
+62	long s	1	honorific
+63	long s	1	apostrophe tail ['s]{2}
+64	long s	1	CAPFIRST upper() (control)
+65	Kelvin sign	1	consonant acronym
+66	Kelvin sign	1	consonant acronym, all Kelvin
+67	extra whitespace	1	U+001C/U+001D/U+001E split words
+68	extra whitespace	1	U+001F before a small last word
+69	extra whitespace	1	all-caps line
+70	extra whitespace	1	leading U+001F
+71	word chars (Unicode 16)	1	\b before a small last word
+72	word chars (Unicode 16)	1	INLINE_PERIOD with a new letter
+73	word chars (Unicode 16)	1	hyphen parts
+74	word chars (Unicode 16)	1	new digit makes an ordinary word

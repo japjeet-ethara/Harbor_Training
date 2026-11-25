@@ -1,0 +1,6 @@
+[[reward]]
+name = "reward"
+aggregation = "weighted-mean"
+# Build and cleanup remain diagnostic dimensions. Only behavior is rewarded;
+# behaviour gates on both hard requirements and scores above identity output.
+weights = { behaviour = 1.0, build = 0.0, no_python = 0.0 }

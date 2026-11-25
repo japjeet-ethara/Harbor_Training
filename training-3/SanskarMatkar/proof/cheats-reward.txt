@@ -1,0 +1,25 @@
+Sugandh Sharma's Day 4 cheats on my hardened task (Harbor, -a oracle on a copy with only solution/ replaced)
+
+cheat1  job: jobs/2026-11-23__12-06-39
+{
+  "behaviour": 0.0,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0
+}
+
+cheat2  job: jobs/2026-11-23__12-10-46
+{
+  "behaviour": 0.0,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0
+}
+
+cheat3  job: jobs/2026-11-23__12-15-13
+{
+  "behaviour": 0.0153,
+  "build": 0.0,
+  "no_python": 0.0,
+  "reward": 0.0102
+}

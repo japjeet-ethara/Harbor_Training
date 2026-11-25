@@ -1,0 +1,58 @@
+{
+    "schema_version": 1,
+    "id": "4dda86c2-72fd-4acd-8090-1f71b97256a8",
+    "started_at": "2026-11-17T08:43:23.158907",
+    "updated_at": "2026-11-17T08:43:52.908542",
+    "finished_at": "2026-11-17T08:43:52.908542",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "nop__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "behaviour": 0.0,
+                        "build": 0.0,
+                        "no_python": 0.0,
+                        "reward": 0.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "behaviour": {
+                        "0.0": [
+                            "task__EvuWG7c"
+                        ]
+                    },
+                    "build": {
+                        "0.0": [
+                            "task__EvuWG7c"
+                        ]
+                    },
+                    "no_python": {
+                        "0.0": [
+                            "task__EvuWG7c"
+                        ]
+                    },
+                    "reward": {
+                        "0.0": [
+                            "task__EvuWG7c"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+    }
+}

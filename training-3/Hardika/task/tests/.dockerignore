@@ -1,0 +1,15 @@
+**
+!Dockerfile
+!requirements.lock
+!grade.py
+!build/
+!build/check.py
+!no_python/
+!no_python/check.py
+!behaviour/
+!behaviour/check.py
+!test.sh
+!reward.toml
+!data/
+!data/inputs.txt
+!data/answers.txt
